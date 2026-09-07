@@ -156,9 +156,9 @@ figcaption, .caption, .source {
 .span-6 { grid-column: span 12; } .span-7 { grid-column: span 12; } .span-8 { grid-column: span 12; }
 .span-9 { grid-column: span 12; } .span-12 { grid-column: span 12; }
 @media (min-width: 48em) {
-  .span-2 { grid-column: span 2; } .span-3 { grid-column: span 3; } .span-4 { grid-column: span 4; } .span-5 { grid-column: span 5; }
-  .span-6 { grid-column: span 6; } .span-7 { grid-column: span 7; } .span-8 { grid-column: span 8; }
-  .span-9 { grid-column: span 9; }
+  .span-2 { grid-column-end: span 2; } .span-3 { grid-column-end: span 3; } .span-4 { grid-column-end: span 4; } .span-5 { grid-column-end: span 5; }
+  .span-6 { grid-column-end: span 6; } .span-7 { grid-column-end: span 7; } .span-8 { grid-column-end: span 8; }
+  .span-9 { grid-column-end: span 9; }
   .start-5 { grid-column-start: 5; } .start-6 { grid-column-start: 6; } .start-7 { grid-column-start: 7; }
 }
 
@@ -439,3 +439,33 @@ code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .9em; }
   .path + .path { border-left: var(--hairline) solid var(--rule); }
   .path:first-child { padding-left: 0; }
 }
+
+/* --------------------------------------------------------------------------
+   13. Pathway: the program diagram on Learn. Stages left to right, nodes as
+       hairline boxes, one panel open at a time. Added 7 Sep 2026 because no
+       existing component covered it. Stacks vertically under 56em.
+   -------------------------------------------------------------------------- */
+.pathway { max-width: none; }
+.pathway__stages { list-style: none; margin: 0 0 var(--s4); padding: 0; display: grid; gap: var(--s3); border-top: var(--hairline) solid var(--rule-strong); padding-top: var(--s3); }
+.pathway__stages--parallel { border-top-style: dashed; }
+.pathway__stage-t { font-family: var(--sans); font-size: var(--t-1); font-weight: 600; color: var(--ink-soft); margin: 0 0 var(--s2); text-transform: none; }
+.pathway__nodes { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s1); max-width: none; }
+.pathway__btn {
+  font: inherit; font-family: var(--serif); font-size: var(--t1); line-height: 1.2; text-align: left; width: 100%;
+  padding: var(--s2); border: var(--hairline) solid var(--rule-strong); background: var(--paper); color: var(--soil); cursor: pointer; border-radius: 0;
+}
+.pathway__btn:hover, .pathway__btn[aria-expanded="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.pathway__node--required .pathway__btn { border-width: 2px; }
+.pathway__node--title .pathway__btn { border-style: dashed; font-style: italic; }
+.pathway__panel { padding: var(--s2); border: var(--hairline) solid var(--rule); border-top: 0; background: var(--paper); }
+.pathway__panel .card__meta { margin-bottom: var(--s1); }
+@media (min-width: 56em) {
+  .pathway__stages { grid-template-columns: repeat(5, 1fr); }
+  .pathway__stages--parallel { grid-template-columns: 1fr; }
+  .pathway__stages--parallel .pathway__nodes { grid-template-columns: repeat(3, 1fr); }
+  .pathway__stage + .pathway__stage { position: relative; }
+  .pathway__stage + .pathway__stage::before { content: "→"; position: absolute; left: calc(var(--s3) * -0.5 - .4em); top: 2.4em; color: var(--olive); }
+}
+
+/* Dated lines and kinds on a moss band. Missed in Stage 1. */
+.stratum--moss .dated, .stratum--moss .entry__kind, .stratum--moss .entry__line { color: var(--sage); }

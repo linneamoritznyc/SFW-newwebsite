@@ -1,0 +1,12 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Soil Food Web Foundation//Now//EN
+BEGIN:VEVENT
+UID:pdc-cohort-2026@soilfoodweb.com
+DTSTAMP:20260907T000000Z
+DTSTART;VALUE=DATE:20260916
+DTEND;VALUE=DATE:20261221
+SUMMARY:Permaculture Design Certification cohort
+URL:https://school.soilfoodweb.com/courses/permaculture-design-certification
+END:VEVENT
+END:VCALENDAR

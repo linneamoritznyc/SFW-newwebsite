@@ -1,0 +1,12 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Soil Food Web Foundation//Now//EN
+BEGIN:VEVENT
+UID:india-cancellation-2026@soilfoodweb.com
+DTSTAMP:20260907T000000Z
+DTSTART;VALUE=DATE:20260907
+DTEND;VALUE=DATE:20260908
+SUMMARY:India workshop: last day to cancel with a refund
+URL:https://school.soilfoodweb.com/courses/india-workshop-2026
+END:VEVENT
+END:VCALENDAR

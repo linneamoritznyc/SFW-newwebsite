@@ -136,3 +136,33 @@
     });
   });
 })();
+
+/* ---------- 5. Pathway diagram (Learn) ---------- */
+// <div data-pathway> with <button data-pathway-btn aria-controls="id"> and a
+// panel by that id. One panel open at a time; hover opens too, tap toggles.
+(function () {
+  var roots = document.querySelectorAll("[data-pathway]");
+  Array.prototype.forEach.call(roots, function (root) {
+    var btns = root.querySelectorAll("[data-pathway-btn]");
+    function closeAll() {
+      Array.prototype.forEach.call(btns, function (b) {
+        b.setAttribute("aria-expanded", "false");
+        var p = document.getElementById(b.getAttribute("aria-controls"));
+        if (p) p.hidden = true;
+      });
+    }
+    Array.prototype.forEach.call(btns, function (b) {
+      var panel = document.getElementById(b.getAttribute("aria-controls"));
+      if (!panel) return;
+      function open() { closeAll(); b.setAttribute("aria-expanded", "true"); panel.hidden = false; }
+      b.addEventListener("click", function () {
+        var isOpen = b.getAttribute("aria-expanded") === "true";
+        closeAll();
+        if (!isOpen) { b.setAttribute("aria-expanded", "true"); panel.hidden = false; }
+      });
+      b.addEventListener("mouseenter", open);
+      b.addEventListener("focus", open);
+    });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeAll(); });
+  });
+})();
