@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Design system — Soil Food Web Foundation</title>
+  <meta name="description" content="Stage 1 demo: tokens, type, colour, the card, the icon set, the header, the overlay menu and the footer.">
+  <link rel="preload" href="fonts/eb-garamond-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/source-sans-3-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- Icon sprite. In WordPress, include this file once in the header template. -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <symbol id="i-web" viewBox="0 0 24 24"><circle cx="5" cy="6" r="1.4"/><circle cx="18" cy="5" r="1.4"/><circle cx="12" cy="12" r="1.6"/><circle cx="5" cy="18" r="1.4"/><circle cx="19" cy="17" r="1.4"/><path d="M6.3 6.7 10.8 10.9M16.7 5.8 13.2 10.6M6.2 17.2 10.7 13.2M17.7 16.2 13.4 13.1M5 7.4v9.2M18 6.4l1 9.2"/></symbol>
+  <symbol id="i-cycle" viewBox="0 0 24 24"><path d="M12 2v9c0 3-2 5-4 7M12 11c0 3 2 5 4 7M12 6c-2 0-3 1-4 3M12 8c2 0 3 1 4 2.5"/><path d="M4 14c-1.5 2.5-1 5.5 1.2 7.3M20 14c1.5 2.5 1 5.5-1.2 7.3M5.2 21.3H3.4M5.2 21.3v-1.8M18.8 21.3h1.8M18.8 21.3v-1.8"/></symbol>
+  <symbol id="i-aggregate" viewBox="0 0 24 24"><path d="M7 5.5 10.5 4 13 7 11 10 7.5 9.5zM14 8.5 18 8l2 3.5-2.5 3-3-1zM5 12 8.5 12.5 9.5 16 6.5 18.5 3.5 16zM11 15l3.5-1 2.5 3-1.5 3.5-3.5-.5z"/><path d="M9.5 9.5 12 13.5M13.5 11.5l.5 2.5M9.5 13.5l1.5 1.5"/></symbol>
+  <symbol id="i-weed" viewBox="0 0 24 24"><path d="M12 21V9M12 13c-3 0-5-2-6-5 3 0 5 1.5 6 5zM12 11c3 0 5-2 6-5-3 0-5 1.5-6 5z"/><path d="M4 16.5h16M6 19.5h12"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 21c-4-2-7-5-7-10V6l7-3 7 3v5c0 5-3 8-7 10z"/><path d="M12 21V11M12 11c-2.5 0-4-1.5-4.5-4 2.5 0 4 1.5 4.5 4zM12 13.5c2.5 0 4-1.5 4.5-4-2.5 0-4 1.5-4.5 4z"/></symbol>
+  <symbol id="i-carbon" viewBox="0 0 24 24"><path d="M12 2v10M9 9l3 3 3-3"/><path d="M3 15h18M3 18.5h18M3 22h18"/></symbol>
+  <symbol id="i-microscope" viewBox="0 0 24 24"><path d="M9 3l5 2-4 9-5-2zM8 13l-1 2M13 5l1.5 1M6 21h13M9 21c-1.5-1-2-2.5-2-4M19 21c0-4-3-7-7-7"/></symbol>
+  <symbol id="i-compost" viewBox="0 0 24 24"><path d="M3 20c2-6 6-10 9-10s7 4 9 10z"/><path d="M9 7c0-1.5 1-2 1-3.5M12 6c0-1.5 1-2 1-3.5M15 7c0-1.5 1-2 1-3.5"/><path d="M8 16h8M10 18.5h4"/></symbol>
+  <symbol id="i-flask" viewBox="0 0 24 24"><path d="M9 3h6M10 3v6l-5 9c-.7 1.2.2 2.7 1.6 2.7h10.8c1.4 0 2.3-1.5 1.6-2.7l-5-9V3"/><path d="M7 16h10M12.5 12.5v.01M10 14.5v.01"/></symbol>
+  <symbol id="i-field" viewBox="0 0 24 24"><path d="M3 8h18v13H3zM3 14.5h18M12 8v13"/><path d="M7.5 21v-4M7.5 18c-1.5 0-2.5-1-3-2.5 1.5 0 2.5.8 3 2.5zM16.5 12v-3M16.5 10.5c1.5 0 2.5-1 3-2.5-1.5 0-2.5.8-3 2.5z"/></symbol>
+  <symbol id="i-practicum" viewBox="0 0 24 24"><path d="M3 3h7.5v7.5H3zM13.5 3H21v7.5h-7.5zM3 13.5h7.5V21H3zM13.5 13.5H21V21h-7.5z"/></symbol>
+  <symbol id="i-webinar" viewBox="0 0 24 24"><path d="M3 5h18v11H3zM9 20h6M12 16v4"/><path d="M9 12l3-4 3 4"/></symbol>
+  <symbol id="i-workshop" viewBox="0 0 24 24"><path d="M12 22c-4-5-7-8.5-7-12.5a7 7 0 0 1 14 0C19 13.5 16 17 12 22z"/><path d="M9 9.5c0-1.5 1.5-3 3-3s3 1.5 3 3M12 6.5V4"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><path d="M3 5h18v16H3zM3 9.5h18M8 3v4M16 3v4"/><path d="M7 13h2M11 13h2M15 13h2M7 17h2M11 17h2"/></symbol>
+  <symbol id="i-document" viewBox="0 0 24 24"><path d="M6 2h8l5 5v15H6zM14 2v5h5M9 12h7M9 15.5h7M9 19h5"/></symbol>
+  <symbol id="i-person" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.5-7 8-7s8 3 8 7"/></symbol>
+  <symbol id="i-scholarship" viewBox="0 0 24 24"><path d="M2 9l10-4 10 4-10 4z"/><path d="M6 11v5c2 2 10 2 12 0v-5M22 9v6"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M3 6.5h18M3 12h18M3 17.5h18"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M5 5l14 14M19 5L5 19"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 4v16M4 12h16"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15M14 7l5 5-5 5"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v13M7 11l5 5 5-5M4 21h16"/></symbol>
+  <symbol id="i-external" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 13v7H4V6h7"/></symbol>
+</svg>
+
+<!-- ===================== HEADER (every page) ===================== -->
+<header class="site-header">
+  <div class="wrap">
+    <a class="wordmark" href="index.html">
+      <span class="wordmark__name">Soil Food Web Foundation</span>
+      <span class="wordmark__status">A 501(c)(3) nonprofit</span>
+    </a>
+    <ul class="site-header__links">
+      <li><a href="now.html">What’s happening</a></li>
+      <li><a href="login.html">Student login</a></li>
+    </ul>
+    <a class="btn btn--donate" href="donate.html">Donate</a>
+    <button class="menu-btn" type="button" data-menu-open aria-controls="overlay" aria-expanded="false">
+      <svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg><span class="menu-btn__label">Menu</span>
+    </button>
+  </div>
+</header>
+
+<!-- ===================== OVERLAY MENU (every page) ===================== -->
+<div class="overlay" id="overlay" data-open="false" role="dialog" aria-modal="true" aria-label="Site menu">
+  <div class="wrap">
+    <div class="overlay__top">
+      <span class="wordmark">
+        <span class="wordmark__name">Soil Food Web Foundation</span>
+        <span class="wordmark__status">A 501(c)(3) nonprofit</span>
+      </span>
+      <button class="menu-btn" type="button" data-menu-close>
+        <svg class="icon" aria-hidden="true"><use href="#i-close"/></svg>Close
+      </button>
+    </div>
+
+    <div class="overlay__body">
+      <nav class="overlay__nav" aria-label="Sections">
+        <ul class="acc" data-accordion>
+          <li class="acc__item" data-acc-item data-open="false">
+            <button class="acc__btn" type="button" data-acc-btn aria-controls="acc-about">
+              <span class="acc__name">About us</span><span class="acc__desc">Who we are and how we’re governed</span>
+            </button>
+            <div class="acc__panel" id="acc-about" data-acc-panel><div>
+              <ul class="acc__links">
+                <li><a href="about.html">Mission, vision and story</a></li>
+                <li><a href="about-team.html">Our team and board</a></li>
+                <li><a href="about-governance.html">Governance and financials</a></li>
+                <li><a href="about-elaine.html">Dr. Elaine Ingham</a></li>
+                <li><a href="contact.html">Contact</a></li>
+              </ul>
+            </div></div>
+          </li>
+          <li class="acc__item" data-acc-item data-open="false">
+            <button class="acc__btn" type="button" data-acc-btn aria-controls="acc-learn">
+              <span class="acc__name">Learn</span><span class="acc__desc">Courses, workshops and free resources</span>
+            </button>
+            <div class="acc__panel" id="acc-learn" data-acc-panel><div>
+              <ul class="acc__links">
+                <li><a href="learn.html">All programmes and what they cost</a></li>
+                <li><a href="learn-workshops.html">In-person workshops</a></li>
+                <li><a href="learn-webinars.html">Free webinars</a></li>
+                <li><a href="learn-scholarships.html">Scholarships</a></li>
+                <li><a href="login.html">Student login</a></li>
+              </ul>
+            </div></div>
+          </li>
+          <li class="acc__item" data-acc-item data-open="false">
+            <button class="acc__btn" type="button" data-acc-btn aria-controls="acc-science">
+              <span class="acc__name">Science</span><span class="acc__desc">How the soil food web works</span>
+            </button>
+            <div class="acc__panel" id="acc-science" data-acc-panel><div>
+              <ul class="acc__links">
+                <li><a href="science.html">The six mechanisms</a></li>
+                <li><a href="publications.html">Publications</a></li>
+                <li><a href="about-elaine.html">Dr. Elaine’s research</a></li>
+              </ul>
+            </div></div>
+          </li>
+          <li class="acc__item" data-acc-item data-open="false">
+            <button class="acc__btn" type="button" data-acc-btn aria-controls="acc-projects">
+              <span class="acc__name">Projects</span><span class="acc__desc">Where this is being done, by whom</span>
+            </button>
+            <div class="acc__panel" id="acc-projects" data-acc-panel><div>
+              <ul class="acc__links">
+                <li><a href="projects.html">All case studies</a></li>
+                <li><a href="projects.html#field-trials">Field trials</a></li>
+                <li><a href="projects.html#hubs">Ecoregion hubs</a></li>
+              </ul>
+            </div></div>
+          </li>
+          <li class="acc__item" data-acc-item data-open="false">
+            <button class="acc__btn" type="button" data-acc-btn aria-controls="acc-community">
+              <span class="acc__name">Community</span><span class="acc__desc">Find people, or join them</span>
+            </button>
+            <div class="acc__panel" id="acc-community" data-acc-panel><div>
+              <ul class="acc__links">
+                <li><a href="directory.html">Find a professional</a></li>
+                <li><a href="community.html#map">Community map</a></li>
+                <li><a href="community.html#join">Join the community</a></li>
+                <li><a href="community.html#volunteer">Volunteer</a></li>
+              </ul>
+            </div></div>
+          </li>
+          <li class="acc__item" data-acc-item data-open="false">
+            <button class="acc__btn" type="button" data-acc-btn aria-controls="acc-now">
+              <span class="acc__name">Now</span><span class="acc__desc">Everything dated, this year’s calendar</span>
+            </button>
+            <div class="acc__panel" id="acc-now" data-acc-panel><div>
+              <ul class="acc__links">
+                <li><a href="now.html">What’s happening</a></li>
+                <li><a href="now.html#calendar">Year calendar</a></li>
+                <li><a href="now.html#writing">News and blog</a></li>
+              </ul>
+            </div></div>
+          </li>
+        </ul>
+        <ul class="overlay__utility">
+          <li><a href="now.html">What’s happening</a></li>
+          <li><a href="login.html">Student login</a></li>
+        </ul>
+      </nav>
+
+      <aside class="overlay__now" aria-labelledby="now-h">
+        <h2 id="now-h">Happening now</h2>
+        <ul class="now-list">
+          <li><span class="dated"><time datetime="2026-09-07">7 September 2026</time></span><a href="learn-workshops.html#india">India workshop: last day to cancel with a refund</a></li>
+          <li><span class="dated"><time datetime="2026-09-16">16 September to 20 December 2026</time></span><a href="learn.html#pdc">Permaculture Design Certification cohort begins</a></li>
+          <li><span class="dated"><time datetime="2026-10">October 2026</time></span><a href="learn-workshops.html#india">India Accelerator Workshop, Coimbatore</a></li>
+        </ul>
+        <a class="more" href="now.html">Everything that’s happening</a>
+      </aside>
+    </div>
+    <div class="cutout cutout--overlay">
+      <img src="img/cutout-placeholder.svg" alt="" width="320" height="260">
+    </div>
+  </div>
+</div>
+
+<!-- ===================== MAIN ===================== -->
+<main id="main">
+
+  <section class="stratum" style="border-top:0;padding-top:var(--s5)">
+    <div class="wrap">
+      <div class="head">
+        <h1>Design system, Stage 1</h1>
+        <p class="lede">Tokens, the type scale, colour, spacing, the one card, the icon set, and the three global pieces: header, overlay menu, footer. Everything on this page is real code from <code>site.css</code> and <code>site.js</code>. Open the Menu button to see the overlay.</p>
+      </div>
+      <p class="dated">Demo built <time datetime="2026-09-07">7 September 2026</time>. Items awaiting real data are marked as placeholders and look like this:</p>
+      <p class="todo">the cut-out moss form in the overlay corner is a grey polygon until a real moss photograph from the SFW library is cut and supplied by Stephanie.</p>
+    </div>
+  </section>
+
+  <!-- COLOUR -->
+  <section class="stratum" id="colour">
+    <div class="wrap">
+      <div class="head">
+        <h2>Colour</h2>
+        <p>Paper is bone, a shade cooler than the brand’s Organic Cream, so the ground does not land in the cream-and-serif default. Brand green stays for every link and button because it passes AA on paper. Gold appears on Donate and nowhere else. The overlay and dark bands use the brand’s deep green.</p>
+      </div>
+      <ul class="swatches">
+        <li class="swatch"><div class="swatch__chip" style="background:var(--paper)"></div><div class="swatch__label">Paper<code>#ECE8DC</code></div></li>
+        <li class="swatch"><div class="swatch__chip" style="background:var(--paper-deep)"></div><div class="swatch__label">Paper, deep<code>#E2DDCE</code></div></li>
+        <li class="swatch"><div class="swatch__chip" style="background:var(--ink)"></div><div class="swatch__label">Ink<code>#1E1C18</code></div></li>
+        <li class="swatch"><div class="swatch__chip" style="background:var(--soil)"></div><div class="swatch__label">Soil Brown, brand<code>#4F3433</code></div></li>
+        <li class="swatch"><div class="swatch__chip" style="background:var(--moss)"></div><div class="swatch__label">Moss, brand deep green<code>#22371F</code></div></li>
+        <li class="swatch"><div class="swatch__chip" style="background:var(--olive)"></div><div class="swatch__label">Olive, line accent<code>#5F6A3C</code></div></li>
+        <li class="swatch"><div class="swatch__chip" style="background:var(--sage)"></div><div class="swatch__label">Sage, texture<code>#A7B097</code></div></li>
+        <li class="swatch"><div class="swatch__chip" style="background:var(--green)"></div><div class="swatch__label">Food Web Green, brand<code>#156826</code></div></li>
+        <li class="swatch"><div class="swatch__chip" style="background:var(--gold)"></div><div class="swatch__label">Harvest Gold, Donate only<code>#C9A227</code></div></li>
+      </ul>
+      <p class="caption">Contrast on paper #ECE8DC: ink 14.6:1, Soil Brown 9.6:1, Food Web Green 6.5:1, Soil Brown on gold 4.9:1, paper on moss 11.4:1. All pass WCAG 2.1 AA for body text. The lighter legacy green #59A66C and Legacy Purple are not in the system; they can be added as tokens if a page needs them.</p>
+    </div>
+  </section>
+
+  <!-- TYPE -->
+  <section class="stratum" id="type">
+    <div class="wrap">
+      <div class="head">
+        <h2>Typography</h2>
+        <p>Two families, both open licence and self-hosted at 204 kB total: EB Garamond for headings, an old-style serif in the spirit of the journals Elaine published in; Source Sans 3 for body, kept from the brand guide. Scale is 1.25 from an 18px body. Flush left, ragged right, measure 62 characters.</p>
+      </div>
+      <div class="type-spec"><span class="small">Display 60/76</span><span style="font-family:var(--serif);font-size:var(--t6);line-height:1;color:var(--soil)">Living soil</span></div>
+      <div class="type-spec"><span class="small">h1 46/52</span><h1 style="margin:0">Healing soil. Feeding humanity. Restoring the living world.</h1></div>
+      <div class="type-spec"><span class="small">h2 36</span><h2 style="margin:0">How the soil food web works</h2></div>
+      <div class="type-spec"><span class="small">h3 28</span><h3 style="margin:0">Nutrient cycling at the root</h3></div>
+      <div class="type-spec"><span class="small">Lede 22</span><p class="lede">The ground beneath our farms and forests is alive.</p></div>
+      <div class="type-spec"><span class="small">Body 18</span><p>A web of bacteria, fungi, protozoa, nematodes and micro-arthropods feeds plants, builds soil, stores carbon and cleans water when it is intact. For four decades Dr. Elaine Ingham mapped that web and taught the world to restore it. <a href="#type">This is a link</a>, and <em>this is italic</em>.</p></div>
+      <div class="type-spec"><span class="small">Caption 13</span><p class="caption">Brightfield, 400×, SFW lab, 2026. The only place the site uses a smaller size.</p></div>
+      <div class="type-spec"><span class="small">Source line</span><p class="source">Thinkific enrolment records, confirmed August 2026</p></div>
+      <p class="caption" style="margin-top:var(--s3)">Rules the type follows: no tracked-out all-caps eyebrows, no numbered sections unless the content is a sequence, no arrows on links, no accent word in a headline.</p>
+    </div>
+  </section>
+
+  <!-- LAYOUT -->
+  <section class="stratum" id="layout">
+    <div class="wrap">
+      <div class="head">
+        <h2>Layout: strata</h2>
+        <p>The page is a column of horizontal bands separated by hairline rules, like a soil profile. Inside each band a 12-column grid, used asymmetrically: heading in the left five columns, running text from column seven. Nothing is centred. Depth is made by a second stratum of paper, never by shadows.</p>
+      </div>
+      <div class="grid">
+        <div class="span-4"><h3>Left column</h3><p>Four columns. Headings, captions, the short thing.</p></div>
+        <div class="span-8"><h3>Right column</h3><p>Eight columns. Running text, tables, the long thing. On screens under 768px both stack, in this order.</p></div>
+        <div class="span-3" style="background:var(--paper-deep);padding:var(--s2)"><p class="small">3</p></div>
+        <div class="span-3" style="background:var(--paper-deep);padding:var(--s2)"><p class="small">3</p></div>
+        <div class="span-3" style="background:var(--paper-deep);padding:var(--s2)"><p class="small">3</p></div>
+        <div class="span-3" style="background:var(--paper-deep);padding:var(--s2)"><p class="small">3</p></div>
+      </div>
+      <p class="caption" style="margin-top:var(--s3)">Spacing tokens: 8, 16, 24, 32, 48, 72, 112 px. Band padding 72 px. Page maximum 1344 px. Gutters 24 px on mobile, 48 px from 960 px.</p>
+    </div>
+  </section>
+
+  <!-- BUTTONS -->
+  <section class="stratum" id="controls">
+    <div class="wrap">
+      <div class="head">
+        <h2>Buttons and controls</h2>
+        <p>Square corners, hairline borders. Three buttons only: green filled, green outlined, gold Donate. Filter chips for index pages, since indexes filter and never paginate.</p>
+      </div>
+      <p style="display:flex;flex-wrap:wrap;gap:var(--s2);max-width:none">
+        <a class="btn" href="#controls">Start with a free webinar</a>
+        <a class="btn btn--ghost" href="#controls">See all programmes</a>
+        <a class="btn btn--donate" href="#controls">Donate</a>
+      </p>
+      <ul class="chips" data-filter-for="#card-demo">
+        <li><button class="chip" type="button" data-filter="all" aria-pressed="true">All</button></li>
+        <li><button class="chip" type="button" data-filter="case-study" aria-pressed="false">Case studies</button></li>
+        <li><button class="chip" type="button" data-filter="video" aria-pressed="false">Video</button></li>
+        <li><button class="chip" type="button" data-filter="publication" aria-pressed="false">Publications</button></li>
+        <li><button class="chip" type="button" data-filter="practitioner" aria-pressed="false">Practitioners</button></li>
+        <li><button class="chip" type="button" data-filter="event" aria-pressed="false">Events</button></li>
+        <li><span class="small" data-filter-status aria-live="polite" style="padding:.35em 0;display:inline-block">5 shown</span></li>
+      </ul>
+      <p style="max-width:22rem"><label for="demo-email" class="small">Email input</label><input class="input" id="demo-email" type="email" placeholder="you@example.com"></p>
+    </div>
+  </section>
+
+  <!-- CARD -->
+  <section class="stratum" id="card">
+    <div class="wrap">
+      <div class="head">
+        <h2>The one card</h2>
+        <p>Same container for case studies, videos, publications, practitioners and events. A hairline on top, a kind and date line, optional media, a serif title, one line, then the metadata that changes by kind. No radius, no shadow, no hover lift. Try the chips above.</p>
+      </div>
+      <ul class="cards" id="card-demo">
+        <li class="card" data-kind="case-study">
+          <div class="card__kind"><span>Consultant case study</span><span class="dated"><time datetime="2024">2024</time></span></div>
+          <div class="card__media"><div class="todo" style="height:100%;display:grid;place-items:center">still from the practitioner’s own video, or a photograph of the site, from Stephanie’s asset log</div></div>
+          <h3 class="card__title"><a href="#card">Market garden makeover, Sweden</a></h3>
+          <p class="card__line">What the land was, what was done, what was measured, and what cannot be claimed from one site.</p>
+          <dl class="card__meta"><div><dt>Practitioner</dt><dd>Renald Flores</dd></div><div><dt>Place</dt><dd>Sweden</dd></div><div><dt>Scale</dt><dd>market garden</dd></div></dl>
+        </li>
+        <li class="card" data-kind="video">
+          <div class="card__kind"><span>Video, consultant case study</span><span class="dated"><time datetime="2023">Date to confirm</time></span></div>
+          <div class="card__media"><div class="todo" style="height:100%;display:grid;place-items:center">Vimeo thumbnail, York Farms, from the Consultant Case Studies playlist</div></div>
+          <h3 class="card__title"><a href="#card">York Farms, Illinois: corn and soy on 10,000 acres</a></h3>
+          <p class="card__line">Todd Harrington presents the transition and the measurements taken.</p>
+          <dl class="card__meta"><div><dt>Practitioner</dt><dd>Todd Harrington</dd></div><div><dt>Place</dt><dd>Illinois, USA</dd></div></dl>
+        </li>
+        <li class="card" data-kind="publication">
+          <div class="card__kind"><span>Journal paper</span><span class="dated"><time datetime="1985">1985</time></span></div>
+          <h3 class="card__title"><a href="https://doi.org/10.2307/1942528">Interactions of bacteria, fungi, and their nematode grazers: effects on nutrient cycling and plant growth</a></h3>
+          <p class="card__line">The paper that set out how grazing on bacteria and fungi releases nutrients at the root.</p>
+          <dl class="card__meta"><div><dt>Authors</dt><dd>Ingham R.E., Trofymow J.A., Ingham E.R., Coleman D.C.</dd></div><div><dt>Journal</dt><dd>Ecological Monographs 55(1)</dd></div></dl>
+        </li>
+        <li class="card" data-kind="practitioner">
+          <div class="card__kind"><span>Soil Food Web Consultant</span><span class="dated">Title earned <time datetime="2022">2022</time></span></div>
+          <div class="initial-block" aria-hidden="true">RF</div>
+          <h3 class="card__title"><a href="#card">Renald Flores</a></h3>
+          <p class="card__line">Market gardens and small farms. Works remotely.</p>
+          <dl class="card__meta"><div><dt>Region</dt><dd>Sweden</dd></div><div><dt>Languages</dt><dd>Swedish, English, French</dd></div><div><dt>Taking clients</dt><dd>to confirm with practitioner</dd></div></dl>
+        </li>
+        <li class="card" data-kind="event">
+          <div class="card__kind"><span>Workshop, in person</span><span class="dated"><time datetime="2026-10-18">18 to 31 October 2026</time></span></div>
+          <h3 class="card__title"><a href="#card">India Accelerator Workshop, Coimbatore</a></h3>
+          <p class="card__line">Two weeks of the Advanced Programs in a group, co-hosted with the Isha Foundation.</p>
+          <dl class="card__meta"><div><dt>Prerequisite</dt><dd>Foundation Courses or the two-day Life in the Soils seminar</dd></div><div><dt>Price</dt><dd>to confirm from the Thinkific page</dd></div></dl>
+        </li>
+      </ul>
+      <p class="caption" style="margin-top:var(--s3)">The practitioner card shows the designed initial-block that stands in for every named person until their real photograph arrives. The site never uses a generated face.</p>
+    </div>
+  </section>
+
+  <!-- ICONS -->
+  <section class="stratum" id="icons">
+    <div class="wrap">
+      <div class="head">
+        <h2>Icons</h2>
+        <p>Hairline, one weight, drawn on a 24-unit grid. Six mark the mechanisms on the Science page, eight mark programme types on Learn, the rest are interface. They mark things; they never stand in for content.</p>
+      </div>
+      <h3 style="font-size:var(--t2)">The six mechanisms</h3>
+      <ul class="icon-grid">
+        <li><svg class="icon icon--lg icon--olive"><use href="#i-web"/></svg>The web itself</li>
+        <li><svg class="icon icon--lg icon--olive"><use href="#i-cycle"/></svg>Nutrient cycling</li>
+        <li><svg class="icon icon--lg icon--olive"><use href="#i-aggregate"/></svg>Building structure</li>
+        <li><svg class="icon icon--lg icon--olive"><use href="#i-weed"/></svg>Suppressing weeds</li>
+        <li><svg class="icon icon--lg icon--olive"><use href="#i-shield"/></svg>Protecting plants</li>
+        <li><svg class="icon icon--lg icon--olive"><use href="#i-carbon"/></svg>Storing carbon</li>
+      </ul>
+      <h3 style="font-size:var(--t2);margin-top:var(--s5)">Programme types</h3>
+      <ul class="icon-grid">
+        <li><svg class="icon icon--lg icon--olive"><use href="#i-webinar"/></svg>Free webinar</li>
+        <li><svg class="icon icon--lg icon--olive"><use href="#i-document"/></svg>Foundation Courses</li>
+        <li><svg class="icon icon--lg icon--olive"><use href="#i-microscope"/></svg>Soil Microscopy</li>
+        <li><svg class="icon icon--lg icon--olive"><use href="#i-compost"/></svg>Compost Production</li>
+        <li><svg class="icon icon--lg icon--olive"><use href="#i-flask"/></svg>Liquid Amendments</li>
+        <li><svg class="icon icon--lg icon--olive"><use href="#i-field"/></svg>Field Trial</li>
+        <li><svg class="icon icon--lg icon--olive"><use href="#i-practicum"/></svg>Complete Practicum</li>
+        <li><svg class="icon icon--lg icon--olive"><use href="#i-workshop"/></svg>Workshop, in person</li>
+        <li><svg class="icon icon--lg icon--olive"><use href="#i-scholarship"/></svg>Scholarship</li>
+      </ul>
+      <h3 style="font-size:var(--t2);margin-top:var(--s5)">Interface</h3>
+      <ul class="icon-grid">
+        <li><svg class="icon icon--lg"><use href="#i-menu"/></svg>Menu</li>
+        <li><svg class="icon icon--lg"><use href="#i-close"/></svg>Close</li>
+        <li><svg class="icon icon--lg"><use href="#i-plus"/></svg>Expand</li>
+        <li><svg class="icon icon--lg"><use href="#i-calendar"/></svg>Add to calendar</li>
+        <li><svg class="icon icon--lg"><use href="#i-download"/></svg>Download</li>
+        <li><svg class="icon icon--lg"><use href="#i-external"/></svg>Opens elsewhere</li>
+        <li><svg class="icon icon--lg"><use href="#i-person"/></svg>Person</li>
+        <li><svg class="icon icon--lg"><use href="#i-arrow"/></svg>Diagram connector</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- LIVING BEHAVIOUR -->
+  <section class="stratum stratum--deep" id="living" style="position:relative;min-height:60vh">
+    <svg class="root-line" data-root-line viewBox="0 0 1000 600" preserveAspectRatio="none" aria-hidden="true">
+      <path pathLength="1" d="M60 0 C 70 120, 40 200, 90 300 S 60 480, 120 600 M75 150 c 30 20, 60 10, 95 40 M62 260 c -25 10, -40 40, -55 70 M95 380 c 30 -5, 55 20, 80 60 M100 470 c -20 10, -35 45, -45 90"/>
+    </svg>
+    <div class="wrap" style="position:relative">
+      <div class="head">
+        <h2>Living behaviour</h2>
+        <p>One hairline root per long page, drawn as you scroll and undrawn as you scroll back. It is a single SVG path with <code>stroke-dashoffset</code> set from scroll position in twelve lines of script. Under reduced motion the line is simply there, complete. Scroll this band up and down to see it grow along the left edge.</p>
+      </div>
+      <p>The second living element is the cut-out: a hand-cut form of real moss or bark placed at one corner of a band, sparse at the top of a page and accumulating toward the bottom, never more than two in view. It is placed, not animated. The overlay menu carries one in its lower right corner, currently the placeholder polygon.</p>
+    </div>
+  </section>
+
+  <!-- HEADER AND FOOTER NOTES -->
+  <section class="stratum" id="global">
+    <div class="wrap">
+      <div class="head">
+        <h2>Header, overlay, footer</h2>
+        <p>The header above and the footer below are the real templates. The header keeps four things: the wordmark with the nonprofit line beneath it, What’s happening, Student login, and Donate, which stays visible at every width. The Menu button floods the viewport deep green.</p>
+      </div>
+      <div class="grid">
+        <div class="span-6">
+          <h3 style="font-size:var(--t2)">Overlay behaviour</h3>
+          <ul>
+            <li>Opens from Menu, closes on Close, Escape, or any link.</li>
+            <li>Focus moves to Close on open and returns to Menu on close; Tab is trapped inside.</li>
+            <li>Body scroll locks while open.</li>
+            <li>Six sections as an accordion; opening one closes the others. Now is in the accordion here so the demo shows all six, but on the live site it is reached from the header as the brief specifies.</li>
+            <li>Right column, Happening now: three dated items, then the link to Now.</li>
+          </ul>
+        </div>
+        <div class="span-6">
+          <h3 style="font-size:var(--t2)">Wordmark</h3>
+          <p>Set in type, not a logo file. The brand guide’s logo artwork was not in the redesign folder; when it is supplied, it replaces the text wordmark at a minimum of 140px wide, on paper only.</p>
+          <p class="todo">logo artwork (SVG) from the 2026 Brand Style Guide, supplied by Stephanie.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== FOOTER (every page) ===================== -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="grid">
+      <div class="span-4">
+        <span class="wordmark"><span class="wordmark__name">Soil Food Web Foundation</span><span class="wordmark__status">A 501(c)(3) nonprofit</span></span>
+        <p class="footer__tag">Healing soil. Feeding humanity. Restoring the living world.</p>
+        <form class="footer__news" action="#" method="post" aria-label="Newsletter">
+          <label for="footer-email" class="visually-hidden">Email address</label>
+          <input class="input" id="footer-email" type="email" name="email" placeholder="Email for the newsletter" required>
+          <button class="btn" type="submit">Subscribe</button>
+        </form>
+        <p class="caption" style="color:rgba(251,250,246,.7)">One email a month. Unsubscribe with one click.</p>
+      </div>
+      <nav class="span-2 start-6" aria-labelledby="f-foundation">
+        <h2 id="f-foundation">Foundation</h2>
+        <ul>
+          <li><a href="about.html">About us</a></li>
+          <li><a href="about-team.html">Team and board</a></li>
+          <li><a href="about-governance.html">Governance and financials</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <nav class="span-2" aria-labelledby="f-learn">
+        <h2 id="f-learn">Learn</h2>
+        <ul>
+          <li><a href="learn.html">All programmes</a></li>
+          <li><a href="learn-workshops.html">Workshops</a></li>
+          <li><a href="learn-webinars.html">Free webinars</a></li>
+          <li><a href="learn-scholarships.html">Scholarships</a></li>
+        </ul>
+      </nav>
+      <nav class="span-3" aria-labelledby="f-involved">
+        <h2 id="f-involved">Get involved</h2>
+        <ul>
+          <li><a href="donate.html">Donate</a></li>
+          <li><a href="community.html#volunteer">Volunteer</a></li>
+          <li><a href="directory.html">Find a professional</a></li>
+          <li><a href="now.html">What’s happening</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="footer__legal">
+      <p>Soil Food Web Foundation is a 501(c)(3) nonprofit organisation, EIN 39-4439236, registered at 5441 S Macadam Ave Ste N, Portland, Oregon 97239. The Soil Food Web School is a programme of the Soil Food Web Foundation. Our Form 990 and financial statements are available on the <a href="about-governance.html">governance page</a> and on request.</p>
+      <ul>
+        <li>© 2026 Soil Food Web Foundation</li>
+        <li><a href="privacy.html">Privacy</a></li>
+        <li><a href="terms.html">Terms</a></li>
+        <li><a href="accessibility.html">Accessibility</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<script src="js/site.js"></script>
+</body>
+</html>
