@@ -471,3 +471,51 @@ code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .9em; }
 
 /* Dated lines and kinds on a moss band. Missed in Stage 1. */
 .stratum--moss .dated, .stratum--moss .entry__kind, .stratum--moss .entry__line { color: var(--sage); }
+
+/* --------------------------------------------------------------------------
+   14. Calendar: the year as a timeline on Now. Months across, one row per
+       thing, bars placed by real dates (--l left, --w width, as percentages
+       of the range). Kind is carried by the icon and the label in the rail,
+       never by colour alone, because the brand palette has no categorical
+       ramp. Bars take a hairline edge because the sage fill alone is 1.84:1
+       against paper, below the 3:1 WCAG asks of a graphical object.
+       Scrolls horizontally under 60em rather than reflowing. Added 8 Sep 2026.
+   -------------------------------------------------------------------------- */
+.cal-wrap { overflow-x: auto; margin-bottom: var(--s4); }
+.cal-wrap:focus-visible { outline: var(--focus); outline-offset: 3px; }
+.cal { --rail: 15rem; position: relative; min-width: 54rem; }
+.cal__grid { position: absolute; left: var(--rail); right: 0; top: 0; bottom: 0; display: flex; pointer-events: none; }
+.cal__grid > span { border-left: var(--hairline) solid var(--rule); }
+/* Higher specificity than .cal__grid > span, which would otherwise repaint it
+   as a hairline. Placed by site.js from the real date, never hardcoded. */
+.cal__grid > span.cal__today { flex: 0 0 0; width: 0; border-left: 2px solid var(--green); }
+
+.cal__months { display: flex; list-style: none; margin: 0 0 var(--s1) var(--rail); padding: 0; max-width: none;
+  border-bottom: var(--hairline) solid var(--rule-strong); }
+.cal__months li { font-size: var(--t-1); color: var(--ink-soft); padding: 0 0 var(--s1) .4em; }
+
+.cal__rows { list-style: none; margin: 0; padding: 0; max-width: none; position: relative; }
+.cal__row { display: grid; grid-template-columns: var(--rail) 1fr; align-items: center; gap: var(--s2);
+  padding: var(--s2) 0; border-bottom: var(--hairline) solid var(--rule); }
+.cal__rail { display: flex; gap: var(--s1); align-items: flex-start; padding-right: var(--s2); }
+.cal__name { display: block; font-family: var(--serif); font-size: var(--t1); line-height: 1.15; color: var(--soil); }
+.cal__when { display: block; font-size: var(--t-1); color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+.cal__track { position: relative; height: 1.9rem; }
+.cal__bar { position: absolute; top: 0; bottom: 0; left: var(--l); width: var(--w);
+  background: var(--sage); border: var(--hairline) solid var(--olive); }
+.cal__bar--band { background: var(--paper-deep); }
+.cal__bar--point { width: 0; border: 0; border-left: 3px solid var(--soil); }
+.cal__bar--past { opacity: .45; }
+.cal__bar--todo { background: transparent; border-style: dashed; border-color: var(--rule-strong);
+  display: grid; place-items: center; }
+.cal__bar--todo span { font-size: var(--t-1); color: var(--ink-soft); padding: 0 var(--s1); }
+@media (max-width: 60em) { .cal-wrap::after { content: ""; display: block; } }
+
+/* People: the bio sits behind a disclosure, because 33 full bios laid out at
+   once make a 20,000px page. Summary is the affordance; the card carries the
+   photo, name and title. Added 8 Sep 2026. */
+.bio { margin-top: auto; }
+.bio > summary { cursor: pointer; font-size: var(--t0); color: var(--green); text-underline-offset: .14em; text-decoration: underline; }
+.bio > summary:hover { color: var(--moss); }
+.bio[open] > summary { margin-bottom: var(--s2); }
+.bio p { font-size: var(--t0); color: var(--ink-soft); margin: 0; }

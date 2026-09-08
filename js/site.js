@@ -166,3 +166,26 @@
     document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeAll(); });
   });
 })();
+
+/* ---------- 6. Calendar today marker ---------- */
+// The site is static, so "today" cannot be baked into the HTML or it goes stale.
+// <div data-cal data-cal-start="YYYY-MM-DD" data-cal-end="YYYY-MM-DD"> with a
+// [data-cal-today] span inside .cal__grid. Hidden when today is out of range.
+(function () {
+  var cals = document.querySelectorAll("[data-cal]");
+  Array.prototype.forEach.call(cals, function (cal) {
+    var marker = cal.querySelector("[data-cal-today]");
+    if (!marker) return;
+    var start = new Date(cal.getAttribute("data-cal-start") + "T00:00:00");
+    var end = new Date(cal.getAttribute("data-cal-end") + "T00:00:00");
+    var now = new Date(); now.setHours(0, 0, 0, 0);
+    if (isNaN(start) || isNaN(end) || now < start || now > end) return;
+    var span = (end - start) + 86400000;
+    marker.style.left = ((now - start) / span * 100).toFixed(3) + "%";
+    marker.hidden = false;
+    var sr = document.createElement("span");
+    sr.className = "visually-hidden";
+    sr.textContent = "Today, " + now.toDateString() + ".";
+    marker.appendChild(sr);
+  });
+})();
