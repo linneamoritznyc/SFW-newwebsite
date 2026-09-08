@@ -2,42 +2,216 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
-    { "source": "/about/team", "destination": "/about-team.html" },
-    { "source": "/about/governance", "destination": "/about-governance.html" },
-    { "source": "/about/elaine", "destination": "/about-elaine.html" },
-    { "source": "/learn/workshops", "destination": "/learn-workshops.html" },
-    { "source": "/learn/webinars", "destination": "/learn-webinars.html" },
-    { "source": "/learn/scholarships", "destination": "/learn-scholarships.html" },
-    { "source": "/community/directory", "destination": "/directory.html" },
-    { "source": "/science/publications", "destination": "/publications.html" }
+    {
+      "source": "/about/team",
+      "destination": "/about-team.html"
+    },
+    {
+      "source": "/about/governance",
+      "destination": "/about-governance.html"
+    },
+    {
+      "source": "/about/elaine",
+      "destination": "/about-elaine.html"
+    },
+    {
+      "source": "/learn/workshops",
+      "destination": "/learn-workshops.html"
+    },
+    {
+      "source": "/learn/webinars",
+      "destination": "/learn-webinars.html"
+    },
+    {
+      "source": "/learn/scholarships",
+      "destination": "/learn-scholarships.html"
+    },
+    {
+      "source": "/community/directory",
+      "destination": "/directory.html"
+    },
+    {
+      "source": "/science/publications",
+      "destination": "/publications.html"
+    }
   ],
   "redirects": [
-    { "source": "/how-it-works", "destination": "/science", "permanent": true },
-    { "source": "/case-studies", "destination": "/projects", "permanent": true },
-    { "source": "/resources/case-studies-videos", "destination": "/projects", "permanent": true },
-    { "source": "/resources/farmer-case-studies-soil-food-web", "destination": "/projects", "permanent": true },
-    { "source": "/resources/animations-videos", "destination": "/science", "permanent": true },
-    { "source": "/resources/soil-food-web-approach-videos", "destination": "/science", "permanent": true },
-    { "source": "/resources/testimonials-videos", "destination": "/learn", "permanent": true },
-    { "source": "/resources/meet-the-soil-food-web-family-videos", "destination": "/community", "permanent": true },
-    { "source": "/educational-webinars", "destination": "/learn/webinars", "permanent": true },
-    { "source": "/blog", "destination": "/now", "permanent": true },
-    { "source": "/blog/:slug*", "destination": "/now", "permanent": true },
-    { "source": "/contact-us", "destination": "/contact", "permanent": true },
-    { "source": "/donations", "destination": "/donate", "permanent": true },
-    { "source": "/scholarship-opportunities", "destination": "/learn/scholarships", "permanent": true },
-    { "source": "/login-page", "destination": "/login", "permanent": true },
-    { "source": "/certified-listing-directory", "destination": "/community/directory", "permanent": true },
-    { "source": "/consultants", "destination": "/community/directory", "permanent": true },
-    { "source": "/laboratory-technicians", "destination": "/community/directory", "permanent": true },
-    { "source": "/sfw-courses-overview", "destination": "/learn", "permanent": true },
-    { "source": "/foundation-courses-2", "destination": "/learn", "permanent": true },
-    { "source": "/product/foundation-courses", "destination": "/learn", "permanent": true },
-    { "source": "/course/:slug*", "destination": "/learn", "permanent": true },
-    { "source": "/membership/:slug*", "destination": "/learn", "permanent": true },
-    { "source": "/soil-sponge-regeneration-workshop", "destination": "/learn/workshops", "permanent": true },
-    { "source": "/product/regenerating-the-soil-sponge", "destination": "/learn/workshops", "permanent": true },
-    { "source": "/privacy-policy", "destination": "/privacy", "permanent": true },
-    { "source": "/opt-out-preferences", "destination": "/privacy", "permanent": true }
+    {
+      "source": "/how-it-works",
+      "destination": "/science",
+      "permanent": true
+    },
+    {
+      "source": "/case-studies",
+      "destination": "/projects",
+      "permanent": true
+    },
+    {
+      "source": "/resources/case-studies-videos",
+      "destination": "/projects",
+      "permanent": true
+    },
+    {
+      "source": "/resources/farmer-case-studies-soil-food-web",
+      "destination": "/projects",
+      "permanent": true
+    },
+    {
+      "source": "/resources/animations-videos",
+      "destination": "/science",
+      "permanent": true
+    },
+    {
+      "source": "/resources/soil-food-web-approach-videos",
+      "destination": "/science",
+      "permanent": true
+    },
+    {
+      "source": "/resources/testimonials-videos",
+      "destination": "/learn",
+      "permanent": true
+    },
+    {
+      "source": "/resources/meet-the-soil-food-web-family-videos",
+      "destination": "/community",
+      "permanent": true
+    },
+    {
+      "source": "/educational-webinars",
+      "destination": "/learn/webinars",
+      "permanent": true
+    },
+    {
+      "source": "/blog",
+      "destination": "/now",
+      "permanent": true
+    },
+    {
+      "source": "/blog/:slug*",
+      "destination": "/now",
+      "permanent": true
+    },
+    {
+      "source": "/contact-us",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/donations",
+      "destination": "/donate",
+      "permanent": true
+    },
+    {
+      "source": "/scholarship-opportunities",
+      "destination": "/learn/scholarships",
+      "permanent": true
+    },
+    {
+      "source": "/login-page",
+      "destination": "/login",
+      "permanent": true
+    },
+    {
+      "source": "/certified-listing-directory",
+      "destination": "/community/directory",
+      "permanent": true
+    },
+    {
+      "source": "/consultants",
+      "destination": "/community/directory",
+      "permanent": true
+    },
+    {
+      "source": "/laboratory-technicians",
+      "destination": "/community/directory",
+      "permanent": true
+    },
+    {
+      "source": "/sfw-courses-overview",
+      "destination": "/learn",
+      "permanent": true
+    },
+    {
+      "source": "/foundation-courses-2",
+      "destination": "/learn",
+      "permanent": true
+    },
+    {
+      "source": "/product/foundation-courses",
+      "destination": "/learn",
+      "permanent": true
+    },
+    {
+      "source": "/course/:slug*",
+      "destination": "/learn",
+      "permanent": true
+    },
+    {
+      "source": "/membership/:slug*",
+      "destination": "/learn",
+      "permanent": true
+    },
+    {
+      "source": "/soil-sponge-regeneration-workshop",
+      "destination": "/learn/workshops",
+      "permanent": true
+    },
+    {
+      "source": "/product/regenerating-the-soil-sponge",
+      "destination": "/learn/workshops",
+      "permanent": true
+    },
+    {
+      "source": "/privacy-policy",
+      "destination": "/privacy",
+      "permanent": true
+    },
+    {
+      "source": "/opt-out-preferences",
+      "destination": "/privacy",
+      "permanent": true
+    }
+  ],
+  "headers": [
+    {
+      "source": "/fonts/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/img/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=604800"
+        }
+      ]
+    },
+    {
+      "source": "/(css|js)/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
+      ]
+    }
   ]
 }

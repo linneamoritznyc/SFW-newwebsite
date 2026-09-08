@@ -14,7 +14,9 @@
   --paper-deep:   #E2DDCE;   /* a second stratum of paper for bands and cards */
   --ink:          #1E1C18;   /* text and rules: warm ink black */
   --ink-soft:     #4A463F;   /* secondary text */
-  --ink-faint:    #8B8677;   /* captions, source lines */
+  --ink-faint:    #5D5A4F;   /* captions, source lines. Darkened 8 Sep 2026 from #8B8677,
+                                which failed WCAG AA (2.68:1 on --paper-deep) at the 13px
+                                it is used at. Now 5.09:1 on paper-deep, 5.64:1 on paper. */
   --soil:         #4F3433;   /* brand Soil Brown: headings on light ground, footer */
   --moss:         #22371F;   /* brand deep green: overlay menu, dark bands */
   --olive:        #5F6A3C;   /* engraving line accents, icon strokes on paper */

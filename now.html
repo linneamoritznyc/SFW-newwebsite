@@ -169,7 +169,7 @@
       </aside>
     </div>
     <div class="cutout cutout--overlay">
-      <img src="img/cutout-placeholder.svg" alt="" width="320" height="260">
+      <img src="img/cutout-placeholder.svg" alt="" loading="lazy" decoding="async" width="320" height="260">
     </div>
   </div>
 </div>
@@ -234,35 +234,35 @@
         <li class="entry" data-kind="heading" style="border-bottom-color:var(--rule-strong)"><span></span><h3 class="entry__t" style="font-size:var(--t3)">Writing</h3><span></span></li>
         <li class="entry" data-kind="writing">
           <span class="dated"><time datetime="2026-08-14">14 Aug 2026</time></span>
-          <h3 class="entry__t"><a href="#">Learning to see: what is your soil test really telling you?</a></h3>
+          <h3 class="entry__t">Learning to see: what is your soil test really telling you?</h3>
           <span class="entry__kind">Writing</span>
         </li>
         <li class="entry" data-kind="writing">
           <span class="dated"><time datetime="2026-07-14">14 Jul 2026</time></span>
-          <h3 class="entry__t"><a href="#">A brief history of the fungi-to-bacteria ratio</a></h3>
+          <h3 class="entry__t">A brief history of the fungi-to-bacteria ratio</h3>
           <span class="entry__kind">Writing · Wes Sander</span>
         </li>
         <li class="entry" data-kind="writing">
           <span class="dated"><time datetime="2026-05-01">1 May 2026</time></span>
-          <h3 class="entry__t"><a href="#">Ciliates, cysts and the clues in a struggling watermelon crop</a></h3>
+          <h3 class="entry__t">Ciliates, cysts and the clues in a struggling watermelon crop</h3>
           <span class="entry__kind">Writing · Wes Sander</span>
         </li>
         <li class="entry" data-kind="writing">
           <span class="dated"><time datetime="2026-04-13">13 Apr 2026</time></span>
-          <h3 class="entry__t"><a href="#">The School launches its first Permaculture Design Certificate course</a></h3>
+          <h3 class="entry__t">The School launches its first Permaculture Design Certificate course</h3>
           <span class="entry__kind">Writing</span>
         </li>
         <li class="entry" data-kind="writing">
           <span class="dated"><time datetime="2026-02-23">23 Feb 2026</time></span>
-          <h3 class="entry__t"><a href="#">Advanced Programs are reopening</a></h3>
+          <h3 class="entry__t">Advanced Programs are reopening</h3>
           <span class="entry__kind">Writing · Evan Buckman</span>
         </li>
         <li class="entry" data-kind="writing">
           <span class="dated"><time datetime="2026-02-18">18 Feb 2026</time></span>
-          <h3 class="entry__t"><a href="#">Obituary for Dr. Elaine Ingham</a></h3>
+          <h3 class="entry__t">Obituary for Dr. Elaine Ingham</h3>
           <span class="entry__kind">Writing</span>
         </li>
-        <li class="entry" data-kind="writing"><span></span><div><p class="todo">all earlier posts from the blog archive, via crawl.py once run locally. Keep dates and authors. Linnea.</p></div><span></span></li>
+        <li class="entry" data-kind="writing"><span></span><div><p class="todo">the six posts above carry no link until the blog is migrated to /now/[slug], and all earlier posts still need pulling from the archive. Run crawl.py locally, keep every date and author. Linnea.</p></div><span></span></li>
         <li class="entry" data-kind="heading" style="border-bottom-color:var(--rule-strong)"><span></span><h3 class="entry__t" style="font-size:var(--t3)">Video</h3><span></span></li>
         <li class="entry" data-kind="video"><span></span><div><p class="todo">newest from the YouTube channel; “Meet the Soil Food Web Family” playlist 440097560. Stephanie.</p></div><span></span></li>
       </ul>
@@ -281,7 +281,7 @@
       <div class="grid">
         <div class="span-6">
           <h2 id="news-h">One email a month</h2>
-          <form class="footer__news" action="#" method="post" aria-label="Newsletter" style="max-width:none">
+          <form action="#" method="post" aria-label="Newsletter" style="display:flex;gap:var(--s1);max-width:26rem">
             <label for="now-email" class="visually-hidden">Email address</label>
             <input class="input" id="now-email" type="email" name="email" placeholder="Email for the newsletter" required>
             <button class="btn" type="submit">Subscribe</button>

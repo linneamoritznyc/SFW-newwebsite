@@ -169,7 +169,7 @@
       </aside>
     </div>
     <div class="cutout cutout--overlay">
-      <img src="img/cutout-placeholder.svg" alt="" width="320" height="260">
+      <img src="img/cutout-placeholder.svg" alt="" loading="lazy" decoding="async" width="320" height="260">
     </div>
   </div>
 </div>
@@ -185,8 +185,9 @@
       </div>
     </div>
   </section>
-  <section class="stratum">
+  <section class="stratum" aria-labelledby="cases-h">
     <div class="wrap">
+      <h2 id="cases-h" class="visually-hidden">Case studies, field trials and ecoregion hubs</h2>
       <ul class="chips" data-filter-for="#case-list" aria-label="Filter">
         <li><button class="chip" type="button" data-filter="all" aria-pressed="true">All</button></li>
         <li><button class="chip" type="button" data-filter="case-farmer" aria-pressed="false">Farmer case studies</button></li>
@@ -195,6 +196,7 @@
         <li><button class="chip" type="button" data-filter="hub" aria-pressed="false">Ecoregion hubs</button></li>
         <li class="small" data-filter-status style="align-self:center;color:var(--ink-faint)"></li>
       </ul>
+      <p class="todo">six of the seven cards below carry no link because the case study page is not written yet. Each needs the practitioner’s presentation written up to the fixed six-part template. Only Market garden makeover, Sweden exists. Stephanie and Evan.</p>
       <ul class="cards" id="case-list">
         <li class="card" data-kind="case-consultant">
           <div class="card__kind"><span>Consultant case study</span><span class="dated"><time>Year to confirm</time></span></div>
@@ -205,37 +207,37 @@
         <li class="card" data-kind="case-consultant">
           <div class="card__kind"><span>Consultant case study</span><span class="dated"><time>Year to confirm</time></span></div>
           <div class="card__media"><div class="todo" style="height:100%;display:grid;place-items:center">year, one line, still. Farmer Case Studies playlist 792733797 and Consultant Case Studies playlist 537966540. Stephanie.</div></div>
-          <h3 class="card__title"><a href="#">York Farms, Illinois</a></h3>
+          <h3 class="card__title">York Farms, Illinois</h3>
           <dl class="card__meta"><div><dt>Practitioner</dt><dd>Todd Harrington</dd></div><div><dt>Place</dt><dd>Illinois, USA</dd></div><div><dt>Scale</dt><dd>corn and soy, 10,000 acres</dd></div></dl>
         </li>
         <li class="card" data-kind="case-consultant">
           <div class="card__kind"><span>Consultant case study</span><span class="dated"><time>Year to confirm</time></span></div>
           <div class="card__media"><div class="todo" style="height:100%;display:grid;place-items:center">year, one line, still. Farmer Case Studies playlist 792733797 and Consultant Case Studies playlist 537966540. Stephanie.</div></div>
-          <h3 class="card__title"><a href="#">Grapes and turmeric</a></h3>
+          <h3 class="card__title">Grapes and turmeric</h3>
           <dl class="card__meta"><div><dt>Practitioner</dt><dd>Miles Sorel</dd></div><div><dt>Place</dt><dd>Ecuador, India, Peru, USA</dd></div><div><dt>Scale</dt><dd>grapes and turmeric</dd></div></dl>
         </li>
         <li class="card" data-kind="case-consultant">
           <div class="card__kind"><span>Consultant case study</span><span class="dated"><time>Year to confirm</time></span></div>
           <div class="card__media"><div class="todo" style="height:100%;display:grid;place-items:center">year, one line, still. Farmer Case Studies playlist 792733797 and Consultant Case Studies playlist 537966540. Stephanie.</div></div>
-          <h3 class="card__title"><a href="#">Alfalfa, potatoes and beans</a></h3>
+          <h3 class="card__title">Alfalfa, potatoes and beans</h3>
           <dl class="card__meta"><div><dt>Practitioner</dt><dd>Todd Harrington</dd></div><div><dt>Place</dt><dd>Place to confirm</dd></div><div><dt>Scale</dt><dd>25,000 acres</dd></div></dl>
         </li>
         <li class="card" data-kind="case-farmer">
           <div class="card__kind"><span>Farmer case study</span><span class="dated"><time>Year to confirm</time></span></div>
           <div class="card__media"><div class="todo" style="height:100%;display:grid;place-items:center">year, one line, still. Farmer Case Studies playlist 792733797 and Consultant Case Studies playlist 537966540. Stephanie.</div></div>
-          <h3 class="card__title"><a href="#">Organic banana farm, South Africa</a></h3>
+          <h3 class="card__title">Organic banana farm, South Africa</h3>
           <dl class="card__meta"><div><dt>Practitioner</dt><dd>Shane Plath</dd></div><div><dt>Place</dt><dd>South Africa</dd></div><div><dt>Scale</dt><dd>5,000 acres</dd></div></dl>
         </li>
         <li class="card" data-kind="case-consultant">
           <div class="card__kind"><span>Consultant case study</span><span class="dated"><time>Year to confirm</time></span></div>
           <div class="card__media"><div class="todo" style="height:100%;display:grid;place-items:center">year, one line, still. Farmer Case Studies playlist 792733797 and Consultant Case Studies playlist 537966540. Stephanie.</div></div>
-          <h3 class="card__title"><a href="#">Governors Island, New York</a></h3>
+          <h3 class="card__title">Governors Island, New York</h3>
           <dl class="card__meta"><div><dt>Practitioner</dt><dd>Todd Harrington</dd></div><div><dt>Place</dt><dd>New York, USA</dd></div><div><dt>Scale</dt><dd>172-acre park restoration</dd></div></dl>
         </li>
         <li class="card" data-kind="case-farmer">
           <div class="card__kind"><span>Farmer case study</span><span class="dated"><time>Year to confirm</time></span></div>
           <div class="card__media"><div class="todo" style="height:100%;display:grid;place-items:center">year, one line, still. Farmer Case Studies playlist 792733797 and Consultant Case Studies playlist 537966540. Stephanie.</div></div>
-          <h3 class="card__title"><a href="#">Nick Padwick, Norfolk, England</a></h3>
+          <h3 class="card__title">Nick Padwick, Norfolk, England</h3>
           <dl class="card__meta"><div><dt>Practitioner</dt><dd>Nick Padwick</dd></div><div><dt>Place</dt><dd>Norfolk, England</dd></div><div><dt>Scale</dt><dd>4,000 acres</dd></div></dl>
         </li>
         <li class="card" data-kind="field-trial" id="field-trials">
