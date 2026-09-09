@@ -189,3 +189,14 @@
     marker.appendChild(sr);
   });
 })();
+
+/* ---------- 7. Production notes ---------- */
+// .todo blocks are hidden from visitors by CSS. ?notes=1 on any URL sets
+// data-notes on <html>, which reveals every placeholder and prints the
+// instruction held on each empty image slot's data-empty attribute.
+(function () {
+  try {
+    var p = new URLSearchParams(window.location.search).get("notes");
+    if (p === "1" || p === "true") document.documentElement.setAttribute("data-notes", "");
+  } catch (e) { /* no URLSearchParams: notes stay hidden, which is the safe default */ }
+})();

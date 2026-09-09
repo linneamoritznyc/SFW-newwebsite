@@ -327,11 +327,25 @@ figcaption, .caption, .source {
 .initial-block { aspect-ratio: 1; background: var(--paper-deep); display: grid; place-items: center; font-family: var(--serif); font-size: var(--t5); color: var(--olive); border: var(--hairline) solid var(--rule); }
 
 /* Labelled placeholder for anything awaiting real data. Visible on purpose. */
+/* Hidden from visitors by default: these are production notes, not copy.
+   Add ?notes=1 to any URL to reveal every one of them (site.js job 7).
+   Image slots carry their instruction on data-empty instead of as body
+   text, so an unfilled slot reads as a plain toned block, not as prose. */
 .todo {
+  display: none;
   border: var(--hairline) dashed var(--rule-strong); padding: var(--s2); font-size: var(--t-1); color: var(--ink-soft);
   background: repeating-linear-gradient(135deg, transparent 0 8px, rgba(30,28,24,.035) 8px 9px);
 }
 .todo::before { content: "Placeholder: "; font-weight: 600; color: var(--ink); }
+[data-notes] .todo { display: block; }
+[data-notes] span.todo { display: inline-block; padding: .2em .5em; }
+[data-notes] [data-empty] { display: grid; place-items: center; padding: var(--s2); }
+[data-notes] [data-empty]::after {
+  content: "Needs: " attr(data-empty);
+  font-size: var(--t-1); line-height: 1.4; color: var(--ink-soft); text-align: center;
+  border: var(--hairline) dashed var(--rule-strong); padding: var(--s2);
+  background: repeating-linear-gradient(135deg, transparent 0 8px, rgba(30,28,24,.035) 8px 9px);
+}
 
 /* --------------------------------------------------------------------------
    9. Icons: hairline, single weight, engraving spirit.
