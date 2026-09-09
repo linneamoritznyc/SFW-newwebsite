@@ -22,18 +22,21 @@
     "stat1": {
       "value": "100+",
       "label": "Countries in our student & practitioner community",
-      "status": "verified"
+      "status": "verified",
+      "source": "enrollment records, confirmed August 2026"
     },
     "stat2": {
       "value": "10,000+",
       "label": "Individuals enrolled in our programs",
-      "source": "enrollment records, confirmed Aug 2026",
+      "source": "enrollment records, confirmed August 2026",
       "status": "verified"
     },
     "stat3": {
-      "value": "40",
-      "label": "Year legacy of pioneering soil biology research & regenerative practice",
-      "status": "verified"
+      "value": "44",
+      "label": "Years of pioneering soil biology research & regenerative practice",
+      "source": "Dr. Ingham’s first scientific papers, 1982, to 2026. See the timeline on the about page",
+      "status": "verified",
+      "note": "the deck said 40, which understates it: her first papers appear in 1982 and she died in February 2026, so the span is 44 years. Corrected 9 September 2026. Confirm the anchor you want, first publication (1982) or Ph.D. (1981), before publish."
     }
   },
   "whoWeAre": {
