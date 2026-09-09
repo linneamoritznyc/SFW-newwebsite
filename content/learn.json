@@ -29,7 +29,7 @@
       "id": "complete-practicum",
       "name": "Advanced Programs",
       "tagline": "Soil Microscopy · BioComplete™ Compost Production · Biological Liquid Amendments · Field Trials",
-      "body": "Complete all four — the Complete Practicum — to earn the Soil Food Web Consultant title and join our professional directory. Complete the Soil Microscopy program to earn the Soil Food Web Lab-Tech title.",
+      "body": "Complete all four, the Complete Practicum, to earn the Soil Food Web Consultant title and join our professional directory. Complete the Soil Microscopy program to earn the Soil Food Web Lab-Tech title.",
       "cta": {
         "label": "See the advanced path",
         "href": "https://school.soilfoodweb.com/bundles/complete-practicum"
@@ -39,7 +39,7 @@
       "id": "pdc",
       "name": "Permaculture Design Course",
       "tagline": "Whole-system design on a foundation of living soil",
-      "body": "Water, plants, structures, community — design them as one living system.",
+      "body": "Water, plants, structures, community, design them as one living system.",
       "cta": {
         "label": "Explore the PDC",
         "href": "https://school.soilfoodweb.com/courses/permaculture-design-certification"
@@ -80,22 +80,22 @@
   ],
   "guarantee": {
     "ribbon": "Our guarantee: 30-day, no-questions-asked money-back guarantee (terms and conditions apply).",
-    "note": "Full terms — incl. the one-third-of-lectures condition — live in the FAQ and T&C page; ribbon stays simple per Evan, Aug 2026."
+    "note": "Full terms, incl. the one-third-of-lectures condition, live in the FAQ and T&C page; ribbon stays simple per Evan, Aug 2026."
   },
   "testimonials": {
     "h2": "People like you, further down the path",
     "quotes": [
       {
         "status": "placeholder",
-        "note": "Agricultural-segment graduate: costs, yields. — Name · Soil Food Web Consultant, Country"
+        "note": "Agricultural-segment graduate: costs, yields., Name · Soil Food Web Consultant, Country"
       },
       {
         "status": "placeholder",
-        "note": "Eco-Sustainable graduate: restoration. — Name · Graduate, Country"
+        "note": "Eco-Sustainable graduate: restoration., Name · Graduate, Country"
       },
       {
         "status": "placeholder",
-        "note": "career-changer: new consultancy. — Name · Soil Food Web Lab-Tech, Country"
+        "note": "career-changer: new consultancy., Name · Soil Food Web Lab-Tech, Country"
       }
     ]
   },
@@ -104,7 +104,7 @@
     "items": [
       {
         "q": "Do I need a science background?",
-        "a": "No. The courses are designed for people with no relevant experience — the Foundation Courses build everything from first principles, at your pace."
+        "a": "No. The courses are designed for people with no relevant experience. The Foundation Courses build everything from first principles, at your pace."
       },
       {
         "q": "How long do the programs take?",
@@ -114,7 +114,7 @@
       },
       {
         "q": "What equipment do I need?",
-        "a": "The Foundation Courses need only a computer and curiosity. The Microscopy program requires a microscope — guidance on affordable models is provided inside the course."
+        "a": "The Foundation Courses need only a computer and curiosity. The Microscopy program requires a microscope. Guidance on affordable models is provided inside the course."
       },
       {
         "q": "What do the professional titles mean?",
@@ -126,7 +126,7 @@
       },
       {
         "q": "I can’t afford the courses. Are there options?",
-        "a": "Yes — our scholarship program is growing, with priority for applicants in under-resourced regions. See the Scholarships page."
+        "a": "Yes. Our scholarship program is growing, with priority for applicants in under-resourced regions. See the Scholarships page."
       }
     ]
   }

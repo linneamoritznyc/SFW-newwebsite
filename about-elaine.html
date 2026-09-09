@@ -40,17 +40,20 @@
   <symbol id="i-external" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 13v7H4V6h7"/></symbol>
 </svg>
 
-<!-- ===================== HEADER (every page) ===================== -->
+<!-- ============ UTILITY BAR + HEADER (every page) ============ -->
+<div class="utility">
+  <div class="wrap">
+    <p class="utility__tagline">Join a global community of Soil Regenerators</p>
+    <ul class="utility__links"><li><a href="login.html">Login / Student Access</a></li><li><a href="news.html#subscribe">Subscribe</a></li><li><a href="donate.html">Donate</a></li></ul>
+  </div>
+</div>
 <header class="site-header">
   <div class="wrap">
     <a class="wordmark" href="index.html">
       <span class="wordmark__name">Soil Food Web Foundation</span>
       <span class="wordmark__status">A 501(c)(3) nonprofit</span>
     </a>
-    <ul class="site-header__links">
-      <li><a href="login.html">Student login</a></li>
-      <li><a href="now.html#subscribe">Subscribe</a></li>
-    </ul>
+    <ul class="site-header__links"><li><a href="about.html">About Us</a></li><li><a href="learn.html">Learn</a></li><li><a href="science.html">Science</a></li><li><a href="practice.html">Practice</a></li><li><a href="community.html">Community</a></li></ul>
     <a class="btn btn--donate" href="donate.html">Donate</a>
     <button class="menu-btn" type="button" data-menu-open aria-controls="overlay" aria-expanded="false">
       <svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg><span class="menu-btn__label">Menu</span>
@@ -58,7 +61,6 @@
   </div>
 </header>
 
-<!-- ===================== OVERLAY MENU (every page) ===================== -->
 <div class="overlay" id="overlay" data-open="false" role="dialog" aria-modal="true" aria-label="Site menu">
   <div class="wrap">
     <div class="overlay__top">
@@ -70,89 +72,86 @@
         <svg class="icon" aria-hidden="true"><use href="#i-close"/></svg>Close
       </button>
     </div>
-
     <div class="overlay__body">
       <nav class="overlay__nav" aria-label="Sections">
         <ul class="acc" data-accordion>
           <li class="acc__item" data-acc-item data-open="false">
-            <button class="acc__btn" type="button" data-acc-btn aria-controls="acc-about">
-              <span class="acc__name">About us</span><span class="acc__desc">Who we are and how we’re governed</span>
+            <button class="acc__btn" type="button" data-acc-btn aria-controls="acc-about-us">
+              <span class="acc__name">About Us</span><span class="acc__desc">Who we are and how we are governed</span>
             </button>
-            <div class="acc__panel" id="acc-about" data-acc-panel><div>
+            <div class="acc__panel" id="acc-about-us" data-acc-panel><div>
               <ul class="acc__links">
-                <li><a href="about.html">Mission, vision and story</a></li>
-                <li><a href="about-team.html">Team</a></li>
-                <li><a href="about-governance.html">Foundation legal info and financials</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="about.html#mission">Mission, Vision &amp; Story</a></li>
+                <li><a href="about-team.html">Our Team</a></li>
+                <li><a href="about-elaine.html">Dr. Elaine’s Research</a></li>
+                <li><a href="news.html#foundation">Foundation News</a></li>
+                <li><a href="contact.html">Contact &amp; Legal</a></li>
               </ul>
             </div></div>
           </li>
           <li class="acc__item" data-acc-item data-open="false">
             <button class="acc__btn" type="button" data-acc-btn aria-controls="acc-learn">
-              <span class="acc__name">Learn</span><span class="acc__desc">Courses, workshops and free resources</span>
+              <span class="acc__name">Learn</span><span class="acc__desc">Teach It</span>
             </button>
             <div class="acc__panel" id="acc-learn" data-acc-panel><div>
               <ul class="acc__links">
-                <li><a href="learn.html">Overview: every program and what it costs</a></li>
-                <li><a href="https://school.soilfoodweb.com">Online courses</a></li>
-                <li><a href="learn-workshops.html">In-person workshops</a></li>
-                <li><a href="learn-webinars.html">Free webinars</a></li>
+                <li><a href="learn.html">Programs Overview</a></li>
+                <li><a href="https://school.soilfoodweb.com">Online Courses</a></li>
+                <li><a href="calendar.html#workshops">Workshops</a></li>
+                <li><a href="calendar.html">Calendar</a></li>
+                <li><a href="learn-webinars.html">Free Webinars</a></li>
                 <li><a href="learn-scholarships.html">Scholarships</a></li>
-                <li><a href="now.html#calendar">Calendar</a></li>
+                <li><a href="login.html">Student Login</a></li>
               </ul>
             </div></div>
           </li>
           <li class="acc__item" data-acc-item data-open="false">
-            <button class="acc__btn" type="button" data-acc-btn aria-controls="acc-news">
-              <span class="acc__name">News</span><span class="acc__desc">Community activity, blog and impact</span>
+            <button class="acc__btn" type="button" data-acc-btn aria-controls="acc-science">
+              <span class="acc__name">Science</span><span class="acc__desc">Prove It</span>
             </button>
-            <div class="acc__panel" id="acc-news" data-acc-panel><div>
+            <div class="acc__panel" id="acc-science" data-acc-panel><div>
               <ul class="acc__links">
-                <li><a href="now.html">What’s happening</a></li>
-                <li><a href="now.html#writing">Blog</a></li>
-                <li><a href="community.html">Community activity</a></li>
-                <li><a href="projects.html">Impact</a></li>
+                <li><a href="science.html">How the Soil Food Web Works</a></li>
+                <li><a href="research.html">Research Database</a></li>
+                <li><a href="research.html#work-with-us">Partner on Research</a></li>
               </ul>
             </div></div>
           </li>
           <li class="acc__item" data-acc-item data-open="false">
-            <button class="acc__btn" type="button" data-acc-btn aria-controls="acc-how">
-              <span class="acc__name">How it works</span><span class="acc__desc">The science, and where it has been done</span>
+            <button class="acc__btn" type="button" data-acc-btn aria-controls="acc-practice">
+              <span class="acc__name">Practice</span><span class="acc__desc">Practice It</span>
             </button>
-            <div class="acc__panel" id="acc-how" data-acc-panel><div>
+            <div class="acc__panel" id="acc-practice" data-acc-panel><div>
               <ul class="acc__links">
-                <li><a href="science.html">The six mechanisms</a></li>
-                <li><a href="projects.html">Case studies and videos</a></li>
-                <li><a href="publications.html">Publications</a></li>
+                <li><a href="practice.html#case-studies">Case Studies</a></li>
+                <li><a href="directory.html">Find a Professional</a></li>
+                <li><a href="practice.html#work-with-us">Work With Us</a></li>
               </ul>
             </div></div>
           </li>
           <li class="acc__item" data-acc-item data-open="false">
-            <button class="acc__btn" type="button" data-acc-btn aria-controls="acc-pros">
-              <span class="acc__name">SFW professionals</span><span class="acc__desc">Find a trained practitioner</span>
+            <button class="acc__btn" type="button" data-acc-btn aria-controls="acc-community">
+              <span class="acc__name">Community</span><span class="acc__desc">Grow It</span>
             </button>
-            <div class="acc__panel" id="acc-pros" data-acc-panel><div>
+            <div class="acc__panel" id="acc-community" data-acc-panel><div>
               <ul class="acc__links">
-                <li><a href="directory.html">Directory</a></li>
+                <li><a href="community.html#community-map">Community Map</a></li>
+                <li><a href="news.html">News &amp; Blog</a></li>
+                <li><a href="calendar.html">Calendar</a></li>
+                <li><a href="community.html#join">Join the Community</a></li>
               </ul>
             </div></div>
           </li>
         </ul>
-        <ul class="overlay__utility">
-          <li><a href="login.html">Student login</a></li>
-          <li><a href="now.html#subscribe">Subscribe</a></li>
-          <li><a href="donate.html">Donate</a></li>
-        </ul>
+        <ul class="overlay__utility"><li><a href="login.html">Login / Student Access</a></li><li><a href="news.html#subscribe">Subscribe</a></li><li><a href="donate.html">Donate</a></li></ul>
       </nav>
-
       <aside class="overlay__now" aria-labelledby="now-h">
         <h2 id="now-h">Happening now</h2>
         <ul class="now-list">
-          <li><span class="dated"><time datetime="2026-09-07">7 September 2026</time></span><a href="learn-workshops.html#india">India workshop: last day to cancel with a refund</a></li>
-          <li><span class="dated"><time datetime="2026-09-16">16 September to 20 December 2026</time></span><a href="learn.html#pdc">Permaculture Design Certification cohort begins</a></li>
-          <li><span class="dated"><time datetime="2026-10">October 2026</time></span><a href="learn-workshops.html#india">India Accelerator Workshop, Coimbatore</a></li>
+          <li><span class="dated"><time datetime="2026-09-16">16 September to 20 December 2026</time></span><a href="learn.html#pdc">Permaculture Design Certification cohort</a></li>
+          <li><span class="dated"><time datetime="2026-10">October 2026</time></span><a href="calendar.html#workshops">India Accelerator Workshop, Coimbatore</a></li>
         </ul>
-        <a class="more" href="now.html">Everything that’s happening</a>
+        <a class="more" href="calendar.html">Everything that is happening</a>
       </aside>
     </div>
     <div class="cutout cutout--overlay">
@@ -184,20 +183,20 @@
         <div class="span-6">
           <h2 id="record-h">Her published record</h2>
           <p>77 journal papers, 6 book chapters, 10 EPA and technical reports, 43 other publications, every one linked.</p>
-          <p class="source small"><a href="publications.html">Publications</a>, verified September 2026</p>
+          <p class="source small"><a href="research.html">Publications</a>, verified September 2026</p>
           <p><a href="https://scholar.google.com/citations?user=iOm3z4AAAAAJ">Google Scholar profile</a></p>
         </div>
         <div class="span-5 start-8">
           <ul class="rule-list">
                     <li class="entry">
           <span class="dated"></span>
-          <h3 class="entry__t"><a href="publications.html">Publications</a></h3>
+          <h3 class="entry__t"><a href="research.html">Publications</a></h3>
           <span class="entry__kind"></span>
         </li>
 
                     <li class="entry">
           <span class="dated"><time datetime="2026-02-18">18 February 2026</time></span>
-          <h3 class="entry__t"><a href="now.html#writing">Obituary for Dr. Elaine Ingham</a></h3>
+          <h3 class="entry__t"><a href="news.html">Obituary for Dr. Elaine Ingham</a></h3>
           <span class="entry__kind">Writing</span>
         </li>
 
@@ -209,7 +208,7 @@
 
 </main>
 
-<!-- ===================== FOOTER (every page) ===================== -->
+<!-- ============ FOOTER (every page) ============ -->
 <footer class="site-footer">
   <div class="wrap">
     <div class="grid">
@@ -221,36 +220,42 @@
           <input class="input" id="footer-email" type="email" name="email" placeholder="Email for the newsletter" required>
           <button class="btn" type="submit">Subscribe</button>
         </form>
-        <p class="caption" style="color:rgba(251,250,246,.7)">One email a month. Unsubscribe with one click.</p>
+        <p class="caption" style="color:rgba(255,255,255,.75)">One email a month. Unsubscribe with one click.</p>
       </div>
-      <nav class="span-2 start-6" aria-labelledby="f-foundation">
-        <h2 id="f-foundation">Foundation</h2>
+      <nav class="span-2 start-5" aria-labelledby="f-0">
+        <h2 id="f-0">Foundation</h2>
         <ul>
-          <li><a href="contact.html">Contact us</a></li>
-          <li><a href="about.html">About us</a></li>
-          <li><a href="about-governance.html">Foundation info</a></li>
-          <li><a href="publications.html">Publications</a></li>
-          <li><a href="contact.html#media">Media and press</a></li>
-          <li><a href="contact.html#logo">Logo use</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="about-team.html">Our Team</a></li>
+          <li><a href="about-governance.html">Governance and financials</a></li>
+          <li><a href="contact.html">Contact &amp; Legal</a></li>
         </ul>
       </nav>
-      <nav class="span-2" aria-labelledby="f-learn">
-        <h2 id="f-learn">Learn</h2>
+      <nav class="span-2" aria-labelledby="f-1">
+        <h2 id="f-1">Learn</h2>
         <ul>
-          <li><a href="learn.html">All programs</a></li>
-          <li><a href="learn-workshops.html">Workshops</a></li>
-          <li><a href="learn-webinars.html">Free webinars</a></li>
+          <li><a href="learn.html">Programs Overview</a></li>
+          <li><a href="calendar.html">Calendar</a></li>
+          <li><a href="learn-webinars.html">Free Webinars</a></li>
           <li><a href="learn-scholarships.html">Scholarships</a></li>
         </ul>
       </nav>
-      <nav class="span-3" aria-labelledby="f-involved">
-        <h2 id="f-involved">Get involved</h2>
+      <nav class="span-2" aria-labelledby="f-2">
+        <h2 id="f-2">Resources</h2>
+        <ul>
+          <li><a href="research.html">Research Database</a></li>
+          <li><a href="science.html">How it works</a></li>
+          <li><a href="practice.html#case-studies">Case Studies</a></li>
+          <li><a href="contact.html#media">Media and press</a></li>
+        </ul>
+      </nav>
+      <nav class="span-2" aria-labelledby="f-3">
+        <h2 id="f-3">Get Involved</h2>
         <ul>
           <li><a href="donate.html">Donate</a></li>
-          <li><a href="community.html#volunteer">Volunteer</a></li>
-          <li><a href="contact.html">Invite us to speak</a></li>
-          <li><a href="directory.html">Find a professional</a></li>
-          <li><a href="now.html">What’s happening</a></li>
+          <li><a href="donate.html#volunteer">Volunteer</a></li>
+          <li><a href="directory.html">Find a Professional</a></li>
+          <li><a href="contact.html#logo">Logo use</a></li>
         </ul>
       </nav>
     </div>

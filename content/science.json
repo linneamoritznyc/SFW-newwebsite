@@ -3,62 +3,62 @@
   "hero": {
     "eyebrow": "HOW IT WORKS",
     "h1": "How the soil food web works",
-    "intro": "Healthy soil is a living system. Billions of organisms — bacteria, fungi, protozoa, nematodes, and micro-arthropods — form a web of relationships with plants that feeds them, builds the soil around them, and protects them. Here’s how it works."
+    "intro": "Healthy soil is a living system. Billions of organisms, bacteria, fungi, protozoa, nematodes, and micro-arthropods, form a web of relationships with plants that feeds them, builds the soil around them, and protects them. Here’s how it works."
   },
   "mechanisms": [
     {
       "n": 1,
       "title": "The soil food web",
-      "body": "Plants don’t feed alone. Through their roots, they release sugars and other compounds that attract and feed a community of microorganisms — and in return, that community delivers nutrients, builds structure, and defends its host. This web of eating and being eaten is what makes soil function.",
+      "body": "Plants don’t feed alone. Through their roots, they release sugars and other compounds that attract and feed a community of microorganisms, and in return that community delivers nutrients, builds structure, and defends its host. This web of eating and being eaten is what makes soil function.",
       "animation": {
         "title": "The Soil Food Web",
         "vimeo": "372925873",
         "status": "placeholder",
-        "note": "Animation: “The Soil Food Web” — existing asset, Vimeo 372925873"
+        "note": "Animation: “The Soil Food Web”, existing asset, Vimeo 372925873"
       }
     },
     {
       "n": 2,
       "title": "Nutrient cycling",
-      "body": "A plant invests 30–40% of the sugars it makes through photosynthesis into the soil to feed microbes. Bacteria and fungi produce enzymes that break down minerals and organic matter, unlocking the nutrients they contain. When protozoa and nematodes consume those bacteria and fungi, the surplus is released right at the root — in plant-available form. The plant controls the exchange, drawing what it needs, when it needs it.",
+      "body": "A plant invests 30–40% of the sugars it makes through photosynthesis into the soil to feed microbes. Bacteria and fungi produce enzymes that break down minerals and organic matter, unlocking the nutrients they contain. When protozoa and nematodes consume those bacteria and fungi, the surplus is released right at the root, in plant-available form. The plant controls the exchange, drawing what it needs, when it needs it.",
       "animation": {
         "title": "Nutrient Cycling",
         "vimeo": "372474782",
         "status": "placeholder",
-        "note": "Animation: “Nutrient Cycling” — existing asset, Vimeo 372474782"
+        "note": "Animation: “Nutrient Cycling”, existing asset, Vimeo 372474782"
       }
     },
     {
       "n": 3,
       "title": "Building soil structure",
-      "body": "Beneficial bacteria produce glues that bind soil particles into microaggregates; fungal hyphae weave those into larger macroaggregates. The result behaves like a sponge — holding water for extended periods, letting air flow in, resisting erosion by wind and rain, and reducing the need for irrigation.",
+      "body": "Beneficial bacteria produce glues that bind soil particles into microaggregates; fungal hyphae weave those into larger macroaggregates. The result behaves like a sponge: holding water for extended periods, letting air flow in, resisting erosion by wind and rain, and reducing the need for irrigation.",
       "animation": {
         "title": "The Formation of Structure",
         "vimeo": "372476056",
         "status": "placeholder",
-        "note": "Animation: “The Formation of Structure” — existing asset, Vimeo 372476056"
+        "note": "Animation: “The Formation of Structure”, existing asset, Vimeo 372476056"
       }
     },
     {
       "n": 4,
       "title": "Suppressing weeds",
-      "body": "Beneficial fungi secrete enzymes that gradually acidify their surroundings, slowing the bacteria that convert nitrogen into nitrate — the form many fast-growing weeds depend on. As the fungal community establishes, conditions shift to favor the plants you’re growing.",
+      "body": "Beneficial fungi secrete enzymes that gradually acidify their surroundings, slowing the bacteria that convert nitrogen into nitrate, the form many fast-growing weeds depend on. As the fungal community establishes, conditions shift to favor the plants you’re growing.",
       "animation": {
         "title": "Weed Suppression",
         "vimeo": "372479571",
         "status": "placeholder",
-        "note": "Animation: “Weed Suppression” — existing asset, Vimeo 372479571"
+        "note": "Animation: “Weed Suppression”, existing asset, Vimeo 372479571"
       }
     },
     {
       "n": 5,
       "title": "Protecting plants from pests and disease",
-      "body": "Most disease-causing organisms do best where oxygen is scarce. Below ground, well-structured soil keeps the root zone oxygen-rich, favoring the beneficial organisms that compete with, inhibit, and prey on pathogens. Above ground, covering leaves and stems with beneficial microorganisms — applied as compost extracts and teas — fills the niches that pests and diseases would otherwise occupy. A surface already inhabited leaves little room for invaders.",
+      "body": "Most disease-causing organisms do best where oxygen is scarce. Below ground, well-structured soil keeps the root zone oxygen-rich, favoring the beneficial organisms that compete with, inhibit, and prey on pathogens. Above ground, covering leaves and stems with beneficial microorganisms, applied as compost extracts and teas, fills the niches that pests and diseases would otherwise occupy. A surface already inhabited leaves little room for invaders.",
       "animation": {
         "title": "Inhibiting Pests and Diseases",
         "vimeo": "372480255",
         "status": "placeholder",
-        "note": "Animation: “Inhibiting Pests and Diseases” — existing asset, Vimeo 372480255"
+        "note": "Animation: “Inhibiting Pests and Diseases”, existing asset, Vimeo 372480255"
       }
     },
     {
@@ -69,7 +69,7 @@
         "title": "Soil Carbon Sequestration",
         "vimeo": "372478833",
         "status": "placeholder",
-        "note": "Animation: “Soil Carbon Sequestration” — existing asset, Vimeo 372478833"
+        "note": "Animation: “Soil Carbon Sequestration”, existing asset, Vimeo 372478833"
       }
     }
   ],

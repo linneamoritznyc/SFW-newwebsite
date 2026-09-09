@@ -15,30 +15,85 @@
       "destination": "/about-elaine.html"
     },
     {
-      "source": "/learn/workshops",
-      "destination": "/learn-workshops.html"
+      "source": "/learn/scholarships",
+      "destination": "/learn-scholarships.html"
     },
     {
       "source": "/learn/webinars",
       "destination": "/learn-webinars.html"
     },
     {
-      "source": "/learn/scholarships",
-      "destination": "/learn-scholarships.html"
+      "source": "/calendar/workshops",
+      "destination": "/calendar.html"
+    },
+    {
+      "source": "/news/foundation",
+      "destination": "/news.html"
     },
     {
       "source": "/community/directory",
       "destination": "/directory.html"
-    },
-    {
-      "source": "/science/publications",
-      "destination": "/publications.html"
     }
   ],
   "redirects": [
     {
+      "source": "/publications",
+      "destination": "/research",
+      "permanent": true
+    },
+    {
+      "source": "/publications/:slug*",
+      "destination": "/research",
+      "permanent": true
+    },
+    {
       "source": "/how-it-works",
       "destination": "/science",
+      "permanent": true
+    },
+    {
+      "source": "/now",
+      "destination": "/calendar",
+      "permanent": true
+    },
+    {
+      "source": "/projects",
+      "destination": "/practice",
+      "permanent": true
+    },
+    {
+      "source": "/projects/:slug*",
+      "destination": "/practice",
+      "permanent": true
+    },
+    {
+      "source": "/learn/workshops",
+      "destination": "/calendar",
+      "permanent": true
+    },
+    {
+      "source": "/our-work",
+      "destination": "/practice",
+      "permanent": true
+    },
+    {
+      "source": "/our-impact",
+      "destination": "/practice",
+      "permanent": true
+    },
+    {
+      "source": "/events",
+      "destination": "/calendar",
+      "permanent": true
+    },
+    {
+      "source": "/blog",
+      "destination": "/news",
+      "permanent": true
+    },
+    {
+      "source": "/blog/:slug*",
+      "destination": "/news",
       "permanent": true
     },
     {
@@ -67,11 +122,6 @@
       "permanent": true
     },
     {
-      "source": "/resources/testimonials-videos",
-      "destination": "/learn",
-      "permanent": true
-    },
-    {
       "source": "/resources/meet-the-soil-food-web-family-videos",
       "destination": "/community",
       "permanent": true
@@ -79,16 +129,6 @@
     {
       "source": "/educational-webinars",
       "destination": "/learn/webinars",
-      "permanent": true
-    },
-    {
-      "source": "/blog",
-      "destination": "/now",
-      "permanent": true
-    },
-    {
-      "source": "/blog/:slug*",
-      "destination": "/now",
       "permanent": true
     },
     {

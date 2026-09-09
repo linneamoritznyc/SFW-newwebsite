@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Mission, vision and story, Soil Food Web Foundation</title>
-  <meta name="description" content="The Soil Food Web Foundation is a nonprofit carrying forward the life’s work of Dr. Elaine Ingham.">
+  <title>About the Foundation, Soil Food Web Foundation</title>
+  <meta name="description" content="The Soil Food Web Foundation is a nonprofit organization carrying forward the life’s work of Dr. Elaine Ingham, empowering communities everywhere to restore and protect the Earth’s soil and living systems.">
   <meta property="og:site_name" content="Soil Food Web Foundation">
-  <link rel="preload" href="fonts/eb-garamond-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/montserrat-latin-variable.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/source-sans-3-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/site.css">
 </head>
@@ -40,17 +40,20 @@
   <symbol id="i-external" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 13v7H4V6h7"/></symbol>
 </svg>
 
-<!-- ===================== HEADER (every page) ===================== -->
+<!-- ============ UTILITY BAR + HEADER (every page) ============ -->
+<div class="utility">
+  <div class="wrap">
+    <p class="utility__tagline">Join a global community of Soil Regenerators</p>
+    <ul class="utility__links"><li><a href="login.html">Login / Student Access</a></li><li><a href="news.html#subscribe">Subscribe</a></li><li><a href="donate.html">Donate</a></li></ul>
+  </div>
+</div>
 <header class="site-header">
   <div class="wrap">
     <a class="wordmark" href="index.html">
       <span class="wordmark__name">Soil Food Web Foundation</span>
       <span class="wordmark__status">A 501(c)(3) nonprofit</span>
     </a>
-    <ul class="site-header__links">
-      <li><a href="login.html">Student login</a></li>
-      <li><a href="now.html#subscribe">Subscribe</a></li>
-    </ul>
+    <ul class="site-header__links"><li><a href="about.html">About Us</a></li><li><a href="learn.html">Learn</a></li><li><a href="science.html">Science</a></li><li><a href="practice.html">Practice</a></li><li><a href="community.html">Community</a></li></ul>
     <a class="btn btn--donate" href="donate.html">Donate</a>
     <button class="menu-btn" type="button" data-menu-open aria-controls="overlay" aria-expanded="false">
       <svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg><span class="menu-btn__label">Menu</span>
@@ -58,7 +61,6 @@
   </div>
 </header>
 
-<!-- ===================== OVERLAY MENU (every page) ===================== -->
 <div class="overlay" id="overlay" data-open="false" role="dialog" aria-modal="true" aria-label="Site menu">
   <div class="wrap">
     <div class="overlay__top">
@@ -70,89 +72,86 @@
         <svg class="icon" aria-hidden="true"><use href="#i-close"/></svg>Close
       </button>
     </div>
-
     <div class="overlay__body">
       <nav class="overlay__nav" aria-label="Sections">
         <ul class="acc" data-accordion>
           <li class="acc__item" data-acc-item data-open="false">
-            <button class="acc__btn" type="button" data-acc-btn aria-controls="acc-about">
-              <span class="acc__name">About us</span><span class="acc__desc">Who we are and how we’re governed</span>
+            <button class="acc__btn" type="button" data-acc-btn aria-controls="acc-about-us">
+              <span class="acc__name">About Us</span><span class="acc__desc">Who we are and how we are governed</span>
             </button>
-            <div class="acc__panel" id="acc-about" data-acc-panel><div>
+            <div class="acc__panel" id="acc-about-us" data-acc-panel><div>
               <ul class="acc__links">
-                <li><a href="about.html">Mission, vision and story</a></li>
-                <li><a href="about-team.html">Team</a></li>
-                <li><a href="about-governance.html">Foundation legal info and financials</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="about.html#mission">Mission, Vision &amp; Story</a></li>
+                <li><a href="about-team.html">Our Team</a></li>
+                <li><a href="about-elaine.html">Dr. Elaine’s Research</a></li>
+                <li><a href="news.html#foundation">Foundation News</a></li>
+                <li><a href="contact.html">Contact &amp; Legal</a></li>
               </ul>
             </div></div>
           </li>
           <li class="acc__item" data-acc-item data-open="false">
             <button class="acc__btn" type="button" data-acc-btn aria-controls="acc-learn">
-              <span class="acc__name">Learn</span><span class="acc__desc">Courses, workshops and free resources</span>
+              <span class="acc__name">Learn</span><span class="acc__desc">Teach It</span>
             </button>
             <div class="acc__panel" id="acc-learn" data-acc-panel><div>
               <ul class="acc__links">
-                <li><a href="learn.html">Overview: every program and what it costs</a></li>
-                <li><a href="https://school.soilfoodweb.com">Online courses</a></li>
-                <li><a href="learn-workshops.html">In-person workshops</a></li>
-                <li><a href="learn-webinars.html">Free webinars</a></li>
+                <li><a href="learn.html">Programs Overview</a></li>
+                <li><a href="https://school.soilfoodweb.com">Online Courses</a></li>
+                <li><a href="calendar.html#workshops">Workshops</a></li>
+                <li><a href="calendar.html">Calendar</a></li>
+                <li><a href="learn-webinars.html">Free Webinars</a></li>
                 <li><a href="learn-scholarships.html">Scholarships</a></li>
-                <li><a href="now.html#calendar">Calendar</a></li>
+                <li><a href="login.html">Student Login</a></li>
               </ul>
             </div></div>
           </li>
           <li class="acc__item" data-acc-item data-open="false">
-            <button class="acc__btn" type="button" data-acc-btn aria-controls="acc-news">
-              <span class="acc__name">News</span><span class="acc__desc">Community activity, blog and impact</span>
+            <button class="acc__btn" type="button" data-acc-btn aria-controls="acc-science">
+              <span class="acc__name">Science</span><span class="acc__desc">Prove It</span>
             </button>
-            <div class="acc__panel" id="acc-news" data-acc-panel><div>
+            <div class="acc__panel" id="acc-science" data-acc-panel><div>
               <ul class="acc__links">
-                <li><a href="now.html">What’s happening</a></li>
-                <li><a href="now.html#writing">Blog</a></li>
-                <li><a href="community.html">Community activity</a></li>
-                <li><a href="projects.html">Impact</a></li>
+                <li><a href="science.html">How the Soil Food Web Works</a></li>
+                <li><a href="research.html">Research Database</a></li>
+                <li><a href="research.html#work-with-us">Partner on Research</a></li>
               </ul>
             </div></div>
           </li>
           <li class="acc__item" data-acc-item data-open="false">
-            <button class="acc__btn" type="button" data-acc-btn aria-controls="acc-how">
-              <span class="acc__name">How it works</span><span class="acc__desc">The science, and where it has been done</span>
+            <button class="acc__btn" type="button" data-acc-btn aria-controls="acc-practice">
+              <span class="acc__name">Practice</span><span class="acc__desc">Practice It</span>
             </button>
-            <div class="acc__panel" id="acc-how" data-acc-panel><div>
+            <div class="acc__panel" id="acc-practice" data-acc-panel><div>
               <ul class="acc__links">
-                <li><a href="science.html">The six mechanisms</a></li>
-                <li><a href="projects.html">Case studies and videos</a></li>
-                <li><a href="publications.html">Publications</a></li>
+                <li><a href="practice.html#case-studies">Case Studies</a></li>
+                <li><a href="directory.html">Find a Professional</a></li>
+                <li><a href="practice.html#work-with-us">Work With Us</a></li>
               </ul>
             </div></div>
           </li>
           <li class="acc__item" data-acc-item data-open="false">
-            <button class="acc__btn" type="button" data-acc-btn aria-controls="acc-pros">
-              <span class="acc__name">SFW professionals</span><span class="acc__desc">Find a trained practitioner</span>
+            <button class="acc__btn" type="button" data-acc-btn aria-controls="acc-community">
+              <span class="acc__name">Community</span><span class="acc__desc">Grow It</span>
             </button>
-            <div class="acc__panel" id="acc-pros" data-acc-panel><div>
+            <div class="acc__panel" id="acc-community" data-acc-panel><div>
               <ul class="acc__links">
-                <li><a href="directory.html">Directory</a></li>
+                <li><a href="community.html#community-map">Community Map</a></li>
+                <li><a href="news.html">News &amp; Blog</a></li>
+                <li><a href="calendar.html">Calendar</a></li>
+                <li><a href="community.html#join">Join the Community</a></li>
               </ul>
             </div></div>
           </li>
         </ul>
-        <ul class="overlay__utility">
-          <li><a href="login.html">Student login</a></li>
-          <li><a href="now.html#subscribe">Subscribe</a></li>
-          <li><a href="donate.html">Donate</a></li>
-        </ul>
+        <ul class="overlay__utility"><li><a href="login.html">Login / Student Access</a></li><li><a href="news.html#subscribe">Subscribe</a></li><li><a href="donate.html">Donate</a></li></ul>
       </nav>
-
       <aside class="overlay__now" aria-labelledby="now-h">
         <h2 id="now-h">Happening now</h2>
         <ul class="now-list">
-          <li><span class="dated"><time datetime="2026-09-07">7 September 2026</time></span><a href="learn-workshops.html#india">India workshop: last day to cancel with a refund</a></li>
-          <li><span class="dated"><time datetime="2026-09-16">16 September to 20 December 2026</time></span><a href="learn.html#pdc">Permaculture Design Certification cohort begins</a></li>
-          <li><span class="dated"><time datetime="2026-10">October 2026</time></span><a href="learn-workshops.html#india">India Accelerator Workshop, Coimbatore</a></li>
+          <li><span class="dated"><time datetime="2026-09-16">16 September to 20 December 2026</time></span><a href="learn.html#pdc">Permaculture Design Certification cohort</a></li>
+          <li><span class="dated"><time datetime="2026-10">October 2026</time></span><a href="calendar.html#workshops">India Accelerator Workshop, Coimbatore</a></li>
         </ul>
-        <a class="more" href="now.html">Everything that’s happening</a>
+        <a class="more" href="calendar.html">Everything that is happening</a>
       </aside>
     </div>
     <div class="cutout cutout--overlay">
@@ -163,102 +162,137 @@
 
 <main id="main">
 
-  <section class="stratum" style="border-top:0;padding-top:var(--s5)">
+  <section class="stratum" style="border-top:0">
     <div class="wrap">
       <div class="head" style="margin-bottom:0">
-        <h1>In service to the soil that sustains us all</h1>
-        <p class="lede">The Soil Food Web Foundation is a nonprofit carrying forward the life’s work of Dr. Elaine Ingham: empowering communities everywhere to restore and protect the Earth’s soil and living systems.</p>
+        <p class="eyebrow">ABOUT THE FOUNDATION</p>
+        <h1 id="about-h">In service to the soil that sustains us all</h1>
+        <p class="lede">The Soil Food Web Foundation is a nonprofit organization carrying forward the life’s work of Dr. Elaine Ingham, empowering communities everywhere to restore and protect the Earth’s soil and living systems.</p>
       </div>
+      <ul class="chips" aria-label="On this page"><li><a class="chip" href="#mission">Mission</a></li><li><a class="chip" href="#our-story">Our Story</a></li><li><a class="chip" href="#what-we-do">What We Do</a></li><li><a class="chip" href="#team">Team</a></li><li><a class="chip" href="#dr-elaines-legacy">Dr. Elaine’s Legacy</a></li><li><a class="chip" href="#contact-legal">Contact &amp; Legal</a></li></ul>
     </div>
   </section>
-  <section class="stratum stratum--deep" aria-labelledby="mission-h">
+
+  <section class="stratum stratum--deep" aria-labelledby="mission-h" id="mission">
     <div class="wrap">
       <div class="grid">
-        <div class="span-6">
-          <h2 id="mission-h">Mission</h2>
-          <p class="lede">To honor and grow Dr. Elaine Ingham’s legacy of empowering communities to restore and protect the Earth’s soil and living systems, by sharing teaching and learning about the soil food web, pursuing knowledge related to soil, plant, and planetary health, incubating regenerative agricultural and ecosystem practices, and building community and financial support for soil food web teaching, research, and practice.</p>
-        </div>
-        <div class="span-6">
-          <h2>Vision</h2>
-          <p class="lede">Healthy, living soil in every terrestrial ecoregion on the planet, nurtured by local communities who understand why soil health is the foundation of ecosystem, agricultural, planetary, and human wellbeing.</p>
-        </div>
+        <div class="span-6"><h2 id="mission-h">Mission</h2><p class="lede">To honor and grow Dr. Elaine Ingham’s legacy of empowering communities to restore and protect the Earth’s soil and living systems, by sharing teaching and learning about the soil food web, pursuing knowledge related to soil, plant, and planetary health, incubating regenerative agricultural and ecosystem practices, and building community and financial support for soil food web teaching, research, and practice.</p></div>
+        <div class="span-6"><h2>Vision</h2><p class="lede">Healthy, living soil in every terrestrial ecoregion on the planet, nurtured by local communities who understand why soil health is the foundation of ecosystem, agricultural, planetary, and human wellbeing.</p></div>
       </div>
-      <p class="source small" style="margin-top:var(--s3)">ratified mission and vision statements, quoted verbatim</p>
     </div>
   </section>
-  <section class="stratum" aria-labelledby="story-h">
+
+  <section class="stratum" aria-labelledby="story-h" id="our-story">
     <div class="wrap">
-      <div class="head">
-        <h2 id="story-h">How we got here</h2>
-        <p>Facts only. Every date traceable to her CV, the obituary or the paper itself.</p>
-      </div>
+      <div class="head"><h2 id="story-h">Rooted in legacy, growing in impact</h2></div>
       <ul class="rule-list">
         <li class="entry">
-          <span class="dated">1974</span>
-          <p class="entry__line" style="font-size:var(--t1);color:var(--ink)">B.A., cum laude, St. Olaf College. M.S. in microbiology, Texas A&amp;M University.</p>
-          <span></span>
-        </li>
-        <li class="entry">
           <span class="dated">1981</span>
-          <p class="entry__line" style="font-size:var(--t1);color:var(--ink)">Ph.D. in soil microbiology, Colorado State University. First papers appear in 1982.</p>
+          <div><h3 class="entry__t">Ph.D., Colorado State University</h3><p class="entry__line">Elaine Ingham earns her Ph.D. in soil microbiology at Colorado State University, following a B.A., cum laude, from St. Olaf College (1974) and an M.S. in microbiology from Texas A&amp;M University. Her first scientific papers appear in 1982, beginning with work on ultraviolet-induced autofluorescence of mycorrhizal root infections.</p></div>
           <span></span>
         </li>
         <li class="entry">
           <span class="dated">1985</span>
-          <p class="entry__line" style="font-size:var(--t1);color:var(--ink)">“Interactions of bacteria, fungi, and their nematode grazers: effects on nutrient cycling and plant growth”, <em>Ecological Monographs</em> 55: 119–140, with R. E. Ingham, J. A. Trofymow and D. C. Coleman. <a href="https://doi.org/10.2307/1942528">doi.org/10.2307/1942528</a></p>
+          <div><h3 class="entry__t">The foundational paper</h3><p class="entry__line">She co-authors “Interactions of Bacteria, Fungi, and their Nematode Grazers: Effects on Nutrient Cycling and Plant Growth” (Ecological Monographs 55:119–140), detailing the relationships between soil food web trophic groups and their role in plant nutrition.</p><p class="entry__line"><a href="https://doi.org/10.2307/1942528">https://doi.org/10.2307/1942528</a></p></div>
           <span></span>
         </li>
         <li class="entry">
-          <span class="dated">1986 to 2002</span>
-          <p class="entry__line" style="font-size:var(--t1);color:var(--ink)">Oregon State University, instructor and associate professor. First president of the Soil Ecology Society. Program chair, Ecological Society of America. Co-author of the USDA Soil Biology Primer, 1999.</p>
+          <span class="dated">1985–2002</span>
+          <div><h3 class="entry__t">Research and teaching</h3><p class="entry__line">Postdoctoral research at the University of Georgia’s Institute of Ecology, then the faculty of Oregon State University (1986–2002) as Instructor and Associate Professor. She serves as the first President of the Soil Ecology Society, as Program Chair of the Ecological Society of America, and co-authors the USDA’s Soil Biology Primer (1999). Across her career: more than seventy scientific papers, six book chapters, and seventeen technical reports.</p></div>
           <span></span>
         </li>
         <li class="entry">
           <span class="dated">1996</span>
-          <p class="entry__line" style="font-size:var(--t1);color:var(--ink)">Founds Soil Foodweb Inc., bringing microscopy-based soil assessment to growers.</p>
-          <span></span>
-        </li>
-        <li class="entry">
-          <span class="dated">2010 to 2013</span>
-          <p class="entry__line" style="font-size:var(--t1);color:var(--ink)">Maharishi University of Management. Chief Scientist, Rodale Institute, 2011.</p>
-          <span></span>
-        </li>
-        <li class="entry">
-          <span class="dated">2014</span>
-          <p class="entry__line" style="font-size:var(--t1);color:var(--ink)">Environmental Celebration Institute, a farm and research site in northern California.</p>
-          <span></span>
-        </li>
-        <li class="entry">
-          <span class="dated">2019</span>
-          <p class="entry__line" style="font-size:var(--t1);color:var(--ink)">The Soil Food Web School brings her curriculum online.</p>
-          <span></span>
-        </li>
-        <li class="entry">
-          <span class="dated">October 2025</span>
-          <p class="entry__line" style="font-size:var(--t1);color:var(--ink)">The Soil Food Web Foundation, a 501(c)(3), takes over the School’s programs as Dr. Ingham retires.</p>
-          <span></span>
-        </li>
-        <li class="entry">
-          <span class="dated">16 February 2026</span>
-          <p class="entry__line" style="font-size:var(--t1);color:var(--ink)">Dr. Ingham dies. The work continues.</p>
+          <div><h3 class="entry__t">Soil Foodweb Inc.</h3><p class="entry__line">She founds Soil Foodweb Inc., bringing microscopy-based soil assessment to growers.</p></div>
           <span></span>
         </li>
       </ul>
     </div>
   </section>
-  <section class="stratum">
+
+  <section class="stratum stratum--deep" aria-labelledby="wd-h" id="what-we-do">
     <div class="wrap">
-      <ul class="paths">
-        <li class="path"><h3><a href="about-team.html">Our team and board</a></h3><p>The people tending this work.</p></li>
-        <li class="path"><h3><a href="about-governance.html">Governance and financials</a></h3><p>How we’re governed, and where the money goes.</p></li>
-        <li class="path"><h3><a href="about-elaine.html">Dr. Elaine Ingham</a></h3><p>Her published record, every entry linked.</p></li>
-      </ul>
+      <div class="head"><h2 id="wd-h">Four ways we grow this work</h2></div>
+      <div class="grid" style="row-gap:var(--s4)">
+        <div class="span-6">
+          <div class="icon-row">
+            <svg class="icon icon--olive icon--lg" aria-hidden="true"><use href="#i-web"/></svg>
+            <div>
+              <p class="small" style="color:var(--ink-faint)">Step 1</p>
+              <h3>Teaching &amp; Learning</h3>
+              <p style="font-size:var(--t0);color:var(--ink-soft)">World-class education in soil biology, from foundation courses to professional certification, with workshops in a growing list of ecoregions and support that makes learning accessible.</p>
+            </div>
+          </div>
+        </div>
+        <div class="span-6">
+          <div class="icon-row">
+            <svg class="icon icon--olive icon--lg" aria-hidden="true"><use href="#i-web"/></svg>
+            <div>
+              <p class="small" style="color:var(--ink-faint)">Step 2</p>
+              <h3>Pursuing Knowledge</h3>
+              <p style="font-size:var(--t0);color:var(--ink-soft)">Replicating key experiments, opening our trial and case-study data, and advancing microscopy and lab methods, so more people understand why the soil food web works.</p>
+            </div>
+          </div>
+        </div>
+        <div class="span-6">
+          <div class="icon-row">
+            <svg class="icon icon--olive icon--lg" aria-hidden="true"><use href="#i-web"/></svg>
+            <div>
+              <p class="small" style="color:var(--ink-faint)">Step 3</p>
+              <h3>Incubating Applied Practice</h3>
+              <p style="font-size:var(--t0);color:var(--ink-soft)">Ecoregion hubs that integrate education, composting, microscopy, and consulting; partnerships with farmers to trial and document soil food web practices where they live.</p>
+            </div>
+          </div>
+        </div>
+        <div class="span-6">
+          <div class="icon-row">
+            <svg class="icon icon--olive icon--lg" aria-hidden="true"><use href="#i-web"/></svg>
+            <div>
+              <p class="small" style="color:var(--ink-faint)">Step 4</p>
+              <h3>Building Community &amp; Support</h3>
+              <p style="font-size:var(--t0);color:var(--ink-soft)">A global network of students, volunteers, donors, and advisors who make this mission durable, and welcoming to newcomers.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="stratum" aria-labelledby="team-h" id="team">
+    <div class="wrap">
+      <div class="head"><h2 id="team-h">The people tending this work</h2></div>
+      <p>The full roster, taken from soilfoodweb.com, lives on the team page.</p>
+      <p><a class="btn btn--ghost" href="about-team.html">Our team and board</a></p>
+      <p class="todo" data-status="placeholder">team roster: name, role, 1-line bio, photo. Board of directors as second group.</p>
+    </div>
+  </section>
+
+  <section class="stratum stratum--deep" aria-labelledby="el-h" id="dr-elaines-legacy">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">DR. ELAINE’S RESEARCH</p>
+        <h2 id="el-h">The woman who started it all</h2>
+      </div>
+      <p>Dr. Elaine Ingham pioneered research in soil biology, expanding the world’s knowledge of living soil, and made her science radically accessible, so that anyone, anywhere, could learn to restore the soil beneath their feet.</p>
+      <p>This Foundation is her living legacy, and we hold it with care: not by asking the world to take her word for it, but by opening her science and expanding our community of practice.</p>
+      <p><a href="research.html">Read her published research →</a></p>
+    </div>
+  </section>
+
+  <section class="stratum" aria-labelledby="cl-h" id="contact-legal">
+    <div class="wrap">
+      <div class="grid">
+        <div class="span-6"><h2 id="cl-h">Contact &amp; Legal</h2>
+          <p>General &amp; partnership inquiries, press, and student &amp; course inquiries: info@soilfoodweb.com (single address, confirmed Aug 2026) · Invite us to speak →</p><p><a class="btn btn--ghost" href="contact.html">Contact us</a></p></div>
+        <div class="span-5 start-8"><p class="small">Soil Food Web Foundation is a 501(c)(3) nonprofit organization. Soil Food Web School is a program of the Soil Food Web Foundation. · EIN: 39-4439236 · 5441 S Macadam Ave Ste N, Portland, OR 97239</p><p class="small">Name &amp; logo use: building something aligned with our mission? Ask us about brand use at info@soilfoodweb.com</p><p class="todo" data-status="note">inquiry form, not open download, trademark protection; moved from Donate Sep 7</p></div>
+      </div>
     </div>
   </section>
 
 </main>
 
-<!-- ===================== FOOTER (every page) ===================== -->
+<!-- ============ FOOTER (every page) ============ -->
 <footer class="site-footer">
   <div class="wrap">
     <div class="grid">
@@ -270,36 +304,42 @@
           <input class="input" id="footer-email" type="email" name="email" placeholder="Email for the newsletter" required>
           <button class="btn" type="submit">Subscribe</button>
         </form>
-        <p class="caption" style="color:rgba(251,250,246,.7)">One email a month. Unsubscribe with one click.</p>
+        <p class="caption" style="color:rgba(255,255,255,.75)">One email a month. Unsubscribe with one click.</p>
       </div>
-      <nav class="span-2 start-6" aria-labelledby="f-foundation">
-        <h2 id="f-foundation">Foundation</h2>
+      <nav class="span-2 start-5" aria-labelledby="f-0">
+        <h2 id="f-0">Foundation</h2>
         <ul>
-          <li><a href="contact.html">Contact us</a></li>
-          <li><a href="about.html">About us</a></li>
-          <li><a href="about-governance.html">Foundation info</a></li>
-          <li><a href="publications.html">Publications</a></li>
-          <li><a href="contact.html#media">Media and press</a></li>
-          <li><a href="contact.html#logo">Logo use</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="about-team.html">Our Team</a></li>
+          <li><a href="about-governance.html">Governance and financials</a></li>
+          <li><a href="contact.html">Contact &amp; Legal</a></li>
         </ul>
       </nav>
-      <nav class="span-2" aria-labelledby="f-learn">
-        <h2 id="f-learn">Learn</h2>
+      <nav class="span-2" aria-labelledby="f-1">
+        <h2 id="f-1">Learn</h2>
         <ul>
-          <li><a href="learn.html">All programs</a></li>
-          <li><a href="learn-workshops.html">Workshops</a></li>
-          <li><a href="learn-webinars.html">Free webinars</a></li>
+          <li><a href="learn.html">Programs Overview</a></li>
+          <li><a href="calendar.html">Calendar</a></li>
+          <li><a href="learn-webinars.html">Free Webinars</a></li>
           <li><a href="learn-scholarships.html">Scholarships</a></li>
         </ul>
       </nav>
-      <nav class="span-3" aria-labelledby="f-involved">
-        <h2 id="f-involved">Get involved</h2>
+      <nav class="span-2" aria-labelledby="f-2">
+        <h2 id="f-2">Resources</h2>
+        <ul>
+          <li><a href="research.html">Research Database</a></li>
+          <li><a href="science.html">How it works</a></li>
+          <li><a href="practice.html#case-studies">Case Studies</a></li>
+          <li><a href="contact.html#media">Media and press</a></li>
+        </ul>
+      </nav>
+      <nav class="span-2" aria-labelledby="f-3">
+        <h2 id="f-3">Get Involved</h2>
         <ul>
           <li><a href="donate.html">Donate</a></li>
-          <li><a href="community.html#volunteer">Volunteer</a></li>
-          <li><a href="contact.html">Invite us to speak</a></li>
-          <li><a href="directory.html">Find a professional</a></li>
-          <li><a href="now.html">What’s happening</a></li>
+          <li><a href="donate.html#volunteer">Volunteer</a></li>
+          <li><a href="directory.html">Find a Professional</a></li>
+          <li><a href="contact.html#logo">Logo use</a></li>
         </ul>
       </nav>
     </div>

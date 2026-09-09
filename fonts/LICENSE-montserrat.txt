@@ -1,0 +1,5 @@
+Montserrat is licensed under the SIL Open Font License, Version 1.1.
+Copyright 2011 The Montserrat Project Authors (https://github.com/JulietaUla/Montserrat)
+Full licence: https://openfontlicense.org
+Retrieved from Google Fonts (fonts.gstatic.com), 9 September 2026, as a
+variable latin subset covering the weight axis used by the design spec.

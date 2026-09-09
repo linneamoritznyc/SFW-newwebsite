@@ -3,16 +3,16 @@
   "hero": {
     "eyebrow": "PRACTICE",
     "h1": "Putting living soil to work",
-    "intro": "Field trials, restoration efforts, and partnerships where the Foundation and its practitioners apply the soil food web — documented as they grow."
+    "intro": "Field trials, restoration efforts, and partnerships where the Foundation and its practitioners apply the soil food web, documented as they grow."
   },
   "projects": {
     "status": "removed",
-    "note": "Projects section removed Sep 8 (Evan) — restore when the projects database has real entries."
+    "note": "Projects section removed Sep 8 (Evan), restore when the projects database has real entries."
   },
   "caseStudies": {
     "eyebrow": "CASE STUDIES",
     "h2": "Documented results, one site at a time",
-    "lede": "Each case study pairs a grower’s story with the data behind it — where they started, what they practiced, and what was measured.",
+    "lede": "Each case study pairs a grower’s story with the data behind it, where they started, what they practiced, and what was measured.",
     "cards": {
       "status": "placeholder",
       "note": "3 launch cases from the Case Study Kit pipeline (the Shane Plath story is the seed of the first). Each card: grower/site, region, baseline → practice → measured outcome. INTERIM CONTENT (Evan, Sep 7): video cases from the existing Consultant & Farmer Case Studies playlists run as “stories from the field”. VERIFY Vimeo account access."
@@ -21,7 +21,7 @@
   "workWithUs": {
     "h2": "WORK WITH US",
     "tagline": "Accelerating understanding into action.",
-    "lede": "Whether you’re a farmer looking to implement the soil food web approach to cut back on synthetic inputs and build your natural soil fertility, a landowner looking to restore biodiversity and remediate contamination, or a school system wanting to incorporate our methodology into your curriculum — we welcome you to reach out to us.",
+    "lede": "Whether you’re a farmer looking to implement the soil food web approach to cut back on synthetic inputs and build your natural soil fertility, a landowner looking to restore biodiversity and remediate contamination, or a school system wanting to incorporate our methodology into your curriculum, we welcome you to reach out to us.",
     "cards": [
       {
         "title": "Farm with biology",
@@ -29,11 +29,11 @@
       },
       {
         "title": "Restore your land",
-        "body": "Bring biodiversity back to degraded sites and put biology to work on remediation — from gardens and smallholdings to large landholdings and public lands."
+        "body": "Bring biodiversity back to degraded sites and put biology to work on remediation, from gardens and smallholdings to large landholdings and public lands."
       },
       {
         "title": "Bring it to your classroom",
-        "body": "Incorporate the soil food web methodology into your curriculum — for school systems, universities, and training programs."
+        "body": "Incorporate the soil food web methodology into your curriculum: for school systems, universities, and training programs."
       }
     ],
     "form": {
@@ -46,7 +46,7 @@
         "Tell us about your land, project, or program"
       ],
       "status": "verify",
-      "note": "routes to info@soilfoodweb.com — VERIFY routing/owner"
+      "note": "routes to info@soilfoodweb.com, VERIFY routing/owner"
     },
     "crossLinks": [
       {

@@ -3,7 +3,7 @@
   "hero": {
     "eyebrow": "DONATE & GET INVOLVED",
     "h1": "Put your hands in this work",
-    "intro": "The Soil Food Web Foundation is a 501(c)(3) nonprofit — gifts are tax-deductible to the extent allowed by law. Every gift amplifies our impact by funding scholarships, supporting research initiatives, and increasing our capacity to take direct action on behalf of the living world."
+    "intro": "The Soil Food Web Foundation is a 501(c)(3) nonprofit. Gifts are tax-deductible to the extent allowed by law. Every gift amplifies our impact by funding scholarships, supporting research initiatives, and increasing our capacity to take direct action on behalf of the living world."
   },
   "makeGift": {
     "frequencies": [
@@ -38,7 +38,7 @@
   "volunteer": {
     "eyebrow": "VOLUNTEER",
     "h2": "Volunteer with us",
-    "lede": "Want to donate your time or expertise to furthering our mission? Fill out the form to get in touch — tell us your skills and your region, and we’ll find you a place as our global volunteer network takes root.",
+    "lede": "Want to donate your time or expertise to furthering our mission? Fill out the form to get in touch, tell us your skills and your region, and we’ll find you a place as our global volunteer network takes root.",
     "form": {
       "fields": [
         "Name",

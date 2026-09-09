@@ -9,48 +9,54 @@
    1. Tokens
    -------------------------------------------------------------------------- */
 :root {
-  /* Colour. Named after the material, not the role, so roles can move. */
-  --paper:        #ECE8DC;   /* page ground: bone, a touch cooler than brand cream */
-  --paper-deep:   #E2DDCE;   /* a second stratum of paper for bands and cards */
-  --ink:          #1E1C18;   /* text and rules: warm ink black */
+  /* Colour. Roles from the SFWF Website Design & Content Spec, section 3.1. */
+  --paper:        #F4F1EA;   /* Organic Cream: default page background */
+  --paper-deep:   #FFFFFF;   /* alternate section band, per spec 3.3 */
+  --ink:          #333130;   /* body text: warm near-black (spec 3.1) */
   --ink-soft:     #4A463F;   /* secondary text */
-  --ink-faint:    #5D5A4F;   /* captions, source lines. Darkened 8 Sep 2026 from #8B8677,
-                                which failed WCAG AA (2.68:1 on --paper-deep) at the 13px
-                                it is used at. Now 5.09:1 on paper-deep, 5.64:1 on paper. */
-  --soil:         #4F3433;   /* brand Soil Brown: headings on light ground, footer */
-  --moss:         #22371F;   /* brand deep green: overlay menu, dark bands */
-  --olive:        #5F6A3C;   /* engraving line accents, icon strokes on paper */
+  --ink-faint:    #6A665C;   /* captions, source lines. AA on cream at 13px */
+  --soil:         #4F3433;   /* Soil Brown: headings, footer, dark sections */
+  --moss:         #22371F;   /* deep green: overlay menu, dark bands */
+  --olive:        #5F6A3C;   /* engraving line accents, icon strokes */
   --sage:         #A7B097;   /* cut-out textures, hover ground on dark */
-  --green:        #156826;   /* brand Food Web Green: links, buttons, focus */
-  --gold:         #C9A227;   /* brand Harvest Gold: Donate only */
-  --white:        #FBFAF6;
+  --green:        #156826;   /* Food Web Green: buttons, links, eyebrows */
+  --green-legacy: #59A66C;   /* DECORATIVE ONLY. Fails contrast: never text */
+  --edu:          #3780B8;   /* Education Blue: course tags, student access */
+  --tan:          #C89B7B;   /* secondary backgrounds, card borders, dividers */
+  --gold:         #C9A227;   /* Harvest Gold: Donate button only */
+  --white:        #FFFFFF;
 
-  --rule:         rgba(30, 28, 24, .32);   /* hairline on paper */
-  --rule-strong:  rgba(30, 28, 24, .70);
-  --rule-inverse: rgba(251, 250, 246, .28); /* hairline on moss / soil */
+  --rule:         rgba(79, 52, 51, .22);
+  --rule-strong:  rgba(79, 52, 51, .55);
+  --rule-inverse: rgba(255, 255, 255, .28);
+  --shadow:       0 2px 12px rgba(79, 52, 51, 0.10);   /* the only shadow */
 
-  /* Type. Two families only. */
-  --serif: "EB Garamond", "Garamond", "Times New Roman", serif;
+  /* Type. Montserrat for headings, buttons, nav, labels. Source Sans for body. */
+  --display: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+  --serif: "Montserrat", "Helvetica Neue", Arial, sans-serif;
   --sans:  "Source Sans 3", "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
 
-  /* Modular scale, ratio 1.25 from 18px body. */
-  --t-1:  0.8125rem;  /* 13px  captions, source lines */
-  --t0:   1rem;       /* 16px  small ui */
-  --t1:   1.125rem;   /* 18px  body */
-  --t2:   1.375rem;   /* 22px  lede, card titles */
-  --t3:   1.75rem;    /* 28px  h3 */
-  --t4:   2.25rem;    /* 36px  h2 */
-  --t5:   clamp(2.4rem, 4.2vw, 3.25rem);   /* h1 */
-  --t6:   clamp(3rem, 6.5vw, 4.75rem);     /* display / overlay menu items */
+  /* Scale from spec 3.2: desktop / mobile pairs. */
+  --t-1:  0.8125rem;                          /* 13px captions, source lines */
+  --t0:   0.9375rem;                          /* 15px buttons, small ui */
+  --t1:   clamp(1rem, 0.95rem + .25vw, 1.125rem);   /* body 16 -> 18 */
+  --t2:   clamp(1.25rem, 1.1rem + .6vw, 1.5rem);    /* h3 20 -> 24 */
+  --t3:   clamp(1.5rem, 1.3rem + .8vw, 1.75rem);
+  --t4:   clamp(1.75rem, 1.4rem + 1.6vw, 2.5rem);   /* h2 28 -> 40 */
+  --t5:   clamp(2.125rem, 1.4rem + 3vw, 3.75rem);   /* h1 34 -> 60 */
+  --t6:   clamp(2.5rem, 1.6rem + 4vw, 4.5rem);      /* big stat 40 -> 72 */
 
-  --measure: 62ch;
+  --measure: 70ch;
 
-  /* Space, 8px base. */
   --s1: .5rem; --s2: 1rem; --s3: 1.5rem; --s4: 2rem; --s5: 3rem; --s6: 4.5rem; --s7: 7rem;
 
-  --page-max: 84rem;      /* 1344px */
+  --page-max: 1200px;
   --gutter:   1.5rem;
-  --col-gap:  2rem;
+  --col-gap:  24px;
+  --section-y: 96px;
+
+  --radius-card: 12px;
+  --radius-btn:  8px;
 
   --hairline: 1px;
   --focus: 3px solid var(--green);
@@ -58,6 +64,7 @@
   --ease: cubic-bezier(.2, .6, .2, 1);
   --dur: 320ms;
 }
+@media (max-width: 48em) { :root { --section-y: 56px; } }
 
 @media (min-width: 60em) {
   :root { --gutter: 3rem; }
@@ -66,11 +73,7 @@
 /* --------------------------------------------------------------------------
    2. Fonts (self-hosted, latin subset only, swap)
    -------------------------------------------------------------------------- */
-@font-face { font-family: "EB Garamond"; font-style: normal; font-weight: 400; font-display: swap; src: url("../fonts/eb-garamond-latin-400-normal.woff2") format("woff2"); }
-@font-face { font-family: "EB Garamond"; font-style: italic; font-weight: 400; font-display: swap; src: url("../fonts/eb-garamond-latin-400-italic.woff2") format("woff2"); }
-@font-face { font-family: "EB Garamond"; font-style: normal; font-weight: 500; font-display: swap; src: url("../fonts/eb-garamond-latin-500-normal.woff2") format("woff2"); }
-@font-face { font-family: "EB Garamond"; font-style: italic; font-weight: 500; font-display: swap; src: url("../fonts/eb-garamond-latin-500-italic.woff2") format("woff2"); }
-@font-face { font-family: "EB Garamond"; font-style: normal; font-weight: 600; font-display: swap; src: url("../fonts/eb-garamond-latin-600-normal.woff2") format("woff2"); }
+@font-face { font-family: "Montserrat"; font-style: normal; font-weight: 600 700; font-display: swap; src: url("../fonts/montserrat-latin-variable.woff2") format("woff2-variations"); }
 @font-face { font-family: "Source Sans 3"; font-style: normal; font-weight: 400; font-display: swap; src: url("../fonts/source-sans-3-latin-400-normal.woff2") format("woff2"); }
 @font-face { font-family: "Source Sans 3"; font-style: italic; font-weight: 400; font-display: swap; src: url("../fonts/source-sans-3-latin-400-italic.woff2") format("woff2"); }
 @font-face { font-family: "Source Sans 3"; font-style: normal; font-weight: 600; font-display: swap; src: url("../fonts/source-sans-3-latin-600-normal.woff2") format("woff2"); }
@@ -96,19 +99,20 @@ body.is-locked { overflow: hidden; }
 
 h1, h2, h3, h4 {
   font-family: var(--serif);
-  font-weight: 500;
+  font-weight: 700;
   color: var(--soil);
-  line-height: 1.08;
+  line-height: 1.15;
   letter-spacing: -0.005em;
   margin: 0 0 var(--s3);
   text-wrap: balance;
 }
-h1 { font-size: var(--t5); }
-h2 { font-size: clamp(1.9rem, 3vw, var(--t4)); }
-h3 { font-size: var(--t3); }
+h1 { font-size: var(--t5); font-weight: 700; line-height: 1.1; }
+h2 { font-size: var(--t4); font-weight: 700; }
+h3 { font-size: var(--t2); font-weight: 600; }
 h4 { font-size: var(--t2); line-height: 1.2; }
 
 p, ul, ol, dl { margin: 0 0 var(--s3); max-width: var(--measure); }
+body { line-height: 1.6; }
 p:last-child { margin-bottom: 0; }
 .cards, .chips, .acc, .acc__links, .now-list, .swatches, .icon-grid, .site-header__links, .overlay__utility, .site-footer ul, .card__meta { max-width: none; }
 .lede { font-family: var(--serif); font-size: var(--t2); line-height: 1.4; color: var(--ink); }
@@ -144,9 +148,9 @@ figcaption, .caption, .source {
 
 .stratum {
   border-top: var(--hairline) solid var(--rule-strong);
-  padding-block: var(--s6);
+  padding-block: var(--section-y);
 }
-.stratum + .stratum { border-top-color: var(--rule); }
+.stratum + .stratum { padding-block: var(--section-y); border-top-color: var(--rule); }
 .stratum--deep { background: var(--paper-deep); }
 .stratum--moss { background: var(--moss); color: var(--paper); }
 .stratum--moss h1, .stratum--moss h2, .stratum--moss h3 { color: var(--paper); }
@@ -181,10 +185,10 @@ figcaption, .caption, .source {
    5. Buttons and controls
    -------------------------------------------------------------------------- */
 .btn {
-  display: inline-block; font-family: var(--sans); font-weight: 600; font-size: var(--t0);
+  display: inline-block; font-family: var(--display); font-weight: 600; font-size: var(--t0);
   line-height: 1; padding: .8em 1.15em; border: var(--hairline) solid var(--green);
   background: var(--green); color: var(--white); text-decoration: none; cursor: pointer;
-  border-radius: 0; transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
+  border-radius: var(--radius-btn); transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
 }
 .btn:hover { background: var(--moss); border-color: var(--moss); color: var(--white); }
 .btn--ghost { background: transparent; color: var(--green); }
@@ -195,16 +199,17 @@ figcaption, .caption, .source {
 
 .input {
   font: inherit; font-size: var(--t0); padding: .7em .8em; border: var(--hairline) solid var(--rule-strong);
-  background: var(--white); color: var(--ink); border-radius: 0; min-width: 0; width: 100%;
+  background: var(--white); color: var(--ink); border-radius: var(--radius-btn); min-width: 0; width: 100%;
 }
 .input::placeholder { color: var(--ink-faint); }
 
 /* Filter chips: for index pages. Filter, never paginate. */
 .chips { display: flex; flex-wrap: wrap; gap: var(--s1); padding: 0; margin: 0 0 var(--s4); list-style: none; }
 .chip {
-  font: inherit; font-size: var(--t0); padding: .35em .8em; border: var(--hairline) solid var(--rule-strong);
+  font-family: var(--display); font-weight: 600; font-size: var(--t0); padding: .35em .8em; border: var(--hairline) solid var(--rule-strong);
   background: transparent; color: var(--ink); cursor: pointer; border-radius: 0;
 }
+.chip { border-radius: var(--radius-btn); }
 .chip[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
 
 /* --------------------------------------------------------------------------
@@ -303,7 +308,7 @@ figcaption, .caption, .source {
 .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr)); gap: var(--s4) var(--col-gap); list-style: none; margin: 0; padding: 0; }
 .card { border-top: var(--hairline) solid var(--rule-strong); padding-top: var(--s2); display: flex; flex-direction: column; gap: var(--s2); }
 .card__kind { font-size: var(--t-1); color: var(--ink-soft); display: flex; justify-content: space-between; gap: var(--s2); }
-.card__media { aspect-ratio: 3 / 2; background: var(--paper-deep); overflow: hidden; }
+.card__media { aspect-ratio: 3 / 2; background: #EADED2; overflow: hidden; border-radius: var(--radius-card); }
 .card__media img { width: 100%; height: 100%; object-fit: cover; }
 .card__media--square { aspect-ratio: 1; }
 .card__title { font-family: var(--serif); font-size: var(--t2); line-height: 1.2; margin: 0; color: var(--soil); font-weight: 500; }
@@ -435,7 +440,7 @@ code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .9em; }
 /* Plate: a captioned figure in the natural-history-journal manner.
    Figure number only when the plates are a real numbered series. */
 .plate { max-width: none; }
-.plate__f { border: var(--hairline) solid var(--rule); background: var(--paper-deep); display: grid; place-items: center; overflow: hidden; }
+.plate__f { border: var(--hairline) solid var(--rule); background: #EADED2; display: grid; place-items: center; overflow: hidden; border-radius: var(--radius-card); }
 .plate__f img { width: 100%; height: auto; }
 .plate figcaption { margin-top: var(--s1); font-size: var(--t-1); line-height: 1.4; }
 .plate__n { font-weight: 600; color: var(--ink-soft); }
@@ -538,7 +543,7 @@ code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .9em; }
    deck, which gives every section one. Stage 4 restyles this to the spec
    (Montserrat 600, 13-14px, +0.08em, Food Web Green). Added 9 Sep 2026. */
 .eyebrow {
-  font-family: var(--sans); font-size: var(--t-1); font-weight: 600;
+  font-family: var(--display); font-size: var(--t-1); font-weight: 600;
   letter-spacing: .08em; text-transform: uppercase; color: var(--green);
   margin: 0 0 var(--s1);
 }
@@ -549,3 +554,40 @@ code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .9em; }
    source, collapsed for visitors, revealed by ?notes=1 like any note. */
 .notes-only { display: none; }
 [data-notes] .notes-only { display: block; }
+
+/* --------------------------------------------------------------------------
+   15. Utility bar: the slim band above the header carrying the community
+       tagline and the three action links (spec 3.4, 4.2). Added 9 Sep 2026.
+   -------------------------------------------------------------------------- */
+.utility { background: var(--soil); color: var(--white); font-size: var(--t-1); }
+.utility .wrap { display: flex; flex-wrap: wrap; gap: var(--s2) var(--s3); align-items: center;
+  justify-content: space-between; padding-block: .55rem; }
+.utility__tagline { margin: 0; font-family: var(--display); font-weight: 600; letter-spacing: .01em; max-width: none; }
+.utility__links { display: flex; flex-wrap: wrap; gap: var(--s3); list-style: none; margin: 0; padding: 0; max-width: none; }
+.utility__links a { color: var(--white); text-decoration: none; font-family: var(--display); font-weight: 600; }
+.utility__links a:hover { text-decoration: underline; }
+@media (max-width: 40em) { .utility__tagline { display: none; } .utility .wrap { justify-content: center; } }
+
+/* Big stat, spec 3.2: Montserrat 700, 56-72px desktop / 40px mobile. */
+.stat { font-family: var(--display); font-weight: 700; font-size: var(--t6); line-height: 1;
+  color: var(--green); margin: 0 0 var(--s1); }
+.stat__label { font-size: var(--t1); color: var(--ink); margin-bottom: var(--s1); }
+
+/* Guarantee ribbon on Learn. */
+.ribbon { background: #E9DBCD; border-radius: var(--radius-card);
+  padding: var(--s3); margin-top: var(--s4); max-width: none; font-weight: 600; color: var(--soil); }
+
+/* Cards take the spec's radius and its single shadow. */
+.card { border-radius: var(--radius-card); }
+.cards .card { padding: var(--s3); background: var(--white); box-shadow: var(--shadow); border-top: 0; }
+.stratum--deep .cards .card { background: var(--paper); }
+
+/* Montserrat sets the wordmark much wider than the previous serif did, which
+   pushed the Menu button past the viewport at 390px. Step it down on small
+   screens; the header keeps wordmark, Donate and Menu on one line. */
+@media (max-width: 30em) {
+  .wordmark__name { font-size: var(--t1); }
+  .wordmark__status { font-size: 11px; }
+  .site-header .wrap { gap: var(--s1); }
+  .btn--donate { padding: .7em .85em; }
+}

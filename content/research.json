@@ -6,12 +6,12 @@
       "link": "https://doi.org/10.2307/1942528"
     },
     {
-      "citation": "Soil Biology Primer (1999) — co-authored with the USDA Natural Resources Conservation Service.",
+      "citation": "Soil Biology Primer (1999), co-authored with the USDA Natural Resources Conservation Service.",
       "status": "placeholder",
       "note": "Link to source"
     }
   ],
-  "databaseNote": "Populated from soilfoodweb.com/publications + the wider literature. Each entry: citation, plain-language one-liner, link/PDF. This page absorbs the old Publications page — redirect /publications → /research.",
+  "databaseNote": "Populated from soilfoodweb.com/publications + the wider literature. Each entry: citation, plain-language one-liner, link/PDF. This page absorbs the old Publications page, redirect /publications → /research.",
   "workWithUs": {
     "h2": "Work with us on research",
     "body": "We’re opening our data, replicating key experiments, and partnering with universities and independent researchers to test the soil food web approach across ecoregions. If that’s your work too, let’s talk.",

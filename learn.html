@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>All programs and what they cost, Soil Food Web Foundation</title>
-  <meta name="description" content="Every program, in the order you’d take it, with the full price.">
+  <title>Learn with us, Soil Food Web Foundation</title>
+  <meta name="description" content="Whether you’re growing in your backyard raised beds or advising thousand-acre farms, there’s a path for you. Choose from self-paced or group classes, online or in person. Every program is grounded in decades of research and practice and designed to deliver practical skills and insights.">
   <meta property="og:site_name" content="Soil Food Web Foundation">
-  <link rel="preload" href="fonts/eb-garamond-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/montserrat-latin-variable.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/source-sans-3-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/site.css">
 </head>
@@ -40,17 +40,20 @@
   <symbol id="i-external" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 13v7H4V6h7"/></symbol>
 </svg>
 
-<!-- ===================== HEADER (every page) ===================== -->
+<!-- ============ UTILITY BAR + HEADER (every page) ============ -->
+<div class="utility">
+  <div class="wrap">
+    <p class="utility__tagline">Join a global community of Soil Regenerators</p>
+    <ul class="utility__links"><li><a href="login.html">Login / Student Access</a></li><li><a href="news.html#subscribe">Subscribe</a></li><li><a href="donate.html">Donate</a></li></ul>
+  </div>
+</div>
 <header class="site-header">
   <div class="wrap">
     <a class="wordmark" href="index.html">
       <span class="wordmark__name">Soil Food Web Foundation</span>
       <span class="wordmark__status">A 501(c)(3) nonprofit</span>
     </a>
-    <ul class="site-header__links">
-      <li><a href="login.html">Student login</a></li>
-      <li><a href="now.html#subscribe">Subscribe</a></li>
-    </ul>
+    <ul class="site-header__links"><li><a href="about.html">About Us</a></li><li><a href="learn.html">Learn</a></li><li><a href="science.html">Science</a></li><li><a href="practice.html">Practice</a></li><li><a href="community.html">Community</a></li></ul>
     <a class="btn btn--donate" href="donate.html">Donate</a>
     <button class="menu-btn" type="button" data-menu-open aria-controls="overlay" aria-expanded="false">
       <svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg><span class="menu-btn__label">Menu</span>
@@ -58,7 +61,6 @@
   </div>
 </header>
 
-<!-- ===================== OVERLAY MENU (every page) ===================== -->
 <div class="overlay" id="overlay" data-open="false" role="dialog" aria-modal="true" aria-label="Site menu">
   <div class="wrap">
     <div class="overlay__top">
@@ -70,89 +72,86 @@
         <svg class="icon" aria-hidden="true"><use href="#i-close"/></svg>Close
       </button>
     </div>
-
     <div class="overlay__body">
       <nav class="overlay__nav" aria-label="Sections">
         <ul class="acc" data-accordion>
           <li class="acc__item" data-acc-item data-open="false">
-            <button class="acc__btn" type="button" data-acc-btn aria-controls="acc-about">
-              <span class="acc__name">About us</span><span class="acc__desc">Who we are and how we’re governed</span>
+            <button class="acc__btn" type="button" data-acc-btn aria-controls="acc-about-us">
+              <span class="acc__name">About Us</span><span class="acc__desc">Who we are and how we are governed</span>
             </button>
-            <div class="acc__panel" id="acc-about" data-acc-panel><div>
+            <div class="acc__panel" id="acc-about-us" data-acc-panel><div>
               <ul class="acc__links">
-                <li><a href="about.html">Mission, vision and story</a></li>
-                <li><a href="about-team.html">Team</a></li>
-                <li><a href="about-governance.html">Foundation legal info and financials</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="about.html#mission">Mission, Vision &amp; Story</a></li>
+                <li><a href="about-team.html">Our Team</a></li>
+                <li><a href="about-elaine.html">Dr. Elaine’s Research</a></li>
+                <li><a href="news.html#foundation">Foundation News</a></li>
+                <li><a href="contact.html">Contact &amp; Legal</a></li>
               </ul>
             </div></div>
           </li>
           <li class="acc__item" data-acc-item data-open="false">
             <button class="acc__btn" type="button" data-acc-btn aria-controls="acc-learn">
-              <span class="acc__name">Learn</span><span class="acc__desc">Courses, workshops and free resources</span>
+              <span class="acc__name">Learn</span><span class="acc__desc">Teach It</span>
             </button>
             <div class="acc__panel" id="acc-learn" data-acc-panel><div>
               <ul class="acc__links">
-                <li><a href="learn.html">Overview: every program and what it costs</a></li>
-                <li><a href="https://school.soilfoodweb.com">Online courses</a></li>
-                <li><a href="learn-workshops.html">In-person workshops</a></li>
-                <li><a href="learn-webinars.html">Free webinars</a></li>
+                <li><a href="learn.html">Programs Overview</a></li>
+                <li><a href="https://school.soilfoodweb.com">Online Courses</a></li>
+                <li><a href="calendar.html#workshops">Workshops</a></li>
+                <li><a href="calendar.html">Calendar</a></li>
+                <li><a href="learn-webinars.html">Free Webinars</a></li>
                 <li><a href="learn-scholarships.html">Scholarships</a></li>
-                <li><a href="now.html#calendar">Calendar</a></li>
+                <li><a href="login.html">Student Login</a></li>
               </ul>
             </div></div>
           </li>
           <li class="acc__item" data-acc-item data-open="false">
-            <button class="acc__btn" type="button" data-acc-btn aria-controls="acc-news">
-              <span class="acc__name">News</span><span class="acc__desc">Community activity, blog and impact</span>
+            <button class="acc__btn" type="button" data-acc-btn aria-controls="acc-science">
+              <span class="acc__name">Science</span><span class="acc__desc">Prove It</span>
             </button>
-            <div class="acc__panel" id="acc-news" data-acc-panel><div>
+            <div class="acc__panel" id="acc-science" data-acc-panel><div>
               <ul class="acc__links">
-                <li><a href="now.html">What’s happening</a></li>
-                <li><a href="now.html#writing">Blog</a></li>
-                <li><a href="community.html">Community activity</a></li>
-                <li><a href="projects.html">Impact</a></li>
+                <li><a href="science.html">How the Soil Food Web Works</a></li>
+                <li><a href="research.html">Research Database</a></li>
+                <li><a href="research.html#work-with-us">Partner on Research</a></li>
               </ul>
             </div></div>
           </li>
           <li class="acc__item" data-acc-item data-open="false">
-            <button class="acc__btn" type="button" data-acc-btn aria-controls="acc-how">
-              <span class="acc__name">How it works</span><span class="acc__desc">The science, and where it has been done</span>
+            <button class="acc__btn" type="button" data-acc-btn aria-controls="acc-practice">
+              <span class="acc__name">Practice</span><span class="acc__desc">Practice It</span>
             </button>
-            <div class="acc__panel" id="acc-how" data-acc-panel><div>
+            <div class="acc__panel" id="acc-practice" data-acc-panel><div>
               <ul class="acc__links">
-                <li><a href="science.html">The six mechanisms</a></li>
-                <li><a href="projects.html">Case studies and videos</a></li>
-                <li><a href="publications.html">Publications</a></li>
+                <li><a href="practice.html#case-studies">Case Studies</a></li>
+                <li><a href="directory.html">Find a Professional</a></li>
+                <li><a href="practice.html#work-with-us">Work With Us</a></li>
               </ul>
             </div></div>
           </li>
           <li class="acc__item" data-acc-item data-open="false">
-            <button class="acc__btn" type="button" data-acc-btn aria-controls="acc-pros">
-              <span class="acc__name">SFW professionals</span><span class="acc__desc">Find a trained practitioner</span>
+            <button class="acc__btn" type="button" data-acc-btn aria-controls="acc-community">
+              <span class="acc__name">Community</span><span class="acc__desc">Grow It</span>
             </button>
-            <div class="acc__panel" id="acc-pros" data-acc-panel><div>
+            <div class="acc__panel" id="acc-community" data-acc-panel><div>
               <ul class="acc__links">
-                <li><a href="directory.html">Directory</a></li>
+                <li><a href="community.html#community-map">Community Map</a></li>
+                <li><a href="news.html">News &amp; Blog</a></li>
+                <li><a href="calendar.html">Calendar</a></li>
+                <li><a href="community.html#join">Join the Community</a></li>
               </ul>
             </div></div>
           </li>
         </ul>
-        <ul class="overlay__utility">
-          <li><a href="login.html">Student login</a></li>
-          <li><a href="now.html#subscribe">Subscribe</a></li>
-          <li><a href="donate.html">Donate</a></li>
-        </ul>
+        <ul class="overlay__utility"><li><a href="login.html">Login / Student Access</a></li><li><a href="news.html#subscribe">Subscribe</a></li><li><a href="donate.html">Donate</a></li></ul>
       </nav>
-
       <aside class="overlay__now" aria-labelledby="now-h">
         <h2 id="now-h">Happening now</h2>
         <ul class="now-list">
-          <li><span class="dated"><time datetime="2026-09-07">7 September 2026</time></span><a href="learn-workshops.html#india">India workshop: last day to cancel with a refund</a></li>
-          <li><span class="dated"><time datetime="2026-09-16">16 September to 20 December 2026</time></span><a href="learn.html#pdc">Permaculture Design Certification cohort begins</a></li>
-          <li><span class="dated"><time datetime="2026-10">October 2026</time></span><a href="learn-workshops.html#india">India Accelerator Workshop, Coimbatore</a></li>
+          <li><span class="dated"><time datetime="2026-09-16">16 September to 20 December 2026</time></span><a href="learn.html#pdc">Permaculture Design Certification cohort</a></li>
+          <li><span class="dated"><time datetime="2026-10">October 2026</time></span><a href="calendar.html#workshops">India Accelerator Workshop, Coimbatore</a></li>
         </ul>
-        <a class="more" href="now.html">Everything that’s happening</a>
+        <a class="more" href="calendar.html">Everything that is happening</a>
       </aside>
     </div>
     <div class="cutout cutout--overlay">
@@ -163,349 +162,116 @@
 
 <main id="main">
 
-  <section class="stratum" style="border-top:0;padding-top:var(--s5)">
+  <section class="stratum" style="border-top:0">
     <div class="wrap">
       <div class="head" style="margin-bottom:0">
-        <h1>Every program, in the order you’d take it, with the full price</h1>
-        <p class="lede">Whether you grow in raised beds or advise thousand-acre farms, there is a path here. Everything is listed once, with one price. The Consultant path is two purchases; we state the total up front because the old site did not.</p>
+        <p class="eyebrow">LEARN WITH US</p>
+        <h1 id="learn-h">Learn to work with the life in your soil</h1>
+        <p class="lede">Whether you’re growing in your backyard raised beds or advising thousand-acre farms, there’s a path for you. Choose from self-paced or group classes, online or in person. Every program is grounded in decades of research and practice and designed to deliver practical skills and insights.</p>
       </div>
     </div>
   </section>
-  <section class="stratum stratum--deep" aria-labelledby="pathway-h" id="pathway">
+
+  <section class="stratum stratum--deep" aria-labelledby="path-h">
     <div class="wrap">
-      <div class="head">
-        <h2 id="pathway-h">The pathway</h2>
-        <p>Tap or hover a program for its price, duration and what it unlocks. Foundation Courses are required for everything below them. The four Advanced Programs can be taken in any order.</p>
-      </div>
-      <div class="pathway" data-pathway>
-        <ol class="pathway__stages">
-          <li class="pathway__stage">
-            <h3 class="pathway__stage-t">Start</h3>
-            <ul class="pathway__nodes">
-            <li class="pathway__node">
-              <button type="button" class="pathway__btn" data-pathway-btn aria-expanded="false" aria-controls="n-webinar-panel">Free webinar</button>
-              <div class="pathway__panel" id="n-webinar-panel" hidden>
-                <dl class="card__meta"><div><dt>Price</dt><dd>Free</dd></div><div><dt>Duration</dt><dd>One hour, monthly</dd></div></dl>
-                <p class="small">Nothing required. The easiest first step.</p>
-                <p class="small"><a href="#webinar">Details and enrollment</a></p>
-              </div>
-            </li>
-            <li class="pathway__node">
-              <button type="button" class="pathway__btn" data-pathway-btn aria-expanded="false" aria-controls="n-intro-panel">Intro mini course</button>
-              <div class="pathway__panel" id="n-intro-panel" hidden>
-                <dl class="card__meta"><div><dt>Price</dt><dd>Price to confirm</dd></div><div><dt>Duration</dt><dd>Self-paced</dd></div></dl>
-                <p class="small">A taste of how the Foundation Courses are taught.</p>
-                <p class="small"><a href="#intro">Details and enrollment</a></p>
-              </div>
-            </li>
-            </ul>
-          </li>
-
-          <li class="pathway__stage">
-            <h3 class="pathway__stage-t">Required</h3>
-            <ul class="pathway__nodes">
-            <li class="pathway__node pathway__node--required">
-              <button type="button" class="pathway__btn" data-pathway-btn aria-expanded="false" aria-controls="n-fc-panel">Foundation Courses</button>
-              <div class="pathway__panel" id="n-fc-panel" hidden>
-                <dl class="card__meta"><div><dt>Price</dt><dd>$4,999</dd></div><div><dt>Duration</dt><dd>About 150 hours, 12 months’ access</dd></div></dl>
-                <p class="small">Required for every Advanced Program below.</p>
-                <p class="small"><a href="#foundation-courses">Details and enrollment</a></p>
-              </div>
-            </li>
-            </ul>
-          </li>
-
-          <li class="pathway__stage">
-            <h3 class="pathway__stage-t">Advanced Programs, any order</h3>
-            <ul class="pathway__nodes">
-            <li class="pathway__node">
-              <button type="button" class="pathway__btn" data-pathway-btn aria-expanded="false" aria-controls="n-micro-panel">Soil Microscopy</button>
-              <div class="pathway__panel" id="n-micro-panel" hidden>
-                <dl class="card__meta"><div><dt>Price</dt><dd>$1,250</dd></div><div><dt>Duration</dt><dd>Mentored</dd></div></dl>
-                <p class="small">Earns the Soil Food Web Lab Technician title on its own.</p>
-                <p class="small"><a href="#microscopy">Details and enrollment</a></p>
-              </div>
-            </li>
-            <li class="pathway__node">
-              <button type="button" class="pathway__btn" data-pathway-btn aria-expanded="false" aria-controls="n-compost-panel">Compost Production</button>
-              <div class="pathway__panel" id="n-compost-panel" hidden>
-                <dl class="card__meta"><div><dt>Price</dt><dd>$1,250</dd></div><div><dt>Duration</dt><dd>Mentored, 16 months allotted</dd></div></dl>
-                <p class="small">One of the four Advanced Programs.</p>
-                <p class="small"><a href="#compost">Details and enrollment</a></p>
-              </div>
-            </li>
-            <li class="pathway__node">
-              <button type="button" class="pathway__btn" data-pathway-btn aria-expanded="false" aria-controls="n-liquid-panel">Liquid Amendments</button>
-              <div class="pathway__panel" id="n-liquid-panel" hidden>
-                <dl class="card__meta"><div><dt>Price</dt><dd>$1,250</dd></div><div><dt>Duration</dt><dd>Mentored</dd></div></dl>
-                <p class="small">One of the four Advanced Programs. Order: DECISION 5.</p>
-                <p class="small"><a href="#liquid">Details and enrollment</a></p>
-              </div>
-            </li>
-            <li class="pathway__node">
-              <button type="button" class="pathway__btn" data-pathway-btn aria-expanded="false" aria-controls="n-field-panel">Field Trial</button>
-              <div class="pathway__panel" id="n-field-panel" hidden>
-                <dl class="card__meta"><div><dt>Price</dt><dd>$1,250</dd></div><div><dt>Duration</dt><dd>Mentored</dd></div></dl>
-                <p class="small">One of the four Advanced Programs.</p>
-                <p class="small"><a href="#field-trial">Details and enrollment</a></p>
-              </div>
-            </li>
-            </ul>
-          </li>
-
-          <li class="pathway__stage">
-            <h3 class="pathway__stage-t">Together</h3>
-            <ul class="pathway__nodes">
-            <li class="pathway__node">
-              <button type="button" class="pathway__btn" data-pathway-btn aria-expanded="false" aria-controls="n-practicum-panel">Complete Practicum</button>
-              <div class="pathway__panel" id="n-practicum-panel" hidden>
-                <dl class="card__meta"><div><dt>Price</dt><dd>$3,999</dd></div><div><dt>Duration</dt><dd>18 to 24 months typical, 42 allotted</dd></div></dl>
-                <p class="small">All four Advanced Programs. Earns the Soil Food Web Consultant title.</p>
-                <p class="small"><a href="#complete-practicum">Details and enrollment</a></p>
-              </div>
-            </li>
-            </ul>
-          </li>
-
-          <li class="pathway__stage">
-            <h3 class="pathway__stage-t">Titles</h3>
-            <ul class="pathway__nodes">
-            <li class="pathway__node pathway__node--title">
-              <button type="button" class="pathway__btn" data-pathway-btn aria-expanded="false" aria-controls="n-consultant-panel">Soil Food Web Consultant</button>
-              <div class="pathway__panel" id="n-consultant-panel" hidden>
-                <dl class="card__meta"><div><dt>Price</dt><dd>Title</dd></div><div><dt>Duration</dt><dd>On completion</dd></div></dl>
-                <p class="small">Issued by the Foundation on assessed work. Listing in the practitioner directory.</p>
-                <p class="small"><a href="#complete-practicum">Details and enrollment</a></p>
-              </div>
-            </li>
-            <li class="pathway__node pathway__node--title">
-              <button type="button" class="pathway__btn" data-pathway-btn aria-expanded="false" aria-controls="n-labtech-panel">Soil Food Web Lab Technician</button>
-              <div class="pathway__panel" id="n-labtech-panel" hidden>
-                <dl class="card__meta"><div><dt>Price</dt><dd>Title</dd></div><div><dt>Duration</dt><dd>On completion</dd></div></dl>
-                <p class="small">Issued by the Foundation on assessed work. Listing in the practitioner directory.</p>
-                <p class="small"><a href="#microscopy">Details and enrollment</a></p>
-              </div>
-            </li>
-            </ul>
-          </li>
-
-        </ol>
-        <ol class="pathway__stages pathway__stages--parallel" aria-label="Parallel tracks">
-          <li class="pathway__stage">
-            <h3 class="pathway__stage-t">Parallel tracks</h3>
-            <ul class="pathway__nodes">
-            <li class="pathway__node">
-              <button type="button" class="pathway__btn" data-pathway-btn aria-expanded="false" aria-controls="n-pdc-panel">Permaculture Design Certification</button>
-              <div class="pathway__panel" id="n-pdc-panel" hidden>
-                <dl class="card__meta"><div><dt>Price</dt><dd>$1,550</dd></div><div><dt>Duration</dt><dd>13 weeks, live cohorts</dd></div></dl>
-                <p class="small">Parallel track. No Foundation Courses required.</p>
-                <p class="small"><a href="#pdc">Details and enrollment</a></p>
-              </div>
-            </li>
-            <li class="pathway__node">
-              <button type="button" class="pathway__btn" data-pathway-btn aria-expanded="false" aria-controls="n-restore-panel">Introduction to Ecosystem Restoration</button>
-              <div class="pathway__panel" id="n-restore-panel" hidden>
-                <dl class="card__meta"><div><dt>Price</dt><dd>Price to confirm</dd></div><div><dt>Duration</dt><dd>About 80 hours</dd></div></dl>
-                <p class="small">Parallel track.</p>
-                <p class="small"><a href="#restoration">Details and enrollment</a></p>
-              </div>
-            </li>
-            <li class="pathway__node">
-              <button type="button" class="pathway__btn" data-pathway-btn aria-expanded="false" aria-controls="n-workshops-panel">In-person workshops</button>
-              <div class="pathway__panel" id="n-workshops-panel" hidden>
-                <dl class="card__meta"><div><dt>Price</dt><dd>Varies</dd></div><div><dt>Duration</dt><dd>Two weeks on site</dd></div></dl>
-                <p class="small">Parallel track. Prerequisite: Foundation Courses or Life in the Soils.</p>
-                <p class="small"><a href="#workshops">Details and enrollment</a></p>
-              </div>
-            </li>
-            </ul>
-          </li>
-
-        </ol>
-        <p class="small">Soil Microscopy alone earns the Lab Technician title. All four Advanced Programs, bought together as the Complete Practicum, earn the Consultant title.</p>
-      </div>
+      <div class="head"><h2 id="path-h">What brings you to the soil food web?</h2></div>
+      <ul class="chips" aria-label="Paths"><li><span class="chip">I grow food</span></li><li><span class="chip">I want a new career</span></li><li><span class="chip">I restore ecosystems</span></li><li><span class="chip">I’m just getting curious</span></li></ul>
     </div>
   </section>
-  <section class="stratum" aria-labelledby="table-h" id="programs">
-    <div class="wrap">
-      <div class="head">
-        <h2 id="table-h">Every program</h2>
 
-      </div>
+  <section class="stratum" aria-labelledby="prog-h" id="programs">
+    <div class="wrap">
+      <div class="head"><h2 id="prog-h" class="visually-hidden">Programs</h2></div>
       <ul class="rule-list">
-        <li class="rule-list__head"><span>Format and time</span><span>Program</span><span>Price</span></li>
-        <li class="entry" id="webinar">
-          <span class="entry__kind" style="text-align:left"><span class="icon-row"><svg class="icon icon--olive" aria-hidden="true"><use href="#i-webinar"/></svg><span>Online, monthly</span></span></span>
-          <div>
-            <h3 class="entry__t">Free monthly webinar</h3>
-            <p class="entry__line">A live hour with an instructor or practitioner. The easiest first step.</p>
-            <p class="entry__line" style="margin-top:var(--s1)">Enroll: <a href="https://webinar.soilfoodweb.com">webinar.soilfoodweb.com</a></p>
-          </div>
-          <span class="entry__kind" style="font-size:var(--t1);color:var(--soil);font-family:var(--serif)">Free</span>
-        </li>
-        <li class="entry" id="intro">
-          <span class="entry__kind" style="text-align:left"><span class="icon-row"><svg class="icon icon--olive" aria-hidden="true"><use href="#i-document"/></svg><span>Online, self-paced</span></span></span>
-          <div>
-            <h3 class="entry__t">Introduction to the Foundation Courses</h3>
-            <p class="entry__line">Eleven short lessons from the Foundation Courses so you can see how they’re taught.</p>
-            <p class="entry__line" style="margin-top:var(--s1)">Enroll: <a href="https://school.soilfoodweb.com/courses/intro-foundation-course">school.soilfoodweb.com</a></p><p class="todo" style="margin-top:var(--s1)">price from Thinkific; the page shows a “$1,600 value” stack that is not a price. Evan.</p>
-          </div>
-          <span class="entry__kind" style="font-size:var(--t1);color:var(--soil);font-family:var(--serif)"><span class="todo">price</span></span>
-        </li>
-        <li class="entry" id="lits">
-          <span class="entry__kind" style="text-align:left"><span class="icon-row"><svg class="icon icon--olive" aria-hidden="true"><use href="#i-document"/></svg><span>Online, two days</span></span></span>
-          <div>
-            <h3 class="entry__t">Life in the Soils, two-day seminar</h3>
-            <p class="entry__line">The condensed introduction. Accepted as the prerequisite for the India workshop in place of the Foundation Courses.</p>
-            <p class="entry__line" style="margin-top:var(--s1)">Enroll: <a href="https://school.soilfoodweb.com/courses/life-in-the-soils-seminar-2-day">school.soilfoodweb.com</a></p><p class="todo" style="margin-top:var(--s1)">price. Evan.</p>
-          </div>
-          <span class="entry__kind" style="font-size:var(--t1);color:var(--soil);font-family:var(--serif)"><span class="todo">price</span></span>
-        </li>
         <li class="entry" id="foundation-courses">
-          <span class="entry__kind" style="text-align:left"><span class="icon-row"><svg class="icon icon--olive" aria-hidden="true"><use href="#i-web"/></svg><span>Online, self-paced, about 150 hours, 12 months’ access</span></span></span>
-          <div>
-            <h3 class="entry__t">Foundation Courses</h3>
-            <p class="entry__line">Four courses covering the science of the soil food web, the organisms and their roles, and the fundamentals of making and applying biological amendments. 63 lectures with quizzes. Required before any Advanced Program; 90% average needed to continue.</p>
-            <p class="entry__line" style="margin-top:var(--s1)">Enroll: <a href="https://school.soilfoodweb.com/bundles/soilfoodweb-foundation-courses">school.soilfoodweb.com</a></p><p class="todo" style="margin-top:var(--s1)">reconcile 63 lectures against 212 module lessons: state “63 lectures across 212 lessons”? Evan.</p>
-          </div>
-          <span class="entry__kind" style="font-size:var(--t1);color:var(--soil);font-family:var(--serif)">$4,999</span>
-        </li>
-        <li class="entry" id="microscopy">
-          <span class="entry__kind" style="text-align:left"><span class="icon-row"><svg class="icon icon--olive" aria-hidden="true"><use href="#i-microscope"/></svg><span>Online, mentored</span></span></span>
-          <div>
-            <h3 class="entry__t">Soil Microscopy</h3>
-            <p class="entry__line">Assessing soil biology under the microscope. Completing it earns the Soil Food Web Lab Technician title. Needs a microscope and camera, about $1,000, specified inside the course.</p>
-            <p class="entry__line" style="margin-top:var(--s1)">Enroll: <a href="https://school.soilfoodweb.com/bundles/advanced-soil-microscopy">school.soilfoodweb.com</a></p><p class="todo" style="margin-top:var(--s1)">DECISION 6: Lab Technician re-testing every 12 months, enforced or not? If yes it prints here. Evan.</p>
-          </div>
-          <span class="entry__kind" style="font-size:var(--t1);color:var(--soil);font-family:var(--serif)">$1,250</span>
-        </li>
-        <li class="entry" id="compost">
-          <span class="entry__kind" style="text-align:left"><span class="icon-row"><svg class="icon icon--olive" aria-hidden="true"><use href="#i-compost"/></svg><span>Online, mentored, 16 months allotted</span></span></span>
-          <div>
-            <h3 class="entry__t">BioComplete Compost Production</h3>
-            <p class="entry__line">Building and assessing three compost piles that meet biological minimums.</p>
-            <p class="entry__line" style="margin-top:var(--s1)">Enroll: <a href="https://school.soilfoodweb.com/bundles/advanced-biocomplete-compost-production">school.soilfoodweb.com</a></p><p class="todo" style="margin-top:var(--s1)">reconcile 16 months against “10 months”. Evan.</p>
-          </div>
-          <span class="entry__kind" style="font-size:var(--t1);color:var(--soil);font-family:var(--serif)">$1,250</span>
-        </li>
-        <li class="entry" id="liquid">
-          <span class="entry__kind" style="text-align:left"><span class="icon-row"><svg class="icon icon--olive" aria-hidden="true"><use href="#i-flask"/></svg><span>Online, mentored</span></span></span>
-          <div>
-            <h3 class="entry__t">Biological Liquid Amendments</h3>
-            <p class="entry__line">Making and applying compost extracts and teas.</p>
-            <p class="entry__line" style="margin-top:var(--s1)">Enroll: <a href="https://school.soilfoodweb.com/bundles/advanced-biological-liquid-amendments">school.soilfoodweb.com</a></p><p class="todo" style="margin-top:var(--s1)">DECISION 5: Thinkific says Microscopy and Compost first; the reopening post says order is free. Evan.</p>
-          </div>
-          <span class="entry__kind" style="font-size:var(--t1);color:var(--soil);font-family:var(--serif)">$1,250</span>
-        </li>
-        <li class="entry" id="field-trial">
-          <span class="entry__kind" style="text-align:left"><span class="icon-row"><svg class="icon icon--olive" aria-hidden="true"><use href="#i-field"/></svg><span>Online, mentored</span></span></span>
-          <div>
-            <h3 class="entry__t">Field Trial</h3>
-            <p class="entry__line">Designing, running and measuring a trial on real land, with a mentor. Entry requires a 200-gallon pile meeting biological minimums, assessed remotely.</p>
-            <p class="entry__line" style="margin-top:var(--s1)">Enroll: <a href="https://school.soilfoodweb.com/bundles/advanced-field-trial">school.soilfoodweb.com</a></p>
-          </div>
-          <span class="entry__kind" style="font-size:var(--t1);color:var(--soil);font-family:var(--serif)">$1,250</span>
+          <span class="entry__kind" style="text-align:left">The complete introduction to the soil food web</span>
+          <div><h3 class="entry__t">Foundation Courses</h3>
+            <p class="entry__line">Understand soil from new dimensions, meet the soil food web organisms and understand their ecosystem role, and learn the fundamentals of farming microbes in compost and applying them with compost extracts and teas. The prerequisites for our Advanced Programs.</p>
+            <p class="entry__line"><a href="https://school.soilfoodweb.com/bundles/soilfoodweb-foundation-courses">Explore the Foundation Courses &rarr;</a></p></div>
+          <span></span>
         </li>
         <li class="entry" id="complete-practicum">
-          <span class="entry__kind" style="text-align:left"><span class="icon-row"><svg class="icon icon--olive" aria-hidden="true"><use href="#i-practicum"/></svg><span>Online, mentored, 18 to 24 months typical, 42 months allotted</span></span></span>
-          <div>
-            <h3 class="entry__t">Complete Practicum</h3>
-            <p class="entry__line">All four Advanced Programs. Completing it earns the Soil Food Web Consultant title and a directory listing.</p>
-            <p class="entry__line" style="margin-top:var(--s1)">Enroll: <a href="https://school.soilfoodweb.com/bundles/complete-practicum">school.soilfoodweb.com</a></p>
-          </div>
-          <span class="entry__kind" style="font-size:var(--t1);color:var(--soil);font-family:var(--serif)">$3,999</span>
+          <span class="entry__kind" style="text-align:left">Soil Microscopy · BioComplete™ Compost Production · Biological Liquid Amendments · Field Trials</span>
+          <div><h3 class="entry__t">Advanced Programs</h3>
+            <p class="entry__line">Complete all four, the Complete Practicum, to earn the Soil Food Web Consultant title and join our professional directory. Complete the Soil Microscopy program to earn the Soil Food Web Lab-Tech title.</p>
+            <p class="entry__line"><a href="https://school.soilfoodweb.com/bundles/complete-practicum">See the advanced path &rarr;</a></p></div>
+          <span></span>
         </li>
         <li class="entry" id="pdc">
-          <span class="entry__kind" style="text-align:left"><span class="icon-row"><svg class="icon icon--olive" aria-hidden="true"><use href="#i-scholarship"/></svg><span>Online, 13 weeks, live sessions, 80% attendance required</span></span></span>
-          <div>
-            <h3 class="entry__t">Permaculture Design Certification</h3>
-            <p class="entry__line">Whole-system design on a foundation of living soil, accredited by the Permaculture Association. Live cohorts.</p>
-            <p class="entry__line" style="margin-top:var(--s1)">Enroll: <a href="https://school.soilfoodweb.com/courses/permaculture-design-certification">school.soilfoodweb.com</a></p><p class="todo" style="margin-top:var(--s1)">reconcile 12 vs 13 weeks. Evan.</p>
-          </div>
-          <span class="entry__kind" style="font-size:var(--t1);color:var(--soil);font-family:var(--serif)">$1,550</span>
+          <span class="entry__kind" style="text-align:left">Whole-system design on a foundation of living soil</span>
+          <div><h3 class="entry__t">Permaculture Design Course</h3>
+            <p class="entry__line">Water, plants, structures, community, design them as one living system.</p>
+            <p class="entry__line"><a href="https://school.soilfoodweb.com/courses/permaculture-design-certification">Explore the PDC &rarr;</a></p></div>
+          <span></span>
         </li>
         <li class="entry" id="restoration">
-          <span class="entry__kind" style="text-align:left"><span class="icon-row"><svg class="icon icon--olive" aria-hidden="true"><use href="#i-field"/></svg><span>Online, about 80 hours</span></span></span>
-          <div>
-            <h3 class="entry__t">Introduction to Ecosystem Restoration</h3>
-            <p class="entry__line">Ecological principles and practical restoration techniques.</p>
-            <p class="entry__line" style="margin-top:var(--s1)">Enroll: <a href="https://school.soilfoodweb.com/bundles/introduction-to-ecosystem-restoration">school.soilfoodweb.com</a></p><p class="todo" style="margin-top:var(--s1)">price. Evan.</p><p class="todo" style="margin-top:var(--s1)">reconcile about 80 hours against 291 lessons. Evan.</p>
-          </div>
-          <span class="entry__kind" style="font-size:var(--t1);color:var(--soil);font-family:var(--serif)"><span class="todo">price</span></span>
+          <span class="entry__kind" style="text-align:left">Bringing damaged land back to life with biology</span>
+          <div><h3 class="entry__t">Ecosystem Restoration Courses</h3>
+            <p class="entry__line">Learn ecological principles and practical restoration techniques.</p>
+            <p class="entry__line"><a href="https://school.soilfoodweb.com/bundles/introduction-to-ecosystem-restoration">Check out the introduction to ecosystem restoration &rarr;</a></p><p class="todo" data-status="verify">VERIFY course lineup &amp; sales page URL</p></div>
+          <span></span>
         </li>
         <li class="entry" id="workshops">
-          <span class="entry__kind" style="text-align:left"><span class="icon-row"><svg class="icon icon--olive" aria-hidden="true"><use href="#i-workshop"/></svg><span>Periodic, see workshops</span></span></span>
-          <div>
-            <h3 class="entry__t">In-person workshops</h3>
-            <p class="entry__line">Two weeks of the Advanced Programs as a group on a real site.</p>
-            <p class="entry__line" style="margin-top:var(--s1)">Enroll: <a href="learn-workshops.html">In-person workshops</a></p>
-          </div>
-          <span class="entry__kind" style="font-size:var(--t1);color:var(--soil);font-family:var(--serif)">Varies</span>
+          <span class="entry__kind" style="text-align:left">Learn on real sites, with real soil</span>
+          <div><h3 class="entry__t">Workshops</h3>
+            <p class="entry__line">Gain a year’s worth of hands-on experience in one immersive 10-day workshop. Build community with instructors and fellow students on real sites.</p>
+            <p class="entry__line"><a href="calendar.html#workshops">See upcoming workshops &rarr;</a></p></div>
+          <span></span>
         </li>
-        <li class="entry" id="sponge">
-          <span class="entry__kind" style="text-align:left"><span class="icon-row"><svg class="icon icon--olive" aria-hidden="true"><use href="#i-workshop"/></svg><span>Periodic, online, four weeks</span></span></span>
-          <div>
-            <h3 class="entry__t">Soil Sponge Workshop</h3>
-            <p class="entry__line">A guest workshop with Didi Pershouse on the soil sponge.</p>
-            <p class="entry__line" style="margin-top:var(--s1)">Enroll: DECISION 13</p><p class="todo" style="margin-top:var(--s1)">registration link. Next cohort dates, or take registration down. DECISION 13. Evan.</p>
-          </div>
-          <span class="entry__kind" style="font-size:var(--t1);color:var(--soil);font-family:var(--serif)">$300</span>
+        <li class="entry" id="webinars">
+          <span class="entry__kind" style="text-align:left">Start free</span>
+          <div><h3 class="entry__t">Free Webinars</h3>
+            <p class="entry__line">Live sessions with our instructors, open to everyone. The easiest first step.</p>
+            <p class="entry__line"><a href="learn-webinars.html">Register for the next webinar &rarr;</a></p></div>
+          <span></span>
         </li>
       </ul>
-      <div class="grid" style="margin-top:var(--s5)">
-        <div class="span-6">
-          <h3>Total path cost</h3>
-          <p>Foundation Courses $4,999 + Complete Practicum $3,999 = <strong>$8,998</strong>, plus about $1,000 for a microscope and camera. Advanced Programs bought singly total $5,000; the Practicum saves $1,001.</p>
-          <p class="source small">school.soilfoodweb.com, checked 6 September 2026</p>
-          <h3 style="margin-top:var(--s4)">The two titles</h3>
-          <p>Soil Food Web Consultant: completed the Complete Practicum. Soil Food Web Lab Technician: completed Soil Microscopy. Both are issued by the Soil Food Web Foundation on completion of assessed work. Neither is accredited by an external body. Both confer a listing in the <a href="directory.html">practitioner directory</a>.</p>
-          <p class="todo">directory count: confirm roughly 100 consultants and 250 lab technicians in 45 countries. DECISION 15. Prints here once confirmed. Evan.</p>
-        </div>
-        <div class="span-5 start-8">
-          <h3>Grower path</h3>
-          <p>If you want to restore your own land and are not seeking the Consultant title, write to <a href="mailto:info@soilfoodweb.com">info@soilfoodweb.com</a> and we’ll advise; a grower-focused path is being confirmed.</p>
-          <p class="todo">DECISION 1: what growers buy now. (a) Foundation Courses plus Compost Production, (b) Foundation Courses alone, (c) nothing yet. Evan.</p>
-          <h3 style="margin-top:var(--s4)">Refund rule</h3>
-          <p class="todo">DECISION 2: one sentence, printed here and on every row. Evan.</p>
-          <h3 style="margin-top:var(--s4)">Payment plans</h3>
-          <p class="todo">DECISION 3: keep or drop. If keep, the Field Trial 8 × $125 plan is cheaper than upfront and must be fixed on Thinkific first. Evan.</p>
-          <h3 style="margin-top:var(--s4)">Retired programs</h3>
-          <p>The Certified Lab-Tech Program, Consultant Training Program and Grower Training Program have been replaced by the programs above. If you enrolled in one of them, your place is honored; write to <a href="mailto:info@soilfoodweb.com">info@soilfoodweb.com</a>.</p>
-        </div>
-      </div>
-      <p style="margin-top:var(--s5)"><a class="btn" href="https://webinar.soilfoodweb.com">Start with a free webinar</a> <a class="btn btn--ghost" href="learn-scholarships.html" style="margin-left:var(--s1)">Apply for a scholarship</a></p>
+      <p class="ribbon">Our guarantee: 30-day, no-questions-asked money-back guarantee (terms and conditions apply).</p>
+      <p class="todo" data-status="">Full terms, incl. the one-third-of-lectures condition, live in the FAQ and T&amp;C page; ribbon stays simple per Evan, Aug 2026.</p>
     </div>
   </section>
+
+  <section class="stratum notes-only" aria-labelledby="tq-h">
+    <div class="wrap">
+      <div class="head"><h2 id="tq-h">People like you, further down the path</h2></div>
+      <p class="todo" data-status="placeholder">Agricultural-segment graduate: costs, yields., Name · Soil Food Web Consultant, Country</p>
+      <p class="todo" data-status="placeholder">Eco-Sustainable graduate: restoration., Name · Graduate, Country</p>
+      <p class="todo" data-status="placeholder">career-changer: new consultancy., Name · Soil Food Web Lab-Tech, Country</p>
+    </div>
+  </section>
+
   <section class="stratum stratum--deep" aria-labelledby="faq-h">
     <div class="wrap">
-      <div class="head">
-        <h2 id="faq-h">Questions people ask</h2>
-
-      </div>
+      <div class="head"><h2 id="faq-h">Before you ask</h2></div>
       <ul class="rule-list">
         <li class="entry">
           <span></span>
-          <div><h3 class="entry__t">Do I need a science background?</h3><p class="entry__line">No. The Foundation Courses build from first principles.</p></div>
+          <div><h3 class="entry__t">Do I need a science background?</h3><p class="entry__line">No. The courses are designed for people with no relevant experience. The Foundation Courses build everything from first principles, at your pace.</p></div>
           <span></span>
         </li>
         <li class="entry">
           <span></span>
-          <div><h3 class="entry__t">How long does it take?</h3><p class="entry__line">Foundation Courses: about 150 hours, four weeks full time or spread across the 12-month access window. Complete Practicum: 18 to 24 months is typical; you have 42.</p></div>
+          <div><h3 class="entry__t">How long do the programs take?</h3><p class="entry__line">They’re self-paced.</p><p class="todo" data-status="verify">VERIFY typical completion ranges per program with the education team.</p></div>
           <span></span>
         </li>
         <li class="entry">
           <span></span>
-          <div><h3 class="entry__t">What equipment do I need?</h3><p class="entry__line">A computer for the Foundation Courses. A microscope and camera, about $1,000, for Soil Microscopy and the Complete Practicum. Compost Production can be started without one.</p></div>
+          <div><h3 class="entry__t">What equipment do I need?</h3><p class="entry__line">The Foundation Courses need only a computer and curiosity. The Microscopy program requires a microscope. Guidance on affordable models is provided inside the course.</p></div>
           <span></span>
         </li>
         <li class="entry">
           <span></span>
-          <div><h3 class="entry__t">Where do the courses run?</h3><p class="entry__line">On <a href="https://school.soilfoodweb.com">school.soilfoodweb.com</a>. You never need a second login for the courses above.</p></div>
+          <div><h3 class="entry__t">What do the professional titles mean?</h3><p class="entry__line">Soil Food Web Consultant: completed the full Complete Practicum (all four Advanced Programs). Soil Food Web Lab-Tech: completed the Microscopy Advanced Program. Both titles are earned, and both appear in our professionals directory.</p></div>
           <span></span>
         </li>
         <li class="entry">
           <span></span>
-          <div><h3 class="entry__t">Can I get help paying?</h3><p class="entry__line">Scholarships prioritize applicants in under-resourced regions. See <a href="learn-scholarships.html">Scholarships</a>.</p></div>
+          <div><h3 class="entry__t">What if it’s not for me?</h3><p class="entry__line">Every course carries a 30-day, no-questions-asked money-back guarantee, provided you’ve watched no more than one-third of the lectures.</p></div>
+          <span></span>
+        </li>
+        <li class="entry">
+          <span></span>
+          <div><h3 class="entry__t">I can’t afford the courses. Are there options?</h3><p class="entry__line">Yes. Our scholarship program is growing, with priority for applicants in under-resourced regions. See the Scholarships page.</p></div>
           <span></span>
         </li>
       </ul>
@@ -514,7 +280,7 @@
 
 </main>
 
-<!-- ===================== FOOTER (every page) ===================== -->
+<!-- ============ FOOTER (every page) ============ -->
 <footer class="site-footer">
   <div class="wrap">
     <div class="grid">
@@ -526,36 +292,42 @@
           <input class="input" id="footer-email" type="email" name="email" placeholder="Email for the newsletter" required>
           <button class="btn" type="submit">Subscribe</button>
         </form>
-        <p class="caption" style="color:rgba(251,250,246,.7)">One email a month. Unsubscribe with one click.</p>
+        <p class="caption" style="color:rgba(255,255,255,.75)">One email a month. Unsubscribe with one click.</p>
       </div>
-      <nav class="span-2 start-6" aria-labelledby="f-foundation">
-        <h2 id="f-foundation">Foundation</h2>
+      <nav class="span-2 start-5" aria-labelledby="f-0">
+        <h2 id="f-0">Foundation</h2>
         <ul>
-          <li><a href="contact.html">Contact us</a></li>
-          <li><a href="about.html">About us</a></li>
-          <li><a href="about-governance.html">Foundation info</a></li>
-          <li><a href="publications.html">Publications</a></li>
-          <li><a href="contact.html#media">Media and press</a></li>
-          <li><a href="contact.html#logo">Logo use</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="about-team.html">Our Team</a></li>
+          <li><a href="about-governance.html">Governance and financials</a></li>
+          <li><a href="contact.html">Contact &amp; Legal</a></li>
         </ul>
       </nav>
-      <nav class="span-2" aria-labelledby="f-learn">
-        <h2 id="f-learn">Learn</h2>
+      <nav class="span-2" aria-labelledby="f-1">
+        <h2 id="f-1">Learn</h2>
         <ul>
-          <li><a href="learn.html">All programs</a></li>
-          <li><a href="learn-workshops.html">Workshops</a></li>
-          <li><a href="learn-webinars.html">Free webinars</a></li>
+          <li><a href="learn.html">Programs Overview</a></li>
+          <li><a href="calendar.html">Calendar</a></li>
+          <li><a href="learn-webinars.html">Free Webinars</a></li>
           <li><a href="learn-scholarships.html">Scholarships</a></li>
         </ul>
       </nav>
-      <nav class="span-3" aria-labelledby="f-involved">
-        <h2 id="f-involved">Get involved</h2>
+      <nav class="span-2" aria-labelledby="f-2">
+        <h2 id="f-2">Resources</h2>
+        <ul>
+          <li><a href="research.html">Research Database</a></li>
+          <li><a href="science.html">How it works</a></li>
+          <li><a href="practice.html#case-studies">Case Studies</a></li>
+          <li><a href="contact.html#media">Media and press</a></li>
+        </ul>
+      </nav>
+      <nav class="span-2" aria-labelledby="f-3">
+        <h2 id="f-3">Get Involved</h2>
         <ul>
           <li><a href="donate.html">Donate</a></li>
-          <li><a href="community.html#volunteer">Volunteer</a></li>
-          <li><a href="contact.html">Invite us to speak</a></li>
-          <li><a href="directory.html">Find a professional</a></li>
-          <li><a href="now.html">What’s happening</a></li>
+          <li><a href="donate.html#volunteer">Volunteer</a></li>
+          <li><a href="directory.html">Find a Professional</a></li>
+          <li><a href="contact.html#logo">Logo use</a></li>
         </ul>
       </nav>
     </div>

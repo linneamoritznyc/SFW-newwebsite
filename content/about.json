@@ -3,7 +3,7 @@
   "hero": {
     "eyebrow": "ABOUT THE FOUNDATION",
     "h1": "In service to the soil that sustains us all",
-    "intro": "The Soil Food Web Foundation is a nonprofit organization carrying forward the life’s work of Dr. Elaine Ingham — empowering communities everywhere to restore and protect the Earth’s soil and living systems.",
+    "intro": "The Soil Food Web Foundation is a nonprofit organization carrying forward the life’s work of Dr. Elaine Ingham, empowering communities everywhere to restore and protect the Earth’s soil and living systems.",
     "anchorPills": [
       "Mission",
       "Our Story",
@@ -14,8 +14,8 @@
     ]
   },
   "missionVision": {
-    "mission": "To honor and grow Dr. Elaine Ingham’s legacy of empowering communities to restore and protect the Earth’s soil and living systems — by sharing teaching and learning about the soil food web, pursuing knowledge related to soil, plant, and planetary health, incubating regenerative agricultural and ecosystem practices, and building community and financial support for soil food web teaching, research, and practice.",
-    "vision": "Healthy, living soil in every terrestrial ecoregion on the planet — nurtured by local communities who understand why soil health is the foundation of ecosystem, agricultural, planetary, and human wellbeing."
+    "mission": "To honor and grow Dr. Elaine Ingham’s legacy of empowering communities to restore and protect the Earth’s soil and living systems, by sharing teaching and learning about the soil food web, pursuing knowledge related to soil, plant, and planetary health, incubating regenerative agricultural and ecosystem practices, and building community and financial support for soil food web teaching, research, and practice.",
+    "vision": "Healthy, living soil in every terrestrial ecoregion on the planet, nurtured by local communities who understand why soil health is the foundation of ecosystem, agricultural, planetary, and human wellbeing."
   },
   "history": {
     "h2": "Rooted in legacy, growing in impact",
@@ -54,7 +54,7 @@
       {
         "n": 2,
         "title": "Pursuing Knowledge",
-        "body": "Replicating key experiments, opening our trial and case-study data, and advancing microscopy and lab methods — so more people understand why the soil food web works."
+        "body": "Replicating key experiments, opening our trial and case-study data, and advancing microscopy and lab methods, so more people understand why the soil food web works."
       },
       {
         "n": 3,
@@ -64,7 +64,7 @@
       {
         "n": 4,
         "title": "Building Community & Support",
-        "body": "A global network of students, volunteers, donors, and advisors who make this mission durable — and welcoming to newcomers."
+        "body": "A global network of students, volunteers, donors, and advisors who make this mission durable, and welcoming to newcomers."
       }
     ]
   },
@@ -77,7 +77,7 @@
     "eyebrow": "DR. ELAINE’S RESEARCH",
     "h2": "The woman who started it all",
     "body": [
-      "Dr. Elaine Ingham pioneered research in soil biology, expanding the world’s knowledge of living soil — and made her science radically accessible, so that anyone, anywhere, could learn to restore the soil beneath their feet.",
+      "Dr. Elaine Ingham pioneered research in soil biology, expanding the world’s knowledge of living soil, and made her science radically accessible, so that anyone, anywhere, could learn to restore the soil beneath their feet.",
       "This Foundation is her living legacy, and we hold it with care: not by asking the world to take her word for it, but by opening her science and expanding our community of practice."
     ],
     "link": {
@@ -89,6 +89,6 @@
     "contact": "General & partnership inquiries, press, and student & course inquiries: info@soilfoodweb.com (single address, confirmed Aug 2026) · Invite us to speak →",
     "legal": "Soil Food Web Foundation is a 501(c)(3) nonprofit organization. Soil Food Web School is a program of the Soil Food Web Foundation. · EIN: 39-4439236 · 5441 S Macadam Ave Ste N, Portland, OR 97239",
     "brandUse": "Name & logo use: building something aligned with our mission? Ask us about brand use at info@soilfoodweb.com",
-    "brandUseNote": "inquiry form, not open download — trademark protection; moved from Donate Sep 7"
+    "brandUseNote": "inquiry form, not open download, trademark protection; moved from Donate Sep 7"
   }
 }
