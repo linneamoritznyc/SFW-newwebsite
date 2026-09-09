@@ -1,0 +1,21 @@
+{
+  "_source": "SFWF Website Copy Deck v1.0, section 8. Copy verbatim.",
+  "hero": {
+    "eyebrow": "NEWS & STORIES",
+    "h1": "Dispatches from the living soil",
+    "intro": "Field stories, science, community activity, and impact — from our team and from Soil Regenerators in more than 100 countries."
+  },
+  "filterTabs": [
+    "All",
+    "Foundation news",
+    "Blog",
+    "Community activity",
+    "Worldwide news"
+  ],
+  "featuredSlotRule": "Rotates: case study > major announcement > best recent blog.",
+  "newsletter": {
+    "title": "Get the newsletter",
+    "body": "One email. The best of the field, the lab, and the community. No noise.",
+    "cta": "Subscribe"
+  }
+}

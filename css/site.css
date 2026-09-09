@@ -533,3 +533,19 @@ code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .9em; }
 .bio > summary:hover { color: var(--moss); }
 .bio[open] > summary { margin-bottom: var(--s2); }
 .bio p { font-size: var(--t0); color: var(--ink-soft); margin: 0; }
+
+/* Eyebrow: the small label above a section heading. Required by the copy
+   deck, which gives every section one. Stage 4 restyles this to the spec
+   (Montserrat 600, 13-14px, +0.08em, Food Web Green). Added 9 Sep 2026. */
+.eyebrow {
+  font-family: var(--sans); font-size: var(--t-1); font-weight: 600;
+  letter-spacing: .08em; text-transform: uppercase; color: var(--green);
+  margin: 0 0 var(--s1);
+}
+.head > .eyebrow { grid-column: 1 / -1; }
+/* Food Web Green is 1.86:1 on moss. Eyebrows there take sage, 5.69:1. */
+.stratum--moss .eyebrow { color: var(--sage); }
+/* A section whose entire content is still a placeholder: kept in the
+   source, collapsed for visitors, revealed by ?notes=1 like any note. */
+.notes-only { display: none; }
+[data-notes] .notes-only { display: block; }

@@ -1,0 +1,53 @@
+{
+  "_source": "SFWF Website Copy Deck v1.0, section 5. Copy verbatim.",
+  "hero": {
+    "eyebrow": "DONATE & GET INVOLVED",
+    "h1": "Put your hands in this work",
+    "intro": "The Soil Food Web Foundation is a 501(c)(3) nonprofit — gifts are tax-deductible to the extent allowed by law. Every gift amplifies our impact by funding scholarships, supporting research initiatives, and increasing our capacity to take direct action on behalf of the living world."
+  },
+  "makeGift": {
+    "frequencies": [
+      "Monthly",
+      "One-time"
+    ],
+    "amounts": [
+      "$10",
+      "$25",
+      "$50",
+      "$100",
+      "Other amount"
+    ],
+    "cta": "Donate",
+    "finePrint": "Soil Food Web Foundation is a 501(c)(3) nonprofit organization. EIN 39-4439236."
+  },
+  "whyMonthly": {
+    "h2": "Monthly giving helps us plan ahead",
+    "note": "body line deleted per team edit Sep 8"
+  },
+  "impactLines": {
+    "status": "placeholder",
+    "note": "pair with preset amounts once program costs confirmed, e.g. “$25/mo helps fund open-access research.” VERIFY amounts before publishing."
+  },
+  "otherGiving": {
+    "body": "Prefer to give another way or have questions about our work?",
+    "link": {
+      "label": "Contact us →",
+      "href": "contact.html"
+    }
+  },
+  "volunteer": {
+    "eyebrow": "VOLUNTEER",
+    "h2": "Volunteer with us",
+    "lede": "Want to donate your time or expertise to furthering our mission? Fill out the form to get in touch — tell us your skills and your region, and we’ll find you a place as our global volunteer network takes root.",
+    "form": {
+      "fields": [
+        "Name",
+        "Email",
+        "Skills/expertise",
+        "How would you like to help?"
+      ],
+      "note": "Routes to info@soilfoodweb.com"
+    },
+    "note": "Section simplified Sep 7 (Evan): “Invite us to speak” and “Use our name or logo” cards removed; partnership ribbon removed."
+  }
+}

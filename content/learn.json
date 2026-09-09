@@ -1,0 +1,133 @@
+{
+  "_source": "SFWF Website Copy Deck v1.0, section 3. Copy verbatim.",
+  "hero": {
+    "eyebrow": "LEARN WITH US",
+    "h1": "Learn to work with the life in your soil",
+    "intro": "Whether you’re growing in your backyard raised beds or advising thousand-acre farms, there’s a path for you. Choose from self-paced or group classes, online or in person. Every program is grounded in decades of research and practice and designed to deliver practical skills and insights."
+  },
+  "pathSelector": {
+    "h2": "What brings you to the soil food web?",
+    "chips": [
+      "I grow food",
+      "I want a new career",
+      "I restore ecosystems",
+      "I’m just getting curious"
+    ]
+  },
+  "programs": [
+    {
+      "id": "foundation-courses",
+      "name": "Foundation Courses",
+      "tagline": "The complete introduction to the soil food web",
+      "body": "Understand soil from new dimensions, meet the soil food web organisms and understand their ecosystem role, and learn the fundamentals of farming microbes in compost and applying them with compost extracts and teas. The prerequisites for our Advanced Programs.",
+      "cta": {
+        "label": "Explore the Foundation Courses",
+        "href": "https://school.soilfoodweb.com/bundles/soilfoodweb-foundation-courses"
+      }
+    },
+    {
+      "id": "complete-practicum",
+      "name": "Advanced Programs",
+      "tagline": "Soil Microscopy · BioComplete™ Compost Production · Biological Liquid Amendments · Field Trials",
+      "body": "Complete all four — the Complete Practicum — to earn the Soil Food Web Consultant title and join our professional directory. Complete the Soil Microscopy program to earn the Soil Food Web Lab-Tech title.",
+      "cta": {
+        "label": "See the advanced path",
+        "href": "https://school.soilfoodweb.com/bundles/complete-practicum"
+      }
+    },
+    {
+      "id": "pdc",
+      "name": "Permaculture Design Course",
+      "tagline": "Whole-system design on a foundation of living soil",
+      "body": "Water, plants, structures, community — design them as one living system.",
+      "cta": {
+        "label": "Explore the PDC",
+        "href": "https://school.soilfoodweb.com/courses/permaculture-design-certification"
+      }
+    },
+    {
+      "id": "restoration",
+      "name": "Ecosystem Restoration Courses",
+      "tagline": "Bringing damaged land back to life with biology",
+      "body": "Learn ecological principles and practical restoration techniques.",
+      "cta": {
+        "label": "Check out the introduction to ecosystem restoration",
+        "href": "https://school.soilfoodweb.com/bundles/introduction-to-ecosystem-restoration"
+      },
+      "status": "verify",
+      "note": "VERIFY course lineup & sales page URL"
+    },
+    {
+      "id": "workshops",
+      "name": "Workshops",
+      "tagline": "Learn on real sites, with real soil",
+      "body": "Gain a year’s worth of hands-on experience in one immersive 10-day workshop. Build community with instructors and fellow students on real sites.",
+      "cta": {
+        "label": "See upcoming workshops",
+        "href": "calendar.html#workshops"
+      }
+    },
+    {
+      "id": "webinars",
+      "name": "Free Webinars",
+      "tagline": "Start free",
+      "body": "Live sessions with our instructors, open to everyone. The easiest first step.",
+      "cta": {
+        "label": "Register for the next webinar",
+        "href": "learn-webinars.html"
+      }
+    }
+  ],
+  "guarantee": {
+    "ribbon": "Our guarantee: 30-day, no-questions-asked money-back guarantee (terms and conditions apply).",
+    "note": "Full terms — incl. the one-third-of-lectures condition — live in the FAQ and T&C page; ribbon stays simple per Evan, Aug 2026."
+  },
+  "testimonials": {
+    "h2": "People like you, further down the path",
+    "quotes": [
+      {
+        "status": "placeholder",
+        "note": "Agricultural-segment graduate: costs, yields. — Name · Soil Food Web Consultant, Country"
+      },
+      {
+        "status": "placeholder",
+        "note": "Eco-Sustainable graduate: restoration. — Name · Graduate, Country"
+      },
+      {
+        "status": "placeholder",
+        "note": "career-changer: new consultancy. — Name · Soil Food Web Lab-Tech, Country"
+      }
+    ]
+  },
+  "faq": {
+    "h2": "Before you ask",
+    "items": [
+      {
+        "q": "Do I need a science background?",
+        "a": "No. The courses are designed for people with no relevant experience — the Foundation Courses build everything from first principles, at your pace."
+      },
+      {
+        "q": "How long do the programs take?",
+        "a": "They’re self-paced.",
+        "status": "verify",
+        "note": "VERIFY typical completion ranges per program with the education team."
+      },
+      {
+        "q": "What equipment do I need?",
+        "a": "The Foundation Courses need only a computer and curiosity. The Microscopy program requires a microscope — guidance on affordable models is provided inside the course."
+      },
+      {
+        "q": "What do the professional titles mean?",
+        "a": "Soil Food Web Consultant: completed the full Complete Practicum (all four Advanced Programs). Soil Food Web Lab-Tech: completed the Microscopy Advanced Program. Both titles are earned, and both appear in our professionals directory."
+      },
+      {
+        "q": "What if it’s not for me?",
+        "a": "Every course carries a 30-day, no-questions-asked money-back guarantee, provided you’ve watched no more than one-third of the lectures."
+      },
+      {
+        "q": "I can’t afford the courses. Are there options?",
+        "a": "Yes — our scholarship program is growing, with priority for applicants in under-resourced regions. See the Scholarships page."
+      }
+    ]
+  }
+}

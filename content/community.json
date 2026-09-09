@@ -1,0 +1,50 @@
+{
+  "_source": "SFWF Website Copy Deck v1.0, section 10. Copy verbatim.",
+  "hero": {
+    "eyebrow": "COMMUNITY",
+    "h1": "A world of Soil Regenerators",
+    "intro": "Students, graduates, consultants, and lab-techs in more than 100 countries — learning, practicing, and restoring living soil where they live. Explore the map, find a professional for your land or lab, or put yourself on it.",
+    "anchorPills": [
+      "Community map",
+      "Find a professional",
+      "Join"
+    ]
+  },
+  "map": {
+    "eyebrow": "COMMUNITY MAP",
+    "h2": "Where this movement lives",
+    "lede": "Every point is a person, a hub, a workshop, or a documented case-study site.",
+    "status": "placeholder",
+    "note": "Interactive map embed. Opt-in member locations at city/region level only — never exact addresses. Legend: green = members & professionals, gold = hubs & workshop sites. Data: alumni opt-in + events system."
+  },
+  "directory": {
+    "eyebrow": "FIND A PROFESSIONAL",
+    "h2": "Hire an earned title, not a claim",
+    "clarifyingHeader": "Everyone listed here has earned their title through our programs: Soil Food Web Consultants have completed the full Complete Practicum — all four Advanced Programs — and Soil Food Web Lab-Techs have completed the Microscopy Advanced Program. Search by region or specialty to find the right person for your land or lab.",
+    "searchUi": {
+      "placeholder": "Search by name, country, or keyword",
+      "filters": [
+        "Region — any",
+        "Specialty — any"
+      ],
+      "cta": "Search"
+    },
+    "footerLine": "Directory entries are maintained by the Foundation; titles are verified against program records. Are you a graduate who should be listed? Update your profile →",
+    "dataStatus": "placeholder",
+    "dataNote": "The directory prototype's dataset is fictional (src/lib/data.ts declares it). Real practitioner records required before this ships."
+  },
+  "joinBand": {
+    "h2": "Put yourself on this map",
+    "body": "Every Soil Regenerator started with one course, one webinar, or one afternoon with a microscope. Your dot is waiting.",
+    "ctas": [
+      {
+        "label": "Explore our programs",
+        "href": "learn.html"
+      },
+      {
+        "label": "Start with a free webinar",
+        "href": "learn-webinars.html"
+      }
+    ]
+  }
+}

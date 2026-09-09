@@ -1,0 +1,28 @@
+{
+  "_source": "SFWF Website Copy Deck v1.0, section 6. Copy verbatim.",
+  "hero": {
+    "eyebrow": "CALENDAR",
+    "h1": "Meet the community, in person and online",
+    "intro": "Live workshops, free webinars, and events in your community."
+  },
+  "filterTabs": [
+    "All",
+    "Workshops",
+    "Public webinars",
+    "Student webinars",
+    "Speaking & conferences"
+  ],
+  "featured": {
+    "title": "Asia-Pacific Workshop",
+    "body": "with the Isha Foundation, India (October 2027). Our first workshop on the subcontinent, in partnership with the Isha Foundation. Hands in soil, microscopes on tables, and a community milestone for the region.",
+    "cta": {
+      "label": "Get notified",
+      "href": "https://school.soilfoodweb.com/pages/workshop-interest"
+    }
+  },
+  "otherListings": {
+    "status": "placeholder",
+    "note": "populated from events system: title, date, type tag, one line, CTA."
+  },
+  "footerLine": "Past events collapse into an archive automatically. Want us at your event? Invite us to speak →"
+}

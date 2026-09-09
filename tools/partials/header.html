@@ -1,0 +1,121 @@
+<!-- ===================== HEADER (every page) ===================== -->
+<header class="site-header">
+  <div class="wrap">
+    <a class="wordmark" href="index.html">
+      <span class="wordmark__name">Soil Food Web Foundation</span>
+      <span class="wordmark__status">A 501(c)(3) nonprofit</span>
+    </a>
+    <ul class="site-header__links">
+      <li><a href="login.html">Student login</a></li>
+      <li><a href="now.html#subscribe">Subscribe</a></li>
+    </ul>
+    <a class="btn btn--donate" href="donate.html">Donate</a>
+    <button class="menu-btn" type="button" data-menu-open aria-controls="overlay" aria-expanded="false">
+      <svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg><span class="menu-btn__label">Menu</span>
+    </button>
+  </div>
+</header>
+
+<!-- ===================== OVERLAY MENU (every page) ===================== -->
+<div class="overlay" id="overlay" data-open="false" role="dialog" aria-modal="true" aria-label="Site menu">
+  <div class="wrap">
+    <div class="overlay__top">
+      <span class="wordmark">
+        <span class="wordmark__name">Soil Food Web Foundation</span>
+        <span class="wordmark__status">A 501(c)(3) nonprofit</span>
+      </span>
+      <button class="menu-btn" type="button" data-menu-close>
+        <svg class="icon" aria-hidden="true"><use href="#i-close"/></svg>Close
+      </button>
+    </div>
+
+    <div class="overlay__body">
+      <nav class="overlay__nav" aria-label="Sections">
+        <ul class="acc" data-accordion>
+          <li class="acc__item" data-acc-item data-open="false">
+            <button class="acc__btn" type="button" data-acc-btn aria-controls="acc-about">
+              <span class="acc__name">About us</span><span class="acc__desc">Who we are and how we’re governed</span>
+            </button>
+            <div class="acc__panel" id="acc-about" data-acc-panel><div>
+              <ul class="acc__links">
+                <li><a href="about.html">Mission, vision and story</a></li>
+                <li><a href="about-team.html">Team</a></li>
+                <li><a href="about-governance.html">Foundation legal info and financials</a></li>
+                <li><a href="contact.html">Contact</a></li>
+              </ul>
+            </div></div>
+          </li>
+          <li class="acc__item" data-acc-item data-open="false">
+            <button class="acc__btn" type="button" data-acc-btn aria-controls="acc-learn">
+              <span class="acc__name">Learn</span><span class="acc__desc">Courses, workshops and free resources</span>
+            </button>
+            <div class="acc__panel" id="acc-learn" data-acc-panel><div>
+              <ul class="acc__links">
+                <li><a href="learn.html">Overview: every program and what it costs</a></li>
+                <li><a href="https://school.soilfoodweb.com">Online courses</a></li>
+                <li><a href="learn-workshops.html">In-person workshops</a></li>
+                <li><a href="learn-webinars.html">Free webinars</a></li>
+                <li><a href="learn-scholarships.html">Scholarships</a></li>
+                <li><a href="now.html#calendar">Calendar</a></li>
+              </ul>
+            </div></div>
+          </li>
+          <li class="acc__item" data-acc-item data-open="false">
+            <button class="acc__btn" type="button" data-acc-btn aria-controls="acc-news">
+              <span class="acc__name">News</span><span class="acc__desc">Community activity, blog and impact</span>
+            </button>
+            <div class="acc__panel" id="acc-news" data-acc-panel><div>
+              <ul class="acc__links">
+                <li><a href="now.html">What’s happening</a></li>
+                <li><a href="now.html#writing">Blog</a></li>
+                <li><a href="community.html">Community activity</a></li>
+                <li><a href="projects.html">Impact</a></li>
+              </ul>
+            </div></div>
+          </li>
+          <li class="acc__item" data-acc-item data-open="false">
+            <button class="acc__btn" type="button" data-acc-btn aria-controls="acc-how">
+              <span class="acc__name">How it works</span><span class="acc__desc">The science, and where it has been done</span>
+            </button>
+            <div class="acc__panel" id="acc-how" data-acc-panel><div>
+              <ul class="acc__links">
+                <li><a href="science.html">The six mechanisms</a></li>
+                <li><a href="projects.html">Case studies and videos</a></li>
+                <li><a href="publications.html">Publications</a></li>
+              </ul>
+            </div></div>
+          </li>
+          <li class="acc__item" data-acc-item data-open="false">
+            <button class="acc__btn" type="button" data-acc-btn aria-controls="acc-pros">
+              <span class="acc__name">SFW professionals</span><span class="acc__desc">Find a trained practitioner</span>
+            </button>
+            <div class="acc__panel" id="acc-pros" data-acc-panel><div>
+              <ul class="acc__links">
+                <li><a href="directory.html">Directory</a></li>
+              </ul>
+            </div></div>
+          </li>
+        </ul>
+        <ul class="overlay__utility">
+          <li><a href="login.html">Student login</a></li>
+          <li><a href="now.html#subscribe">Subscribe</a></li>
+          <li><a href="donate.html">Donate</a></li>
+        </ul>
+      </nav>
+
+      <aside class="overlay__now" aria-labelledby="now-h">
+        <h2 id="now-h">Happening now</h2>
+        <ul class="now-list">
+          <li><span class="dated"><time datetime="2026-09-07">7 September 2026</time></span><a href="learn-workshops.html#india">India workshop: last day to cancel with a refund</a></li>
+          <li><span class="dated"><time datetime="2026-09-16">16 September to 20 December 2026</time></span><a href="learn.html#pdc">Permaculture Design Certification cohort begins</a></li>
+          <li><span class="dated"><time datetime="2026-10">October 2026</time></span><a href="learn-workshops.html#india">India Accelerator Workshop, Coimbatore</a></li>
+        </ul>
+        <a class="more" href="now.html">Everything that’s happening</a>
+      </aside>
+    </div>
+    <div class="cutout cutout--overlay">
+      <img src="img/cutout-placeholder.svg" alt="" loading="lazy" decoding="async" width="320" height="260">
+    </div>
+  </div>
+</div>
+

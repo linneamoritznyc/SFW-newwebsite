@@ -1,0 +1,27 @@
+{
+  "_source": "SFWF Website Copy Deck v1.0, section 7. Copy verbatim.",
+  "hero": {
+    "eyebrow": "FREE WEBINARS",
+    "h1": "Celebrating our successes and sharing the science",
+    "intro": "Stories and results from leading experts in their fields and experienced practitioners."
+  },
+  "nextSession": {
+    "status": "placeholder",
+    "note": "next webinar title + one-line description + date/time in visitor’s zone.",
+    "cta": "Save my seat — free"
+  },
+  "recordings": {
+    "h2": "Recent recordings",
+    "note": "last 3 recordings",
+    "backlogLine": "Looking for the full backlog of recordings and resources? It lives in our community space →",
+    "backlogHref": "https://school.soilfoodweb.com/products/communities/SFW-public-community"
+  },
+  "resources": {
+    "h2": "Free resources",
+    "items": [
+      "Educational videos (short explainers on the organisms and the approach)",
+      "Short guides (reading your soil, first compost, choosing a microscope)",
+      "Case studies (documented results from real farms and restoration sites)"
+    ]
+  }
+}

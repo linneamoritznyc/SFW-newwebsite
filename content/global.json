@@ -1,0 +1,163 @@
+{
+  "_source": "SFWF Website Copy Deck v1.0, section 0. Copy verbatim.",
+  "utilityBar": {
+    "tagline": "Join a global community of Soil Regenerators",
+    "actions": [
+      {
+        "label": "Login / Student Access",
+        "href": "login.html"
+      },
+      {
+        "label": "Subscribe",
+        "href": "now.html#subscribe"
+      },
+      {
+        "label": "Donate",
+        "href": "donate.html"
+      }
+    ]
+  },
+  "nav": {
+    "items": [
+      {
+        "label": "Home",
+        "href": "index.html"
+      },
+      {
+        "label": "About Us",
+        "href": "about.html",
+        "pillar": null,
+        "children": [
+          {
+            "label": "Mission, Vision & Story",
+            "href": "about.html#mission"
+          },
+          {
+            "label": "Our Team",
+            "href": "about-team.html"
+          },
+          {
+            "label": "Dr. Elaine’s Research",
+            "href": "about-elaine.html"
+          },
+          {
+            "label": "Foundation News",
+            "href": "news.html#foundation"
+          },
+          {
+            "label": "Contact & Legal",
+            "href": "contact.html"
+          }
+        ]
+      },
+      {
+        "label": "Learn",
+        "href": "learn.html",
+        "pillar": "Teach It",
+        "children": [
+          {
+            "label": "Programs Overview",
+            "href": "learn.html"
+          },
+          {
+            "label": "Online Courses",
+            "href": "https://school.soilfoodweb.com"
+          },
+          {
+            "label": "Workshops",
+            "href": "calendar.html#workshops"
+          },
+          {
+            "label": "Calendar",
+            "href": "calendar.html"
+          },
+          {
+            "label": "Free Webinars",
+            "href": "learn-webinars.html"
+          },
+          {
+            "label": "Scholarships",
+            "href": "learn-scholarships.html"
+          },
+          {
+            "label": "Student Login",
+            "href": "login.html"
+          }
+        ]
+      },
+      {
+        "label": "Science",
+        "href": "science.html",
+        "pillar": "Prove It",
+        "children": [
+          {
+            "label": "How the Soil Food Web Works",
+            "href": "science.html"
+          },
+          {
+            "label": "Research Database",
+            "href": "research.html"
+          },
+          {
+            "label": "Partner on Research",
+            "href": "research.html#work-with-us"
+          }
+        ]
+      },
+      {
+        "label": "Practice",
+        "href": "practice.html",
+        "pillar": "Practice It",
+        "children": [
+          {
+            "label": "Case Studies",
+            "href": "practice.html#case-studies"
+          },
+          {
+            "label": "Find a Professional",
+            "href": "directory.html"
+          },
+          {
+            "label": "Work With Us",
+            "href": "practice.html#work-with-us"
+          }
+        ],
+        "note": "Projects removed Sep 8 (Evan) — returns when the projects database has real entries. Our Impact removed Sep 7 — returns with the annual report."
+      },
+      {
+        "label": "Community",
+        "href": "community.html",
+        "pillar": "Grow It",
+        "children": [
+          {
+            "label": "Community Map",
+            "href": "community.html#map"
+          },
+          {
+            "label": "News & Blog",
+            "href": "news.html"
+          },
+          {
+            "label": "Calendar",
+            "href": "calendar.html"
+          },
+          {
+            "label": "Join the Community",
+            "href": "community.html#join"
+          }
+        ],
+        "note": "Find a Professional removed Sep 7 — reached from Practice only; directory content still lives on the Community page."
+      }
+    ]
+  },
+  "footer": {
+    "brandLine": "Healing soil. Feeding humanity. Restoring the living world.",
+    "columnHeads": [
+      "Foundation",
+      "Learn",
+      "Resources",
+      "Get Involved"
+    ],
+    "legalLine": "© 2026 Soil Food Web Foundation, a 501(c)(3) nonprofit organization. Soil Food Web School is a program of the Soil Food Web Foundation."
+  }
+}

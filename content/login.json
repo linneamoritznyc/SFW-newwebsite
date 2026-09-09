@@ -1,0 +1,36 @@
+{
+  "_source": "SFWF Website Copy Deck v1.0, section 11. Copy verbatim.",
+  "hero": {
+    "eyebrow": "STUDENT ACCESS",
+    "h1": "Welcome back, Soil Regenerator",
+    "intro": "Your courses live on one of two learning platforms. Pick yours below — one click and you’re home."
+  },
+  "choosers": [
+    {
+      "name": {
+        "status": "verify",
+        "note": "LMS 1 name — VERIFY mapping"
+      },
+      "programs": "Foundation Courses & Advanced Programs",
+      "cta": {
+        "label": "Log in",
+        "href": "https://school.soilfoodweb.com/users/sign_in"
+      }
+    },
+    {
+      "name": {
+        "status": "verify",
+        "note": "LMS 2 name — VERIFY mapping"
+      },
+      "programs": {
+        "status": "verify",
+        "note": "Programs hosted here — VERIFY mapping"
+      },
+      "cta": {
+        "label": "Log in",
+        "href": "#"
+      }
+    }
+  ],
+  "helpLine": "Not sure where your course lives? Check your enrollment email, or contact info@soilfoodweb.com."
+}

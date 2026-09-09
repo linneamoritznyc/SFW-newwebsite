@@ -1,0 +1,191 @@
+{
+  "_source": "SFWF Website Copy Deck v1.0, section 1. Copy verbatim.",
+  "hero": {
+    "eyebrow": "SOIL FOOD WEB FOUNDATION",
+    "h1": "Healing soil. Feeding humanity. Restoring the living world.",
+    "subhead": "The ground beneath our farms and forests is alive. Join a global community of Soil Regenerators carrying forward Dr. Elaine Ingham’s life’s work — learning, restoring, and demonstrating the power of the soil food web on every continent.",
+    "primaryCta": {
+      "label": "Join the community",
+      "href": "community.html#join"
+    },
+    "secondaryCta": {
+      "label": "Explore our programs",
+      "href": "learn.html"
+    },
+    "image": {
+      "status": "placeholder",
+      "note": "Photo: hands holding living soil — roots & fungal strands visible"
+    }
+  },
+  "stats": {
+    "note": "No acreage figures anywhere — see claims rules.",
+    "stat1": {
+      "value": "100+",
+      "label": "Countries in our student & practitioner community",
+      "status": "verified"
+    },
+    "stat2": {
+      "value": "10,000+",
+      "label": "Individuals enrolled in our programs",
+      "source": "enrollment records — confirmed Aug 2026",
+      "status": "verified"
+    },
+    "stat3": {
+      "value": "40",
+      "label": "Year legacy of pioneering soil biology research & regenerative practice",
+      "status": "verified"
+    }
+  },
+  "whoWeAre": {
+    "eyebrow": "WHO WE ARE",
+    "h2": "A foundation built on living soil",
+    "body": [
+      "For four decades, Dr. Elaine Ingham showed the world what farmers and foresters have always sensed: soil is not dirt. It is a living web of bacteria, fungi, protozoa, nematodes, and micro-arthropods that feeds plants, stores carbon, holds water, and sustains every terrestrial ecosystem on Earth.",
+      "The Soil Food Web Foundation was created to carry that work forward. We teach the science through the Soil Food Web School, pursue and share new knowledge, incubate regenerative practice in ecoregions around the world, and build the community that makes it all last."
+    ],
+    "link": {
+      "label": "Our mission and story →",
+      "href": "about.html"
+    },
+    "note": "Merge with the team’s in-refinement “Who We Are” draft — one owner reconciles."
+  },
+  "howItWorks": {
+    "eyebrow": "THE SOIL FOOD WEB APPROACH",
+    "h2": "Work with the life in your soil",
+    "note": "reframed Sep 8 (Evan): drop tech metaphor + step count; Approach is now FOUR steps",
+    "steps": [
+      {
+        "n": 1,
+        "title": "Observe and assess",
+        "body": "Put your soil under the microscope. Identify which organisms are present, which are missing, and what that means for your plants — so every decision starts with what’s actually alive in your soil."
+      },
+      {
+        "n": 2,
+        "title": "Incubate the biology",
+        "body": "Grow the beneficial organisms your soil needs by making BioComplete™ compost — not just organic matter, but a living culture, built deliberately."
+      },
+      {
+        "n": 3,
+        "title": "Multiply and apply",
+        "body": "A small amount of biologically rich compost goes a long way. Compost extracts and teas multiply that life and carry it across whole fields and gardens — to the soil and to the plants themselves."
+      },
+      {
+        "n": 4,
+        "title": "Manage and monitor holistically",
+        "body": "Keep observing as the life rebuilds structure, cycles nutrients, and protects your plants — and adjust your practices so the benefits compound, season after season."
+      }
+    ],
+    "link": {
+      "label": "See how it works — case studies & videos →",
+      "href": "practice.html#case-studies"
+    }
+  },
+  "learnWithUs": {
+    "eyebrow": "LEARN WITH US",
+    "h2": "Customize your learning path according to your needs and goals",
+    "cards": [
+      {
+        "tag": "Start here",
+        "title": "Foundation Courses",
+        "body": "Dr. Elaine’s™ complete introduction to the science of the soil food web. The starting point for everyone.",
+        "cta": {
+          "label": "Explore the courses",
+          "href": "learn.html#foundation-courses"
+        }
+      },
+      {
+        "tag": "Hone your skills",
+        "title": "Advanced Programs",
+        "body": "Hands-on Soil Microscopy, BioComplete™ Compost Production, Biological Liquid Amendments, and Field Trials.",
+        "cta": {
+          "label": "See the Soil Food Web Consultant path",
+          "href": "learn.html#complete-practicum"
+        }
+      },
+      {
+        "tag": "Design systems",
+        "title": "Permaculture Design Course",
+        "body": "Whole-system design — water, plants, structures, community — rooted in living soil.",
+        "cta": {
+          "label": "Explore the PDC",
+          "href": "learn.html#pdc"
+        }
+      },
+      {
+        "tag": "Ecosystem Restoration",
+        "title": "Ecosystem Restoration Courses",
+        "body": "Learn ecological principles and practical restoration techniques.",
+        "cta": {
+          "label": "Check out the introduction",
+          "href": "learn.html#restoration"
+        },
+        "status": "verify",
+        "note": "VERIFY sales page URL"
+      },
+      {
+        "tag": "In person",
+        "title": "Workshops",
+        "body": "Learn on real sites, meet the community, and accelerate your training.",
+        "cta": {
+          "label": "See upcoming events",
+          "href": "calendar.html"
+        }
+      }
+    ],
+    "layoutNote": "Five cards render as a horizontally scrolling wrap-around carousel (scroll-snap; loop in production build)."
+  },
+  "whatsNew": {
+    "eyebrow": "WHAT’S NEW",
+    "h2": "Happening across the community",
+    "links": [
+      {
+        "label": "All events →",
+        "href": "calendar.html"
+      },
+      {
+        "label": "All news & stories →",
+        "href": "news.html"
+      }
+    ],
+    "note": "Dynamic feed: upcoming workshop > upcoming webinar > latest impact story > latest blog post. Sample items in mockup are illustrative."
+  },
+  "testimonial": {
+    "quote": {
+      "status": "placeholder",
+      "note": "strongest graduate testimonial from the case-study pipeline: one or two sentences on what changed."
+    },
+    "attribution": {
+      "status": "placeholder",
+      "note": "[Name] — Soil Food Web Consultant · [Country]"
+    }
+  },
+  "ecosystem": {
+    "eyebrow": "OUR ECOSYSTEM",
+    "line": "We’re grateful to the organizations that make this work possible — and always looking for aligned partners.",
+    "cta": {
+      "label": "Partner with us",
+      "href": "practice.html#work-with-us"
+    },
+    "note": "Ecosystem strip, renamed from Partners & Sponsors, Sep 7. Partner names and marks not yet supplied.",
+    "status": "placeholder"
+  },
+  "joinBand": {
+    "h2": "Be part of the soil-ution",
+    "body": "Wherever you are — a farm, a garden, a lab, a classroom — there’s living soil beneath you and a global community beside you.",
+    "ctas": [
+      {
+        "label": "Join the community",
+        "href": "community.html#join"
+      },
+      {
+        "label": "Subscribe",
+        "href": "now.html#subscribe",
+        "type": "email"
+      },
+      {
+        "label": "Donate",
+        "href": "donate.html"
+      }
+    ]
+  }
+}

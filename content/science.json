@@ -1,0 +1,90 @@
+{
+  "_source": "SFWF Website Copy Deck v1.0, section 9. Copy verbatim.",
+  "hero": {
+    "eyebrow": "HOW IT WORKS",
+    "h1": "How the soil food web works",
+    "intro": "Healthy soil is a living system. Billions of organisms — bacteria, fungi, protozoa, nematodes, and micro-arthropods — form a web of relationships with plants that feeds them, builds the soil around them, and protects them. Here’s how it works."
+  },
+  "mechanisms": [
+    {
+      "n": 1,
+      "title": "The soil food web",
+      "body": "Plants don’t feed alone. Through their roots, they release sugars and other compounds that attract and feed a community of microorganisms — and in return, that community delivers nutrients, builds structure, and defends its host. This web of eating and being eaten is what makes soil function.",
+      "animation": {
+        "title": "The Soil Food Web",
+        "vimeo": "372925873",
+        "status": "placeholder",
+        "note": "Animation: “The Soil Food Web” — existing asset, Vimeo 372925873"
+      }
+    },
+    {
+      "n": 2,
+      "title": "Nutrient cycling",
+      "body": "A plant invests 30–40% of the sugars it makes through photosynthesis into the soil to feed microbes. Bacteria and fungi produce enzymes that break down minerals and organic matter, unlocking the nutrients they contain. When protozoa and nematodes consume those bacteria and fungi, the surplus is released right at the root — in plant-available form. The plant controls the exchange, drawing what it needs, when it needs it.",
+      "animation": {
+        "title": "Nutrient Cycling",
+        "vimeo": "372474782",
+        "status": "placeholder",
+        "note": "Animation: “Nutrient Cycling” — existing asset, Vimeo 372474782"
+      }
+    },
+    {
+      "n": 3,
+      "title": "Building soil structure",
+      "body": "Beneficial bacteria produce glues that bind soil particles into microaggregates; fungal hyphae weave those into larger macroaggregates. The result behaves like a sponge — holding water for extended periods, letting air flow in, resisting erosion by wind and rain, and reducing the need for irrigation.",
+      "animation": {
+        "title": "The Formation of Structure",
+        "vimeo": "372476056",
+        "status": "placeholder",
+        "note": "Animation: “The Formation of Structure” — existing asset, Vimeo 372476056"
+      }
+    },
+    {
+      "n": 4,
+      "title": "Suppressing weeds",
+      "body": "Beneficial fungi secrete enzymes that gradually acidify their surroundings, slowing the bacteria that convert nitrogen into nitrate — the form many fast-growing weeds depend on. As the fungal community establishes, conditions shift to favor the plants you’re growing.",
+      "animation": {
+        "title": "Weed Suppression",
+        "vimeo": "372479571",
+        "status": "placeholder",
+        "note": "Animation: “Weed Suppression” — existing asset, Vimeo 372479571"
+      }
+    },
+    {
+      "n": 5,
+      "title": "Protecting plants from pests and disease",
+      "body": "Most disease-causing organisms do best where oxygen is scarce. Below ground, well-structured soil keeps the root zone oxygen-rich, favoring the beneficial organisms that compete with, inhibit, and prey on pathogens. Above ground, covering leaves and stems with beneficial microorganisms — applied as compost extracts and teas — fills the niches that pests and diseases would otherwise occupy. A surface already inhabited leaves little room for invaders.",
+      "animation": {
+        "title": "Inhibiting Pests and Diseases",
+        "vimeo": "372480255",
+        "status": "placeholder",
+        "note": "Animation: “Inhibiting Pests and Diseases” — existing asset, Vimeo 372480255"
+      }
+    },
+    {
+      "n": 6,
+      "title": "Sequestering carbon, avoiding emissions",
+      "body": "Plants pull carbon from the atmosphere and invest much of it into the soil, where it is built into microbial bodies, soil aggregates, and long-lived fungal networks. Biological management also avoids emissions at the source: less synthetic fertilizer to manufacture and transport, and fewer fuel-intensive passes over the field.",
+      "animation": {
+        "title": "Soil Carbon Sequestration",
+        "vimeo": "372478833",
+        "status": "placeholder",
+        "note": "Animation: “Soil Carbon Sequestration” — existing asset, Vimeo 372478833"
+      }
+    }
+  ],
+  "bridge": {
+    "title": "From science to practice",
+    "body": "Practitioners apply this science through the Soil Food Web Approach: observe and assess the life under the microscope, incubate beneficial biology in compost, multiply and apply it with extracts and teas, and manage and monitor holistically."
+  },
+  "cases": {
+    "h2": "Case studies & videos",
+    "intro": "Documented results from real farms and restoration sites: named growers, named places, and numbers with their sources.",
+    "cards": {
+      "status": "placeholder",
+      "note": "3 cards from the case-study pipeline: Agricultural case, Restoration case, practitioner video."
+    }
+  },
+  "honestFooter": "Results shown are from individual sites in specific contexts; outcomes vary with climate, crop, and management.",
+  "claimsNote": "No “no need for fertilizers” absolutes; fungal persistence stated as “long-lived,” not “hundreds of years.”"
+}
