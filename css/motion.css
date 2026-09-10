@@ -79,6 +79,7 @@ body.mo {
 /* the contact strip of all sixteen, for jumping */
 .mo-index {
   list-style: none;
+  max-width: none;              /* site.css caps every ul at a reading measure */
   margin: 40px 0 0;
   padding: 24px 0 0;
   border-top: 1px solid var(--mo-rule);
