@@ -569,3 +569,16 @@ Fine print: Soil Food Web Foundation, EIN 39-4439236. No countdown, no thermomet
 | clp.soilfoodweb.com | /community/directory after re-hosting photos |
 
 Full list from crawl.py inventory.csv once run.
+
+**Current as of 11 September 2026.** The built site follows the staging menu (About us, Learn, Science, Practice, Community), so the "New" column above resolves as follows. `vercel.json` carries these; `docs/link-map.md` lists every one with its reason.
+
+| Copy deck "New" | Actually serves |
+| :-- | :-- |
+| /projects, /projects/[slug] | /practice, /projects/[slug] |
+| /now, /now/[slug] | /calendar for dated items, /news for written ones |
+| /learn/workshops | /calendar#workshops |
+| /publications | /research, until the Publications page is built in Phase 3 |
+| /how-it-works | /science |
+| /learn/webinars | /learn-webinars.html |
+| /learn/scholarships | /learn-scholarships.html |
+| /community/directory | /directory.html |

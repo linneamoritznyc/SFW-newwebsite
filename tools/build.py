@@ -30,6 +30,29 @@ def note(o, cls="todo"):
         return ""
     return '<p class="%s" data-status="%s">%s</p>' % (cls, A(o.get("status", "")), e(o["note"]))
 
+def facts(rows):
+    """Key and value, one per row. The questions a first-time visitor asks
+    first (what is it, how long, how much) answered without a paragraph."""
+    li = "".join('        <li class="fact"><span class="fact__k">%s</span>'
+                 '<span class="fact__v">%s</span></li>\n' % (e(r["k"]), e(r["v"])) for r in rows)
+    return '      <ul class="facts">\n%s      </ul>\n' % li
+
+
+def awaiting(o):
+    """The visible half of a placeholder.
+
+    .todo is display:none for visitors, so a section whose only content was a
+    note rendered as a heading over nothing. This says in the open what is
+    coming, which is both truer and better looking than a void.
+    """
+    if not isinstance(o, dict) or not o.get("awaiting"):
+        return ""
+    out = '      <p class="awaiting">%s</p>\n' % e(o["awaiting"])
+    if o.get("link"):
+        out += '      <p><a href="%s">%s &rarr;</a></p>\n' % (A(o["link"]["href"]), e(o["link"]["label"]))
+    return out
+
+
 def eyebrow(t):
     return '<p class="eyebrow">%s</p>' % e(t) if t else ""
 
@@ -65,6 +88,8 @@ def hero(h, hid, sid=None, photo=None, depth=0):
                            for p in h["anchorPills"])
                  + "</ul>")
     intro = h.get("intro") or h.get("subhead") or ""
+    # Every number gets a source line, including the ones inside a hero lede.
+    src = '\n      <p class="source small">%s</p>' % e(h["source"]) if h.get("source") else ""
     ctas = ""
     if h.get("primaryCta"):
         ctas = ('\n      <p style="margin-top:var(--s4);display:flex;flex-wrap:wrap;gap:var(--s2);align-items:center">'
@@ -77,11 +102,12 @@ def hero(h, hid, sid=None, photo=None, depth=0):
                 '        <div class="span-6">\n          %s\n        </div>\n'
                 '      </div>\n    </div>\n  </section>\n'
                 % (' id="%s"' % sid if sid else "", eyebrow(h.get("eyebrow")), hid, e(h["h1"]),
-                   e(intro), pills, ctas, shot(photo[0], photo[1], cap=True, depth=depth)))
+                   e(intro), src + pills, ctas, shot(photo[0], photo[1], cap=True, depth=depth)))
     return ('  <section class="stratum" style="border-top:0"%s>\n    <div class="wrap">\n'
             '      <div class="head" style="margin-bottom:0">\n        %s\n        <h1 id="%s">%s</h1>\n'
             '        <p class="lede">%s</p>\n      </div>%s%s\n    </div>\n  </section>\n'
-            % (' id="%s"' % sid if sid else "", eyebrow(h.get("eyebrow")), hid, e(h["h1"]), e(intro), pills, ctas))
+            % (' id="%s"' % sid if sid else "", eyebrow(h.get("eyebrow")), hid, e(h["h1"]), e(intro),
+               src + pills, ctas))
 
 def tabs(items, target, aria="Filter"):
     li = "".join('<li><button class="chip" type="button" data-filter="%s" aria-pressed="%s">%s</button></li>'
@@ -114,15 +140,20 @@ def cards(items, kind=None):
     return out + "      </ul>\n"
 
 def steps(items, icon="i-cycle"):
-    out = '      <div class="grid" style="row-gap:var(--s4)">\n'
-    for s in items:
-        out += ('        <div class="span-6">\n          <div class="icon-row">\n'
-                '            <svg class="icon icon--olive icon--lg" aria-hidden="true"><use href="#%s"/></svg>\n'
-                '            <div>\n              <p class="small" style="color:var(--ink-faint)">Step %s</p>\n'
-                '              <h3>%s</h3>\n              <p style="font-size:var(--t0);color:var(--ink-soft)">%s</p>\n'
-                '            </div>\n          </div>\n        </div>\n'
-                % (icon, s["n"], e(s.get("title", "")), e(s["body"])))
-    return out + "      </div>\n"
+    """A numbered sequence, one column per step.
+
+    It used to be a two-across grid of half-width cells, which put step three
+    on a second row under step one and left a hole beside it, and it repeated
+    the same icon against all three. The numeral is the information here, so
+    the numeral carries it, the way the homepage approach already does.
+    """
+    li = "".join(
+        '        <li class="step">\n          <p class="step__n">%s</p>\n'
+        '          <h3>%s</h3>\n          <p>%s</p>\n%s        </li>\n'
+        % (e(s["n"]), e(s.get("title", "")), e(s["body"]),
+           ("          " + note(s) + "\n") if s.get("note") else "")
+        for s in items)
+    return '      <ol class="steps">\n%s      </ol>\n' % li
 
 
 # ------------------------------------------------------ photographs and motion
@@ -134,7 +165,7 @@ def steps(items, icon="i-cycle"):
 #
 # CAPTION is deliberately a constant. Captions are the Foundation's to write,
 # and an invented one would be a claim about a real place and real people.
-CAPTION = "REPLACE_WITH_CAPTION"
+CAPTION = "the place, the people and the date. Foundation to supply."
 
 
 
@@ -211,7 +242,35 @@ def ledger(items, depth=0):
     return '      <ul class="ledger">\n%s      </ul>\n' % li
 
 
-def banner(src, alt, h2, hid, lede="", ctas="", depth=0, tag="h2", eyeb=""):
+def films(items, depth=0):
+    """Films from the field, as facades.
+
+    A still with a play button, and nothing from Vimeo until somebody presses
+    it: an iframe per card would pull a player and its cookies onto the page
+    for every visitor who never watches. The privacy hash rides in data-h,
+    because these are unlisted videos and the player refuses them without it.
+    """
+    li = ""
+    for f in items:
+        src = "https://player.vimeo.com/video/%s?h=%s&badge=0&byline=0&portrait=0&title=0" % (
+            f["vimeo"], f["hash"])
+        li += ('        <li>\n'
+               '          <figure class="film">\n'
+               '            <button class="film__go" type="button" data-film="%s"\n'
+               '                    aria-label="Play the film with %s, %s">\n'
+               '              %s\n'
+               '              <span class="film__play" aria-hidden="true">\u25b6</span>\n'
+               '            </button>\n'
+               '            <figcaption>\n              <b>%s</b>\n'
+               '              <span>%s</span>\n              <span>%s</span>\n'
+               '            </figcaption>\n          </figure>\n        </li>\n'
+               % (A(src), A(f["name"]), A(f["place"]),
+                  img(f["poster"], f["posterAlt"], sizes="(max-width: 52em) 100vw, 32vw", depth=depth),
+                  e(f["name"]), e(f["place"]), e(f["kind"])))
+    return '      <ul class="films">\n%s      </ul>\n' % li
+
+
+def banner(src, alt, h2, hid, lede="", ctas="", depth=0, tag="h2", eyeb="", source=""):
     """One landscape photograph carrying a whole screen, with one line over it.
 
     Landscape only and never a face: type sits on the image, so it needs a
@@ -223,6 +282,8 @@ def banner(src, alt, h2, hid, lede="", ctas="", depth=0, tag="h2", eyeb=""):
     inner += '          <%s id="%s">%s</%s>\n' % (tag, A(hid), e(h2), tag)
     if lede:
         inner += '          <p class="lede">%s</p>\n' % e(lede)
+    if source:
+        inner += '          <p class="source small">%s</p>\n' % e(source)
     if ctas:
         inner += '          <p style="margin-top:var(--s4);display:flex;flex-wrap:wrap;gap:var(--s2)">%s</p>\n' % ctas
     return ('  <section class="banner bleed" aria-labelledby="%s">\n    %s\n'
@@ -253,14 +314,16 @@ def slides(depth=0):
     looks, so legibility comes from framing instead.
     """
     b = "../" * depth
-    # (label, href, zoom, point of interest as %, seconds into the loop)
+    # (label, href, zoom, point of interest as %, seconds in, reel)
+    # Three different reels, not three crops of one: the same footage at three
+    # zooms read as one clip repeated, which is what it was.
     views = [
-        ("How the Soil Food Web Works", "science.html",  1.0, 50, 50, 0.0),
-        ("Programs Overview",           "learn.html",    2.4, 50, 50, 3.3),
-        ("Research Database",           "research.html", 2.4, 24, 27, 6.6),
+        ("How the soil food web works",  "science.html",  1.0, 50, 50, 0.0, "sfw-amoeba-loop-square"),
+        ("Every program and its price",  "learn.html",    1.6, 50, 50, 2.0, "sfw-amoeba-lab-640"),
+        ("Research and publications",    "research.html", 2.4, 24, 27, 6.6, "sfw-amoeba-loop-hero"),
     ]
     li = ""
-    for label, href, z, px, py, t in views:
+    for label, href, z, px, py, t, reel in views:
         tx, ty = 50 - px, 50 - py
         transform = "scale(%s)" % z if z == 1.0 else "scale(%s) translate(%d%%, %d%%)" % (z, tx, ty)
         li += ('        <li>\n          <a class="slide" href="%s%s">\n'
@@ -269,25 +332,39 @@ def slides(depth=0):
                '                     style="transform:%s"\n'
                '                     poster="%simg/w/sfw-amoeba-still-square.jpg"\n'
                '                     aria-hidden="true" tabindex="-1"\n'
-               '                     data-src="%svideo/sfw-amoeba-loop-square.webm,%svideo/sfw-amoeba-loop-square.mp4"></video>\n'
+               '                     data-src="%svideo/%s.webm,%svideo/%s.mp4"></video>\n'
                '            </span>\n'
                '            <span class="slide__n">%s <span class="slide__go" aria-hidden="true">&rarr;</span></span>\n'
                '          </a>\n        </li>\n'
-               % (b, A(href), t, transform, b, b, b, e(label)))
+               % (b, A(href), t, transform, b, b, A(reel), b, A(reel), e(label)))
     return ('      <ul class="slides">\n%s      </ul>\n'
             '      <p class="source small" style="margin-top:var(--s4)">'
             'Brightfield microscopy, Soil Food Web Foundation archive</p>\n' % li)
 
 
+def partners(items):
+    """The organizations named so far. A name and a line each: the Foundation
+    has not supplied logo files, and a name is worth more than a grey box."""
+    if not items:
+        return ""
+    li = "".join('        <li>\n          <a href="%s"><b>%s</b></a>\n          <span>%s</span>\n        </li>\n'
+                 % (A(x["href"]), e(x["name"]), e(x["line"])) for x in items)
+    return '      <ul class="partners">\n%s      </ul>\n' % li
+
+
 def doors(items, depth=0):
     """Three audience doorways. The photograph is the target, type sits under."""
     li = ""
-    for src, alt, href, title, body in items:
+    for it in items:
+        src, alt, href, title, body = it[:5]
+        # The link text names the destination: a doorway that says only
+        # "Farm with biology" does not tell you where pressing it lands you.
+        label = ('            <span class="door__go">%s &rarr;</span>\n' % e(it[5])) if len(it) > 5 else ""
         li += ('        <li>\n          <a class="door" href="%s">\n            %s\n'
-               '            <h3>%s</h3>\n            <p>%s</p>\n'
+               '            <h3>%s</h3>\n            <p>%s</p>\n%s'
                '          </a>\n        </li>\n'
                % (A(href), img(src, alt, sizes="(max-width: 52em) 100vw, 32vw", depth=depth),
-                  e(title), e(body)))
+                  e(title), e(body), label))
     return '      <ul class="doors">\n%s      </ul>\n' % li
 
 
@@ -316,6 +393,15 @@ def chrome(depth=0):
                 '              <ul class="acc__links">\n%s              </ul>\n'
                 '            </div></div>\n          </li>\n' % (sid, e(it["label"]), e(desc), sid, links))
     topnav = "".join('<li><a href="%s">%s</a></li>' % (A(h(i["href"])), e(i["label"])) for i in g["nav"]["items"][1:])
+
+    # Happening now, from content/global.json. Every dated item shows its date,
+    # and an unconfirmed one says so on the line itself (Decision 12).
+    n = g["happeningNow"]
+    now_li = "".join(
+        '          <li><span class="dated"><time datetime="%s">%s</time></span>'
+        '<a href="%s">%s</a></li>\n'
+        % (A(it["datetime"]), e(it["dated"]), A(h(it["href"])), e(it["label"]))
+        for it in n["items"])
     hdr = ('<!-- ============ UTILITY BAR + HEADER (every page) ============ -->\n'
            '<div class="utility">\n  <div class="wrap">\n'
            '    <p class="utility__tagline">%s</p>\n'
@@ -341,31 +427,19 @@ def chrome(depth=0):
            '        <ul class="acc" data-accordion>\n%s        </ul>\n'
            '        <ul class="overlay__utility">%s</ul>\n      </nav>\n'
            '      <aside class="overlay__now" aria-labelledby="now-h">\n'
-           '        <h2 id="now-h">Happening now</h2>\n        <ul class="now-list">\n'
-           '          <li><span class="dated"><time datetime="2026-09-16">16 September to 20 December 2026</time></span>'
-           '<a href="%slearn.html#pdc">Permaculture Design Certification cohort</a></li>\n'
-           '          <li><span class="dated"><time datetime="2026-10-18">18 to 31 October 2026</time></span>'
-           '<a href="%scalendar.html#workshops">India Accelerator Workshop, Coimbatore</a></li>\n'
-           '        </ul>\n        <a class="more" href="%scalendar.html">Everything that is happening</a>\n'
+           '        <h2 id="now-h">%s</h2>\n        <ul class="now-list">\n%s        </ul>\n'
+           '        <a class="more" href="%s">%s</a>\n'
            '      </aside>\n    </div>\n'
-           '    <div class="cutout cutout--overlay">\n'
-           '      <img src="%simg/cutout-placeholder.svg" alt="" loading="lazy" decoding="async" width="320" height="260">\n'
-           '    </div>\n  </div>\n</div>\n\n'
+           '  </div>\n</div>\n\n'
            % (e(u["tagline"]), util, A(h("index.html")), topnav, A(h("donate.html")),
-              acc, util, A(b), A(b), A(b), A(b)))
+              acc, util, e(n["heading"]), now_li, A(h(n["more"]["href"])), e(n["more"]["label"])))
 
     f = g["footer"]
-    cols = [("Foundation", [("About Us", "about.html"), ("Our Team", "about-team.html"),
-                            ("Governance and financials", "about-governance.html"), ("Contact & Legal", "contact.html")]),
-            ("Learn", [("Programs Overview", "learn.html"), ("Calendar", "calendar.html"),
-                       ("Free Webinars", "learn-webinars.html"), ("Scholarships", "learn-scholarships.html")]),
-            ("Resources", [("Research Database", "research.html"), ("How it works", "science.html"),
-                           ("Case Studies", "practice.html#case-studies"), ("Media and press", "contact.html#media")]),
-            ("Get Involved", [("Donate", "donate.html"), ("Volunteer", "donate.html#volunteer"),
-                              ("Find a Professional", "directory.html"), ("Logo use", "contact.html#logo")])]
     navs = ""
-    for i, (hn, links) in enumerate(cols):
-        li = "".join('          <li><a href="%s">%s</a></li>\n' % (A(h(x[1])), e(x[0])) for x in links)
+    for i, col in enumerate(f["columns"]):
+        hn = col["head"]
+        li = "".join('          <li><a href="%s">%s</a></li>\n' % (A(h(x["href"])), e(x["label"]))
+                     for x in col["links"])
         # 4 wordmark + four 2-wide columns from track 5 = 12 exactly.
         span = "span-2 start-5" if i == 0 else "span-2"
         navs += ('      <nav class="%s" aria-labelledby="f-%d">\n        <h2 id="f-%d">%s</h2>\n'
@@ -385,27 +459,46 @@ def chrome(depth=0):
            '    <div class="footer__legal">\n'
            '      <p>EIN 39-4439236. Registered office: 5441 S Macadam Ave Ste N, Portland, Oregon 97239. '
            'Our Form 990 and financial statements are available on the <a href="%s">governance page</a> and on request.</p>\n'
-           '      <ul>\n        <li>%s</li>\n'
+           '      %s\n      <ul>\n        <li>%s</li>\n'
            '        <li><a href="%s">Privacy</a></li>\n        <li><a href="%s">Terms</a></li>\n'
            '        <li><a href="%s">Accessibility</a></li>\n      </ul>\n    </div>\n  </div>\n</footer>\n\n'
-           % (e(f["brandLine"]), navs, A(h("about-governance.html")), e(f["legalLine"]),
+           % (e(f["brandLine"]), navs, A(h("about-governance.html")), note(f.get("social", {})), e(f["legalLine"]),
               A(h("privacy.html")), A(h("terms.html")), A(h("accessibility.html"))))
     return hdr, ftr
 
 
-def render(path, title, desc, main, depth=0):
+SITE = "https://soilfoodweb.org"   # VERIFY: the production hostname at cutover.
+
+
+def render(path, title, desc, main, depth=0, share=None):
     hdr, ftr = chrome(depth)
     b = "../" * depth
+    # og:image has to be absolute: a relative path is useless to a link
+    # unfurler, which is not on this origin. Each page shares its own hero.
+    img_abs = SITE + "/" + web(share or "img/hand-soil-roots-fungi.jpg")
     sprite = open(PARTIALS + "sprite.html", encoding="utf-8").read()
     head = ('<!doctype html>\n<html lang="en">\n<head>\n  <meta charset="utf-8">\n'
             '  <meta name="viewport" content="width=device-width, initial-scale=1">\n'
             '  <title>%s</title>\n  <meta name="description" content="%s">\n'
             '  <meta property="og:site_name" content="Soil Food Web Foundation">\n'
+            '  <meta property="og:type" content="website">\n'
+            '  <meta property="og:title" content="%s">\n'
+            '  <meta property="og:description" content="%s">\n'
+            '  <meta property="og:url" content="%s">\n'
+            '  <meta property="og:image" content="%s">\n'
+            '  <meta name="twitter:card" content="summary_large_image">\n'
+            '  <meta name="twitter:title" content="%s">\n'
+            '  <meta name="twitter:description" content="%s">\n'
+            '  <meta name="twitter:image" content="%s">\n'
             '  <link rel="preload" href="%sfonts/montserrat-latin-variable.woff2" as="font" type="font/woff2" crossorigin>\n'
             '  <link rel="preload" href="%sfonts/source-sans-3-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>\n'
             '  <link rel="stylesheet" href="%scss/site.css">\n</head>\n<body>\n'
             '<a class="skip" href="#main">Skip to content</a>\n\n'
-            '<!-- Icon sprite, inlined so the page works over file:// -->\n' % (e(title), A(desc), b, b, b))
+            '<!-- Icon sprite, inlined so the page works over file:// -->\n'
+            % (e(title), A(desc),
+               A(title), A(desc), A(SITE + "/" + path), A(img_abs),
+               A(title), A(desc), A(img_abs),
+               b, b, b))
     out = head + sprite + "\n\n" + hdr + main + "\n\n" + ftr + '<script src="%sjs/site.js"></script>\n</body>\n</html>\n' % b
     with open(os.path.join(ROOT, path), "w", encoding="utf-8") as f:
         f.write(out)
@@ -472,6 +565,14 @@ def p_home():
     o.append(sec('      <h2 id="stats-h" class="visually-hidden">The Foundation in figures</h2>\n'
                  '      <div class="grid">\n%s      </div>\n      %s' % (cells, note(s_)),
                  label="stats-h"))
+
+    # -- the three doorways. Evan's Work With Us copy, on the homepage, each
+    #    one leading to the page that serves that person first.
+    dr = c["doors"]
+    o.append(sec('      <div class="head">\n        %s\n        <h2 id="doors-h">%s</h2>\n      </div>\n%s'
+                 % (eyebrow(dr["eyebrow"]), e(dr["h2"]),
+                    doors([(x["img"], x["alt"], x["href"], x["title"], x["body"], x["cta"])
+                           for x in dr["cards"]])), label="doors-h", sid="doors"))
 
     # -- the slide. The most valuable material the Foundation owns, given the
     #    quietest treatment on the page: silent, contained, endless.
@@ -563,31 +664,39 @@ def p_home():
     # -- what's new, as an index list: thumbnail, date, line, category right.
     n = c["whatsNew"]
     links = " &middot; ".join('<a href="%s">%s</a>' % (A(x["href"]), e(x["label"])) for x in n["links"])
+    rows = "".join(
+        '        <li class="entry entry--thumb">\n'
+        '          <span class="entry__thumb"><img src="%s" alt="%s" loading="lazy" decoding="async"></span>\n'
+        '          <span class="dated"><time datetime="%s">%s</time></span>\n'
+        '          <h3 class="entry__t"><a href="%s">%s</a></h3>\n'
+        '          <span class="entry__kind">%s</span>\n        </li>\n'
+        % (A(it["img"]), A(it["alt"]), A(it["datetime"]), e(it["dated"]),
+           A(it["href"]), e(it["label"]), e(it["kind"])) for it in n["items"])
     o.append(sec('      <div class="head">\n        %s\n        <h2 id="new-h">%s</h2>\n      </div>\n'
-                 '      <ul class="rule-list rule-list--thumb">\n'
-                 '        <li class="entry entry--thumb">\n'
-                 '          <span class="entry__thumb"><img src="img/w/erc-rancho-cacachilas-agro2-800.jpg" alt="A broad tree standing over dense green undergrowth" loading="lazy" decoding="async"></span>\n'
-                 '          <span class="dated"><time datetime="2026-09-16">16 September to 20 December 2026</time></span>\n'
-                 '          <h3 class="entry__t"><a href="learn.html#pdc">Permaculture Design Certification cohort begins</a></h3>\n'
-                 '          <span class="entry__kind">Course, cohort</span>\n        </li>\n'
-                 '        <li class="entry entry--thumb">\n'
-                 '          <span class="entry__thumb"><img src="img/w/2-hands-planting-shrub-800.jpg" alt="Two hands firming red soil around the base of a newly planted shrub" loading="lazy" decoding="async"></span>\n'
-                 '          <span class="dated"><time datetime="2026-10-18">18 to 31 October 2026</time></span>\n'
-                 '          <h3 class="entry__t"><a href="calendar.html#workshops">India Accelerator Workshop, Coimbatore</a></h3>\n'
-                 '          <span class="entry__kind">Workshop</span>\n        </li>\n      </ul>\n'
-                 '      <p style="margin-top:var(--s4)">%s</p>\n      %s' % (eyebrow(n["eyebrow"]), e(n["h2"]), links, note(n)),
+                 '      <ul class="rule-list rule-list--thumb">\n%s      </ul>\n'
+                 '      <p style="margin-top:var(--s4)">%s</p>\n      %s'
+                 % (eyebrow(n["eyebrow"]), e(n["h2"]), rows, links, note(n)),
                  label="new-h"))
 
+    # -- the testimonial. A real one, named, with its source under it.
     t = c["testimonial"]
-    o.append(sec("      %s\n      %s" % (note(t["quote"]), note(t["attribution"])), "notes-only"))
+    if isinstance(t.get("quote"), str):
+        o.append(sec('      <h2 id="say-h" class="visually-hidden">What people say</h2>\n'
+                     '      <figure class="testimonial">\n        <blockquote><p>%s</p></blockquote>\n'
+                     '        <figcaption>%s</figcaption>\n      </figure>\n'
+                     '      <p class="source small">%s</p>\n      %s'
+                     % (e(t["quote"]), e(t["attribution"]), e(t["source"]), note(t)), label="say-h"))
+    else:
+        o.append(sec("      %s\n      %s" % (note(t["quote"]), note(t["attribution"])), "notes-only"))
 
     # .head puts the h2 left and the lede right; this section's h2 is
     # visually hidden, which left the lede stranded in an empty right column.
     ec = c["ecosystem"]
     o.append(sec('      <h2 id="eco-h" class="visually-hidden">Our ecosystem</h2>\n      %s\n'
-                 '      <p class="lede" style="max-width:44ch;margin-top:var(--s2)">%s</p>\n'
+                 '      <p class="lede" style="max-width:44ch;margin-top:var(--s2)">%s</p>\n%s'
                  '      <p style="margin-top:var(--s4)">%s</p>\n      %s'
-                 % (eyebrow(ec["eyebrow"]), e(ec["line"]), cta(ec["cta"], "btn btn--ghost"), note(ec)),
+                 % (eyebrow(ec["eyebrow"]), e(ec["line"]), partners(ec.get("partners", [])),
+                    cta(ec["cta"], "btn btn--ghost"), note(ec)),
                  label="eco-h"))
 
     # -- the close. One landscape photograph carrying the whole screen, with
@@ -708,7 +817,8 @@ def p_learn():
     ps = c["pathSelector"]
     o.append(sec('      <div class="head"><h2 id="path-h">%s</h2></div>\n'
                  '      <ul class="chips" aria-label="Paths">%s</ul>'
-                 % (e(ps["h2"]), "".join('<li><span class="chip">%s</span></li>' % e(x) for x in ps["chips"])),
+                 % (e(ps["h2"]), "".join('<li><a class="chip" href="%s">%s</a></li>'
+                                        % (A(x["href"]), e(x["label"])) for x in ps["chips"])),
                  "", "path-h"))
 
     program_shots = {
@@ -743,8 +853,9 @@ def p_learn():
                  % (rows, e(c["guarantee"]["ribbon"]), note(c["guarantee"])), label="prog-h", sid="programs"))
 
     t = c["testimonials"]
-    o.append(sec('      <div class="head"><h2 id="tq-h">%s</h2></div>\n      %s'
-                 % (e(t["h2"]), "\n      ".join(note(q) for q in t["quotes"])), "notes-only", "tq-h"))
+    o.append(sec('      <div class="head"><h2 id="tq-h">%s</h2></div>\n%s      %s'
+                 % (e(t["h2"]), awaiting(t), "\n      ".join(note(q) for q in t["quotes"])),
+                 "", "tq-h"))
 
     f = c["faq"]
     rows = "".join('        <li class="entry">\n          <span></span>\n'
@@ -762,9 +873,10 @@ def p_science():
     scroll drives the playhead and the focus together, and reading the page
     becomes the act of looking down a microscope. Study 14 from /motion.
 
-    The other five take photographs from the Foundation's own library. The
-    Vimeo animation notes stay on every one of them as production notes: the
-    animations are real assets and these photographs do not replace them.
+    The other five carry the Foundation's own animation for that mechanism,
+    embedded from Vimeo and lazy-loaded, so nothing is fetched until the
+    reader scrolls to it. The animations explain the mechanism; a photograph
+    of somebody holding soil never did.
     """
     c = load("science"); o = []
 
@@ -779,42 +891,22 @@ def p_science():
                      "A brightfield microscope view of a pale green field scattered with dark spores and debris",
                      cap=True)))
 
-    mech_media = {
-        2: ("img/harringtons-organic-land-care-brick-york-farms-3-768x1024.jpg",
-            "An earthworm in a broken clod of dark soil"),
-        3: ("img/harringtons-organic-land-care-brick-york-farms-2-768x1024.jpg",
-            "Dark soil threaded through with pale fungal strands holding the crumbs together"),
-        4: ("img/fungi-in-under-grape-soil.jpg",
-            "A pale mushroom standing in green cover crop beneath a trained vine row"),
-        5: ("img/harringtons-organic-land-care-york-farms-1-768x1024.jpg",
-            "A green seedling pushing up through soil beside an earthworm"),
-        6: ("img/2-hands-clasped-holding-plant-roots.jpg",
-            "Two hands cupped around a clod of soil held together by fine roots"),
-    }
-
     body = ""
     for m in c["mechanisms"]:
         n = m["n"]
-        if n == 1:
-            # the rack: the Foundation's own brightfield footage, scrubbed by
-            # the reader's own scrolling. Nothing plays on its own.
+        if True:
+            # the Foundation's own animation for this mechanism. loading="lazy"
+            # keeps it off the wire until the reader scrolls to it.
+            an = m["animation"]
             media = ('        <figure class="plate span-6 start-7">\n'
-                     '          <div class="rack" style="aspect-ratio:16/9">\n'
-                     '            <video data-loop data-scrub muted playsinline preload="none"\n'
-                     '                   poster="img/w/sfw-amoeba-still-wide.jpg"\n'
-                     '                   data-src="video/sfw-amoeba-lab-640.webm,video/sfw-amoeba-lab-640.mp4"\n'
-                     '                   aria-label="Brightfield microscopy from the Foundation archive. Scroll to move through the clip."></video>\n'
-                     '            <span class="rack__meter"><i></i></span>\n          </div>\n'
-                     '          <figcaption><span class="plate__n">Plate %d.</span> <span class="plate__t">%s</span>'
-                     '<span class="cap--todo">%s</span></figcaption>\n        </figure>\n' % (n, e(m["title"]), e(CAPTION)))
-        else:
-            src, alt = mech_media[n]
-            media = ('        <figure class="plate span-6 start-7">\n'
-                     '          %s\n'
-                     '          <figcaption><span class="plate__n">Plate %d.</span> <span class="plate__t">%s</span>'
-                     '<span class="cap--todo">%s</span></figcaption>\n        </figure>\n'
-                     % (img(src, alt, sizes="(max-width: 48em) 100vw, 50vw",
-                            cls="plate__img plate__img--band"), n, e(m["title"]), e(CAPTION)))
+                     '          <div class="plate__film">\n'
+                     '            <iframe src="https://player.vimeo.com/video/%s?badge=0&amp;byline=0&amp;portrait=0&amp;title=0"\n'
+                     '                    title="%s" loading="lazy"\n'
+                     '                    allow="fullscreen; picture-in-picture" allowfullscreen></iframe>\n'
+                     '          </div>\n'
+                     '          <figcaption><span class="plate__n">Plate %d.</span> <span class="plate__t">%s</span></figcaption>\n'
+                     '        </figure>\n'
+                     % (A(an["vimeo"]), A("Animation: " + an["title"]), n, e(an["title"])))
         body += ('      <div class="grid" style="padding-block:var(--s6);border-top:var(--hairline) solid var(--rule);align-items:center" id="mechanism-%d">\n'
                  '        <div class="span-5">\n          <p class="small" style="color:var(--ink-faint)">%d of 6</p>\n'
                  '          <h3>%s</h3>\n          <p>%s</p>\n          <p class="todo">%s</p>\n        </div>\n%s      </div>\n'
@@ -826,12 +918,13 @@ def p_science():
     br = c["bridge"]
     o.append(sec('      <div class="head"><h2 id="br-h">%s</h2><p>%s</p></div>\n'
                  '      <p><a class="btn" href="practice.html#case-studies">Case studies</a> '
-                 '<a class="btn btn--ghost" href="learn.html">Explore our programs</a></p>'
+                 '<a class="btn btn--ghost" href="learn.html">See every program and price</a></p>'
                  % (e(br["title"]), e(br["body"])), "", "br-h"))
 
     cs = c["cases"]
-    o.append(sec('      <div class="head"><h2 id="cs-h">%s</h2><p>%s</p></div>\n      %s\n'
-                 '      <p class="small">%s</p>' % (e(cs["h2"]), e(cs["intro"]), note(cs["cards"]), e(c["honestFooter"])),
+    o.append(sec('      <div class="head"><h2 id="cs-h">%s</h2><p>%s</p></div>\n%s      %s\n'
+                 '      <p class="small">%s</p>'
+                 % (e(cs["h2"]), e(cs["intro"]), awaiting(cs), note(cs["cards"]), e(c["honestFooter"])),
                  label="cs-h"))
     return MAIN("\n".join(o))
 
@@ -858,9 +951,12 @@ def p_practice():
     o.append(sec("      " + note(c["projects"]), "notes-only"))
 
     cs = c["caseStudies"]
-    o.append(sec('      <div class="head">\n        %s\n        <h2 id="csx-h">%s</h2>\n        <p>%s</p>\n      </div>\n      %s\n'
-                 '      <p><a class="btn btn--ghost" href="projects/market-garden-sweden.html">Market garden makeover, Sweden</a></p>'
-                 % (eyebrow(cs["eyebrow"]), e(cs["h2"]), e(cs["lede"]), note(cs["cards"])),
+    o.append(sec('      <div class="head">\n        %s\n        <h2 id="csx-h">%s</h2>\n        <p>%s</p>\n      </div>\n%s'
+                 '      <p class="source small">%s</p>\n'
+                 '      <p style="margin-top:var(--s4)"><a class="btn btn--ghost" href="projects/market-garden-sweden.html">Read the Sweden market garden case study</a></p>\n'
+                 '      %s%s'
+                 % (eyebrow(cs["eyebrow"]), e(cs["h2"]), e(cs["lede"]), films(cs["cards"]),
+                    e(cs["source"]), note(cs), note(cs["more"])),
                  label="csx-h", sid="case-studies"))
 
     w = c["workWithUs"]
@@ -875,8 +971,7 @@ def p_practice():
     items = []
     for i, cd in enumerate(w["cards"]):
         src, alt = door_shots[i]
-        href = "#work-with-us"
-        items.append((src, alt, href, cd["title"], cd["body"]))
+        items.append((src, alt, cd["href"], cd["title"], cd["body"], cd["cta"]))
 
     fields = "".join('          <p><label for="w-%d">%s</label><br><input class="input" id="w-%d" type="text"></p>\n'
                      % (i, e(f), i) for i, f in enumerate(w["form"]["fields"]))
@@ -906,7 +1001,7 @@ def p_community():
     o.append(banner("img/erc-rancho-cacachilas-aerial-2.jpg",
                     "An aerial view over dense green tree canopy split by a pale watercourse",
                     h["h1"], "com-h", h.get("intro") or h.get("subhead") or "",
-                    tag="h1", eyeb=h.get("eyebrow", "")))
+                    tag="h1", eyeb=h.get("eyebrow", ""), source=h.get("source", "")))
 
     m = c["map"]
     o.append(sec('      <div class="head">\n        %s\n        <h2 id="map-h">%s</h2>\n        <p>%s</p>\n      </div>\n'
@@ -958,16 +1053,21 @@ def p_calendar():
         "img/ctpfw-student-moving-compost-1.jpg",
         "A student lifting an armful of finished compost at a workshop while a group looks on"))]
     f = c["featured"]
+    iw = c["indiaWorkshop"]
     rows = ('        <li class="cal__row">\n          <div class="cal__rail">\n'
             '            <svg class="icon icon--olive" aria-hidden="true"><use href="#i-scholarship"/></svg>\n'
             '            <span><span class="cal__name">Permaculture Design Certification</span>'
             '<span class="cal__when">16 September to 20 December 2026</span></span>\n          </div>\n'
-            '          <div class="cal__track"><span class="cal__bar" style="--l:4.11%;--w:26.301%"></span></div>\n        </li>\n'
+            '          <div class="cal__track"><a class="cal__bar" href="learn.html#permaculture"'
+            ' aria-label="Permaculture Design Certification, 16 September to 20 December 2026"'
+            ' style="--l:4.11%;--w:26.301%"></a></div>\n        </li>\n'
             '        <li class="cal__row">\n          <div class="cal__rail">\n'
             '            <svg class="icon icon--olive" aria-hidden="true"><use href="#i-workshop"/></svg>\n'
-            '            <span><span class="cal__name">India Accelerator Workshop, Coimbatore</span>'
-            '<span class="cal__when">18 to 31 October 2026</span></span>\n          </div>\n'
-            '          <div class="cal__track"><span class="cal__bar" style="--l:12.877%;--w:3.836%"></span></div>\n        </li>\n'
+            '            <span><span class="cal__name">' + e(iw["title"]) + '</span>'
+            '<span class="cal__when">' + e(iw["dated"]) + '</span></span>\n          </div>\n'
+            '          <div class="cal__track"><a class="cal__bar" href="#workshops"'
+            ' aria-label="' + A(iw["title"]) + ', ' + A(iw["dated"]) + '"'
+            ' style="--l:13.151%;--w:3.288%"></a></div>\n        </li>\n'
             '        <li class="cal__row">\n          <div class="cal__rail">\n'
             '            <svg class="icon icon--olive" aria-hidden="true"><use href="#i-calendar"/></svg>\n'
             '            <span><span class="cal__name">The rest of 2027</span><span class="cal__when">Not yet scheduled</span></span>\n'
@@ -995,7 +1095,7 @@ def p_calendar():
                    'A solid bar is a confirmed run, the dashed band is time that is not scheduled yet, and the green line marks today.</p>\n'
                    '      <ul class="rule-list" id="cal-list">\n'
                    '        <li class="entry" data-kind="workshops" id="workshops">\n'
-                   '          <span class="dated"><time datetime="2026-10-18">18 to 31 October 2026</time></span>\n'
+                   '          <span class="dated"><time datetime="%s">%s</time></span>\n'
                    '          <div><h3 class="entry__t">%s</h3><p class="entry__line">%s</p>\n          <p class="entry__line">%s</p></div>\n'
                    '          <span class="entry__kind">Workshop</span>\n        </li>\n'
                    '        <li class="entry" data-kind="public-webinars">\n'
@@ -1003,8 +1103,13 @@ def p_calendar():
                    '          <div><h3 class="entry__t"><a href="learn-webinars.html">Free educational webinar</a></h3></div>\n'
                    '          <span class="entry__kind">Public webinar</span>\n        </li>\n      </ul>\n      %s\n'
                    '      <p class="small">%s</p>'
-                   % (grid, months, rows, e(f["title"]), e(f["body"]), cta(f["cta"], "btn btn--ghost"),
-                      note(c["otherListings"]), e(c["footerLine"])), label="cal-h"))
+                   % (grid, months, rows, A(iw["datetime"]), e(iw["dated"]),
+                      e(f["title"]), e(f["body"]),
+                      cta(f["cta"], "btn btn--ghost") + " "
+                      + " &middot; ".join('<a href="%s">%s</a>' % (A(x["href"]), e(x["label"]))
+                                          for x in c["links"]),
+                      '<p class="source small">%s</p>' % e(f["source"])
+                      + note(f) + note(c["otherListings"]), e(c["footerLine"])), label="cal-h"))
     return MAIN("\n".join(o))
 
 
@@ -1066,10 +1171,10 @@ def p_login():
     for ch in c["choosers"]:
         nm = ch["name"]["note"] if isinstance(ch["name"], dict) else ch["name"]
         pg = ch["programs"]["note"] if isinstance(ch["programs"], dict) else ch["programs"]
-        items.append({"title": nm, "body": pg, "cta": ch["cta"] if ch["cta"]["href"] != "#" else None,
-                      "note": "confirm which programs live on which platform before publish. Evan.", "status": "verify"})
+        items.append({"title": nm, "body": pg, "cta": ch["cta"] if ch["cta"]["href"] != "#" else None})
     o.append(sec('      <h2 id="lms-h" class="visually-hidden">Choose your platform</h2>\n'
-                 + cards(items) + '      <p>%s</p>' % e(c["helpLine"]), "stratum--deep", "lms-h"))
+                 + cards(items) + '      <p>%s</p>\n      <p class="source small">%s</p>'
+                 % (e(c["helpLine"]), e(c["source"])), "stratum--deep", "lms-h"))
     return MAIN("\n".join(o))
 
 
@@ -1108,10 +1213,11 @@ def p_scholarships():
         "img/ctpfw-student-squeezing-compost-1.jpg",
         "A student in gloves squeezing a handful of compost to test it, with a group watching"))]
     st = c["stories"]
-    o.append(sec('      <div class="head"><h2 id="st-h">%s</h2></div>\n      %s' % (e(st["h2"]), note(st)),
-                 "stratum--deep", "st-h"))
+    o.append(sec('      <div class="head"><h2 id="st-h">%s</h2></div>\n%s      %s'
+                 % (e(st["h2"]), awaiting(st), note(st)), "stratum--deep", "st-h"))
     ap = c["apply"]
-    o.append(sec('      <div class="head"><h2 id="ap-h">%s</h2></div>\n%s      <p>%s</p>'
+    o.append(sec('      <div class="head"><h2 id="ap-h">%s</h2></div>\n%s'
+                 '      <p style="margin-top:var(--s5)">%s</p>'
                  % (e(ap["h2"]), steps(ap["steps"], "i-scholarship"), cta(ap["cta"])), label="ap-h"))
     d = c["donorPanel"]
     o.append(sec('      <h2 id="dp-h">%s</h2>\n      <p class="lede">%s</p>\n      <p>%s</p>'
@@ -1123,40 +1229,143 @@ def p_webinars():
     c = load("webinars"); o = [hero(c["hero"], "web-h", photo=(
         "img/Test tubes with sample_.jpg",
         "Sample tubes racked in front of a microscope, shallow focus"))]
+    fa = c["facts"]
+    o.append(sec('      <div class="head">\n        <h2 id="fa-h">%s</h2>\n        <p>%s</p>\n      </div>\n%s'
+                 '      <p class="source small">%s</p>'
+                 % (e(fa["h2"]), e(fa["lede"]), facts(fa["rows"]), e(fa["source"])), label="fa-h"))
+
     ns = c["nextSession"]
-    o.append(sec('      <div class="head"><h2 id="ns-h">Next session</h2></div>\n      %s\n'
-                 '      <p><a class="btn" href="https://webinar.soilfoodweb.com">%s</a></p>' % (note(ns), e(ns["cta"])),
-                 "stratum--deep", "ns-h"))
+    o.append(sec('      <div class="head"><h2 id="ns-h">Next session</h2></div>\n%s      %s\n'
+                 '      <p><a class="btn" href="https://webinar.soilfoodweb.com">%s</a></p>'
+                 % (awaiting(ns), note(ns), e(ns["cta"])), "stratum--deep", "ns-h"))
+    se = c["series"]
+    o.append(sec('      <div class="head">\n        <h2 id="se-h">%s</h2>\n        <p>%s</p>\n      </div>\n%s      %s'
+                 % (e(se["h2"]), e(se["lede"]),
+                    cards([{"title": x["title"], "body": x["body"]} for x in se["items"]]), note(se)),
+                 label="se-h"))
+
     r = c["recordings"]
-    o.append(sec('      <div class="head"><h2 id="rec-h">%s</h2></div>\n      %s\n      <p>%s <a href="%s">our community space</a></p>'
-                 % (e(r["h2"]), note({"note": r["note"], "status": "placeholder"}), e(r["backlogLine"]), A(r["backlogHref"])),
-                 label="rec-h"))
+    o.append(sec('      <div class="head"><h2 id="rec-h">%s</h2></div>\n%s      %s\n'
+                 '      <p>%s <a href="%s">our community space</a></p>'
+                 % (e(r["h2"]), awaiting(r), note({"note": r["note"], "status": "placeholder"}),
+                    e(r["backlogLine"]), A(r["backlogHref"])), label="rec-h"))
+    # Free resources: each one is a way somewhere else on the site, so each one
+    # is a link that says where it goes.
     res = c["resources"]
-    o.append(sec('      <div class="head"><h2 id="fr-h">%s</h2></div>\n      <ul>%s</ul>'
-                 % (e(res["h2"]), "".join("<li>%s</li>" % e(x) for x in res["items"])), "stratum--deep", "fr-h"))
+    o.append(sec('      <div class="head">\n        <h2 id="fr-h">%s</h2>\n        <p>%s</p>\n      </div>\n%s'
+                 % (e(res["h2"]), e(res["lede"]),
+                    cards([{"title": x["title"], "body": x["body"],
+                            "cta": {"label": x["cta"], "href": x["href"]},
+                            "note": x.get("note"), "status": x.get("status")}
+                           for x in res["items"]])),
+                 "stratum--deep", "fr-h"))
+
+    nx = c["next"]
+    o.append(sec('      <div class="head">\n        <h2 id="nx-h">%s</h2>\n        <p>%s</p>\n      </div>\n%s'
+                 % (e(nx["h2"]), e(nx["lede"]), cards(nx["cards"])), label="nx-h"))
     return MAIN("\n".join(o))
 
 
+# (file, <title>, content key, renderer, og:image). The share image is the
+# page's own hero photograph: a link to the Learn page should not unfurl with
+# the homepage's picture.
 PAGES = [
-    ("index.html", "Soil Food Web Foundation, a nonprofit teaching the science of living soil", "home", p_home),
-    ("about.html", "About the Foundation, Soil Food Web Foundation", "about", p_about),
-    ("learn.html", "Learn with us, Soil Food Web Foundation", "learn", p_learn),
-    ("science.html", "How the soil food web works, Soil Food Web Foundation", "science", p_science),
-    ("practice.html", "Practice, Soil Food Web Foundation", "practice", p_practice),
-    ("community.html", "Community, Soil Food Web Foundation", "community", p_community),
-    ("calendar.html", "Calendar, Soil Food Web Foundation", "calendar", p_calendar),
-    ("news.html", "News and stories, Soil Food Web Foundation", "news", p_news),
-    ("research.html", "Research, Soil Food Web Foundation", "research", p_research),
-    ("login.html", "Student access, Soil Food Web Foundation", "login", p_login),
-    ("donate.html", "Donate and get involved, Soil Food Web Foundation", "donate", p_donate),
-    ("learn-scholarships.html", "Scholarships, Soil Food Web Foundation", "scholarships", p_scholarships),
-    ("learn-webinars.html", "Free webinars, Soil Food Web Foundation", "webinars", p_webinars),
+    ("index.html", "Soil Food Web Foundation, a nonprofit teaching the science of living soil", "home", p_home,
+     "img/hand-soil-roots-fungi.jpg"),
+    ("about.html", "About the Foundation, Soil Food Web Foundation", "about", p_about,
+     "img/Dr Elaine Ingham with Microscope.jpg"),
+    ("learn.html", "Learn with us, Soil Food Web Foundation", "learn", p_learn,
+     "img/ctpfw-student-squeezing-compost-1.jpg"),
+    ("science.html", "How the soil food web works, Soil Food Web Foundation", "science", p_science,
+     "img/fungal-spores-in-suspension.jpg"),
+    ("practice.html", "Practice, Soil Food Web Foundation", "practice", p_practice,
+     "img/red-soil-hand.jpg"),
+    ("community.html", "Community, Soil Food Web Foundation", "community", p_community,
+     "img/erc-rancho-cacachilas-aerial-2.jpg"),
+    ("calendar.html", "Calendar, Soil Food Web Foundation", "calendar", p_calendar,
+     "img/ctpfw-student-moving-compost-1.jpg"),
+    ("news.html", "News and stories, Soil Food Web Foundation", "news", p_news,
+     "img/Carla-Nicks Son-Nick-ERI-Wild Soils Event-11-2024.jpg"),
+    ("research.html", "Research, Soil Food Web Foundation", "research", p_research,
+     "img/Test tubes with sample_.jpg"),
+    ("login.html", "Student access, Soil Food Web Foundation", "login", p_login,
+     "img/hand-soil-roots-fungi.jpg"),
+    ("donate.html", "Donate and get involved, Soil Food Web Foundation", "donate", p_donate,
+     "img/erc-panchamana-treeplanting-2-fb-img-1666270988322.jpg"),
+    ("learn-scholarships.html", "Scholarships, Soil Food Web Foundation", "scholarships", p_scholarships,
+     "img/hvdb-inplanten-002.jpg"),
+    ("learn-webinars.html", "Free webinars, Soil Food Web Foundation", "webinars", p_webinars,
+     "img/Sampling equipment.jpg"),
 ]
 
+# Pages written by hand rather than rendered from content/. They carry the same
+# header and footer, so the chrome is re-stamped into them here: without this the
+# nav drifts out of step with the generated pages every time a label changes.
+HAND_WRITTEN = [
+    "about-elaine.html", "about-governance.html", "about-team.html",
+    "accessibility.html", "contact.html", "directory.html", "privacy.html",
+    "terms.html", "projects/market-garden-sweden.html",
+]
+
+HDR_RE = re.compile(
+    r"<!-- =+ UTILITY BAR \+ HEADER \(every page\) =+ -->.*?(?=<main id=\"main\">)", re.S)
+FTR_RE = re.compile(
+    r"<!-- =+ FOOTER \(every page\) =+ -->.*?</footer>\n", re.S)
+
+
+SHARE_RE = re.compile(r'<img[^>]+src="((?:\.\./)*img/[^"]+)"')
+OG_RE = re.compile(r'\n?  <meta (?:property="og:|name="twitter:)[^>]*>', re.S)
+
+
+def restamp_head(path, doc):
+    """Give a hand-written page the same share tags the generated ones get."""
+    title = re.search(r"<title>(.*?)</title>", doc, re.S).group(1).strip()
+    d = re.search(r'<meta name="description" content="([^"]*)"', doc)
+    desc = d.group(1) if d else title
+    m = SHARE_RE.search(doc)
+    rel = re.sub(r"^(\.\./)+", "", m.group(1)) if m else "img/hand-soil-roots-fungi.jpg"
+    img_abs = SITE + "/" + web(rel)
+    tags = ('\n  <meta property="og:type" content="website">'
+            '\n  <meta property="og:title" content="%s">'
+            '\n  <meta property="og:description" content="%s">'
+            '\n  <meta property="og:url" content="%s">'
+            '\n  <meta property="og:image" content="%s">'
+            '\n  <meta name="twitter:card" content="summary_large_image">'
+            '\n  <meta name="twitter:title" content="%s">'
+            '\n  <meta name="twitter:description" content="%s">'
+            '\n  <meta name="twitter:image" content="%s">'
+            % (A(title), A(desc), A(SITE + "/" + path), A(img_abs),
+               A(title), A(desc), A(img_abs)))
+    doc = OG_RE.sub("", doc)
+    anchor = '  <meta property="og:site_name" content="Soil Food Web Foundation">'
+    if anchor not in doc:
+        doc = doc.replace("</title>", "</title>\n" + anchor, 1)
+    return doc.replace(anchor, anchor + tags, 1)
+
+
+def restamp(path):
+    """Replace the header and footer blocks of a hand-written page in place."""
+    full = os.path.join(ROOT, path)
+    with open(full, encoding="utf-8") as fh:
+        doc = fh.read()
+    depth = path.count("/")
+    hdr, ftr = chrome(depth)
+    doc, nh = HDR_RE.subn(lambda m: hdr, doc, count=1)
+    doc, nf = FTR_RE.subn(lambda m: ftr.rstrip("\n") + "\n", doc, count=1)
+    if not (nh and nf):
+        raise SystemExit("chrome markers missing in " + path)
+    doc = restamp_head(path, doc)
+    with open(full, "w", encoding="utf-8") as fh:
+        fh.write(doc)
+    print("  re-stamped", path)
+
+
 if __name__ == "__main__":
-    for path, title, key, fn in PAGES:
+    for path, title, key, fn, share in PAGES:
         c = load(key)
         h = c.get("hero", {})
         desc = h.get("intro") or h.get("subhead") or title
-        render(path, title, desc[:300], fn())
-    print("done:", len(PAGES), "pages")
+        render(path, title, desc[:300], fn(), share=share)
+    for path in HAND_WRITTEN:
+        restamp(path)
+    print("done:", len(PAGES), "rendered,", len(HAND_WRITTEN), "re-stamped")

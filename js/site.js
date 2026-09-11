@@ -331,3 +331,26 @@
     }
   });
 })();
+
+
+/* ---------- 11. Films from the field ----------
+   Every case-study still is a facade. Nothing is fetched from Vimeo until a
+   visitor presses play; then the button is swapped for the player, in place,
+   and focus moves into it so a keyboard user lands where the video is. The
+   privacy hash rides on the button, because these videos are unlisted and
+   the player refuses them without it. */
+(function () {
+  var strip = document.querySelectorAll("[data-film]");
+  if (!strip.length) return;
+  Array.prototype.forEach.call(strip, function (btn) {
+    btn.addEventListener("click", function () {
+      var frame = document.createElement("iframe");
+      frame.src = btn.getAttribute("data-film") + "&autoplay=1";
+      frame.title = btn.getAttribute("aria-label") || "Video";
+      frame.allow = "autoplay; fullscreen; picture-in-picture";
+      frame.setAttribute("allowfullscreen", "");
+      btn.parentNode.replaceChild(frame, btn);
+      frame.focus();
+    });
+  });
+})();
