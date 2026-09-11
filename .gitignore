@@ -1,4 +1,29 @@
+# OS
 .DS_Store
-docs/crawl/
+Thumbs.db
+Desktop.ini
+
+# Editors and IDEs
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Environment and secrets
+.env
+.env.*
+
+# Python
 __pycache__/
 *.pyc
+*.pyo
+
+# Node (not used yet, but ready for WordPress migration tooling)
+node_modules/
+npm-debug.log*
+
+# Crawl output (generated, large)
+docs/crawl/
