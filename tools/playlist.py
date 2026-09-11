@@ -78,7 +78,11 @@ class Playlist(HTMLParser):
     def handle_starttag(self, tag, attrs):
         a = dict(attrs)
         if tag == "a" and a.get("href"):
-            self._open = {"href": a["href"], "lines": [], "img": ""}
+            # The visible text is the best title, but plenty of these anchors
+            # wrap nothing but a thumbnail, so the attributes that carry a
+            # name are collected too.
+            self._open = {"href": a["href"], "lines": [], "img": "",
+                          "alt": a.get("title") or a.get("aria-label") or ""}
         elif tag == "iframe" and a.get("src"):
             self.iframes.append(a["src"])
         elif tag == "img" and self._open is not None and not self._open["img"]:
@@ -88,6 +92,8 @@ class Playlist(HTMLParser):
             if src.startswith("data:"):
                 src = (a.get("data-lazy-src") or a.get("data-srcset", "").split(" ")[0] or "")
             self._open["img"] = src
+            if not self._open["alt"]:
+                self._open["alt"] = a.get("alt") or a.get("title") or ""
 
     def handle_endtag(self, tag):
         if tag == "a" and self._open is not None:
@@ -167,8 +173,12 @@ def text_near(lines):
     return lines[0], " \u00b7 ".join(lines[1:])
 
 
-def scrape(page):
+def scrape(page, raw_dir=None):
     status, html = fetch(page)
+    if raw_dir and html:
+        name = re.sub(r"[^a-z0-9]+", "-", up.urlparse(page).path.lower()).strip("-") or "index"
+        with open(os.path.join(raw_dir, name + ".html"), "w", encoding="utf-8") as f:
+            f.write(html)
     if status != 200:
         print("  could not read the page: %s" % (("HTTP %d" % status) if status else html))
         return None
@@ -182,6 +192,7 @@ def scrape(page):
             continue
         seen.add(vid)
         title, subtitle = text_near(link["lines"])
+        title = title or link.get("alt", "")
         out.append({"id": vid, "hash": h, "title": title, "subtitle": subtitle,
                     "remote_thumb": up.urljoin(page, link["img"]) if link["img"] else "",
                     "source": page})
@@ -200,17 +211,36 @@ def scrape(page):
     return out
 
 
-def verify(item):
-    """200 with a title means it plays. Anything else means it does not."""
+def verify(item, raw_dir=None):
+    """Is this a video that will play, and how long is it?
+
+    A 200 is not enough, which is what the first run of this script got wrong.
+    Vimeo answers 200 for a showcase id as well as a video id, and the six
+    playlist pages are full of showcase ids: every page links to the other
+    five playlists in exactly the same ?vID= shape as a video. Those answers
+    come back with no duration and no title, and 21 of the 27 ids found on
+    the first run were that.
+
+    So the test is what the answer contains, not what it says: type "video"
+    and a real duration. Anything else is a showcase, or something else
+    entirely, and is reported rather than written.
+    """
     url = "https://vimeo.com/%s/%s" % (item["id"], item["hash"]) if item["hash"] \
         else "https://vimeo.com/%s" % item["id"]
     status, body = fetch(OEMBED, {"url": url, "width": 1280})
+    if raw_dir:
+        with open(os.path.join(raw_dir, "oembed-%s.json" % item["id"]), "w", encoding="utf-8") as f:
+            f.write("%s %s\n%s" % (status, url, body))
     if status != 200:
-        return None, "oembed %s for %s" % (status or "no answer", url)
+        return None, "oembed %s" % (status or "no answer")
     try:
-        return json.loads(body), None
+        meta = json.loads(body)
     except ValueError:
-        return None, "oembed returned something that is not JSON for %s" % url
+        return None, "oembed did not return JSON"
+    if meta.get("type") != "video" or not meta.get("duration"):
+        return None, "not a video: oembed gives type %r, duration %r (a showcase id?)" \
+            % (meta.get("type"), meta.get("duration"))
+    return meta, None
 
 
 def fetch_thumb(url, slug):
@@ -232,7 +262,16 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--verify-only", action="store_true",
                     help="re-check the videos already in content/videos.json")
+    ap.add_argument("--save-raw", action="store_true",
+                    help="also write every page and every Vimeo answer to docs/playlist-raw/, "
+                         "so the extraction can be corrected against what the pages actually contain")
     args = ap.parse_args()
+
+    raw_dir = None
+    if args.save_raw:
+        raw_dir = os.path.join(ROOT, "docs", "playlist-raw")
+        os.makedirs(raw_dir, exist_ok=True)
+        print("saving raw pages and answers to %s" % raw_dir)
 
     if not os.path.exists(DATA):
         sys.exit("Cannot find %s.\nRun this from a clone of the repository: the script writes into\n"
@@ -244,7 +283,7 @@ def main():
 
     unreachable = 0
     for pl in data["playlists"]:
-        items = pl["items"] if args.verify_only else scrape(pl["page"])
+        items = pl["items"] if args.verify_only else scrape(pl["page"], raw_dir)
         if items is None:                       # the page itself did not answer
             unreachable += 1
             continue
@@ -252,7 +291,7 @@ def main():
             print("%-26s %s  %d links" % (pl["id"], pl["page"], len(items)))
         out = []
         for it in items:
-            meta, err = verify(it)
+            meta, err = verify(it, raw_dir)
             slug = it.get("slug") or slugify(it.get("title"), it["id"], taken)
             if err:
                 broken.append((pl["id"], slug, it["id"], it.get("hash") or "NO HASH", err))
@@ -266,7 +305,8 @@ def main():
                 "title": it.get("title") or meta.get("title", ""),
                 "subtitle": it.get("subtitle", ""),
                 "duration": meta.get("duration"),
-                "thumb": fetch_thumb(it.get("remote_thumb") or meta.get("thumbnail_url", ""), slug),
+                "thumb": (fetch_thumb(it.get("remote_thumb"), slug)
+                          or fetch_thumb(meta.get("thumbnail_url", ""), slug)),
                 "source": it.get("source", pl["page"]),
             }
             out.append(entry)
@@ -291,13 +331,21 @@ def main():
         f.write("\n")
 
     print("\n%d videos written to content/videos.json" % kept)
-    if broken:
-        print("\n%d WILL NOT PLAY, and are not in the file:" % len(broken))
-        for row in broken:
+
+    # A showcase id is not a broken video, it is a link to another playlist,
+    # and the pages are full of them. Worth counting, not worth reading.
+    shows = [r for r in broken if "not a video" in r[4]]
+    real = [r for r in broken if "not a video" not in r[4]]
+    if shows:
+        print("\n%d links were to other playlists rather than to videos, and were skipped."
+              % len(shows))
+    if real:
+        print("\n%d WILL NOT PLAY, and are not in the file:" % len(real))
+        for row in real:
             print("  %-26s %-28s id %s  h %s\n      %s" % row)
         print("\nEach one needs its hash checked in the Vimeo account, or the video")
         print("re-shared as unlisted. Re-run with --verify-only after fixing.")
-    return 1 if broken else 0
+    return 1 if real else 0
 
 
 if __name__ == "__main__":

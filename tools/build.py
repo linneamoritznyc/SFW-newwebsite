@@ -215,7 +215,9 @@ def theatre(only=(), depth=0):
         if only and pl["id"] not in only:
             continue
         for it in pl["items"]:
-            if not (it.get("id") and it.get("hash")):   # unplayable without both
+            # id and hash or it will not play; a duration or it is not a video
+            # at all. A showcase id answers oembed with neither.
+            if not (it.get("id") and it.get("hash") and it.get("duration")):
                 continue
             if it["id"] in seen:                       # the same video in two playlists
                 continue
@@ -247,7 +249,19 @@ def theatre(only=(), depth=0):
     # a JSON island cannot be allowed to close the script element early
     payload = payload.replace("</", "<\\/")
 
-    return ('      <div class="theatre" data-theatre>\n'
+    # Titles are whatever the playlist markup or Vimeo gave us. Several are
+    # upload names rather than display titles, because the playlist pages
+    # render their titles with JavaScript and a scrape of the HTML does not
+    # see them. Flagged rather than rewritten: inventing a title for a named
+    # grower's case study is exactly the thing not to do.
+    flag = ""
+    if any(re.search(r"_[A-Z]{2,}|_\d{4}|CTA[A-Z]?\d", v.get("title", "")) for v in items):
+        flag = ('      <p class="todo">Some titles below are Vimeo upload names, not display '
+                'titles: the playlist pages write their titles with JavaScript, which the scrape '
+                'does not see. Run tools/playlist.py --save-raw and the real titles can be read '
+                'from the saved pages. Nothing here has been renamed by hand.</p>\n')
+
+    return (flag + '      <div class="theatre" data-theatre>\n'
             '        <div class="theatre__stage">\n'
             '          <div class="theatre__frame" data-frame hidden></div>\n'
             '          <button class="theatre__poster" type="button" data-poster>\n'
