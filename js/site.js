@@ -115,25 +115,64 @@
   /* ---------- 4. Filter chips (index pages) ---------- */
   // <ul class="chips" data-filter-for="#list"> with <button class="chip" data-filter="all|kind">
   // Items in the list carry data-kind. "all" shows everything. No pagination anywhere.
-  var chipGroups = document.querySelectorAll("[data-filter-for]");
-  Array.prototype.forEach.call(chipGroups, function (group) {
-    var list = document.querySelector(group.getAttribute("data-filter-for"));
-    if (!list) return;
-    var chips = group.querySelectorAll("[data-filter]");
-    var status = group.querySelector("[data-filter-status]");
-    Array.prototype.forEach.call(chips, function (chip) {
-      chip.addEventListener("click", function () {
-        var key = chip.getAttribute("data-filter");
-        Array.prototype.forEach.call(chips, function (c) { c.setAttribute("aria-pressed", c === chip ? "true" : "false"); });
-        var shown = 0;
-        Array.prototype.forEach.call(list.children, function (item) {
-          var show = key === "all" || item.getAttribute("data-kind") === key;
-          item.hidden = !show;
-          if (show) shown++;
+  // More than one group may point at the same list: an item shows only when
+  // every group agrees. A group tests data-kind unless data-filter-attr names
+  // another attribute, so Publications filters by collection and by decade.
+  // Children carrying none of those attributes (the column header row) are
+  // chrome: never hidden, never counted.
+  var byList = [];
+  Array.prototype.forEach.call(document.querySelectorAll("[data-filter-for]"), function (group) {
+    var sel = group.getAttribute("data-filter-for");
+    var found = null;
+    byList.forEach(function (b) { if (b.sel === sel) found = b; });
+    if (!found) {
+      var list = document.querySelector(sel);
+      if (!list) return;
+      found = { sel: sel, list: list, groups: [] };
+      byList.push(found);
+    }
+    found.groups.push(group);
+  });
+
+  byList.forEach(function (b) {
+    var attrs = b.groups.map(function (g) { return g.getAttribute("data-filter-attr") || "data-kind"; });
+    var items = Array.prototype.filter.call(b.list.children, function (item) {
+      for (var i = 0; i < attrs.length; i++) { if (item.hasAttribute(attrs[i])) return true; }
+      return false;
+    });
+
+    function apply() {
+      var shown = 0;
+      items.forEach(function (item) {
+        var show = true;
+        b.groups.forEach(function (group, i) {
+          if (!show) return;
+          var on = group.querySelector('[data-filter][aria-pressed="true"]');
+          var key = on ? on.getAttribute("data-filter") : "all";
+          if (key !== "all" && item.getAttribute(attrs[i]) !== key) show = false;
         });
+        item.hidden = !show;
+        if (show) shown++;
+      });
+      b.groups.forEach(function (group) {
+        var status = group.querySelector("[data-filter-status]");
         if (status) status.textContent = shown + " shown";
       });
+    }
+
+    b.groups.forEach(function (group) {
+      var chips = group.querySelectorAll("[data-filter]");
+      Array.prototype.forEach.call(chips, function (chip) {
+        chip.addEventListener("click", function () {
+          Array.prototype.forEach.call(chips, function (c) {
+            c.setAttribute("aria-pressed", c === chip ? "true" : "false");
+          });
+          apply();
+        });
+      });
     });
+
+    apply();
   });
 })();
 

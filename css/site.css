@@ -119,6 +119,12 @@
 html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
+/* The browser's own [hidden] rule is display:none, which any component that
+   sets its own display (.entry is a grid, .card is a flex column) overrides.
+   That silently broke every filter on the site: chips set the hidden
+   attribute and the rows stayed on the page. Hidden means hidden. */
+[hidden] { display: none !important; }
+
 body {
   margin: 0;
   background: var(--paper);
@@ -3396,3 +3402,16 @@ a:hover { color: var(--accent-deep); }
   .theatre__poster img, .theatre__go, .theatre__thumb img { transition: none; }
   .theatre__poster:hover .theatre__go { border-radius: 62% 38% 55% 45% / 58% 62% 38% 42%; }
 }
+
+/* Research database: half the entries link to a publisher record and half are
+   citation only, and .entry__t drops the underline, so a linked title needs a
+   mark of its own. The sprite's "opens elsewhere" arrow, cut to text size and
+   sat on the baseline, faint until the row is hovered or focused. */
+.entry__t a .icon {
+  /* inline-block, not the svg default inline: a replaced inline takes a line
+     break before it and strands the arrow alone under the title. */
+  display: inline-block;
+  width: .68em; height: .68em; stroke-width: 1.9;
+  margin-left: .3em; vertical-align: baseline; color: var(--ink-faint);
+}
+.entry__t a:hover .icon, .entry__t a:focus .icon { color: inherit; }

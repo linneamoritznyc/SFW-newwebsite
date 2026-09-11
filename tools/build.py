@@ -925,7 +925,11 @@ def p_about():
                    '          <div><h3 class="entry__t">%s</h3><p class="entry__line">%s</p>%s</div>\n'
                    '          <span></span>\n        </li>\n'
                    % (e(x["year"]), e(x["title"]), e(x["body"]),
-                      ('<p class="entry__line"><a href="%s">%s</a></p>' % (A(x["link"]), A(x["link"]))) if x.get("link") else "")
+                      (('<p class="entry__line"><a href="%s">%s</a></p>' % (A(x["link"]), A(x["link"]))) if x.get("link") else "")
+                      # a number in a timeline entry still names where it came from
+                      + (('<p class="entry__line"><span class="source small"><a href="%s">%s</a>, %s</span></p>'
+                          % (A(x["sourceLink"]["href"]), e(x["sourceLink"]["label"]), e(x["source"])))
+                         if x.get("source") else ""))
                    for x in hi["entries"])
     o.append(sec('      <div class="head"><h2 id="story-h">%s</h2></div>\n      <ul class="rule-list">\n%s      </ul>'
                  % (e(hi["h2"]), rows), label="story-h", sid="our-story"))
@@ -1351,16 +1355,57 @@ def p_research():
                    "intro": "A growing database of soil food web science: Dr. Elaine Ingham's publications, research from the wider field, and, as our open-research program matures, studies from the Foundation and its partners."},
                   "res-h", photo=("img/soil-sample-shovel-and-bag.jpg",
                                   "Gloved hands easing a trowel of red soil into a sample bag")))
+
+    # The publications database. Two chip groups over one list: collection and
+    # decade, narrowing together (site.js job 4). Every entry shows its date,
+    # its citation and its type; the 82 with a verified source carry the
+    # sprite's "opens elsewhere" arrow so a linked row is telling apart from a
+    # citation-only one at a glance. No pagination, so all 137 are in the page.
+    d = c["database"]
     rows = ""
-    for s in c["seedEntries"]:
-        link = '<a href="%s">%s</a>' % (A(s["link"]), e(s["citation"])) if s.get("link") else e(s["citation"])
-        rows += ('        <li class="entry">\n          <span class="dated">Seed entry</span>\n'
-                 '          <div><h3 class="entry__t">%s</h3>%s</div>\n          <span class="entry__kind">Publication</span>\n        </li>\n'
-                 % (link, note(s)))
-    o.append(sec('      <h2 id="res-list-h" class="visually-hidden">The database</h2>\n'
-                 + tabs(["All", "Dr. Elaine's publications", "Soil food web science", "Foundation research"], "#res-list", "Type")
-                 + '      <ul class="rule-list" id="res-list">\n%s      </ul>\n      <p class="todo">%s</p>'
-                 % (rows, e(c["databaseNote"])), label="res-h"))
+    for x in d["entries"]:
+        title = e(x["title"])
+        if x.get("url"):
+            # no space before the arrow: a break opportunity there strands it
+            # on a line of its own under a full-width title
+            title = ('<a href="%s">%s<svg class="icon" aria-hidden="true">'
+                     '<use href="#i-external"/></svg></a>' % (A(x["url"]), title))
+        line = " · ".join(e(x[k]) for k in ("authors", "citation") if x.get(k))
+        rows += ('        <li class="entry" data-kind="%s" data-decade="%s">\n'
+                 '          <span class="dated"><time datetime="%s">%s</time></span>\n'
+                 '          <div><h3 class="entry__t">%s</h3>%s</div>\n'
+                 '          <span class="entry__kind">%s</span>\n        </li>\n'
+                 % (A(x["collection"]), A(x["decade"]), A(x["datetime"]), e(x["dated"]),
+                    title, ('<p class="entry__line">%s</p>' % line) if line else "", e(x["type"])))
+
+    lede = e(d["lede"]).replace("info@soilfoodweb.com",
+                               '<a href="%s">info@soilfoodweb.com</a>' % A(d["ledeMailto"]))
+    chips = ('      <ul class="chips" data-filter-for="#res-list" aria-label="Collection">'
+             '<li><button class="chip" type="button" data-filter="all" aria-pressed="true">All</button></li>'
+             + "".join('<li><button class="chip" type="button" data-filter="%s" aria-pressed="false">%s (%d)</button></li>'
+                       % (A(g["slug"]), e(g["label"]), g["count"]) for g in d["collections"])
+             + '</ul>\n'
+             '      <ul class="chips" data-filter-for="#res-list" data-filter-attr="data-decade" aria-label="Decade">'
+             '<li><button class="chip" type="button" data-filter="all" aria-pressed="true">Every decade</button></li>'
+             + "".join('<li><button class="chip" type="button" data-filter="%s" aria-pressed="false">%s</button></li>'
+                       % (A(g["slug"]), e(g["label"])) for g in d["decades"])
+             + '<li class="small" data-filter-status style="align-self:center;color:var(--ink-faint)"></li></ul>\n')
+
+    o.append(sec('      <h2 id="res-list-h">%s</h2>\n      <p class="lede">%s</p>\n'
+                 '      <p><a class="btn" href="%s">%s</a></p>\n'
+                 % (e(d["h2"]), lede, A(d["scholar"]["href"]), e(d["scholar"]["label"]))
+                 + chips
+                 + "".join('      <p class="todo">%s</p>\n' % e(n) for n in d["notes"])
+                 + '      <ul class="rule-list" id="res-list">\n'
+                   '        <li class="rule-list__head" aria-hidden="true">'
+                   '<span>Year</span><span>Publication</span><span>Type</span></li>\n'
+                 + rows + '      </ul>\n'
+                 # under the list, where a reader reaches it having seen the
+                 # rows, not as a headline above them
+                 + '      <p class="small" style="margin-top:var(--s3)">%s</p>\n'
+                   '      <p class="source small">%s</p>'
+                 % (e(d["listNote"]), e(d["listSource"])), label="res-list-h"))
+
     w = c["workWithUs"]
     o.append(sec('      <h2 id="rw-h">%s</h2>\n      <p class="lede">%s</p>\n      <p>%s</p>'
                  % (e(w["h2"]), e(w["body"]), cta(w["cta"])), "stratum--deep", "rw-h", "work-with-us"))
