@@ -2730,3 +2730,48 @@ code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .9em; }
 .ledger--two { grid-template-columns: repeat(2, 1fr); }
 @media (min-width: 60em) { .ledger--two { grid-template-columns: repeat(3, 1fr); } }
 .legacy .ledger img { border-bottom: 3px solid var(--legacy); }
+
+/* ==========================================================================
+   Three windows on one drop of water.
+
+   Three live circles, all running the same ten seconds of the Foundation's
+   own brightfield microscopy, each framed on a different part of the slide:
+   the whole field, the two organisms where they meet, and the dark body at
+   the upper left. Each starts at a different second of the loop, so they are
+   three moments and not three copies of one.
+
+   NO COLOUR GRADING. Everything else on this site that uses this reel
+   stretches it hard, because it is nearly flat. These do not: they are meant
+   to look like the footage looks. Legibility comes from getting closer
+   instead, which is framing rather than grading.
+   ========================================================================== */
+.slides {
+  max-width: none;              /* site.css caps every ul at a reading measure */
+  list-style: none; margin: 0; padding: 0;
+  display: grid; gap: var(--s5) var(--col-gap);
+  grid-template-columns: 1fr;
+}
+@media (min-width: 44em) { .slides { grid-template-columns: repeat(3, 1fr); } }
+.slides > li { margin: 0; }
+.slide { margin: 0; }
+.slide__disc {
+  position: relative; aspect-ratio: 1; border-radius: 50%;
+  overflow: hidden; background: var(--panel);
+  box-shadow: 0 0 0 1px var(--rule);
+}
+.slide__disc video {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transform-origin: 50% 50%;
+}
+.slide figcaption {
+  margin-top: var(--s3); padding-top: var(--s2);
+  border-top: var(--hairline) solid var(--rule-strong);
+}
+.slide__n {
+  display: block; font-family: var(--serif); font-style: italic;
+  font-size: var(--t2); line-height: 1.2; color: var(--soil);
+}
+.slide__d {
+  display: block; margin-top: .35em;
+  font-size: var(--t0); color: var(--ink-soft);
+}

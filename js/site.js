@@ -227,6 +227,13 @@
       s.type = src.slice(-5) === ".webm" ? "video/webm" : "video/mp4";
       v.appendChild(s);
     });
+    // data-start seeds the playhead, so several clips of the same reel on one
+    // page are several moments rather than several copies of one.
+    if (v.dataset.start) {
+      v.addEventListener("loadedmetadata", function () {
+        try { v.currentTime = parseFloat(v.dataset.start) || 0; } catch (e) { /* not seekable */ }
+      }, { once: true });
+    }
     v.load();
   }
 
