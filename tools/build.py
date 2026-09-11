@@ -141,24 +141,35 @@ def filmstrip(items, depth=0):
 
 
 def ledger(items, depth=0):
-    """A tidy grid of photographs, each with a small caption underneath."""
+    """A tidy grid of photographs, each with a small caption underneath.
+
+    Items are (src, alt) or (src, alt, label). The label is optional and left
+    off wherever naming the place or the people in a frame would be a claim
+    the Foundation has not made.
+    """
     li = ""
-    for src, alt, label in items:
+    for it in items:
+        src, alt = it[0], it[1]
+        label = it[2] if len(it) > 2 else ""
+        cap = ('<b>%s</b>' % e(label) if label else "") + '<span class="cap--todo">%s</span>' % e(CAPTION)
         li += ('        <li>\n          <figure>\n'
                '            <img src="%s%s" alt="%s" loading="lazy" decoding="async">\n'
-               '            <figcaption><b>%s</b><span class="cap--todo">%s</span></figcaption>\n'
+               '            <figcaption>%s</figcaption>\n'
                '          </figure>\n        </li>\n'
-               % ("../" * depth, A(src), A(alt), e(label), e(CAPTION)))
+               % ("../" * depth, A(src), A(alt), cap))
     return '      <ul class="ledger">\n%s      </ul>\n' % li
 
 
-def banner(src, alt, h2, hid, lede="", ctas="", depth=0):
+def banner(src, alt, h2, hid, lede="", ctas="", depth=0, tag="h2", eyeb=""):
     """One landscape photograph carrying a whole screen, with one line over it.
 
     Landscape only and never a face: type sits on the image, so it needs a
     scrim, and a scrim across somebody's face is exactly what was ruled out.
     """
-    inner = '          <h2 id="%s">%s</h2>\n' % (A(hid), e(h2))
+    inner = ""
+    if eyeb:
+        inner += "          %s\n" % eyebrow(eyeb)
+    inner += '          <%s id="%s">%s</%s>\n' % (tag, A(hid), e(h2), tag)
     if lede:
         inner += '          <p class="lede">%s</p>\n' % e(lede)
     if ctas:
@@ -408,9 +419,9 @@ def p_home():
                  % (eyebrow(w["eyebrow"]), e(w["h2"]),
                     "\n          ".join("<p>%s</p>" % e(p) for p in w["body"]),
                     A(w["link"]["href"]), e(w["link"]["label"]),
-                    shot("img/Dr Elaine Ingham with Microscope.jpg",
-                         "Dr. Elaine Ingham beside a microscope, looking towards the camera",
-                         cls="shot--legacy", cap=True), note(w)), label="who-h"))
+                    shot("img/hand-wet-dirt-worm.jpg",
+                         "A hand holding a broken clod of wet dark soil over freshly turned ground",
+                         cap=True), note(w)), label="who-h"))
 
     # -- the approach. Four steps, four photographs, numerals instead of the
     #    drawn branch icons: the steps are a real sequence, so a numeral is
@@ -555,8 +566,8 @@ def p_about():
     # instead, because the pillars are four real kinds of work.
     wd = c["whatWeDo"]
     pillar_shots = [
-        ("img/Elaine and nematode extraction.png",
-         "Dr. Elaine Ingham pouring a sample through a filter while students watch closely"),
+        ("img/ctpfw-student-squeezing-compost-1.jpg",
+         "A student in gloves squeezing a handful of compost to test it while a group watches"),
         ("img/soil-sample-close-up-test-tube.jpg",
          "Gloved hands holding a sample tube and a probe over dark soil"),
         ("img/erc-panchmana-treeplanting-fb-img-1666270907385.jpg",
@@ -716,35 +727,104 @@ def p_science():
 
 
 def p_practice():
-    c = load("practice"); o = [hero(c["hero"], "pr-h")]
+    """Practice. Carries the three audience doorways Evan approved.
+
+    A doorway is a photograph you walk through, so the whole cell is the link
+    and the type sits under the image rather than on it.
+    """
+    c = load("practice"); o = []
+
+    h = c["hero"]
+    o.append('  <section class="stratum" style="border-top:0">\n    <div class="wrap">\n'
+             '      <div class="grid" style="align-items:center;row-gap:var(--s5)">\n'
+             '        <div class="span-6">\n          %s\n          <h1 id="pr-h">%s</h1>\n'
+             '          <p class="lede">%s</p>\n        </div>\n'
+             '        <div class="span-6">\n          %s\n        </div>\n      </div>\n    </div>\n  </section>\n'
+             % (eyebrow(h.get("eyebrow")), e(h["h1"]), e(h.get("intro") or ""),
+                shot("img/red-soil-hand.jpg",
+                     "An open palm resting on deep red soil, the same soil caught in the creases of the fingers",
+                     cap=True)))
+
     o.append(sec("      " + note(c["projects"]), "notes-only"))
+
     cs = c["caseStudies"]
     o.append(sec('      <div class="head">\n        %s\n        <h2 id="csx-h">%s</h2>\n        <p>%s</p>\n      </div>\n      %s\n'
                  '      <p><a class="btn btn--ghost" href="projects/market-garden-sweden.html">Market garden makeover, Sweden</a></p>'
                  % (eyebrow(cs["eyebrow"]), e(cs["h2"]), e(cs["lede"]), note(cs["cards"])),
                  label="csx-h", sid="case-studies"))
+
     w = c["workWithUs"]
+    door_shots = [
+        ("img/hand-scooping-planter-bed-soil.jpg",
+         "A hand lifting a scoop of dark crumbly soil from a planting bed, green growth behind"),
+        ("img/erc-rancho-cacachilas-aerial-shot.jpg",
+         "An aerial view along a wooded valley floor with mountains beyond"),
+        ("img/ctpfw-student-moving-compost-1.jpg",
+         "A student lifting an armful of finished compost while a group looks on"),
+    ]
+    items = []
+    for i, cd in enumerate(w["cards"]):
+        src, alt = door_shots[i]
+        href = "#work-with-us"
+        items.append((src, alt, href, cd["title"], cd["body"]))
+
     fields = "".join('          <p><label for="w-%d">%s</label><br><input class="input" id="w-%d" type="text"></p>\n'
                      % (i, e(f), i) for i, f in enumerate(w["form"]["fields"]))
     o.append(sec('      <div class="head">\n        <p class="eyebrow">%s</p>\n        <h2 id="ww-h">%s</h2>\n        <p>%s</p>\n      </div>\n%s'
-                 '      <div class="grid" style="margin-top:var(--s5)">\n'
+                 '      <div class="grid" style="margin-top:var(--s6)">\n'
                  '        <div class="span-6">\n          <h3>%s</h3>\n          <form action="mailto:info@soilfoodweb.com" method="post">\n%s'
                  '            <p><button class="btn" type="submit">Send</button></p>\n          </form>\n          %s\n        </div>\n'
                  '        <div class="span-5 start-8"><p>%s</p></div>\n      </div>'
-                 % (e(w["h2"]), e(w["tagline"]), e(w["lede"]), cards(w["cards"]),
+                 % (e(w["h2"]), e(w["tagline"]), e(w["lede"]), doors(items),
                     e(w["form"]["title"]), fields, note(w["form"]),
                     " &middot; ".join('<a href="%s">%s</a>' % (A(x["href"]), e(x["label"])) for x in w["crossLinks"])),
-                 "stratum--deep", "ww-h", "work-with-us"))
+                 "", "ww-h", "work-with-us"))
     return MAIN("\n".join(o))
 
 
 def p_community():
-    c = load("community"); o = [hero(c["hero"], "com-h")]
+    """Community. Opens on one landscape photograph carrying the whole screen,
+    and gives the map section a ledger of nine photographs of people actually
+    doing the work, so the section is not an empty box waiting on a map.
+
+    No labels under the ledger. Naming the place or the people in a frame
+    would be a claim the Foundation has not made; the captions stay as
+    placeholders until it does.
+    """
+    c = load("community"); o = []
+    h = c["hero"]
+    o.append(banner("img/erc-rancho-cacachilas-aerial-2.jpg",
+                    "An aerial view over dense green tree canopy split by a pale watercourse",
+                    h["h1"], "com-h", h.get("intro") or h.get("subhead") or "",
+                    tag="h1", eyeb=h.get("eyebrow", "")))
+
     m = c["map"]
     o.append(sec('      <div class="head">\n        %s\n        <h2 id="map-h">%s</h2>\n        <p>%s</p>\n      </div>\n'
-                 '      <figure class="plate"><div class="plate__f" style="aspect-ratio:2/1" data-empty="%s"></div></figure>'
-                 % (eyebrow(m["eyebrow"]), e(m["h2"]), e(m["lede"]), A(m["note"])),
-                 "stratum--deep", "map-h", "community-map"))
+                 '%s      <p class="todo">%s</p>'
+                 % (eyebrow(m["eyebrow"]), e(m["h2"]), e(m["lede"]),
+                    ledger([
+                        ("img/Carla-Nicks Son-Nick-ERI-Wild Soils Event-11-2024.jpg",
+                         "A group of people laughing as they work together outdoors with brushes and rakes"),
+                        ("img/ctpfw-student-moving-compost-1.jpg",
+                         "A student lifting an armful of finished compost while a hose is played over the pile"),
+                        ("img/ctpfw-student-squeezing-compost-1.jpg",
+                         "A student in gloves squeezing a handful of compost to test it, with a group watching"),
+                        ("img/erc-panchamana-treeplanting-2-fb-img-1666270988322.jpg",
+                         "People spread across a clearing planting seedlings among standing trees"),
+                        ("img/erc-panchamana-treeplanting-3-fb-img-1666271008784.jpg",
+                         "A young man crouching to plant a seedling, others planting along the same row behind him"),
+                        ("img/erc-panchmana-treeplanting-fb-img-1666270907385.jpg",
+                         "A long line of people planting seedlings through a stand of tall trees"),
+                        ("img/hvdb-inplanten-002.jpg",
+                         "A group planting young trees across an open field on a grey day"),
+                        ("img/el-nino-2017-tractor-in-mud-w-crew.jpg",
+                         "A crew digging a tractor out of deep mud under a wide sky"),
+                        ("img/el-nino-2017-tractor-in-mud-in-vineyard.jpg",
+                         "A small red tractor working a wet furrow between trellised vine rows"),
+                    ]),
+                    e(m["note"])),
+                 "", "map-h", "community-map"))
+
     d = c["directory"]
     o.append(sec('      <div class="head">\n        %s\n        <h2 id="dir-h">%s</h2>\n      </div>\n'
                  '      <p class="lede">%s</p>\n'
@@ -753,6 +833,7 @@ def p_community():
                  % (eyebrow(d["eyebrow"]), e(d["h2"]), e(d["clarifyingHeader"]), e(d["footerLine"]),
                     note({"note": d["dataNote"], "status": d["dataStatus"]})),
                  label="dir-h", sid="find-a-professional"))
+
     j = c["joinBand"]
     o.append(sec('      <h2 id="cj-h">%s</h2>\n      <p class="lede" style="color:var(--paper)">%s</p>\n'
                  '      <p style="display:flex;flex-wrap:wrap;gap:var(--s2);margin-top:var(--s4)">%s</p>'

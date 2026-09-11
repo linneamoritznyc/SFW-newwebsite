@@ -2632,7 +2632,7 @@ code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .9em; }
 @media (min-width: 52em) { .doors { grid-template-columns: repeat(3, 1fr); } }
 .doors > li { margin: 0; }
 .door { display: block; text-decoration: none; color: inherit; }
-.door img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; display: block; background: var(--panel); transition: filter var(--dur) var(--ease); }
+.door img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; object-position: 50% 38%; display: block; background: var(--panel); transition: filter var(--dur) var(--ease); }
 .door:hover img, .door:focus-visible img { filter: saturate(1.12) brightness(1.03); }
 .door h3 { margin: var(--s3) 0 var(--s1); font-size: var(--t3); }
 .door:hover h3 { text-decoration: underline; text-underline-offset: .14em; }
