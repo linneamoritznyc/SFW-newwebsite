@@ -216,7 +216,7 @@ def banner(src, alt, h2, hid, lede="", ctas="", depth=0, tag="h2", eyeb=""):
 
 
 def slides(depth=0):
-    """Three live circles, one drop of water.
+    """Three live circles, one drop of water, each one a way in.
 
     All three run the same reel from the Foundation's archive, framed on
     different parts of the slide and entered at different seconds of the loop,
@@ -224,39 +224,44 @@ def slides(depth=0):
     measured off the square still: the two organisms meet at the centre of the
     frame, and the dark body sits at 24% across, 27% down.
 
+    Each circle is a link. The label says where it goes, and every one of them
+    is a label that already exists in the site navigation, so nothing here is
+    new copy. An earlier version labelled them by which part of the frame they
+    showed, which described the crop rather than the content and meant nothing
+    to a reader.
+
+    The attribution belongs to the material, which all three share, so it is
+    printed once for the group rather than repeated under every circle.
+
     Nothing here is colour graded. The rest of the site stretches this reel
     hard because it is nearly flat; these are meant to look like the footage
     looks, so legibility comes from framing instead.
-
-    No name, magnification or scale bar on any of them. Naming the organism or
-    printing a scale would be inventing a fact: the species has not been
-    identified for the web and the objective magnification is not recorded.
     """
     b = "../" * depth
-    # (framing label, zoom, point of interest as %, seconds into the loop)
+    # (label, href, zoom, point of interest as %, seconds into the loop)
     views = [
-        ("The field", 1.0, 50, 50, 0.0),
-        ("Where they meet", 2.4, 50, 50, 3.3),
-        ("The upper left", 2.4, 24, 27, 6.6),
+        ("How the Soil Food Web Works", "science.html",  1.0, 50, 50, 0.0),
+        ("Programs Overview",           "learn.html",    2.4, 50, 50, 3.3),
+        ("Research Database",           "research.html", 2.4, 24, 27, 6.6),
     ]
     li = ""
-    for label, z, px, py, t in views:
+    for label, href, z, px, py, t in views:
         tx, ty = 50 - px, 50 - py
         transform = "scale(%s)" % z if z == 1.0 else "scale(%s) translate(%d%%, %d%%)" % (z, tx, ty)
-        li += ('        <li>\n          <figure class="slide">\n'
-               '            <div class="slide__disc">\n'
+        li += ('        <li>\n          <a class="slide" href="%s%s">\n'
+               '            <span class="slide__disc">\n'
                '              <video data-loop data-start="%s" muted loop playsinline preload="none"\n'
                '                     style="transform:%s"\n'
                '                     poster="%simg/w/sfw-amoeba-still-square.jpg"\n'
-               '                     data-src="%svideo/sfw-amoeba-loop-square.webm,%svideo/sfw-amoeba-loop-square.mp4"\n'
-               '                     aria-label="Brightfield microscopy from the Foundation archive, looping without sound"></video>\n'
-               '            </div>\n'
-               '            <figcaption>\n              <span class="slide__n">%s</span>\n'
-               '              <span class="slide__d">Brightfield microscopy, Foundation archive</span>\n'
-               '              <span class="cap--todo">%s</span>\n            </figcaption>\n'
-               '          </figure>\n        </li>\n'
-               % (t, transform, b, b, b, e(label), e(CAPTION)))
-    return '      <ul class="slides">\n%s      </ul>\n' % li
+               '                     aria-hidden="true" tabindex="-1"\n'
+               '                     data-src="%svideo/sfw-amoeba-loop-square.webm,%svideo/sfw-amoeba-loop-square.mp4"></video>\n'
+               '            </span>\n'
+               '            <span class="slide__n">%s <span class="slide__go" aria-hidden="true">&rarr;</span></span>\n'
+               '          </a>\n        </li>\n'
+               % (b, A(href), t, transform, b, b, b, e(label)))
+    return ('      <ul class="slides">\n%s      </ul>\n'
+            '      <p class="source small" style="margin-top:var(--s4)">'
+            'Brightfield microscopy, Soil Food Web Foundation archive</p>\n' % li)
 
 
 def doors(items, depth=0):
@@ -456,9 +461,7 @@ def p_home():
     # -- the slide. The most valuable material the Foundation owns, given the
     #    quietest treatment on the page: silent, contained, endless.
     o.append(sec('      <h2 id="slide-h" class="visually-hidden">One drop of soil water, under the microscope</h2>\n'
-                 '%s      <p class="todo">Species, objective magnification and a scale bar for these three frames, '
-                 'so they can be labelled the way a specimen plate should be. The Foundation microscopy team.</p>'
-                 % slides(), label="slide-h"))
+                 '%s' % slides(), label="slide-h"))
 
     # -- who we are, with the one legacy moment the homepage gets
     w = c["whoWeAre"]

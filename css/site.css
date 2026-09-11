@@ -2753,25 +2753,29 @@ code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .9em; }
 }
 @media (min-width: 44em) { .slides { grid-template-columns: repeat(3, 1fr); } }
 .slides > li { margin: 0; }
-.slide { margin: 0; }
+
+/* Each circle is a way in, so the whole cell is the target and the label
+   names the destination. */
+.slide { display: block; text-decoration: none; color: inherit; }
 .slide__disc {
-  position: relative; aspect-ratio: 1; border-radius: 50%;
+  display: block; position: relative; aspect-ratio: 1; border-radius: 50%;
   overflow: hidden; background: var(--panel);
   box-shadow: 0 0 0 1px var(--rule);
+  transition: box-shadow var(--dur) var(--ease);
 }
 .slide__disc video {
   width: 100%; height: 100%; object-fit: cover; display: block;
   transform-origin: 50% 50%;
 }
-.slide figcaption {
-  margin-top: var(--s3); padding-top: var(--s2);
-  border-top: var(--hairline) solid var(--rule-strong);
-}
 .slide__n {
-  display: block; font-family: var(--serif); font-style: italic;
-  font-size: var(--t2); line-height: 1.2; color: var(--soil);
+  display: block; margin-top: var(--s3); padding-top: var(--s2);
+  border-top: var(--hairline) solid var(--rule-strong);
+  font-family: var(--serif); font-size: var(--t2); line-height: 1.2;
+  color: var(--soil); font-weight: 500;
+  transition: color var(--dur) var(--ease);
 }
-.slide__d {
-  display: block; margin-top: .35em;
-  font-size: var(--t0); color: var(--ink-soft);
-}
+.slide__go { color: var(--green); }
+.slide:hover .slide__disc,
+.slide:focus-visible .slide__disc { box-shadow: 0 0 0 2px var(--green); }
+.slide:hover .slide__n { color: var(--green); text-decoration: underline; text-underline-offset: .14em; }
+.slide:focus-visible { outline: var(--focus); outline-offset: 6px; }
