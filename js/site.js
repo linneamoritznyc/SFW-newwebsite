@@ -332,8 +332,230 @@
   });
 })();
 
+/* ---------- 11. The theatre ---------- */
+// One player that stays on the page.
+//
+// The old playlist reloaded the whole of WordPress for every video and then
+// booted a new Vimeo player from zero, which is why it felt slow and why
+// autoplay into the next video was impossible. Here the player is created
+// once, on the first click, and every video after that is a loadVideo() call
+// on the player that is already running. The URL changes with pushState, so
+// links and the back button still work, and nothing reloads.
+//
+// Nothing third-party loads until someone presses play. Until then the stage
+// is a poster and a button, so the page costs nothing to arrive at. This is
+// the facade pattern, and it is the single biggest speed difference between
+// this and either a Vimeo or a YouTube embed dropped straight into a page:
+// the platform's script is the weight, not the platform.
+//
+// The private hash travels in the data, never in the URL. Unlisted videos
+// need it to play, and every way the old page had of losing it, dropping it
+// from a link, pasting it inside the id, arriving with no query string at
+// all, is a way of breaking the player. content/videos.json holds it and
+// tools/playlist.py checks it against Vimeo before it is committed.
+//
+// If the platform script does not load, the stage becomes a plain link to
+// the video. The content stays reachable.
+(function () {
+  "use strict";
 
-/* ---------- 11. Films from the field ----------
+  var root = document.querySelector("[data-theatre]");
+  if (!root) return;
+  var holder = root.querySelector("[data-theatre-data]");
+  var list = [];
+  try { list = JSON.parse(holder.textContent); } catch (err) { return; }
+  if (!list.length) return;
+
+  var frame  = root.querySelector("[data-frame]");
+  var poster = root.querySelector("[data-poster]");
+  var nowT   = root.querySelector("[data-now-title]");
+  var nowS   = root.querySelector("[data-now-sub]");
+  var live   = root.querySelector("[data-live]");
+  var next   = root.querySelector("[data-next]");
+  var nextT  = root.querySelector("[data-next-title]");
+  var nextN  = root.querySelector("[data-next-count]");
+  var check  = root.querySelector("[data-check]");
+  var buttons = Array.prototype.slice.call(root.querySelectorAll("[data-i]"));
+
+  var COUNTDOWN = 8;        // seconds before the next video starts
+  var STREAK_LIMIT = 3;     // videos in a row unattended before we ask
+  var player = null, loading = null, timer = null, i = 0, streak = 0;
+
+  function slugIndex(slug) {
+    for (var n = 0; n < list.length; n++) { if (list[n].slug === slug) return n; }
+    return -1;
+  }
+
+  /* -- the platform script, fetched once and only on demand -- */
+  function api() {
+    if (window.Vimeo && window.Vimeo.Player) return Promise.resolve();
+    if (loading) return loading;
+    loading = new Promise(function (resolve, reject) {
+      var s = document.createElement("script");
+      s.src = "https://player.vimeo.com/api/player.js";
+      s.async = true;
+      s.onload = resolve;
+      s.onerror = function () { loading = null; reject(new Error("player.js")); };
+      document.head.appendChild(s);
+    });
+    return loading;
+  }
+
+  // If Vimeo's control script will not load, the video still plays here, in
+  // an ordinary iframe that needs no script at all. What is lost is the
+  // autoplay chain and the still-watching check, not the video. Nothing ever
+  // sends the visitor off to vimeo.com.
+  function fallback() {
+    var v = list[i];
+    player = null;
+    root.setAttribute("data-fallback", "true");
+    frame.hidden = false;
+    frame.innerHTML = "";
+    var f = document.createElement("iframe");
+    f.src = "https://player.vimeo.com/video/" + encodeURIComponent(v.id) +
+            "?h=" + encodeURIComponent(v.hash) +
+            "&autoplay=1&dnt=1&title=0&byline=0&portrait=0";
+    f.title = v.title;
+    f.allow = "autoplay; fullscreen; picture-in-picture";
+    f.setAttribute("allowfullscreen", "");
+    f.setAttribute("frameborder", "0");
+    frame.appendChild(f);
+    if (poster) poster.hidden = true;
+    if (live) live.textContent = "Now playing: " + v.title;
+  }
+
+  function boot() {
+    var v = list[i];
+    return api().then(function () {
+      frame.hidden = false;
+      player = new window.Vimeo.Player(frame, {
+        id: Number(v.id),
+        h: v.hash,              // the private hash, from the data file
+        autoplay: true,         // allowed: we are inside the click that asked
+        dnt: true,              // no Vimeo tracking cookies
+        title: false, byline: false, portrait: false,
+        responsive: true
+      });
+      // The poster's job is over the moment the player exists. Waiting for
+      // the play event would leave the poster sitting on top of a video that
+      // has already started when autoplay is allowed, and on top of Vimeo's
+      // own play button when it is not.
+      if (poster) poster.hidden = true;
+      player.on("ended", ended);
+      // A pause or a scrub is a person, so the unattended count starts over.
+      player.on("pause", awake);
+      player.on("seeked", awake);
+    })["catch"](fallback);
+  }
+
+  /* -- selecting, with or without playing -- */
+  function select(n, opts) {
+    opts = opts || {};
+    i = ((n % list.length) + list.length) % list.length;
+    var v = list[i];
+
+    buttons.forEach(function (b, n2) {
+      var on = n2 === i;
+      b.setAttribute("aria-current", on ? "true" : "false");
+      b.parentNode.setAttribute("data-active", on ? "true" : "false");
+    });
+    if (nowT) nowT.textContent = v.title;
+    if (nowS) nowS.textContent = v.subtitle || "";
+    if (poster) {
+      var im = poster.querySelector("img");
+      if (im && v.thumb) im.src = v.thumb;
+    }
+    if (!opts.silent) {
+      history.pushState({ v: v.slug }, "", "?v=" + encodeURIComponent(v.slug));
+    }
+
+    if (!opts.play) return;
+    if (live) live.textContent = "Now playing: " + v.title;
+    if (player) {
+      player.loadVideo({ id: Number(v.id), h: v.hash })
+        .then(function () { return player.play(); })["catch"](fallback);
+      if (poster) poster.hidden = true;
+    } else {
+      boot();
+    }
+  }
+
+  /* -- what happens when one finishes -- */
+  function ended() {
+    if (i + 1 >= list.length) { stop(); if (poster) poster.hidden = false; return; }
+    streak += 1;
+    if (streak >= STREAK_LIMIT) { ask(); return; }
+    countdown();
+  }
+
+  function countdown() {
+    var left = COUNTDOWN;
+    nextT.textContent = list[i + 1].title;
+    nextN.textContent = left;
+    next.hidden = false;
+    var go = next.querySelector("[data-next-go]");
+    if (go) go.focus();
+    clearInterval(timer);
+    timer = setInterval(function () {
+      left -= 1;
+      nextN.textContent = left;
+      if (left <= 0) { stop(); select(i + 1, { play: true }); }
+    }, 1000);
+  }
+
+  // Three in a row with nobody touching anything: stop and ask, the way a
+  // streaming service does, rather than playing to an empty room.
+  function ask() {
+    stop();
+    check.hidden = false;
+    var go = check.querySelector("[data-check-go]");
+    if (go) go.focus();
+  }
+
+  function stop() {
+    clearInterval(timer);
+    timer = null;
+    if (next) next.hidden = true;
+    if (check) check.hidden = true;
+  }
+
+  function awake() { streak = 0; }
+
+  /* -- wiring -- */
+  buttons.forEach(function (b, n) {
+    b.addEventListener("click", function () { awake(); stop(); select(n, { play: true }); });
+  });
+  if (poster) poster.addEventListener("click", function () { awake(); select(i, { play: true }); });
+
+  root.addEventListener("click", function (ev) {
+    var t = ev.target.closest ? ev.target.closest("[data-next-go],[data-next-cancel],[data-check-go]") : null;
+    if (!t) return;
+    if (t.hasAttribute("data-next-cancel")) { stop(); return; }
+    awake();
+    stop();
+    select(i + 1, { play: true });
+  });
+
+  document.addEventListener("keydown", function (ev) {
+    if (ev.key === "Escape" && timer) stop();
+  });
+  document.addEventListener("pointerdown", awake, { passive: true });
+
+  window.addEventListener("popstate", function () {
+    var want = slugIndex(new URLSearchParams(location.search).get("v") || "");
+    if (want < 0 || want === i) return;
+    stop();
+    select(want, { silent: true, play: !!player });
+  });
+
+  // Arriving with ?v=slug selects that video and shows its poster. It does
+  // not start playing: browsers block autoplay with sound before a click,
+  // and a muted autostart is worse than a poster.
+  var start = slugIndex(new URLSearchParams(location.search).get("v") || "");
+  select(start < 0 ? 0 : start, { silent: true });
+})();
+
+/* ---------- 12. Films from the field ----------
    Every case-study still is a facade. Nothing is fetched from Vimeo until a
    visitor presses play; then the button is swapped for the player, in place,
    and focus moves into it so a keyboard user lands where the video is. The

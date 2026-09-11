@@ -19,7 +19,7 @@
   <link rel="preload" href="fonts/source-sans-3-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/site.css">
 </head>
-<body>
+<body class="t-practice">
 <a class="skip" href="#main">Skip to content</a>
 
 <!-- Icon sprite, inlined so the page works over file:// -->
@@ -194,50 +194,125 @@
         <h2 id="csx-h">Documented results, one site at a time</h2>
         <p>Each case study pairs a grower’s story with the data behind it, where they started, what they practiced, and what was measured.</p>
       </div>
-      <ul class="films">
-        <li>
-          <figure class="film">
-            <button class="film__go" type="button" data-film="https://player.vimeo.com/video/790985081?h=92231c295c&amp;badge=0&amp;byline=0&amp;portrait=0&amp;title=0"
-                    aria-label="Play the film with Roberto Silva, Piura, Peru">
-              <img src="img/w/erc-rancho-cacachilas-agro.jpg" srcset="img/w/erc-rancho-cacachilas-agro-800.jpg 800w, img/w/erc-rancho-cacachilas-agro.jpg 1600w" sizes="(max-width: 52em) 100vw, 32vw" alt="Long rows of crops running to a line of trees under a wide clouded sky" loading="lazy" decoding="async">
-              <span class="film__play" aria-hidden="true">▶</span>
-            </button>
-            <figcaption>
-              <b>Roberto Silva</b>
-              <span>Piura, Peru</span>
-              <span>Agricultural</span>
-            </figcaption>
-          </figure>
+      <div class="theatre" data-theatre>
+        <div class="theatre__stage">
+          <div class="theatre__frame" data-frame hidden></div>
+          <button class="theatre__poster" type="button" data-poster>
+            <img src="https://soilfoodweb.com/wp-content/uploads/2021/06/25.jpg" alt="" loading="lazy" decoding="async">
+            <span class="theatre__go" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="34" height="34"><path d="M8 5.5 19 12 8 18.5z"/></svg>
+            </span>
+            <span class="visually-hidden">Play</span>
+          </button>
+          <div class="theatre__panel" data-next hidden>
+            <p class="theatre__panel-t">Up next: <b data-next-title></b></p>
+            <p class="theatre__panel-c">Starting in <span data-next-count>8</span></p>
+            <p class="theatre__panel-b">
+              <button class="btn" type="button" data-next-go>Play now</button>
+              <button class="btn btn--ghost" type="button" data-next-cancel>Cancel</button>
+            </p>
+          </div>
+          <div class="theatre__panel" data-check hidden>
+            <p class="theatre__panel-t">Are you still watching?</p>
+            <p class="theatre__panel-b">
+              <button class="btn" type="button" data-check-go>Continue</button>
+            </p>
+          </div>
+        </div>
+        <p class="theatre__now"><b data-now-title>Market Garden Makeover, Sweden</b> <span data-now-sub></span></p>
+        <p class="visually-hidden" data-live aria-live="polite"></p>
+        <ol class="theatre__list">
+        <li data-active="true">
+          <button class="theatre__item" type="button" data-i="0" aria-current="true">
+            <span class="theatre__thumb"><img src="https://soilfoodweb.com/wp-content/uploads/2021/06/25.jpg" alt="" loading="lazy" decoding="async"></span>
+            <span class="theatre__t">Market Garden Makeover, Sweden</span>
+            <span class="theatre__s">Potatoes, onions, salad greens · by Renald Flores</span>
+            <span class="theatre__d"></span>
+          </button>
         </li>
-        <li>
-          <figure class="film">
-            <button class="film__go" type="button" data-film="https://player.vimeo.com/video/812185778?h=dd3a45ec17&amp;badge=0&amp;byline=0&amp;portrait=0&amp;title=0"
-                    aria-label="Play the film with Cory Miller, Montana, USA">
-              <img src="img/w/harringtons-organic-land-care-york-farms-1-768x1024.jpg" srcset="img/w/harringtons-organic-land-care-york-farms-1-768x1024-800.jpg 800w, img/w/harringtons-organic-land-care-york-farms-1-768x1024.jpg 1600w" sizes="(max-width: 52em) 100vw, 32vw" alt="A gloved hand holding back a mat of crop residue to show dark crumb soil underneath" loading="lazy" decoding="async">
-              <span class="film__play" aria-hidden="true">▶</span>
-            </button>
-            <figcaption>
-              <b>Cory Miller</b>
-              <span>Montana, USA</span>
-              <span>Agricultural</span>
-            </figcaption>
-          </figure>
+        <li data-active="false">
+          <button class="theatre__item" type="button" data-i="1" aria-current="false">
+            <span class="theatre__thumb"><img src="https://soilfoodweb.com/wp-content/uploads/2021/06/24.jpg" alt="" loading="lazy" decoding="async"></span>
+            <span class="theatre__t">York Farms, Illinois</span>
+            <span class="theatre__s">Corn and soy, 10,000 acres · by Todd Harrington</span>
+            <span class="theatre__d"></span>
+          </button>
         </li>
-        <li>
-          <figure class="film">
-            <button class="film__go" type="button" data-film="https://player.vimeo.com/video/410049306?h=251e4606ca&amp;badge=0&amp;byline=0&amp;portrait=0&amp;title=0"
-                    aria-label="Play the film with Nick Tomasini, Portland, Oregon">
-              <img src="img/w/hand-soil-roots-fungi.jpg" srcset="img/w/hand-soil-roots-fungi-800.jpg 800w, img/w/hand-soil-roots-fungi.jpg 1600w" sizes="(max-width: 52em) 100vw, 32vw" alt="An open palm holding a clump of soil bound together by roots and pale fungal strands" loading="lazy" decoding="async">
-              <span class="film__play" aria-hidden="true">▶</span>
-            </button>
-            <figcaption>
-              <b>Nick Tomasini</b>
-              <span>Portland, Oregon</span>
-              <span>Soil Food Web Consultant</span>
-            </figcaption>
-          </figure>
+        <li data-active="false">
+          <button class="theatre__item" type="button" data-i="2" aria-current="false">
+            <span class="theatre__thumb"><img src="https://soilfoodweb.com/wp-content/uploads/2021/06/22.jpg" alt="" loading="lazy" decoding="async"></span>
+            <span class="theatre__t">International Case Studies: Ecuador, India, Peru, USA</span>
+            <span class="theatre__s">Grapes, cannabis, turmeric and more · by Miles Sorel</span>
+            <span class="theatre__d"></span>
+          </button>
         </li>
-      </ul>
+        <li data-active="false">
+          <button class="theatre__item" type="button" data-i="3" aria-current="false">
+            <span class="theatre__thumb"><img src="https://soilfoodweb.com/wp-content/uploads/2021/06/23.jpg" alt="" loading="lazy" decoding="async"></span>
+            <span class="theatre__t">Alfalfa, Potatoes and Beans</span>
+            <span class="theatre__s">25,000 acres · by Todd Harrington</span>
+            <span class="theatre__d"></span>
+          </button>
+        </li>
+        <li data-active="false">
+          <button class="theatre__item" type="button" data-i="4" aria-current="false">
+            <span class="theatre__thumb"><img src="https://soilfoodweb.com/wp-content/uploads/2021/06/19.jpg" alt="" loading="lazy" decoding="async"></span>
+            <span class="theatre__t">Organic Banana Farm, South Africa</span>
+            <span class="theatre__s">5,000 acres · by Shane Plath</span>
+            <span class="theatre__d"></span>
+          </button>
+        </li>
+        <li data-active="false">
+          <button class="theatre__item" type="button" data-i="5" aria-current="false">
+            <span class="theatre__thumb"><img src="https://soilfoodweb.com/wp-content/uploads/2021/06/20.jpg" alt="" loading="lazy" decoding="async"></span>
+            <span class="theatre__t">Governors Island, NYC</span>
+            <span class="theatre__s">172 acre public park restoration · by Todd Harrington</span>
+            <span class="theatre__d"></span>
+          </button>
+        </li>
+        <li data-active="false">
+          <button class="theatre__item" type="button" data-i="6" aria-current="false">
+            <span class="theatre__thumb"></span>
+            <span class="theatre__t">Nick Padwick</span>
+            <span class="theatre__s">4,000 acres · Norfolk, England</span>
+            <span class="theatre__d"></span>
+          </button>
+        </li>
+        <li data-active="false">
+          <button class="theatre__item" type="button" data-i="7" aria-current="false">
+            <span class="theatre__thumb"><img src="img/video/farmer-case-studies.jpg" alt="" loading="lazy" decoding="async"></span>
+            <span class="theatre__t">Adam York</span>
+            <span class="theatre__s">10,000 acres · Illinois, USA</span>
+            <span class="theatre__d">9:47</span>
+          </button>
+        </li>
+        <li data-active="false">
+          <button class="theatre__item" type="button" data-i="8" aria-current="false">
+            <span class="theatre__thumb"><img src="img/video/790985081.jpg" alt="" loading="lazy" decoding="async"></span>
+            <span class="theatre__t">Roberto Silva</span>
+            <span class="theatre__s">140 acres · Piura, Peru</span>
+            <span class="theatre__d">5:54</span>
+          </button>
+        </li>
+        <li data-active="false">
+          <button class="theatre__item" type="button" data-i="9" aria-current="false">
+            <span class="theatre__thumb"><img src="img/video/812188293.jpg" alt="" loading="lazy" decoding="async"></span>
+            <span class="theatre__t">Jenn Sirp</span>
+            <span class="theatre__s">¼ acre · California, USA</span>
+            <span class="theatre__d">9:44</span>
+          </button>
+        </li>
+        <li data-active="false">
+          <button class="theatre__item" type="button" data-i="10" aria-current="false">
+            <span class="theatre__thumb"><img src="img/video/812185778.jpg" alt="" loading="lazy" decoding="async"></span>
+            <span class="theatre__t">Cory Miller</span>
+            <span class="theatre__s">3,000 acres · Montana, USA</span>
+            <span class="theatre__d">11:50</span>
+          </button>
+        </li>
+        </ol>
+        <script type="application/json" data-theatre-data>[{"slug": "market-garden-makeover-sweden", "id": "537966540", "hash": "a79eb5d201", "title": "Market Garden Makeover, Sweden", "subtitle": "Potatoes, onions, salad greens · by Renald Flores", "thumb": "https://soilfoodweb.com/wp-content/uploads/2021/06/25.jpg"}, {"slug": "york-farms-illinois", "id": "537972167", "hash": "f6a32ff941", "title": "York Farms, Illinois", "subtitle": "Corn and soy, 10,000 acres · by Todd Harrington", "thumb": "https://soilfoodweb.com/wp-content/uploads/2021/06/24.jpg"}, {"slug": "international-case-studies", "id": "537963453", "hash": "11f160622a", "title": "International Case Studies: Ecuador, India, Peru, USA", "subtitle": "Grapes, cannabis, turmeric and more · by Miles Sorel", "thumb": "https://soilfoodweb.com/wp-content/uploads/2021/06/22.jpg"}, {"slug": "alfalfa-potatoes-and-beans", "id": "538767686", "hash": "ca0eecb84e", "title": "Alfalfa, Potatoes and Beans", "subtitle": "25,000 acres · by Todd Harrington", "thumb": "https://soilfoodweb.com/wp-content/uploads/2021/06/23.jpg"}, {"slug": "organic-banana-farm-south-africa", "id": "498143744", "hash": "c4ba30014d", "title": "Organic Banana Farm, South Africa", "subtitle": "5,000 acres · by Shane Plath", "thumb": "https://soilfoodweb.com/wp-content/uploads/2021/06/19.jpg"}, {"slug": "governors-island-nyc", "id": "498144316", "hash": "5a85131b62", "title": "Governors Island, NYC", "subtitle": "172 acre public park restoration · by Todd Harrington", "thumb": "https://soilfoodweb.com/wp-content/uploads/2021/06/20.jpg"}, {"slug": "nick-padwick", "id": "1034550940", "hash": "7f0f78d4e3", "title": "Nick Padwick", "subtitle": "4,000 acres · Norfolk, England", "thumb": ""}, {"slug": "adam-york", "id": "792733797", "hash": "e809b1fad3", "title": "Adam York", "subtitle": "10,000 acres · Illinois, USA", "thumb": "img/video/farmer-case-studies.jpg"}, {"slug": "roberto-silva", "id": "790985081", "hash": "92231c295c", "title": "Roberto Silva", "subtitle": "140 acres · Piura, Peru", "thumb": "img/video/790985081.jpg"}, {"slug": "jenn-sirp", "id": "812188293", "hash": "6ed8f0fbef", "title": "Jenn Sirp", "subtitle": "¼ acre · California, USA", "thumb": "img/video/812188293.jpg"}, {"slug": "cory-miller", "id": "812185778", "hash": "dd3a45ec17", "title": "Cory Miller", "subtitle": "3,000 acres · Montana, USA", "thumb": "img/video/812185778.jpg"}]</script>
+      </div>
       <p class="source small">The practitioners' own films, from the Foundation's Vimeo library.</p>
       <p style="margin-top:var(--s4)"><a class="btn btn--ghost" href="projects/market-garden-sweden.html">Read the Sweden market garden case study</a></p>
       <p class="todo" data-status="placeholder">Three of the launch cases are here. Still open: a restoration-segment case, and the written detail behind each film, where they started, what they practiced and what was measured. Evan and Stephanie. Acreage figures the old site printed beside these names are left out under the claims rule.</p><p class="todo" data-status="">Also filmed and available for later cards: Adam York, Illinois (792733797 / e809b1fad3); Jenn Sirp, California (812188293 / 6ed8f0fbef); Brian Vagg, Auburn, California (380296081 / 4da9889266); Keisha and Casey, Nevada City, California (380297602 / 7a71e6701c); Todd Harrington, Bloomfield, Connecticut (470279480 / 103139eeb8).</p>

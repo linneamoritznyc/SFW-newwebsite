@@ -177,6 +177,11 @@ def web(src):
     for each one into img/w/, and every page references those. The originals
     stay exactly as they are, filenames included, as the library.
     """
+    # img/cut/ holds the cut-out specimens, which are PNGs with an alpha
+    # channel. They are already web-sized, and a JPEG derivative would fill
+    # the transparency with black, so they are served exactly as they are.
+    if src.startswith("img/cut/"):
+        return src
     if not src.startswith("img/") or src.startswith("img/w/"):
         return src
     name = src[len("img/"):]
@@ -213,6 +218,150 @@ def shot(src, alt, cls="", cap=False, depth=0):
     if cap:
         f += '        <figcaption class="cap--todo">%s</figcaption>\n' % e(CAPTION)
     return f + "      </figure>"
+
+
+def mmss(sec):
+    """743 -> 12:23. Nothing is invented: no duration, no label."""
+    try:
+        sec = int(sec)
+    except (TypeError, ValueError):
+        return ""
+    return "%d:%02d" % (sec // 60, sec % 60)
+
+
+def thumb_src(v, b):
+    """A local file if we have one, the old site's if we do not, nothing if
+    neither. remoteThumb still points at soilfoodweb.com: run
+    tools/playlist.py --thumbs to bring those in and stop the new site
+    depending on the old one."""
+    t = v.get("thumb") or ""
+    if t:
+        return b + t
+    return v.get("remoteThumb") or ""
+
+
+def pic(v, b):
+    src = thumb_src(v, b)
+    return ('<img src="%s" alt="" loading="lazy" decoding="async">' % A(src)) if src else ""
+
+
+def theatre(only=(), depth=0):
+    """The video theatre: one player, a rail of videos, no page reloads.
+
+    Reads content/videos.json, which tools/playlist.py writes and verifies.
+    Returns "" when there is nothing verified to show, so the page falls back
+    to whatever it said before rather than showing an empty player. That is
+    the third of the five old bugs, the canonical URL with no video in it,
+    and the fix is to render nothing rather than an empty box.
+
+    The private hash goes in the data, once, where no link can drop it.
+    """
+    c = load("videos")
+    items, seen = [], set()
+    for pl in c["playlists"]:
+        if only and pl["id"] not in only:
+            continue
+        for it in pl["items"]:
+            # An id and a hash, or it cannot play. The duration used to be
+            # required too, as a way of spotting showcase ids in a scrape.
+            # That test threw out 21 real videos: plenty of these return no
+            # duration from oembed and embed perfectly well. It now applies
+            # only to raw scraped data, never to a curated file.
+            if not (it.get("id") and it.get("hash")):
+                continue
+            if not c.get("curated") and not it.get("duration"):
+                continue
+            if it["id"] in seen:                       # the same video in two playlists
+                continue
+            seen.add(it["id"])
+            items.append(it)
+    if not items:
+        return ""
+
+    b = "../" * depth
+    rows = ""
+    for n, v in enumerate(items):
+        thumb = ('<span class="theatre__thumb">%s</span>\n' % pic(v, b)) if True else ""
+        sub = e(v.get("subtitle", ""))
+        rows += ('        <li data-active="%s">\n'
+                 '          <button class="theatre__item" type="button" data-i="%d" aria-current="%s">\n'
+                 '            %s'
+                 '            <span class="theatre__t">%s</span>\n'
+                 '            <span class="theatre__s">%s</span>\n'
+                 '            <span class="theatre__d">%s</span>\n'
+                 '          </button>\n        </li>\n'
+                 % ("true" if n == 0 else "false", n, "true" if n == 0 else "false",
+                    thumb, e(v["title"]), sub, e(mmss(v.get("duration")))))
+
+    first = items[0]
+    payload = json.dumps([dict({k: v.get(k, "") for k in
+                                ("slug", "id", "hash", "title", "subtitle")},
+                               thumb=thumb_src(v, b))
+                          for v in items], ensure_ascii=False)
+    # a JSON island cannot be allowed to close the script element early
+    payload = payload.replace("</", "<\\/")
+
+    # Titles are whatever the playlist markup or Vimeo gave us. Several are
+    # upload names rather than display titles, because the playlist pages
+    # render their titles with JavaScript and a scrape of the HTML does not
+    # see them. Flagged rather than rewritten: inventing a title for a named
+    # grower's case study is exactly the thing not to do.
+    flag = ""
+    if any(re.search(r"_[A-Z]{2,}|_\d{4}|CTA[A-Z]?\d", v.get("title", "")) for v in items):
+        flag = ('      <p class="todo">Some titles below are Vimeo upload names, not display '
+                'titles: the playlist pages write their titles with JavaScript, which the scrape '
+                'does not see. Run tools/playlist.py --save-raw and the real titles can be read '
+                'from the saved pages. Nothing here has been renamed by hand.</p>\n')
+
+    return (flag + '      <div class="theatre" data-theatre>\n'
+            '        <div class="theatre__stage">\n'
+            '          <div class="theatre__frame" data-frame hidden></div>\n'
+            '          <button class="theatre__poster" type="button" data-poster>\n'
+            '            %s\n'
+            '            <span class="theatre__go" aria-hidden="true">\n'
+            '              <svg viewBox="0 0 24 24" width="34" height="34"><path d="M8 5.5 19 12 8 18.5z"/></svg>\n'
+            '            </span>\n'
+            '            <span class="visually-hidden">Play</span>\n'
+            '          </button>\n'
+            '          <div class="theatre__panel" data-next hidden>\n'
+            '            <p class="theatre__panel-t">Up next: <b data-next-title></b></p>\n'
+            '            <p class="theatre__panel-c">Starting in <span data-next-count>8</span></p>\n'
+            '            <p class="theatre__panel-b">\n'
+            '              <button class="btn" type="button" data-next-go>Play now</button>\n'
+            '              <button class="btn btn--ghost" type="button" data-next-cancel>Cancel</button>\n'
+            '            </p>\n          </div>\n'
+            '          <div class="theatre__panel" data-check hidden>\n'
+            '            <p class="theatre__panel-t">Are you still watching?</p>\n'
+            '            <p class="theatre__panel-b">\n'
+            '              <button class="btn" type="button" data-check-go>Continue</button>\n'
+            '            </p>\n          </div>\n        </div>\n'
+            '        <p class="theatre__now"><b data-now-title>%s</b> <span data-now-sub></span></p>\n'
+            '        <p class="visually-hidden" data-live aria-live="polite"></p>\n'
+            '        <ol class="theatre__list">\n%s        </ol>\n'
+            '        <script type="application/json" data-theatre-data>%s%s\n'
+            '      </div>\n'
+            % (pic(first, b), e(first["title"]), rows, payload,
+               # written in two halves so this file never contains the literal
+               # closing tag inside a Python string that produces one
+               "</" + "script>"))
+
+
+def specimen(src, alt, size="", label="Illustration", depth=0):
+    """One cut-out specimen, floating on the page.
+
+    No frame, no ground, no shadow: the transparency is the point, so the
+    paper shows through and the object sits on the page the way a specimen
+    sits on a museum sweep.
+
+    label defaults to "Illustration" and is not decoration. These assets are
+    generated images of real-looking organisms and soil, and the site must
+    never present one as a photograph of something the Foundation holds. The
+    Foundation's own microscopy stays the only thing shown as real.
+    """
+    c = ("specimen " + size).strip()
+    return ('<figure class="%s">\n        <img src="%s" alt="%s" loading="lazy" decoding="async">\n'
+            '        <figcaption><span class="fig-n">%s</span>%s</figcaption>\n      </figure>'
+            % (A(c), A(("../" * depth) + web(src)), A(alt), e(label), e(CAPTION)))
 
 
 def filmstrip(items, depth=0):
@@ -507,7 +656,7 @@ def chrome(depth=0):
 SITE = "https://soilfoodweb.org"   # VERIFY: the production hostname at cutover.
 
 
-def render(path, title, desc, main, depth=0, share=None):
+def render(path, title, desc, main, depth=0, share=None, tone=""):
     hdr, ftr = chrome(depth)
     b = "../" * depth
     # og:image has to be absolute: a relative path is useless to a link
@@ -529,13 +678,16 @@ def render(path, title, desc, main, depth=0, share=None):
             '  <meta name="twitter:image" content="%s">\n'
             '  <link rel="preload" href="%sfonts/montserrat-latin-variable.woff2" as="font" type="font/woff2" crossorigin>\n'
             '  <link rel="preload" href="%sfonts/source-sans-3-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>\n'
-            '  <link rel="stylesheet" href="%scss/site.css">\n</head>\n<body>\n'
+            '  <link rel="stylesheet" href="%scss/site.css">\n</head>\n<body%s>\n'
             '<a class="skip" href="#main">Skip to content</a>\n\n'
             '<!-- Icon sprite, inlined so the page works over file:// -->\n'
             % (e(title), A(desc),
                A(title), A(desc), A(SITE + "/" + path), A(img_abs),
                A(title), A(desc), A(img_abs),
-               b, b, b))
+               b, b, b,
+               # The page's accent family. One colour per section of the site,
+               # set once here and read by every component through --accent.
+               (' class="%s"' % A(tone)) if tone else ""))
     out = head + sprite + "\n\n" + hdr + main + "\n\n" + ftr + '<script src="%sjs/site.js"></script>\n</body>\n</html>\n' % b
     with open(os.path.join(ROOT, path), "w", encoding="utf-8") as f:
         f.write(out)
@@ -990,12 +1142,22 @@ def p_practice():
 
     o.append(sec("      " + note(c["projects"]), "notes-only"))
 
+    # Evan, Sep 7: until the three written case studies exist, the Consultant
+    # and Farmer Case Studies playlists run here as stories from the field.
+    # The theatre renders itself only when content/videos.json holds videos
+    # that have been verified as playable; until then this section says
+    # exactly what it said before.
     cs = c["caseStudies"]
+    # The eleven case-study films run in the theatre: one player that stays on
+    # the page, autoplay into the next, and a shareable ?v= link for each.
+    # Everything around it, the source line, the notes and the link to the
+    # written Sweden study, is as the base branch wrote it.
+    stage = theatre(only=load("videos")["onPractice"])
     o.append(sec('      <div class="head">\n        %s\n        <h2 id="csx-h">%s</h2>\n        <p>%s</p>\n      </div>\n%s'
                  '      <p class="source small">%s</p>\n'
                  '      <p style="margin-top:var(--s4)"><a class="btn btn--ghost" href="projects/market-garden-sweden.html">Read the Sweden market garden case study</a></p>\n'
                  '      %s%s'
-                 % (eyebrow(cs["eyebrow"]), e(cs["h2"]), e(cs["lede"]), films(cs["cards"]),
+                 % (eyebrow(cs["eyebrow"]), e(cs["h2"]), e(cs["lede"]), stage,
                     e(cs["source"]), note(cs), note(cs["more"])),
                  label="csx-h", sid="case-studies"))
 
@@ -1310,32 +1472,36 @@ def p_webinars():
 # page's own hero photograph: a link to the Learn page should not unfurl with
 # the homepage's picture.
 PAGES = [
+    # path, <title>, content file, builder, the image a shared link shows,
+    # and the page's accent family. The accent is one colour per section:
+    # education blue on the Learn pages, the microscopy violet on Science,
+    # oxidised rust on Practice. Everything else keeps Food Web Green.
     ("index.html", "Soil Food Web Foundation, a nonprofit teaching the science of living soil", "home", p_home,
      "img/hand-soil-roots-fungi.jpg"),
     ("about.html", "About the Foundation, Soil Food Web Foundation", "about", p_about,
      "img/Dr Elaine Ingham with Microscope.jpg"),
     ("learn.html", "Learn with us, Soil Food Web Foundation", "learn", p_learn,
-     "img/ctpfw-student-squeezing-compost-1.jpg"),
+     "img/ctpfw-student-squeezing-compost-1.jpg", "t-learn"),
     ("science.html", "How the soil food web works, Soil Food Web Foundation", "science", p_science,
-     "img/fungal-spores-in-suspension.jpg"),
+     "img/fungal-spores-in-suspension.jpg", "t-science"),
     ("practice.html", "Practice, Soil Food Web Foundation", "practice", p_practice,
-     "img/red-soil-hand.jpg"),
+     "img/red-soil-hand.jpg", "t-practice"),
     ("community.html", "Community, Soil Food Web Foundation", "community", p_community,
      "img/erc-rancho-cacachilas-aerial-2.jpg"),
     ("calendar.html", "Calendar, Soil Food Web Foundation", "calendar", p_calendar,
-     "img/ctpfw-student-moving-compost-1.jpg"),
+     "img/ctpfw-student-moving-compost-1.jpg", "t-learn"),
     ("news.html", "News and stories, Soil Food Web Foundation", "news", p_news,
      "img/Carla-Nicks Son-Nick-ERI-Wild Soils Event-11-2024.jpg"),
     ("research.html", "Research, Soil Food Web Foundation", "research", p_research,
-     "img/Test tubes with sample_.jpg"),
+     "img/Test tubes with sample_.jpg", "t-science"),
     ("login.html", "Student access, Soil Food Web Foundation", "login", p_login,
-     "img/hand-soil-roots-fungi.jpg"),
+     "img/hand-soil-roots-fungi.jpg", "t-learn"),
     ("donate.html", "Donate and get involved, Soil Food Web Foundation", "donate", p_donate,
      "img/erc-panchamana-treeplanting-2-fb-img-1666270988322.jpg"),
     ("learn-scholarships.html", "Scholarships, Soil Food Web Foundation", "scholarships", p_scholarships,
-     "img/hvdb-inplanten-002.jpg"),
+     "img/hvdb-inplanten-002.jpg", "t-learn"),
     ("learn-webinars.html", "Free webinars, Soil Food Web Foundation", "webinars", p_webinars,
-     "img/Sampling equipment.jpg"),
+     "img/Sampling equipment.jpg", "t-learn"),
 ]
 
 # Pages written by hand rather than rendered from content/. They carry the same
@@ -1401,11 +1567,13 @@ def restamp(path):
 
 
 if __name__ == "__main__":
-    for path, title, key, fn, share in PAGES:
+    for row in PAGES:
+        path, title, key, fn, share = row[:5]
+        tone = row[5] if len(row) > 5 else ""      # optional accent family
         c = load(key)
         h = c.get("hero", {})
         desc = h.get("intro") or h.get("subhead") or title
-        render(path, title, desc[:300], fn(), share=share)
+        render(path, title, desc[:300], fn(), share=share, tone=tone)
     for path in HAND_WRITTEN:
         restamp(path)
     print("done:", len(PAGES), "rendered,", len(HAND_WRITTEN), "re-stamped")

@@ -1,0 +1,347 @@
+{
+  "_source": "Titles, subtitles and thumbnails read from the 'This Playlist' block of each of the six WordPress playlist pages. Every id and private hash was independently confirmed against the scrape tools/playlist.py ran from Linnea's machine on 11 September 2026: 26 of 26 identical, no conflicts.",
+  "curated": true,
+  "_state": "Durations are present only where Vimeo's oembed returned one. A missing duration does not mean a missing video: branch claude/sfw-website-rebuild-e7pc12 embeds three of these with the same hashes and they play.",
+  "playlists": [
+    {
+      "id": "consultant-case-studies",
+      "title": "Consultant Case Studies",
+      "page": "https://soilfoodweb.com/resources/case-studies-videos/",
+      "items": [
+        {
+          "slug": "market-garden-makeover-sweden",
+          "id": "537966540",
+          "hash": "a79eb5d201",
+          "title": "Market Garden Makeover, Sweden",
+          "subtitle": "Potatoes, onions, salad greens · by Renald Flores",
+          "duration": null,
+          "thumb": "",
+          "remoteThumb": "https://soilfoodweb.com/wp-content/uploads/2021/06/25.jpg",
+          "source": "https://soilfoodweb.com/resources/case-studies-videos/"
+        },
+        {
+          "slug": "york-farms-illinois",
+          "id": "537972167",
+          "hash": "f6a32ff941",
+          "title": "York Farms, Illinois",
+          "subtitle": "Corn and soy, 10,000 acres · by Todd Harrington",
+          "duration": null,
+          "thumb": "",
+          "remoteThumb": "https://soilfoodweb.com/wp-content/uploads/2021/06/24.jpg",
+          "source": "https://soilfoodweb.com/resources/case-studies-videos/"
+        },
+        {
+          "slug": "international-case-studies",
+          "id": "537963453",
+          "hash": "11f160622a",
+          "title": "International Case Studies: Ecuador, India, Peru, USA",
+          "subtitle": "Grapes, cannabis, turmeric and more · by Miles Sorel",
+          "duration": null,
+          "thumb": "",
+          "remoteThumb": "https://soilfoodweb.com/wp-content/uploads/2021/06/22.jpg",
+          "source": "https://soilfoodweb.com/resources/case-studies-videos/"
+        },
+        {
+          "slug": "alfalfa-potatoes-and-beans",
+          "id": "538767686",
+          "hash": "ca0eecb84e",
+          "title": "Alfalfa, Potatoes and Beans",
+          "subtitle": "25,000 acres · by Todd Harrington",
+          "duration": null,
+          "thumb": "",
+          "remoteThumb": "https://soilfoodweb.com/wp-content/uploads/2021/06/23.jpg",
+          "source": "https://soilfoodweb.com/resources/case-studies-videos/"
+        },
+        {
+          "slug": "organic-banana-farm-south-africa",
+          "id": "498143744",
+          "hash": "c4ba30014d",
+          "title": "Organic Banana Farm, South Africa",
+          "subtitle": "5,000 acres · by Shane Plath",
+          "duration": null,
+          "thumb": "",
+          "remoteThumb": "https://soilfoodweb.com/wp-content/uploads/2021/06/19.jpg",
+          "source": "https://soilfoodweb.com/resources/case-studies-videos/"
+        },
+        {
+          "slug": "governors-island-nyc",
+          "id": "498144316",
+          "hash": "5a85131b62",
+          "title": "Governors Island, NYC",
+          "subtitle": "172 acre public park restoration · by Todd Harrington",
+          "duration": null,
+          "thumb": "",
+          "remoteThumb": "https://soilfoodweb.com/wp-content/uploads/2021/06/20.jpg",
+          "source": "https://soilfoodweb.com/resources/case-studies-videos/"
+        },
+        {
+          "slug": "nick-padwick",
+          "id": "1034550940",
+          "hash": "7f0f78d4e3",
+          "title": "Nick Padwick",
+          "subtitle": "4,000 acres · Norfolk, England",
+          "duration": null,
+          "thumb": "",
+          "remoteThumb": "",
+          "source": "https://soilfoodweb.com/resources/case-studies-videos/"
+        }
+      ]
+    },
+    {
+      "id": "farmer-case-studies",
+      "title": "Farmer Case Studies",
+      "page": "https://soilfoodweb.com/resources/farmer-case-studies-soil-food-web/",
+      "items": [
+        {
+          "slug": "adam-york",
+          "id": "792733797",
+          "hash": "e809b1fad3",
+          "title": "Adam York",
+          "subtitle": "10,000 acres · Illinois, USA",
+          "duration": 587,
+          "thumb": "img/video/farmer-case-studies.jpg",
+          "remoteThumb": "https://soilfoodweb.com/wp-content/uploads/2023/03/adam-300x169-1.jpg",
+          "source": "https://soilfoodweb.com/resources/farmer-case-studies-soil-food-web/"
+        },
+        {
+          "slug": "roberto-silva",
+          "id": "790985081",
+          "hash": "92231c295c",
+          "title": "Roberto Silva",
+          "subtitle": "140 acres · Piura, Peru",
+          "duration": 354,
+          "thumb": "img/video/790985081.jpg",
+          "remoteThumb": "https://soilfoodweb.com/wp-content/uploads/2023/03/rsilva.webp",
+          "source": "https://soilfoodweb.com/resources/farmer-case-studies-soil-food-web/"
+        },
+        {
+          "slug": "jenn-sirp",
+          "id": "812188293",
+          "hash": "6ed8f0fbef",
+          "title": "Jenn Sirp",
+          "subtitle": "¼ acre · California, USA",
+          "duration": 584,
+          "thumb": "img/video/812188293.jpg",
+          "remoteThumb": "https://soilfoodweb.com/wp-content/uploads/2023/03/jenn.webp",
+          "source": "https://soilfoodweb.com/resources/farmer-case-studies-soil-food-web/"
+        },
+        {
+          "slug": "cory-miller",
+          "id": "812185778",
+          "hash": "dd3a45ec17",
+          "title": "Cory Miller",
+          "subtitle": "3,000 acres · Montana, USA",
+          "duration": 710,
+          "thumb": "img/video/812185778.jpg",
+          "remoteThumb": "https://soilfoodweb.com/wp-content/uploads/2023/03/cory-miler.webp",
+          "source": "https://soilfoodweb.com/resources/farmer-case-studies-soil-food-web/"
+        }
+      ]
+    },
+    {
+      "id": "how-it-works",
+      "title": "How It Works",
+      "page": "https://soilfoodweb.com/resources/animations-videos/",
+      "items": [
+        {
+          "slug": "the-soil-food-web",
+          "id": "372925873",
+          "hash": "707aa77aa3",
+          "title": "The Soil Food Web",
+          "subtitle": "",
+          "duration": null,
+          "thumb": "",
+          "remoteThumb": "https://soilfoodweb.com/wp-content/uploads/2021/07/10.jpg",
+          "source": "https://soilfoodweb.com/resources/animations-videos/"
+        },
+        {
+          "slug": "nutrient-cycling",
+          "id": "372474782",
+          "hash": "a5ae5edb4a",
+          "title": "Nutrient Cycling",
+          "subtitle": "",
+          "duration": null,
+          "thumb": "",
+          "remoteThumb": "https://soilfoodweb.com/wp-content/uploads/2021/07/9.jpg",
+          "source": "https://soilfoodweb.com/resources/animations-videos/"
+        },
+        {
+          "slug": "the-formation-of-structure",
+          "id": "372476056",
+          "hash": "fd05a7dc60",
+          "title": "The Formation of Structure",
+          "subtitle": "",
+          "duration": null,
+          "thumb": "",
+          "remoteThumb": "https://soilfoodweb.com/wp-content/uploads/2021/07/8.jpg",
+          "source": "https://soilfoodweb.com/resources/animations-videos/"
+        },
+        {
+          "slug": "weed-suppression",
+          "id": "372479571",
+          "hash": "4cced96d80",
+          "title": "Weed Suppression",
+          "subtitle": "",
+          "duration": null,
+          "thumb": "",
+          "remoteThumb": "https://soilfoodweb.com/wp-content/uploads/2021/07/7.jpg",
+          "source": "https://soilfoodweb.com/resources/animations-videos/"
+        },
+        {
+          "slug": "inhibiting-pests-and-diseases",
+          "id": "372480255",
+          "hash": "7c04397066",
+          "title": "Inhibiting Pests and Diseases",
+          "subtitle": "",
+          "duration": null,
+          "thumb": "",
+          "remoteThumb": "https://soilfoodweb.com/wp-content/uploads/2021/07/Video-Thumbnails-5.jpg",
+          "source": "https://soilfoodweb.com/resources/animations-videos/"
+        },
+        {
+          "slug": "soil-carbon-sequestration",
+          "id": "372478833",
+          "hash": "7c10d53c26",
+          "title": "Soil Carbon Sequestration",
+          "subtitle": "",
+          "duration": null,
+          "thumb": "",
+          "remoteThumb": "https://soilfoodweb.com/wp-content/uploads/2021/07/6.jpg",
+          "source": "https://soilfoodweb.com/resources/animations-videos/"
+        }
+      ],
+      "note": "This settles the conflict flagged earlier: 372925873 is the video 'The Soil Food Web', which is what content/science.json said, and the copy deck line calling it a playlist id was wrong. All six mechanisms on science.html now have a hash and can carry their real animation."
+    },
+    {
+      "id": "implementing",
+      "title": "Implementing the Soil Food Web",
+      "page": "https://soilfoodweb.com/resources/soil-food-web-approach-videos/",
+      "items": [
+        {
+          "slug": "making-compost-extract-and-tea",
+          "id": "525025259",
+          "hash": "11f6b261ce",
+          "title": "Making Compost Extract and Tea",
+          "subtitle": "",
+          "duration": null,
+          "thumb": "",
+          "remoteThumb": "https://soilfoodweb.com/wp-content/uploads/2021/07/13.jpg",
+          "source": "https://soilfoodweb.com/resources/soil-food-web-approach-videos/"
+        },
+        {
+          "slug": "using-the-microscope",
+          "id": "542881348",
+          "hash": "e1794073a3",
+          "title": "Using the Microscope",
+          "subtitle": "",
+          "duration": null,
+          "thumb": "",
+          "remoteThumb": "https://soilfoodweb.com/wp-content/uploads/2021/07/12.jpg",
+          "source": "https://soilfoodweb.com/resources/soil-food-web-approach-videos/"
+        },
+        {
+          "slug": "about-the-soil-food-web",
+          "id": "466000315",
+          "hash": "2a1509b00f",
+          "title": "About the Soil Food Web",
+          "subtitle": "",
+          "duration": null,
+          "thumb": "",
+          "remoteThumb": "https://soilfoodweb.com/wp-content/uploads/2021/07/11.jpg",
+          "source": "https://soilfoodweb.com/resources/soil-food-web-approach-videos/"
+        }
+      ]
+    },
+    {
+      "id": "testimonials",
+      "title": "Testimonials",
+      "page": "https://soilfoodweb.com/resources/testimonials-videos/",
+      "items": [
+        {
+          "slug": "brian-vagg",
+          "id": "380296081",
+          "hash": "4da9889266",
+          "title": "Brian Vagg",
+          "subtitle": "SFW Consultant · Auburn, California",
+          "duration": null,
+          "thumb": "",
+          "remoteThumb": "https://soilfoodweb.com/wp-content/uploads/2021/06/15.jpg",
+          "source": "https://soilfoodweb.com/resources/testimonials-videos/"
+        },
+        {
+          "slug": "keisha-and-casey",
+          "id": "380297602",
+          "hash": "7a71e6701c",
+          "title": "Keisha and Casey",
+          "subtitle": "Compost producers · Nevada City, California",
+          "duration": null,
+          "thumb": "",
+          "remoteThumb": "https://soilfoodweb.com/wp-content/uploads/2021/07/17.jpg",
+          "source": "https://soilfoodweb.com/resources/testimonials-videos/"
+        },
+        {
+          "slug": "nick-tomasini",
+          "id": "410049306",
+          "hash": "251e4606ca",
+          "title": "Nick Tomasini",
+          "subtitle": "SFW Consultant · Portland, Oregon",
+          "duration": null,
+          "thumb": "",
+          "remoteThumb": "https://soilfoodweb.com/wp-content/uploads/2021/06/12.jpg",
+          "source": "https://soilfoodweb.com/resources/testimonials-videos/"
+        },
+        {
+          "slug": "todd-harrington",
+          "id": "470279480",
+          "hash": "103139eeb8",
+          "title": "Todd Harrington",
+          "subtitle": "SFW Consultant · Bloomfield, Connecticut",
+          "duration": null,
+          "thumb": "",
+          "remoteThumb": "https://soilfoodweb.com/wp-content/uploads/2021/06/13.jpg",
+          "source": "https://soilfoodweb.com/resources/testimonials-videos/"
+        }
+      ]
+    },
+    {
+      "id": "meet-the-family",
+      "title": "Meet the Soil Food Web Family",
+      "page": "https://soilfoodweb.com/resources/meet-the-soil-food-web-family-videos/",
+      "items": [
+        {
+          "slug": "consultants",
+          "id": "440097560",
+          "hash": "529443df10",
+          "title": "Consultants",
+          "subtitle": "What life as a Soil Food Web Consultant is like",
+          "duration": null,
+          "thumb": "",
+          "remoteThumb": "https://soilfoodweb.com/wp-content/uploads/2021/06/17.jpg",
+          "source": "https://soilfoodweb.com/resources/meet-the-soil-food-web-family-videos/"
+        },
+        {
+          "slug": "students",
+          "id": "534172809",
+          "hash": "3842558f66",
+          "title": "Students",
+          "subtitle": "What students think of the training",
+          "duration": 471,
+          "thumb": "img/video/534172809.jpg",
+          "remoteThumb": "https://soilfoodweb.com/wp-content/uploads/2021/06/18.jpg",
+          "source": "https://soilfoodweb.com/resources/meet-the-soil-food-web-family-videos/"
+        }
+      ]
+    }
+  ],
+  "onPractice": [
+    "consultant-case-studies",
+    "farmer-case-studies"
+  ],
+  "note": "Evan, Sep 7: video cases from the Consultant and Farmer Case Studies playlists run as stories from the field until the three written case studies exist. Those two playlists are what the Practice page shows.",
+  "_known_issues": [
+    "CORRECTION to an earlier pass: most of these return no duration from Vimeo's oembed, and that was read as 'not a video, probably a showcase id'. Wrong. They are real videos, and three of them embed and play on a vercel.app domain today on another branch. 21 real videos were thrown out on that reading and are back.",
+    "Jenn Sirp: on the old page the thumbnail links to 797652217, a 58 minute webinar, while the title links to 812188293, the 10 minute case study. The case study is what is used here.",
+    "Nick Padwick has no thumbnail on the old page either. His cell stays empty until the Foundation supplies a still.",
+    "Thumbnails still living on soilfoodweb.com are in remoteThumb, never hotlinked. Run tools/playlist.py --thumbs locally to bring them into img/video/ so the new site does not depend on the old one."
+  ]
+}
