@@ -210,13 +210,17 @@ def theatre(only=(), depth=0):
     The private hash goes in the data, once, where no link can drop it.
     """
     c = load("videos")
-    items = []
+    items, seen = [], set()
     for pl in c["playlists"]:
         if only and pl["id"] not in only:
             continue
         for it in pl["items"]:
-            if it.get("id") and it.get("hash"):      # unplayable without both
-                items.append(it)
+            if not (it.get("id") and it.get("hash")):   # unplayable without both
+                continue
+            if it["id"] in seen:                       # the same video in two playlists
+                continue
+            seen.add(it["id"])
+            items.append(it)
     if not items:
         return ""
 
@@ -225,7 +229,7 @@ def theatre(only=(), depth=0):
     for n, v in enumerate(items):
         thumb = ('<img src="%s%s" alt="" loading="lazy" decoding="async">' % (b, A(v["thumb"]))) \
             if v.get("thumb") else ""
-        sub = " &middot; ".join(e(x) for x in (v.get("person"), v.get("subtitle")) if x)
+        sub = e(v.get("subtitle", ""))
         rows += ('        <li data-active="%s">\n'
                  '          <button class="theatre__item" type="button" data-i="%d" aria-current="%s">\n'
                  '            <span class="theatre__thumb">%s</span>\n'
@@ -238,7 +242,7 @@ def theatre(only=(), depth=0):
 
     first = items[0]
     payload = json.dumps([{k: v.get(k, "") for k in
-                           ("slug", "id", "hash", "title", "subtitle", "person", "thumb")}
+                           ("slug", "id", "hash", "title", "subtitle", "thumb")}
                           for v in items], ensure_ascii=False)
     # a JSON island cannot be allowed to close the script element early
     payload = payload.replace("</", "<\\/")

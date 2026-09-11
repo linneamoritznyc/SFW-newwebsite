@@ -447,7 +447,7 @@
       b.parentNode.setAttribute("data-active", on ? "true" : "false");
     });
     if (nowT) nowT.textContent = v.title;
-    if (nowS) nowS.textContent = [v.person, v.subtitle].filter(Boolean).join(" · ");
+    if (nowS) nowS.textContent = v.subtitle || "";
     if (poster) {
       var im = poster.querySelector("img");
       if (im && v.thumb) im.src = v.thumb;

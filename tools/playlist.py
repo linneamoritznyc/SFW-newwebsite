@@ -1,9 +1,14 @@
 #!/usr/bin/env python3
 """Read the WordPress video playlists, verify every video, write content/videos.json.
 
-    pip install requests beautifulsoup4
+    cd /path/to/SFW-newwebsite
     python3 tools/playlist.py                 # scrape, verify, fetch thumbnails
     python3 tools/playlist.py --verify-only   # re-check what is already in the file
+
+No installing anything. Standard library only, so the Python that ships with
+macOS runs it as it is: no pip, no requests, no BeautifulSoup, no virtual
+environment. The path is relative to this file rather than to where you are
+standing, so `python3 ~/SFW-newwebsite/tools/playlist.py` works from anywhere.
 
 RUN THIS LOCALLY. Like crawl.py, it needs soilfoodweb.com and vimeo.com, and
 the cloud sandbox has no route to either.
@@ -43,7 +48,10 @@ import os
 import re
 import sys
 import time
+import urllib.error
 import urllib.parse as up
+import urllib.request
+from html.parser import HTMLParser
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA = os.path.join(ROOT, "content", "videos.json")
@@ -52,22 +60,79 @@ UA = {"User-Agent": "SFWF-rebuild-playlist/1.0 (linnea@soilfoodweb.com)"}
 OEMBED = "https://vimeo.com/api/oembed.json"
 
 
-def need(mod):
+class Playlist(HTMLParser):
+    """Every anchor with its text and its thumbnail, plus every iframe src.
+
+    A hand-rolled parser rather than BeautifulSoup, so that the script runs on
+    a laptop with nothing installed. It does not need to understand the page,
+    only to find links that carry a vID and whatever text and image sit inside
+    them, which is well within what html.parser does reliably.
+    """
+
+    def __init__(self):
+        HTMLParser.__init__(self, convert_charrefs=True)
+        self.links = []
+        self.iframes = []
+        self._open = None
+
+    def handle_starttag(self, tag, attrs):
+        a = dict(attrs)
+        if tag == "a" and a.get("href"):
+            self._open = {"href": a["href"], "lines": [], "img": ""}
+        elif tag == "iframe" and a.get("src"):
+            self.iframes.append(a["src"])
+        elif tag == "img" and self._open is not None and not self._open["img"]:
+            # WordPress lazy-loading leaves a data: URI in src and the real
+            # file in one of these, so the attributes are tried in order.
+            src = (a.get("data-src") or a.get("data-lazy-src") or a.get("src") or "")
+            if src.startswith("data:"):
+                src = (a.get("data-lazy-src") or a.get("data-srcset", "").split(" ")[0] or "")
+            self._open["img"] = src
+
+    def handle_endtag(self, tag):
+        if tag == "a" and self._open is not None:
+            self.links.append(self._open)
+            self._open = None
+
+    def handle_data(self, data):
+        if self._open is not None and data.strip():
+            self._open["lines"].append(data.strip())
+
+
+def fetch(url, params=None, binary=False):
+    """GET, with the status code handed back rather than raised.
+
+    Returns (status, body). A 403 or a 404 from Vimeo is an answer, not an
+    accident: it is how the oembed endpoint says a hash is wrong.
+    """
+    if params:
+        url = url + "?" + up.urlencode(params)
+    req = urllib.request.Request(url, headers=UA)
     try:
-        return __import__(mod)
-    except ImportError:
-        sys.exit("pip install requests beautifulsoup4   (missing: %s)" % mod)
+        with urllib.request.urlopen(req, timeout=30) as r:
+            body = r.read()
+            if binary:
+                return r.status, body
+            return r.status, body.decode(r.headers.get_content_charset() or "utf-8", "replace")
+    except urllib.error.HTTPError as exc:
+        return exc.code, ""
+    except (urllib.error.URLError, OSError) as exc:
+        return 0, str(exc)
 
 
-requests = need("requests")
-need("bs4")
-from bs4 import BeautifulSoup  # noqa: E402
+def slugify(text, fallback, taken):
+    """What ?v= carries.
 
-
-def slugify(*parts):
-    t = " ".join(p for p in parts if p)
-    t = t.replace("’", "").replace("'", "")
-    return re.sub(r"[^a-z0-9]+", "-", t.lower()).strip("-")[:60]
+    Built from the title, because that is what a person reading a shared link
+    expects to see, with the video id appended only when two videos would
+    otherwise claim the same slug.
+    """
+    t = (text or "").replace("’", "").replace("'", "")
+    slug = re.sub(r"[^a-z0-9]+", "-", t.lower()).strip("-")[:60] or str(fallback)
+    if slug in taken:
+        slug = "%s-%s" % (slug, fallback)
+    taken.add(slug)
+    return slug
 
 
 def parse_link(href):
@@ -87,47 +152,47 @@ def parse_link(href):
     return (vid, h.strip()) if vid else (None, None)
 
 
-def text_near(a):
-    """Title, subtitle and person as the markup gives them, nothing invented.
+def text_near(lines):
+    """The title, and everything else in the order the page wrote it.
 
-    The playlist items are anchors wrapping a thumbnail and one to three
-    lines of text. Which line is which varies between the pages, so the
-    first line is the title and anything after it is kept in order.
+    A playlist item is an anchor wrapping a thumbnail and one to three lines:
+    a title, and then some combination of a person and a place. Which is
+    which varies between the six pages, so nothing here decides. The first
+    line is the title and the rest are joined as they stand, because the page
+    already knows the right order and a guess can only get it backwards.
     """
-    lines = [t.strip() for t in a.stripped_strings if t.strip()]
     lines = [l for l in lines if not l.lower().startswith("watch")]
-    title = lines[0] if lines else ""
-    rest = lines[1:]
-    return title, (rest[0] if rest else ""), (rest[1] if len(rest) > 1 else "")
+    if not lines:
+        return "", ""
+    return lines[0], " \u00b7 ".join(lines[1:])
 
 
 def scrape(page):
-    r = requests.get(page, headers=UA, timeout=30)
-    r.raise_for_status()
-    soup = BeautifulSoup(r.text, "html.parser")
+    status, html = fetch(page)
+    if status != 200:
+        print("  could not read the page: %s" % (("HTTP %d" % status) if status else html))
+        return None
+    doc = Playlist()
+    doc.feed(html)
+
     out, seen = [], set()
-    for a in soup.find_all("a", href=True):
-        vid, h = parse_link(a["href"])
+    for link in doc.links:
+        vid, h = parse_link(link["href"])
         if not vid or vid in seen:
             continue
         seen.add(vid)
-        title, subtitle, person = text_near(a)
-        img = a.find("img")
-        src = ""
-        if img:
-            src = img.get("data-src") or img.get("src") or ""
-            if src and "data:image" in src:                 # lazyload shim
-                src = img.get("data-lazy-src") or img.get("data-srcset", "").split(" ")[0] or ""
+        title, subtitle = text_near(link["lines"])
         out.append({"id": vid, "hash": h, "title": title, "subtitle": subtitle,
-                    "person": person, "remote_thumb": up.urljoin(page, src) if src else "",
+                    "remote_thumb": up.urljoin(page, link["img"]) if link["img"] else "",
                     "source": page})
+
     # The iframe holds the video the page opened with, which is sometimes the
     # only place a hash appears in one piece.
-    for f in soup.find_all("iframe", src=True):
-        if "player.vimeo.com" not in f["src"]:
+    for src in doc.iframes:
+        if "player.vimeo.com" not in src:
             continue
-        m = re.search(r"/video/(\d+)", f["src"])
-        h = up.parse_qs(up.urlparse(f["src"]).query).get("h", [""])[0]
+        m = re.search(r"/video/(\d+)", src)
+        h = up.parse_qs(up.urlparse(src).query).get("h", [""])[0]
         if m and h:
             for it in out:
                 if it["id"] == m.group(1) and not it["hash"]:
@@ -139,27 +204,27 @@ def verify(item):
     """200 with a title means it plays. Anything else means it does not."""
     url = "https://vimeo.com/%s/%s" % (item["id"], item["hash"]) if item["hash"] \
         else "https://vimeo.com/%s" % item["id"]
+    status, body = fetch(OEMBED, {"url": url, "width": 1280})
+    if status != 200:
+        return None, "oembed %s for %s" % (status or "no answer", url)
     try:
-        r = requests.get(OEMBED, params={"url": url, "width": 1280}, headers=UA, timeout=30)
-    except requests.RequestException as exc:
-        return None, str(exc)
-    if r.status_code != 200:
-        return None, "oembed %d for %s" % (r.status_code, url)
-    return r.json(), None
+        return json.loads(body), None
+    except ValueError:
+        return None, "oembed returned something that is not JSON for %s" % url
 
 
 def fetch_thumb(url, slug):
+    if not url:
+        return ""
     os.makedirs(THUMBS, exist_ok=True)
     dst = os.path.join(THUMBS, slug + ".jpg")
     if os.path.exists(dst):
         return "img/video/" + slug + ".jpg"
-    try:
-        r = requests.get(url, headers=UA, timeout=30)
-        r.raise_for_status()
-    except requests.RequestException:
+    status, body = fetch(url, binary=True)
+    if status != 200 or not body:
         return ""
     with open(dst, "wb") as f:
-        f.write(r.content)
+        f.write(body)
     return "img/video/" + slug + ".jpg"
 
 
@@ -169,17 +234,26 @@ def main():
                     help="re-check the videos already in content/videos.json")
     args = ap.parse_args()
 
-    data = json.load(open(DATA, encoding="utf-8"))
-    broken, kept = [], 0
+    if not os.path.exists(DATA):
+        sys.exit("Cannot find %s.\nRun this from a clone of the repository: the script writes into\n"
+                 "the content/ folder beside it." % DATA)
 
+    print("writing to %s\n" % DATA)
+    data = json.load(open(DATA, encoding="utf-8"))
+    broken, kept, taken = [], 0, set()
+
+    unreachable = 0
     for pl in data["playlists"]:
         items = pl["items"] if args.verify_only else scrape(pl["page"])
+        if items is None:                       # the page itself did not answer
+            unreachable += 1
+            continue
         if not args.verify_only:
             print("%-26s %s  %d links" % (pl["id"], pl["page"], len(items)))
         out = []
         for it in items:
             meta, err = verify(it)
-            slug = it.get("slug") or slugify(it.get("person"), it.get("title") or it["id"])
+            slug = it.get("slug") or slugify(it.get("title"), it["id"], taken)
             if err:
                 broken.append((pl["id"], slug, it["id"], it.get("hash") or "NO HASH", err))
                 continue
@@ -191,7 +265,6 @@ def main():
                 # oembed returns whatever the video was named on upload.
                 "title": it.get("title") or meta.get("title", ""),
                 "subtitle": it.get("subtitle", ""),
-                "person": it.get("person", ""),
                 "duration": meta.get("duration"),
                 "thumb": fetch_thumb(it.get("remote_thumb") or meta.get("thumbnail_url", ""), slug),
                 "source": it.get("source", pl["page"]),
@@ -202,8 +275,17 @@ def main():
         pl["items"] = out
         print("  kept %d" % len(out))
 
-    data["_state"] = "Written by tools/playlist.py on %s. Every entry verified against Vimeo oembed." \
-        % time.strftime("%d %B %Y")
+    # Nothing readable means no result, and a file that says otherwise would
+    # be worse than an empty one. Leave it exactly as it was.
+    if unreachable and not kept:
+        print("\nNone of the playlist pages could be read, so nothing was written.")
+        print("Either this machine has no route to soilfoodweb.com, which is the")
+        print("case in the cloud sandbox, or the pages have moved.")
+        return 2
+
+    data["_state"] = "Written by tools/playlist.py on %s. %d videos, every one verified against Vimeo oembed.%s" \
+        % (time.strftime("%d %B %Y"), kept,
+           " %d of the six pages could not be read." % unreachable if unreachable else "")
     with open(DATA, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
         f.write("\n")

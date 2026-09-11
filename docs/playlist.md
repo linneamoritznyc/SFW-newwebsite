@@ -82,7 +82,7 @@ The player is created with `dnt: true`, so Vimeo sets no tracking cookies.
 - **"Are you still watching?"** After three videos in a row with nobody
   touching anything, it stops and asks instead of playing to an empty room.
   A click, a tap, a pause or a scrub resets the count.
-- **Clean, linkable URLs.** `?v=renald-flores-sweden` rather than
+- **Clean, linkable URLs.** `?v=market-garden-makeover` rather than
   `?vID=537966540&h=a79eb5d201`. The hash is not in the URL, so a shared
   link cannot leak or lose it. The back button works.
 - **The rail** marks what is playing in the page's accent colour and shows
@@ -95,14 +95,21 @@ on Vimeo directly. The content stays reachable.
 
 `content/videos.json` ships empty. It is written by:
 
-    pip install requests beautifulsoup4
+    cd /path/to/SFW-newwebsite
     python3 tools/playlist.py
+
+Nothing to install. Standard library only, so the Python that comes with
+macOS runs it as it is: no `pip`, no `requests`, no BeautifulSoup, no virtual
+environment. It writes into the `content/` folder beside itself rather than
+into whatever folder you are standing in, so
+`python3 ~/SFW-newwebsite/tools/playlist.py` works from anywhere, and it
+prints the path it is writing to before it starts.
 
 **Run it locally.** Like `crawl.py`, it needs soilfoodweb.com and vimeo.com,
 and the cloud sandbox has no route to either.
 
 It reads the six playlist pages, pulls every `vID` and `h` with the title,
-subtitle, person and thumbnail beside them, and then checks each one:
+the other lines and the thumbnail beside them, and then checks each one:
 
     https://vimeo.com/api/oembed.json?url=https://vimeo.com/ID/HASH
 
@@ -124,3 +131,24 @@ an empty player, which is bug 3 again.
 The copy deck calls **372925873** the How It Works *playlist*.
 `content/science.json` calls it mechanism 1's *video*. One of them is wrong,
 and the scrape will say which. Nothing has been seeded from either.
+
+## Two things the fixture test caught
+
+Worth recording, because both were the same mistake in different clothes:
+deciding something the page already knows.
+
+**The lines beside the title are not labelled.** An item carries a title and
+then one or two more lines, and which is the person and which is the place
+varies across the six pages. The first version guessed, and rendered "Sweden
+· Renald Flores" backwards. Now nothing guesses: the lines are joined in the
+order the page wrote them.
+
+**Slugs came from the guess**, so they read `?v=sweden-market-garden-makeover`.
+They come from the title alone now, with the video id appended only when two
+videos would otherwise claim the same slug.
+
+The test lives in the scratch directory rather than the repository, and drives
+the whole script against fixture markup with no network: a good link, a link
+with no hash whose hash is recovered from the iframe, the mangled
+`vID=372925873%3Fh%3D707aa77aa3`, a lazy-loaded `data:` thumbnail, and a hash
+Vimeo refuses.
