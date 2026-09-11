@@ -13,35 +13,449 @@
       "source": "the page this was read from"
     }
   },
-  "_state": "EMPTY ON PURPOSE. This machine has no route to soilfoodweb.com or vimeo.com, the same restriction crawl.py documents. Run tools/playlist.py locally and this file fills itself.",
+  "_state": "Written by tools/playlist.py on 11 September 2026. 57 videos, every one verified against Vimeo oembed.",
   "playlists": [
     {
       "id": "consultant-case-studies",
       "title": "Consultant Case Studies",
       "showcase": "537966540",
       "page": "https://www.soilfoodweb.com/resources/case-studies-videos/",
-      "items": []
+      "items": [
+        {
+          "slug": "videos",
+          "id": "372925873",
+          "hash": "707aa77aa3",
+          "title": "Videos",
+          "subtitle": "",
+          "duration": null,
+          "thumb": "",
+          "source": "https://www.soilfoodweb.com/resources/case-studies-videos/"
+        },
+        {
+          "slug": "consultant-case-studies",
+          "id": "537966540",
+          "hash": "a79eb5d201",
+          "title": "Consultant Case Studies",
+          "subtitle": "",
+          "duration": null,
+          "thumb": "",
+          "source": "https://www.soilfoodweb.com/resources/case-studies-videos/"
+        },
+        {
+          "slug": "farmer-case-studies",
+          "id": "792733797",
+          "hash": "e809b1fad3",
+          "title": "Farmer Case Studies",
+          "subtitle": "",
+          "duration": 587,
+          "thumb": "img/video/farmer-case-studies.jpg",
+          "source": "https://www.soilfoodweb.com/resources/case-studies-videos/"
+        },
+        {
+          "slug": "implementing-the-soil-food-web",
+          "id": "525025259",
+          "hash": "11f6b261ce",
+          "title": "Implementing the Soil Food Web",
+          "subtitle": "",
+          "duration": null,
+          "thumb": "",
+          "source": "https://www.soilfoodweb.com/resources/case-studies-videos/"
+        },
+        {
+          "slug": "testimonials",
+          "id": "380296081",
+          "hash": "4da9889266",
+          "title": "Testimonials",
+          "subtitle": "",
+          "duration": null,
+          "thumb": "",
+          "source": "https://www.soilfoodweb.com/resources/case-studies-videos/"
+        },
+        {
+          "slug": "meet-the-soil-food-web-family",
+          "id": "440097560",
+          "hash": "529443df10",
+          "title": "Meet the Soil Food Web Family",
+          "subtitle": "",
+          "duration": null,
+          "thumb": "",
+          "source": "https://www.soilfoodweb.com/resources/case-studies-videos/"
+        },
+        {
+          "slug": "537972167",
+          "id": "537972167",
+          "hash": "f6a32ff941",
+          "title": "",
+          "subtitle": "",
+          "duration": null,
+          "thumb": "",
+          "source": "https://www.soilfoodweb.com/resources/case-studies-videos/"
+        },
+        {
+          "slug": "537963453",
+          "id": "537963453",
+          "hash": "11f160622a",
+          "title": "",
+          "subtitle": "",
+          "duration": null,
+          "thumb": "",
+          "source": "https://www.soilfoodweb.com/resources/case-studies-videos/"
+        },
+        {
+          "slug": "538767686",
+          "id": "538767686",
+          "hash": "ca0eecb84e",
+          "title": "",
+          "subtitle": "",
+          "duration": null,
+          "thumb": "",
+          "source": "https://www.soilfoodweb.com/resources/case-studies-videos/"
+        },
+        {
+          "slug": "498143744",
+          "id": "498143744",
+          "hash": "c4ba30014d",
+          "title": "",
+          "subtitle": "",
+          "duration": null,
+          "thumb": "",
+          "source": "https://www.soilfoodweb.com/resources/case-studies-videos/"
+        },
+        {
+          "slug": "498144316",
+          "id": "498144316",
+          "hash": "5a85131b62",
+          "title": "",
+          "subtitle": "",
+          "duration": null,
+          "thumb": "",
+          "source": "https://www.soilfoodweb.com/resources/case-studies-videos/"
+        },
+        {
+          "slug": "1034550940",
+          "id": "1034550940",
+          "hash": "7f0f78d4e3",
+          "title": "",
+          "subtitle": "",
+          "duration": null,
+          "thumb": "",
+          "source": "https://www.soilfoodweb.com/resources/case-studies-videos/"
+        }
+      ]
     },
     {
       "id": "farmer-case-studies",
       "title": "Farmer Case Studies",
       "showcase": "792733797",
       "page": "https://www.soilfoodweb.com/resources/farmer-case-studies-soil-food-web/",
-      "items": []
+      "items": [
+        {
+          "slug": "videos-372925873",
+          "id": "372925873",
+          "hash": "707aa77aa3",
+          "title": "Videos",
+          "subtitle": "",
+          "duration": null,
+          "thumb": "",
+          "source": "https://www.soilfoodweb.com/resources/farmer-case-studies-soil-food-web/"
+        },
+        {
+          "slug": "consultant-case-studies-537966540",
+          "id": "537966540",
+          "hash": "a79eb5d201",
+          "title": "Consultant Case Studies",
+          "subtitle": "",
+          "duration": null,
+          "thumb": "",
+          "source": "https://www.soilfoodweb.com/resources/farmer-case-studies-soil-food-web/"
+        },
+        {
+          "slug": "farmer-case-studies-792733797",
+          "id": "792733797",
+          "hash": "e809b1fad3",
+          "title": "Farmer Case Studies",
+          "subtitle": "",
+          "duration": 587,
+          "thumb": "img/video/farmer-case-studies-792733797.jpg",
+          "source": "https://www.soilfoodweb.com/resources/farmer-case-studies-soil-food-web/"
+        },
+        {
+          "slug": "implementing-the-soil-food-web-525025259",
+          "id": "525025259",
+          "hash": "11f6b261ce",
+          "title": "Implementing the Soil Food Web",
+          "subtitle": "",
+          "duration": null,
+          "thumb": "",
+          "source": "https://www.soilfoodweb.com/resources/farmer-case-studies-soil-food-web/"
+        },
+        {
+          "slug": "testimonials-380296081",
+          "id": "380296081",
+          "hash": "4da9889266",
+          "title": "Testimonials",
+          "subtitle": "",
+          "duration": null,
+          "thumb": "",
+          "source": "https://www.soilfoodweb.com/resources/farmer-case-studies-soil-food-web/"
+        },
+        {
+          "slug": "meet-the-soil-food-web-family-440097560",
+          "id": "440097560",
+          "hash": "529443df10",
+          "title": "Meet the Soil Food Web Family",
+          "subtitle": "",
+          "duration": null,
+          "thumb": "",
+          "source": "https://www.soilfoodweb.com/resources/farmer-case-studies-soil-food-web/"
+        },
+        {
+          "slug": "790985081",
+          "id": "790985081",
+          "hash": "92231c295c",
+          "title": "SEA_FBA_SFW Farmer-Consultant Mini-Doc_6m_2023_CTAS16",
+          "subtitle": "",
+          "duration": 354,
+          "thumb": "img/video/790985081.jpg",
+          "source": "https://www.soilfoodweb.com/resources/farmer-case-studies-soil-food-web/"
+        },
+        {
+          "slug": "797652217",
+          "id": "797652217",
+          "hash": "1ea7304a79",
+          "title": "CSF_GE_Jenn Sirp Webinar Case Study_2023_CTAG3",
+          "subtitle": "",
+          "duration": 3500,
+          "thumb": "img/video/797652217.jpg",
+          "source": "https://www.soilfoodweb.com/resources/farmer-case-studies-soil-food-web/"
+        },
+        {
+          "slug": "812188293",
+          "id": "812188293",
+          "hash": "6ed8f0fbef",
+          "title": "CSE_GE_Jenn Sirp Webinar Case Study_2023_CTAG3",
+          "subtitle": "",
+          "duration": 584,
+          "thumb": "img/video/812188293.jpg",
+          "source": "https://www.soilfoodweb.com/resources/farmer-case-studies-soil-food-web/"
+        },
+        {
+          "slug": "812185778",
+          "id": "812185778",
+          "hash": "dd3a45ec17",
+          "title": "CSE_GE_Cory Miller Farmer Webinar Case Study_2023_CTAG3",
+          "subtitle": "",
+          "duration": 710,
+          "thumb": "img/video/812185778.jpg",
+          "source": "https://www.soilfoodweb.com/resources/farmer-case-studies-soil-food-web/"
+        }
+      ]
     },
     {
       "id": "implementing",
       "title": "Implementing the Soil Food Web",
       "showcase": "525025259",
       "page": "https://www.soilfoodweb.com/resources/soil-food-web-approach-videos/",
-      "items": []
+      "items": [
+        {
+          "slug": "videos-372925873",
+          "id": "372925873",
+          "hash": "707aa77aa3",
+          "title": "Videos",
+          "subtitle": "",
+          "duration": null,
+          "thumb": "",
+          "source": "https://www.soilfoodweb.com/resources/soil-food-web-approach-videos/"
+        },
+        {
+          "slug": "consultant-case-studies-537966540",
+          "id": "537966540",
+          "hash": "a79eb5d201",
+          "title": "Consultant Case Studies",
+          "subtitle": "",
+          "duration": null,
+          "thumb": "",
+          "source": "https://www.soilfoodweb.com/resources/soil-food-web-approach-videos/"
+        },
+        {
+          "slug": "farmer-case-studies-792733797",
+          "id": "792733797",
+          "hash": "e809b1fad3",
+          "title": "Farmer Case Studies",
+          "subtitle": "",
+          "duration": 587,
+          "thumb": "img/video/farmer-case-studies-792733797.jpg",
+          "source": "https://www.soilfoodweb.com/resources/soil-food-web-approach-videos/"
+        },
+        {
+          "slug": "implementing-the-soil-food-web-525025259",
+          "id": "525025259",
+          "hash": "11f6b261ce",
+          "title": "Implementing the Soil Food Web",
+          "subtitle": "",
+          "duration": null,
+          "thumb": "",
+          "source": "https://www.soilfoodweb.com/resources/soil-food-web-approach-videos/"
+        },
+        {
+          "slug": "testimonials-380296081",
+          "id": "380296081",
+          "hash": "4da9889266",
+          "title": "Testimonials",
+          "subtitle": "",
+          "duration": null,
+          "thumb": "",
+          "source": "https://www.soilfoodweb.com/resources/soil-food-web-approach-videos/"
+        },
+        {
+          "slug": "meet-the-soil-food-web-family-440097560",
+          "id": "440097560",
+          "hash": "529443df10",
+          "title": "Meet the Soil Food Web Family",
+          "subtitle": "",
+          "duration": null,
+          "thumb": "",
+          "source": "https://www.soilfoodweb.com/resources/soil-food-web-approach-videos/"
+        },
+        {
+          "slug": "542881348",
+          "id": "542881348",
+          "hash": "e1794073a3",
+          "title": "",
+          "subtitle": "",
+          "duration": null,
+          "thumb": "",
+          "source": "https://www.soilfoodweb.com/resources/soil-food-web-approach-videos/"
+        },
+        {
+          "slug": "466000315",
+          "id": "466000315",
+          "hash": "2a1509b00f",
+          "title": "",
+          "subtitle": "",
+          "duration": null,
+          "thumb": "",
+          "source": "https://www.soilfoodweb.com/resources/soil-food-web-approach-videos/"
+        }
+      ]
     },
     {
       "id": "how-it-works",
       "title": "How It Works",
       "showcase": "372925873",
       "page": "https://www.soilfoodweb.com/resources/animations-videos/",
-      "items": [],
+      "items": [
+        {
+          "slug": "videos-372925873",
+          "id": "372925873",
+          "hash": "707aa77aa3",
+          "title": "Videos",
+          "subtitle": "",
+          "duration": null,
+          "thumb": "",
+          "source": "https://www.soilfoodweb.com/resources/animations-videos/"
+        },
+        {
+          "slug": "consultant-case-studies-537966540",
+          "id": "537966540",
+          "hash": "a79eb5d201",
+          "title": "Consultant Case Studies",
+          "subtitle": "",
+          "duration": null,
+          "thumb": "",
+          "source": "https://www.soilfoodweb.com/resources/animations-videos/"
+        },
+        {
+          "slug": "farmer-case-studies-792733797",
+          "id": "792733797",
+          "hash": "e809b1fad3",
+          "title": "Farmer Case Studies",
+          "subtitle": "",
+          "duration": 587,
+          "thumb": "img/video/farmer-case-studies-792733797.jpg",
+          "source": "https://www.soilfoodweb.com/resources/animations-videos/"
+        },
+        {
+          "slug": "implementing-the-soil-food-web-525025259",
+          "id": "525025259",
+          "hash": "11f6b261ce",
+          "title": "Implementing the Soil Food Web",
+          "subtitle": "",
+          "duration": null,
+          "thumb": "",
+          "source": "https://www.soilfoodweb.com/resources/animations-videos/"
+        },
+        {
+          "slug": "testimonials-380296081",
+          "id": "380296081",
+          "hash": "4da9889266",
+          "title": "Testimonials",
+          "subtitle": "",
+          "duration": null,
+          "thumb": "",
+          "source": "https://www.soilfoodweb.com/resources/animations-videos/"
+        },
+        {
+          "slug": "meet-the-soil-food-web-family-440097560",
+          "id": "440097560",
+          "hash": "529443df10",
+          "title": "Meet the Soil Food Web Family",
+          "subtitle": "",
+          "duration": null,
+          "thumb": "",
+          "source": "https://www.soilfoodweb.com/resources/animations-videos/"
+        },
+        {
+          "slug": "372474782",
+          "id": "372474782",
+          "hash": "a5ae5edb4a",
+          "title": "",
+          "subtitle": "",
+          "duration": null,
+          "thumb": "",
+          "source": "https://www.soilfoodweb.com/resources/animations-videos/"
+        },
+        {
+          "slug": "372476056",
+          "id": "372476056",
+          "hash": "fd05a7dc60",
+          "title": "",
+          "subtitle": "",
+          "duration": null,
+          "thumb": "",
+          "source": "https://www.soilfoodweb.com/resources/animations-videos/"
+        },
+        {
+          "slug": "372479571",
+          "id": "372479571",
+          "hash": "4cced96d80",
+          "title": "",
+          "subtitle": "",
+          "duration": null,
+          "thumb": "",
+          "source": "https://www.soilfoodweb.com/resources/animations-videos/"
+        },
+        {
+          "slug": "372480255",
+          "id": "372480255",
+          "hash": "7c04397066",
+          "title": "",
+          "subtitle": "",
+          "duration": null,
+          "thumb": "",
+          "source": "https://www.soilfoodweb.com/resources/animations-videos/"
+        },
+        {
+          "slug": "372478833",
+          "id": "372478833",
+          "hash": "7c10d53c26",
+          "title": "",
+          "subtitle": "",
+          "duration": null,
+          "thumb": "",
+          "source": "https://www.soilfoodweb.com/resources/animations-videos/"
+        }
+      ],
       "note": "CONFLICT to settle when the scrape runs: the copy deck calls 372925873 the playlist, content/science.json calls it mechanism 1's video. One of the two is wrong and no hash is known for the other five, so nothing is seeded here."
     },
     {
@@ -49,16 +463,181 @@
       "title": "Testimonials",
       "showcase": null,
       "page": "https://www.soilfoodweb.com/resources/testimonials-videos/",
-      "items": []
+      "items": [
+        {
+          "slug": "videos-372925873",
+          "id": "372925873",
+          "hash": "707aa77aa3",
+          "title": "Videos",
+          "subtitle": "",
+          "duration": null,
+          "thumb": "",
+          "source": "https://www.soilfoodweb.com/resources/testimonials-videos/"
+        },
+        {
+          "slug": "consultant-case-studies-537966540",
+          "id": "537966540",
+          "hash": "a79eb5d201",
+          "title": "Consultant Case Studies",
+          "subtitle": "",
+          "duration": null,
+          "thumb": "",
+          "source": "https://www.soilfoodweb.com/resources/testimonials-videos/"
+        },
+        {
+          "slug": "farmer-case-studies-792733797",
+          "id": "792733797",
+          "hash": "e809b1fad3",
+          "title": "Farmer Case Studies",
+          "subtitle": "",
+          "duration": 587,
+          "thumb": "img/video/farmer-case-studies-792733797.jpg",
+          "source": "https://www.soilfoodweb.com/resources/testimonials-videos/"
+        },
+        {
+          "slug": "implementing-the-soil-food-web-525025259",
+          "id": "525025259",
+          "hash": "11f6b261ce",
+          "title": "Implementing the Soil Food Web",
+          "subtitle": "",
+          "duration": null,
+          "thumb": "",
+          "source": "https://www.soilfoodweb.com/resources/testimonials-videos/"
+        },
+        {
+          "slug": "testimonials-380296081",
+          "id": "380296081",
+          "hash": "4da9889266",
+          "title": "Testimonials",
+          "subtitle": "",
+          "duration": null,
+          "thumb": "",
+          "source": "https://www.soilfoodweb.com/resources/testimonials-videos/"
+        },
+        {
+          "slug": "meet-the-soil-food-web-family-440097560",
+          "id": "440097560",
+          "hash": "529443df10",
+          "title": "Meet the Soil Food Web Family",
+          "subtitle": "",
+          "duration": null,
+          "thumb": "",
+          "source": "https://www.soilfoodweb.com/resources/testimonials-videos/"
+        },
+        {
+          "slug": "380297602",
+          "id": "380297602",
+          "hash": "7a71e6701c",
+          "title": "",
+          "subtitle": "",
+          "duration": null,
+          "thumb": "",
+          "source": "https://www.soilfoodweb.com/resources/testimonials-videos/"
+        },
+        {
+          "slug": "410049306",
+          "id": "410049306",
+          "hash": "251e4606ca",
+          "title": "",
+          "subtitle": "",
+          "duration": null,
+          "thumb": "",
+          "source": "https://www.soilfoodweb.com/resources/testimonials-videos/"
+        },
+        {
+          "slug": "470279480",
+          "id": "470279480",
+          "hash": "103139eeb8",
+          "title": "",
+          "subtitle": "",
+          "duration": null,
+          "thumb": "",
+          "source": "https://www.soilfoodweb.com/resources/testimonials-videos/"
+        }
+      ]
     },
     {
       "id": "meet-the-family",
       "title": "Meet the Soil Food Web Family",
       "showcase": "440097560",
       "page": "https://www.soilfoodweb.com/resources/meet-the-soil-food-web-family-videos/",
-      "items": []
+      "items": [
+        {
+          "slug": "videos-372925873",
+          "id": "372925873",
+          "hash": "707aa77aa3",
+          "title": "Videos",
+          "subtitle": "",
+          "duration": null,
+          "thumb": "",
+          "source": "https://www.soilfoodweb.com/resources/meet-the-soil-food-web-family-videos/"
+        },
+        {
+          "slug": "consultant-case-studies-537966540",
+          "id": "537966540",
+          "hash": "a79eb5d201",
+          "title": "Consultant Case Studies",
+          "subtitle": "",
+          "duration": null,
+          "thumb": "",
+          "source": "https://www.soilfoodweb.com/resources/meet-the-soil-food-web-family-videos/"
+        },
+        {
+          "slug": "farmer-case-studies-792733797",
+          "id": "792733797",
+          "hash": "e809b1fad3",
+          "title": "Farmer Case Studies",
+          "subtitle": "",
+          "duration": 587,
+          "thumb": "img/video/farmer-case-studies-792733797.jpg",
+          "source": "https://www.soilfoodweb.com/resources/meet-the-soil-food-web-family-videos/"
+        },
+        {
+          "slug": "implementing-the-soil-food-web-525025259",
+          "id": "525025259",
+          "hash": "11f6b261ce",
+          "title": "Implementing the Soil Food Web",
+          "subtitle": "",
+          "duration": null,
+          "thumb": "",
+          "source": "https://www.soilfoodweb.com/resources/meet-the-soil-food-web-family-videos/"
+        },
+        {
+          "slug": "testimonials-380296081",
+          "id": "380296081",
+          "hash": "4da9889266",
+          "title": "Testimonials",
+          "subtitle": "",
+          "duration": null,
+          "thumb": "",
+          "source": "https://www.soilfoodweb.com/resources/meet-the-soil-food-web-family-videos/"
+        },
+        {
+          "slug": "meet-the-soil-food-web-family-440097560",
+          "id": "440097560",
+          "hash": "529443df10",
+          "title": "Meet the Soil Food Web Family",
+          "subtitle": "",
+          "duration": null,
+          "thumb": "",
+          "source": "https://www.soilfoodweb.com/resources/meet-the-soil-food-web-family-videos/"
+        },
+        {
+          "slug": "534172809",
+          "id": "534172809",
+          "hash": "3842558f66",
+          "title": "SFW Family Mini-Doc_Students_CTA1 2021_v2",
+          "subtitle": "",
+          "duration": 471,
+          "thumb": "img/video/534172809.jpg",
+          "source": "https://www.soilfoodweb.com/resources/meet-the-soil-food-web-family-videos/"
+        }
+      ]
     }
   ],
-  "onPractice": ["consultant-case-studies", "farmer-case-studies"],
+  "onPractice": [
+    "consultant-case-studies",
+    "farmer-case-studies"
+  ],
   "note": "Evan, Sep 7: video cases from the Consultant and Farmer Case Studies playlists run as stories from the field until the three written case studies exist. Those two playlists are what the Practice page shows."
 }
