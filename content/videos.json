@@ -1,0 +1,64 @@
+{
+  "_source": "Written by tools/playlist.py, which reads the six WordPress playlist pages and verifies every entry against Vimeo's oembed endpoint. Not hand-edited: a private hash typed by hand is exactly the bug this replaces.",
+  "_schema": {
+    "item": {
+      "slug": "url key, e.g. renald-flores-sweden. What ?v= carries.",
+      "id": "Vimeo video id, digits only",
+      "hash": "the private hash. Unlisted videos do not play without it. Never empty.",
+      "title": "from the playlist markup",
+      "subtitle": "place, crop, scale, whatever the markup carries beside the title",
+      "person": "consultant or farmer named in the markup",
+      "duration": "seconds, from oembed",
+      "thumb": "img/video/<slug>.jpg once tools/playlist.py has fetched it",
+      "source": "the page this was read from"
+    }
+  },
+  "_state": "EMPTY ON PURPOSE. This machine has no route to soilfoodweb.com or vimeo.com, the same restriction crawl.py documents. Run tools/playlist.py locally and this file fills itself.",
+  "playlists": [
+    {
+      "id": "consultant-case-studies",
+      "title": "Consultant Case Studies",
+      "showcase": "537966540",
+      "page": "https://www.soilfoodweb.com/resources/case-studies-videos/",
+      "items": []
+    },
+    {
+      "id": "farmer-case-studies",
+      "title": "Farmer Case Studies",
+      "showcase": "792733797",
+      "page": "https://www.soilfoodweb.com/resources/farmer-case-studies-soil-food-web/",
+      "items": []
+    },
+    {
+      "id": "implementing",
+      "title": "Implementing the Soil Food Web",
+      "showcase": "525025259",
+      "page": "https://www.soilfoodweb.com/resources/soil-food-web-approach-videos/",
+      "items": []
+    },
+    {
+      "id": "how-it-works",
+      "title": "How It Works",
+      "showcase": "372925873",
+      "page": "https://www.soilfoodweb.com/resources/animations-videos/",
+      "items": [],
+      "note": "CONFLICT to settle when the scrape runs: the copy deck calls 372925873 the playlist, content/science.json calls it mechanism 1's video. One of the two is wrong and no hash is known for the other five, so nothing is seeded here."
+    },
+    {
+      "id": "testimonials",
+      "title": "Testimonials",
+      "showcase": null,
+      "page": "https://www.soilfoodweb.com/resources/testimonials-videos/",
+      "items": []
+    },
+    {
+      "id": "meet-the-family",
+      "title": "Meet the Soil Food Web Family",
+      "showcase": "440097560",
+      "page": "https://www.soilfoodweb.com/resources/meet-the-soil-food-web-family-videos/",
+      "items": []
+    }
+  ],
+  "onPractice": ["consultant-case-studies", "farmer-case-studies"],
+  "note": "Evan, Sep 7: video cases from the Consultant and Farmer Case Studies playlists run as stories from the field until the three written case studies exist. Those two playlists are what the Practice page shows."
+}

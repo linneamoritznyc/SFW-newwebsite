@@ -3109,3 +3109,91 @@ a:hover { color: var(--accent-deep); }
 @media (max-width: 40em) {
   .site-header .btn { padding: .8em 1.05em; }
 }
+
+/* ==========================================================================
+   20. THE THEATRE
+   Added 11 September 2026.
+
+   One stage that never leaves the page, and a rail of what else there is.
+   The stage is dark because video is dark: a white surround around a
+   letterboxed frame reads as a mistake, and the dark ground is the same
+   near-black the footer uses, so it belongs to the site rather than to
+   Vimeo.
+
+   Until someone presses play there is no iframe here at all, only a poster
+   and a button. That is what makes the page arrive quickly: the platform's
+   script is the weight, and it is not fetched until it is wanted.
+   -------------------------------------------------------------------------- */
+.theatre { margin: var(--s5) 0 0; }
+.theatre__stage {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: var(--ground);
+  overflow: hidden;
+}
+.theatre__frame, .theatre__frame iframe {
+  position: absolute; inset: 0; width: 100%; height: 100%; border: 0;
+}
+/* The poster is the whole stage and the whole target. */
+.theatre__poster {
+  position: absolute; inset: 0; width: 100%; padding: 0; border: 0; cursor: pointer;
+  background: var(--ground); display: block;
+}
+.theatre__poster img { width: 100%; height: 100%; object-fit: cover; display: block; opacity: .82; transition: opacity var(--dur) var(--ease); }
+.theatre__poster:hover img { opacity: 1; }
+.theatre__go {
+  position: absolute; inset: 0; margin: auto; width: 84px; height: 84px;
+  display: grid; place-items: center;
+  border-radius: 62% 38% 55% 45% / 58% 62% 38% 42%;   /* the seed, at play size */
+  background: var(--white); color: var(--ground);
+  transition: border-radius var(--dur) var(--ease), background var(--dur) var(--ease);
+}
+.theatre__poster:hover .theatre__go { border-radius: 38% 62% 45% 55% / 62% 58% 42% 38%; background: var(--glow); }
+.theatre__go svg { fill: currentColor; margin-left: 4px; }
+
+/* The two interruptions: what is next, and whether anyone is there. */
+.theatre__panel {
+  position: absolute; inset: auto 0 0 0; padding: var(--s4);
+  background: linear-gradient(to top, rgba(35, 31, 29, .96), rgba(35, 31, 29, .82) 70%, rgba(35, 31, 29, 0));
+  color: var(--white);
+}
+.theatre__panel-t { margin: 0; font-family: var(--display); font-weight: 600; font-size: var(--t2); color: var(--white); }
+.theatre__panel-c { margin: .2em 0 var(--s2); font-family: var(--text-serif); color: rgba(255, 255, 255, .8); }
+.theatre__panel-b { margin: 0; display: flex; gap: var(--s2); flex-wrap: wrap; }
+.theatre__panel .btn--ghost { color: var(--white); border-color: rgba(255, 255, 255, .6); }
+.theatre__panel .btn--ghost:hover { background: var(--white); color: var(--ground); }
+[data-next-count] { font-variant-numeric: tabular-nums; font-weight: 600; color: var(--white); }
+
+.theatre__now { margin: var(--s3) 0 0; font-size: var(--t2); color: var(--soil); font-family: var(--display); font-weight: 600; }
+.theatre__now span { font-family: var(--text-serif); font-weight: 400; font-size: var(--t1); color: var(--ink-faint); display: block; }
+
+/* The rail. Scrolls sideways on a phone rather than shrinking to stamps,
+   for the same reason the filmstrip does: each frame has to stay legible. */
+.theatre__list {
+  list-style: none; margin: var(--s5) 0 0; padding: 0; max-width: none;
+  display: grid; grid-auto-flow: column; grid-auto-columns: minmax(13rem, 1fr);
+  gap: var(--col-gap); overflow-x: auto; scroll-snap-type: x proximity; scrollbar-width: thin;
+}
+@media (min-width: 62em) { .theatre__list { grid-auto-flow: row; grid-template-columns: repeat(4, 1fr); overflow-x: visible; } }
+.theatre__list > li { margin: 0; scroll-snap-align: start; }
+.theatre__item {
+  display: block; width: 100%; text-align: left; cursor: pointer;
+  background: none; border: 0; padding: 0; font: inherit;
+  border-top: var(--hairline) solid var(--rule); padding-top: var(--s2);
+}
+.theatre__thumb { display: block; aspect-ratio: 16 / 9; background: var(--panel); overflow: hidden; margin-bottom: var(--s2); }
+.theatre__thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: filter var(--dur) var(--ease); }
+.theatre__item:hover .theatre__thumb img { filter: brightness(1.06) saturate(1.08); }
+.theatre__t { display: block; font-family: var(--display); font-weight: 600; font-size: var(--t1); color: var(--soil); line-height: 1.25; }
+.theatre__item:hover .theatre__t { text-decoration: underline; text-underline-offset: .14em; }
+.theatre__s { display: block; font-family: var(--text-serif); font-size: var(--t0); color: var(--ink-faint); margin-top: .2em; }
+.theatre__d { display: block; font-size: var(--t-1); color: var(--ink-faint); font-variant-numeric: tabular-nums; margin-top: .35em; }
+/* The one playing keeps its rule in the page's accent, the way an index
+   marks where you are. */
+.theatre__list > li[data-active="true"] .theatre__item { border-top: 2px solid var(--accent); }
+.theatre__list > li[data-active="true"] .theatre__t { color: var(--accent); }
+
+@media (prefers-reduced-motion: reduce) {
+  .theatre__poster img, .theatre__go, .theatre__thumb img { transition: none; }
+  .theatre__poster:hover .theatre__go { border-radius: 62% 38% 55% 45% / 58% 62% 38% 42%; }
+}

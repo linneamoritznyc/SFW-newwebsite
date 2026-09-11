@@ -189,6 +189,93 @@ def shot(src, alt, cls="", cap=False, depth=0):
     return f + "      </figure>"
 
 
+def mmss(sec):
+    """743 -> 12:23. Nothing is invented: no duration, no label."""
+    try:
+        sec = int(sec)
+    except (TypeError, ValueError):
+        return ""
+    return "%d:%02d" % (sec // 60, sec % 60)
+
+
+def theatre(only=(), depth=0):
+    """The video theatre: one player, a rail of videos, no page reloads.
+
+    Reads content/videos.json, which tools/playlist.py writes and verifies.
+    Returns "" when there is nothing verified to show, so the page falls back
+    to whatever it said before rather than showing an empty player. That is
+    the third of the five old bugs, the canonical URL with no video in it,
+    and the fix is to render nothing rather than an empty box.
+
+    The private hash goes in the data, once, where no link can drop it.
+    """
+    c = load("videos")
+    items = []
+    for pl in c["playlists"]:
+        if only and pl["id"] not in only:
+            continue
+        for it in pl["items"]:
+            if it.get("id") and it.get("hash"):      # unplayable without both
+                items.append(it)
+    if not items:
+        return ""
+
+    b = "../" * depth
+    rows = ""
+    for n, v in enumerate(items):
+        thumb = ('<img src="%s%s" alt="" loading="lazy" decoding="async">' % (b, A(v["thumb"]))) \
+            if v.get("thumb") else ""
+        sub = " &middot; ".join(e(x) for x in (v.get("person"), v.get("subtitle")) if x)
+        rows += ('        <li data-active="%s">\n'
+                 '          <button class="theatre__item" type="button" data-i="%d" aria-current="%s">\n'
+                 '            <span class="theatre__thumb">%s</span>\n'
+                 '            <span class="theatre__t">%s</span>\n'
+                 '            <span class="theatre__s">%s</span>\n'
+                 '            <span class="theatre__d">%s</span>\n'
+                 '          </button>\n        </li>\n'
+                 % ("true" if n == 0 else "false", n, "true" if n == 0 else "false",
+                    thumb, e(v["title"]), sub, e(mmss(v.get("duration")))))
+
+    first = items[0]
+    payload = json.dumps([{k: v.get(k, "") for k in
+                           ("slug", "id", "hash", "title", "subtitle", "person", "thumb")}
+                          for v in items], ensure_ascii=False)
+    # a JSON island cannot be allowed to close the script element early
+    payload = payload.replace("</", "<\\/")
+
+    return ('      <div class="theatre" data-theatre>\n'
+            '        <div class="theatre__stage">\n'
+            '          <div class="theatre__frame" data-frame hidden></div>\n'
+            '          <button class="theatre__poster" type="button" data-poster>\n'
+            '            <img src="%s%s" alt="" loading="lazy" decoding="async">\n'
+            '            <span class="theatre__go" aria-hidden="true">\n'
+            '              <svg viewBox="0 0 24 24" width="34" height="34"><path d="M8 5.5 19 12 8 18.5z"/></svg>\n'
+            '            </span>\n'
+            '            <span class="visually-hidden">Play</span>\n'
+            '          </button>\n'
+            '          <div class="theatre__panel" data-next hidden>\n'
+            '            <p class="theatre__panel-t">Up next: <b data-next-title></b></p>\n'
+            '            <p class="theatre__panel-c">Starting in <span data-next-count>8</span></p>\n'
+            '            <p class="theatre__panel-b">\n'
+            '              <button class="btn" type="button" data-next-go>Play now</button>\n'
+            '              <button class="btn btn--ghost" type="button" data-next-cancel>Cancel</button>\n'
+            '            </p>\n          </div>\n'
+            '          <div class="theatre__panel" data-check hidden>\n'
+            '            <p class="theatre__panel-t">Are you still watching?</p>\n'
+            '            <p class="theatre__panel-b">\n'
+            '              <button class="btn" type="button" data-check-go>Continue</button>\n'
+            '            </p>\n          </div>\n        </div>\n'
+            '        <p class="theatre__now"><b data-now-title>%s</b> <span data-now-sub></span></p>\n'
+            '        <p class="visually-hidden" data-live aria-live="polite"></p>\n'
+            '        <ol class="theatre__list">\n%s        </ol>\n'
+            '        <script type="application/json" data-theatre-data>%s%s\n'
+            '      </div>\n'
+            % (b, A(first.get("thumb", "")), e(first["title"]), rows, payload,
+               # written in two halves so this file never contains the literal
+               # closing tag inside a Python string that produces one
+               "</" + "script>"))
+
+
 def specimen(src, alt, size="", label="Illustration", depth=0):
     """One cut-out specimen, floating on the page.
 
@@ -884,10 +971,16 @@ def p_practice():
 
     o.append(sec("      " + note(c["projects"]), "notes-only"))
 
+    # Evan, Sep 7: until the three written case studies exist, the Consultant
+    # and Farmer Case Studies playlists run here as stories from the field.
+    # The theatre renders itself only when content/videos.json holds videos
+    # that have been verified as playable; until then this section says
+    # exactly what it said before.
     cs = c["caseStudies"]
-    o.append(sec('      <div class="head">\n        %s\n        <h2 id="csx-h">%s</h2>\n        <p>%s</p>\n      </div>\n      %s\n'
+    stage = theatre(only=load("videos")["onPractice"])
+    o.append(sec('      <div class="head">\n        %s\n        <h2 id="csx-h">%s</h2>\n        <p>%s</p>\n      </div>\n%s      %s\n'
                  '      <p><a class="btn btn--ghost" href="projects/market-garden-sweden.html">Market garden makeover, Sweden</a></p>'
-                 % (eyebrow(cs["eyebrow"]), e(cs["h2"]), e(cs["lede"]), note(cs["cards"])),
+                 % (eyebrow(cs["eyebrow"]), e(cs["h2"]), e(cs["lede"]), stage, note(cs["cards"])),
                  label="csx-h", sid="case-studies"))
 
     w = c["workWithUs"]
