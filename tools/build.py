@@ -1085,16 +1085,19 @@ def p_research():
              + '<li class="small" data-filter-status style="align-self:center;color:var(--ink-faint)"></li></ul>\n')
 
     o.append(sec('      <h2 id="res-list-h">%s</h2>\n      <p class="lede">%s</p>\n'
-                 '      <p>%s</p>\n      <p class="source small">%s</p>\n'
                  '      <p><a class="btn" href="%s">%s</a></p>\n'
-                 % (e(d["h2"]), lede, e(d["counts"]), e(d["source"]),
-                    A(d["scholar"]["href"]), e(d["scholar"]["label"]))
+                 % (e(d["h2"]), lede, A(d["scholar"]["href"]), e(d["scholar"]["label"]))
                  + chips
                  + "".join('      <p class="todo">%s</p>\n' % e(n) for n in d["notes"])
                  + '      <ul class="rule-list" id="res-list">\n'
                    '        <li class="rule-list__head" aria-hidden="true">'
                    '<span>Year</span><span>Publication</span><span>Type</span></li>\n'
-                 + rows + '      </ul>', label="res-list-h"))
+                 + rows + '      </ul>\n'
+                 # under the list, where a reader reaches it having seen the
+                 # rows, not as a headline above them
+                 + '      <p class="small" style="margin-top:var(--s3)">%s</p>\n'
+                   '      <p class="source small">%s</p>'
+                 % (e(d["listNote"]), e(d["listSource"])), label="res-list-h"))
 
     w = c["workWithUs"]
     o.append(sec('      <h2 id="rw-h">%s</h2>\n      <p class="lede">%s</p>\n      <p>%s</p>'

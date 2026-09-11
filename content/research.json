@@ -3,10 +3,8 @@
   "_publications": "Rebuilt entry by entry against the publisher records by Linnea Moritz, 11 September 2026, from the Foundation's publications import sheet. summary lines are not written yet; corrections sheet lists the 49 places the list differs from the old page.",
   "database": {
     "h2": "The database",
-    "lede": "Everything Dr. Ingham published, verified against its source and linked, together with the wider soil food web literature our teaching draws on. Corrections welcome at info@soilfoodweb.com.",
+    "lede": "Everything Dr. Ingham published, verified against its source and linked. Corrections welcome at info@soilfoodweb.com.",
     "ledeMailto": "mailto:info@soilfoodweb.com?subject=Publications%20correction",
-    "counts": "137 entries. 82 link to the publisher record, the journal or a repository copy; the remaining 55 are listed by citation because no stable link was found.",
-    "source": "Publications list rebuilt entry by entry against the publisher records by Linnea Moritz, 11 September 2026",
     "scholar": {
       "label": "Dr. Ingham on Google Scholar",
       "href": "https://scholar.google.com/citations?user=iOm3z4AAAAAJ"
@@ -61,6 +59,8 @@
       "the Klebsiella planticola entry merges two entries from the old page and has a public controversy history. Attribution under review. Evan and Alex.",
       "the corrections sheet (49 places the new list differs from the old page, each with its reason) is not published anywhere yet. Decide whether it goes on this page. Linnea."
     ],
+    "listNote": "Entries without a link are listed by citation. No stable online source has been found for them.",
+    "listSource": "the publisher records, checked September 2026",
     "entries": [
       {
         "title": "Predatory earwigs are attracted by herbivore-induced plant volatiles linked with plant growth-promoting rhizobacteria",
