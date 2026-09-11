@@ -276,14 +276,32 @@ a.chip:hover, a.chip:focus-visible { background: var(--ink); color: var(--paper)
 .wordmark__logo { display: none; }
 /* The mark is a roundel with the wordmark set inside it, so it has to be big
    enough to read the words, not just recognise the shape. */
-.wordmark--image .wordmark__logo { display: block; width: auto; height: 3.5rem; }
+.wordmark--image .wordmark__logo { display: block; width: auto; height: 4.25rem; }
+/* The mark is tall and dense, so it needs the height. Taking it out of the
+   header's own padding keeps the bar the same size it was with type. A plain
+   class rather than :has(), so it works in older browsers too. */
+.site-header .wrap--logo { padding-block: var(--s1); }
 .wordmark--image .wordmark__name,
 .wordmark--image .wordmark__status {
   position: absolute; width: 1px; height: 1px; overflow: hidden;
   clip-path: inset(50%); white-space: nowrap;
 }
-.site-footer .wordmark--image .wordmark__logo { height: 4.5rem; }
-@media (max-width: 30em) { .wordmark--image .wordmark__logo { height: 2.75rem; } }
+/* The mark is a green roundel with dark brown roots, drawn for light
+   backgrounds. On the dark green overlay it is green on green and all but
+   invisible; in the dark footer the roots and "FOUNDATION" disappear. Until
+   the Foundation supplies a reversed version, dark surfaces keep the type-set
+   wordmark, which is white and reads at any size. The header, which is white,
+   carries the logo. */
+.site-footer .wordmark--image .wordmark__logo,
+.overlay__top .wordmark--image .wordmark__logo { display: none; }
+.site-footer .wordmark--image .wordmark__name,
+.site-footer .wordmark--image .wordmark__status,
+.overlay__top .wordmark--image .wordmark__name,
+.overlay__top .wordmark--image .wordmark__status {
+  position: static; width: auto; height: auto; overflow: visible;
+  clip-path: none; white-space: normal;
+}
+@media (max-width: 30em) { .wordmark--image .wordmark__logo { height: 3.25rem; } }
 
 .site-header__links { display: none; gap: var(--s3); list-style: none; margin: 0; padding: 0; }
 .site-header__links a { color: var(--ink); text-decoration: none; font-weight: 600; font-size: var(--t0); }
