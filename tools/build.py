@@ -1198,57 +1198,252 @@ def p_practice():
     return MAIN("\n".join(o))
 
 
-def p_community():
-    """Community. Opens on one landscape photograph carrying the whole screen,
-    and gives the map section a ledger of nine photographs of people actually
-    doing the work, so the section is not an empty box waiting on a map.
+def optional_img(src, alt, depth=0, cls="", sizes=""):
+    """A photograph that has not been uploaded yet.
 
-    No labels under the ledger. Naming the place or the people in a frame
-    would be a claim the Foundation has not made; the captions stay as
-    placeholders until it does.
+    Everything under public/assets/ is referenced at its final path before the
+    real file arrives. These are not in img/, so they have no img/w/ derivative
+    and no srcset: they are uploaded at the size the README asks for. The
+    data-optional flag is what site.js job 13 looks for, so a file that is not
+    there yet prints its own alt text in a toned box instead of a broken icon.
+    """
+    b = "../" * depth
+    c = ' class="%s"' % A(cls) if cls else ""
+    s = ' sizes="%s"' % A(sizes) if sizes else ""
+    return ('<img%s src="%s%s" alt="%s"%s loading="lazy" decoding="async" data-optional>'
+            % (c, b, A(src), A(alt), s))
+
+
+MONTHS = ("January", "February", "March", "April", "May", "June", "July",
+          "August", "September", "October", "November", "December")
+MON3 = ("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
+
+
+def _when(date, today):
+    """Which period chips a post answers to: "year month", "year", or nothing.
+
+    Space separated, because a post from this month is also a post from this
+    year and has to survive both filters. site.js matches on tokens.
+    """
+    y, m, _d = (int(x) for x in date.split("-"))
+    ty, tm, _td = (int(x) for x in today.split("-"))
+    if y != ty:
+        return ""
+    return "year month" if m == tm else "year"
+
+
+def p_community():
+    """Community. Built to the approved mockup, docs/sfw-community-mockup.html.
+
+    An intro, the newest story carried large, then the log: every post the
+    Foundation has published about its own community, newest first, ruled off
+    by month and filtered by period and by kind. Then the form for sending a
+    story in, the directory, and the join band.
+
+    The mockup rendered the log from an array in a <script> tag. It is written
+    out as static HTML here instead: a WordPress developer inherits a list of
+    <article> elements with dates on them, not a template in JavaScript, and
+    the page reads the same with JavaScript switched off. The only script this
+    page needs is the filter that site.js already carries for every other index.
     """
     c = load("community"); o = []
+    today = c["_today"]
     h = c["hero"]
-    o.append(banner("img/erc-rancho-cacachilas-aerial-2.jpg",
-                    "An aerial view over dense green tree canopy split by a pale watercourse",
-                    h["h1"], "com-h", h.get("intro") or h.get("subhead") or "",
-                    tag="h1", eyeb=h.get("eyebrow", ""), source=h.get("source", "")))
 
-    m = c["map"]
-    o.append(sec('      <div class="head">\n        %s\n        <h2 id="map-h">%s</h2>\n        <p>%s</p>\n      </div>\n'
-                 '%s      <p class="todo">%s</p>'
-                 % (eyebrow(m["eyebrow"]), e(m["h2"]), e(m["lede"]),
-                    ledger([
-                        ("img/Carla-Nicks Son-Nick-ERI-Wild Soils Event-11-2024.jpg",
-                         "A group of people laughing as they work together outdoors with brushes and rakes"),
-                        ("img/ctpfw-student-moving-compost-1.jpg",
-                         "A student lifting an armful of finished compost while a hose is played over the pile"),
-                        ("img/ctpfw-student-squeezing-compost-1.jpg",
-                         "A student in gloves squeezing a handful of compost to test it, with a group watching"),
-                        ("img/erc-panchamana-treeplanting-2-fb-img-1666270988322.jpg",
-                         "People spread across a clearing planting seedlings among standing trees"),
-                        ("img/erc-panchamana-treeplanting-3-fb-img-1666271008784.jpg",
-                         "A young man crouching to plant a seedling, others planting along the same row behind him"),
-                        ("img/erc-panchmana-treeplanting-fb-img-1666270907385.jpg",
-                         "A long line of people planting seedlings through a stand of tall trees"),
-                        ("img/hvdb-inplanten-002.jpg",
-                         "A group planting young trees across an open field on a grey day"),
-                        ("img/el-nino-2017-tractor-in-mud-w-crew.jpg",
-                         "A crew digging a tractor out of deep mud under a wide sky"),
-                        ("img/el-nino-2017-tractor-in-mud-in-vineyard.jpg",
-                         "A small red tractor working a wet furrow between trellised vine rows"),
-                    ]),
-                    e(m["note"])),
-                 "", "map-h", "community-map"))
-
-    d = c["directory"]
-    o.append(sec('      <div class="head">\n        %s\n        <h2 id="dir-h">%s</h2>\n      </div>\n'
+    o.append(sec('      <h1 id="com-h">%s</h1>\n'
                  '      <p class="lede">%s</p>\n'
-                 '      <p><a class="btn" href="directory.html">Find a professional</a></p>\n'
-                 '      <p class="small">%s</p>\n      %s'
-                 % (eyebrow(d["eyebrow"]), e(d["h2"]), e(d["clarifyingHeader"]), e(d["footerLine"]),
-                    note({"note": d["dataNote"], "status": d["dataStatus"]})),
-                 label="dir-h", sid="find-a-professional"))
+                 '      <p class="source small">%s</p>'
+                 % (e(h["h1"]), e(h["intro"]), e(h["source"])),
+                 label="com-h"))
+
+    posts = sorted(c["posts"], key=lambda p: p["date"], reverse=True)
+
+    # The newest story that has a photograph to carry, which is what the mockup
+    # puts in the feature block. No photograph, no feature: the block is a
+    # picture and a panel, and half of it empty is worse than not having it.
+    lead = next((p for p in posts if p.get("imgs")), None)
+    if lead:
+        lt = c["latest"]
+        d = lead["date"].split("-")
+        when = "%d %s %s" % (int(d[2]), MONTHS[int(d[1]) - 1], d[0])
+        # The date is the <time>; the place is not, so it sits outside it.
+        panel = ('        <p class="latest__when"><time datetime="%s">%s</time>, %s</p>\n'
+                 '        <h2 id="latest-h">%s</h2>\n        <p>%s</p>\n'
+                 % (A(lead["date"]), e(when), e(lead["place"]), e(lead["title"]), e(lead["body"])))
+        if lead.get("people"):
+            panel += '        <p class="latest__people">%s</p>\n' % e(lead["people"])
+        panel += ('        <p class="latest__row">'
+                  '<a class="btn btn--ghost" href="%s">%s</a>'
+                  ' <a class="btn btn--ghost" href="#news">%s</a></p>\n'
+                  % (A(lead.get("href", "#" + lead["id"])), e(lt["readMore"]), e(lt["allNews"])))
+        o.append(sec('      <div class="latest">\n'
+                     '        <figure class="latest__img">%s</figure>\n'
+                     '        <div class="latest__panel">\n%s        </div>\n      </div>'
+                     % (optional_img(lead["imgs"][0]["src"], lead["imgs"][0]["alt"],
+                                     sizes="(max-width: 52em) 100vw, 58vw"), panel),
+                     label="latest-h"))
+
+    # ---- the log ---------------------------------------------------------
+    g = c["log"]
+    kn = g["kindNames"]
+
+    def chips(items, target, aria, attr=None):
+        li = "".join('<li><button class="chip" type="button" data-filter="%s" aria-pressed="%s">%s</button></li>'
+                     % (A(x["key"]), "true" if i == 0 else "false", e(x["label"]))
+                     for i, x in enumerate(items))
+        # No "N shown" counter here: the list carries month rules as well as
+        # posts, so a count off it would say twenty when ten posts are on the
+        # page. The empty state below says the one thing worth saying.
+        return ('        <ul class="chips" data-filter-for="%s" aria-label="%s"%s>%s</ul>\n'
+                % (A(target), A(aria), ' data-filter-attr="%s"' % A(attr) if attr else "", li))
+
+    feed = '      <ul class="feed" id="community-feed">\n'
+    seen = ""
+    for p in posts:
+        d = p["date"].split("-")
+        y, mi = d[0], int(d[1]) - 1
+        month = "%s %s" % (MONTHS[mi], y)
+        when = _when(p["date"], today)
+        if month != seen:
+            # The rule takes the attributes of the posts under it so the filter
+            # hides it with them. See the note in site.css section 14.
+            same = [q for q in posts if q["date"][:7] == p["date"][:7]]
+            kinds = " ".join(sorted({q["kind"] for q in same}))
+            whens = " ".join(sorted({t for q in same for t in _when(q["date"], today).split()}))
+            feed += ('        <li class="feed__month" data-kind="%s" data-when="%s">%s</li>\n'
+                     % (A(kinds), A(whens), e(month)))
+            seen = month
+
+        if p.get("monthOnly"):
+            date_block = '<span class="post__m">%s</span>' % e(month)
+        else:
+            date_block = ('<span class="post__d">%s</span><span class="post__m">%s %s</span>'
+                          % (e(str(int(d[2]))), e(MON3[mi]), e(y)))
+
+        art = ('        <li class="post" id="%s" data-kind="%s" data-when="%s">\n'
+               '          <p class="post__date"><time datetime="%s">%s</time></p>\n'
+               '          <div>\n'
+               % (A(p["id"]), A(p["kind"]), A(when), A(p["date"]), date_block))
+        art += '            <p class="post__place">%s</p>\n' % e(p["place"])
+        art += '            <h3 class="post__t">%s</h3>\n' % e(p["title"])
+
+        if p.get("imgs"):
+            two = " post__pics--two" if len(p["imgs"]) > 1 else ""
+            art += '            <ul class="post__pics%s">\n' % two
+            for i in p["imgs"]:
+                art += ('              <li><figure>%s</figure></li>\n'
+                        % optional_img(i["src"], i["alt"],
+                                       sizes="(max-width: 36em) 100vw, 30vw"))
+            art += "            </ul>\n"
+
+        art += '            <p>%s</p>\n' % e(p["body"])
+        if p.get("people"):
+            art += '            <p class="post__people">%s</p>\n' % e(p["people"])
+        if p.get("note"):
+            art += "            " + note({"note": p["note"], "status": p.get("noteStatus", "")}) + "\n"
+
+        acts = '<span class="post__kind">%s</span>' % e(kn.get(p["kind"], p["kind"]))
+        if p.get("link") and p.get("href"):
+            ext = ' target="_blank" rel="noopener"' if p["href"].startswith("http") else ""
+            acts += ' <a href="%s"%s>%s</a>' % (A(p["href"]), ext, e(p["link"]))
+        if p.get("src"):
+            acts += ' <a href="%s" target="_blank" rel="noopener">Source</a>' % A(p["src"])
+        art += '            <p class="post__acts">%s</p>\n' % acts
+        art += "          </div>\n        </li>\n"
+        feed += art
+
+    feed += ('        <li class="feed__empty" data-filter-empty hidden>%s '
+             '<a href="#share">%s</a>.</li>\n'
+             % (e(g["emptyLead"]), e(g["emptyLink"])))
+    feed += "      </ul>\n"
+
+    cu = c["comingUp"]
+    coming = '        <div class="sidecard">\n          <h3>%s</h3>\n          <ul class="sidelist">\n' % e(cu["h3"])
+    for x in cu["items"]:
+        coming += ('            <li><span class="sidelist__when">%s</span>'
+                   '<a href="%s">%s</a></li>\n' % (e(x["when"]), A(x["href"]), e(x["label"])))
+    coming += "          </ul>\n        </div>\n"
+
+    rg = c["regions"]
+    # One row per region the Foundation has actually posted from, with the date
+    # of its most recent post. Nothing is claimed that is not on this page.
+    latest_by_region = {}
+    for p in posts:
+        r = p.get("region")
+        if r and p["date"] > latest_by_region.get(r, ""):
+            latest_by_region[r] = p["date"]
+    rows = ""
+    for r, dt in sorted(latest_by_region.items(), key=lambda kv: kv[1], reverse=True):
+        d = dt.split("-")
+        rows += ('            <li><span>%s</span><span>Latest %s %s</span></li>\n'
+                 % (e(r), e(MON3[int(d[1]) - 1]), e(d[0])))
+    # The overlay menu on every page links to community.html#community-map.
+    # The mockup replaced the map with this list of regions, so the anchor
+    # lands here, on the regions and the note saying the map is still to come.
+    regions = ('        <div class="sidecard" id="community-map" style="scroll-margin-top:var(--s4)">\n          <h3>%s</h3>\n'
+               '          <ul class="sidelist sidelist--split">\n%s          </ul>\n'
+               '          %s\n        </div>\n'
+               % (e(rg["h3"]), rows, note({"note": rg["note"], "status": rg["noteStatus"]})))
+
+    o.append(sec('      <div class="grid">\n        <div class="span-8">\n'
+                 '          <h2 id="news-h" style="margin-bottom:var(--s3)">%s</h2>\n'
+                 '%s          <p class="small">%s</p>\n%s        </div>\n'
+                 '        <div class="span-4">\n%s%s        </div>\n      </div>'
+                 % (e(g["h2"]),
+                    chips(g["time"], "#community-feed", g["timeLabel"], "data-when")
+                    + chips(g["kinds"], "#community-feed", g["kindLabel"]),
+                    e(g["sourceLine"]), feed, coming, regions),
+                 label="news-h", sid="news"))
+
+    # ---- send us a story -------------------------------------------------
+    s = c["share"]
+    fields = ""
+    for i, f in enumerate(s["fields"]):
+        fid = "share-" + slug(f["label"])
+        full = " full" if f.get("full") else ""
+        if f["type"] == "drop":
+            # One wrapping label, so the field is named by its own words and the
+            # whole dashed box is the target that opens the file picker.
+            fields += ('        <label class="full" for="%s">%s\n'
+                       '          <span class="drop">%s</span>\n'
+                       '          <input class="visually-hidden" id="%s" type="file" name="%s" multiple accept="image/*,video/*">\n'
+                       '        </label>\n'
+                       % (A(fid), e(f["label"]), e(f["placeholder"]), A(fid), A(fid)))
+        elif f["type"] == "textarea":
+            fields += ('        <label class="%s" for="%s">%s\n'
+                       '          <textarea class="input" id="%s" name="%s" placeholder="%s"></textarea>\n        </label>\n'
+                       % (full.strip(), A(fid), e(f["label"]), A(fid), A(fid), A(f.get("placeholder", ""))))
+        else:
+            ph = ' placeholder="%s"' % A(f["placeholder"]) if f.get("placeholder") else ""
+            fields += ('        <label%s for="%s">%s\n'
+                       '          <input class="input" id="%s" type="%s" name="%s"%s>\n        </label>\n'
+                       % (' class="full"' if f.get("full") else "", A(fid), e(f["label"]),
+                          A(fid), A(f["type"]), A(fid), ph))
+
+    o.append(sec('      <div class="grid">\n        <div class="span-5">\n'
+                 '          <h2 id="share-h">%s</h2>\n          <p>%s</p>\n'
+                 '          <p class="small">%s</p>\n          %s\n        </div>\n'
+                 '        <form class="span-7" action="#" method="post">\n'
+                 '          <fieldset style="border:0;padding:0;margin:0;min-width:0">\n'
+                 '            <legend class="visually-hidden">%s</legend>\n'
+                 '            <div class="form-grid">\n%s'
+                 '        <p class="full"><button class="btn" type="submit">%s</button></p>\n'
+                 '            </div>\n          </fieldset>\n        </form>\n      </div>'
+                 % (e(s["h2"]), e(s["body"]), e(s["fine"]),
+                    note({"note": s["note"], "status": s["noteStatus"]}),
+                    e(s["legend"]), fields, e(s["cta"])),
+                 label="share-h", sid="share"))
+
+    # ---- the directory ---------------------------------------------------
+    w = c["work"]
+    o.append(sec('      <div class="panel">\n        <div class="grid">\n'
+                 '          <div class="span-8">\n            <h2 id="work-h">%s</h2>\n            <p>%s</p>\n'
+                 '            %s\n          </div>\n'
+                 '          <p class="span-4" style="align-self:center">%s</p>\n'
+                 '        </div>\n      </div>'
+                 % (e(w["h2"]), e(w["body"]),
+                    note({"note": w["note"], "status": w["noteStatus"]}), cta(w["cta"])),
+                 label="work-h", sid="find-a-professional"))
 
     j = c["joinBand"]
     o.append(sec('      <h2 id="cj-h">%s</h2>\n      <p class="lede" style="color:var(--paper)">%s</p>\n'
@@ -1562,6 +1757,7 @@ HAND_WRITTEN = [
     "about-elaine.html", "about-governance.html", "about-team.html",
     "accessibility.html", "contact.html", "directory.html", "privacy.html",
     "terms.html", "projects/market-garden-sweden.html",
+    "news/wild-ken-hill-2026.html",
 ]
 
 HDR_RE = re.compile(

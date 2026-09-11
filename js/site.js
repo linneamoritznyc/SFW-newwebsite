@@ -120,6 +120,15 @@
   // another attribute, so Publications filters by collection and by decade.
   // Children carrying none of those attributes (the column header row) are
   // chrome: never hidden, never counted.
+  // An attribute may hold several space-separated values, and the item shows
+  // if any one of them is the pressed key. That is what lets the community
+  // log carry data-when="year month" on a post from this month and answer to
+  // both "This year" and "This month". A single value is one token, so every
+  // list that had one keeps behaving exactly as it did.
+  function holds(item, attr, key) {
+    var v = item.getAttribute(attr);
+    return (" " + (v || "") + " ").indexOf(" " + key + " ") > -1;
+  }
   var byList = [];
   Array.prototype.forEach.call(document.querySelectorAll("[data-filter-for]"), function (group) {
     var sel = group.getAttribute("data-filter-for");
@@ -149,7 +158,7 @@
           if (!show) return;
           var on = group.querySelector('[data-filter][aria-pressed="true"]');
           var key = on ? on.getAttribute("data-filter") : "all";
-          if (key !== "all" && item.getAttribute(attrs[i]) !== key) show = false;
+          if (key !== "all" && !holds(item, attrs[i], key)) show = false;
         });
         item.hidden = !show;
         if (show) shown++;
@@ -158,6 +167,10 @@
         var status = group.querySelector("[data-filter-status]");
         if (status) status.textContent = shown + " shown";
       });
+      // A filter that matches nothing says so, and says what to do about it,
+      // rather than leaving a blank page under the chips.
+      var empty = b.list.querySelector("[data-filter-empty]");
+      if (empty) empty.hidden = shown !== 0;
     }
 
     b.groups.forEach(function (group) {
@@ -350,7 +363,12 @@
 
   var SEL = ".shot, .slides > li, .ledger > li, .doors > li, .cards > .card," +
             " .step, .banner, .filmstrip, .scope, .plate";
-  var els = document.querySelectorAll(SEL);
+  // A page, or a region of one, may ask to be left still. The Wild Ken Hill
+  // story does: the looping clips are the only motion wanted on it, and a
+  // photograph fading up on the way past would be a second kind.
+  var els = Array.prototype.filter.call(document.querySelectorAll(SEL), function (el) {
+    return !el.closest("[data-still]");
+  });
   if (!els.length) return;
 
   var io = new IntersectionObserver(function (entries) {
@@ -362,7 +380,7 @@
     });
   }, { rootMargin: "0px 0px -8% 0px" });
 
-  Array.prototype.forEach.call(els, function (el) {
+  els.forEach(function (el) {
     // only pre-hide what the reader cannot see yet
     if (el.getBoundingClientRect().top > window.innerHeight) {
       el.classList.add("rise");
@@ -614,4 +632,169 @@
       frame.focus();
     });
   });
+})();
+
+/* ---------- 13. A file that has not arrived yet ----------
+   The Wild Ken Hill photographs and clips are referenced at their final paths
+   before the real files are uploaded to public/assets/community/. Until they
+   land, a missing one has to fail quietly: no broken-image icon, no shift in
+   the layout, and the slot still saying what belongs in it. The image is
+   replaced in place by a toned box carrying its own alt text, which is the
+   description that was written for it, so a sighted visitor reads what a
+   screen-reader user would have heard. Capture phase, because the error event
+   on an image does not bubble. */
+(function () {
+  function box(text) {
+    var p = document.createElement("p");
+    p.className = "media-missing";
+    p.textContent = text;
+    return p;
+  }
+
+  function dropImage(el) {
+    if (el.getAttribute("data-failed") === "true" || !el.parentNode) return;
+    el.setAttribute("data-failed", "true");
+    el.parentNode.replaceChild(box(el.alt || "Photograph to come"), el);
+  }
+
+  document.addEventListener("error", function (e) {
+    var el = e.target;
+    if (!el || !el.hasAttribute || !el.hasAttribute("data-optional")) return;
+
+    if (el.tagName === "IMG") { dropImage(el); return; }
+
+    var v = null;
+    if (el.tagName === "VIDEO") v = el;
+    else if (el.tagName === "SOURCE" && el.parentNode && el.parentNode.tagName === "VIDEO") v = el.parentNode;
+    if (!v) return;
+
+    // One <source> failing only means that codec is missing; the browser
+    // moves on to the next. Wait until the element has run out of sources,
+    // and check on the next tick, because networkState is not settled at the
+    // moment the last source's error fires.
+    window.setTimeout(function () {
+      if (v.getAttribute("data-failed") === "true") return;
+      if (v.networkState !== v.NETWORK_NO_SOURCE) return;
+      v.setAttribute("data-failed", "true");
+      var text = v.getAttribute("aria-label") || "Clip to come";
+      function drop() {
+        if (!v.parentNode) return;
+        // The play button belongs to a clip. With no clip behind it there is
+        // nothing to press, so it goes with the video rather than sitting on
+        // the box that says the file has not arrived.
+        var go = v.parentNode.querySelector(".clip__go");
+        if (go) go.parentNode.removeChild(go);
+        v.parentNode.replaceChild(box(text), v);
+      }
+      // A poster that does load is a perfectly good still, so keep it and
+      // only fall back to text when there is nothing at all to show.
+      if (v.poster) {
+        var probe = new Image();
+        probe.onerror = drop;
+        probe.src = v.poster;
+      } else {
+        drop();
+      }
+    }, 0);
+  }, true);
+
+  // site.js is the last thing on the page, so an image that failed while the
+  // document was still parsing fired its error before this listener existed.
+  // Sweep for those once: complete with no intrinsic width is a broken image.
+  function sweep() {
+    Array.prototype.forEach.call(document.querySelectorAll("img[data-optional]"), function (im) {
+      if (im.complete && im.naturalWidth === 0) dropImage(im);
+    });
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", sweep);
+  else sweep();
+  window.addEventListener("load", sweep);
+})();
+
+/* ---------- 14. The reel: short silent clips cut to circles ----------
+   The one piece of motion on the site. Autoplay is never written into the
+   markup, so with JavaScript off every clip sits on its poster behind a play
+   button and nothing moves on its own.
+
+   With JavaScript on and motion allowed, an IntersectionObserver plays a clip
+   while it is on screen and pauses it the moment it leaves, which is what
+   keeps a page of four of them cheap on a phone. Pressing a clip pauses or
+   resumes it by hand, and a hand-paused clip is left alone by the observer.
+
+   Where the visitor has asked for reduced motion, nothing autoplays: the
+   poster and the play button stay, and pressing one plays that clip and only
+   that clip. The preference is watched, so turning it on mid-visit stops
+   every clip without a reload. */
+(function () {
+  var clips = document.querySelectorAll("[data-clip]");
+  if (!clips.length) return;
+
+  var mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+  var list = Array.prototype.slice.call(clips).map(function (v) {
+    return { v: v, go: v.parentNode.querySelector(".clip__go"), onScreen: false, byHand: false };
+  });
+
+  // The button is never taken away while a clip is playing. Content that moves
+  // on its own has to be stoppable, so the control stays in the page and stays
+  // in the tab order; it just fades out of the way, and comes back on hover or
+  // focus, carrying a pause mark instead of a play mark.
+  function mark(c, playing) {
+    if (!c.go) return;
+    var name = c.v.getAttribute("aria-label") || "clip";
+    c.go.setAttribute("aria-label", (playing ? "Pause the clip, " : "Play the clip, ") + name);
+    c.go.setAttribute("data-state", playing ? "playing" : "paused");
+  }
+
+  function play(c) {
+    var p = c.v.play();
+    // Autoplay can still be refused (a phone on low power, a browser policy).
+    // A refusal is not an error to report: leave the poster and the button.
+    if (p && p.catch) p.catch(function () { mark(c, false); });
+    mark(c, true);
+  }
+
+  function pause(c) {
+    c.v.pause();
+    mark(c, false);
+  }
+
+  function sync() {
+    list.forEach(function (c) {
+      if (mq.matches) { pause(c); c.byHand = false; return; }
+      if (c.byHand) return;
+      if (c.onScreen) play(c); else pause(c);
+    });
+  }
+
+  list.forEach(function (c) {
+    if (!c.go) return;
+    c.go.hidden = false;
+    mark(c, false);
+    c.go.addEventListener("click", function () {
+      if (c.v.paused) { c.byHand = true; play(c); }
+      else { c.byHand = true; pause(c); }
+    });
+  });
+
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        var c = null;
+        list.forEach(function (x) { if (x.v === entry.target) c = x; });
+        if (!c) return;
+        c.onScreen = entry.isIntersecting;
+        if (!entry.isIntersecting) c.byHand = false;   // off screen, start clean
+      });
+      sync();
+    }, { rootMargin: "0px 0px -10% 0px", threshold: 0.25 });
+    list.forEach(function (c) { io.observe(c.v); });
+  } else {
+    list.forEach(function (c) { c.onScreen = true; });
+    sync();
+  }
+
+  if (mq.addEventListener) mq.addEventListener("change", sync);
+  else if (mq.addListener) mq.addListener(sync);
+
+  sync();
 })();

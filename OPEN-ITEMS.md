@@ -2,7 +2,7 @@
 
 Everything the site still shows as a visible placeholder, with the person who supplies it.
 
-Last updated 11 September 2026. Placeholders render as dashed `.todo` blocks; add `?notes=1` to any page URL to reveal every one of them at once.
+Last updated 11 September 2026 (Community rebuild and the Wild Ken Hill story added the same day). Placeholders render as dashed `.todo` blocks; add `?notes=1` to any page URL to reveal every one of them at once.
 
 A placeholder leaves this list only when the real thing is in the repository. "Confirmed in a document" is not the same as "on the page".
 
@@ -79,6 +79,34 @@ These four are on the Thinkific CDN. They could not be downloaded from the build
 | Terms rebuild | terms.html | One entity (Decision 8), one refund rule (Decision 2), enrollment terms moved here so buyers can find them. |
 | Oregon disclosure | about-governance.html | Oregon DOJ Charitable Activities registration number. |
 | Dr. Ingham's Oregon State start year | about.html timeline | The page runs 1985 to 2002 because the entry also covers the Georgia postdoc; copy deck 3.2 dates the OSU post 1986 to 2002. Confirm against the CV. |
+
+---
+
+## Waiting on Linnea, for Community and the Wild Ken Hill story
+
+| What | Where | Note |
+| :-- | :-- | :-- |
+| **The Wild Ken Hill photographs and clips** | `news/wild-ken-hill-2026.html` | Six photographs and four clips, at the filenames listed in `public/assets/community/README.md`. The clips are masked into circles, so the subject has to be centred and the corners are cut away. Every clip needs a poster with the same base name. The 39 files in the SFW Drive are still HEIC and MOV and need converting first. `python3 tools/imagecheck.py` lists what is still missing. |
+| **The five community log photographs** | `community.html` | `living-legacy-webinar`, `soil-health-week-karachi-university`, `soil-health-week-pakistan`, `costa-rica-liquid-amendments`, `costa-rica-microscopes`. The mockup hot-linked these from soilfoodweb.com/wp-content/uploads; they are referenced from `public/assets/community/img/` so the new site does not depend on the old one staying up. Copy the originals across. |
+| **Alt text and captions on the story** | `news/wild-ken-hill-2026.html` | Written from the story rather than from the footage, because the footage was not available when the page was built. Read every alt attribute against the picture it now describes once the files land. Captions are marked caption-needed and print nothing until written. |
+
+## Decisions on the Community rebuild
+
+Three places where the approved mockup and the copy in `docs/wild-ken-hill-2026-blog-post.md`
+run against a rule in `CLAUDE.md`. All three were built the mockup's way, since
+the mockup is the approved design and is the later document, and are listed here
+so they can be settled rather than left to drift.
+
+| What | Where | The conflict |
+| :-- | :-- | :-- |
+| **"certified"** | `community.html`, two posts | The rule is no "certified" anywhere in public text. The approved mockup carries "Certified consultant Nick Padwick", "107 people became certified lab-techs" and "we also certified our 50th consultant". Reword the three, or drop the rule for reporting on what people actually earned. |
+| **The course link on the story** | `news/wild-ken-hill-2026.html` | The approved copy points "See every program and price" at `soilfoodweb.com/sfw-courses-overview/`. The rule is that programs link to `learn.html` and to school.soilfoodweb.com, never to the old WordPress site, so it points at `learn.html`. Confirm, or name the page it should be. |
+| **Cream as a box, not a band** | `community.html`, "Coming up", "Community by region" and "Work with one of us" | The mockup gives the sidebar boxes and the directory band a full cream background. `site.css` says Organic Cream is a shape, never the page, so the sidebar boxes are cream boxes and the directory band is a cream box inside a white band rather than a cream stripe across the window. Same colour, one step short of the mockup. |
+
+## Two smaller notes on the Community rebuild
+
+- **The Google Drive gallery is gone.** The mockup listed 39 Drive links under the Wild Ken Hill post, still in HEIC and MOV. Those files belong on the story page, converted and hosted here, so the post links to the story instead and the conversion note is a placeholder rather than public text.
+- **The map.** The mockup replaces the community map with the "Community by region" list, and the overlay menu on every page still links to `community.html#community-map`. That anchor now lands on the regions list, which carries the note saying the interactive map is still to come. If the map is not coming back, the menu label should change from "Community map" to something the list actually answers to.
 
 ---
 
