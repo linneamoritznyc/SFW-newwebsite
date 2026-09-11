@@ -244,24 +244,62 @@ def verify(item, raw_dir=None):
 
 
 def fetch_thumb(url, slug):
+    """Save a thumbnail under the video's own slug, keeping its real format.
+    Several of the old site's stills are .webp, and calling one .jpg would
+    leave a file whose name lies about what is inside it."""
     if not url:
         return ""
     os.makedirs(THUMBS, exist_ok=True)
-    dst = os.path.join(THUMBS, slug + ".jpg")
+    ext = ".webp" if url.lower().split("?")[0].endswith(".webp") else ".jpg"
+    rel = "img/video/" + slug + ext
+    dst = os.path.join(THUMBS, slug + ext)
     if os.path.exists(dst):
-        return "img/video/" + slug + ".jpg"
+        return rel
     status, body = fetch(url, binary=True)
     if status != 200 or not body:
         return ""
     with open(dst, "wb") as f:
         f.write(body)
-    return "img/video/" + slug + ".jpg"
+    return rel
+
+
+def localise_thumbs():
+    """Bring the thumbnails home.
+
+    The curated data records each thumbnail where it still lives, on
+    soilfoodweb.com. Hotlinking it would tie the new site to the old one and
+    break every still the day the old site is retired, so the pages never
+    point there if a local copy exists. This makes the local copies.
+    """
+    data = json.load(open(DATA, encoding="utf-8"))
+    got = missing = 0
+    for pl in data["playlists"]:
+        for it in pl["items"]:
+            if it.get("thumb") or not it.get("remoteThumb"):
+                continue
+            local = fetch_thumb(it["remoteThumb"], it["slug"])
+            if local:
+                it["thumb"] = local
+                got += 1
+                print("  %-34s %s" % (it["slug"], local))
+            else:
+                missing += 1
+                print("  %-34s could not fetch %s" % (it["slug"], it["remoteThumb"]))
+    with open(DATA, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2, ensure_ascii=False)
+        f.write("\n")
+    print("\n%d thumbnails brought in, %d could not be fetched." % (got, missing))
+    print("Now run python3 tools/build.py, then commit content/videos.json and img/video/.")
+    return 1 if missing else 0
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--verify-only", action="store_true",
                     help="re-check the videos already in content/videos.json")
+    ap.add_argument("--thumbs", action="store_true",
+                    help="download every remoteThumb into img/video/ and point the data at the local "
+                         "copy, so the new site stops depending on the old one")
     ap.add_argument("--save-raw", action="store_true",
                     help="also write every page and every Vimeo answer to docs/playlist-raw/, "
                          "so the extraction can be corrected against what the pages actually contain")
@@ -272,6 +310,9 @@ def main():
         raw_dir = os.path.join(ROOT, "docs", "playlist-raw")
         os.makedirs(raw_dir, exist_ok=True)
         print("saving raw pages and answers to %s" % raw_dir)
+
+    if args.thumbs:
+        return localise_thumbs()
 
     if not os.path.exists(DATA):
         sys.exit("Cannot find %s.\nRun this from a clone of the repository: the script writes into\n"

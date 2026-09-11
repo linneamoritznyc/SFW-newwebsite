@@ -198,6 +198,22 @@ def mmss(sec):
     return "%d:%02d" % (sec // 60, sec % 60)
 
 
+def thumb_src(v, b):
+    """A local file if we have one, the old site's if we do not, nothing if
+    neither. remoteThumb still points at soilfoodweb.com: run
+    tools/playlist.py --thumbs to bring those in and stop the new site
+    depending on the old one."""
+    t = v.get("thumb") or ""
+    if t:
+        return b + t
+    return v.get("remoteThumb") or ""
+
+
+def pic(v, b):
+    src = thumb_src(v, b)
+    return ('<img src="%s" alt="" loading="lazy" decoding="async">' % A(src)) if src else ""
+
+
 def theatre(only=(), depth=0):
     """The video theatre: one player, a rail of videos, no page reloads.
 
@@ -215,9 +231,14 @@ def theatre(only=(), depth=0):
         if only and pl["id"] not in only:
             continue
         for it in pl["items"]:
-            # id and hash or it will not play; a duration or it is not a video
-            # at all. A showcase id answers oembed with neither.
-            if not (it.get("id") and it.get("hash") and it.get("duration")):
+            # An id and a hash, or it cannot play. The duration used to be
+            # required too, as a way of spotting showcase ids in a scrape.
+            # That test threw out 21 real videos: plenty of these return no
+            # duration from oembed and embed perfectly well. It now applies
+            # only to raw scraped data, never to a curated file.
+            if not (it.get("id") and it.get("hash")):
+                continue
+            if not c.get("curated") and not it.get("duration"):
                 continue
             if it["id"] in seen:                       # the same video in two playlists
                 continue
@@ -229,12 +250,11 @@ def theatre(only=(), depth=0):
     b = "../" * depth
     rows = ""
     for n, v in enumerate(items):
-        thumb = ('<img src="%s%s" alt="" loading="lazy" decoding="async">' % (b, A(v["thumb"]))) \
-            if v.get("thumb") else ""
+        thumb = ('<span class="theatre__thumb">%s</span>\n' % pic(v, b)) if True else ""
         sub = e(v.get("subtitle", ""))
         rows += ('        <li data-active="%s">\n'
                  '          <button class="theatre__item" type="button" data-i="%d" aria-current="%s">\n'
-                 '            <span class="theatre__thumb">%s</span>\n'
+                 '            %s'
                  '            <span class="theatre__t">%s</span>\n'
                  '            <span class="theatre__s">%s</span>\n'
                  '            <span class="theatre__d">%s</span>\n'
@@ -243,8 +263,9 @@ def theatre(only=(), depth=0):
                     thumb, e(v["title"]), sub, e(mmss(v.get("duration")))))
 
     first = items[0]
-    payload = json.dumps([{k: v.get(k, "") for k in
-                           ("slug", "id", "hash", "title", "subtitle", "thumb")}
+    payload = json.dumps([dict({k: v.get(k, "") for k in
+                                ("slug", "id", "hash", "title", "subtitle")},
+                               thumb=thumb_src(v, b))
                           for v in items], ensure_ascii=False)
     # a JSON island cannot be allowed to close the script element early
     payload = payload.replace("</", "<\\/")
@@ -265,7 +286,7 @@ def theatre(only=(), depth=0):
             '        <div class="theatre__stage">\n'
             '          <div class="theatre__frame" data-frame hidden></div>\n'
             '          <button class="theatre__poster" type="button" data-poster>\n'
-            '            <img src="%s%s" alt="" loading="lazy" decoding="async">\n'
+            '            %s\n'
             '            <span class="theatre__go" aria-hidden="true">\n'
             '              <svg viewBox="0 0 24 24" width="34" height="34"><path d="M8 5.5 19 12 8 18.5z"/></svg>\n'
             '            </span>\n'
@@ -288,7 +309,7 @@ def theatre(only=(), depth=0):
             '        <ol class="theatre__list">\n%s        </ol>\n'
             '        <script type="application/json" data-theatre-data>%s%s\n'
             '      </div>\n'
-            % (b, A(first.get("thumb", "")), e(first["title"]), rows, payload,
+            % (pic(first, b), e(first["title"]), rows, payload,
                # written in two halves so this file never contains the literal
                # closing tag inside a Python string that produces one
                "</" + "script>"))

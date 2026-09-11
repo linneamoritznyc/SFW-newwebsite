@@ -1,464 +1,334 @@
 {
-  "_source": "Written by tools/playlist.py, which reads the six WordPress playlist pages and verifies every entry against Vimeo's oembed endpoint. Not hand-edited: a private hash typed by hand is exactly the bug this replaces.",
-  "_schema": {
-    "item": {
-      "slug": "url key, e.g. renald-flores-sweden. What ?v= carries.",
-      "id": "Vimeo video id, digits only",
-      "hash": "the private hash. Unlisted videos do not play without it. Never empty.",
-      "title": "from the playlist markup",
-      "subtitle": "place, crop, scale, whatever the markup carries beside the title",
-      "person": "consultant or farmer named in the markup",
-      "duration": "seconds, from oembed",
-      "thumb": "img/video/<slug>.jpg once tools/playlist.py has fetched it",
-      "source": "the page this was read from"
-    }
-  },
-  "_state": "Written by tools/playlist.py on 11 September 2026, then filtered: only entries that Vimeo confirms are videos with a duration are in items. The rest were showcase ids and are listed under unresolved. Re-run with --save-raw to settle them.",
+  "_source": "Titles, subtitles and thumbnails read from the 'This Playlist' block of each of the six WordPress playlist pages. Every id and private hash was independently confirmed against the scrape tools/playlist.py ran from Linnea's machine on 11 September 2026: 26 of 26 identical, no conflicts.",
+  "curated": true,
+  "_state": "Durations are present only where Vimeo's oembed returned one. A missing duration does not mean a missing video: branch claude/sfw-website-rebuild-e7pc12 embeds three of these with the same hashes and they play.",
   "playlists": [
     {
       "id": "consultant-case-studies",
       "title": "Consultant Case Studies",
-      "showcase": "537966540",
-      "page": "https://www.soilfoodweb.com/resources/case-studies-videos/",
+      "page": "https://soilfoodweb.com/resources/case-studies-videos/",
       "items": [
         {
-          "slug": "farmer-case-studies",
-          "id": "792733797",
-          "hash": "e809b1fad3",
-          "title": "Farmer Case Studies",
-          "subtitle": "",
-          "duration": 587,
-          "thumb": "img/video/farmer-case-studies.jpg",
-          "source": "https://www.soilfoodweb.com/resources/case-studies-videos/"
-        }
-      ],
-      "unresolved": [
-        {
-          "id": "372925873",
-          "hash": "707aa77aa3",
-          "linkText": "Videos",
-          "why": "oembed answered 200 but with no duration: a showcase id, not a video. Every page links to the other five playlists in the same ?vID= shape."
-        },
-        {
+          "slug": "market-garden-makeover-sweden",
           "id": "537966540",
           "hash": "a79eb5d201",
-          "linkText": "Consultant Case Studies",
-          "why": "oembed answered 200 but with no duration: a showcase id, not a video. Every page links to the other five playlists in the same ?vID= shape."
+          "title": "Market Garden Makeover, Sweden",
+          "subtitle": "Potatoes, onions, salad greens · by Renald Flores",
+          "duration": null,
+          "thumb": "",
+          "remoteThumb": "https://soilfoodweb.com/wp-content/uploads/2021/06/25.jpg",
+          "source": "https://soilfoodweb.com/resources/case-studies-videos/"
         },
         {
-          "id": "525025259",
-          "hash": "11f6b261ce",
-          "linkText": "Implementing the Soil Food Web",
-          "why": "oembed answered 200 but with no duration: a showcase id, not a video. Every page links to the other five playlists in the same ?vID= shape."
-        },
-        {
-          "id": "380296081",
-          "hash": "4da9889266",
-          "linkText": "Testimonials",
-          "why": "oembed answered 200 but with no duration: a showcase id, not a video. Every page links to the other five playlists in the same ?vID= shape."
-        },
-        {
-          "id": "440097560",
-          "hash": "529443df10",
-          "linkText": "Meet the Soil Food Web Family",
-          "why": "oembed answered 200 but with no duration: a showcase id, not a video. Every page links to the other five playlists in the same ?vID= shape."
-        },
-        {
+          "slug": "york-farms-illinois",
           "id": "537972167",
           "hash": "f6a32ff941",
-          "linkText": "",
-          "why": "oembed answered 200 but with no duration: a showcase id, not a video. Every page links to the other five playlists in the same ?vID= shape."
+          "title": "York Farms, Illinois",
+          "subtitle": "Corn and soy, 10,000 acres · by Todd Harrington",
+          "duration": null,
+          "thumb": "",
+          "remoteThumb": "https://soilfoodweb.com/wp-content/uploads/2021/06/24.jpg",
+          "source": "https://soilfoodweb.com/resources/case-studies-videos/"
         },
         {
+          "slug": "international-case-studies",
           "id": "537963453",
           "hash": "11f160622a",
-          "linkText": "",
-          "why": "oembed answered 200 but with no duration: a showcase id, not a video. Every page links to the other five playlists in the same ?vID= shape."
+          "title": "International Case Studies: Ecuador, India, Peru, USA",
+          "subtitle": "Grapes, cannabis, turmeric and more · by Miles Sorel",
+          "duration": null,
+          "thumb": "",
+          "remoteThumb": "https://soilfoodweb.com/wp-content/uploads/2021/06/22.jpg",
+          "source": "https://soilfoodweb.com/resources/case-studies-videos/"
         },
         {
+          "slug": "alfalfa-potatoes-and-beans",
           "id": "538767686",
           "hash": "ca0eecb84e",
-          "linkText": "",
-          "why": "oembed answered 200 but with no duration: a showcase id, not a video. Every page links to the other five playlists in the same ?vID= shape."
+          "title": "Alfalfa, Potatoes and Beans",
+          "subtitle": "25,000 acres · by Todd Harrington",
+          "duration": null,
+          "thumb": "",
+          "remoteThumb": "https://soilfoodweb.com/wp-content/uploads/2021/06/23.jpg",
+          "source": "https://soilfoodweb.com/resources/case-studies-videos/"
         },
         {
+          "slug": "organic-banana-farm-south-africa",
           "id": "498143744",
           "hash": "c4ba30014d",
-          "linkText": "",
-          "why": "oembed answered 200 but with no duration: a showcase id, not a video. Every page links to the other five playlists in the same ?vID= shape."
+          "title": "Organic Banana Farm, South Africa",
+          "subtitle": "5,000 acres · by Shane Plath",
+          "duration": null,
+          "thumb": "",
+          "remoteThumb": "https://soilfoodweb.com/wp-content/uploads/2021/06/19.jpg",
+          "source": "https://soilfoodweb.com/resources/case-studies-videos/"
         },
         {
+          "slug": "governors-island-nyc",
           "id": "498144316",
           "hash": "5a85131b62",
-          "linkText": "",
-          "why": "oembed answered 200 but with no duration: a showcase id, not a video. Every page links to the other five playlists in the same ?vID= shape."
+          "title": "Governors Island, NYC",
+          "subtitle": "172 acre public park restoration · by Todd Harrington",
+          "duration": null,
+          "thumb": "",
+          "remoteThumb": "https://soilfoodweb.com/wp-content/uploads/2021/06/20.jpg",
+          "source": "https://soilfoodweb.com/resources/case-studies-videos/"
         },
         {
+          "slug": "nick-padwick",
           "id": "1034550940",
           "hash": "7f0f78d4e3",
-          "linkText": "",
-          "why": "oembed answered 200 but with no duration: a showcase id, not a video. Every page links to the other five playlists in the same ?vID= shape."
+          "title": "Nick Padwick",
+          "subtitle": "4,000 acres · Norfolk, England",
+          "duration": null,
+          "thumb": "",
+          "remoteThumb": "",
+          "source": "https://soilfoodweb.com/resources/case-studies-videos/"
         }
       ]
     },
     {
       "id": "farmer-case-studies",
       "title": "Farmer Case Studies",
-      "showcase": "792733797",
-      "page": "https://www.soilfoodweb.com/resources/farmer-case-studies-soil-food-web/",
+      "page": "https://soilfoodweb.com/resources/farmer-case-studies-soil-food-web/",
       "items": [
         {
-          "slug": "farmer-case-studies-792733797",
+          "slug": "adam-york",
           "id": "792733797",
           "hash": "e809b1fad3",
-          "title": "Farmer Case Studies",
-          "subtitle": "",
+          "title": "Adam York",
+          "subtitle": "10,000 acres · Illinois, USA",
           "duration": 587,
-          "thumb": "img/video/farmer-case-studies-792733797.jpg",
-          "source": "https://www.soilfoodweb.com/resources/farmer-case-studies-soil-food-web/"
+          "thumb": "img/video/farmer-case-studies.jpg",
+          "remoteThumb": "https://soilfoodweb.com/wp-content/uploads/2023/03/adam-300x169-1.jpg",
+          "source": "https://soilfoodweb.com/resources/farmer-case-studies-soil-food-web/"
         },
         {
-          "slug": "790985081",
+          "slug": "roberto-silva",
           "id": "790985081",
           "hash": "92231c295c",
-          "title": "SEA_FBA_SFW Farmer-Consultant Mini-Doc_6m_2023_CTAS16",
-          "subtitle": "",
+          "title": "Roberto Silva",
+          "subtitle": "140 acres · Piura, Peru",
           "duration": 354,
           "thumb": "img/video/790985081.jpg",
-          "source": "https://www.soilfoodweb.com/resources/farmer-case-studies-soil-food-web/"
+          "remoteThumb": "https://soilfoodweb.com/wp-content/uploads/2023/03/rsilva.webp",
+          "source": "https://soilfoodweb.com/resources/farmer-case-studies-soil-food-web/"
         },
         {
-          "slug": "797652217",
-          "id": "797652217",
-          "hash": "1ea7304a79",
-          "title": "CSF_GE_Jenn Sirp Webinar Case Study_2023_CTAG3",
-          "subtitle": "",
-          "duration": 3500,
-          "thumb": "img/video/797652217.jpg",
-          "source": "https://www.soilfoodweb.com/resources/farmer-case-studies-soil-food-web/"
-        },
-        {
-          "slug": "812188293",
+          "slug": "jenn-sirp",
           "id": "812188293",
           "hash": "6ed8f0fbef",
-          "title": "CSE_GE_Jenn Sirp Webinar Case Study_2023_CTAG3",
-          "subtitle": "",
+          "title": "Jenn Sirp",
+          "subtitle": "¼ acre · California, USA",
           "duration": 584,
           "thumb": "img/video/812188293.jpg",
-          "source": "https://www.soilfoodweb.com/resources/farmer-case-studies-soil-food-web/"
+          "remoteThumb": "https://soilfoodweb.com/wp-content/uploads/2023/03/jenn.webp",
+          "source": "https://soilfoodweb.com/resources/farmer-case-studies-soil-food-web/"
         },
         {
-          "slug": "812185778",
+          "slug": "cory-miller",
           "id": "812185778",
           "hash": "dd3a45ec17",
-          "title": "CSE_GE_Cory Miller Farmer Webinar Case Study_2023_CTAG3",
-          "subtitle": "",
+          "title": "Cory Miller",
+          "subtitle": "3,000 acres · Montana, USA",
           "duration": 710,
           "thumb": "img/video/812185778.jpg",
-          "source": "https://www.soilfoodweb.com/resources/farmer-case-studies-soil-food-web/"
-        }
-      ],
-      "unresolved": [
-        {
-          "id": "372925873",
-          "hash": "707aa77aa3",
-          "linkText": "Videos",
-          "why": "oembed answered 200 but with no duration: a showcase id, not a video. Every page links to the other five playlists in the same ?vID= shape."
-        },
-        {
-          "id": "537966540",
-          "hash": "a79eb5d201",
-          "linkText": "Consultant Case Studies",
-          "why": "oembed answered 200 but with no duration: a showcase id, not a video. Every page links to the other five playlists in the same ?vID= shape."
-        },
-        {
-          "id": "525025259",
-          "hash": "11f6b261ce",
-          "linkText": "Implementing the Soil Food Web",
-          "why": "oembed answered 200 but with no duration: a showcase id, not a video. Every page links to the other five playlists in the same ?vID= shape."
-        },
-        {
-          "id": "380296081",
-          "hash": "4da9889266",
-          "linkText": "Testimonials",
-          "why": "oembed answered 200 but with no duration: a showcase id, not a video. Every page links to the other five playlists in the same ?vID= shape."
-        },
-        {
-          "id": "440097560",
-          "hash": "529443df10",
-          "linkText": "Meet the Soil Food Web Family",
-          "why": "oembed answered 200 but with no duration: a showcase id, not a video. Every page links to the other five playlists in the same ?vID= shape."
-        }
-      ]
-    },
-    {
-      "id": "implementing",
-      "title": "Implementing the Soil Food Web",
-      "showcase": "525025259",
-      "page": "https://www.soilfoodweb.com/resources/soil-food-web-approach-videos/",
-      "items": [
-        {
-          "slug": "farmer-case-studies-792733797",
-          "id": "792733797",
-          "hash": "e809b1fad3",
-          "title": "Farmer Case Studies",
-          "subtitle": "",
-          "duration": 587,
-          "thumb": "img/video/farmer-case-studies-792733797.jpg",
-          "source": "https://www.soilfoodweb.com/resources/soil-food-web-approach-videos/"
-        }
-      ],
-      "unresolved": [
-        {
-          "id": "372925873",
-          "hash": "707aa77aa3",
-          "linkText": "Videos",
-          "why": "oembed answered 200 but with no duration: a showcase id, not a video. Every page links to the other five playlists in the same ?vID= shape."
-        },
-        {
-          "id": "537966540",
-          "hash": "a79eb5d201",
-          "linkText": "Consultant Case Studies",
-          "why": "oembed answered 200 but with no duration: a showcase id, not a video. Every page links to the other five playlists in the same ?vID= shape."
-        },
-        {
-          "id": "525025259",
-          "hash": "11f6b261ce",
-          "linkText": "Implementing the Soil Food Web",
-          "why": "oembed answered 200 but with no duration: a showcase id, not a video. Every page links to the other five playlists in the same ?vID= shape."
-        },
-        {
-          "id": "380296081",
-          "hash": "4da9889266",
-          "linkText": "Testimonials",
-          "why": "oembed answered 200 but with no duration: a showcase id, not a video. Every page links to the other five playlists in the same ?vID= shape."
-        },
-        {
-          "id": "440097560",
-          "hash": "529443df10",
-          "linkText": "Meet the Soil Food Web Family",
-          "why": "oembed answered 200 but with no duration: a showcase id, not a video. Every page links to the other five playlists in the same ?vID= shape."
-        },
-        {
-          "id": "542881348",
-          "hash": "e1794073a3",
-          "linkText": "",
-          "why": "oembed answered 200 but with no duration: a showcase id, not a video. Every page links to the other five playlists in the same ?vID= shape."
-        },
-        {
-          "id": "466000315",
-          "hash": "2a1509b00f",
-          "linkText": "",
-          "why": "oembed answered 200 but with no duration: a showcase id, not a video. Every page links to the other five playlists in the same ?vID= shape."
+          "remoteThumb": "https://soilfoodweb.com/wp-content/uploads/2023/03/cory-miler.webp",
+          "source": "https://soilfoodweb.com/resources/farmer-case-studies-soil-food-web/"
         }
       ]
     },
     {
       "id": "how-it-works",
       "title": "How It Works",
-      "showcase": "372925873",
-      "page": "https://www.soilfoodweb.com/resources/animations-videos/",
+      "page": "https://soilfoodweb.com/resources/animations-videos/",
       "items": [
         {
-          "slug": "farmer-case-studies-792733797",
-          "id": "792733797",
-          "hash": "e809b1fad3",
-          "title": "Farmer Case Studies",
-          "subtitle": "",
-          "duration": 587,
-          "thumb": "img/video/farmer-case-studies-792733797.jpg",
-          "source": "https://www.soilfoodweb.com/resources/animations-videos/"
-        }
-      ],
-      "note": "CONFLICT to settle when the scrape runs: the copy deck calls 372925873 the playlist, content/science.json calls it mechanism 1's video. One of the two is wrong and no hash is known for the other five, so nothing is seeded here.",
-      "unresolved": [
-        {
+          "slug": "the-soil-food-web",
           "id": "372925873",
           "hash": "707aa77aa3",
-          "linkText": "Videos",
-          "why": "oembed answered 200 but with no duration: a showcase id, not a video. Every page links to the other five playlists in the same ?vID= shape."
+          "title": "The Soil Food Web",
+          "subtitle": "",
+          "duration": null,
+          "thumb": "",
+          "remoteThumb": "https://soilfoodweb.com/wp-content/uploads/2021/07/10.jpg",
+          "source": "https://soilfoodweb.com/resources/animations-videos/"
         },
         {
-          "id": "537966540",
-          "hash": "a79eb5d201",
-          "linkText": "Consultant Case Studies",
-          "why": "oembed answered 200 but with no duration: a showcase id, not a video. Every page links to the other five playlists in the same ?vID= shape."
-        },
-        {
-          "id": "525025259",
-          "hash": "11f6b261ce",
-          "linkText": "Implementing the Soil Food Web",
-          "why": "oembed answered 200 but with no duration: a showcase id, not a video. Every page links to the other five playlists in the same ?vID= shape."
-        },
-        {
-          "id": "380296081",
-          "hash": "4da9889266",
-          "linkText": "Testimonials",
-          "why": "oembed answered 200 but with no duration: a showcase id, not a video. Every page links to the other five playlists in the same ?vID= shape."
-        },
-        {
-          "id": "440097560",
-          "hash": "529443df10",
-          "linkText": "Meet the Soil Food Web Family",
-          "why": "oembed answered 200 but with no duration: a showcase id, not a video. Every page links to the other five playlists in the same ?vID= shape."
-        },
-        {
+          "slug": "nutrient-cycling",
           "id": "372474782",
           "hash": "a5ae5edb4a",
-          "linkText": "",
-          "why": "oembed answered 200 but with no duration: a showcase id, not a video. Every page links to the other five playlists in the same ?vID= shape."
+          "title": "Nutrient Cycling",
+          "subtitle": "",
+          "duration": null,
+          "thumb": "",
+          "remoteThumb": "https://soilfoodweb.com/wp-content/uploads/2021/07/9.jpg",
+          "source": "https://soilfoodweb.com/resources/animations-videos/"
         },
         {
+          "slug": "the-formation-of-structure",
           "id": "372476056",
           "hash": "fd05a7dc60",
-          "linkText": "",
-          "why": "oembed answered 200 but with no duration: a showcase id, not a video. Every page links to the other five playlists in the same ?vID= shape."
+          "title": "The Formation of Structure",
+          "subtitle": "",
+          "duration": null,
+          "thumb": "",
+          "remoteThumb": "https://soilfoodweb.com/wp-content/uploads/2021/07/8.jpg",
+          "source": "https://soilfoodweb.com/resources/animations-videos/"
         },
         {
+          "slug": "weed-suppression",
           "id": "372479571",
           "hash": "4cced96d80",
-          "linkText": "",
-          "why": "oembed answered 200 but with no duration: a showcase id, not a video. Every page links to the other five playlists in the same ?vID= shape."
+          "title": "Weed Suppression",
+          "subtitle": "",
+          "duration": null,
+          "thumb": "",
+          "remoteThumb": "https://soilfoodweb.com/wp-content/uploads/2021/07/7.jpg",
+          "source": "https://soilfoodweb.com/resources/animations-videos/"
         },
         {
+          "slug": "inhibiting-pests-and-diseases",
           "id": "372480255",
           "hash": "7c04397066",
-          "linkText": "",
-          "why": "oembed answered 200 but with no duration: a showcase id, not a video. Every page links to the other five playlists in the same ?vID= shape."
+          "title": "Inhibiting Pests and Diseases",
+          "subtitle": "",
+          "duration": null,
+          "thumb": "",
+          "remoteThumb": "https://soilfoodweb.com/wp-content/uploads/2021/07/Video-Thumbnails-5.jpg",
+          "source": "https://soilfoodweb.com/resources/animations-videos/"
         },
         {
+          "slug": "soil-carbon-sequestration",
           "id": "372478833",
           "hash": "7c10d53c26",
-          "linkText": "",
-          "why": "oembed answered 200 but with no duration: a showcase id, not a video. Every page links to the other five playlists in the same ?vID= shape."
+          "title": "Soil Carbon Sequestration",
+          "subtitle": "",
+          "duration": null,
+          "thumb": "",
+          "remoteThumb": "https://soilfoodweb.com/wp-content/uploads/2021/07/6.jpg",
+          "source": "https://soilfoodweb.com/resources/animations-videos/"
+        }
+      ],
+      "note": "This settles the conflict flagged earlier: 372925873 is the video 'The Soil Food Web', which is what content/science.json said, and the copy deck line calling it a playlist id was wrong. All six mechanisms on science.html now have a hash and can carry their real animation."
+    },
+    {
+      "id": "implementing",
+      "title": "Implementing the Soil Food Web",
+      "page": "https://soilfoodweb.com/resources/soil-food-web-approach-videos/",
+      "items": [
+        {
+          "slug": "making-compost-extract-and-tea",
+          "id": "525025259",
+          "hash": "11f6b261ce",
+          "title": "Making Compost Extract and Tea",
+          "subtitle": "",
+          "duration": null,
+          "thumb": "",
+          "remoteThumb": "https://soilfoodweb.com/wp-content/uploads/2021/07/13.jpg",
+          "source": "https://soilfoodweb.com/resources/soil-food-web-approach-videos/"
+        },
+        {
+          "slug": "using-the-microscope",
+          "id": "542881348",
+          "hash": "e1794073a3",
+          "title": "Using the Microscope",
+          "subtitle": "",
+          "duration": null,
+          "thumb": "",
+          "remoteThumb": "https://soilfoodweb.com/wp-content/uploads/2021/07/12.jpg",
+          "source": "https://soilfoodweb.com/resources/soil-food-web-approach-videos/"
+        },
+        {
+          "slug": "about-the-soil-food-web",
+          "id": "466000315",
+          "hash": "2a1509b00f",
+          "title": "About the Soil Food Web",
+          "subtitle": "",
+          "duration": null,
+          "thumb": "",
+          "remoteThumb": "https://soilfoodweb.com/wp-content/uploads/2021/07/11.jpg",
+          "source": "https://soilfoodweb.com/resources/soil-food-web-approach-videos/"
         }
       ]
     },
     {
       "id": "testimonials",
       "title": "Testimonials",
-      "showcase": null,
-      "page": "https://www.soilfoodweb.com/resources/testimonials-videos/",
+      "page": "https://soilfoodweb.com/resources/testimonials-videos/",
       "items": [
         {
-          "slug": "farmer-case-studies-792733797",
-          "id": "792733797",
-          "hash": "e809b1fad3",
-          "title": "Farmer Case Studies",
-          "subtitle": "",
-          "duration": 587,
-          "thumb": "img/video/farmer-case-studies-792733797.jpg",
-          "source": "https://www.soilfoodweb.com/resources/testimonials-videos/"
-        }
-      ],
-      "unresolved": [
-        {
-          "id": "372925873",
-          "hash": "707aa77aa3",
-          "linkText": "Videos",
-          "why": "oembed answered 200 but with no duration: a showcase id, not a video. Every page links to the other five playlists in the same ?vID= shape."
-        },
-        {
-          "id": "537966540",
-          "hash": "a79eb5d201",
-          "linkText": "Consultant Case Studies",
-          "why": "oembed answered 200 but with no duration: a showcase id, not a video. Every page links to the other five playlists in the same ?vID= shape."
-        },
-        {
-          "id": "525025259",
-          "hash": "11f6b261ce",
-          "linkText": "Implementing the Soil Food Web",
-          "why": "oembed answered 200 but with no duration: a showcase id, not a video. Every page links to the other five playlists in the same ?vID= shape."
-        },
-        {
+          "slug": "brian-vagg",
           "id": "380296081",
           "hash": "4da9889266",
-          "linkText": "Testimonials",
-          "why": "oembed answered 200 but with no duration: a showcase id, not a video. Every page links to the other five playlists in the same ?vID= shape."
+          "title": "Brian Vagg",
+          "subtitle": "SFW Consultant · Auburn, California",
+          "duration": null,
+          "thumb": "",
+          "remoteThumb": "https://soilfoodweb.com/wp-content/uploads/2021/06/15.jpg",
+          "source": "https://soilfoodweb.com/resources/testimonials-videos/"
         },
         {
-          "id": "440097560",
-          "hash": "529443df10",
-          "linkText": "Meet the Soil Food Web Family",
-          "why": "oembed answered 200 but with no duration: a showcase id, not a video. Every page links to the other five playlists in the same ?vID= shape."
-        },
-        {
+          "slug": "keisha-and-casey",
           "id": "380297602",
           "hash": "7a71e6701c",
-          "linkText": "",
-          "why": "oembed answered 200 but with no duration: a showcase id, not a video. Every page links to the other five playlists in the same ?vID= shape."
+          "title": "Keisha and Casey",
+          "subtitle": "Compost producers · Nevada City, California",
+          "duration": null,
+          "thumb": "",
+          "remoteThumb": "https://soilfoodweb.com/wp-content/uploads/2021/07/17.jpg",
+          "source": "https://soilfoodweb.com/resources/testimonials-videos/"
         },
         {
+          "slug": "nick-tomasini",
           "id": "410049306",
           "hash": "251e4606ca",
-          "linkText": "",
-          "why": "oembed answered 200 but with no duration: a showcase id, not a video. Every page links to the other five playlists in the same ?vID= shape."
+          "title": "Nick Tomasini",
+          "subtitle": "SFW Consultant · Portland, Oregon",
+          "duration": null,
+          "thumb": "",
+          "remoteThumb": "https://soilfoodweb.com/wp-content/uploads/2021/06/12.jpg",
+          "source": "https://soilfoodweb.com/resources/testimonials-videos/"
         },
         {
+          "slug": "todd-harrington",
           "id": "470279480",
           "hash": "103139eeb8",
-          "linkText": "",
-          "why": "oembed answered 200 but with no duration: a showcase id, not a video. Every page links to the other five playlists in the same ?vID= shape."
+          "title": "Todd Harrington",
+          "subtitle": "SFW Consultant · Bloomfield, Connecticut",
+          "duration": null,
+          "thumb": "",
+          "remoteThumb": "https://soilfoodweb.com/wp-content/uploads/2021/06/13.jpg",
+          "source": "https://soilfoodweb.com/resources/testimonials-videos/"
         }
       ]
     },
     {
       "id": "meet-the-family",
       "title": "Meet the Soil Food Web Family",
-      "showcase": "440097560",
-      "page": "https://www.soilfoodweb.com/resources/meet-the-soil-food-web-family-videos/",
+      "page": "https://soilfoodweb.com/resources/meet-the-soil-food-web-family-videos/",
       "items": [
         {
-          "slug": "farmer-case-studies-792733797",
-          "id": "792733797",
-          "hash": "e809b1fad3",
-          "title": "Farmer Case Studies",
-          "subtitle": "",
-          "duration": 587,
-          "thumb": "img/video/farmer-case-studies-792733797.jpg",
-          "source": "https://www.soilfoodweb.com/resources/meet-the-soil-food-web-family-videos/"
-        },
-        {
-          "slug": "534172809",
-          "id": "534172809",
-          "hash": "3842558f66",
-          "title": "SFW Family Mini-Doc_Students_CTA1 2021_v2",
-          "subtitle": "",
-          "duration": 471,
-          "thumb": "img/video/534172809.jpg",
-          "source": "https://www.soilfoodweb.com/resources/meet-the-soil-food-web-family-videos/"
-        }
-      ],
-      "unresolved": [
-        {
-          "id": "372925873",
-          "hash": "707aa77aa3",
-          "linkText": "Videos",
-          "why": "oembed answered 200 but with no duration: a showcase id, not a video. Every page links to the other five playlists in the same ?vID= shape."
-        },
-        {
-          "id": "537966540",
-          "hash": "a79eb5d201",
-          "linkText": "Consultant Case Studies",
-          "why": "oembed answered 200 but with no duration: a showcase id, not a video. Every page links to the other five playlists in the same ?vID= shape."
-        },
-        {
-          "id": "525025259",
-          "hash": "11f6b261ce",
-          "linkText": "Implementing the Soil Food Web",
-          "why": "oembed answered 200 but with no duration: a showcase id, not a video. Every page links to the other five playlists in the same ?vID= shape."
-        },
-        {
-          "id": "380296081",
-          "hash": "4da9889266",
-          "linkText": "Testimonials",
-          "why": "oembed answered 200 but with no duration: a showcase id, not a video. Every page links to the other five playlists in the same ?vID= shape."
-        },
-        {
+          "slug": "consultants",
           "id": "440097560",
           "hash": "529443df10",
-          "linkText": "Meet the Soil Food Web Family",
-          "why": "oembed answered 200 but with no duration: a showcase id, not a video. Every page links to the other five playlists in the same ?vID= shape."
+          "title": "Consultants",
+          "subtitle": "What life as a Soil Food Web Consultant is like",
+          "duration": null,
+          "thumb": "",
+          "remoteThumb": "https://soilfoodweb.com/wp-content/uploads/2021/06/17.jpg",
+          "source": "https://soilfoodweb.com/resources/meet-the-soil-food-web-family-videos/"
+        },
+        {
+          "slug": "students",
+          "id": "534172809",
+          "hash": "3842558f66",
+          "title": "Students",
+          "subtitle": "What students think of the training",
+          "duration": 471,
+          "thumb": "img/video/534172809.jpg",
+          "remoteThumb": "https://soilfoodweb.com/wp-content/uploads/2021/06/18.jpg",
+          "source": "https://soilfoodweb.com/resources/meet-the-soil-food-web-family-videos/"
         }
       ]
     }
@@ -468,5 +338,10 @@
     "farmer-case-studies"
   ],
   "note": "Evan, Sep 7: video cases from the Consultant and Farmer Case Studies playlists run as stories from the field until the three written case studies exist. Those two playlists are what the Practice page shows.",
-  "_titles": "The titles on several of these are Vimeo upload names, not display titles: the playlist pages render their own titles with JavaScript, which a scrape of the HTML does not see. tools/playlist.py --save-raw keeps the pages so the real titles can be found. Nothing here is invented."
+  "_known_issues": [
+    "CORRECTION to an earlier pass: most of these return no duration from Vimeo's oembed, and that was read as 'not a video, probably a showcase id'. Wrong. They are real videos, and three of them embed and play on a vercel.app domain today on another branch. 21 real videos were thrown out on that reading and are back.",
+    "Jenn Sirp: on the old page the thumbnail links to 797652217, a 58 minute webinar, while the title links to 812188293, the 10 minute case study. The case study is what is used here.",
+    "Nick Padwick has no thumbnail on the old page either. His cell stays empty until the Foundation supplies a still.",
+    "Thumbnails still living on soilfoodweb.com are in remoteThumb, never hotlinked. Run tools/playlist.py --thumbs locally to bring them into img/video/ so the new site does not depend on the old one."
+  ]
 }
