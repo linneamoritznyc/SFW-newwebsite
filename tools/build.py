@@ -1399,12 +1399,7 @@ def p_research():
                  + '      <ul class="rule-list" id="res-list">\n'
                    '        <li class="rule-list__head" aria-hidden="true">'
                    '<span>Year</span><span>Publication</span><span>Type</span></li>\n'
-                 + rows + '      </ul>\n'
-                 # under the list, where a reader reaches it having seen the
-                 # rows, not as a headline above them
-                 + '      <p class="small" style="margin-top:var(--s3)">%s</p>\n'
-                   '      <p class="source small">%s</p>'
-                 % (e(d["listNote"]), e(d["listSource"])), label="res-list-h"))
+                 + rows + '      </ul>', label="res-list-h"))
 
     w = c["workWithUs"]
     o.append(sec('      <h2 id="rw-h">%s</h2>\n      <p class="lede">%s</p>\n      <p>%s</p>'
