@@ -3129,6 +3129,58 @@ figcaption,
   transition: transform var(--dur) var(--ease), color var(--dur) var(--ease); }
 .site-footer nav a:hover, .acc__links a:hover { transform: translateX(2px); }
 
+/* --------------------------------------------------------------------------
+   21. The sMApp band
+
+   A web app offered as itself. There are no App Store or Google Play buttons
+   here on purpose: sMApp has no listing, and the "SoilMapp" that is listed in
+   both stores belongs to someone else. See the note in content/practice.json
+   before adding any. What a store install would really have given a phone is
+   an icon on the home screen, so that route is written out for both phones
+   instead, in plain HTML that needs no script and no user agent sniffing.
+
+   --panel-green is used the way the token defines it: a bound rectangle that
+   ties the address and the two sets of instructions into one object, never
+   the page.
+   -------------------------------------------------------------------------- */
+.getapp {
+  background: var(--panel-green); padding: var(--s4);
+  border-radius: var(--radius-card);
+  max-width: 52rem;   /* a bound object, not a band: the content is short */
+}
+@media (min-width: 48em) { .getapp { padding: var(--s5); } }
+.getapp > :first-child { margin-top: 0; }
+
+/* The button and the address it goes to, kept on one line so the reader can
+   check the host against the address bar before they sign in. */
+.getapp__go { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s2) var(--s3); }
+.getapp__go .btn {
+  display: inline-flex; align-items: center; gap: .55em;
+  min-height: 44px;            /* WCAG 2.5.8: the global .btn computes under this */
+  padding-block: .55em;
+}
+.getapp__go .icon { width: 1.15rem; height: 1.15rem; }
+.getapp__host { font-size: var(--t-1); color: var(--ink-soft); }
+.getapp__host b { font-family: var(--display); color: var(--ink); font-weight: 600; }
+
+.getapp__install { margin-top: var(--s4); border-top: var(--hairline) solid var(--rule); padding-top: var(--s3); }
+.getapp__install h3 { font-size: var(--t1); margin-bottom: var(--s1); }
+
+.getapp__steps { list-style: none; margin: var(--s3) 0 0; padding: 0; display: grid; gap: var(--s3); }
+@media (min-width: 40em) { .getapp__steps { grid-template-columns: 1fr 1fr; gap: var(--s4); } }
+.getapp__steps > li { margin: 0; }
+.getapp__steps h4 { font-family: var(--display); font-size: var(--t0); margin: 0 0 var(--s1); }
+.getapp__steps ol { margin: 0; padding-left: 1.2em; font-size: var(--t-1); color: var(--ink-soft); }
+.getapp__steps ol li + li { margin-top: .35em; }
+
+/* On a phone the button is the whole width, so it cannot be half missed. */
+@media (max-width: 30em) {
+  .getapp { padding: var(--s3); }
+  .getapp__go { display: block; }
+  .getapp__go .btn { display: flex; justify-content: center; width: 100%; }
+  .getapp__host { display: block; margin-top: var(--s2); }
+}
+
 /* Nothing above is load-bearing, so reduced motion switches all of it off. */
 @media (prefers-reduced-motion: reduce) {
   .btn, .card, .entry, .steps > li, .film__play, .slide__go, .door__go,

@@ -49,6 +49,45 @@
       "note": "Also filmed and available for later cards: Adam York, Illinois (792733797 / e809b1fad3); Jenn Sirp, California (812188293 / 6ed8f0fbef); Brian Vagg, Auburn, California (380296081 / 4da9889266); Keisha and Casey, Nevada City, California (380297602 / 7a71e6701c); Todd Harrington, Bloomfield, Connecticut (470279480 / 103139eeb8)."
     }
   },
+  "app": {
+    "_note": "sMApp is a web app. There is NO App Store or Google Play listing for it. Do not add store buttons here: the 'SoilMapp' listed in both stores is CSIRO's unrelated Australian soil survey app (Apple id578173447, package au.csiro.soilmapp), and searching the stores by name leads there. Never link an APK mirror. Verify any future listing by Apple app ID and Android package name, not by app name.",
+    "eyebrow": "TOOLS",
+    "h2": "sMApp",
+    "what": {
+      "status": "PLACEHOLDER",
+      "note": "One sentence saying what sMApp does and who it is for. Needed from the team who runs soilmapp.com.",
+      "awaiting": "A description of sMApp is on the way."
+    },
+    "free": "Free to use.",
+    "cta": {
+      "label": "Open sMApp",
+      "href": "https://www.soilmapp.com/"
+    },
+    "host": "www.soilmapp.com",
+    "install": {
+      "h3": "Put it on your phone",
+      "lede": "sMApp runs in a browser, so there is nothing to install from an app store. Adding it to your home screen gives you an icon that opens sMApp directly.",
+      "platforms": [
+        {
+          "name": "iPhone and iPad",
+          "steps": [
+            "Open www.soilmapp.com in Safari.",
+            "Tap the Share button.",
+            "Choose Add to Home Screen, then tap Add."
+          ]
+        },
+        {
+          "name": "Android",
+          "steps": [
+            "Open www.soilmapp.com in Chrome.",
+            "Tap the menu button, the three dots.",
+            "Choose Add to Home screen. Some phones say Install app."
+          ]
+        }
+      ]
+    },
+    "source": "The address and the free to use line were given by the Foundation, 11 September 2026. sMApp has no App Store or Google Play listing, checked 11 September 2026."
+  },
   "workWithUs": {
     "h2": "WORK WITH US",
     "tagline": "Accelerating understanding into action.",

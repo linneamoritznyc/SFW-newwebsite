@@ -1125,6 +1125,51 @@ def p_science():
     return MAIN("\n".join(o))
 
 
+def app_band(a):
+    """A web app, offered honestly.
+
+    sMApp has no App Store or Google Play listing, so there are no store
+    buttons here. Read the _note in content/practice.json before adding any:
+    the "SoilMapp" in both stores is a different organisation's app, and
+    searching the stores by name lands on it.
+
+    What a store install would really have bought is an icon on the home
+    screen, so this offers that route instead, spelled out for both phones in
+    plain HTML. No user agent sniffing: the string lies, sniffing fingerprints
+    the reader, it breaks with scripting off, and it hides the desktop path
+    from someone on a phone who wants it. The band needs no JavaScript at all.
+
+    The address is a literal absolute https URL carried in the content file,
+    never assembled at runtime, so there is no way to steer it with a query
+    parameter. It opens in the same tab, like all 144 other outbound links on
+    this site, which leaves no window.opener handle behind for the far end to
+    reach back through. The host is printed next to the button so a reader can
+    check it against the address bar before signing in.
+    """
+    plats = ""
+    for pl in a["install"]["platforms"]:
+        li = "".join("            <li>%s</li>\n" % e(x) for x in pl["steps"])
+        plats += ('        <li>\n          <h4>%s</h4>\n          <ol>\n%s          </ol>\n        </li>\n'
+                  % (e(pl["name"]), li))
+    return ('      <div class="head">\n        %s\n        <h2 id="app-h">%s</h2>\n      </div>\n'
+            '      <div class="getapp">\n'
+            '%s        %s\n'
+            '        <p class="getapp__go">\n'
+            '          <a class="btn" href="%s">'
+            '<svg class="icon" aria-hidden="true" focusable="false"><use href="#i-web"/></svg>%s</a>\n'
+            '          <span class="getapp__host">%s Opens <b>%s</b></span>\n'
+            '        </p>\n'
+            '        <div class="getapp__install">\n          <h3>%s</h3>\n          <p>%s</p>\n'
+            '          <ul class="getapp__steps">\n%s          </ul>\n        </div>\n'
+            '      </div>\n      <p class="source small">%s</p>\n'
+            % (eyebrow(a.get("eyebrow")), e(a["h2"]),
+               awaiting(a["what"]), note(a["what"]),
+               A(a["cta"]["href"]), e(a["cta"]["label"]),
+               e(a["free"]), e(a["host"]),
+               e(a["install"]["h3"]), e(a["install"]["lede"]), plats,
+               e(a["source"])))
+
+
 def p_practice():
     """Practice. Carries the three audience doorways Evan approved.
 
@@ -1164,6 +1209,8 @@ def p_practice():
                  % (eyebrow(cs["eyebrow"]), e(cs["h2"]), e(cs["lede"]), stage,
                     e(cs["source"]), note(cs), note(cs["more"])),
                  label="csx-h", sid="case-studies"))
+
+    o.append(sec(app_band(c["app"]), "", "app-h", "app"))
 
     w = c["workWithUs"]
     door_shots = [
