@@ -979,3 +979,25 @@
 
   sync();
 })();
+
+/* ---------- 15. Rotating images [data-rotate] ---------- */
+(function () {
+  "use strict";
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  var imgs = document.querySelectorAll("[data-rotate]");
+  if (!imgs.length) return;
+  imgs.forEach(function (img) {
+    var srcs = img.getAttribute("data-rotate").split(",");
+    if (srcs.length < 2) return;
+    var idx = 0;
+    img.style.transition = "opacity .6s ease";
+    setInterval(function () {
+      img.style.opacity = "0";
+      setTimeout(function () {
+        idx = (idx + 1) % srcs.length;
+        img.src = srcs[idx];
+        img.style.opacity = "1";
+      }, 600);
+    }, 4000);
+  });
+})();
