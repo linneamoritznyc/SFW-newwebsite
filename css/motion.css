@@ -1,0 +1,309 @@
+/* ==========================================================================
+   motion.css — page-scoped stylesheet for /motion only.
+
+   DEVIATION, deliberate and temporary: CLAUDE.md asks for one stylesheet.
+   /motion is a picking page, not a site page. It carries sixteen throwaway
+   motion experiments, fifteen of which will be deleted once one is chosen.
+   Keeping them out of css/site.css protects the production stylesheet and
+   the WordPress hand-off. Delete this file, motion.html and js/motion.js
+   together when the direction is picked; fold only the winner into site.css.
+
+   Palette below is read off sfw-amoeba-brand-board.png, which is itself
+   read off the footage. Same six inks, nothing added.
+   ========================================================================== */
+
+:root {
+  --mo-slide:  #B0B5AC;   /* Slide            */
+  --mo-light:  #D5DBC3;   /* Light            */
+  --mo-green:  #A2AE77;   /* Living green     */
+  --mo-glow:   #DBE6A7;   /* Glow             */
+  --mo-violet: #9E8FC2;   /* Membrane violet  */
+  --mo-deep:   #3C3841;   /* Deep             */
+
+  --mo-deeper:  #2A272F;
+  --mo-rule:    rgba(213, 219, 195, .20);
+  --mo-rule-lo: rgba(213, 219, 195, .10);
+  --mo-dim:     rgba(213, 219, 195, .58);
+
+  --mo-gut: clamp(20px, 5vw, 72px);
+  --mo-max: 1240px;
+}
+
+/* --------------------------------------------------------------------------
+   Page
+   -------------------------------------------------------------------------- */
+body.mo {
+  margin: 0;
+  background: var(--mo-deep);
+  color: var(--mo-light);
+  font-family: var(--sans);
+  font-size: 1rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+.mo *, .mo *::before, .mo *::after { box-sizing: border-box; }
+.mo img, .mo svg, .mo video, .mo canvas { display: block; max-width: 100%; }
+
+.mo-wrap { max-width: var(--mo-max); margin-inline: auto; padding-inline: var(--mo-gut); }
+
+.mo-eyebrow {
+  font-family: var(--display);
+  font-size: .6875rem;
+  font-weight: 600;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--mo-green);
+  margin: 0;
+}
+
+.mo h1, .mo h2, .mo h3 {
+  font-family: var(--display);
+  font-weight: 600;
+  color: var(--mo-light);
+  line-height: 1.06;
+  letter-spacing: -.015em;
+  margin: 0;
+  text-wrap: balance;
+}
+
+/* --------------------------------------------------------------------------
+   Masthead
+   -------------------------------------------------------------------------- */
+.mo-mast { padding-block: clamp(48px, 9vw, 112px) clamp(32px, 5vw, 56px); }
+.mo-mast h1 { font-size: clamp(2.25rem, 1.2rem + 4.4vw, 4.25rem); margin-block: 20px 24px; }
+.mo-mast p { max-width: 62ch; color: var(--mo-dim); margin: 0 0 16px; }
+.mo-mast p strong { color: var(--mo-light); font-weight: 600; }
+.mo-back { color: var(--mo-green); font-size: .8125rem; text-decoration: none; border-bottom: 1px solid currentColor; }
+.mo-back:hover { color: var(--mo-glow); }
+
+/* the contact strip of all sixteen, for jumping */
+.mo-index {
+  list-style: none;
+  max-width: none;              /* site.css caps every ul at a reading measure */
+  margin: 40px 0 0;
+  padding: 24px 0 0;
+  border-top: 1px solid var(--mo-rule);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 2px 28px;
+}
+.mo-index a {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  padding: 7px 0;
+  color: var(--mo-light);
+  text-decoration: none;
+  font-size: .875rem;
+  border-bottom: 1px solid var(--mo-rule-lo);
+}
+.mo-index a:hover { color: var(--mo-glow); }
+.mo-index b {
+  font-family: var(--display);
+  font-size: .625rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  color: var(--mo-green);
+  min-width: 1.6em;
+}
+
+/* --------------------------------------------------------------------------
+   Sticky control bar
+   -------------------------------------------------------------------------- */
+.mo-bar {
+  position: sticky; top: 0; z-index: 40;
+  background: rgba(42, 39, 47, .86);
+  backdrop-filter: blur(10px);
+  border-block: 1px solid var(--mo-rule);
+}
+.mo-bar__in {
+  max-width: var(--mo-max); margin-inline: auto; padding: 10px var(--mo-gut);
+  display: flex; gap: 14px; align-items: center; flex-wrap: wrap;
+  font-family: var(--display); font-size: .6875rem; letter-spacing: .14em; text-transform: uppercase;
+}
+.mo-bar__in span { color: var(--mo-dim); }
+.mo-btn {
+  font: inherit; letter-spacing: inherit; text-transform: inherit;
+  background: transparent; color: var(--mo-light);
+  border: 1px solid var(--mo-rule); border-radius: 2px;
+  padding: 7px 14px; cursor: pointer;
+}
+.mo-btn:hover { border-color: var(--mo-green); color: var(--mo-glow); }
+.mo-btn[aria-pressed="true"] { background: var(--mo-green); border-color: var(--mo-green); color: var(--mo-deep); }
+.mo :focus-visible { outline: 2px solid var(--mo-glow); outline-offset: 3px; }
+
+/* --------------------------------------------------------------------------
+   A plate
+   -------------------------------------------------------------------------- */
+.pl { padding-block: clamp(56px, 8vw, 104px); border-top: 1px solid var(--mo-rule-lo); scroll-margin-top: 60px; }
+.pl__head {
+  max-width: var(--mo-max); margin-inline: auto; padding-inline: var(--mo-gut);
+  display: grid; grid-template-columns: 4.5rem 1fr; gap: 0 20px; align-items: start;
+  margin-bottom: 28px;
+}
+.pl__n {
+  font-family: var(--display); font-size: .8125rem; font-weight: 600;
+  letter-spacing: .1em; color: var(--mo-green); padding-top: .35em;
+}
+.pl__t { font-size: clamp(1.4rem, 1rem + 1.5vw, 2rem); }
+.pl__d { grid-column: 2; margin: 10px 0 0; max-width: 56ch; color: var(--mo-dim); font-size: .9375rem; }
+.pl__tech {
+  grid-column: 2; margin: 12px 0 0;
+  font-family: var(--display); font-size: .625rem; font-weight: 600;
+  letter-spacing: .16em; text-transform: uppercase; color: var(--mo-violet);
+}
+@media (max-width: 640px) {
+  .pl__head { grid-template-columns: 1fr; }
+  .pl__d, .pl__tech { grid-column: 1; }
+}
+
+/* the stage every experiment sits on */
+.pl__stage { max-width: var(--mo-max); margin-inline: auto; padding-inline: var(--mo-gut); }
+.pl__stage--bleed { max-width: none; padding-inline: 0; }
+.st { position: relative; overflow: hidden; background: var(--mo-deeper); border: 1px solid var(--mo-rule-lo); }
+.st > canvas, .st > video { width: 100%; height: 100%; object-fit: cover; }
+.ar-16x9 { aspect-ratio: 16 / 9; }
+.ar-21x9 { aspect-ratio: 21 / 9; }
+.ar-1x1  { aspect-ratio: 1; }
+.ar-4x5  { aspect-ratio: 4 / 5; }
+@media (max-width: 700px) { .ar-21x9 { aspect-ratio: 16 / 9; } }
+
+.pl__note {
+  max-width: var(--mo-max); margin: 14px auto 0; padding-inline: var(--mo-gut);
+  font-size: .8125rem; color: var(--mo-dim);
+}
+.pl__note code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: .95em; color: var(--mo-glow); }
+
+.todo {
+  display: block; margin: 14px auto 0; max-width: var(--mo-max);
+  padding: 10px var(--mo-gut);
+  font-size: .8125rem; color: var(--mo-glow);
+  border-left: 2px solid var(--mo-violet);
+}
+.todo::before { content: "Placeholder: "; font-weight: 600; }
+
+/* --------------------------------------------------------------------------
+   01  Field of view
+   -------------------------------------------------------------------------- */
+.fov { display: grid; place-items: center; background: var(--mo-deeper); padding: clamp(20px, 4vw, 56px); }
+.fov__disc {
+  position: relative; width: min(78vw, 620px); aspect-ratio: 1;
+  border-radius: 50%; overflow: hidden;
+  box-shadow: 0 0 0 1px rgba(158, 143, 194, .5), 0 0 0 14px var(--mo-deeper), 0 0 70px rgba(0,0,0,.6) inset;
+}
+.fov__disc video {
+  width: 100%; height: 100%; object-fit: cover;
+  transform: scale(1.9);            /* into the organism */
+  filter: brightness(.8) contrast(6.5) saturate(.42);
+  animation: fovrack 21s cubic-bezier(.45,0,.55,1) infinite;
+}
+@keyframes fovrack {
+   0%   { filter: brightness(.80) contrast(6.5) saturate(.42) blur(0px);   transform: scale(1.90); }
+  38%   { filter: brightness(.86) contrast(3.4) saturate(.30) blur(4px);   transform: scale(1.96); }
+  52%   { filter: brightness(.76) contrast(8.2) saturate(.48) blur(0px);   transform: scale(1.90); }
+ 100%   { filter: brightness(.80) contrast(6.5) saturate(.42) blur(0px);   transform: scale(1.90); }
+}
+.fov__glass {                       /* the pale chromatic bloom of a wet mount */
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 50%, transparent 52%, rgba(60,56,65,.85) 99%),
+    radial-gradient(circle at 38% 34%, rgba(219,230,167,.16), transparent 46%);
+  mix-blend-mode: normal;
+}
+.fov__ret { position: absolute; inset: 0; pointer-events: none; color: var(--mo-glow); opacity: .5; }
+.fov__ret line, .fov__ret circle { stroke: currentColor; fill: none; vector-effect: non-scaling-stroke; }
+
+/* --------------------------------------------------------------------------
+   03  Canon in six
+   -------------------------------------------------------------------------- */
+.canon { position: relative; background: var(--mo-light); }
+.canon video {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  mix-blend-mode: multiply; opacity: .96;
+}
+/* A canon transposes as well as delays, so each voice is offset in space
+   as well as in time. Without it all six land on top of each other: this
+   organism moves so little across ten seconds that six moments of it are
+   almost the same picture.
+   The organism is DARKER than the field, so this prints rather than screens:
+   stretch, drop the colour, lift the field to near-paper so six plates can
+   sit on top of each other, then give each voice its own ink. Screening six
+   stretched copies only ever produced white. */
+.canon video:nth-child(1) { transform: translate(-7%, -4%) scale(1.14) rotate(-1.6deg); filter: brightness(.78) contrast(7) grayscale(1) brightness(2.15) sepia(1) hue-rotate(  8deg) saturate(2.0); }
+.canon video:nth-child(2) { transform: translate( 6%, -6%) scale(1.10) rotate( 2.1deg); filter: brightness(.78) contrast(7) grayscale(1) brightness(2.15) sepia(1) hue-rotate(212deg) saturate(2.6); }
+.canon video:nth-child(3) { transform: translate(-4%,  6%) scale(1.18) rotate( 1.1deg); filter: brightness(.78) contrast(7) grayscale(1) brightness(2.15) sepia(1) hue-rotate( 55deg) saturate(1.9); }
+.canon video:nth-child(4) { transform: translate( 8%,  3%) scale(1.12) rotate(-2.4deg); filter: brightness(.78) contrast(7) grayscale(1) brightness(2.15) sepia(1) hue-rotate(258deg) saturate(2.3); }
+.canon video:nth-child(5) { transform: translate(-9%,  1%) scale(1.08) rotate( 0.7deg); filter: brightness(.78) contrast(7) grayscale(1) brightness(2.15) sepia(1) hue-rotate(330deg) saturate(1.5); }
+.canon video:nth-child(6) { transform: translate( 2%, -8%) scale(1.16) rotate(-0.9deg); filter: brightness(.78) contrast(7) grayscale(1) brightness(2.15) sepia(1) hue-rotate(150deg) saturate(1.7); }
+/* --------------------------------------------------------------------------
+   14  Rack (scroll drives the organism)
+   -------------------------------------------------------------------------- */
+.rack { background: #16141a; }
+.rack video { filter: brightness(.8) contrast(6.5) saturate(.42); transition: filter 90ms linear; }
+.rack__meter {
+  position: absolute; left: 0; right: 0; bottom: 0; height: 2px;
+  background: var(--mo-rule-lo);
+}
+.rack__meter i { display: block; height: 100%; width: 0; background: var(--mo-glow); }
+.rack__hint {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  font-family: var(--display); font-size: .625rem; font-weight: 600;
+  letter-spacing: .24em; text-transform: uppercase;
+  color: var(--mo-light); background: rgba(42,39,47,.72);
+  padding: 10px 16px; border: 1px solid var(--mo-rule);
+  transition: opacity .5s; pointer-events: none;
+}
+.rack[data-touched="1"] .rack__hint { opacity: 0; }
+
+/* --------------------------------------------------------------------------
+   15  Contact sheet
+   -------------------------------------------------------------------------- */
+.sheet { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; background: transparent; }
+@media (max-width: 720px) { .sheet { grid-template-columns: repeat(3, 1fr); } }
+.sheet figure { margin: 0; }
+.sheet .cell {
+  position: relative; aspect-ratio: 4 / 3; overflow: hidden;
+  background: var(--mo-deeper); border: 1px solid var(--mo-rule-lo);
+  transition: border-color .18s, box-shadow .18s;
+}
+.sheet .cell canvas { width: 100%; height: 100%; }
+.sheet .cell[data-hot="1"] { border-color: var(--mo-glow); box-shadow: 0 0 0 1px var(--mo-glow), 0 0 26px rgba(219,230,167,.28); }
+.sheet figcaption {
+  font-family: var(--display); font-size: .5625rem; font-weight: 600;
+  letter-spacing: .14em; color: var(--mo-dim); padding-top: 6px;
+}
+
+/* --------------------------------------------------------------------------
+   16  Wet ink (SVG filter graph)
+   -------------------------------------------------------------------------- */
+.ink { background: var(--mo-light); }
+.ink video { filter: brightness(.8) contrast(7) saturate(.45) url(#mo-wet-ink); }
+@supports not (filter: url(#x)) { .ink video { filter: brightness(.8) contrast(7) saturate(.45); } }
+
+/* --------------------------------------------------------------------------
+   Reduced motion: everything holds still, nothing disappears
+   -------------------------------------------------------------------------- */
+.mo-rm { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  .fov__disc video { animation: none; }
+  .mo-rm { display: block; }   /* must come after the default, same specificity */
+}
+
+/* --------------------------------------------------------------------------
+   Footer
+   -------------------------------------------------------------------------- */
+.mo-foot {
+  border-top: 1px solid var(--mo-rule);
+  padding-block: 56px 80px;
+  font-size: .8125rem; color: var(--mo-dim);
+}
+.mo-foot h2 { font-size: 1.125rem; margin-bottom: 14px; }
+.mo-foot p { max-width: 68ch; }
+.mo-foot a { color: var(--mo-green); }
+
+/* the six inks, printed once so the page states its own palette */
+.mo-inks { display: flex; flex-wrap: wrap; gap: 2px; margin: 28px 0; }
+.mo-inks div { flex: 1 1 120px; }
+.mo-inks i { display: block; height: 54px; }
+.mo-inks b { display: block; font-family: var(--display); font-size: .625rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; padding-top: 8px; }
+.mo-inks span { display: block; font-size: .6875rem; color: var(--mo-dim); font-family: ui-monospace, Menlo, monospace; }

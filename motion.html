@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Motion studies, one reel of brightfield microscopy sixteen ways</title>
+  <meta name="description" content="Sixteen motion treatments of the Soil Food Web Foundation's amoeba footage, on one page, for picking a direction. Internal working page.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preload" href="fonts/montserrat-latin-variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/source-sans-3-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/site.css">
+  <link rel="stylesheet" href="css/motion.css">
+</head>
+<body class="mo">
+<a class="skip" href="#studies">Skip to the studies</a>
+
+<!-- ==========================================================================
+     Filter graphs. Used by study 16. Animated with SMIL so the browser drives
+     it and the main thread does nothing.
+     ========================================================================== -->
+<svg id="mo-defs" width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
+  <filter id="mo-wet-ink" x="-10%" y="-10%" width="120%" height="120%" color-interpolation-filters="sRGB">
+    <feTurbulence type="fractalNoise" baseFrequency="0.012 0.020" numOctaves="3" seed="7" result="n">
+      <animate attributeName="baseFrequency" dur="27s" repeatCount="indefinite"
+               values="0.012 0.020; 0.028 0.009; 0.007 0.026; 0.012 0.020"/>
+    </feTurbulence>
+    <feDisplacementMap in="SourceGraphic" in2="n" xChannelSelector="R" yChannelSelector="G" scale="30" result="d">
+      <animate attributeName="scale" dur="19s" repeatCount="indefinite" values="30; 78; 44; 30"/>
+    </feDisplacementMap>
+    <!-- four steps of ink, biased violet in the shadows and green in the mid -->
+    <feComponentTransfer in="d">
+      <feFuncR type="discrete" tableValues="0.22 0.53 0.69 0.87"/>
+      <feFuncG type="discrete" tableValues="0.19 0.57 0.76 0.91"/>
+      <feFuncB type="discrete" tableValues="0.29 0.49 0.60 0.79"/>
+    </feComponentTransfer>
+  </filter>
+</svg>
+
+<!-- ==========================================================================
+     Masthead
+     ========================================================================== -->
+<header class="mo-mast">
+  <div class="mo-wrap">
+    <p class="mo-eyebrow">Soil Food Web Foundation &middot; working page</p>
+    <h1>One reel, sixteen ways.</h1>
+    <p>Every study below runs on the same ten seconds of brightfield microscopy from the Foundation archive: two organisms with violet membranes on a pale grey-green field. No second source, no stock, no illustration. The differences are entirely in the treatment.</p>
+    <p><strong>The technical fact that shapes all of it:</strong> the footage is nearly flat. Measured across the frame, luminance sits between 152 and 174 out of 255 and mean saturation is 3.7. There is almost nothing there until it is stretched. Every study opens the same window on the signal and discards the rest, which is why they share a family resemblance despite having almost no technique in common.</p>
+    <p>Scroll and pick. Each one is labelled with what it does and how. Studies only run while they are on screen.</p>
+    <p style="margin-top:26px"><a class="mo-back" href="/">Back to the site</a></p>
+
+    <ul class="mo-index">
+      <li><a href="#s-fov"><b>01</b> Field of view</a></li>
+      <li><a href="#s-cubist"><b>02</b> Analytic amoeba</a></li>
+      <li><a href="#s-canon"><b>03</b> Canon in six</a></li>
+      <li><a href="#s-slit"><b>04</b> Slit-scan</a></li>
+      <li><a href="#s-membrane"><b>05</b> Membrane</a></li>
+      <li><a href="#s-riso"><b>06</b> Riso, two inks</a></li>
+      <li><a href="#s-contour"><b>07</b> Bathymetry</a></li>
+      <li><a href="#s-type"><b>08</b> Living type</a></li>
+      <li><a href="#s-swarm"><b>09</b> Swarm</a></li>
+      <li><a href="#s-kaleid"><b>10</b> Radiolarian</a></li>
+      <li><a href="#s-readout"><b>11</b> Readout</a></li>
+      <li><a href="#s-halftone"><b>12</b> Halftone</a></li>
+      <li><a href="#s-drift"><b>13</b> Channel drift</a></li>
+      <li><a href="#s-rack"><b>14</b> Rack</a></li>
+      <li><a href="#s-sheet"><b>15</b> Contact sheet</a></li>
+      <li><a href="#s-ink"><b>16</b> Wet ink</a></li>
+    </ul>
+  </div>
+</header>
+
+<div class="mo-bar">
+  <div class="mo-bar__in">
+    <button class="mo-btn" id="mo-toggle" type="button" aria-pressed="false">Pause everything</button>
+    <span>Sixteen studies &middot; one source reel &middot; no library</span>
+    <span style="margin-left:auto">Studies run only while on screen</span>
+  </div>
+</div>
+
+<p class="mo-rm mo-wrap" style="padding-top:20px;color:var(--mo-glow)">Your system asks for reduced motion, so the autonomous studies are held still or slowed. The video loops still run; use Pause everything to stop them.</p>
+
+<main id="studies">
+
+  <!-- 01 ------------------------------------------------------------------ -->
+  <section class="pl" id="s-fov">
+    <div class="pl__head">
+      <p class="pl__n">01</p>
+      <h2 class="pl__t">Field of view</h2>
+      <p class="pl__d">The reference point, and the only study that pretends to be an instrument. The reel sits inside a circular field with a reticle across it, and the focus racks in and out on a twenty-one second cycle the way it does when someone is actually hunting for something on a slide. Silent, endless, self-contained.</p>
+      <p class="pl__tech">CSS filter rack &middot; SVG reticle &middot; no canvas</p>
+    </div>
+    <div class="pl__stage">
+      <div class="st fov">
+        <div class="fov__disc">
+          <video poster="img/sfw-amoeba-poster-square.jpg" muted loop playsinline preload="auto">
+            <source src="video/sfw-amoeba-loop-square.webm" type="video/webm">
+            <source src="video/sfw-amoeba-loop-square.mp4" type="video/mp4">
+          </video>
+          <span class="fov__glass"></span>
+          <svg class="fov__ret" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+            <line x1="50" y1="0" x2="50" y2="100" stroke-width=".4"/>
+            <line x1="0" y1="50" x2="100" y2="50" stroke-width=".4"/>
+            <circle cx="50" cy="50" r="16" stroke-width=".4"/>
+            <circle cx="50" cy="50" r="32" stroke-width=".4"/>
+            <line x1="50" y1="46" x2="50" y2="54" stroke-width="1.2"/>
+            <line x1="46" y1="50" x2="54" y2="50" stroke-width="1.2"/>
+            <g stroke-width=".5">
+              <line x1="20" y1="49" x2="20" y2="51"/><line x1="26" y1="49.4" x2="26" y2="50.6"/>
+              <line x1="32" y1="49" x2="32" y2="51"/><line x1="38" y1="49.4" x2="38" y2="50.6"/>
+              <line x1="62" y1="49.4" x2="62" y2="50.6"/><line x1="68" y1="49" x2="68" y2="51"/>
+              <line x1="74" y1="49.4" x2="74" y2="50.6"/><line x1="80" y1="49" x2="80" y2="51"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <p class="todo">The reticle ticks are drawn unnumbered on purpose. A real scale bar needs the objective magnification and the camera sensor size this reel was shot with, from the Foundation's microscopy notes.</p>
+  </section>
+
+  <!-- 02 ------------------------------------------------------------------ -->
+  <section class="pl" id="s-cubist">
+    <div class="pl__head">
+      <p class="pl__n">02</p>
+      <h2 class="pl__t">Analytic amoeba</h2>
+      <p class="pl__d">Cubism's actual proposition applied to time rather than space: one picture holding many moments of the same body at once. The last twenty-four frames are kept in a ring; the plane is broken into irregular facets on a jittered lattice; each facet is filled from a different moment. Held still it reads as a single image. In motion the facets disagree with each other, and the disagreement <em>is</em> the movement. Each facet also carries its own slight shift in value, keyed to how far back its moment is, so time reads as tone the way it does in an analytic canvas. Nothing is animated. The picture is simply never of one time.</p>
+      <p class="pl__tech">Canvas &middot; 24-frame ring buffer &middot; one moment per facet, and time as value</p>
+    </div>
+    <div class="pl__stage">
+      <div class="st ar-16x9"><canvas></canvas></div>
+    </div>
+    <p class="pl__note">Facet lags are spread with <code>(index &times; 7) mod 24</code> so no two neighbours are ever adjacent in time.</p>
+  </section>
+
+  <!-- 03 ------------------------------------------------------------------ -->
+  <section class="pl" id="s-canon">
+    <div class="pl__head">
+      <p class="pl__n">03</p>
+      <h2 class="pl__t">Canon in six</h2>
+      <p class="pl__d">One tape, six copies, each entered at a different point in the bar and printed over the others, each in its own ink. A canon transposes as well as delays, so the voices are shifted in space too: without that they land on top of each other, because this organism moves so little across ten seconds that six moments of it are almost the same picture. Six of them share the frame, and because the reel loops the round never resolves.</p>
+      <p class="pl__tech">Six video elements &middot; mix-blend-mode: multiply &middot; no per-frame JavaScript at all</p>
+    </div>
+    <div class="pl__stage">
+      <div class="st ar-21x9 canon">
+        <video muted loop playsinline preload="auto">
+            <source src="video/sfw-amoeba-lab-640.webm" type="video/webm">
+            <source src="video/sfw-amoeba-lab-640.mp4" type="video/mp4">
+          </video>
+        <video muted loop playsinline preload="auto">
+            <source src="video/sfw-amoeba-lab-640.webm" type="video/webm">
+            <source src="video/sfw-amoeba-lab-640.mp4" type="video/mp4">
+          </video>
+        <video muted loop playsinline preload="auto">
+            <source src="video/sfw-amoeba-lab-640.webm" type="video/webm">
+            <source src="video/sfw-amoeba-lab-640.mp4" type="video/mp4">
+          </video>
+        <video muted loop playsinline preload="auto">
+            <source src="video/sfw-amoeba-lab-640.webm" type="video/webm">
+            <source src="video/sfw-amoeba-lab-640.mp4" type="video/mp4">
+          </video>
+        <video muted loop playsinline preload="auto">
+            <source src="video/sfw-amoeba-lab-640.webm" type="video/webm">
+            <source src="video/sfw-amoeba-lab-640.mp4" type="video/mp4">
+          </video>
+        <video muted loop playsinline preload="auto">
+            <source src="video/sfw-amoeba-lab-640.webm" type="video/webm">
+            <source src="video/sfw-amoeba-lab-640.mp4" type="video/mp4">
+          </video>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 ------------------------------------------------------------------ -->
+  <section class="pl" id="s-slit">
+    <div class="pl__head">
+      <p class="pl__n">04</p>
+      <h2 class="pl__t">Slit-scan</h2>
+      <p class="pl__d">One column of the reel, three pixels wide, written to the right edge of a canvas that slides left forever. The horizontal axis stops being space and becomes time. What the organism draws as it crosses the slit is not a picture of it, it is a graph of its passage, and the debris in the field writes a legible grain behind it. The slit itself wanders slowly so the record never becomes periodic.</p>
+      <p class="pl__tech">Canvas &middot; the canvas copies itself &middot; time on the x-axis</p>
+    </div>
+    <div class="pl__stage pl__stage--bleed">
+      <div class="st ar-21x9" style="border-inline:0"><canvas></canvas></div>
+    </div>
+    <p class="pl__note">Give it fifteen seconds. The record has to accumulate before it means anything.</p>
+  </section>
+
+  <!-- 05 ------------------------------------------------------------------ -->
+  <section class="pl" id="s-membrane">
+    <div class="pl__head">
+      <p class="pl__n">05</p>
+      <h2 class="pl__t">Membrane</h2>
+      <p class="pl__d">A raw fragment shader, no library. The frame is pushed through a turbulent lens and the colour channels are pulled apart along the direction of the push, so violet and green separate wherever the lens bends hardest. Then the flat signal is ramped across the six inks: deep in the shadows, violet through the low mid, living green, glow at the top. It looks like reading the slide through the organism's own wall.</p>
+      <p class="pl__tech">WebGL &middot; fbm domain warp &middot; directional chromatic split</p>
+    </div>
+    <div class="pl__stage">
+      <div class="st ar-16x9"><canvas></canvas></div>
+    </div>
+  </section>
+
+  <!-- 06 ------------------------------------------------------------------ -->
+  <section class="pl" id="s-riso">
+    <div class="pl__head">
+      <p class="pl__n">06</p>
+      <h2 class="pl__t">Riso, two inks</h2>
+      <p class="pl__d">An eight by eight ordered dither, printed in two passes: Living green, then Membrane violet two pixels out of register. Continuous tone is thrown away completely. What survives is a printed object on paper that a risograph could genuinely produce, which matters if any of this ever has to exist as a poster, a sticker or a cover rather than a screen.</p>
+      <p class="pl__tech">Canvas ImageData &middot; Bayer 8&times;8 &middot; deliberate misregistration</p>
+    </div>
+    <div class="pl__stage">
+      <div class="st ar-16x9"><canvas></canvas></div>
+    </div>
+  </section>
+
+  <!-- 07 ------------------------------------------------------------------ -->
+  <section class="pl" id="s-contour">
+    <div class="pl__head">
+      <p class="pl__n">07</p>
+      <h2 class="pl__t">Bathymetry</h2>
+      <p class="pl__d">Luminance quantised to seven bands, and only the boundaries between bands drawn. The organism stops being a photograph and becomes a survey. Given the Foundation's subject this is the least arbitrary transformation on the page: a soil horizon, a seabed and a protozoan all get drawn the same way once you decide to draw only where the level changes.</p>
+      <p class="pl__tech">Canvas ImageData &middot; seven-level quantisation &middot; edge detect on the level, not the value</p>
+    </div>
+    <div class="pl__stage">
+      <div class="st ar-16x9"><canvas></canvas></div>
+    </div>
+  </section>
+
+  <!-- 08 ------------------------------------------------------------------ -->
+  <section class="pl" id="s-type">
+    <div class="pl__head">
+      <p class="pl__n">08</p>
+      <h2 class="pl__t">Living type</h2>
+      <p class="pl__d">The reel poured into a word and nowhere else. Drawn at full contrast, then cut to the letterforms, so the type is a window rather than a fill and the organism drifts across the inside of the counters. Behind it the same reel runs free at very low opacity, so you can feel the field extending past the word. Swap the word and the whole thing re-fits itself.</p>
+      <p class="pl__tech">Canvas &middot; destination-in composite against live text &middot; no mask images</p>
+    </div>
+    <div class="pl__stage">
+      <div class="st ar-21x9" style="background:#2A272F">
+        <video muted loop playsinline preload="auto"
+               style="position:absolute;inset:0;opacity:.22;filter:brightness(.8) contrast(6) saturate(.4)">
+            <source src="video/sfw-amoeba-lab-640.webm" type="video/webm">
+            <source src="video/sfw-amoeba-lab-640.mp4" type="video/mp4">
+          </video>
+        <canvas data-word="LIVING" style="position:relative"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- 09 ------------------------------------------------------------------ -->
+  <section class="pl" id="s-swarm">
+    <div class="pl__head">
+      <p class="pl__n">09</p>
+      <h2 class="pl__t">Swarm</h2>
+      <p class="pl__d">None of the picture is drawn. Two thousand six hundred particles read the frame and climb toward whatever they find, leaving trails that decay. The organisms are never rendered at all: they precipitate out of the dust because that is where the swarm settles. Finding them took three attempts. Local contrast alone is no use, because this reel is covered edge to edge in tiny round debris and texture is everywhere. Frame-to-frame change is no use either, because over a third of a second the organism moves less than one cell of the sampling grid. What separates it is <em>scale</em>: it is a large textured body among isolated specks. So the texture field is blurred six times until the specks dissolve, and only what survives that attracts anything.</p>
+      <p class="pl__tech">Canvas &middot; 2,600 agents on a six-times-blurred texture field &middot; trails by alpha decay</p>
+    </div>
+    <div class="pl__stage">
+      <div class="st ar-16x9"><canvas></canvas></div>
+    </div>
+    <p class="pl__note">Takes about four seconds to converge from a cold start. Scroll away and back to watch it re-form.</p>
+  </section>
+
+  <!-- 10 ------------------------------------------------------------------ -->
+  <section class="pl" id="s-kaleid">
+    <div class="pl__head">
+      <p class="pl__n">10</p>
+      <h2 class="pl__t">Radiolarian</h2>
+      <p class="pl__d">Ten mirrored wedges around one centre, and the sampled patch drifts, so the figure keeps rebuilding itself rather than spinning. A soft-bodied organism with no symmetry whatsoever is forced into the radial symmetry of a diatom. It is a lie about this specimen and a true thing about the palette: pushed into structure, the violet membrane becomes architecture.</p>
+      <p class="pl__tech">Canvas &middot; ten clipped wedges, alternate ones mirrored &middot; drifting sample point</p>
+    </div>
+    <div class="pl__stage">
+      <div class="st ar-1x1" style="max-width:720px;margin-inline:auto"><canvas></canvas></div>
+    </div>
+  </section>
+
+  <!-- 11 ------------------------------------------------------------------ -->
+  <section class="pl" id="s-readout">
+    <div class="pl__head">
+      <p class="pl__n">11</p>
+      <h2 class="pl__t">Readout</h2>
+      <p class="pl__d">The frame quantised to a grid of numerals, one digit per cell, with a scan line running down it. Each cell reports its own brightness <em>and</em> its own internal range, because at this size the mean alone is useless: the organism's fine texture averages straight back into the field and every cell reads the same number. The range does not. It is not a picture of an organism, it is the measurement that produced one, and the eye assembles the organism out of the density of the digits regardless.</p>
+      <p class="pl__tech">Canvas &middot; pre-rendered glyph atlas &middot; cell mean and cell range, quantised to 0&ndash;9</p>
+    </div>
+    <div class="pl__stage">
+      <div class="st ar-16x9"><canvas></canvas></div>
+    </div>
+  </section>
+
+  <!-- 12 ------------------------------------------------------------------ -->
+  <section class="pl" id="s-halftone">
+    <div class="pl__head">
+      <p class="pl__n">12</p>
+      <h2 class="pl__t">Halftone</h2>
+      <p class="pl__d">A screen at fifteen degrees, dot area from luminance, Deep ink on Glow. Print's oldest lie, that tone can be made out of countable solids, applied to something far too small for the eye to have ever counted. The dots hold still while the tone moves through them, which produces a shimmer that no amount of easing would have given you.</p>
+      <p class="pl__tech">Canvas &middot; rotated sampling grid &middot; ten pre-rendered dot sizes</p>
+    </div>
+    <div class="pl__stage">
+      <div class="st ar-16x9"><canvas></canvas></div>
+    </div>
+  </section>
+
+  <!-- 13 ------------------------------------------------------------------ -->
+  <section class="pl" id="s-drift">
+    <div class="pl__head">
+      <p class="pl__n">13</p>
+      <h2 class="pl__t">Channel drift</h2>
+      <p class="pl__d">Three moments, roughly two and a half and four seconds apart, printed together as three plates: violet is the past, green the middle, glow the present. The lags have to be that long because nothing here moves quickly. Anything holding still registers on all three plates and comes out neutral. Anything that moved prints on one plate alone, and the colour of the trail tells you which way it went. The palette stops being decoration and becomes the read-out.</p>
+      <p class="pl__tech">Canvas ImageData &middot; three time lags across four seconds &middot; subtractive, one plate per ink</p>
+    </div>
+    <div class="pl__stage">
+      <div class="st ar-16x9"><canvas></canvas></div>
+    </div>
+  </section>
+
+  <!-- 14 ------------------------------------------------------------------ -->
+  <section class="pl" id="s-rack">
+    <div class="pl__head">
+      <p class="pl__n">14</p>
+      <h2 class="pl__t">Rack</h2>
+      <p class="pl__d">The only study here with no autonomous motion at all. Scroll position drives the playhead and the focus together: sharp as the plate passes the middle of the window, soft at both ends. The organism moves when the reader moves and stops when they stop. Scroll back up and it runs backwards. Reading the page becomes the act of looking down a microscope, which is the one thing a silent loop can never make anybody do.</p>
+      <p class="pl__tech">Scroll position bound to currentTime &middot; blur as a focus rack &middot; no autoplay</p>
+    </div>
+    <div class="pl__stage">
+      <div class="st ar-21x9 rack">
+        <video muted playsinline preload="auto">
+            <source src="video/sfw-amoeba-lab-640.webm" type="video/webm">
+            <source src="video/sfw-amoeba-lab-640.mp4" type="video/mp4">
+          </video>
+        <span class="rack__hint">Scroll to focus</span>
+        <span class="rack__meter"><i></i></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 15 ------------------------------------------------------------------ -->
+  <section class="pl" id="s-sheet">
+    <div class="pl__head">
+      <p class="pl__n">15</p>
+      <h2 class="pl__t">Contact sheet</h2>
+      <p class="pl__d">Twelve cells, one moment each, spread across the ten seconds. The reel runs once and each cell exposes as the playhead reaches its mark, then holds until the next pass. Motion happens across the sheet rather than inside any single frame: a wave of exposure moving left to right, over and over. The archive itself becomes the moving thing.</p>
+      <p class="pl__tech">One video, twelve canvases &middot; each cell exposes as the playhead crosses it</p>
+    </div>
+    <div class="pl__stage">
+      <div class="sheet">
+        <figure><div class="cell"><canvas></canvas></div><figcaption>Frame 004</figcaption></figure>
+        <figure><div class="cell"><canvas></canvas></div><figcaption>Frame 029</figcaption></figure>
+        <figure><div class="cell"><canvas></canvas></div><figcaption>Frame 054</figcaption></figure>
+        <figure><div class="cell"><canvas></canvas></div><figcaption>Frame 079</figcaption></figure>
+        <figure><div class="cell"><canvas></canvas></div><figcaption>Frame 104</figcaption></figure>
+        <figure><div class="cell"><canvas></canvas></div><figcaption>Frame 129</figcaption></figure>
+        <figure><div class="cell"><canvas></canvas></div><figcaption>Frame 154</figcaption></figure>
+        <figure><div class="cell"><canvas></canvas></div><figcaption>Frame 179</figcaption></figure>
+        <figure><div class="cell"><canvas></canvas></div><figcaption>Frame 204</figcaption></figure>
+        <figure><div class="cell"><canvas></canvas></div><figcaption>Frame 229</figcaption></figure>
+        <figure><div class="cell"><canvas></canvas></div><figcaption>Frame 254</figcaption></figure>
+        <figure><div class="cell"><canvas></canvas></div><figcaption>Frame 279</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 16 ------------------------------------------------------------------ -->
+  <section class="pl" id="s-ink">
+    <div class="pl__head">
+      <p class="pl__n">16</p>
+      <h2 class="pl__t">Wet ink</h2>
+      <p class="pl__d">No canvas and no shader. An SVG filter graph applied straight to the video element: turbulence, displacement, then a four-step posterisation biased violet in the shadows and green through the mid. The animation is SMIL inside the filter, so the browser drives it and the main thread does nothing at all. Ink spreading in damp paper, at about a hundredth of the cost of everything else on this page.</p>
+      <p class="pl__tech">SVG feTurbulence &rarr; feDisplacementMap &rarr; feComponentTransfer &middot; SMIL &middot; zero JavaScript</p>
+    </div>
+    <div class="pl__stage">
+      <div class="st ar-16x9 ink">
+        <video muted loop playsinline preload="auto">
+            <source src="video/sfw-amoeba-lab-640.webm" type="video/webm">
+            <source src="video/sfw-amoeba-lab-640.mp4" type="video/mp4">
+          </video>
+      </div>
+    </div>
+    <p class="pl__note">Cheapest thing here to ship: no per-frame JavaScript, so it costs roughly what a plain looping video costs.</p>
+  </section>
+
+</main>
+
+<!-- ==========================================================================
+     Footer
+     ========================================================================== -->
+<footer class="mo-foot">
+  <div class="mo-wrap">
+    <h2>The six inks</h2>
+    <p>Read off <em>sfw-amoeba-brand-board.png</em>, which was itself read off this frame. Nothing has been added to the palette anywhere on this page.</p>
+    <div class="mo-inks">
+      <div><i style="background:#B0B5AC"></i><b>Slide</b><span>#B0B5AC</span></div>
+      <div><i style="background:#D5DBC3"></i><b>Light</b><span>#D5DBC3</span></div>
+      <div><i style="background:#A2AE77"></i><b>Living green</b><span>#A2AE77</span></div>
+      <div><i style="background:#DBE6A7"></i><b>Glow</b><span>#DBE6A7</span></div>
+      <div><i style="background:#9E8FC2"></i><b>Membrane violet</b><span>#9E8FC2</span></div>
+      <div><i style="background:#3C3841"></i><b>Deep</b><span>#3C3841</span></div>
+    </div>
+
+    <h2>Source</h2>
+    <p>Brightfield microscopy, Soil Food Web Foundation archive. Three masters at <code>video/sfw-amoeba-loop-hero.mp4</code>, <code>-loop-square.mp4</code> and <code>-instagram-4x5.mp4</code>, all ten seconds at thirty frames per second. The heavier studies read from two reduced encodes, <code>video/sfw-amoeba-lab-640.mp4</code> and <code>-lab-512.mp4</code>, so that sixteen of them can share one page.</p>
+    <p class="todo">Shot date, microscope, objective magnification and the name of whoever recorded this reel. Needed before any of it is published with a caption. Evan or the Foundation microscopy team.</p>
+    <p class="todo">sfw-amoeba-brand-board.png and the two still frames are not in the sfw-visual-assets repository and were not supplied as files. The poster frames used here were pulled from the video at frame 90. Linnea to supply the originals if they should be committed.</p>
+
+    <h2>Notes on cost</h2>
+    <p>Ranked cheapest to most expensive to ship: <strong>16 Wet ink</strong> and <strong>01 Field of view</strong> are effectively free. <strong>03 Canon</strong> costs six video decodes. <strong>14 Rack</strong> costs one decode and no rendering. <strong>05 Membrane</strong> is a single shader and is cheap on any machine with a GPU. The ImageData studies (<strong>06</strong>, <strong>07</strong>, <strong>13</strong>) run a per-pixel loop in JavaScript and are the ones to profile on a phone before committing.</p>
+
+    <p style="margin-top:30px"><a class="mo-back" href="/">Back to the site</a></p>
+  </div>
+</footer>
+
+<script src="js/motion.js" defer></script>
+</body>
+</html>
