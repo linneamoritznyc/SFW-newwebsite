@@ -8,11 +8,24 @@
   "pathSelector": {
     "h2": "What brings you to the soil food web?",
     "chips": [
-      "I grow food",
-      "I want a new career",
-      "I restore ecosystems",
-      "I’m just getting curious"
-    ]
+      {
+        "label": "I grow food",
+        "href": "#foundation-courses"
+      },
+      {
+        "label": "I want a new career",
+        "href": "#complete-practicum"
+      },
+      {
+        "label": "I restore ecosystems",
+        "href": "#restoration"
+      },
+      {
+        "label": "I’m just getting curious",
+        "href": "learn-webinars.html"
+      }
+    ],
+    "_note": "Each chip jumps to the program that serves that person. 'I grow food' lands on the Foundation Courses, the starting point for everyone, until Decision 1 settles what a grower who does not want the Consultant title buys instead."
   },
   "programs": [
     {
@@ -97,7 +110,12 @@
         "status": "placeholder",
         "note": "career-changer: new consultancy., Name · Soil Food Web Lab-Tech, Country"
       }
-    ]
+    ],
+    "awaiting": "We are collecting these from graduates now, and will publish them with a name, a country and what changed. Until then, the films on the Practice page are practitioners telling their own story.",
+    "link": {
+      "label": "Watch the films from the field",
+      "href": "practice.html#case-studies"
+    }
   },
   "faq": {
     "h2": "Before you ask",

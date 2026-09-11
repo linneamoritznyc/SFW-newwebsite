@@ -33,6 +33,12 @@ A placeholder leaves this list only when the real thing is in the repository. "C
 | Dr. Ingham's birth year | about-team.html | The page shows 1952 to 2026. Confirm against the obituary. |
 | Events feed | calendar.html | Webinars come from webinar.soilfoodweb.com, future workshops from the interest form. Still open: the feed format, and which system is the source of truth for dates. |
 | Contact form routing | practice.html, work with us | The form posts to info@soilfoodweb.com. Confirm the routing and who owns the replies. |
+| Webinar series dates | learn-webinars.html | Two sessions are named (Vandana Shiva with Evan Buckman; Dr. Carla Portugal and Dr. Adam Cobb). Dates, times and one-line descriptions still needed, from webinar.soilfoodweb.com. |
+| The three short guides | learn-webinars.html | "Reading your soil, first compost, choosing a microscope" are listed as free resources but do not exist as pages. Who writes them, and where do they live? |
+| Renald Flores's film | projects/market-garden-sweden.html | The individual Vimeo id and privacy hash. The playlist id 537966540 alone will not embed one video. |
+| The Sweden case study body | projects/market-garden-sweden.html | The site, what was done, what was measured, and the year. Four sections are still waiting. |
+| Scholarship review cadence | learn-scholarships.html | Step two says applications are read in batches. How often is a round read, and what is weighed? |
+| Social account addresses | footer, every page | The staging footer carries X, Facebook, Google and Instagram icons. No addresses were supplied, so no icons print rather than four links to nowhere. |
 | Full Consultant Case Studies and Farmer Case Studies playlists | practice.html | Five more films are listed on the page notes. The complete playlists need Vimeo account access. |
 
 ## Waiting on Evan and Stephanie
@@ -97,4 +103,7 @@ Not bugs in this build, but they will matter at cutover.
 - The old privacy policy still names **Soil Foodweb School LLC** and **PO Box 287, Corvallis, OR 97330**. The new site uses the Foundation and the Portland registered office. The old policy needs retiring at the same moment the new one goes live, or the two will contradict each other.
 - The old navigation misspells **"Field Trail"**. It is Field Trial. Nothing in this repository carries the misspelling.
 - The Foundation launch post says **"approximately 130 countries"**. Everything here says 100+, sourced to enrollment records confirmed August 2026. Two public numbers for the same thing is worse than one conservative one, so the launch post should be corrected rather than the site raised.
+- **new.soilfoodweb.com cannot be read from this build environment.** The egress proxy refuses that host, so the staging site, source of truth number one, has only ever been reconciled from screenshots and from the brief. `/how-it-works/` and `/find-a-professional/` in particular have not been compared line by line against `science.html` and `directory.html`. Paste their copy, or run the comparison somewhere with normal internet access.
+- **The six science animations are unverified.** They are embedded from Vimeo by id (372925873, 372474782, 372476056, 372479571, 372480255, 372478833). If any is unlisted rather than public it needs its `h` privacy hash appended, or it will show "video not available". Open `/science` in a real browser and check all six.
+- **The production hostname is a guess.** `tools/build.py` sets `SITE = "https://soilfoodweb.org"` for the `og:url` and `og:image` tags. Confirm the real hostname at cutover; a wrong one means every shared link unfurls without its picture.
 - The external links in `docs/link-map.md` have never been fetched. This build environment has no outbound access to soilfoodweb.com, school.soilfoodweb.com, vimeo.com or doi.org. They need one pass from a machine with normal internet access before launch.

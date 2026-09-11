@@ -81,11 +81,16 @@
     "body": "Practitioners apply this science through the Soil Food Web Approach: observe and assess the life under the microscope, incubate beneficial biology in compost, multiply and apply it with extracts and teas, and manage and monitor holistically."
   },
   "cases": {
-    "h2": "Case studies & videos",
+    "h2": "Case studies and videos",
     "intro": "Documented results from real farms and restoration sites: named growers, named places, and numbers with their sources.",
     "cards": {
       "status": "placeholder",
-      "note": "3 cards from the case-study pipeline: Agricultural case, Restoration case, practitioner video."
+      "note": "Three written cases from the case-study pipeline: an agricultural case, a restoration case, and a practitioner video, each with its numbers and their sources. Until they exist this section sends people to the films on the Practice page. Evan and Stephanie."
+    },
+    "awaiting": "The written case studies, with their measurements and sources, are still being compiled. In the meantime three practitioners tell their own story on film.",
+    "link": {
+      "label": "Watch the films from the field",
+      "href": "practice.html#case-studies"
     }
   },
   "honestFooter": "Results shown are from individual sites in specific contexts; outcomes vary with climate, crop, and management.",

@@ -8,20 +8,121 @@
   "nextSession": {
     "status": "placeholder",
     "note": "next webinar title + one-line description + date/time in visitor’s zone.",
-    "cta": "Save my seat, free"
+    "cta": "Save my seat, free",
+    "awaiting": "Webinars run monthly and are free. The next date and speaker are announced on the registration page, and in the newsletter."
   },
   "recordings": {
     "h2": "Recent recordings",
     "note": "last 3 recordings",
     "backlogLine": "Looking for the full backlog of recordings and resources? It lives in our community space →",
-    "backlogHref": "https://school.soilfoodweb.com/products/communities/SFW-public-community"
+    "backlogHref": "https://school.soilfoodweb.com/products/communities/SFW-public-community",
+    "awaiting": "Recent recordings are added here as each session finishes."
   },
   "resources": {
     "h2": "Free resources",
+    "lede": "Everything here is free, and none of it needs an account.",
     "items": [
-      "Educational videos (short explainers on the organisms and the approach)",
-      "Short guides (reading your soil, first compost, choosing a microscope)",
-      "Case studies (documented results from real farms and restoration sites)"
+      {
+        "title": "Educational videos",
+        "body": "Short explainers on the organisms and the approach. The six animations sit beside the mechanism each one explains.",
+        "href": "science.html",
+        "cta": "Watch the six animations"
+      },
+      {
+        "title": "Short guides",
+        "body": "Reading your soil, making your first compost, choosing a microscope.",
+        "href": "learn.html",
+        "cta": "See the programs these come from",
+        "status": "placeholder",
+        "note": "The three guides do not exist yet as downloadable pages. This card points at the Learn page until they do. Who writes them, and where do they live? Evan and Stephanie."
+      },
+      {
+        "title": "Case studies",
+        "body": "Documented results from real farms and restoration sites, told by the practitioners themselves.",
+        "href": "practice.html#case-studies",
+        "cta": "Watch the films from the field"
+      }
+    ]
+  },
+  "facts": {
+    "h2": "What a webinar is",
+    "lede": "One live hour, online, with an instructor or a practitioner. The easiest first step into the soil food web, and the only one that costs nothing.",
+    "rows": [
+      {
+        "k": "Format",
+        "v": "Live and online, about one hour, with time for questions"
+      },
+      {
+        "k": "How often",
+        "v": "Monthly"
+      },
+      {
+        "k": "Cost",
+        "v": "Free. No account and no course purchase needed"
+      },
+      {
+        "k": "Who leads it",
+        "v": "Soil Food Web School instructors, and practitioners from the community"
+      },
+      {
+        "k": "Recordings",
+        "v": "Kept in the community space, free to join"
+      }
+    ],
+    "source": "school.soilfoodweb.com program listing, checked 6 September 2026"
+  },
+  "series": {
+    "h2": "In the current series",
+    "lede": "Sessions announced so far. Dates go up on the registration page as each one is confirmed.",
+    "items": [
+      {
+        "title": "Vandana Shiva with Evan Buckman",
+        "body": "The environmental thinker and the Foundation’s executive director, in conversation."
+      },
+      {
+        "title": "Dr. Carla Portugal and Dr. Adam Cobb",
+        "body": "Two of the Foundation’s soil food web scientists, on soil biology and permaculture."
+      }
+    ],
+    "status": "placeholder",
+    "note": "Dates, times and one-line descriptions for both sessions, plus any others in the series. Source is webinar.soilfoodweb.com. Evan."
+  },
+  "next": {
+    "h2": "Where to go from here",
+    "lede": "A webinar is the first step. These are the next ones.",
+    "cards": [
+      {
+        "title": "See how the soil food web works",
+        "body": "Six mechanisms, each with the Foundation’s own animation beside it. Free, and no sign-up.",
+        "cta": {
+          "label": "Watch the six animations",
+          "href": "science.html"
+        }
+      },
+      {
+        "title": "See every program and price",
+        "body": "Every program in the order you would take it, with the full cost of the Consultant path stated up front.",
+        "cta": {
+          "label": "See every program and price",
+          "href": "learn.html"
+        }
+      },
+      {
+        "title": "Find someone who already does this",
+        "body": "Soil Food Web Consultants and Lab Technicians, searchable by region and specialty.",
+        "cta": {
+          "label": "Find a professional",
+          "href": "directory.html"
+        }
+      },
+      {
+        "title": "Apply for a scholarship",
+        "body": "Priority for applicants in under-resourced regions, where restored soil changes lives fastest.",
+        "cta": {
+          "label": "See how scholarships work",
+          "href": "learn-scholarships.html"
+        }
+      }
     ]
   }
 }

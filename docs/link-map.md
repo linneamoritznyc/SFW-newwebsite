@@ -96,26 +96,34 @@ Happening now panel, same overlay: the two dated items below, then **Everything 
 
 ### Footer
 
-| Column | Label | Destination |
-| :-- | :-- | :-- |
-| Foundation | About us | `about.html` |
-| | Our team and board | `about-team.html` |
-| | Governance and financials | `about-governance.html` |
-| | Contact us | `contact.html` |
-| Learn | Every program and what it costs | `learn.html` |
-| | Calendar of events | `calendar.html` |
-| | Free webinars | `learn-webinars.html` |
-| | Scholarships | `learn-scholarships.html` |
-| Resources | How the soil food web works | `science.html` |
-| | Research and publications | `research.html` |
-| | Case studies | `practice.html#case-studies` |
-| | Media and press | `contact.html#media` |
-| Get involved | Donate | `donate.html` |
-| | Volunteer with us | `donate.html#volunteer` |
-| | Find a professional | `directory.html` |
-| | Logo and name use | `contact.html#logo` |
-| Legal block | governance page | `about-governance.html` |
-| | Privacy · Terms · Accessibility | `privacy.html` · `terms.html` · `accessibility.html` |
+Reconciled against the footer on new.soilfoodweb.com, which is the newest decision. Its three columns are kept and every entry it carries that this site was missing has been added. Resources stays, because those pages exist and would otherwise be reachable only from the menu.
+
+| Column | Label | Destination | Note |
+| :-- | :-- | :-- | :-- |
+| Foundation | About us | `about.html` | |
+| | Our team and board | `about-team.html` | Staging says "Our Team" |
+| | Dr. Elaine's research | `about-elaine.html` | Was missing from the footer |
+| | Governance and financials | `about-governance.html` | Staging says "Nonprofit & legal info" |
+| | Contact us | `contact.html` | |
+| Learn | Every program and what it costs | `learn.html` | Staging says "Programs Overview" |
+| | Courses on school.soilfoodweb.com | `https://school.soilfoodweb.com` | Was missing from the footer |
+| | Workshops and events | `calendar.html#workshops` | Was missing from the footer |
+| | Calendar of events | `calendar.html` | |
+| | Free webinars | `learn-webinars.html` | |
+| | Scholarships | `learn-scholarships.html` | |
+| Resources | How the soil food web works | `science.html` | Not on the staging footer |
+| | Research and publications | `research.html` | Not on the staging footer |
+| | Case studies | `practice.html#case-studies` | Not on the staging footer |
+| | Media and press | `contact.html#media` | Not on the staging footer |
+| Get involved | Donate | `donate.html` | |
+| | Volunteer with us | `donate.html#volunteer` | |
+| | Invite us to speak | `contact.html#speak` | Was missing from the footer |
+| | Find a professional | `directory.html` | Not on the staging footer |
+| | Logo and name use | `contact.html#logo` | Staging says "Logo & Brand Use" |
+| Legal block | governance page | `about-governance.html` | |
+| | Privacy · Terms · Accessibility | `privacy.html` · `terms.html` · `accessibility.html` | |
+
+The staging footer also carries four social icons (X, Facebook, Google, Instagram). No account addresses were supplied, so the footer prints a placeholder rather than four links to nowhere.
 
 The legal block prints on every page: EIN 39-4439236, the registered office, and where to find the Form 990.
 
@@ -179,6 +187,11 @@ Jump links to the six groups on the page (`#g-founder`, `#g-board`, `#g-na`, `#g
 
 | Label | Destination | Why |
 | :-- | :-- | :-- |
+| **What brings you to the soil food web?** I grow food | `#foundation-courses` | The starting point for everyone, until Decision 1 settles what a grower who does not want the Consultant title buys. |
+| **What brings you to the soil food web?** I want a new career | `#complete-practicum` | The Practicum earns the Consultant title. |
+| **What brings you to the soil food web?** I restore ecosystems | `#restoration` | |
+| **What brings you to the soil food web?** I'm just getting curious | `learn-webinars.html` | Free, live and monthly: the cheapest first step. |
+| Watch the films from the field | `practice.html#case-studies` | Written graduate testimonials are still being collected. |
 | See the Foundation Courses on the school site → | `school.soilfoodweb.com/bundles/soilfoodweb-foundation-courses` | Every program row goes straight to its own Thinkific page. |
 | See the Complete Practicum on the school site → | `school.soilfoodweb.com/bundles/complete-practicum` | |
 | See the Permaculture Design Certification on the school site → | `school.soilfoodweb.com/courses/permaculture-design-certification` | |
@@ -188,16 +201,20 @@ Jump links to the six groups on the page (`#g-founder`, `#g-board`, `#g-na`, `#g
 
 ### science.html
 
-| Label | Destination |
-| :-- | :-- |
-| Case studies | `practice.html#case-studies` |
-| See every program and price | `learn.html` |
+| Label | Destination | Why |
+| :-- | :-- | :-- |
+| Case studies | `practice.html#case-studies` | |
+| See every program and price | `learn.html` | |
+| Watch the films from the field | `practice.html#case-studies` | The written case studies are not compiled yet, so the section sends people to the films that exist. |
+
+The six mechanism animations are embedded here from Vimeo, lazy-loaded, one per mechanism: 372925873, 372474782, 372476056, 372479571, 372480255, 372478833. **Unverified:** if any of them is unlisted rather than public it will need its `h` privacy hash appended, and will show "video not available" without one. That cannot be checked from this build environment.
 
 ### practice.html
 
 | Label | Destination | Why |
 | :-- | :-- | :-- |
-| Market garden makeover, Sweden | `projects/market-garden-sweden.html` | The one built case study. |
+| Read the Sweden market garden case study | `projects/market-garden-sweden.html` | The one case study with its own page. It was unreachable on the deployed site: `vercel.json` redirected `/projects/:slug*` to `/practice`, which swallowed it. Fixed. |
+| Three case-study films (Roberto Silva, Cory Miller, Nick Tomasini) | Vimeo, on press | Facades: the player is not fetched until someone presses play. |
 | **Farm with biology** — Find a trained professional near you | `directory.html` | Same three doorways as the homepage, same destinations. They used to link to `#work-with-us`, the section the reader was already in. |
 | **Restore your land** — See how we partner on land and trials | `research.html#work-with-us` | |
 | **Bring it to your classroom** — See every program and price | `learn.html` | |
@@ -228,16 +245,23 @@ Jump links to the six groups on the page (`#g-founder`, `#g-board`, `#g-na`, `#g
 
 ### learn-webinars.html
 
-| Label | Destination |
-| :-- | :-- |
-| Save my seat, free | `webinar.soilfoodweb.com` |
-| our community space | `school.soilfoodweb.com/products/communities/SFW-public-community` |
+| Label | Destination | Why |
+| :-- | :-- | :-- |
+| Save my seat, free | `webinar.soilfoodweb.com` | The registration page. |
+| our community space | `school.soilfoodweb.com/products/communities/SFW-public-community` | The recordings backlog. |
+| **Free resources** — Watch the six animations | `science.html` | The educational videos are the six mechanism animations. |
+| **Free resources** — See the programs these come from | `learn.html` | The three short guides do not exist yet; this holds until they do. |
+| **Free resources** — Watch the films from the field | `practice.html#case-studies` | The case studies. |
+| **Where to go from here** — Watch the six animations | `science.html` | A webinar is the first step; these are the next ones. |
+| **Where to go from here** — See every program and price | `learn.html` | |
+| **Where to go from here** — Find a professional | `directory.html` | |
+| **Where to go from here** — See how scholarships work | `learn-scholarships.html` | |
 
 ### learn-scholarships.html
 
 | Label | Destination |
 | :-- | :-- |
-| Apply for a scholarship | `mailto:info@soilfoodweb.com` |
+| Apply for a scholarship | `mailto:info@soilfoodweb.com` (twice: once from the waiting-on-stories section, once under the three steps) |
 | Donate to the scholarship fund | `donate.html` |
 
 ### login.html
@@ -288,4 +312,4 @@ No link on this site points at the WordPress shop or at `/foundation-courses-2/`
 
 Every anchor a link points at exists on the page it names. `tools/linkcheck.py` proves it and exits non-zero if that stops being true. Anchors in use:
 
-`#main` · `about.html#mission` · `calendar.html#workshops` · `community.html#community-map` · `community.html#join` · `contact.html#media` · `contact.html#logo` · `donate.html#volunteer` · `learn.html#foundation-courses` · `learn.html#complete-practicum` · `learn.html#permaculture` · `learn.html#restoration` · `news.html#subscribe` · `news.html#foundation` · `practice.html#case-studies` · `research.html#work-with-us` · the six `about-team.html` group anchors · the sixteen `motion.html` study anchors.
+`#main` · `about.html#mission` · `contact.html#speak` · `calendar.html#workshops` · `community.html#community-map` · `community.html#join` · `contact.html#media` · `contact.html#logo` · `donate.html#volunteer` · `learn.html#foundation-courses` · `learn.html#complete-practicum` · `learn.html#permaculture` · `learn.html#restoration` · `news.html#subscribe` · `news.html#foundation` · `practice.html#case-studies` · `research.html#work-with-us` · the six `about-team.html` group anchors · the sixteen `motion.html` study anchors.
