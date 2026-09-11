@@ -530,10 +530,25 @@ def doors(items, depth=0):
 # It stays absent rather than approximated. A hand-traced copy of a brand mark
 # is not the brand mark. Decision 16.
 def _find_logo():
+    """Any image in img/ with "logo" in its name, vector first.
+
+    The canonical names win if they exist, but nobody should have to remember
+    a naming rule to change the logo: sfwlogo-240.png works as well as
+    logo.svg does.
+    """
+    d = os.path.join(ROOT, "img")
+    if not os.path.isdir(d):
+        return None
     for name in ("logo.svg", "logo.png", "logo.webp", "logo.jpg"):
-        if os.path.exists(os.path.join(ROOT, "img", name)):
+        if os.path.exists(os.path.join(d, name)):
             return "img/" + name
-    return None
+    rank = {".svg": 0, ".png": 1, ".webp": 2, ".jpg": 3, ".jpeg": 3}
+    found = [f for f in os.listdir(d)
+             if "logo" in f.lower() and os.path.splitext(f)[1].lower() in rank]
+    if not found:
+        return None
+    found.sort(key=lambda f: (rank[os.path.splitext(f)[1].lower()], f.lower()))
+    return "img/" + found[0]
 
 
 LOGO = _find_logo()
@@ -600,7 +615,7 @@ def chrome(depth=0):
            '<div class="utility">\n  <div class="wrap">\n'
            '    <p class="utility__tagline">%s</p>\n'
            '    <ul class="utility__links">%s</ul>\n  </div>\n</div>\n'
-           '<header class="site-header">\n  <div class="wrap">\n'
+           '<header class="site-header">\n  <div class="wrap%s">\n'
            '    %s\n'
            '    <ul class="site-header__links">%s</ul>\n'
            '    <a class="btn btn--donate" href="%s">Donate</a>\n'
@@ -621,7 +636,7 @@ def chrome(depth=0):
            '        <a class="more" href="%s">%s</a>\n'
            '      </aside>\n    </div>\n'
            '  </div>\n</div>\n\n'
-           % (e(u["tagline"]), util, wordmark(depth), topnav, A(h("donate.html")),
+           % (e(u["tagline"]), util, " wrap--logo" if LOGO else "", wordmark(depth), topnav, A(h("donate.html")),
               wordmark(depth, tag="span"),
               acc, util, e(n["heading"]), now_li, A(h(n["more"]["href"])), e(n["more"]["label"])))
 
