@@ -10,19 +10,27 @@
     "Workshops",
     "Public webinars",
     "Student webinars",
-    "Speaking & conferences"
+    "Speaking and conferences"
   ],
   "featured": {
     "title": "Asia-Pacific Workshop",
     "body": "with the Isha Foundation, India (October 2027). Our first workshop on the subcontinent, in partnership with the Isha Foundation. Hands in soil, microscopes on tables, and a community milestone for the region.",
     "cta": {
-      "label": "Get notified",
+      "label": "Register your interest on the school site",
       "href": "https://school.soilfoodweb.com/pages/workshop-interest"
-    }
+    },
+    "status": "verify",
+    "note": "This featured card says Asia-Pacific Workshop with the Isha Foundation, India, October 2027, while the listing below says India Accelerator Workshop, Coimbatore, October 2026. Confirm whether these are two events or one, and which year is right. Evan."
   },
   "otherListings": {
     "status": "placeholder",
     "note": "populated from events system: title, date, type tag, one line, CTA."
   },
-  "footerLine": "Past events collapse into an archive automatically. Want us at your event? Invite us to speak →"
+  "footerLine": "Past events collapse into an archive automatically. Want us at your event? Invite us to speak →",
+  "indiaWorkshop": {
+    "datetime": "2026-10-18",
+    "dated": "18 to 31 October 2026, dates to confirm",
+    "status": "verify",
+    "note": "Decision 12. The course page says 18 to 31 October 2026, the current footer says 19 to 30 October, and the handbook gives 13 nights in the inclusions against 12 in the room section. The line reads 'dates to confirm' until Evan answers."
+  }
 }

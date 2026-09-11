@@ -2658,6 +2658,13 @@ code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .9em; }
 .door h3 { margin: var(--s3) 0 var(--s1); font-size: var(--t3); }
 .door:hover h3 { text-decoration: underline; text-underline-offset: .14em; }
 .door p { margin: 0; font-size: var(--t0); color: var(--ink-soft); }
+/* The doorway names its destination: the card is the button, so the
+   label has to say where pressing it lands you. */
+.door__go {
+  display: block; margin-top: var(--s2); font-size: var(--t0);
+  font-weight: 600; color: var(--living);
+}
+.door:hover .door__go, .door:focus-visible .door__go { text-decoration: underline; text-underline-offset: .14em; }
 
 /* --- the step, numbered ------------------------------------------------
    Replaces the drawn branch icon. The four steps are a real sequence, so a

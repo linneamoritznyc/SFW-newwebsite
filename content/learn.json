@@ -21,7 +21,7 @@
       "tagline": "The complete introduction to the soil food web",
       "body": "Understand soil from new dimensions, meet the soil food web organisms and understand their ecosystem role, and learn the fundamentals of farming microbes in compost and applying them with compost extracts and teas. The prerequisites for our Advanced Programs.",
       "cta": {
-        "label": "Explore the Foundation Courses",
+        "label": "See the Foundation Courses on the school site",
         "href": "https://school.soilfoodweb.com/bundles/soilfoodweb-foundation-courses"
       }
     },
@@ -31,17 +31,17 @@
       "tagline": "Soil Microscopy · BioComplete™ Compost Production · Biological Liquid Amendments · Field Trials",
       "body": "Complete all four, the Complete Practicum, to earn the Soil Food Web Consultant title and join our professional directory. Complete the Soil Microscopy program to earn the Soil Food Web Lab-Tech title.",
       "cta": {
-        "label": "See the advanced path",
+        "label": "See the Complete Practicum on the school site",
         "href": "https://school.soilfoodweb.com/bundles/complete-practicum"
       }
     },
     {
-      "id": "pdc",
-      "name": "Permaculture Design Course",
+      "id": "permaculture",
+      "name": "Permaculture Design Certification",
       "tagline": "Whole-system design on a foundation of living soil",
       "body": "Water, plants, structures, community, design them as one living system.",
       "cta": {
-        "label": "Explore the PDC",
+        "label": "See the Permaculture Design Certification on the school site",
         "href": "https://school.soilfoodweb.com/courses/permaculture-design-certification"
       }
     },
@@ -51,7 +51,7 @@
       "tagline": "Bringing damaged land back to life with biology",
       "body": "Learn ecological principles and practical restoration techniques.",
       "cta": {
-        "label": "Check out the introduction to ecosystem restoration",
+        "label": "See Introduction to Ecosystem Restoration on the school site",
         "href": "https://school.soilfoodweb.com/bundles/introduction-to-ecosystem-restoration"
       },
       "status": "verify",

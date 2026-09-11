@@ -25,15 +25,21 @@
     "cards": [
       {
         "title": "Farm with biology",
-        "body": "Cut back on synthetic inputs and build your natural soil fertility. We’ll connect you with our team and trained practitioners to plan, implement, and monitor the transition on your operation."
+        "body": "Cut back on synthetic inputs and build your natural soil fertility. We’ll connect you with our team and trained practitioners to plan, implement, and monitor the transition on your operation.",
+        "href": "directory.html",
+        "cta": "Find a trained professional near you"
       },
       {
         "title": "Restore your land",
-        "body": "Bring biodiversity back to degraded sites and put biology to work on remediation, from gardens and smallholdings to large landholdings and public lands."
+        "body": "Bring biodiversity back to degraded sites and put biology to work on remediation, from gardens and smallholdings to large landholdings and public lands.",
+        "href": "research.html#work-with-us",
+        "cta": "See how we partner on land and trials"
       },
       {
         "title": "Bring it to your classroom",
-        "body": "Incorporate the soil food web methodology into your curriculum: for school systems, universities, and training programs."
+        "body": "Incorporate the soil food web methodology into your curriculum: for school systems, universities, and training programs.",
+        "href": "learn.html",
+        "cta": "See every program and price"
       }
     ],
     "form": {
@@ -50,11 +56,11 @@
     },
     "crossLinks": [
       {
-        "label": "Partner on Research",
+        "label": "Partner on research",
         "href": "research.html#work-with-us"
       },
       {
-        "label": "Volunteer",
+        "label": "Volunteer with us",
         "href": "donate.html#volunteer"
       }
     ]

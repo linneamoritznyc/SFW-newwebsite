@@ -9,7 +9,7 @@
     {
       "name": {
         "status": "verify",
-        "note": "LMS 1 name, VERIFY mapping"
+        "note": "Platform name to confirm. This button goes to school.soilfoodweb.com, the Thinkific school. Evan."
       },
       "programs": "Foundation Courses & Advanced Programs",
       "cta": {
@@ -20,11 +20,11 @@
     {
       "name": {
         "status": "verify",
-        "note": "LMS 2 name, VERIFY mapping"
+        "note": "Second platform: name, address and the programs it hosts all to confirm. No button is shown until there is a real address to send people to. Evan."
       },
       "programs": {
         "status": "verify",
-        "note": "Programs hosted here, VERIFY mapping"
+        "note": "Programs hosted on the second platform, to confirm. Evan."
       },
       "cta": {
         "label": "Log in",

@@ -20,13 +20,15 @@
     {
       "n": 2,
       "title": "Nutrient cycling",
-      "body": "A plant invests 30–40% of the sugars it makes through photosynthesis into the soil to feed microbes. Bacteria and fungi produce enzymes that break down minerals and organic matter, unlocking the nutrients they contain. When protozoa and nematodes consume those bacteria and fungi, the surplus is released right at the root, in plant-available form. The plant controls the exchange, drawing what it needs, when it needs it.",
+      "body": "A plant invests a large share of the sugars it makes through photosynthesis into the soil to feed microbes. Bacteria and fungi produce enzymes that break down minerals and organic matter, unlocking the nutrients they contain. When protozoa and nematodes consume those bacteria and fungi, the surplus is released right at the root, in plant-available form. The plant controls the exchange, drawing what it needs, when it needs it.",
       "animation": {
         "title": "Nutrient Cycling",
         "vimeo": "372474782",
         "status": "placeholder",
         "note": "Animation: “Nutrient Cycling”, existing asset, Vimeo 372474782"
-      }
+      },
+      "status": "verify",
+      "note": "The share of photosynthate a plant sends below ground read '30 to 40%' with no citation. Percentages need a named source, so the figure is off the page until one is supplied. Linnea to pull a citable paper from the publications list, or Evan to supply the source."
     },
     {
       "n": 3,

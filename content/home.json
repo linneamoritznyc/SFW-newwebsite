@@ -3,13 +3,13 @@
   "hero": {
     "eyebrow": "SOIL FOOD WEB FOUNDATION",
     "h1": "Healing soil. Feeding humanity. Restoring the living world.",
-    "subhead": "The ground beneath our farms and forests is alive. Join a global community of Soil Regenerators carrying forward Dr. Elaine Ingham’s life’s work: learning, restoring, and demonstrating the power of the soil food web on every continent.",
+    "subhead": "The ground beneath our farms and forests is alive. Join a global community of Soil Regenerators learning, restoring, and demonstrating the power of the soil food web on every continent.",
     "primaryCta": {
       "label": "Join the community",
       "href": "community.html#join"
     },
     "secondaryCta": {
-      "label": "Explore our programs",
+      "label": "See every program and price",
       "href": "learn.html"
     },
     "image": {
@@ -40,7 +40,7 @@
       "The Soil Food Web Foundation was created to carry that work forward. We teach the science through the Soil Food Web School, pursue and share new knowledge, incubate regenerative practice in ecoregions around the world, and build the community that makes it all last."
     ],
     "link": {
-      "label": "Our mission and story →",
+      "label": "Read our mission and story →",
       "href": "about.html"
     },
     "note": "Merge with the team’s in-refinement “Who We Are” draft, one owner reconciles."
@@ -72,7 +72,7 @@
       }
     ],
     "link": {
-      "label": "See how it works, case studies & videos →",
+      "label": "See case studies from the field →",
       "href": "practice.html#case-studies"
     }
   },
@@ -83,9 +83,9 @@
       {
         "tag": "Start here",
         "title": "Foundation Courses",
-        "body": "Dr. Elaine’s™ complete introduction to the science of the soil food web. The starting point for everyone.",
+        "body": "The complete introduction to the science of the soil food web. The starting point for everyone.",
         "cta": {
-          "label": "Explore the courses",
+          "label": "See the Foundation Courses and price",
           "href": "learn.html#foundation-courses"
         }
       },
@@ -100,11 +100,11 @@
       },
       {
         "tag": "Design systems",
-        "title": "Permaculture Design Course",
+        "title": "Permaculture Design Certification",
         "body": "Whole-system design: water, plants, structures, community, rooted in living soil.",
         "cta": {
-          "label": "Explore the PDC",
-          "href": "learn.html#pdc"
+          "label": "See the Permaculture Design Certification",
+          "href": "learn.html#permaculture"
         }
       },
       {
@@ -112,7 +112,7 @@
         "title": "Ecosystem Restoration Courses",
         "body": "Learn ecological principles and practical restoration techniques.",
         "cta": {
-          "label": "Check out the introduction",
+          "label": "See Introduction to Ecosystem Restoration",
           "href": "learn.html#restoration"
         },
         "status": "verify",
@@ -123,7 +123,7 @@
         "title": "Workshops",
         "body": "Learn on real sites, meet the community, and accelerate your training.",
         "cta": {
-          "label": "See upcoming events",
+          "label": "See the calendar of workshops",
           "href": "calendar.html"
         }
       }
@@ -139,11 +139,31 @@
         "href": "calendar.html"
       },
       {
-        "label": "All news & stories →",
+        "label": "All news and stories →",
         "href": "news.html"
       }
     ],
-    "note": "Dynamic feed: upcoming workshop > upcoming webinar > latest impact story > latest blog post. Sample items in mockup are illustrative."
+    "note": "Dynamic feed: upcoming workshop > upcoming webinar > latest impact story > latest blog post. Sample items in mockup are illustrative.",
+    "items": [
+      {
+        "img": "img/w/erc-rancho-cacachilas-agro2-800.jpg",
+        "alt": "A broad tree standing over dense green undergrowth",
+        "datetime": "2026-09-16",
+        "dated": "16 September to 20 December 2026",
+        "label": "Permaculture Design Certification cohort begins",
+        "href": "learn.html#permaculture",
+        "kind": "Course, cohort"
+      },
+      {
+        "img": "img/w/2-hands-planting-shrub-800.jpg",
+        "alt": "Two hands firming red soil around the base of a newly planted shrub",
+        "datetime": "2026-10-18",
+        "dated": "18 to 31 October 2026, dates to confirm",
+        "label": "India Accelerator Workshop, Coimbatore",
+        "href": "calendar.html#workshops",
+        "kind": "Workshop"
+      }
+    ]
   },
   "testimonial": {
     "quote": {
@@ -159,7 +179,7 @@
     "eyebrow": "OUR ECOSYSTEM",
     "line": "We’re grateful to the organizations that make this work possible, and always looking for aligned partners.",
     "cta": {
-      "label": "Partner with us",
+      "label": "Start a partnership conversation",
       "href": "practice.html#work-with-us"
     },
     "note": "Ecosystem strip, renamed from Partners & Sponsors, Sep 7. Partner names and marks not yet supplied.",
@@ -174,13 +194,44 @@
         "href": "community.html#join"
       },
       {
-        "label": "Subscribe",
-        "href": "now.html#subscribe",
+        "label": "Subscribe to the newsletter",
+        "href": "news.html#subscribe",
         "type": "email"
       },
       {
         "label": "Donate",
         "href": "donate.html"
+      }
+    ]
+  },
+  "doors": {
+    "eyebrow": "COME IN THE DOOR THAT IS YOURS",
+    "h2": "Three ways in",
+    "_source": "Card titles and body copy are Evan's approved Work With Us copy, moved onto the homepage as the three doorways. Destinations added so each doorway leads somewhere that serves that person first.",
+    "cards": [
+      {
+        "title": "Farm with biology",
+        "body": "Cut back on synthetic inputs and build your natural soil fertility. We’ll connect you with our team and trained practitioners to plan, implement, and monitor the transition on your operation.",
+        "href": "directory.html",
+        "cta": "Find a trained professional near you",
+        "img": "img/harringtons-organic-land-care-york-farms-1-768x1024.jpg",
+        "alt": "A gloved hand holding back a thick mat of crop residue to show dark crumb soil underneath"
+      },
+      {
+        "title": "Restore your land",
+        "body": "Bring biodiversity back to degraded sites and put biology to work on remediation, from gardens and smallholdings to large landholdings and public lands.",
+        "href": "practice.html#work-with-us",
+        "cta": "See restoration work and start a conversation",
+        "img": "img/erc-panchamana-treeplanting-2-fb-img-1666270988322.jpg",
+        "alt": "People spread across a clearing planting seedlings among standing trees"
+      },
+      {
+        "title": "Bring it to your classroom",
+        "body": "Incorporate the soil food web methodology into your curriculum: for school systems, universities, and training programs.",
+        "href": "learn.html",
+        "cta": "See every program and price",
+        "img": "img/ctpfw-student-squeezing-compost-1.jpg",
+        "alt": "A student in gloves squeezing a handful of compost to test it while a group watches"
       }
     ]
   }
