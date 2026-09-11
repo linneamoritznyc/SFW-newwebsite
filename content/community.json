@@ -8,7 +8,8 @@
       "Community map",
       "Find a professional",
       "Join"
-    ]
+    ],
+    "source": "enrollment records, confirmed August 2026"
   },
   "map": {
     "eyebrow": "COMMUNITY MAP",
@@ -38,7 +39,7 @@
     "body": "Every Soil Regenerator started with one course, one webinar, or one afternoon with a microscope. Your dot is waiting.",
     "ctas": [
       {
-        "label": "Explore our programs",
+        "label": "See every program and price",
         "href": "learn.html"
       },
       {

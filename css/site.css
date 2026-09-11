@@ -79,7 +79,10 @@
   --page-max: 1200px;
   --gutter:   1.5rem;
   --col-gap:  24px;
-  --section-y: 96px;
+  /* Between sections. Was a flat 96px, so every pair of components had
+     192px of empty page between them on a laptop. Now fluid: 48px on a
+     phone, 64px from about 1400px up. */
+  --section-y: clamp(3rem, 4.5vw, 4rem);
 
   --radius-card: 12px;
   --radius-btn:  8px;
@@ -90,7 +93,7 @@
   --ease: cubic-bezier(.2, .6, .2, 1);
   --dur: 320ms;
 }
-@media (max-width: 48em) { :root { --section-y: 56px; } }
+/* --section-y is fluid; the old fixed mobile override is folded into it. */
 
 @media (min-width: 60em) {
   :root { --gutter: 3rem; }
@@ -200,7 +203,7 @@ figcaption, .caption, .source {
 }
 
 /* Section head: heading left, running text right (Swiss asymmetric). */
-.head { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: var(--s2); margin-bottom: var(--s5); }
+.head { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: var(--s2); margin-bottom: var(--s4); }
 .head > h2, .head > h1 { grid-column: 1 / -1; margin: 0; }
 .head > p { grid-column: 1 / -1; }
 @media (min-width: 48em) {
@@ -242,6 +245,10 @@ figcaption, .caption, .source {
 }
 .chip { border-radius: var(--radius-btn); }
 .chip[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+/* A chip that is a link, not a filter: it goes somewhere, so it looks and
+   behaves like the rest of the site's links do on hover. */
+a.chip { text-decoration: none; display: inline-block; }
+a.chip:hover, a.chip:focus-visible { background: var(--ink); color: var(--paper); border-color: var(--ink); }
 
 /* --------------------------------------------------------------------------
    6. Header
@@ -257,6 +264,20 @@ figcaption, .caption, .source {
 .wordmark__name { font-family: var(--serif); font-weight: 500; font-size: var(--t2); display: block; letter-spacing: -.005em; }
 .wordmark__status { font-family: var(--sans); font-size: var(--t-1); color: var(--ink-soft); display: block; margin-top: .15em; }
 .wordmark:hover .wordmark__name { color: var(--green); }
+/* With the approved mark in place (tools/build.py LOGO), the logo carries the
+   identity and the type-set name becomes the accessible name only. The mark is
+   the roundel with the wordmark inside it, so it needs no words beside it. */
+.wordmark__logo { display: none; }
+/* The mark is a roundel with the wordmark set inside it, so it has to be big
+   enough to read the words, not just recognise the shape. */
+.wordmark--image .wordmark__logo { display: block; width: auto; height: 3.5rem; }
+.wordmark--image .wordmark__name,
+.wordmark--image .wordmark__status {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip-path: inset(50%); white-space: nowrap;
+}
+.site-footer .wordmark--image .wordmark__logo { height: 4.5rem; }
+@media (max-width: 30em) { .wordmark--image .wordmark__logo { height: 2.75rem; } }
 
 .site-header__links { display: none; gap: var(--s3); list-style: none; margin: 0; padding: 0; }
 .site-header__links a { color: var(--ink); text-decoration: none; font-weight: 600; font-size: var(--t0); }
@@ -474,6 +495,9 @@ code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .9em; }
 .plate__f { border: var(--hairline) solid var(--rule); background: #EADED2; display: grid; place-items: center; overflow: hidden; border-radius: var(--radius-card); }
 .plate__f img { width: 100%; height: auto; }
 .plate figcaption { margin-top: var(--s1); font-size: var(--t-1); line-height: 1.4; }
+/* An animation sits in a plate exactly where its photograph did. */
+.plate__film { aspect-ratio: 16 / 9; background: var(--panel); }
+.plate__film iframe { width: 100%; height: 100%; border: 0; display: block; }
 .plate__n { font-weight: 600; color: var(--ink-soft); }
 .plate__t { font-family: var(--serif); font-size: var(--t1); color: var(--soil); display: block; }
 .plate__note { color: var(--ink-faint); max-width: 34ch; }
@@ -553,6 +577,11 @@ code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .9em; }
 .cal__track { position: relative; height: 1.9rem; }
 .cal__bar { position: absolute; top: 0; bottom: 0; left: var(--l); width: var(--w);
   background: var(--sage); border: var(--hairline) solid var(--olive); }
+/* A solid bar is a real, dated event, so it is a link to that event. The bar
+   carries no text, so its accessible name lives on the element itself. */
+a.cal__bar { text-decoration: none; cursor: pointer; transition: filter var(--dur) var(--ease); }
+a.cal__bar:hover, a.cal__bar:focus-visible { filter: brightness(.92) saturate(1.1); }
+a.cal__bar:focus-visible { outline: 2px solid var(--soil); outline-offset: 2px; }
 .cal__bar--band { background: var(--paper-deep); }
 .cal__bar--point { width: 0; border: 0; border-left: 3px solid var(--soil); }
 .cal__bar--past { opacity: .45; }
@@ -2658,10 +2687,85 @@ code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .9em; }
 .door h3 { margin: var(--s3) 0 var(--s1); font-size: var(--t3); }
 .door:hover h3 { text-decoration: underline; text-underline-offset: .14em; }
 .door p { margin: 0; font-size: var(--t0); color: var(--ink-soft); }
+/* The doorway names its destination: the card is the button, so the
+   label has to say where pressing it lands you. */
+/* --- films from the field ----------------------------------------------
+   A still with a play button. Nothing loads from Vimeo until somebody
+   presses it, so a page of these costs one image each instead of one player
+   each. On press the button is replaced by the iframe, in place. */
+.films { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s5) var(--col-gap); max-width: none; }
+@media (min-width: 52em) { .films { grid-template-columns: repeat(3, 1fr); } }
+.films > li { margin: 0; }
+.film { margin: 0; }
+.film__go {
+  display: block; position: relative; width: 100%; padding: 0; border: 0;
+  background: var(--panel); cursor: pointer; overflow: hidden;
+}
+.film__go img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; display: block;
+  transition: filter var(--dur) var(--ease); }
+.film__go:hover img, .film__go:focus-visible img { filter: saturate(1.12) brightness(1.03); }
+.film__play {
+  position: absolute; inset: 50% auto auto 50%; transform: translate(-50%, -50%);
+  width: 3.25rem; height: 3.25rem; border-radius: 50%;
+  background: rgba(255, 255, 255, .92); color: var(--living);
+  display: grid; place-items: center; font-size: 1.1rem; padding-left: .18em;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, .25);
+}
+.film iframe { width: 100%; aspect-ratio: 16 / 9; border: 0; display: block; background: #000; }
+.film figcaption { margin-top: var(--s3); font-size: var(--t0); }
+/* The name is the card title, not a plate annotation, so it steps out of
+   the italic caption register the rest of the figcaption keeps. */
+.film figcaption b {
+  display: block; font-family: var(--display); font-style: normal;
+  font-weight: 600; font-size: var(--t1); color: var(--ink); letter-spacing: -.01em;
+}
+.film figcaption span { display: block; color: var(--ink-soft); }
+
+/* --- the testimonial ----------------------------------------------------
+   One real quote, attributed, with its source under it. Not a carousel: there
+   is one, and one that is true beats five that are not. */
+.testimonial { margin: 0; max-width: 46ch; }
+.testimonial blockquote { margin: 0; }
+.testimonial blockquote p {
+  font-family: var(--display); font-size: var(--t3); line-height: 1.24;
+  text-wrap: balance; margin: 0;
+}
+.testimonial blockquote p::before { content: "\201C"; }
+.testimonial blockquote p::after  { content: "\201D"; }
+.testimonial figcaption {
+  margin-top: var(--s3); font-size: var(--t0); color: var(--ink-soft);
+}
+
+/* --- the partner list --------------------------------------------------
+   Names, not logo boxes. The Foundation has supplied one partner and no
+   marks; an empty grey grid would only advertise the gap. */
+.partners { list-style: none; margin: var(--s4) 0 0; padding: 0; display: grid; gap: var(--s3); max-width: 46ch; }
+.partners > li { margin: 0; }
+.partners b { font-weight: 600; }
+.partners span { display: block; font-size: var(--t0); color: var(--ink-soft); }
+
+.door__go {
+  display: block; margin-top: var(--s2); font-size: var(--t0);
+  font-weight: 600; color: var(--living);
+}
+.door:hover .door__go, .door:focus-visible .door__go { text-decoration: underline; text-underline-offset: .14em; }
 
 /* --- the step, numbered ------------------------------------------------
    Replaces the drawn branch icon. The four steps are a real sequence, so a
    numeral is information rather than decoration. */
+/* A numbered sequence, one column per step, three across when there is room.
+   Rows align on the numeral, so the steps read as a sequence rather than a
+   pile of paragraphs of different lengths. */
+.steps {
+  list-style: none; margin: 0; padding: 0; max-width: none;
+  display: grid; gap: var(--s5) var(--col-gap);
+}
+@media (min-width: 46em) { .steps { grid-template-columns: repeat(3, 1fr); } }
+.steps > li { margin: 0; }
+.steps .step__n { font-size: var(--t3); }
+.steps h3 { margin: 0; font-size: var(--t2); }
+.steps .todo { margin-top: var(--s2); }
+
 .step { display: grid; gap: var(--s2); }
 .step__n {
   font-family: var(--display); font-weight: 700; font-size: var(--t4);
@@ -2860,8 +2964,9 @@ figcaption,
   color: var(--ink-faint);
 }
 
-/* a touch more air between sections */
-@media (min-width: 60em) { :root { --section-y: 116px; } }
+/* This raised --section-y to 116px above 60em, which meant 232px of empty
+   page between every two components on a laptop. Allison flagged it and she
+   was right. The fluid value in :root now stands on its own. */
 
 /* ==========================================================================
    The reveal.
@@ -2942,6 +3047,100 @@ figcaption,
 /* a plate inside a case: picture, then label, then name, then note */
 .case .step h3 { font-size: var(--t2); font-weight: 600; }
 .case .shot img { background: transparent; }
+
+
+/* Key and value, one per row. The facts a first-time visitor asks for, set as
+   a list rather than prose so they can be read in one pass. */
+.facts { list-style: none; margin: 0; padding: 0; max-width: 60ch; }
+.fact {
+  display: grid; gap: var(--s1); padding: var(--s2) 0;
+  border-bottom: var(--hairline) solid var(--rule);
+  margin: 0;
+}
+@media (min-width: 40em) { .fact { grid-template-columns: 12rem 1fr; gap: var(--s3); } }
+.fact:last-child { border-bottom: 0; }
+.fact__k { font-family: var(--display); font-weight: 600; font-size: var(--t0); color: var(--ink); }
+.fact__v { font-size: var(--t0); color: var(--ink-soft); }
+
+/* A section that is honestly waiting on content. Visible, unlike .todo, and
+   quiet: a straight sentence about what is coming, not a grey box. */
+.awaiting {
+  max-width: 52ch; color: var(--ink-soft); font-size: var(--t1);
+  border-left: 2px solid var(--rule-strong); padding-left: var(--s3); margin: 0;
+}
+
+/* ==========================================================================
+   Micro-interactions.
+   Small, quick, and only on things that actually do something. Nothing moves
+   on its own; every rule here fires on hover or keyboard focus, and the whole
+   block is switched off under prefers-reduced-motion at the end.
+   ========================================================================== */
+
+/* Links in running text draw their underline on rather than blinking it. */
+.lede a, p a:not(.btn):not(.chip):not(.more), li a:not(.btn):not(.chip) {
+  text-decoration-thickness: 1px;
+  text-underline-offset: .16em;
+  transition: text-decoration-color var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+.lede a:hover, p a:not(.btn):not(.chip):not(.more):hover, li a:not(.btn):not(.chip):hover {
+  color: var(--accent);
+}
+
+/* An arrow link walks forward when you point at it. */
+.more, .door__go, .card__line a, .entry__t a { transition: color var(--dur) var(--ease); }
+.slide__go, .door__go { display: inline-block; transition: transform var(--dur) var(--ease); }
+.slide:hover .slide__go, .slide:focus-visible .slide__go,
+.door:hover .door__go, .door:focus-visible .door__go { transform: translateX(.25em); }
+
+/* Buttons take a small lift, and press back down when clicked. */
+.btn { transition: background var(--dur) var(--ease), color var(--dur) var(--ease),
+                   transform 140ms var(--ease), box-shadow var(--dur) var(--ease); }
+.btn:hover { transform: translateY(-1px); box-shadow: 0 3px 10px rgba(34, 55, 31, .18); }
+.btn:active { transform: translateY(0); box-shadow: none; }
+
+/* Cards and entries lift off the rule they sit on. */
+.card, .entry { transition: transform var(--dur) var(--ease); }
+.card:hover, .entry:hover { transform: translateY(-2px); }
+
+/* Section headings underline themselves from the left as the row is entered. */
+.entry__t a, .card__title a { background-image: linear-gradient(var(--accent), var(--accent));
+  background-repeat: no-repeat; background-position: 0 100%; background-size: 0 1px;
+  transition: background-size var(--dur) var(--ease), color var(--dur) var(--ease); }
+.entry__t a:hover, .card__title a:hover { text-decoration: none; background-size: 100% 1px; color: var(--accent); }
+
+/* The play button on a film grows very slightly under the pointer. */
+.film__play { transition: transform var(--dur) var(--ease), background var(--dur) var(--ease); }
+.film__go:hover .film__play, .film__go:focus-visible .film__play { transform: translate(-50%, -50%) scale(1.08); }
+
+/* A step's numeral warms when its column is pointed at. */
+.steps > li { transition: transform var(--dur) var(--ease); }
+.steps > li:hover { transform: translateY(-2px); }
+.steps .step__n { transition: color var(--dur) var(--ease); }
+.steps > li:hover .step__n { color: var(--accent); }
+
+/* Footer and menu links shift a hair, so the column feels responsive. */
+.site-footer nav a, .acc__links a { display: inline-block;
+  transition: transform var(--dur) var(--ease), color var(--dur) var(--ease); }
+.site-footer nav a:hover, .acc__links a:hover { transform: translateX(2px); }
+
+/* Nothing above is load-bearing, so reduced motion switches all of it off. */
+@media (prefers-reduced-motion: reduce) {
+  .btn, .card, .entry, .steps > li, .film__play, .slide__go, .door__go,
+  .site-footer nav a, .acc__links a, .entry__t a, .card__title a {
+    transition: none !important;
+  }
+  .btn:hover, .card:hover, .entry:hover, .steps > li:hover,
+  .site-footer nav a:hover, .acc__links a:hover,
+  .slide:hover .slide__go, .door:hover .door__go,
+  .film__go:hover .film__play {
+    transform: none !important;
+    box-shadow: none !important;
+  }
+  .entry__t a:hover, .card__title a:hover { background-size: 0 1px; text-decoration: underline; }
+
+/* --- and the two sections this branch adds, last so that the accent
+   system and the seed-shaped controls win over the generic rules
+   above, which were written when the site had one green. --- */
 
 /* ==========================================================================
    19. ACCENTS AND ORGANIC CONTROLS

@@ -401,14 +401,27 @@
     return loading;
   }
 
+  // If Vimeo's control script will not load, the video still plays here, in
+  // an ordinary iframe that needs no script at all. What is lost is the
+  // autoplay chain and the still-watching check, not the video. Nothing ever
+  // sends the visitor off to vimeo.com.
   function fallback() {
     var v = list[i];
+    player = null;
     root.setAttribute("data-fallback", "true");
-    if (poster) poster.hidden = false;
-    if (live) {
-      live.textContent = "The player could not load. Opening the video on Vimeo instead.";
-    }
-    window.open("https://vimeo.com/" + v.id + "/" + v.hash, "_blank", "noopener");
+    frame.hidden = false;
+    frame.innerHTML = "";
+    var f = document.createElement("iframe");
+    f.src = "https://player.vimeo.com/video/" + encodeURIComponent(v.id) +
+            "?h=" + encodeURIComponent(v.hash) +
+            "&autoplay=1&dnt=1&title=0&byline=0&portrait=0";
+    f.title = v.title;
+    f.allow = "autoplay; fullscreen; picture-in-picture";
+    f.setAttribute("allowfullscreen", "");
+    f.setAttribute("frameborder", "0");
+    frame.appendChild(f);
+    if (poster) poster.hidden = true;
+    if (live) live.textContent = "Now playing: " + v.title;
   }
 
   function boot() {
@@ -540,4 +553,26 @@
   // and a muted autostart is worse than a poster.
   var start = slugIndex(new URLSearchParams(location.search).get("v") || "");
   select(start < 0 ? 0 : start, { silent: true });
+})();
+
+/* ---------- 12. Films from the field ----------
+   Every case-study still is a facade. Nothing is fetched from Vimeo until a
+   visitor presses play; then the button is swapped for the player, in place,
+   and focus moves into it so a keyboard user lands where the video is. The
+   privacy hash rides on the button, because these videos are unlisted and
+   the player refuses them without it. */
+(function () {
+  var strip = document.querySelectorAll("[data-film]");
+  if (!strip.length) return;
+  Array.prototype.forEach.call(strip, function (btn) {
+    btn.addEventListener("click", function () {
+      var frame = document.createElement("iframe");
+      frame.src = btn.getAttribute("data-film") + "&autoplay=1";
+      frame.title = btn.getAttribute("aria-label") || "Video";
+      frame.allow = "autoplay; fullscreen; picture-in-picture";
+      frame.setAttribute("allowfullscreen", "");
+      btn.parentNode.replaceChild(frame, btn);
+      frame.focus();
+    });
+  });
 })();
