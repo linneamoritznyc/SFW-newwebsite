@@ -51,7 +51,13 @@ def slug(t):
     return t
 
 
-def hero(h, hid, sid=None):
+def hero(h, hid, sid=None, photo=None, depth=0):
+    """The page opener.
+
+    photo is an optional (src, alt). Given one, the hero becomes two columns
+    with the photograph beside the text; without one it stays exactly as it
+    was, so the pages that do not take an image are unchanged.
+    """
     pills = ""
     if h.get("anchorPills"):
         pills = ('\n      <ul class="chips" aria-label="On this page">'
@@ -63,6 +69,15 @@ def hero(h, hid, sid=None):
     if h.get("primaryCta"):
         ctas = ('\n      <p style="margin-top:var(--s4);display:flex;flex-wrap:wrap;gap:var(--s2);align-items:center">'
                 + cta(h["primaryCta"]) + " " + cta(h.get("secondaryCta"), "btn btn--ghost") + "</p>")
+    if photo:
+        return ('  <section class="stratum" style="border-top:0"%s>\n    <div class="wrap">\n'
+                '      <div class="grid" style="align-items:center;row-gap:var(--s5)">\n'
+                '        <div class="span-6">\n          %s\n          <h1 id="%s">%s</h1>\n'
+                '          <p class="lede">%s</p>%s%s\n        </div>\n'
+                '        <div class="span-6">\n          %s\n        </div>\n'
+                '      </div>\n    </div>\n  </section>\n'
+                % (' id="%s"' % sid if sid else "", eyebrow(h.get("eyebrow")), hid, e(h["h1"]),
+                   e(intro), pills, ctas, shot(photo[0], photo[1], cap=True, depth=depth)))
     return ('  <section class="stratum" style="border-top:0"%s>\n    <div class="wrap">\n'
             '      <div class="head" style="margin-bottom:0">\n        %s\n        <h1 id="%s">%s</h1>\n'
             '        <p class="lede">%s</p>\n      </div>%s%s\n    </div>\n  </section>\n'
@@ -329,7 +344,7 @@ def chrome(depth=0):
            '        <h2 id="now-h">Happening now</h2>\n        <ul class="now-list">\n'
            '          <li><span class="dated"><time datetime="2026-09-16">16 September to 20 December 2026</time></span>'
            '<a href="%slearn.html#pdc">Permaculture Design Certification cohort</a></li>\n'
-           '          <li><span class="dated"><time datetime="2026-10">October 2026</time></span>'
+           '          <li><span class="dated"><time datetime="2026-10-18">18 to 31 October 2026</time></span>'
            '<a href="%scalendar.html#workshops">India Accelerator Workshop, Coimbatore</a></li>\n'
            '        </ul>\n        <a class="more" href="%scalendar.html">Everything that is happening</a>\n'
            '      </aside>\n    </div>\n'
@@ -448,10 +463,10 @@ def p_home():
 
     # -- the figures
     s_ = c["stats"]; cells = ""
-    for k in ("stat1", "stat2", "stat3"):
+    for k in [k for k in ("stat1", "stat2", "stat3") if k in s_]:
         st = s_[k]
         src_ = '<p class="source small">%s</p>' % e(st["source"]) if st.get("source") else ""
-        cells += ('        <div class="span-4">\n          <p class="stat">%s</p>\n'
+        cells += ('        <div class="span-5">\n          <p class="stat">%s</p>\n'
                   '          <p class="stat__label">%s</p>\n          %s\n        </div>\n'
                   % (e(st["value"]), e(st["label"]), src_))
     o.append(sec('      <h2 id="stats-h" class="visually-hidden">The Foundation in figures</h2>\n'
@@ -480,26 +495,29 @@ def p_home():
     #    drawn branch icons: the steps are a real sequence, so a numeral is
     #    information. Nothing here is drawn.
     a = c["howItWorks"]
+    # One treatment across all four: a hand, soil, close, warm. The clinical
+    # blue lab bench and the wide garden aerial were the two that broke the
+    # set, so the group now reads as four plates from one collection.
     step_shots = [
-        ("img/Sampling equipment.jpg",
-         "A microscope on a bench beside racked sample tubes and bottles"),
+        ("img/soil-sample-close-up-test-tube.jpg",
+         "A gloved hand holding a sample tube and a probe over dark soil"),
         ("img/hand-of-compost.jpg",
          "A hand lifting a fistful of dark finished compost above the pile it came from"),
-        ("img/gloved-hands-red-bucket-mulch.jpg",
-         "Gloved hands reaching into a red bucket of shredded bark mulch, seen from above"),
-        ("img/erc-panchamana-garden.jpg",
-         "A planted garden of curved beds seen from above, dense with green growth"),
+        ("img/hand-scooping-planter-bed-soil.jpg",
+         "A hand lifting a scoop of dark crumbly soil from a planting bed"),
+        ("img/handling-loose-soil.jpg",
+         "Hands letting dry crumbs of soil fall back to the ground in low sunlight"),
     ]
     cells = ""
     for i, st in enumerate(a["steps"]):
         src, alt = step_shots[i]
         cells += ('        <div class="span-3">\n          <div class="step">\n            %s\n'
-                  '            <p class="step__n">%s</p>\n            <h3>%s</h3>\n            <p>%s</p>\n'
+                  '            <span class="fig-n">Fig. %02d</span>\n            <h3>%s</h3>\n            <p>%s</p>\n'
                   '          </div>\n        </div>\n'
-                  % (shot(src, alt, cls="shot--crop"), e(str(st["n"])),
+                  % (shot(src, alt, cls="shot--crop"), st["n"],
                      e(st.get("title", "")), e(st["body"])))
     o.append(sec('      <div class="head">\n        %s\n        <h2 id="approach-h">%s</h2>\n      </div>\n'
-                 '      <div class="grid" style="row-gap:var(--s5)">\n%s      </div>\n'
+                 '      <div class="case">\n        <div class="grid" style="row-gap:var(--s5)">\n%s        </div>\n      </div>\n'
                  '      <p style="margin-top:var(--s5)"><a href="%s">%s</a></p>\n      %s'
                  % (eyebrow(a["eyebrow"]), e(a["h2"]), cells,
                     A(a["link"]["href"]), e(a["link"]["label"]), note(a)), label="approach-h"))
@@ -554,7 +572,7 @@ def p_home():
                  '          <span class="entry__kind">Course, cohort</span>\n        </li>\n'
                  '        <li class="entry entry--thumb">\n'
                  '          <span class="entry__thumb"><img src="img/w/2-hands-planting-shrub-800.jpg" alt="Two hands firming red soil around the base of a newly planted shrub" loading="lazy" decoding="async"></span>\n'
-                 '          <span class="dated"><time datetime="2026-10">October 2026, dates to confirm</time></span>\n'
+                 '          <span class="dated"><time datetime="2026-10-18">18 to 31 October 2026</time></span>\n'
                  '          <h3 class="entry__t"><a href="calendar.html#workshops">India Accelerator Workshop, Coimbatore</a></h3>\n'
                  '          <span class="entry__kind">Workshop</span>\n        </li>\n      </ul>\n'
                  '      <p style="margin-top:var(--s4)">%s</p>\n      %s' % (eyebrow(n["eyebrow"]), e(n["h2"]), links, note(n)),
@@ -936,7 +954,9 @@ def p_community():
 
 
 def p_calendar():
-    c = load("calendar"); o = [hero(c["hero"], "cal-h")]
+    c = load("calendar"); o = [hero(c["hero"], "cal-h", photo=(
+        "img/ctpfw-student-moving-compost-1.jpg",
+        "A student lifting an armful of finished compost at a workshop while a group looks on"))]
     f = c["featured"]
     rows = ('        <li class="cal__row">\n          <div class="cal__rail">\n'
             '            <svg class="icon icon--olive" aria-hidden="true"><use href="#i-scholarship"/></svg>\n'
@@ -946,7 +966,7 @@ def p_calendar():
             '        <li class="cal__row">\n          <div class="cal__rail">\n'
             '            <svg class="icon icon--olive" aria-hidden="true"><use href="#i-workshop"/></svg>\n'
             '            <span><span class="cal__name">India Accelerator Workshop, Coimbatore</span>'
-            '<span class="cal__when">18 to 31 October 2026, dates to confirm</span></span>\n          </div>\n'
+            '<span class="cal__when">18 to 31 October 2026</span></span>\n          </div>\n'
             '          <div class="cal__track"><span class="cal__bar" style="--l:12.877%;--w:3.836%"></span></div>\n        </li>\n'
             '        <li class="cal__row">\n          <div class="cal__rail">\n'
             '            <svg class="icon icon--olive" aria-hidden="true"><use href="#i-calendar"/></svg>\n'
@@ -975,7 +995,7 @@ def p_calendar():
                    'A solid bar is a confirmed run, the dashed band is time that is not scheduled yet, and the green line marks today.</p>\n'
                    '      <ul class="rule-list" id="cal-list">\n'
                    '        <li class="entry" data-kind="workshops" id="workshops">\n'
-                   '          <span class="dated"><time datetime="2026-10">18 to 31 October 2026</time></span>\n'
+                   '          <span class="dated"><time datetime="2026-10-18">18 to 31 October 2026</time></span>\n'
                    '          <div><h3 class="entry__t">%s</h3><p class="entry__line">%s</p>\n          <p class="entry__line">%s</p></div>\n'
                    '          <span class="entry__kind">Workshop</span>\n        </li>\n'
                    '        <li class="entry" data-kind="public-webinars">\n'
@@ -989,7 +1009,9 @@ def p_calendar():
 
 
 def p_news():
-    c = load("news"); o = [hero(c["hero"], "news-h")]
+    c = load("news"); o = [hero(c["hero"], "news-h", photo=(
+        "img/Carla-Nicks Son-Nick-ERI-Wild Soils Event-11-2024.jpg",
+        "A group of people laughing as they work together outdoors with brushes and rakes"))]
     posts = [("14 Aug 2026", "2026-08-14", "Learning to see: what is your soil test really telling you?", "blog", ""),
              ("14 Jul 2026", "2026-07-14", "A brief history of the fungi-to-bacteria ratio", "blog", "Wes Sander"),
              ("1 May 2026", "2026-05-01", "Ciliates, cysts and the clues in a struggling watermelon crop", "blog", "Wes Sander"),
@@ -1020,7 +1042,8 @@ def p_research():
     c = load("research"); o = []
     o.append(hero({"eyebrow": "RESEARCH", "h1": "The research behind living soil",
                    "intro": "A growing database of soil food web science: Dr. Elaine Ingham's publications, research from the wider field, and, as our open-research program matures, studies from the Foundation and its partners."},
-                  "res-h"))
+                  "res-h", photo=("img/soil-sample-shovel-and-bag.jpg",
+                                  "Gloved hands easing a trowel of red soil into a sample bag")))
     rows = ""
     for s in c["seedEntries"]:
         link = '<a href="%s">%s</a>' % (A(s["link"]), e(s["citation"])) if s.get("link") else e(s["citation"])
@@ -1051,7 +1074,9 @@ def p_login():
 
 
 def p_donate():
-    c = load("donate"); o = [hero(c["hero"], "don-h")]
+    c = load("donate"); o = [hero(c["hero"], "don-h", photo=(
+        "img/2-hands-planting-shrub.jpg",
+        "Two hands firming red soil around the base of a newly planted shrub"))]
     g = c["makeGift"]
     o.append(sec('      <div class="grid">\n        <div class="span-6">\n          <h2 id="gift-h">Make a gift</h2>\n'
                  '          <form action="#" method="post" aria-label="Donate">\n'
@@ -1079,7 +1104,9 @@ def p_donate():
 
 
 def p_scholarships():
-    c = load("scholarships"); o = [hero(c["hero"], "sch-h")]
+    c = load("scholarships"); o = [hero(c["hero"], "sch-h", photo=(
+        "img/ctpfw-student-squeezing-compost-1.jpg",
+        "A student in gloves squeezing a handful of compost to test it, with a group watching"))]
     st = c["stories"]
     o.append(sec('      <div class="head"><h2 id="st-h">%s</h2></div>\n      %s' % (e(st["h2"]), note(st)),
                  "stratum--deep", "st-h"))
@@ -1093,7 +1120,9 @@ def p_scholarships():
 
 
 def p_webinars():
-    c = load("webinars"); o = [hero(c["hero"], "web-h")]
+    c = load("webinars"); o = [hero(c["hero"], "web-h", photo=(
+        "img/Test tubes with sample_.jpg",
+        "Sample tubes racked in front of a microscope, shallow focus"))]
     ns = c["nextSession"]
     o.append(sec('      <div class="head"><h2 id="ns-h">Next session</h2></div>\n      %s\n'
                  '      <p><a class="btn" href="https://webinar.soilfoodweb.com">%s</a></p>' % (note(ns), e(ns["cta"])),
