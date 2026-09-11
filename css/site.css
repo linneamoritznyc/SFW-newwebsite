@@ -12,6 +12,9 @@
   /* Colour. Roles from the SFWF Website Design & Content Spec, section 3.1. */
   --paper:        #FFFFFF;   /* the page. White, and mostly empty. */
   --paper-deep:   #FFFFFF;   /* alternating bands retired: the page is one white field */
+  --panel-green:  #E6EADC;   /* the specimen case: a pale green ground set behind a
+                                group of plates to bind them into one object. A
+                                shape, like --panel, never the page. */
   --panel:        #F4F1EA;   /* Organic Cream, demoted to a SHAPE. Never the page.
                                 Use only as a bound rectangle behind a group of
                                 photographs, the way a museum sets a tinted card
@@ -50,6 +53,13 @@
   /* Type. Montserrat for headings, buttons, nav, labels. Source Sans for body. */
   --display: "Montserrat", "Helvetica Neue", Arial, sans-serif;
   --serif: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+  /* The real serif. --serif above is a misnomer inherited from the spec: it
+     points at Montserrat, so until now the site had no serif on it at all.
+     EB Garamond has been sitting unused in fonts/ since the repository was
+     set up, licensed and subsetted. It carries the captions, figure labels,
+     ledes and pull quotes: the small, considered text that separates a
+     gallery page from a brochure. Headings are untouched. */
+  --text-serif: "EB Garamond", Georgia, "Times New Roman", serif;
   --sans:  "Source Sans 3", "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
 
   /* Scale from spec 3.2: desktop / mobile pairs. */
@@ -93,6 +103,11 @@
 @font-face { font-family: "Source Sans 3"; font-style: normal; font-weight: 400; font-display: swap; src: url("../fonts/source-sans-3-latin-400-normal.woff2") format("woff2"); }
 @font-face { font-family: "Source Sans 3"; font-style: italic; font-weight: 400; font-display: swap; src: url("../fonts/source-sans-3-latin-400-italic.woff2") format("woff2"); }
 @font-face { font-family: "Source Sans 3"; font-style: normal; font-weight: 600; font-display: swap; src: url("../fonts/source-sans-3-latin-600-normal.woff2") format("woff2"); }
+@font-face { font-family: "EB Garamond"; font-style: normal; font-weight: 400; font-display: swap; src: url("../fonts/eb-garamond-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "EB Garamond"; font-style: italic; font-weight: 400; font-display: swap; src: url("../fonts/eb-garamond-latin-400-italic.woff2") format("woff2"); }
+@font-face { font-family: "EB Garamond"; font-style: normal; font-weight: 500; font-display: swap; src: url("../fonts/eb-garamond-latin-500-normal.woff2") format("woff2"); }
+@font-face { font-family: "EB Garamond"; font-style: italic; font-weight: 500; font-display: swap; src: url("../fonts/eb-garamond-latin-500-italic.woff2") format("woff2"); }
+@font-face { font-family: "EB Garamond"; font-style: normal; font-weight: 600; font-display: swap; src: url("../fonts/eb-garamond-latin-600-normal.woff2") format("woff2"); }
 
 /* --------------------------------------------------------------------------
    3. Base
@@ -2785,3 +2800,145 @@ code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .9em; }
 .slide:focus-visible .slide__disc { box-shadow: 0 0 0 2px var(--green); }
 .slide:hover .slide__n { color: var(--green); text-decoration: underline; text-underline-offset: .14em; }
 .slide:focus-visible { outline: var(--focus); outline-offset: 6px; }
+
+/* ==========================================================================
+   17. THE CONSIDERED TEXT
+   Added 11 September 2026.
+
+   What separates a gallery page from a brochure is almost never the pictures.
+   It is the small type around them: the caption, the figure label, the source
+   line, the standfirst. Those go into EB Garamond, which was already in
+   fonts/ and had never been switched on. Headings stay in Montserrat, so the
+   voice of the site does not change, it gains a second one for the quiet
+   parts.
+   ========================================================================== */
+
+/* the standfirst: the one long line of type on most pages */
+.lede {
+  font-family: var(--text-serif);
+  font-size: clamp(1.25rem, 1.05rem + .7vw, 1.6rem);
+  line-height: 1.38;
+  letter-spacing: -.003em;
+}
+
+/* captions, credits, figure labels: italic, the way a plate is annotated */
+figcaption,
+.caption,
+.cap--todo,
+.plate figcaption,
+.shot figcaption,
+.ledger figcaption,
+.slide figcaption {
+  font-family: var(--text-serif);
+  font-style: italic;
+  font-size: .9375rem;
+  line-height: 1.45;
+  letter-spacing: 0;
+}
+
+/* the source line stays upright: it is a citation, not an aside */
+.source, .source.small {
+  font-family: var(--text-serif);
+  font-style: normal;
+  letter-spacing: .01em;
+}
+
+/* a plate's own name, and the label under a live circle */
+.plate__t, .ledger figcaption b, .slide__n, .footer__tag {
+  font-family: var(--text-serif);
+}
+.plate__t { font-style: italic; }
+
+/* metadata: the counterweight. Very small, tracked out, upright sans against
+   the serif. Scale contrast is the whole trick. */
+.eyebrow { letter-spacing: .18em; }
+.plate__n, .entry__kind, .card__kind, .slide__d {
+  font-family: var(--sans);
+  font-size: var(--t-1);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+/* a touch more air between sections */
+@media (min-width: 60em) { :root { --section-y: 116px; } }
+
+/* ==========================================================================
+   The reveal.
+
+   Photographs and plates rise a little and fade as they arrive, once, and
+   then never again. Gentle, and it is the reader's own scrolling that causes
+   it, so it reads as the page settling rather than as an effect.
+
+   Nothing is hidden in the stylesheet. js/site.js hides only what is already
+   below the fold, so a page with no JavaScript, or a screenshot, or a
+   thumbnail, shows everything. Held still entirely under reduced motion.
+   ========================================================================== */
+.rise {
+  opacity: 0;
+  transform: translateY(12px);
+}
+.rise-in {
+  opacity: 1;
+  transform: none;
+  transition: opacity 700ms var(--ease), transform 700ms var(--ease);
+}
+@media (prefers-reduced-motion: reduce) {
+  .rise { opacity: 1; transform: none; }
+  .rise-in { transition: none; }
+}
+
+/* linked photographs answer the cursor, slowly */
+.door img, .card__media img { transition: transform 900ms var(--ease); }
+.door:hover img, .door:focus-visible img,
+.card:hover .card__media img { transform: scale(1.03); }
+.card__media { overflow: hidden; }
+@media (prefers-reduced-motion: reduce) {
+  .door img, .card__media img, .door:hover img, .card:hover .card__media img { transition: none; transform: none; }
+}
+
+/* ==========================================================================
+   18. THE SPECIMEN CASE
+   Added 11 September 2026.
+
+   The register here is a natural-history archive rather than a gallery: a
+   plate, a figure number, a name, a note. The unit is the PLATE, not the
+   card, and plates come in cases.
+
+   A case is a pale green ground with a group of plates on it, divided by
+   hairlines, the way a drawer is divided. It binds four things into one
+   object, which is what the four-across row of equal boxes could not do.
+   ========================================================================== */
+.case {
+  background: var(--panel-green);
+  padding: var(--s5) var(--s4);
+}
+@media (min-width: 48em) { .case { padding: var(--s6) var(--s5); } }
+
+/* hairline divisions between plates, like the partitions in a drawer */
+@media (min-width: 48em) {
+  /* every plate takes the same inset, or the first one ends up wider than
+     its neighbours by exactly the padding and the set stops matching */
+  .case .grid > [class*="span-"] { padding-left: var(--col-gap); }
+  .case .grid > [class*="span-"] + [class*="span-"] {
+    border-left: var(--hairline) solid var(--rule);
+  }
+}
+
+/* the figure label: a plate's index, small and tracked, under the picture.
+   It carries the sequence without shouting it, which a numeral set at
+   heading size does. */
+.fig-n {
+  display: block;
+  font-family: var(--sans);
+  font-size: var(--t-1);
+  font-weight: 600;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: .4em;
+}
+
+/* a plate inside a case: picture, then label, then name, then note */
+.case .step h3 { font-size: var(--t2); font-weight: 600; }
+.case .shot img { background: transparent; }

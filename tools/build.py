@@ -495,26 +495,29 @@ def p_home():
     #    drawn branch icons: the steps are a real sequence, so a numeral is
     #    information. Nothing here is drawn.
     a = c["howItWorks"]
+    # One treatment across all four: a hand, soil, close, warm. The clinical
+    # blue lab bench and the wide garden aerial were the two that broke the
+    # set, so the group now reads as four plates from one collection.
     step_shots = [
-        ("img/Sampling equipment.jpg",
-         "A microscope on a bench beside racked sample tubes and bottles"),
+        ("img/soil-sample-close-up-test-tube.jpg",
+         "A gloved hand holding a sample tube and a probe over dark soil"),
         ("img/hand-of-compost.jpg",
          "A hand lifting a fistful of dark finished compost above the pile it came from"),
-        ("img/gloved-hands-red-bucket-mulch.jpg",
-         "Gloved hands reaching into a red bucket of shredded bark mulch, seen from above"),
-        ("img/erc-panchamana-garden.jpg",
-         "A planted garden of curved beds seen from above, dense with green growth"),
+        ("img/hand-scooping-planter-bed-soil.jpg",
+         "A hand lifting a scoop of dark crumbly soil from a planting bed"),
+        ("img/handling-loose-soil.jpg",
+         "Hands letting dry crumbs of soil fall back to the ground in low sunlight"),
     ]
     cells = ""
     for i, st in enumerate(a["steps"]):
         src, alt = step_shots[i]
         cells += ('        <div class="span-3">\n          <div class="step">\n            %s\n'
-                  '            <p class="step__n">%s</p>\n            <h3>%s</h3>\n            <p>%s</p>\n'
+                  '            <span class="fig-n">Fig. %02d</span>\n            <h3>%s</h3>\n            <p>%s</p>\n'
                   '          </div>\n        </div>\n'
-                  % (shot(src, alt, cls="shot--crop"), e(str(st["n"])),
+                  % (shot(src, alt, cls="shot--crop"), st["n"],
                      e(st.get("title", "")), e(st["body"])))
     o.append(sec('      <div class="head">\n        %s\n        <h2 id="approach-h">%s</h2>\n      </div>\n'
-                 '      <div class="grid" style="row-gap:var(--s5)">\n%s      </div>\n'
+                 '      <div class="case">\n        <div class="grid" style="row-gap:var(--s5)">\n%s        </div>\n      </div>\n'
                  '      <p style="margin-top:var(--s5)"><a href="%s">%s</a></p>\n      %s'
                  % (eyebrow(a["eyebrow"]), e(a["h2"]), cells,
                     A(a["link"]["href"]), e(a["link"]["label"]), note(a)), label="approach-h"))

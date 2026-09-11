@@ -295,3 +295,39 @@
   });
   update();
 })();
+
+/* ---------- 10. The reveal ---------- */
+// Photographs and plates rise a little and fade as they arrive, once.
+//
+// The stylesheet hides nothing. This hides only what is ALREADY BELOW THE
+// FOLD, so a page with no JavaScript shows everything, and so does a
+// screenshot, a thumbnail and a print. Anything on screen at load is left
+// exactly as it is, which is why there is no flash.
+//
+// Reduced motion skips the whole thing rather than shortening it.
+(function () {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  if (!("IntersectionObserver" in window)) return;
+
+  var SEL = ".shot, .slides > li, .ledger > li, .doors > li, .cards > .card," +
+            " .step, .banner, .filmstrip, .scope, .plate";
+  var els = document.querySelectorAll(SEL);
+  if (!els.length) return;
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (!en.isIntersecting) return;
+      en.target.classList.add("rise-in");
+      en.target.classList.remove("rise");
+      io.unobserve(en.target);            // once, then never again
+    });
+  }, { rootMargin: "0px 0px -8% 0px" });
+
+  Array.prototype.forEach.call(els, function (el) {
+    // only pre-hide what the reader cannot see yet
+    if (el.getBoundingClientRect().top > window.innerHeight) {
+      el.classList.add("rise");
+      io.observe(el);
+    }
+  });
+})();
