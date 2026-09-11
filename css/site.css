@@ -276,14 +276,32 @@ a.chip:hover, a.chip:focus-visible { background: var(--ink); color: var(--paper)
 .wordmark__logo { display: none; }
 /* The mark is a roundel with the wordmark set inside it, so it has to be big
    enough to read the words, not just recognise the shape. */
-.wordmark--image .wordmark__logo { display: block; width: auto; height: 3.5rem; }
+.wordmark--image .wordmark__logo { display: block; width: auto; height: 4.25rem; }
+/* The mark is tall and dense, so it needs the height. Taking it out of the
+   header's own padding keeps the bar the same size it was with type. A plain
+   class rather than :has(), so it works in older browsers too. */
+.site-header .wrap--logo { padding-block: var(--s1); }
 .wordmark--image .wordmark__name,
 .wordmark--image .wordmark__status {
   position: absolute; width: 1px; height: 1px; overflow: hidden;
   clip-path: inset(50%); white-space: nowrap;
 }
-.site-footer .wordmark--image .wordmark__logo { height: 4.5rem; }
-@media (max-width: 30em) { .wordmark--image .wordmark__logo { height: 2.75rem; } }
+/* The mark is a green roundel with dark brown roots, drawn for light
+   backgrounds. On the dark green overlay it is green on green and all but
+   invisible; in the dark footer the roots and "FOUNDATION" disappear. Until
+   the Foundation supplies a reversed version, dark surfaces keep the type-set
+   wordmark, which is white and reads at any size. The header, which is white,
+   carries the logo. */
+.site-footer .wordmark--image .wordmark__logo,
+.overlay__top .wordmark--image .wordmark__logo { display: none; }
+.site-footer .wordmark--image .wordmark__name,
+.site-footer .wordmark--image .wordmark__status,
+.overlay__top .wordmark--image .wordmark__name,
+.overlay__top .wordmark--image .wordmark__status {
+  position: static; width: auto; height: auto; overflow: visible;
+  clip-path: none; white-space: normal;
+}
+@media (max-width: 30em) { .wordmark--image .wordmark__logo { height: 3.25rem; } }
 
 .site-header__links { display: none; gap: var(--s3); list-style: none; margin: 0; padding: 0; }
 .site-header__links a { color: var(--ink); text-decoration: none; font-weight: 600; font-size: var(--t0); }
@@ -3144,13 +3162,6 @@ figcaption,
   }
   .entry__t a:hover, .card__title a:hover { background-size: 0 1px; text-decoration: underline; }
 }
-/* ^ This brace was missing. Without it the reduced-motion block above never
-   closed, so sections 19, 20 and 21, which is the entire accent system, the
-   seed-shaped buttons and chips, the theatre and the volunteer components,
-   were nested inside @media (prefers-reduced-motion: reduce) and applied
-   only to visitors who had asked for less motion. Everybody else got the
-   stylesheet as it was before section 19 was written. Found on 11 September
-   2026 by counting braces after a new component would not take effect. */
 
 /* --- and the two sections this branch adds, last so that the accent
    system and the seed-shaped controls win over the generic rules
@@ -3428,6 +3439,13 @@ a:hover { color: var(--accent-deep); }
    citation only, and .entry__t drops the underline, so a linked title needs a
    mark of its own. The sprite's "opens elsewhere" arrow, cut to text size and
    sat on the baseline, faint until the row is hovered or focused. */
+/* the entry's number in the publications bibliography: an index you can cite,
+   so it stays the same width whatever the digits */
+.entry__n {
+  display: block; font-variant-numeric: tabular-nums;
+  color: var(--ink-faint); margin-bottom: .15em;
+}
+
 .entry__t a .icon {
   /* inline-block, not the svg default inline: a replaced inline takes a line
      break before it and strands the arrow alone under the title. */

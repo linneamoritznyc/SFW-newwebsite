@@ -67,6 +67,9 @@ def sec(inner, cls="", label=None, sid=None):
     k = (" " + cls) if cls else ""
     return '  <section class="stratum%s"%s%s>\n    <div class="wrap">\n%s\n    </div>\n  </section>\n' % (k, a, i, inner)
 
+sec_ = sec
+
+
 def slug(t):
     """Lowercase, drop punctuation, collapse to hyphens: "Contact & Legal" -> contact-legal."""
     t = t.replace("\u2019", "").replace("'", "")
@@ -527,10 +530,25 @@ def doors(items, depth=0):
 # It stays absent rather than approximated. A hand-traced copy of a brand mark
 # is not the brand mark. Decision 16.
 def _find_logo():
+    """Any image in img/ with "logo" in its name, vector first.
+
+    The canonical names win if they exist, but nobody should have to remember
+    a naming rule to change the logo: sfwlogo-240.png works as well as
+    logo.svg does.
+    """
+    d = os.path.join(ROOT, "img")
+    if not os.path.isdir(d):
+        return None
     for name in ("logo.svg", "logo.png", "logo.webp", "logo.jpg"):
-        if os.path.exists(os.path.join(ROOT, "img", name)):
+        if os.path.exists(os.path.join(d, name)):
             return "img/" + name
-    return None
+    rank = {".svg": 0, ".png": 1, ".webp": 2, ".jpg": 3, ".jpeg": 3}
+    found = [f for f in os.listdir(d)
+             if "logo" in f.lower() and os.path.splitext(f)[1].lower() in rank]
+    if not found:
+        return None
+    found.sort(key=lambda f: (rank[os.path.splitext(f)[1].lower()], f.lower()))
+    return "img/" + found[0]
 
 
 LOGO = _find_logo()
@@ -548,9 +566,11 @@ def wordmark(depth=0, tag="a", href="index.html", cls=""):
     b = "../" * depth
     inner = ""
     if LOGO:
-        src = LOGO if LOGO.endswith(".svg") else web(LOGO)
+        # Never through web(). That pipeline writes JPEGs, and a JPEG has no
+        # alpha channel: a transparent logo would gain a solid box behind it.
+        # The mark is small enough that it needs no derivative anyway.
         inner = ('<img class="wordmark__logo" src="%s%s" alt="%s" decoding="async">'
-                 % (b, A(src), A(LOGO_ALT)))
+                 % (b, A(LOGO), A(LOGO_ALT)))
     inner += ('<span class="wordmark__name">Soil Food Web Foundation</span>'
               '<span class="wordmark__status">A 501(c)(3) nonprofit</span>')
     k = ("wordmark" + (" " + cls if cls else "")) + (" wordmark--image" if LOGO else "")
@@ -595,7 +615,7 @@ def chrome(depth=0):
            '<div class="utility">\n  <div class="wrap">\n'
            '    <p class="utility__tagline">%s</p>\n'
            '    <ul class="utility__links">%s</ul>\n  </div>\n</div>\n'
-           '<header class="site-header">\n  <div class="wrap">\n'
+           '<header class="site-header">\n  <div class="wrap%s">\n'
            '    %s\n'
            '    <ul class="site-header__links">%s</ul>\n'
            '    <a class="btn btn--donate" href="%s">Donate</a>\n'
@@ -616,7 +636,7 @@ def chrome(depth=0):
            '        <a class="more" href="%s">%s</a>\n'
            '      </aside>\n    </div>\n'
            '  </div>\n</div>\n\n'
-           % (e(u["tagline"]), util, wordmark(depth), topnav, A(h("donate.html")),
+           % (e(u["tagline"]), util, " wrap--logo" if LOGO else "", wordmark(depth), topnav, A(h("donate.html")),
               wordmark(depth, tag="span"),
               acc, util, e(n["heading"]), now_li, A(h(n["more"]["href"])), e(n["more"]["label"])))
 
@@ -1356,59 +1376,60 @@ def p_research():
                   "res-h", photo=("img/soil-sample-shovel-and-bag.jpg",
                                   "Gloved hands easing a trowel of red soil into a sample bag")))
 
-    # The publications database. Two chip groups over one list: collection and
-    # decade, narrowing together (site.js job 4). Every entry shows its date,
-    # its citation and its type; the 82 with a verified source carry the
-    # sprite's "opens elsewhere" arrow so a linked row is telling apart from a
-    # citation-only one at a glance. No pagination, so all 137 are in the page.
+    # Sections, order and entry numbering come from the Foundation's own
+    # publications document: her papers, then book chapters, then the two kinds
+    # of technical report, then the wider literature and the internet articles.
+    # Oldest first inside each section, as the document has it, and the numbers
+    # are stable so an entry can be cited by one.
     d = c["database"]
-    rows = ""
-    for x in d["entries"]:
+
+    def entry(x):
         title = e(x["title"])
         if x.get("url"):
-            # no space before the arrow: a break opportunity there strands it
-            # on a line of its own under a full-width title
-            title = ('<a href="%s">%s<svg class="icon" aria-hidden="true">'
-                     '<use href="#i-external"/></svg></a>' % (A(x["url"]), title))
+            # The arrow must not be able to fall to a line of its own under the
+            # title, so the last word and the arrow travel together.
+            head, _, last = title.rpartition(" ")
+            mark = ('<span style="white-space:nowrap">%s<svg class="icon" aria-hidden="true">'
+                    '<use href="#i-external"/></svg></span>' % last)
+            title = '<a href="%s">%s</a>' % (A(x["url"]), (head + " " + mark) if head else mark)
         line = " · ".join(e(x[k]) for k in ("authors", "citation") if x.get(k))
-        rows += ('        <li class="entry" data-kind="%s" data-decade="%s">\n'
-                 '          <span class="dated"><time datetime="%s">%s</time></span>\n'
-                 '          <div><h3 class="entry__t">%s</h3>%s</div>\n'
-                 '          <span class="entry__kind">%s</span>\n        </li>\n'
-                 % (A(x["collection"]), A(x["decade"]), A(x["datetime"]), e(x["dated"]),
-                    title, ('<p class="entry__line">%s</p>' % line) if line else "", e(x["type"])))
+        return ('        <li class="entry" id="p%d-%d">\n'
+                '          <span class="dated"><span class="entry__n">%d</span>'
+                '<time datetime="%d">%d</time></span>\n'
+                '          <div><h3 class="entry__t">%s</h3>%s</div>\n'
+                '          <span class="entry__kind">%s</span>\n        </li>\n'
+                % (x["_sec"], x["n"], x["n"], x["year"], x["year"], title,
+                   ('<p class="entry__line">%s</p>' % line) if line else "", e(x["type"])))
 
-    lede = e(d["lede"]).replace("info@soilfoodweb.com",
-                               '<a href="%s">info@soilfoodweb.com</a>' % A(d["ledeMailto"]))
-    chips = ('      <ul class="chips" data-filter-for="#res-list" aria-label="Collection">'
-             '<li><button class="chip" type="button" data-filter="all" aria-pressed="true">All</button></li>'
-             + "".join('<li><button class="chip" type="button" data-filter="%s" aria-pressed="false">%s (%d)</button></li>'
-                       % (A(g["slug"]), e(g["label"]), g["count"]) for g in d["collections"])
-             + '</ul>\n'
-             '      <ul class="chips" data-filter-for="#res-list" data-filter-attr="data-decade" aria-label="Decade">'
-             '<li><button class="chip" type="button" data-filter="all" aria-pressed="true">Every decade</button></li>'
-             + "".join('<li><button class="chip" type="button" data-filter="%s" aria-pressed="false">%s</button></li>'
-                       % (A(g["slug"]), e(g["label"])) for g in d["decades"])
-             + '<li class="small" data-filter-status style="align-self:center;color:var(--ink-faint)"></li></ul>\n')
+    body = ('      <h2 id="res-list-h">%s</h2>\n      <p class="lede">%s</p>\n'
+            '      <p><a class="btn" href="%s">%s</a></p>\n'
+            % (e(d["h2"]),
+               e(d["lede"]).replace("info@soilfoodweb.com",
+                                    '<a href="%s">info@soilfoodweb.com</a>' % A(d["ledeMailto"])),
+               A(d["scholar"]["href"]), e(d["scholar"]["label"])))
 
-    o.append(sec('      <h2 id="res-list-h">%s</h2>\n      <p class="lede">%s</p>\n'
-                 '      <p><a class="btn" href="%s">%s</a></p>\n'
-                 % (e(d["h2"]), lede, A(d["scholar"]["href"]), e(d["scholar"]["label"]))
-                 + chips
-                 + "".join('      <p class="todo">%s</p>\n' % e(n) for n in d["notes"])
-                 + '      <ul class="rule-list" id="res-list">\n'
-                   '        <li class="rule-list__head" aria-hidden="true">'
-                   '<span>Year</span><span>Publication</span><span>Type</span></li>\n'
-                 + rows + '      </ul>\n'
-                 # under the list, where a reader reaches it having seen the
-                 # rows, not as a headline above them
-                 + '      <p class="small" style="margin-top:var(--s3)">%s</p>\n'
-                   '      <p class="source small">%s</p>'
-                 % (e(d["listNote"]), e(d["listSource"])), label="res-list-h"))
+    # A contents list rather than filter chips: the sections are the structure
+    # now, and filtering a numbered bibliography leaves holes in the numbering.
+    body += ('      <ul class="chips" aria-label="Sections">%s</ul>\n'
+             % "".join('<li><a class="chip" href="#sec-%s">%s (%d)</a></li>'
+                       % (A(x["slug"]), e(x["name"]), len(x["entries"])) for x in d["sections"]))
+    body += "".join('      <p class="todo">%s</p>\n' % e(n) for n in d["notes"])
 
+    for i, sec in enumerate(d["sections"], 1):
+        for x in sec["entries"]:
+            x["_sec"] = i
+        body += ('      <h3 id="sec-%s">%s</h3>\n      <ul class="rule-list">\n%s      </ul>\n'
+                 % (A(sec["slug"]), e(sec["name"]),
+                    "".join(entry(x) for x in sec["entries"])))
+        if sec["slug"] == "reports":
+            n = d["columnNote"]
+            body += ('      <h3>%s</h3>\n      <p>%s</p>\n      <p>%s</p>\n'
+                     % (e(n["h3"]), e(n["body"]), e(n["after"])))
+
+    o.append(sec_(body, label="res-list-h"))
     w = c["workWithUs"]
-    o.append(sec('      <h2 id="rw-h">%s</h2>\n      <p class="lede">%s</p>\n      <p>%s</p>'
-                 % (e(w["h2"]), e(w["body"]), cta(w["cta"])), "stratum--deep", "rw-h", "work-with-us"))
+    o.append(sec_('      <h2 id="rw-h">%s</h2>\n      <p class="lede">%s</p>\n      <p>%s</p>'
+                  % (e(w["h2"]), e(w["body"]), cta(w["cta"])), "stratum--deep", "rw-h", "work-with-us"))
     return MAIN("\n".join(o))
 
 
