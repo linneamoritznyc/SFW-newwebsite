@@ -3144,6 +3144,7 @@ figcaption,
   }
   .entry__t a:hover, .card__title a:hover { background-size: 0 1px; text-decoration: underline; }
 }
+
 /* --- and the two sections this branch adds, last so that the accent
    system and the seed-shaped controls win over the generic rules
    above, which were written when the site had one green. --- */
