@@ -1,2 +1,4 @@
 .DS_Store
 docs/crawl/
+__pycache__/
+*.pyc

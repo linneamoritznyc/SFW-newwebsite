@@ -370,12 +370,21 @@ def doors(items, depth=0):
 
 
 # ------------------------------------------------------------------ chrome
-# The approved mark, once the artwork is in the repository. Drop the file at
-# img/logo.svg (or .png) and set LOGO to its path: the header, the overlay and
-# the footer all pick it up and the type-set wordmark steps aside. Until then
-# LOGO stays None, because a hand-traced approximation of a brand mark is not
-# the brand mark. Decision 16.
-LOGO = None
+# The approved mark. Drop the artwork into img/ named logo.svg, logo.png or
+# logo.webp and the header, the overlay menu and the footer all pick it up on
+# the next build; the type-set wordmark becomes the accessible name. Nothing
+# else to edit: the file being there is the switch.
+#
+# It stays absent rather than approximated. A hand-traced copy of a brand mark
+# is not the brand mark. Decision 16.
+def _find_logo():
+    for name in ("logo.svg", "logo.png", "logo.webp", "logo.jpg"):
+        if os.path.exists(os.path.join(ROOT, "img", name)):
+            return "img/" + name
+    return None
+
+
+LOGO = _find_logo()
 LOGO_ALT = "Soil Food Web Foundation"
 
 
@@ -390,8 +399,9 @@ def wordmark(depth=0, tag="a", href="index.html", cls=""):
     b = "../" * depth
     inner = ""
     if LOGO:
-        inner = ('<img class="wordmark__logo" src="%s%s" alt="%s" width="240" height="200" decoding="async">'
-                 % (b, A(LOGO), A(LOGO_ALT)))
+        src = LOGO if LOGO.endswith(".svg") else web(LOGO)
+        inner = ('<img class="wordmark__logo" src="%s%s" alt="%s" decoding="async">'
+                 % (b, A(src), A(LOGO_ALT)))
     inner += ('<span class="wordmark__name">Soil Food Web Foundation</span>'
               '<span class="wordmark__status">A 501(c)(3) nonprofit</span>')
     k = ("wordmark" + (" " + cls if cls else "")) + (" wordmark--image" if LOGO else "")
