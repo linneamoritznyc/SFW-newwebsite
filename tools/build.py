@@ -548,9 +548,11 @@ def wordmark(depth=0, tag="a", href="index.html", cls=""):
     b = "../" * depth
     inner = ""
     if LOGO:
-        src = LOGO if LOGO.endswith(".svg") else web(LOGO)
+        # Never through web(). That pipeline writes JPEGs, and a JPEG has no
+        # alpha channel: a transparent logo would gain a solid box behind it.
+        # The mark is small enough that it needs no derivative anyway.
         inner = ('<img class="wordmark__logo" src="%s%s" alt="%s" decoding="async">'
-                 % (b, A(src), A(LOGO_ALT)))
+                 % (b, A(LOGO), A(LOGO_ALT)))
     inner += ('<span class="wordmark__name">Soil Food Web Foundation</span>'
               '<span class="wordmark__status">A 501(c)(3) nonprofit</span>')
     k = ("wordmark" + (" " + cls if cls else "")) + (" wordmark--image" if LOGO else "")
