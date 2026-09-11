@@ -2942,3 +2942,170 @@ figcaption,
 /* a plate inside a case: picture, then label, then name, then note */
 .case .step h3 { font-size: var(--t2); font-weight: 600; }
 .case .shot img { background: transparent; }
+
+/* ==========================================================================
+   19. ACCENTS AND ORGANIC CONTROLS
+   Added 11 September 2026.
+
+   Two things at once, because they are the same idea: the site was one
+   green everywhere and every control was a rectangle with rounded corners,
+   which is how software looks, not how living things look.
+
+   THE ACCENT. The brand guide gives Education Blue one job, "School &
+   Education Materials", and that was the part of the guide worth keeping.
+   Blue means education here. So every page now declares a family through a
+   class on <body>, and every component that used to hardcode green reads
+   --accent instead:
+
+     t-learn      Education Blue   Learn, Calendar, Webinars, Scholarships, Login
+     t-science    Microscopy violet   Science, Research
+     t-practice   Oxidised rust    Practice, the professionals directory
+     (none)       Food Web Green   Home, About, Community, News, Donate
+
+   Violet is not invented: it is the membrane colour read off the
+   Foundation's own amoeba footage, which is already in the palette as
+   --membrane, darkened until it can carry text. Rust is oxidised iron, the
+   colour of the clay layer in a soil profile. Neither is in the brand
+   guide, which is a deliberate widening: the guide has one blue, one green
+   and one brown, and a site about soil biology needs the range that living
+   things and minerals actually have.
+
+   Every accent is a TEXT colour first, so each one is chosen at or above
+   4.5:1 on white. The brand's own #3780B8 is 4.25:1, which is under AA for
+   body text, so it stays as the fill and hairline colour and its darker
+   companion carries the words.
+   -------------------------------------------------------------------------- */
+:root {
+  --edu-ink:   #2F73A6;   /* Education Blue, darkened to 5.09:1. Text and buttons */
+  --violet:    #6E5C99;   /* --membrane darkened to 5.75:1. The science family */
+  --rust:      #9C4A24;   /* oxidised iron, 6.14:1. The practice family */
+
+  /* The default family. Every accent-aware rule falls back to these, so a
+     page with no tone class looks exactly as it did before. */
+  --accent:      var(--green);
+  --accent-deep: var(--moss);
+  --accent-fill: var(--green);
+  --accent-soft: rgba(21, 104, 38, .10);
+}
+body.t-learn {
+  --accent: var(--edu-ink); --accent-deep: #215680;
+  --accent-fill: var(--edu); --accent-soft: rgba(55, 128, 184, .10);
+}
+body.t-science {
+  --accent: var(--violet); --accent-deep: #4C3E70;
+  --accent-fill: var(--membrane); --accent-soft: rgba(158, 143, 194, .14);
+}
+body.t-practice {
+  --accent: var(--rust); --accent-deep: #7A3818;
+  --accent-fill: var(--rust); --accent-soft: rgba(156, 74, 36, .10);
+}
+/* Dr. Elaine's own page is the legacy content, so Legacy Purple is its
+   family colour rather than an accent sprinkled on top of another one. It
+   appears on that page and nowhere else, which is what Evan asked for. */
+body.t-legacy {
+  --accent: var(--legacy); --accent-deep: #523A5E;
+  --accent-fill: var(--legacy); --accent-soft: rgba(107, 76, 122, .10);
+}
+
+a { color: var(--accent); }
+a:hover { color: var(--accent-deep); }
+:root, body { --focus: 3px solid var(--accent); }
+.eyebrow { color: var(--accent); }
+.stratum--moss .eyebrow, .banner .eyebrow { color: var(--sage); }
+.btn { background: var(--accent); border-color: var(--accent); }
+.btn:hover { background: var(--accent-deep); border-color: var(--accent-deep); }
+.btn--ghost { background: transparent; color: var(--accent); border-color: var(--accent); }
+.btn--ghost:hover { background: var(--accent); color: var(--white); }
+/* Donate keeps Harvest Gold on every page: giving is not a section. */
+.btn--donate, .btn--donate:hover { background: var(--gold); border-color: var(--gold); color: var(--soil); }
+.btn--donate:hover { background: #B08E1F; border-color: #B08E1F; }
+.stat { color: var(--accent); }
+.icon--olive { color: var(--accent); }
+.rule-list > .entry:first-child { border-top-color: var(--accent-fill); }
+/* Dr. Elaine's pages keep Legacy Purple, which outranks the family colour. */
+.legacy .eyebrow { color: var(--legacy); }
+
+/* --- the organic control -------------------------------------------------
+   A seed, not a rectangle. Two corners drawn long and two drawn tight, so
+   the shape leans the way a seed or a leaf leans, and on hover it leans the
+   other way. Nothing else moves: no lift, no shadow, no scale. The morph is
+   the whole gesture.
+
+   This is the site's button now, everywhere, rather than a special variant,
+   because a page with one organic button and six rectangles reads as a
+   mistake. .btn--bare, which is not a shape at all, is untouched.  */
+.btn {
+  border-radius: 1.9em .6em 1.9em .6em;
+  padding: .88em 1.5em;
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease),
+              border-color var(--dur) var(--ease), border-radius var(--dur) var(--ease);
+}
+.btn:hover, .btn:focus-visible { border-radius: .6em 1.9em .6em 1.9em; }
+.btn--bare { border-radius: 0; padding: 0; }
+
+/* Chips become pebbles: fully round ends, and each one sits a little
+   differently from its neighbour, the way a handful of seeds does. */
+.chip {
+  border-radius: 1.15em .45em 1.15em .45em;
+  padding: .45em 1em;
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease),
+              border-color var(--dur) var(--ease), border-radius var(--dur) var(--ease);
+}
+.chips > li:nth-child(2n) .chip { border-radius: .45em 1.15em .45em 1.15em; }
+.chips > li:nth-child(3n) .chip { border-radius: 1.15em 1.15em .45em .45em; }
+.chip:hover { border-color: var(--accent); color: var(--accent); }
+.chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--white); }
+
+/* The search and newsletter fields keep a softer, uneven edge so they sit
+   beside the buttons rather than arguing with them. */
+.input { border-radius: 1.1em .4em 1.1em .4em; }
+
+/* Reduced motion. There is no global transition-killer in this stylesheet,
+   only targeted blocks, so the morph gets its own: the shape stops changing
+   and the colour still does, since a colour change is not motion. */
+@media (prefers-reduced-motion: reduce) {
+  .btn, .chip, .input { transition: background var(--dur) var(--ease), color var(--dur) var(--ease), border-color var(--dur) var(--ease); }
+  .btn:hover, .btn:focus-visible { border-radius: 1.9em .6em 1.9em .6em; }
+}
+
+/* --- the floating specimen -----------------------------------------------
+   A cut-out on transparency, standing in white space with nothing behind
+   it. Everything here is about what is NOT drawn: no frame, no card, no
+   ground, no shadow, no rounded corner. The object's own silhouette is the
+   shape, which is the whole reason to cut it out in the first place.
+
+   Sizes are deliberately generous. A specimen that fills its column reads
+   as a photograph of a thing; one that sits small in a wide empty column
+   reads as a specimen, which is the register the mood board is in.  */
+.specimen { margin: 0; display: flex; flex-direction: column; align-items: center; text-align: center; }
+.specimen img {
+  display: block; width: 100%; height: auto;
+  max-width: 22rem; max-height: 34rem; object-fit: contain;
+  background: none;                     /* never a toned block: it has alpha */
+}
+.specimen figcaption { margin-top: var(--s3); font-family: var(--text-serif); font-size: var(--t-1); color: var(--ink-faint); }
+.specimen--tall img { max-width: 17rem; max-height: 42rem; }
+.specimen--wide img { max-width: 30rem; }
+.specimen--small img { max-width: 12rem; max-height: 16rem; }
+/* A row of them, evenly spaced, like a drawer of specimens laid out. */
+.drawer { display: grid; gap: var(--s6) var(--col-gap); list-style: none; margin: 0; padding: 0; max-width: none; align-items: end; }
+@media (min-width: 46em) { .drawer { grid-template-columns: repeat(3, 1fr); } }
+.drawer > li { margin: 0; }
+/* Cut-outs sit on the page, so they need the page around them. */
+.stratum--sweep { padding-block: var(--s7); }
+
+/* The overlay's cut-out bleeds 12% past the wrap, which is the point of it
+   on a desktop and 12px of sideways scroll on a 390px phone, even with the
+   menu closed. It keeps the bleed above 40em and sits inside the wrap
+   below it. Pre-existing; found in the section 19 sweep. */
+@media (max-width: 40em) {
+  .cutout--overlay { transform: none; }
+}
+
+/* The header on a phone is a tight three-item row: wordmark, Donate, Menu.
+   The seed shape carries more horizontal padding than the rectangle did,
+   which pushed Menu off the right edge at 390px. Donate keeps the tighter
+   measure there; the shape is unchanged. */
+@media (max-width: 40em) {
+  .site-header .btn { padding: .8em 1.05em; }
+}

@@ -146,6 +146,11 @@ def web(src):
     for each one into img/w/, and every page references those. The originals
     stay exactly as they are, filenames included, as the library.
     """
+    # img/cut/ holds the cut-out specimens, which are PNGs with an alpha
+    # channel. They are already web-sized, and a JPEG derivative would fill
+    # the transparency with black, so they are served exactly as they are.
+    if src.startswith("img/cut/"):
+        return src
     if not src.startswith("img/") or src.startswith("img/w/"):
         return src
     name = src[len("img/"):]
@@ -182,6 +187,24 @@ def shot(src, alt, cls="", cap=False, depth=0):
     if cap:
         f += '        <figcaption class="cap--todo">%s</figcaption>\n' % e(CAPTION)
     return f + "      </figure>"
+
+
+def specimen(src, alt, size="", label="Illustration", depth=0):
+    """One cut-out specimen, floating on the page.
+
+    No frame, no ground, no shadow: the transparency is the point, so the
+    paper shows through and the object sits on the page the way a specimen
+    sits on a museum sweep.
+
+    label defaults to "Illustration" and is not decoration. These assets are
+    generated images of real-looking organisms and soil, and the site must
+    never present one as a photograph of something the Foundation holds. The
+    Foundation's own microscopy stays the only thing shown as real.
+    """
+    c = ("specimen " + size).strip()
+    return ('<figure class="%s">\n        <img src="%s" alt="%s" loading="lazy" decoding="async">\n'
+            '        <figcaption><span class="fig-n">%s</span>%s</figcaption>\n      </figure>'
+            % (A(c), A(("../" * depth) + web(src)), A(alt), e(label), e(CAPTION)))
 
 
 def filmstrip(items, depth=0):
@@ -393,33 +416,23 @@ def chrome(depth=0):
     return hdr, ftr
 
 
-def render(path, title, desc, main, depth=0, css=None, preload=(), robots=None):
+def render(path, title, desc, main, depth=0, tone=""):
     hdr, ftr = chrome(depth)
     b = "../" * depth
     sprite = open(PARTIALS + "sprite.html", encoding="utf-8").read()
     head = ('<!doctype html>\n<html lang="en">\n<head>\n  <meta charset="utf-8">\n'
             '  <meta name="viewport" content="width=device-width, initial-scale=1">\n'
             '  <title>%s</title>\n  <meta name="description" content="%s">\n'
-            '%s'
             '  <meta property="og:site_name" content="Soil Food Web Foundation">\n'
             '  <link rel="preload" href="%sfonts/montserrat-latin-variable.woff2" as="font" type="font/woff2" crossorigin>\n'
             '  <link rel="preload" href="%sfonts/source-sans-3-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>\n'
-            '%s'
-            '  <link rel="stylesheet" href="%scss/site.css">\n%s</head>\n<body>\n'
+            '  <link rel="stylesheet" href="%scss/site.css">\n</head>\n<body%s>\n'
             '<a class="skip" href="#main">Skip to content</a>\n\n'
             '<!-- Icon sprite, inlined so the page works over file:// -->\n'
-            % (e(title), A(desc),
-               # a page that repeats another page's copy must not compete with
-               # it in search; learn-brand.html is a proposal, not a page
-               ('  <meta name="robots" content="%s">\n' % A(robots)) if robots else "",
-               b, b,
-               "".join('  <link rel="preload" href="%sfonts/%s" as="font" type="font/woff2" crossorigin>\n' % (b, f)
-                       for f in preload),
-               b,
-               # A second stylesheet, only where a page needs type or colour the
-               # design system does not carry. motion.html already works this
-               # way. site.css stays the one stylesheet for the site itself.
-               ('  <link rel="stylesheet" href="%scss/%s">\n' % (b, css)) if css else ""))
+            % (e(title), A(desc), b, b, b,
+               # The page's accent family. One colour per section of the site,
+               # set once here and read by every component through --accent.
+               (' class="%s"' % A(tone)) if tone else ""))
     out = head + sprite + "\n\n" + hdr + main + "\n\n" + ftr + '<script src="%sjs/site.js"></script>\n</body>\n</html>\n' % b
     with open(os.path.join(ROOT, path), "w", encoding="utf-8") as f:
         f.write(out)
@@ -767,143 +780,6 @@ def p_learn():
     o.append(sec('      <div class="head"><h2 id="faq-h">%s</h2></div>\n      <ul class="rule-list">\n%s      </ul>'
                  % (e(f["h2"]), rows), "", "faq-h"))
     return MAIN("\n".join(o))
-
-
-def p_learn_brand():
-    """Learn, dressed in the brand style guide.
-
-    A second copy of the Learn page and nothing else: same content file, same
-    copy, same structure, same photographs, same links. learn.html is left
-    exactly as it is so the two can be held side by side.
-
-    What changes is the parts of the 2026 Soil Food Web Brand Style Guide the
-    site had never used. Page 4 gives the brand three faces and the site was
-    carrying two of them, so Pathway Gothic One takes the display type. Page 8
-    says Education Blue is for "School & Education Materials", and Learn is
-    the school, so the blue carries the page. Natural Tan is named a
-    secondary background, so it becomes the ground under the questions, a
-    shape and never the page. Legacy Purple is for legacy content, sparingly,
-    so it appears twice, on the one photograph of Dr. Elaine Ingham. Page 6
-    gives the logo its clear space, so the wordmark is set in a card with 1A
-    held around it in CSS rather than by eye.
-
-    Page 7's naming rule is why nothing here is set in uppercase by CSS: the
-    science is written "soil food web" in lower case, and the page asks
-    "What brings you to the soil food web?", which a text-transform would
-    break. The eyebrow and the chips are the only uppercase on the page and
-    neither contains the phrase.
-
-    Copy is untouched. Every string still comes from content/learn.json.
-    """
-    c = load("learn"); o = []
-
-    h = c["hero"]
-    o.append('  <section class="stratum lb-hero" style="border-top:0">\n    <div class="wrap">\n'
-             '      <div class="grid" style="align-items:center;row-gap:var(--s5)">\n'
-             '        <div class="span-6">\n          %s\n          <h1 id="learn-h">%s</h1>\n'
-             '          <hr class="lb-keyline">\n'
-             '          <p class="lede">%s</p>\n        </div>\n'
-             '        <div class="span-6">\n'
-             # the one piece of legacy content on the page, and the only place
-             # Legacy Purple appears
-             '          <figure class="shot lb-legacy">\n            %s\n'
-             '            <figcaption><span class="fig-n">Fig. 01</span>%s</figcaption>\n'
-             '          </figure>\n'
-             '          <p class="todo">Legacy Purple is used on this one figure only. The brand guide, page 8, '
-             'asks for explicit permission before the colour is used for legacy content. Who grants that, and is '
-             'it granted here? Evan.</p>\n'
-             '        </div>\n      </div>\n    </div>\n  </section>\n'
-             % (eyebrow(h.get("eyebrow")), e(h["h1"]), e(h.get("intro") or h.get("subhead") or ""),
-                img("img/Elaine Flower Shirt Microscope.png",
-                    "A researcher at a microscope in a laboratory, reading from a screen beside her",
-                    sizes="(max-width: 48em) 100vw, 50vw"),
-                e(CAPTION)))
-
-    ps = c["pathSelector"]
-    o.append(sec('      <div class="head"><h2 id="path-h">%s</h2></div>\n'
-                 '      <ul class="chips" aria-label="Paths">%s</ul>'
-                 % (e(ps["h2"]), "".join('<li><span class="chip">%s</span></li>' % e(x) for x in ps["chips"])),
-                 "", "path-h"))
-
-    # The guide's supporting-graphics page asks for imagery of nature, science
-    # and the communities the work reaches. These are the same six photographs
-    # learn.html uses, and between them they already cover all three: soil and
-    # planting for nature, the bench and the sample tube for science, the
-    # workshop and the planting day for community.
-    program_shots = {
-        "foundation-courses": ("img/2-dirty-hands.jpg",
-                               "Two open palms held out, thickly covered in wet soil"),
-        "complete-practicum": ("img/Sampling equipment.jpg",
-                               "A microscope on a bench beside racked sample tubes and bottles"),
-        "pdc": ("img/erc-panchamana-garden.jpg",
-                "A planted garden of curved beds seen from above, dense with green growth"),
-        "restoration": ("img/erc-panchamana-treeplanting-2-fb-img-1666270988322.jpg",
-                        "People spread across a clearing planting seedlings among standing trees"),
-        "workshops": ("img/ctpfw-student-squeezing-compost-1.jpg",
-                      "A student in gloves squeezing a handful of compost to test it, with a group watching"),
-        "webinars": ("img/soil-sample-close-up-test-tube.jpg",
-                     "Gloved hands holding a sample tube and a probe over dark soil"),
-    }
-    rows = ""
-    for i, pr in enumerate(c["programs"], 1):
-        src, alt = program_shots.get(pr["id"], (None, ""))
-        thumb = ('          <span class="entry__thumb">%s</span>\n'
-                 % img(src, alt, sizes="10rem")) if src else '          <span class="entry__thumb"></span>\n'
-        rows += ('        <li class="entry entry--thumb" id="%s">\n%s'
-                 '          <span class="entry__kind" style="text-align:left">%s</span>\n'
-                 '          <div><span class="lb-n">%02d</span><h3 class="entry__t">%s</h3>\n'
-                 '            <p class="entry__line">%s</p>\n            <p class="entry__line">%s</p>%s</div>\n'
-                 '          <span></span>\n        </li>\n'
-                 % (A(pr["id"]), thumb, e(pr["tagline"]), i, e(pr["name"]), e(pr["body"]),
-                    '<a href="%s">%s &rarr;</a>' % (A(pr["cta"]["href"]), e(pr["cta"]["label"])), note(pr)))
-    o.append(sec('      <div class="head"><h2 id="prog-h" class="visually-hidden">Programs</h2></div>\n'
-                 '      <ul class="rule-list rule-list--thumb">\n%s      </ul>' % rows,
-                 label="prog-h", sid="programs"))
-
-    # The guarantee, on Education Blue, beside the wordmark set with the
-    # clear space the guide's layout page specifies.
-    g = c["guarantee"]
-    o.append('  <section class="stratum lb-band" aria-label="Our guarantee">\n    <div class="wrap">\n'
-             '      <div class="lb-band__in">\n'
-             '        <p class="lb-ribbon">%s</p>\n'
-             '        <div>\n          <span class="lb-lockup"><span class="wordmark">'
-             '<span class="wordmark__name">Soil Food Web Foundation</span>'
-             '<span class="wordmark__status">A 501(c)(3) nonprofit</span></span></span>\n'
-             '        </div>\n      </div>\n      %s\n    </div>\n  </section>\n'
-             % (e(g["ribbon"]), note(g)))
-
-    t = c["testimonials"]
-    o.append(sec('      <div class="head"><h2 id="tq-h">%s</h2></div>\n      %s'
-                 % (e(t["h2"]), "\n      ".join(note(q) for q in t["quotes"])), "notes-only", "tq-h"))
-
-    f = c["faq"]
-    rows = "".join('        <li class="entry">\n          <span></span>\n'
-                   '          <div><h3 class="entry__t">%s</h3><p class="entry__line">%s</p>%s</div>\n'
-                   '          <span></span>\n        </li>\n' % (e(q["q"]), e(q["a"]), note(q)) for q in f["items"])
-    # Natural Tan is a secondary background in the guide, and beige on this
-    # site is a shape and never the page, so the questions sit in a bound
-    # rectangle with white all around it rather than in a full-bleed band.
-    o.append('  <section class="stratum" aria-labelledby="faq-h">\n    <div class="wrap">\n'
-             '      <div class="lb-tan">\n'
-             '        <div class="head"><h2 id="faq-h">%s</h2></div>\n'
-             '        <ul class="rule-list">\n%s        </ul>\n'
-             '      </div>\n    </div>\n  </section>\n' % (e(f["h2"]), rows))
-
-    # The colophon: what this page is exercising and what it deliberately is
-    # not. A note, not copy, so it stays out of the page until ?notes=1.
-    swatches = "".join('<li><i style="background:%s"></i>%s</li>' % (hx, e(nm)) for hx, nm in [
-        ("#3780B8", "Education Blue, school and education materials"),
-        ("#C89B7B", "Natural Tan, secondary background"),
-        ("#6B4C7A", "Legacy Purple, legacy content only, sparingly"),
-    ])
-    o.append(sec('      <h2 id="lb-h" class="visually-hidden">About this version</h2>\n'
-                 '      <p class="todo">This is learn.html in the brand style guide\u2019s own clothes: Pathway '
-                 'Gothic One from page 4, Education Blue, Natural Tan and Legacy Purple from page 8, the logo '
-                 'clear space from page 6, and the lower-case \u201csoil food web\u201d naming rule from page 7. '
-                 'Copy, links and photographs are identical to learn.html. Compare the two and keep one.</p>\n'
-                 '      <ul class="lb-swatches">%s</ul>' % swatches, "notes-only", "lb-h"))
-
-    return '<main id="main" class="lb">\n\n' + "\n".join(o) + '\n</main>'
 
 
 def p_science():
@@ -1289,32 +1165,32 @@ def p_webinars():
 
 
 PAGES = [
+    # path, <title>, content file, builder, and the page's accent family.
+    # The accent is one colour per section of the site: education blue on the
+    # Learn pages, the microscopy violet on Science, oxidised rust on
+    # Practice. Everything else keeps Food Web Green.
     ("index.html", "Soil Food Web Foundation, a nonprofit teaching the science of living soil", "home", p_home),
     ("about.html", "About the Foundation, Soil Food Web Foundation", "about", p_about),
-    ("learn.html", "Learn with us, Soil Food Web Foundation", "learn", p_learn),
-    ("science.html", "How the soil food web works, Soil Food Web Foundation", "science", p_science),
-    ("practice.html", "Practice, Soil Food Web Foundation", "practice", p_practice),
+    ("learn.html", "Learn with us, Soil Food Web Foundation", "learn", p_learn, "t-learn"),
+    ("science.html", "How the soil food web works, Soil Food Web Foundation", "science", p_science, "t-science"),
+    ("practice.html", "Practice, Soil Food Web Foundation", "practice", p_practice, "t-practice"),
     ("community.html", "Community, Soil Food Web Foundation", "community", p_community),
-    ("calendar.html", "Calendar, Soil Food Web Foundation", "calendar", p_calendar),
+    ("calendar.html", "Calendar, Soil Food Web Foundation", "calendar", p_calendar, "t-learn"),
     ("news.html", "News and stories, Soil Food Web Foundation", "news", p_news),
-    ("research.html", "Research, Soil Food Web Foundation", "research", p_research),
-    ("login.html", "Student access, Soil Food Web Foundation", "login", p_login),
+    ("research.html", "Research, Soil Food Web Foundation", "research", p_research, "t-science"),
+    ("login.html", "Student access, Soil Food Web Foundation", "login", p_login, "t-learn"),
     ("donate.html", "Donate and get involved, Soil Food Web Foundation", "donate", p_donate),
-    ("learn-scholarships.html", "Scholarships, Soil Food Web Foundation", "scholarships", p_scholarships),
-    ("learn-webinars.html", "Free webinars, Soil Food Web Foundation", "webinars", p_webinars),
-    # The brand-guide version of Learn. Same copy, second stylesheet, third
-    # typeface. learn.html above is untouched so the two can be compared.
-    ("learn-brand.html", "Learn with us, Soil Food Web Foundation", "learn", p_learn_brand,
-     {"css": "learn-brand.css", "preload": ("pathway-gothic-one-latin-400-normal.woff2",),
-      "robots": "noindex, nofollow"}),
+    ("learn-scholarships.html", "Scholarships, Soil Food Web Foundation", "scholarships", p_scholarships, "t-learn"),
+    ("learn-webinars.html", "Free webinars, Soil Food Web Foundation", "webinars", p_webinars, "t-learn"),
 ]
+
 
 if __name__ == "__main__":
     for row in PAGES:
         path, title, key, fn = row[:4]
-        extra = row[4] if len(row) > 4 else {}
+        tone = row[4] if len(row) > 4 else ""
         c = load(key)
         h = c.get("hero", {})
         desc = h.get("intro") or h.get("subhead") or title
-        render(path, title, desc[:300], fn(), **extra)
+        render(path, title, desc[:300], fn(), tone=tone)
     print("done:", len(PAGES), "pages")
