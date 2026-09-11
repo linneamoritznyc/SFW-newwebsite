@@ -1,0 +1,323 @@
+<title>SFW Brand Guide</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap">
+<style>
+  :root {
+    --paper: #FFFFFF;
+    --ink: #333130;
+    --ink-soft: #4A463F;
+    --ink-faint: #6A665C;
+    --green: #156826;
+    --moss: #22371F;
+    --soil: #4F3433;
+    --olive: #5F6A3C;
+    --sage: #A7B097;
+    --panel-green: #E6EADC;
+    --panel: #F4F1EA;
+    --scope: #3C3841;
+    --membrane: #9E8FC2;
+    --living: #A2AE77;
+    --glow: #DBE6A7;
+    --legacy: #6B4C7A;
+    --tan: #C89B7B;
+    --gold: #C9A227;
+    --edu: #3780B8;
+    --ground: #231F1D;
+    --green-legacy: #59A66C;
+    --bg: #FAFAF8;
+    --rule: rgba(79,52,51,.15);
+  }
+
+  body {
+    font-family: "Source Sans 3", "Helvetica Neue", Arial, sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+    line-height: 1.55;
+  }
+
+  h1, h2, h3 { font-family: "Montserrat", sans-serif; font-weight: 700; margin: 0; }
+  h1 { font-size: 2.5rem; color: var(--soil); letter-spacing: -.02em; margin-bottom: 8px; }
+  h2 { font-size: 1.25rem; color: var(--soil); letter-spacing: .04em; text-transform: uppercase; margin-top: 56px; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid var(--rule); }
+  h3 { font-size: 1rem; color: var(--ink-soft); margin-top: 28px; margin-bottom: 12px; }
+  p { margin: 0 0 16px; }
+  .subtitle { font-family: "EB Garamond", Georgia, serif; font-size: 1.25rem; color: var(--ink-soft); font-style: italic; margin-bottom: 40px; }
+
+  /* --- Swatches --- */
+  .palette { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; margin-bottom: 12px; }
+  .swatch { border-radius: 10px; overflow: hidden; border: 1px solid rgba(0,0,0,.06); }
+  .swatch__color { height: 80px; }
+  .swatch__label { padding: 10px 12px; background: var(--paper); }
+  .swatch__name { font-family: "Montserrat", sans-serif; font-weight: 600; font-size: .8rem; letter-spacing: .03em; display: block; }
+  .swatch__hex { font-size: .75rem; color: var(--ink-faint); font-family: monospace; }
+  .swatch__role { font-size: .72rem; color: var(--ink-faint); display: block; margin-top: 2px; }
+
+  /* --- Type specimens --- */
+  .specimen { margin-bottom: 24px; padding: 24px 28px; background: var(--paper); border-radius: 10px; border: 1px solid var(--rule); }
+  .specimen__face { font-size: 2rem; line-height: 1.2; margin-bottom: 6px; }
+  .specimen__meta { font-size: .75rem; color: var(--ink-faint); font-family: monospace; margin-bottom: 12px; }
+  .specimen__sample { font-size: 1.1rem; line-height: 1.6; color: var(--ink-soft); }
+  .specimen__scale { display: flex; flex-wrap: wrap; align-items: baseline; gap: 16px; margin-top: 16px; }
+  .specimen__scale span { color: var(--ink-soft); }
+
+  /* --- Buttons --- */
+  .btn-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 24px; }
+  .btn-demo {
+    display: inline-block; font-family: "Montserrat", sans-serif; font-weight: 600;
+    font-size: .9375rem; line-height: 1; padding: .8em 1.15em;
+    border: 1px solid var(--green); border-radius: 8px;
+    text-decoration: none; cursor: default;
+  }
+  .btn-demo--primary { background: var(--green); color: #fff; }
+  .btn-demo--ghost { background: transparent; color: var(--green); }
+  .btn-demo--donate { background: var(--gold); border-color: var(--gold); color: var(--soil); }
+  .btn-demo--bare { background: none; border: 0; padding: 0; color: var(--ink); }
+
+  /* --- Tokens table --- */
+  .tokens { width: 100%; border-collapse: collapse; margin-bottom: 24px; font-size: .875rem; }
+  .tokens th { text-align: left; font-family: "Montserrat", sans-serif; font-weight: 600; font-size: .75rem; letter-spacing: .05em; text-transform: uppercase; color: var(--ink-faint); padding: 8px 12px; border-bottom: 2px solid var(--rule); }
+  .tokens td { padding: 8px 12px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  .tokens code { font-size: .8rem; background: var(--panel-green); padding: 2px 6px; border-radius: 4px; }
+
+  /* --- Component cards --- */
+  .components { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 16px; }
+  .comp-card { background: var(--paper); border-radius: 10px; border: 1px solid var(--rule); padding: 20px 22px; }
+  .comp-card__name { font-family: "Montserrat", sans-serif; font-weight: 600; font-size: .85rem; margin-bottom: 4px; }
+  .comp-card__class { font-size: .75rem; color: var(--ink-faint); font-family: monospace; margin-bottom: 8px; }
+  .comp-card__desc { font-size: .85rem; color: var(--ink-soft); line-height: 1.45; margin: 0; }
+
+  .note { font-size: .85rem; color: var(--ink-faint); font-style: italic; margin: 8px 0 24px; }
+
+  @media (max-width: 500px) {
+    h1 { font-size: 1.75rem; }
+    .palette { grid-template-columns: repeat(2, 1fr); }
+    .specimen__face { font-size: 1.5rem; }
+  }
+</style>
+
+<h1>Soil Food Web Foundation</h1>
+<p class="subtitle">Visual brand guide for the website rebuild</p>
+
+<h2>Colour palette</h2>
+<p>Every colour on the site is a CSS custom property in <code>:root</code> at the top of <code>css/site.css</code>. Change the token, not the rule.</p>
+
+<h3>Primary</h3>
+<div class="palette">
+  <div class="swatch"><div class="swatch__color" style="background:#156826"></div><div class="swatch__label"><span class="swatch__name">Food Web Green</span><span class="swatch__hex">#156826</span><span class="swatch__role">Buttons, links, eyebrows</span></div></div>
+  <div class="swatch"><div class="swatch__color" style="background:#22371F"></div><div class="swatch__label"><span class="swatch__name">Moss</span><span class="swatch__hex">#22371F</span><span class="swatch__role">Overlay menu, dark bands, hover</span></div></div>
+  <div class="swatch"><div class="swatch__color" style="background:#4F3433"></div><div class="swatch__label"><span class="swatch__name">Soil Brown</span><span class="swatch__hex">#4F3433</span><span class="swatch__role">Headings, footer text</span></div></div>
+  <div class="swatch"><div class="swatch__color" style="background:#231F1D"></div><div class="swatch__label"><span class="swatch__name">Ground</span><span class="swatch__hex">#231F1D</span><span class="swatch__role">Footer and utility bar background</span></div></div>
+</div>
+
+<h3>Surfaces</h3>
+<div class="palette">
+  <div class="swatch"><div class="swatch__color" style="background:#FFFFFF; border-bottom: 1px solid rgba(0,0,0,.08)"></div><div class="swatch__label"><span class="swatch__name">Paper</span><span class="swatch__hex">#FFFFFF</span><span class="swatch__role">Page background</span></div></div>
+  <div class="swatch"><div class="swatch__color" style="background:#F4F1EA"></div><div class="swatch__label"><span class="swatch__name">Organic Cream</span><span class="swatch__hex">#F4F1EA</span><span class="swatch__role">Shape only, never the page</span></div></div>
+  <div class="swatch"><div class="swatch__color" style="background:#E6EADC"></div><div class="swatch__label"><span class="swatch__name">Specimen Case</span><span class="swatch__hex">#E6EADC</span><span class="swatch__role">Pale green ground behind grouped content</span></div></div>
+  <div class="swatch"><div class="swatch__color" style="background:#3C3841"></div><div class="swatch__label"><span class="swatch__name">Scope</span><span class="swatch__hex">#3C3841</span><span class="swatch__role">Microscopy footage background</span></div></div>
+</div>
+
+<h3>From the microscope</h3>
+<p class="note">These colours are sampled from the Foundation's own brightfield microscopy footage.</p>
+<div class="palette">
+  <div class="swatch"><div class="swatch__color" style="background:#9E8FC2"></div><div class="swatch__label"><span class="swatch__name">Membrane Violet</span><span class="swatch__hex">#9E8FC2</span><span class="swatch__role">From the amoeba's cell wall</span></div></div>
+  <div class="swatch"><div class="swatch__color" style="background:#A2AE77"></div><div class="swatch__label"><span class="swatch__name">Living Green</span><span class="swatch__hex">#A2AE77</span><span class="swatch__role">From the field of the slide</span></div></div>
+  <div class="swatch"><div class="swatch__color" style="background:#DBE6A7"></div><div class="swatch__label"><span class="swatch__name">Glow</span><span class="swatch__hex">#DBE6A7</span><span class="swatch__role">Brightest thing in the frame</span></div></div>
+  <div class="swatch"><div class="swatch__color" style="background:#6B4C7A"></div><div class="swatch__label"><span class="swatch__name">Legacy Purple</span><span class="swatch__hex">#6B4C7A</span><span class="swatch__role">Dr. Elaine content only</span></div></div>
+</div>
+
+<h3>Accents and utility</h3>
+<div class="palette">
+  <div class="swatch"><div class="swatch__color" style="background:#5F6A3C"></div><div class="swatch__label"><span class="swatch__name">Olive</span><span class="swatch__hex">#5F6A3C</span><span class="swatch__role">Line accents, icon strokes</span></div></div>
+  <div class="swatch"><div class="swatch__color" style="background:#A7B097"></div><div class="swatch__label"><span class="swatch__name">Sage</span><span class="swatch__hex">#A7B097</span><span class="swatch__role">Textures, hover on dark</span></div></div>
+  <div class="swatch"><div class="swatch__color" style="background:#C89B7B"></div><div class="swatch__label"><span class="swatch__name">Tan</span><span class="swatch__hex">#C89B7B</span><span class="swatch__role">Card borders, dividers</span></div></div>
+  <div class="swatch"><div class="swatch__color" style="background:#C9A227"></div><div class="swatch__label"><span class="swatch__name">Harvest Gold</span><span class="swatch__hex">#C9A227</span><span class="swatch__role">Donate button only</span></div></div>
+  <div class="swatch"><div class="swatch__color" style="background:#3780B8"></div><div class="swatch__label"><span class="swatch__name">Education Blue</span><span class="swatch__hex">#3780B8</span><span class="swatch__role">Course tags, student access</span></div></div>
+  <div class="swatch"><div class="swatch__color" style="background:#59A66C"></div><div class="swatch__label"><span class="swatch__name">Green Legacy</span><span class="swatch__hex">#59A66C</span><span class="swatch__role">Decorative only, fails contrast</span></div></div>
+</div>
+
+<h3>Text</h3>
+<div class="palette">
+  <div class="swatch"><div class="swatch__color" style="background:#333130"></div><div class="swatch__label"><span class="swatch__name">Ink</span><span class="swatch__hex">#333130</span><span class="swatch__role">Body text</span></div></div>
+  <div class="swatch"><div class="swatch__color" style="background:#4A463F"></div><div class="swatch__label"><span class="swatch__name">Ink Soft</span><span class="swatch__hex">#4A463F</span><span class="swatch__role">Secondary text</span></div></div>
+  <div class="swatch"><div class="swatch__color" style="background:#6A665C"></div><div class="swatch__label"><span class="swatch__name">Ink Faint</span><span class="swatch__hex">#6A665C</span><span class="swatch__role">Captions, source lines</span></div></div>
+</div>
+
+<h2>Typography</h2>
+
+<div class="specimen">
+  <div class="specimen__face" style="font-family: 'Montserrat', sans-serif; font-weight: 700;">Montserrat Bold</div>
+  <div class="specimen__meta">--display / --serif &middot; Headings, buttons, navigation, labels &middot; 600 and 700 weights</div>
+  <div class="specimen__sample" style="font-family: 'Montserrat', sans-serif; font-weight: 600;">The soil food web is the community of organisms living all or part of their lives in the soil.</div>
+  <div class="specimen__scale">
+    <span style="font-family:'Montserrat',sans-serif; font-weight:700; font-size:3rem;">Aa</span>
+    <span style="font-family:'Montserrat',sans-serif; font-weight:700; font-size:2.25rem;">Aa</span>
+    <span style="font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.5rem;">Aa</span>
+    <span style="font-family:'Montserrat',sans-serif; font-weight:600; font-size:1.125rem;">Aa</span>
+    <span style="font-family:'Montserrat',sans-serif; font-weight:600; font-size:.9375rem;">Aa</span>
+  </div>
+</div>
+
+<div class="specimen">
+  <div class="specimen__face" style="font-family: 'Source Sans 3', sans-serif;">Source Sans 3</div>
+  <div class="specimen__meta">--sans &middot; Body text, paragraphs, UI &middot; 400 regular, 400 italic, 600 semibold</div>
+  <div class="specimen__sample" style="font-family: 'Source Sans 3', sans-serif;">Bacteria and fungi break down organic matter. Protozoa and nematodes consume them, releasing nutrients in forms plants can absorb. This cycle replaces the need for synthetic fertilizers.</div>
+  <div class="specimen__scale">
+    <span style="font-family:'Source Sans 3',sans-serif; font-size:1.5rem;">Aa</span>
+    <span style="font-family:'Source Sans 3',sans-serif; font-size:1.125rem;">Aa</span>
+    <span style="font-family:'Source Sans 3',sans-serif; font-size:1rem;">Aa</span>
+    <span style="font-family:'Source Sans 3',sans-serif; font-size:.875rem;">Aa</span>
+    <span style="font-family:'Source Sans 3',sans-serif; font-size:.8125rem; color:var(--ink-faint);">Aa</span>
+  </div>
+</div>
+
+<div class="specimen">
+  <div class="specimen__face" style="font-family: 'EB Garamond', Georgia, serif; font-weight: 400; font-style: italic;">EB Garamond</div>
+  <div class="specimen__meta">--text-serif &middot; Captions, figure labels, ledes, pull quotes &middot; 400, 500, 600 + italics</div>
+  <div class="specimen__sample" style="font-family: 'EB Garamond', Georgia, serif; font-size: 1.2rem; line-height: 1.5;">The small, considered text that separates a gallery page from a brochure. Headings are untouched; Garamond carries the quiet voice.</div>
+</div>
+
+<h3>Type scale</h3>
+<table class="tokens">
+  <tr><th>Token</th><th>Size</th><th>Use</th></tr>
+  <tr><td><code>--t-1</code></td><td>13px</td><td>Captions, source lines</td></tr>
+  <tr><td><code>--t0</code></td><td>15px</td><td>Buttons, small UI</td></tr>
+  <tr><td><code>--t1</code></td><td>16 &rarr; 18px</td><td>Body text</td></tr>
+  <tr><td><code>--t2</code></td><td>20 &rarr; 24px</td><td>h3, ledes</td></tr>
+  <tr><td><code>--t3</code></td><td>24 &rarr; 28px</td><td>h3 large</td></tr>
+  <tr><td><code>--t4</code></td><td>28 &rarr; 40px</td><td>h2</td></tr>
+  <tr><td><code>--t5</code></td><td>34 &rarr; 60px</td><td>h1</td></tr>
+  <tr><td><code>--t6</code></td><td>40 &rarr; 72px</td><td>Big statistics</td></tr>
+</table>
+<p class="note">All sizes use clamp() for fluid scaling between mobile and desktop. The arrow shows the range.</p>
+
+<h2>Buttons</h2>
+
+<div class="btn-row">
+  <span class="btn-demo btn-demo--primary">Primary</span>
+  <span class="btn-demo btn-demo--ghost">Ghost</span>
+  <span class="btn-demo btn-demo--donate">Donate</span>
+  <span class="btn-demo btn-demo--bare">Bare link &rarr;</span>
+</div>
+
+<table class="tokens">
+  <tr><th>Variant</th><th>Class</th><th>Background</th><th>Border</th><th>Text</th></tr>
+  <tr><td>Primary</td><td><code>.btn</code></td><td>Green #156826</td><td>Green</td><td>White</td></tr>
+  <tr><td>Ghost</td><td><code>.btn--ghost</code></td><td>Transparent</td><td>Green</td><td>Green</td></tr>
+  <tr><td>Donate</td><td><code>.btn--donate</code></td><td>Gold #C9A227</td><td>Gold</td><td>Soil Brown</td></tr>
+  <tr><td>Bare</td><td><code>.btn--bare</code></td><td>None</td><td>None</td><td>Ink</td></tr>
+</table>
+<p class="note">All buttons use Montserrat 600, 15px (--t0), 8px radius. Hover shifts to Moss (#22371F) with a 1px lift and soft shadow.</p>
+
+<h2>Spacing</h2>
+<table class="tokens">
+  <tr><th>Token</th><th>Value</th></tr>
+  <tr><td><code>--s1</code></td><td>0.5rem (8px)</td></tr>
+  <tr><td><code>--s2</code></td><td>1rem (16px)</td></tr>
+  <tr><td><code>--s3</code></td><td>1.5rem (24px)</td></tr>
+  <tr><td><code>--s4</code></td><td>2rem (32px)</td></tr>
+  <tr><td><code>--s5</code></td><td>3rem (48px)</td></tr>
+  <tr><td><code>--s6</code></td><td>4.5rem (72px)</td></tr>
+  <tr><td><code>--s7</code></td><td>7rem (112px)</td></tr>
+  <tr><td><code>--section-y</code></td><td>clamp(3rem, 4.5vw, 4rem)</td></tr>
+  <tr><td><code>--page-max</code></td><td>1200px</td></tr>
+  <tr><td><code>--gutter</code></td><td>1.5rem mobile, 3rem desktop</td></tr>
+  <tr><td><code>--measure</code></td><td>70ch (max text width)</td></tr>
+</table>
+
+<h2>Radii and effects</h2>
+<table class="tokens">
+  <tr><th>Token</th><th>Value</th><th>Use</th></tr>
+  <tr><td><code>--radius-card</code></td><td>12px</td><td>Cards</td></tr>
+  <tr><td><code>--radius-btn</code></td><td>8px</td><td>Buttons, inputs, chips</td></tr>
+  <tr><td><code>--shadow</code></td><td>0 2px 12px rgba(79,52,51,0.10)</td><td>The only shadow on the site</td></tr>
+  <tr><td><code>--focus</code></td><td>3px solid Green</td><td>Keyboard focus ring</td></tr>
+</table>
+
+<h2>Key components</h2>
+<div class="components">
+  <div class="comp-card">
+    <div class="comp-card__name">Band</div>
+    <div class="comp-card__class">.band, .stratum</div>
+    <p class="comp-card__desc">Full-width horizontal section. Variants: --deep (dark ground), --moss (green), --cream.</p>
+  </div>
+  <div class="comp-card">
+    <div class="comp-card__name">Card</div>
+    <div class="comp-card__class">.card, .cards</div>
+    <p class="comp-card__desc">Flex column with hairline top border. Inside .cards grid: gets padding, white background, shadow, rounded corners.</p>
+  </div>
+  <div class="comp-card">
+    <div class="comp-card__name">Chip</div>
+    <div class="comp-card__class">.chip, .chips</div>
+    <p class="comp-card__desc">Filter pill. Toggles with aria-pressed. Used on research, community, volunteer pages.</p>
+  </div>
+  <div class="comp-card">
+    <div class="comp-card__name">Eyebrow</div>
+    <div class="comp-card__class">.eyebrow</div>
+    <p class="comp-card__desc">Small uppercase label above a heading. Montserrat 600, letter-spaced, usually in Green or Sage.</p>
+  </div>
+  <div class="comp-card">
+    <div class="comp-card__name">Lede</div>
+    <div class="comp-card__class">.lede</div>
+    <p class="comp-card__desc">Opening paragraph in Montserrat at --t2 size. Sets the tone for a section.</p>
+  </div>
+  <div class="comp-card">
+    <div class="comp-card__name">Panel</div>
+    <div class="comp-card__class">.panel</div>
+    <p class="comp-card__desc">Cream rectangle behind grouped content. A shape, never the page background.</p>
+  </div>
+  <div class="comp-card">
+    <div class="comp-card__name">Shot / Plate</div>
+    <div class="comp-card__class">.shot, .plate</div>
+    <p class="comp-card__desc">Photograph containers. Rise-in animation on scroll (skipped for reduced motion).</p>
+  </div>
+  <div class="comp-card">
+    <div class="comp-card__name">Accordion</div>
+    <div class="comp-card__class">[data-accordion]</div>
+    <p class="comp-card__desc">One section open at a time. Used in overlay menu and Learn page.</p>
+  </div>
+  <div class="comp-card">
+    <div class="comp-card__name">Video facade</div>
+    <div class="comp-card__class">[data-film], [data-theatre]</div>
+    <p class="comp-card__desc">Poster + play button. Nothing loads from Vimeo until clicked.</p>
+  </div>
+  <div class="comp-card">
+    <div class="comp-card__name">Rack</div>
+    <div class="comp-card__class">.rack</div>
+    <p class="comp-card__desc">Scroll-driven video scrub. The organism moves when the reader moves.</p>
+  </div>
+  <div class="comp-card">
+    <div class="comp-card__name">Before / After</div>
+    <div class="comp-card__class">[data-compare]</div>
+    <p class="comp-card__desc">Two photographs with a draggable split. Range input for keyboard access.</p>
+  </div>
+  <div class="comp-card">
+    <div class="comp-card__name">Pathway diagram</div>
+    <div class="comp-card__class">[data-pathway]</div>
+    <p class="comp-card__desc">Interactive course map on the Learn page. Hover or tap to explore paths.</p>
+  </div>
+</div>
+
+<h2>Rules</h2>
+<table class="tokens">
+  <tr><th>Rule</th><th>Detail</th></tr>
+  <tr><td>One shadow</td><td>The whole site uses one shadow value. Nothing else casts.</td></tr>
+  <tr><td>Cream is a shape</td><td>Organic Cream (#F4F1EA) is only used as a bounded rectangle, never as the page background.</td></tr>
+  <tr><td>Legacy Purple is restricted</td><td>#6B4C7A appears only on Dr. Elaine Ingham content.</td></tr>
+  <tr><td>Green Legacy is decorative</td><td>#59A66C fails contrast. Never use it for text.</td></tr>
+  <tr><td>Harvest Gold is for Donate</td><td>#C9A227 appears only on the donate button.</td></tr>
+  <tr><td>No animation library</td><td>All motion is vanilla JS + CSS transitions. Reduced motion is always respected.</td></tr>
+  <tr><td>Self-hosted fonts</td><td>No external font service. All fonts are WOFF2 in /fonts/.</td></tr>
+  <tr><td>One stylesheet, one script</td><td>css/site.css and js/site.js. No others.</td></tr>
+</table>
+
+<h2>Files</h2>
+<table class="tokens">
+  <tr><th>File</th><th>What it is</th></tr>
+  <tr><td><code>css/site.css</code></td><td>All styles. Tokens in :root at the top.</td></tr>
+  <tr><td><code>js/site.js</code></td><td>All behaviour. Vanilla JS, no dependencies.</td></tr>
+  <tr><td><code>fonts/</code></td><td>EB Garamond, Source Sans 3, Montserrat. SIL Open Font License.</td></tr>
+  <tr><td><code>img/icons.svg</code></td><td>SVG sprite, inlined in each page.</td></tr>
+  <tr><td><code>_dev/design-system.html</code></td><td>Live component catalogue. Open in a browser.</td></tr>
+</table>

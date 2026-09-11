@@ -36,7 +36,15 @@ OUT = os.path.join(SRC, "w")
 # tier the homepage ships 1600px files into 300px boxes.
 WIDTHS = [1600, 800]
 QUALITY = 78
+# The logo is left alone: this script writes JPEGs, and a JPEG cannot hold
+# the transparency a logo needs.
 SKIP = ("icons.svg", "cutout-placeholder.svg")
+
+
+def is_logo(name):
+    """The logo is left alone whatever it is called: this script writes JPEGs,
+    and a JPEG cannot hold the transparency a logo needs."""
+    return "logo" in name.lower()
 
 
 def safe_stem(filename):
@@ -66,7 +74,7 @@ def main():
         path = os.path.join(SRC, name)
         if not os.path.isfile(path):
             continue
-        if name in SKIP or not name.lower().endswith((".jpg", ".jpeg", ".png")):
+        if name in SKIP or is_logo(name) or not name.lower().endswith((".jpg", ".jpeg", ".png")):
             continue
         if "shutterstock" in name.lower():          # excluded by policy
             continue

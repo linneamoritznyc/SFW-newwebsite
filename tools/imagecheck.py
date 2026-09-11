@@ -21,6 +21,7 @@ CSSURL = re.compile(r'url\((["\']?)([^)"\']+)\1\)')
 def pages():
     out = sorted(glob.glob(os.path.join(ROOT, "*.html")))
     out += sorted(glob.glob(os.path.join(ROOT, "projects", "*.html")))
+    out += sorted(glob.glob(os.path.join(ROOT, "news", "*.html")))
     return [p for p in out if not any(s in p for s in SKIP)]
 
 

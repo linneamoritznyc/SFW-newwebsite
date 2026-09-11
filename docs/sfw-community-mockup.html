@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Community, Soil Food Web Foundation (mockup)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green:#156826; --deep:#22371F; --light:#59A66C;
+    --cream:#F4F1EA; --brown:#4F3433; --gold:#C9A227; --blue:#3780B8;
+    --text:#333130; --line:#DCD6C8; --white:#fff;
+    --img:"https://sfw-newwebsite.vercel.app/img/w/";
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{margin:0;font-family:"Source Sans 3",system-ui,sans-serif;font-size:18px;line-height:1.55;color:var(--text);background:var(--white)}
+  h1,h2,h3{font-family:Montserrat,sans-serif;color:var(--brown);margin:0;line-height:1.12}
+  h1{font-size:clamp(2.2rem,5vw,3.6rem);font-weight:800;letter-spacing:-.01em}
+  h2{font-size:clamp(1.7rem,3vw,2.3rem);font-weight:700}
+  h3{font-size:1.25rem;font-weight:700}
+  a{color:var(--green)}
+  :focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+  .measure{max-width:62ch}
+  img{display:block;max-width:100%}
+
+  /* header */
+  .util{background:#231F1C;color:#fff;font-size:.8rem;font-weight:600}
+  .util .wrap{display:flex;justify-content:space-between;padding-top:7px;padding-bottom:7px}
+  .util nav{display:flex;gap:20px}
+  .util a{color:#fff;text-decoration:none}
+  .site{border-bottom:1px solid var(--line)}
+  .site .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:14px;padding-bottom:14px;gap:20px}
+  .brand{font-family:Montserrat;font-weight:700;color:var(--brown);font-size:1.3rem;text-decoration:none;line-height:1.1}
+  .brand small{display:block;font-family:"Source Sans 3";font-weight:400;font-size:.72rem;color:var(--text)}
+  .mainnav{display:flex;gap:22px;align-items:center;font-size:.9rem;font-weight:600}
+  .mainnav a{color:var(--text);text-decoration:none}
+  .mainnav a[aria-current]{color:var(--green);box-shadow:inset 0 -2px 0 var(--green)}
+  .btn{display:inline-block;font-family:Montserrat;font-weight:700;font-size:.9rem;padding:11px 18px;border-radius:4px;text-decoration:none;border:2px solid transparent;cursor:pointer;background:none}
+  .btn-gold{background:var(--gold);color:#231F1C}
+  .btn-green{background:var(--green);color:#fff}
+  .btn-line{border-color:currentColor;color:var(--green)}
+  .on-dark .btn-line{color:#fff}
+
+  /* intro + latest */
+  .intro{padding:56px 0 28px}
+  .intro p{font-size:1.2rem;margin:14px 0 0}
+  .intro .src{font-size:.82rem;color:#6b665f;margin-top:10px}
+  .latest{display:grid;grid-template-columns:7fr 5fr;margin-bottom:72px}
+  .latest figure{margin:0;min-height:420px;background:#ccc center/cover no-repeat}
+  .latest .panel{background:var(--deep);color:#fff;padding:40px 40px 36px;display:flex;flex-direction:column;justify-content:center}
+  .latest .when{font-family:Montserrat;font-weight:700;font-size:1rem;color:#cfe3d3}
+  .latest h2{color:#fff;margin:10px 0 14px;font-size:clamp(1.6rem,2.6vw,2.1rem)}
+  .latest p{margin:0 0 12px}
+  .latest .people{font-style:italic;color:#d8e6da}
+  .latest .row{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+
+  /* log */
+  .log{padding:72px 0 40px}
+  .filters{display:flex;flex-direction:column;gap:10px;margin:18px 0 6px}
+  .seg{display:flex;flex-wrap:wrap;gap:6px}
+  .seg button{font:600 .88rem "Source Sans 3";padding:7px 13px;border:1px solid #bdb5a4;background:#fff;color:var(--text);border-radius:999px;cursor:pointer}
+  .seg button[aria-pressed="true"]{background:var(--green);border-color:var(--green);color:#fff}
+  .loggrid{display:grid;grid-template-columns:1fr 300px;gap:56px}
+  .draftnote{font-size:.88rem;background:#FFF7DD;border-left:4px solid var(--gold);padding:10px 14px;margin:18px 0 8px}
+  .month{font-family:Montserrat;font-weight:700;font-size:1rem;color:var(--green);margin:44px 0 6px;padding-bottom:8px;border-bottom:2px solid var(--green)}
+  .post{display:grid;grid-template-columns:120px 1fr;gap:24px;padding:26px 0;border-bottom:1px solid var(--line);scroll-margin-top:24px}
+  .post.hl{background:linear-gradient(90deg,#E8F2EA,transparent 70%)}
+  .post .date{font-family:Montserrat}
+  .post .date .d{display:block;font-size:2.2rem;font-weight:800;color:var(--brown);line-height:1}
+  .post .date .m{font-size:.85rem;font-weight:700;color:var(--text)}
+  .post .place{font-weight:600;font-size:.92rem;color:var(--green);margin-bottom:6px}
+  .post h3{margin-bottom:8px}
+  .post p{margin:0 0 8px}
+  .post .people{font-style:italic;color:#5c574f;font-size:.95rem}
+  .pics{display:grid;gap:8px;margin:14px 0 12px}
+  .pics.two{grid-template-columns:1fr 1fr}
+  .pics.grid3{grid-template-columns:repeat(3,1fr)}
+  .pics figure{margin:0;position:relative}
+  .pics figcaption{font-size:.8rem;color:#6b665f;margin-top:4px}
+  .pics video{width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:3px;background:#000}
+  .pics .thumb{display:block;position:relative}
+  .pics .tag{position:absolute;left:6px;bottom:6px;background:rgba(35,31,28,.82);color:#fff;font-size:.72rem;font-weight:600;padding:2px 7px;border-radius:3px}
+  .gallerynote{font-size:.9rem;color:#6b665f;margin:0 0 10px}
+  .pics img{width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:3px}
+  .post .acts{display:flex;gap:18px;font-size:.92rem;font-weight:600}
+  .post .acts button{font:inherit;color:var(--green);background:none;border:0;padding:0;text-decoration:underline;cursor:pointer}
+  .check{font-size:.85rem;background:#FFF7DD;border-left:3px solid var(--gold);padding:6px 10px;margin:4px 0 10px}
+  .kind{font-size:.8rem;font-weight:600;color:#6b665f}
+  .empty{padding:30px 0;color:#6b665f}
+
+  aside h3{font-size:1.05rem;margin-bottom:12px}
+  .coming{background:var(--cream);padding:22px;border-radius:4px;margin-bottom:28px}
+  .coming ul{list-style:none;margin:0;padding:0}
+  .coming li{padding:10px 0;border-top:1px solid var(--line);font-size:.95rem}
+  .coming li:first-child{border-top:0;padding-top:0}
+  .coming .when{display:block;font-weight:600;color:var(--brown);font-size:.85rem}
+  .regions ul{list-style:none;margin:0;padding:0;font-size:.95rem}
+  .regions li{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--line)}
+  .regions li span{color:#6b665f;font-size:.85rem}
+
+  /* share */
+  .share{padding:64px 0;border-top:1px solid var(--line)}
+  .share .grid{display:grid;grid-template-columns:5fr 7fr;gap:56px;align-items:start}
+  .share p{margin:12px 0 0}
+  .fields{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .fields label{display:flex;flex-direction:column;font-weight:600;font-size:.9rem;gap:6px}
+  .fields .full{grid-column:1/-1}
+  .fields input,.fields textarea{font:400 1rem "Source Sans 3";padding:10px 12px;border:1px solid #bdb5a4;border-radius:4px;background:#fff}
+  .fields textarea{min-height:110px;resize:vertical}
+  .drop{border:2px dashed #bdb5a4;border-radius:4px;padding:18px;text-align:center;font-weight:400;color:#6b665f}
+  .fine{font-size:.85rem;color:#6b665f;margin-top:10px}
+
+  /* directory */
+  .work{background:var(--cream);padding:56px 0}
+  .work .grid{display:flex;justify-content:space-between;align-items:center;gap:40px;flex-wrap:wrap}
+  .work p{margin:12px 0 0}
+
+  /* join */
+  .join{background:var(--deep);color:#fff;padding:64px 0}
+  .join h2{color:#fff}
+  .join p{font-size:1.15rem;margin:14px 0 24px}
+
+  footer{background:#231F1C;color:#d9d4cc;font-size:.85rem;padding:36px 0}
+  footer a{color:#fff}
+
+  @media (max-width:900px){
+    .mainnav a:not(.btn){display:none}
+    .latest{grid-template-columns:1fr}
+    .latest figure{min-height:260px}
+    .latest .panel{padding:28px}
+    .loggrid,.share .grid{grid-template-columns:1fr;gap:36px}
+  }
+  @media (max-width:560px){
+    body{font-size:17px}
+    .util nav a:not(:last-child){display:none}
+    .post{grid-template-columns:1fr;gap:8px}
+    .post .date .d{display:inline;font-size:1.3rem;margin-right:6px}
+    .fields{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<div class="util"><div class="wrap">
+  <span>Join a global community of Soil Regenerators</span>
+  <nav><a href="#">Student login</a><a href="#">Subscribe to the newsletter</a><a href="#">Donate</a></nav>
+</div></div>
+<header class="site"><div class="wrap">
+  <a class="brand" href="#">Soil Food Web Foundation<small>A 501(c)(3) nonprofit</small></a>
+  <nav class="mainnav" aria-label="Main">
+    <a href="#">About us</a><a href="#">Learn</a><a href="#">Science</a><a href="#">Practice</a><a href="#" aria-current="page">Community</a>
+    <a class="btn btn-gold" href="#">Donate</a>
+  </nav>
+</div></header>
+
+<main id="main">
+  <section class="intro wrap">
+    <h1>We are Soil Regenerators</h1>
+    <p class="measure">Students, graduates, consultants, and lab-techs in more than 100 countries, on six continents. Here is what we have been doing, where, and when.</p>
+    <p class="src">Country count from enrollment records, confirmed August 2026.</p>
+  </section>
+
+  <section class="wrap" aria-label="Latest from the community">
+    <div class="latest" id="latest"></div>
+  </section>
+
+  <section class="log wrap" id="news">
+    <div class="loggrid">
+      <div>
+        <h2>News from the community</h2>
+        <div class="filters" id="filterbar">
+          <div class="seg" role="group" aria-label="Time" id="timeSeg">
+            <button data-t="month" aria-pressed="false">This month</button>
+            <button data-t="year" aria-pressed="false">This year</button>
+            <button data-t="all" aria-pressed="true">All time</button>
+          </div>
+          <div class="seg" role="group" aria-label="Type" id="kindSeg">
+            <button data-k="all" aria-pressed="true">Everything</button>
+            <button data-k="event" aria-pressed="false">Workshops and events</button>
+            <button data-k="hub" aria-pressed="false">Hubs</button>
+            <button data-k="grad" aria-pressed="false">Graduates</button>
+            <button data-k="case" aria-pressed="false">Case studies</button>
+          </div>
+        </div>
+        <p class="draftnote">Every post is drawn from soilfoodweb.com and links to its source.</p>
+        <div id="feed"></div>
+      </div>
+      <aside>
+        <div class="coming">
+          <h3>Coming up</h3>
+          <ul>
+            <li><span class="when">16 September to 20 December 2026</span><a href="#">Permaculture Design Certification cohort</a></li>
+            <li><span class="when">19 to 30 October 2026</span><a href="#">Accelerator Workshop India 2026, Coimbatore</a></li>
+            <li><span class="when">1 to 7 December 2026</span><a href="#">Soil Health Week Pakistan 2026</a></li>
+          </ul>
+        </div>
+        <div class="regions">
+          <h3>Community by region</h3>
+          <ul id="regions"></ul>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="share" id="share">
+    <div class="wrap grid">
+      <div>
+        <h2>Tell us what you did</h2>
+        <p>Ran a workshop, opened a lab, planted a field, looked at your first nematode? Send us the story and a few photos. We post it here.</p>
+        <p class="fine">The communications team reads every submission before it goes up.</p>
+      </div>
+      <div class="fields" role="group" aria-label="Share a story">
+        <label class="full">What happened<textarea placeholder="Two or three sentences. Who was there, what you did, what you saw."></textarea></label>
+        <label>Where<input type="text" placeholder="Town and country"></label>
+        <label>When<input type="text" placeholder="Date"></label>
+        <label>Names of people in the photos<input type="text" placeholder="With their permission"></label>
+        <label>Your email<input type="email"></label>
+        <label class="full">Photos or a short video<div class="drop">Drop files here or choose from your device</div></label>
+        <div class="full"><button class="btn btn-green" type="button">Send your story</button></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="work">
+    <div class="wrap grid">
+      <div class="measure">
+        <h2>Work with one of us</h2>
+        <p>Every consultant and lab-tech in our directory trained with us and earned their title. Consultants finished our full professional program. Lab-techs finished our microscopy training. Search by region or specialty.</p>
+      </div>
+      <a class="btn btn-green" href="#">Find a professional</a>
+    </div>
+  </section>
+
+  <section class="join on-dark" id="join">
+    <div class="wrap">
+      <h2>Join us</h2>
+      <p class="measure">Every one of us started with one course, one webinar, or one afternoon at a microscope.</p>
+      <a class="btn btn-green" href="#" style="background:#fff;color:var(--deep)">See every program and price</a>
+      <a class="btn btn-line" href="#">Start with a free webinar</a>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap">
+  Soil Food Web Foundation, a 501(c)(3) nonprofit organization, EIN 39-4439236. Soil Food Web School is a program of the Soil Food Web Foundation. <a href="#">Privacy</a> <a href="#">Terms</a> <a href="#">Accessibility</a>
+</div></footer>
+
+<script>
+const TODAY = new Date("2026-09-11");
+const COLORS = {event:"#156826", hub:"#4F3433", grad:"#59A66C", case:"#6B4C7A", upcoming:"#3780B8"};
+const KIND = {event:"Workshop or event", hub:"New hub", grad:"Graduates", case:"Case study"};
+
+const S = "https://sfw-newwebsite.vercel.app/img/w/";
+const W = "https://soilfoodweb.com/wp-content/uploads/";
+const OLD = "https://soilfoodweb.com/";
+const posts = [
+  {id:"wkh-2026", date:"2026-06-15", kind:"event", place:"Wild Ken Hill, Norfolk, England", region:"Europe", ll:[52.88,0.50],
+   title:"Accelerator Workshop at Wild Ken Hill",
+   body:"Our ten-day Accelerator Workshop ran from 15 to 26 June 2026 at Wild Ken Hill, a regenerative farm and rewilding estate on the Norfolk coast. All 25 places sold out.",
+   people:"Led by our Advanced Program mentors",
+   imgs:[[W+"2026/03/WKH-image.jpg","Fields and hedgerows at Wild Ken Hill, Norfolk"]],
+   gallery:{note:"39 photos and clips from the ten days, shot by Linnea. Files sit in the SFW Drive and need converting from HEIC and MOV before they go on the site.",
+     items:[
+       {type:"video", name:"IMG_1507.MOV", id:"1jFC4h9pP6fDOACMJCHEocuyt6xkqFDPK"},
+       {type:"photo", name:"IMG_1502.HEIC", id:"1gBC6yD5ggd8kcwwgpDoTBGCLXe_W54VJ"},
+       {type:"photo", name:"IMG_1501.HEIC", id:"1dpevta2LO0K1W2sgoyzKUJEjJYW7HNyC"},
+       {type:"photo", name:"IMG_1500.HEIC", id:"11ziZpD5PAGqLtfaIW_Bu-Bua2h7vVbu5"},
+       {type:"photo", name:"IMG_1499.HEIC", id:"15LDnt_b9lk1Eh_cORo04pvpNjJnuzE-w"},
+       {type:"photo", name:"IMG_1498.HEIC", id:"1I25JRpVor4Wc4NL2o3KIZj2lg4UDfMZO"},
+       {type:"photo", name:"IMG_1497.HEIC", id:"18bukCUdUu0zs958nFNvabOd3WFIl7CAR"},
+       {type:"photo", name:"IMG_1496.HEIC", id:"1d0mXiRcqHSP3gsls_OYo45wHJGa05z0H"},
+       {type:"photo", name:"IMG_1495.HEIC", id:"1oc9WehgVjeofyTquSVBaMTX56wiVm_b2"},
+       {type:"photo", name:"IMG_1494.HEIC", id:"1IBONhwUevOY03NZVU55qhQpnGe4lt2bL"},
+       {type:"photo", name:"IMG_1493.HEIC", id:"17pramGkApV6PeVrVQW6MO7rYug69O_8b"},
+       {type:"photo", name:"IMG_1492.HEIC", id:"1ml9F9vQNXq7LCMeeaqeQE6KH70gmrOp2"},
+       {type:"video", name:"IMG_1491.MOV", id:"1-gqRG0Ny5VdjKzIGBqeQvItQIVj4ulUK"},
+       {type:"video", name:"IMG_1490.MOV", id:"1b2blYbyvQmnxVMI63Czlw6eKbQdWFP9W"},
+       {type:"video", name:"IMG_1489.MOV", id:"1PqMjl-ZfPX5GDNf8HwvBw8v0vw-eDNZN"},
+       {type:"video", name:"IMG_1488.MOV", id:"1ZvJ4x_b9kHgS6iZP9LHw1zhfJUzTP30p"},
+       {type:"video", name:"IMG_1487.MOV", id:"1ttXC196okx52ZSuBp39VwmYYphNpmaBn"},
+       {type:"video", name:"IMG_1486.MOV", id:"1f0jh3AQAOflylrQ-h8znD9oKHUQyB-JC"},
+       {type:"video", name:"IMG_1485.MOV", id:"1bStJFrZpJbHwLLEYMIwpS4sfH2b4Mf-9"},
+       {type:"video", name:"IMG_1484.MOV", id:"1dq1B4oUyqWfJ8pGlvbwW0Lsvf-HRJV41"},
+       {type:"video", name:"IMG_1483.MOV", id:"1-GlOGb_udbSvDRh-011sJubbuqDItdSQ"},
+       {type:"video", name:"IMG_1482.MOV", id:"1jjFHESRKIIcl0QpLX8gzYf1Us8Nn6JGi"},
+       {type:"video", name:"IMG_1481.MOV", id:"1ZzGHPs5WM_I44Gr14nlNWwZxifh2EaLH"},
+       {type:"video", name:"IMG_1480.MOV", id:"1n0U42h_5FvEDSUqhSZMkaRlupuKMpL9T"},
+       {type:"video", name:"IMG_1477.MOV", id:"1hBbmt3eJfhDn6c1q2E2pjDqLZB2BWxt1"},
+       {type:"video", name:"IMG_1471.MOV", id:"1o90UuBbpnI-y12QCvtVwjVBDVm7ugGBC"},
+       {type:"video", name:"IMG_1470.MOV", id:"17SVpG9ldQFuYBykFo-1_iZcL_z8_bL0J"},
+       {type:"video", name:"IMG_1469.MOV", id:"1r_KS3R_hhzA9oM5urPNvP2cPf5r061GP"},
+       {type:"video", name:"IMG_1468.MOV", id:"1FrV8gjGCoI7F3zo9xijfjnNJGADe-fqN"},
+       {type:"video", name:"IMG_1467.MOV", id:"160n1bzLI3-UQUPBK30NDyII1sXYamNiT"},
+       {type:"video", name:"IMG_1466.MOV", id:"1lUuZDTNuMjO6GXN_8wQdxRAlMPZwxGIg"},
+       {type:"video", name:"IMG_1465.MOV", id:"1U_bvEmGi6ezDcJ1XYheociD_jK6S1xSG"},
+       {type:"video", name:"IMG_1464.MOV", id:"1eMgaCWjZrq8ICL0GAB6HjC_QEt_1Bn5r"},
+       {type:"video", name:"IMG_1463.MOV", id:"1xHGtBqWinjmLs7e_v4tiS4qqwiNuVilM"},
+       {type:"video", name:"IMG_1462.MOV", id:"1ZnfGmP-nuXTFVzoNq6l6SGskd_nyj5US"},
+       {type:"video", name:"copy_ECACF001.mov", id:"1nIBbQnfj7Ae4xqbf469f-nOtx2b9vSGF"},
+       {type:"video", name:"copy_DD3F9842.mov", id:"12_ZHkNgJ_nhayB94hnapzqqwsAw5aWna"},
+       {type:"video", name:"copy_21936AB2.mov", id:"1DcEu7IhorvfpmkuwurdkZ8fRFeYF5wOg"}
+     ]},
+   src:OLD+"jun2026-aw/"},
+  {id:"pdc-2026", date:"2026-04-13", kind:"event", place:"Online", region:null, ll:null,
+   title:"Our first Permaculture Design Certification cohort begins",
+   body:"The school launched its first Permaculture Design Certification course. The next cohort starts on 16 September 2026.",
+   people:"", imgs:[], src:OLD+"soil-food-web-school-first-permaculture-design-certificate-course/"},
+  {id:"living-legacy", date:"2025-11-03", kind:"event", place:"Online", region:null, ll:null,
+   title:"A Living Legacy: four webinars in honour of Dr. Elaine",
+   body:"Longtime students of Dr. Elaine shared how her research shaped their own work, in a free four-part webinar series.",
+   people:"With Daniel Tyrkiel and Adam Swann, Todd Harrington, Celine Basset, Nick Tomasini, Vivian Kaloxilos, and Jo Tobias",
+   imgs:[[W+"2025/11/Daniel-Tyrkiel-adam-swam-Presentation-1024x576.png","Daniel Tyrkiel and Adam Swann presenting in the webinar series"]],
+   src:OLD+"2025-in-review-a-time-of-transition-honoring-our-founder-and-guiding-spirit-building-stronger-community-and-preparing-for-a-bright-future/"},
+  {id:"pakistan-2025", date:"2025-09-22", kind:"event", place:"Karachi and Sindh, Pakistan", region:"Asia", ll:[24.93,67.12],
+   title:"Soil Health Week in Karachi and Sindh",
+   body:"Certified consultant Nick Padwick of Wild Soils UK and the TrashIt team ran six days of talks, farm visits, and compost demonstrations for more than 600 people from 60 districts. They taught at Karachi University, Habib University, and Sindh Agriculture University, and hosted the first Farmers' Baithak at Rahuki Farms in Hyderabad, with growers from seven districts. TrashIt's founders studied with us on scholarship, and TrashIt has since opened a soil microbiology lab.",
+   people:"With Nick Padwick and the TrashIt team",
+   imgs:[[W+"2025/10/Screenshot-2025-10-22-211009.png","Nick Padwick teaching soil biology at Karachi University"],[W+"2025/10/Screenshot-2025-10-22-212600.jpg","Soil Health Week 2025 in Pakistan"]],
+   src:OLD+"soil-health-week-2025-wild-soils-uk-and-trashit-bring-the-soil-food-web-approach-to-pakistan/"},
+  {id:"guardian-2025", date:"2025-08-29", kind:"grad", place:"United Kingdom", region:"Europe", ll:[54.0,-2.0],
+   title:"Nick Padwick and Daniel Tyrkiel in The Guardian",
+   body:"The Guardian featured mentor Nick Padwick, who now grows wheat in a biologically healthy system for a premium market, and graduate Daniel Tyrkiel, who runs microbiology field trials with University of Manchester researcher Dr. Janice Lake.",
+   people:"", imgs:[],
+   href:"https://www.theguardian.com/environment/2025/aug/29/down-and-dirty-how-regenerative-farming-is-digging-into-microscopic-soil-life", link:"Read the article",
+   src:OLD+"2025-in-review-a-time-of-transition-honoring-our-founder-and-guiding-spirit-building-stronger-community-and-preparing-for-a-bright-future/"},
+  {id:"uk-2025", date:"2025-06-15", kind:"event", place:"Nick Padwick's farm, England", region:"Europe", mo:true, ll:[52.6,-1.4],
+   title:"Our June workshop on Nick Padwick's farm",
+   body:"Mentor Nick Padwick hosted our June workshop on the regenerative farm he runs in the UK. One student, Melita Coggins, called it a life changing experience.",
+   people:"With mentor Nick Padwick", imgs:[],
+   src:OLD+"2025-in-review-a-time-of-transition-honoring-our-founder-and-guiding-spirit-building-stronger-community-and-preparing-for-a-bright-future/"},
+  {id:"costa-rica-2025", date:"2025-03-15", kind:"event", place:"Costa Rica", region:"Latin America", mo:true, ll:[9.93,-84.08],
+   title:"Workshop in Costa Rica",
+   body:"Mentor Gerald Ramirez showed students how to make biological liquid amendments, and students and mentors spent long sessions at the microscope together.",
+   people:"With mentor Gerald Ramirez",
+   imgs:[[W+"2025/12/2025-year-in-review-Gerald-300x213.jpg","Mentor Gerald Ramirez demonstrating liquid amendments in Costa Rica"],[W+"2025/12/2025-year-in-review-microscopy-300x225.jpg","Students and mentors at microscopes in Costa Rica"]],
+   src:OLD+"2025-in-review-a-time-of-transition-honoring-our-founder-and-guiding-spirit-building-stronger-community-and-preparing-for-a-bright-future/"},
+  {id:"grads-2024", date:"2024-12-23", kind:"grad", place:"Online", region:null, ll:null,
+   title:"Our 2024 graduates",
+   body:"107 people became certified lab-techs in 2024, and 28 finished our consultant and grower programs. We also certified our 50th consultant this year.",
+   people:"Congratulations to Alex Yakaumo, Anton de Jager, Declan Ramsay, Kent Holle, Kevin Chee, Leslie Lewis, Nick Padwick, Robbin Pott, Vera Dorzhinova, Dora Taklec, Stefan Nieuwenhuijsen, Nathalie Sequeira, Arved Meinzer, Joshua Stone, Mario Villamiel, Wes Sanders, Niels de Jong, Wendy Mickle, Kyle Babcock, Jeroen Boss, Nicolas Rondeau, Reinhard Leeb, Jana Paskova, Julian Ravenscroft, Mary Beerman, Dorota Romanowski, Bianca Lech, and Richard Oosthuysen",
+   imgs:[], src:OLD+"beneath-the-surface-a-soil-food-web-school-newsletter/"},
+  {id:"cr-2024", date:"2024-07-15", kind:"event", place:"Costa Rica", region:"Latin America", mo:true, ll:[9.75,-84.2],
+   title:"Compost workshop in Costa Rica",
+   body:"Students from our consultant and grower programs came together for a hands-on workshop on making biologically complete compost.",
+   people:"",
+   imgs:[],
+   src:OLD+"beneath-the-surface-a-soil-food-web-school-newsletter/"},
+  {id:"mexico-2024", date:"2024-02-15", kind:"event", place:"Mexico", region:"Latin America", mo:true, ll:[23.6,-102.5],
+   title:"Workshop in Mexico with Ecosystem Restoration Camps",
+   body:"We ran a workshop in Mexico together with Ecosystem Restoration Camps.",
+   people:"",
+   imgs:[],
+   src:OLD+"beneath-the-surface-a-soil-food-web-school-newsletter/"}
+];
+const upcoming = [
+  {title:"Accelerator Workshop India 2026", place:"Coimbatore, India", when:"19 to 30 October 2026", ll:[11.02,76.96]},
+  {title:"Soil Health Week Pakistan 2026", place:"Pakistan", when:"1 to 7 December 2026", ll:[25.40,68.37]}
+];
+
+posts.sort((a,b)=>b.date.localeCompare(a.date));
+const fmt = (d,o)=>new Date(d).toLocaleDateString("en-GB",o);
+let state = {t:"all", k:"all"};
+
+function inTime(p){
+  const d = new Date(p.date);
+  if(state.t==="month") return d.getFullYear()===TODAY.getFullYear() && d.getMonth()===TODAY.getMonth();
+  if(state.t==="year") return d.getFullYear()===TODAY.getFullYear();
+  return true;
+}
+const visible = ()=>posts.filter(p=>inTime(p) && (state.k==="all"||p.kind===state.k));
+
+/* latest */
+(function(){
+  const p = posts.find(x=>x.imgs.length);
+  document.getElementById("latest").innerHTML = `
+    <figure role="img" aria-label="${p.imgs[0][1]}" style="background-image:url('${p.imgs[0][0]}')"></figure>
+    <div class="panel">
+      <div class="when">${fmt(p.date,{day:"numeric",month:"long",year:"numeric"})}, ${p.place}</div>
+      <h2>${p.title}</h2>
+      <p>${p.body}</p>
+      <p class="people">${p.people}</p>
+      <div class="row on-dark">
+        <a class="btn btn-line" href="#${p.id}">Read more</a>
+        <a class="btn btn-line" href="#news">All news</a>
+      </div>
+    </div>`;
+})();
+
+/* regions */
+(function(){
+  const r = {};
+  posts.forEach(p=>{ if(!p.region) return; if(!r[p.region]||p.date>r[p.region]) r[p.region]=p.date; });
+  document.getElementById("regions").innerHTML = Object.entries(r).sort((a,b)=>b[1].localeCompare(a[1]))
+    .map(([n,d])=>`<li><a href="#">${n}</a><span>Latest ${fmt(d,{month:"short",year:"numeric"})}</span></li>`).join("");
+})();
+
+function gal(g){
+  return `<p class="gallerynote">${g.note}</p><div class="pics grid3">` +
+    g.items.map(it=>`<figure><a class="thumb" href="https://drive.google.com/file/d/${it.id}/view" target="_blank" rel="noopener"><img loading="lazy" src="https://drive.google.com/thumbnail?id=${it.id}&sz=w600" alt="${it.type==="video"?"Video":"Photo"} from the Wild Ken Hill workshop, ${it.name}"><span class="tag">${it.type==="video"?"Video":"Photo"}</span></a></figure>`).join("") +
+    `</div>`;
+}
+
+/* feed */
+function render(){
+  const list = visible();
+  const feed = document.getElementById("feed");
+  if(!list.length){ feed.innerHTML = `<p class="empty">Nothing here for this filter yet. Try All time, or <a href="#share">tell us what you did</a>.</p>`; return; }
+  let html = "", lastMonth = "";
+  list.forEach(p=>{
+    const m = fmt(p.date,{month:"long",year:"numeric"});
+    if(m!==lastMonth){ html += `<div class="month">${m}</div>`; lastMonth = m; }
+    const pics = p.imgs.length ? `<div class="pics ${p.imgs.length>1?"two":""}">${p.imgs.map(i=>`<img loading="lazy" src="${i[0]}" alt="${i[1]}"${i[2]?` onerror="this.onerror=null;this.src='${i[2]}'"`:""}>`).join("")}</div>` : "";
+    html += `<article class="post" id="${p.id}">
+      <div class="date">${p.mo?`<span class="m">${fmt(p.date,{month:"long",year:"numeric"})}</span>`:`<span class="d">${new Date(p.date).getDate()}</span><span class="m">${fmt(p.date,{month:"short",year:"numeric"})}</span>`}</div>
+      <div>
+        <div class="place">${p.place}</div>
+        <h3>${p.title}</h3>
+        ${pics}
+        <p>${p.body}</p>
+        ${p.gallery?gal(p.gallery):""}
+        ${p.people?`<p class="people">${p.people}</p>`:""}
+        ${p.check?`<p class="check">To confirm: ${p.check}</p>`:""}
+        <div class="acts">
+          <span class="kind">${KIND[p.kind]}</span>
+          ${p.link?`<a href="${p.href||"#"}">${p.link}</a>`:""}
+          ${p.src?`<a href="${p.src}" target="_blank" rel="noopener">Source</a>`:""}
+        </div>
+      </div>
+    </article>`;
+  });
+  feed.innerHTML = html;
+}
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+function syncSeg(){
+  document.querySelectorAll("#timeSeg button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.t===state.t));
+  document.querySelectorAll("#kindSeg button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.k===state.k));
+}
+document.getElementById("timeSeg").onclick=e=>{ if(e.target.dataset.t){ state.t=e.target.dataset.t; syncSeg(); render(); } };
+document.getElementById("kindSeg").onclick=e=>{ if(e.target.dataset.k){ state.k=e.target.dataset.k; syncSeg(); render(); } };
+render();
+</script>
+</body>
+</html>

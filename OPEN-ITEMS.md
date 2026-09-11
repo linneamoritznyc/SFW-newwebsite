@@ -2,7 +2,7 @@
 
 Everything the site still shows as a visible placeholder, with the person who supplies it.
 
-Last updated 11 September 2026. Placeholders render as dashed `.todo` blocks; add `?notes=1` to any page URL to reveal every one of them at once.
+Last updated 11 September 2026 (Community rebuild and the Wild Ken Hill story added the same day). Placeholders render as dashed `.todo` blocks; add `?notes=1` to any page URL to reveal every one of them at once.
 
 A placeholder leaves this list only when the real thing is in the repository. "Confirmed in a document" is not the same as "on the page".
 
@@ -48,6 +48,28 @@ A placeholder leaves this list only when the real thing is in the repository. "C
 | A restoration-segment case study | practice.html | Three agricultural and practitioner films are in. The restoration case is missing, and the section claims all three segments. |
 | The written detail behind each case study | practice.html | Where each grower started, what they practiced, what was measured. The films carry the story; the page carries no numbers. |
 
+## Waiting on Evan, the volunteer page
+
+`volunteer.html`, built 11 September 2026 from the volunteer mockup. The page is complete and
+every placeholder below is visible with `?notes=1`. Production briefs for the photography and
+video are in `docs/volunteer-visuals.md`.
+
+| What | Where | Note |
+| :-- | :-- | :-- |
+| **"More than half of our students live in the United States"** | volunteer.html, the statement | The headline sentence of the page and the reason the page exists. Not verified against enrolment records. Confirm the figure or change the sentence before publishing. |
+| **The three "Open right now" openings** | volunteer.html, Open right now | Dates, places and hours all come from the mockup and are invented. Replace with real openings, or take the section down. This list wants feeding from the same dated index the calendar uses. |
+| **The three volunteer quotes, names and portraits** | volunteer.html, From the people doing it | Nobody said these words. Three real quotes gathered with permission, with a name, a region and a portrait each, or cut the section. |
+| **The five FAQ answers** | volunteer.html, Questions people ask first | Drafts. The last one promises a starter guide and direct contact with staff; confirm both exist. |
+| **Volunteer form routing** | volunteer.html, Join the volunteer network | Posts to info@soilfoodweb.com like the contact form, which opens the visitor's mail client rather than really submitting. Confirm the recipient, who owns the replies, and whether a form service is wanted. Same open question as the contact form. |
+| **"We confirm your hours when your employer asks"** | volunteer.html, Volunteer as a team | A commitment to US employers' giving portals. Confirm the Foundation will do it, and who. The tax note beside it is general and is not tax advice; legal review. |
+| **Team day link** | volunteer.html, Plan a team day | The mockup pointed at `/contact?topic=team-volunteering`. The contact form has no topic parameter, so the button goes to the contact page. Add the parameter or leave it. |
+| **Which animation "Watch the animation" means** | volunteer.html, Start in the next ten minutes | The mockup linked to nothing. It points at the science page, which carries the animations. Confirm, or give the exact URL. |
+| **Every photograph and caption on the page** | volunteer.html, 20 slots | The hero holds five stand-ins from the Foundation's own library, labelled as stand-ins; none of them shows a volunteer volunteering. Everything else is an empty labelled slot. Briefs and formats: `docs/volunteer-visuals.md`. |
+| **Instagram wall permissions** | volunteer.html, On Instagram | Six squares, waiting on written permission from each poster. A feed widget was deliberately not used: it is a third-party script on every page load and it cannot ask permission. |
+| **Openly licensed stand-ins were not fetched** | `img/pd/` does not exist | This build environment's egress proxy refuses commons.wikimedia.org, nrcs.usda.gov and archive.org, all with 403. `tools/pd-assets.py --fetch` does the work and records source, author and licence for every file; run it from a machine with normal internet access. |
+
+---
+
 ## Waiting on the Foundation
 
 | What | Where | Note |
@@ -82,10 +104,56 @@ These four are on the Thinkific CDN. They could not be downloaded from the build
 
 ---
 
+## Waiting on Linnea, for Community and the Wild Ken Hill story
+
+| What | Where | Note |
+| :-- | :-- | :-- |
+| **The Wild Ken Hill photographs and clips** | `news/wild-ken-hill-2026.html` | Six photographs and four clips, at the filenames listed in `public/assets/community/README.md`. The clips are masked into circles, so the subject has to be centred and the corners are cut away. Every clip needs a poster with the same base name. The 39 files in the SFW Drive are still HEIC and MOV and need converting first. `python3 tools/imagecheck.py` lists what is still missing. |
+| **The five community log photographs** | `community.html` | `living-legacy-webinar`, `soil-health-week-karachi-university`, `soil-health-week-pakistan`, `costa-rica-liquid-amendments`, `costa-rica-microscopes`. The mockup hot-linked these from soilfoodweb.com/wp-content/uploads; they are referenced from `public/assets/community/img/` so the new site does not depend on the old one staying up. Copy the originals across. |
+| **Alt text and captions on the story** | `news/wild-ken-hill-2026.html` | Written from the story rather than from the footage, because the footage was not available when the page was built. Read every alt attribute against the picture it now describes once the files land. Captions are marked caption-needed and print nothing until written. |
+
+## Decisions on the Community rebuild
+
+Two places where the approved mockup and the copy in `docs/wild-ken-hill-2026-blog-post.md`
+run against a rule in `CLAUDE.md`. Both were built the mockup's way, since the
+mockup is the approved design and is the later document, and are listed here so
+they can be settled rather than left to drift.
+
+**"certified" is settled.** Linnea said do not write it, 11 September 2026, and
+the three uses in the community log are gone: "Certified consultant Nick
+Padwick" is now "Consultant Nick Padwick", "107 people became certified
+lab-techs" is "107 people earned the lab-tech title", and "we also certified our
+50th consultant" is "Our 50th consultant finished the program". One use is left
+on the site, in `about-team.html`, inside the 32 imported biographies. Those are
+people's own words and are already on this list to be rewritten with their
+subjects.
+
+| What | Where | The conflict |
+| :-- | :-- | :-- |
+| **The course link on the story** | `news/wild-ken-hill-2026.html` | The approved copy points "See every program and price" at `soilfoodweb.com/sfw-courses-overview/`. The rule is that programs link to `learn.html` and to school.soilfoodweb.com, never to the old WordPress site, so it points at `learn.html`. Confirm, or name the page it should be. |
+| **Cream as a box, not a band** | `community.html`, "Coming up", "Community by region" and "Work with one of us" | The mockup gives the sidebar boxes and the directory band a full cream background. `site.css` says Organic Cream is a shape, never the page, so the sidebar boxes are cream boxes and the directory band is a cream box inside a white band rather than a cream stripe across the window. Same colour, one step short of the mockup. |
+
+## Two smaller notes on the Community rebuild
+
+- **An empty slot is invisible to a visitor.** Both pages went live before the
+  photographs and clips arrived, so a file that is not there yet takes its slot
+  with it: the figure is removed and the list around it goes too, and the page
+  reads as finished rather than as a building site. The one exception is the
+  feature block at the top of Community, where the photograph's half stays as a
+  cream field beside the green panel. Add `?notes=1` to either URL and every
+  empty slot comes back as a dashed box carrying the description of what belongs
+  in it, which is how every other placeholder on this site is read. Drop the real
+  files into `public/assets/community/` and they appear; nothing else changes.
+- **The Google Drive gallery is gone.** The mockup listed 39 Drive links under the Wild Ken Hill post, still in HEIC and MOV. Those files belong on the story page, converted and hosted here, so the post links to the story instead and the conversion note is a placeholder rather than public text.
+- **The map.** The mockup replaces the community map with the "Community by region" list, and the overlay menu on every page still links to `community.html#community-map`. That anchor now lands on the regions list, which carries the note saying the interactive map is still to come. If the map is not coming back, the menu label should change from "Community map" to something the list actually answers to.
+
+---
+
 ## Settled since the last pass
 
 | What | Answer | Source |
 | :-- | :-- | :-- |
+| **The YouTube channel** | `youtube.com/@soilfoodwebschool`. In use on volunteer.html. | Linnea, 11 September 2026. Note: copy deck 6.3 carries a different address for the same channel, `youtube.com/channel/UCSAU5ludwNyqMHBaR1ZfheQ`. Confirm the two resolve to one channel before the webinars page links to either. |
 | **Decision 11, Kavi Reddy's title** | Growth, Partnerships, and Permaculture | Public staff page |
 | **Decision 12, India workshop dates** | 19 to 30 October 2026. Accelerator Workshop India 2026, Save Soil Farm near the Isha Yoga Center, Coimbatore, Tamil Nadu, in collaboration with Isha Outreach. | The live enrollment page, school.soilfoodweb.com/courses/india-workshop-2026 |
 | **Decision 17, the two India events** | One event, not two. The copy deck's "Asia-Pacific Workshop, October 2027" was the same workshop with the wrong year. | Same |

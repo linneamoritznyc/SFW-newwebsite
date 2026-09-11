@@ -44,9 +44,9 @@
     ],
     "source": "The practitioners' own films, from the Foundation's Vimeo library.",
     "status": "placeholder",
-    "note": "Three of the launch cases are here. Still open: a restoration-segment case, and the written detail behind each film, where they started, what they practiced and what was measured. Evan and Stephanie. Acreage figures the old site printed beside these names are left out under the claims rule.",
+    "note": "All eleven films from the Consultant and Farmer Case Studies playlists are here, in content/videos.json. Still open: a restoration-segment case, and the written detail behind each film, where they started, what they practiced and what was measured. Evan and Stephanie. The place and scale beside each name are quoted from the Foundation's own playlist pages, not asserted here; anything the old pages did not print is not shown.",
     "more": {
-      "note": "Also filmed and available for later cards: Adam York, Illinois (792733797 / e809b1fad3); Jenn Sirp, California (812188293 / 6ed8f0fbef); Brian Vagg, Auburn, California (380296081 / 4da9889266); Keisha and Casey, Nevada City, California (380297602 / 7a71e6701c); Todd Harrington, Bloomfield, Connecticut (470279480 / 103139eeb8)."
+      "note": "The other fifteen videos are in content/videos.json too, under Testimonials, Implementing and Meet the Family, and all six How It Works animations now have their private hash. Nothing is wired to a page yet except these eleven."
     }
   },
   "app": {

@@ -47,6 +47,11 @@
   <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15M14 7l5 5-5 5"/></symbol>
   <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v13M7 11l5 5 5-5M4 21h16"/></symbol>
   <symbol id="i-external" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 13v7H4V6h7"/></symbol>
+  <symbol id="i-translate" viewBox="0 0 24 24"><path d="M3 6h7.5M6.75 4v2M4.6 6c.5 3.6 2.4 6.2 5.4 7.8M8.9 6c-.5 3.2-2.2 5.8-4.9 7.4"/><path d="M12.6 20.5 16.6 11l4 9.5M14 18h5.2"/></symbol>
+  <symbol id="i-camera" viewBox="0 0 24 24"><path d="M3 8.5h4l1.6-2.5h6.8L17 8.5h4v11H3z"/><circle cx="12" cy="13.8" r="3.6"/><path d="M18.4 10.6h.01"/></symbol>
+  <symbol id="i-table" viewBox="0 0 24 24"><path d="M2.5 10.5h19v2.6h-19zM5.2 13.1V20M18.8 13.1V20"/><path d="M8.4 10.5V8.2h3.4v2.3M14 10.5c0-1.4.8-2.2.8-3.4"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20.6c-3.4-2.2-7.4-5.2-7.4-9.4A3.9 3.9 0 0 1 12 9.1a3.9 3.9 0 0 1 7.4 2.1c0 4.2-4 7.2-7.4 9.4z"/><path d="M12 9.1V5.4M12 5.4c-1.4 0-2.2-.7-2.6-2 1.7 0 2.4.7 2.6 2zM12 6.6c1.4 0 2.2-.7 2.6-2-1.7 0-2.4.7-2.6 2z"/></symbol>
+  <symbol id="i-question" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.6a2.6 2.6 0 0 1 5.1.7c0 1.7-2.5 2.2-2.5 3.9M12 17.3v.4"/></symbol>
 </svg>
 
 <!-- ============ UTILITY BAR + HEADER (every page) ============ -->
@@ -57,8 +62,8 @@
   </div>
 </div>
 <header class="site-header">
-  <div class="wrap">
-    <a class="wordmark" href="index.html"><span class="wordmark__name">Soil Food Web Foundation</span><span class="wordmark__status">A 501(c)(3) nonprofit</span></a>
+  <div class="wrap wrap--logo">
+    <a class="wordmark wordmark--image" href="index.html"><img class="wordmark__logo" src="img/sfwlogo-240.png" alt="Soil Food Web Foundation" decoding="async"><span class="wordmark__name">Soil Food Web Foundation</span><span class="wordmark__status">A 501(c)(3) nonprofit</span></a>
     <ul class="site-header__links"><li><a href="about.html">About us</a></li><li><a href="learn.html">Learn</a></li><li><a href="science.html">Science</a></li><li><a href="practice.html">Practice</a></li><li><a href="community.html">Community</a></li></ul>
     <a class="btn btn--donate" href="donate.html">Donate</a>
     <button class="menu-btn" type="button" data-menu-open aria-controls="overlay" aria-expanded="false">
@@ -70,7 +75,7 @@
 <div class="overlay" id="overlay" data-open="false" role="dialog" aria-modal="true" aria-label="Site menu">
   <div class="wrap">
     <div class="overlay__top">
-      <span class="wordmark"><span class="wordmark__name">Soil Food Web Foundation</span><span class="wordmark__status">A 501(c)(3) nonprofit</span></span>
+      <span class="wordmark wordmark--image"><img class="wordmark__logo" src="img/sfwlogo-240.png" alt="Soil Food Web Foundation" decoding="async"><span class="wordmark__name">Soil Food Web Foundation</span><span class="wordmark__status">A 501(c)(3) nonprofit</span></span>
       <button class="menu-btn" type="button" data-menu-close>
         <svg class="icon" aria-hidden="true"><use href="#i-close"/></svg>Close
       </button>
@@ -143,6 +148,7 @@
                 <li><a href="news.html">News and stories</a></li>
                 <li><a href="calendar.html">Calendar of events</a></li>
                 <li><a href="community.html#join">Join the community</a></li>
+                <li><a href="volunteer.html">Volunteer with us</a></li>
               </ul>
             </div></div>
           </li>
@@ -307,7 +313,7 @@
   <div class="wrap">
     <div class="grid">
       <div class="span-4">
-        <span class="wordmark"><span class="wordmark__name">Soil Food Web Foundation</span><span class="wordmark__status">A 501(c)(3) nonprofit</span></span>
+        <span class="wordmark wordmark--image"><img class="wordmark__logo" src="img/sfwlogo-240.png" alt="Soil Food Web Foundation" decoding="async"><span class="wordmark__name">Soil Food Web Foundation</span><span class="wordmark__status">A 501(c)(3) nonprofit</span></span>
         <p class="footer__tag">Healing soil. Feeding humanity. Restoring the living world.</p>
         <form class="footer__news" action="#" method="post" aria-label="Newsletter">
           <label for="footer-email" class="visually-hidden">Email address</label>
@@ -351,7 +357,7 @@
         <h2 id="f-3">Get involved</h2>
         <ul>
           <li><a href="donate.html">Donate</a></li>
-          <li><a href="donate.html#volunteer">Volunteer with us</a></li>
+          <li><a href="volunteer.html">Volunteer with us</a></li>
           <li><a href="contact.html#speak">Invite us to speak</a></li>
           <li><a href="directory.html">Find a professional</a></li>
           <li><a href="contact.html#logo">Logo and name use</a></li>

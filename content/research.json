@@ -1,57 +1,14 @@
 {
   "_source": "SFWF Website Copy Deck v1.0, section 12. Copy verbatim.",
-  "_publications": "Rebuilt entry by entry against the publisher records by Linnea Moritz, 11 September 2026, from the Foundation's publications import sheet. summary lines are not written yet; corrections sheet lists the 49 places the list differs from the old page.",
+  "_publications": "Structure, section order and entry numbering follow the Foundation's publications document. Entry data follows the import sheet, which carries the verified corrections; the five internet-article links come from the document, which kept them where the sheet left them empty.",
   "database": {
-    "h2": "The database",
+    "h2": "Publications",
     "lede": "Everything Dr. Ingham published, verified against its source and linked. Corrections welcome at info@soilfoodweb.com.",
     "ledeMailto": "mailto:info@soilfoodweb.com?subject=Publications%20correction",
     "scholar": {
       "label": "Dr. Ingham on Google Scholar",
       "href": "https://scholar.google.com/citations?user=iOm3z4AAAAAJ"
     },
-    "collections": [
-      {
-        "slug": "elaine",
-        "label": "Dr. Elaine’s publications",
-        "count": 89
-      },
-      {
-        "slug": "field",
-        "label": "Soil food web science",
-        "count": 43
-      },
-      {
-        "slug": "internet",
-        "label": "Internet articles",
-        "count": 5
-      }
-    ],
-    "decades": [
-      {
-        "slug": "2020s",
-        "label": "2020s"
-      },
-      {
-        "slug": "2010s",
-        "label": "2010s"
-      },
-      {
-        "slug": "2000s",
-        "label": "2000s"
-      },
-      {
-        "slug": "1990s",
-        "label": "1990s"
-      },
-      {
-        "slug": "1980s",
-        "label": "1980s"
-      },
-      {
-        "slug": "pre1980",
-        "label": "Before 1980"
-      }
-    ],
     "notes": [
       "plain-language one-line summaries for each entry, nobody has written them yet. Linnea.",
       "55 entries have no source link. Links or PDFs where they exist. Linnea and Evan.",
@@ -59,1450 +16,1225 @@
       "the Klebsiella planticola entry merges two entries from the old page and has a public controversy history. Attribution under review. Evan and Alex.",
       "the corrections sheet (49 places the new list differs from the old page, each with its reason) is not published anywhere yet. Decide whether it goes on this page. Linnea."
     ],
-    "listNote": "Entries without a link are listed by citation. No stable online source has been found for them.",
-    "listSource": "the publisher records, checked September 2026",
-    "entries": [
-      {
-        "title": "Predatory earwigs are attracted by herbivore-induced plant volatiles linked with plant growth-promoting rhizobacteria",
-        "collection": "internet",
-        "type": "Internet article",
-        "decade": "2020s",
-        "datetime": "2021-09-24",
-        "dated": "24 September 2021"
-      },
-      {
-        "title": "Fungal-bacterial diversity and microbiome complexity predict ecosystem functioning",
-        "collection": "field",
-        "type": "Journal article",
-        "decade": "2010s",
-        "datetime": "2019",
-        "dated": "2019",
-        "authors": "Wagg, C., K. Schlaeppi, S. Banerjee, E.E. Kuramae and M.G.A. van der Heijden",
-        "citation": "Nature Communications, 10:4841",
-        "url": "https://doi.org/10.1038/s41467-019-12798-y"
-      },
-      {
-        "title": "Biocontrol activity of endophytic fungus of barley, Microdochium bolleyi, against Gaeumannomyces graminis var. tritici",
-        "collection": "field",
-        "type": "Journal article",
-        "decade": "2010s",
-        "datetime": "2018",
-        "dated": "2018",
-        "authors": "Shadmani, L., S. Jamali and A. Fatemi",
-        "citation": "Mycologia Iranica, 5(1):7-14",
-        "url": "https://doi.org/10.22043/mi.2019.118205"
-      },
-      {
-        "title": "Overview of engineering problems of soil compaction and their effects on growth and yields of crops",
-        "collection": "field",
-        "type": "Journal article",
-        "decade": "2010s",
-        "datetime": "2018",
-        "dated": "2018",
-        "authors": "Odey, S.",
-        "citation": "Journal of Advances in Engineering and Technology, 5(9):701-709"
-      },
-      {
-        "title": "Compost could be worth double or triple of current price only if…",
-        "collection": "internet",
-        "type": "Internet article",
-        "decade": "2010s",
-        "datetime": "2018-09-18",
-        "dated": "18 September 2018"
-      },
-      {
-        "title": "Case study: Comparison of milk composition from adjacent organic and conventional farms in the USA",
-        "collection": "elaine",
-        "type": "Journal article",
-        "decade": "2010s",
-        "datetime": "2016",
-        "dated": "2016",
-        "authors": "Tunick, M.H., D.L. Van Hekken, M. Paul, E.R. Ingham and H.J. Karreman",
-        "citation": "International Journal of Dairy Technology, 69(1):137-142",
-        "url": "https://doi.org/10.1111/1471-0307.12284"
-      },
-      {
-        "title": "Differences in milk characteristics between a cow herd transitioning to organic versus milk from a conventional dairy herd",
-        "collection": "elaine",
-        "type": "Journal article",
-        "decade": "2010s",
-        "datetime": "2015",
-        "dated": "2015",
-        "authors": "Tunick, M.H., M. Paul, E.R. Ingham, H.J. Karreman and D.L. Van Hekken",
-        "citation": "International Journal of Dairy Technology, 68(4):511-518",
-        "url": "https://doi.org/10.1111/1471-0307.12255"
-      },
-      {
-        "title": "Altered carbon delivery from roots: rapid, sustained inhibition of border cell dispersal in response to compost water extracts",
-        "collection": "field",
-        "type": "Journal article",
-        "decade": "2010s",
-        "datetime": "2015",
-        "dated": "2015",
-        "authors": "Tollefson, S.J., G. Curlango-Rivera, D.A. Huskey, T. Pew, G. Giacomelli and M.C. Hawes",
-        "citation": "Plant and Soil, 389(1-2):145-156",
-        "url": "https://doi.org/10.1007/s11104-014-2350-z"
-      },
-      {
-        "title": "Carbon sequestration: The climate change solution that virtually all climate activists ignore",
-        "collection": "internet",
-        "type": "Internet article",
-        "decade": "2010s",
-        "datetime": "2015-02-03",
-        "dated": "3 February 2015"
-      },
-      {
-        "title": "Researchers propose ecological route to plant disease control",
-        "collection": "internet",
-        "type": "Internet article",
-        "decade": "2010s",
-        "datetime": "2015-09-24",
-        "dated": "24 September 2015"
-      },
-      {
-        "title": "Comparison of seasonal soil microbial process in snow-covered temperate ecosystems of Northern China",
-        "collection": "field",
-        "type": "Journal article",
-        "decade": "2010s",
-        "datetime": "2014",
-        "dated": "2014",
-        "authors": "Zhang, X., W. Wang, W. Chen, N. Zhang and H. Zeng",
-        "citation": "PLoS ONE, 9(3):e92985",
-        "url": "https://doi.org/10.1371/journal.pone.0092985"
-      },
-      {
-        "title": "Using aerated compost tea in comparison with a chemical pesticide for controlling rose powdery mildew",
-        "collection": "field",
-        "type": "Journal article",
-        "decade": "2010s",
-        "datetime": "2014",
-        "dated": "2014",
-        "authors": "Seddigh, S., L. Kiani, B. Tafaghodinia and B. Hashemi",
-        "citation": "Archives of Phytopathology and Plant Protection, 47(6):658-664",
-        "url": "https://doi.org/10.1080/03235408.2013.817075"
-      },
-      {
-        "title": "Winter soil CO2 flux from different mid-latitude sites from Middle Taihang Mountain in North China",
-        "collection": "field",
-        "type": "Journal article",
-        "decade": "2010s",
-        "datetime": "2014",
-        "dated": "2014",
-        "authors": "Shen, H., J. Cao, W. Zhang, X. Zeng and H. Wang",
-        "citation": "PLoS ONE, 9(3):e91589",
-        "url": "https://doi.org/10.1371/journal.pone.0091589"
-      },
-      {
-        "title": "Characters of compost teas from different sources and their suppressive effect on fungal phytopathogens",
-        "collection": "field",
-        "type": "Journal article",
-        "decade": "2010s",
-        "datetime": "2013",
-        "dated": "2013",
-        "authors": "Marín, F., M. Santos, F. Diánez, F. Carretero, F.J. Gea, J.A. Yau and M.J. Navarro",
-        "citation": "World Journal of Microbiology and Biotechnology, 29(8):1371-1382",
-        "url": "https://doi.org/10.1007/s11274-013-1300-x"
-      },
-      {
-        "title": "Influence of the nitrogen form on in vitro organogenesis in Equisetum arvense",
-        "collection": "field",
-        "type": "Journal article",
-        "decade": "2010s",
-        "datetime": "2013",
-        "dated": "2013",
-        "authors": "Nakatani, K. and Y. Fujii",
-        "citation": "Weed Biology and Management, 13(4):151-155"
-      },
-      {
-        "title": "Non-growing season soil CO2 efflux and its changes in an alpine meadow ecosystem of the Qilian Mountains, Northwest China",
-        "collection": "field",
-        "type": "Journal article",
-        "decade": "2010s",
-        "datetime": "2013",
-        "dated": "2013",
-        "authors": "Chang, Z.Q., X.Q. Liu, Q. Feng, Z.X. Che, H.Y. Xi, Y.H. Su and J.H. Si",
-        "citation": "Journal of Arid Land, 5(4):488-499",
-        "url": "https://doi.org/10.1007/s40333-013-0179-6"
-      },
-      {
-        "title": "Study finds fungi, not plant matter, responsible for most carbon sequestration in northern forests",
-        "collection": "internet",
-        "type": "Internet article",
-        "decade": "2010s",
-        "datetime": "2013-03-19",
-        "dated": "19 March 2013"
-      },
-      {
-        "title": "Biochemical properties of compost tea associated with compost quality and effects on pak choi growth",
-        "collection": "field",
-        "type": "Journal article",
-        "decade": "2010s",
-        "datetime": "2012",
-        "dated": "2012",
-        "authors": "Pant, A.P., T.J.K. Radovich, N.V. Hue and R.E. Paull",
-        "citation": "Scientia Horticulturae, 148:138-146",
-        "url": "https://www.sciencedirect.com/science/article/pii/S0304423812004542"
-      },
-      {
-        "title": "Compost and compost tea: Principles and prospects as substrates and soil-borne disease management strategies in soil-less vegetable production",
-        "collection": "field",
-        "type": "Journal article",
-        "decade": "2010s",
-        "datetime": "2012",
-        "dated": "2012",
-        "authors": "St. Martin, C.C.G. and R.A.I. Brathwaite",
-        "citation": "Biological Agriculture & Horticulture, 28(1):1-33"
-      },
-      {
-        "title": "Effects and relationships of compost type, aeration and brewing time on compost tea properties, efficacy against Pythium ultimum, phytotoxicity and potential as a nutrient amendment for seedling production",
-        "collection": "field",
-        "type": "Journal article",
-        "decade": "2010s",
-        "datetime": "2012",
-        "dated": "2012",
-        "authors": "St. Martin, C.C.G., W. Dorinvil, R.A.I. Brathwaite and A. Ramsubhag",
-        "citation": "Biological Agriculture & Horticulture, 28(3):185-205",
-        "url": "https://doi.org/10.1080/01448765.2012.727667"
-      },
-      {
-        "title": "Humic-like substances from different compost extracts could significantly promote cucumber growth",
-        "collection": "field",
-        "type": "Journal article",
-        "decade": "2010s",
-        "datetime": "2012",
-        "dated": "2012",
-        "authors": "Xu, D., Q. Wang, Y. Wu, G. Yu, Q. Shen and Q. Huang",
-        "citation": "Pedosphere, 22(6):815-824",
-        "url": "https://doi.org/10.1016/S1002-0160(12)60067-8"
-      },
-      {
-        "title": "In vitro and in vivo evaluation of microbial-enriched compost tea on the development of powdery mildew on melon",
-        "collection": "field",
-        "type": "Journal article",
-        "decade": "2010s",
-        "datetime": "2012",
-        "dated": "2012",
-        "authors": "Naidu, Y., S. Meon and Y. Siddiqui",
-        "citation": "BioControl, 57(6):827-836",
-        "url": "https://doi.org/10.1007/s10526-012-9454-2"
-      },
-      {
-        "title": "Microbiological community analysis of vermicompost tea and its influence on the growth of vegetables and cereals",
-        "collection": "field",
-        "type": "Journal article",
-        "decade": "2010s",
-        "datetime": "2012",
-        "dated": "2012",
-        "authors": "Fritz, J.I., I.H. Franke-Whittle, S. Haindl, H. Insam and R. Braun",
-        "citation": "Canadian Journal of Microbiology, 58(7):836-847",
-        "url": "https://doi.org/10.1139/w2012-061"
-      },
-      {
-        "title": "Evidence for nitrogen-fixation in the Salicaceae family",
-        "collection": "field",
-        "type": "Magazine article",
-        "decade": "2010s",
-        "datetime": "2011",
-        "dated": "2011",
-        "authors": "von Wuehlisch, G.",
-        "citation": "Tree Planters’ Notes, 54(2):38-41"
-      },
-      {
-        "title": "Phytotoxicity analysis of extracts from compost and their ability to inhibit soil-borne pathogenic fungi and reduce root-knot nematodes",
-        "collection": "field",
-        "type": "Journal article",
-        "decade": "2010s",
-        "datetime": "2011",
-        "dated": "2011",
-        "authors": "Xu, D., W. Raza, G. Yu, Q. Zhao, Q. Shen and Q. Huang",
-        "citation": "World Journal of Microbiology and Biotechnology, 28(3):1193-1201",
-        "url": "https://doi.org/10.1007/s11274-011-0922-0"
-      },
-      {
-        "title": "Soil life in reconstructed ecosystems: initial soil food web responses after rebuilding a forest soil profile for a climate change experiment",
-        "collection": "elaine",
-        "type": "Journal article",
-        "decade": "2010s",
-        "datetime": "2010",
-        "dated": "2010",
-        "authors": "Rygiewicz, P.T., V.J. Monleon, E.R. Ingham, K.J. Martin and M.G. Johnson",
-        "citation": "Applied Soil Ecology, 45(1):26-38",
-        "url": "https://www.sciencedirect.com/science/article/abs/pii/S0929139310000119"
-      },
-      {
-        "title": "Biocontrol activity and induction of systemic resistance in pepper by compost water extracts against Phytophthora capsici",
-        "collection": "field",
-        "type": "Journal article",
-        "decade": "2010s",
-        "datetime": "2010",
-        "dated": "2010",
-        "authors": "Sang, M.K., J.G. Kim and K.D. Kim",
-        "citation": "Phytopathology, 100:774-783",
-        "url": "https://doi.org/10.1094/PHYTO-100-8-0774"
-      },
-      {
-        "title": "Bio-potential of compost tea from agro-waste to suppress Choanephora cucurbitarum L. the causal pathogen of wet rot of okra",
-        "collection": "field",
-        "type": "Journal article",
-        "decade": "2000s",
-        "datetime": "2009",
-        "dated": "2009",
-        "authors": "Siddiqui, Y., S. Meon, R. Ismail and M. Rahmani",
-        "citation": "Biological Control, 49:38-44",
-        "url": "https://doi.org/10.1016/j.biocontrol.2008.11.008"
-      },
-      {
-        "title": "Control of powdery mildew (Erysiphe polygoni) in tomato by foliar applications of compost tea",
-        "collection": "field",
-        "type": "Journal article",
-        "decade": "2000s",
-        "datetime": "2009",
-        "dated": "2009",
-        "authors": "Segarra, G., M. Reis, E. Casanova and M.I. Trillas",
-        "citation": "Journal of Plant Pathology, 91:683-689"
-      },
-      {
-        "title": "Potential application of compost teas of agricultural wastes in the control of the mushroom pathogen Verticillium fungicola",
-        "collection": "field",
-        "type": "Journal article",
-        "decade": "2000s",
-        "datetime": "2009",
-        "dated": "2009",
-        "authors": "Gea, F.J., M.J. Navarro and J.C. Tello",
-        "citation": "Journal of Plant Diseases and Protection, 116:271-273",
-        "url": "https://doi.org/10.1007/BF03356322"
-      },
-      {
-        "title": "Vermicompost extracts influence growth, mineral nutrients, phytonutrients and antioxidant activity in pak choi (Brassica rapa cv. Bonsai, Chinensis group) grown under vermicompost and chemical fertiliser",
-        "collection": "field",
-        "type": "Journal article",
-        "decade": "2000s",
-        "datetime": "2009",
-        "dated": "2009",
-        "authors": "Pant, A.P., T.J.K. Radovich, N.V. Hue, S.T. Talcott and K.A. Krenek",
-        "citation": "Journal of the Science of Food and Agriculture, 89(14):2383-2392",
-        "url": "https://doi.org/10.1002/jsfa.3732"
-      },
-      {
-        "title": "A comparison of soil food webs beneath C3- and C4-dominated grasslands",
-        "collection": "elaine",
-        "type": "Journal article",
-        "decade": "2000s",
-        "datetime": "2008",
-        "dated": "2008",
-        "authors": "Dornbush, M., C. Cambardella, E. Ingham and J. Raich",
-        "citation": "Biology and Fertility of Soils, 45(1):73-81",
-        "url": "https://doi.org/10.1007/s00374-008-0312-4"
-      },
-      {
-        "title": "Aerobic compost tea, compost and a combination of both reduce the severity of common scab (Streptomyces scabiei) on potato tubers",
-        "collection": "field",
-        "type": "Journal article",
-        "decade": "2000s",
-        "datetime": "2008",
-        "dated": "2008",
-        "authors": "Al-Mughrabi, K.I., C. Berthélémé, T. Livingston, A. Burgoyne, R. Poirier and A. Vikram",
-        "citation": "Journal of Plant Sciences, 3:168-175",
-        "url": "https://doi.org/10.3923/jps.2008.168.175"
-      },
-      {
-        "title": "Chitin signaling in plants: Insights into the perception of fungal pathogens and rhizobacterial symbionts",
-        "collection": "field",
-        "type": "Journal article",
-        "decade": "2000s",
-        "datetime": "2008",
-        "dated": "2008",
-        "authors": "Eckardt, N.A.",
-        "citation": "The Plant Cell, 20:241-243",
-        "url": "https://doi.org/10.1105/tpc.108.058784"
-      },
-      {
-        "title": "Effect of bacterial isolates obtained from animal manure compost extracts on the development of Fusarium oxysporum f. sp. radicis-lycopersici",
-        "collection": "field",
-        "type": "Journal article",
-        "decade": "2000s",
-        "datetime": "2008",
-        "dated": "2008",
-        "authors": "Kerkeni, A., M. Daami-Remadi, N. Tarchoun and M.B. Khedher",
-        "citation": "Asian Journal of Plant Pathology, 2(1):15-23",
-        "url": "https://doi.org/10.3923/ajppaj.2008.15.23"
-      },
-      {
-        "title": "In vitro studies on control of soil-borne plant pathogens by earthworm Eudrilus eugeniae exudates",
-        "collection": "field",
-        "type": "Journal article",
-        "decade": "2000s",
-        "datetime": "2008",
-        "dated": "2008",
-        "authors": "Shobha, S.V. and R.D. Kale",
-        "citation": "Journal citation not verified"
-      },
-      {
-        "title": "Relative effects of biological amendments and crop rotations on soil microbial communities and soilborne diseases of potato",
-        "collection": "field",
-        "type": "Journal article",
-        "decade": "2000s",
-        "datetime": "2008",
-        "dated": "2008",
-        "authors": "Larkin, R.P.",
-        "citation": "Soil Biology and Biochemistry, 40(6):1341-1351",
-        "url": "https://www.sciencedirect.com/science/article/abs/pii/S0038071707001101"
-      },
-      {
-        "title": "Suppression of Phytophthora infestans in potatoes by foliar application of food nutrients and compost tea",
-        "collection": "field",
-        "type": "Journal article",
-        "decade": "2000s",
-        "datetime": "2007",
-        "dated": "2007",
-        "authors": "Al-Mughrabi, K.I.",
-        "citation": "Australian Journal of Basic and Applied Sciences, 1(4):785-792"
-      },
-      {
-        "title": "Foliar spraying of vermicompost extracts: effects on fruit quality and indications of late-blight suppression of field-grown tomatoes",
-        "collection": "field",
-        "type": "Journal article",
-        "decade": "2000s",
-        "datetime": "2006",
-        "dated": "2006",
-        "authors": "Zaller, J.G.",
-        "citation": "Biological Agriculture & Horticulture, 24(2):165-180",
-        "url": "https://orgprints.org/id/eprint/10450/"
-      },
-      {
-        "title": "In vitro and in vivo evaluation of individually compost fungi for potato fusarium dry rot biocontrol",
-        "collection": "field",
-        "type": "Journal article",
-        "decade": "2000s",
-        "datetime": "2006",
-        "dated": "2006",
-        "authors": "Daami-Remadi, M., H. Jabnoun-Khiareddine, F. Ayed, K. Hibar, I.E.A. Znaidi and M. El Mahjoub",
-        "citation": "Journal of Biological Sciences, 6(3):572-580",
-        "url": "https://doi.org/10.3923/jbs.2006.572.580"
-      },
-      {
-        "title": "Comparison of soil biota between organic and conventional agroecosystems in Oregon, USA",
-        "collection": "elaine",
-        "type": "Journal article",
-        "decade": "2000s",
-        "datetime": "2005",
-        "dated": "2005",
-        "authors": "Ingham, E.R.",
-        "citation": "Pedosphere, 15(3):395-403"
-      },
-      {
-        "title": "Bioremediation potential of spirulina: toxicity and biosorption studies of lead",
-        "collection": "field",
-        "type": "Journal article",
-        "decade": "2000s",
-        "datetime": "2005",
-        "dated": "2005",
-        "authors": "Chen, H. and S. Pan",
-        "citation": "Journal of Zhejiang University SCIENCE, 6B(3):171-174",
-        "url": "https://doi.org/10.1631/jzus.2005.B0171"
-      },
-      {
-        "title": "Uptake of lead by a ciliate, Stylonychia mytilus, isolated from industrial effluents: Potential use in bioremediation of wastewater",
-        "collection": "field",
-        "type": "Journal article",
-        "decade": "2000s",
-        "datetime": "2005",
-        "dated": "2005",
-        "authors": "Rehman, A., S. Ashraf, J.I. Qazi and A.R. Shakoori",
-        "citation": "Bulletin of Environmental Contamination and Toxicology, 75(2):290-296",
-        "url": "https://doi.org/10.1007/s00128-005-0751-7"
-      },
-      {
-        "title": "Effects of compost amended container media on ornamental plant growth",
-        "collection": "elaine",
-        "type": "Journal article",
-        "decade": "2000s",
-        "datetime": "2004",
-        "dated": "2004",
-        "authors": "Highland, M.T.F., D.C. Sclar, E.R. Ingham, K.L. Gartley and J.E. Swasey",
-        "citation": "HortScience, 39(4):750C-750"
-      },
-      {
-        "title": "The soil foodweb: Its role in ecosystem health",
-        "collection": "elaine",
-        "type": "Book chapter",
-        "decade": "2000s",
-        "datetime": "2004",
-        "dated": "2004",
-        "authors": "Ingham, E.R.",
-        "citation": "The Overstory Book: Cultivating Connections with Trees, 62"
-      },
-      {
-        "title": "The soil foodweb: soil and composts as living ecosystems",
-        "collection": "elaine",
-        "type": "Conference proceedings",
-        "decade": "2000s",
-        "datetime": "2004",
-        "dated": "2004",
-        "authors": "Ingham, E.R. and M.D. Slaughter",
-        "citation": "First International Conference Soil and Compost Eco-Biology, León, Spain"
-      },
-      {
-        "title": "Compost tea as a container medium drench for suppressing seedling damping-off caused by Pythium ultimum",
-        "collection": "field",
-        "type": "Journal article",
-        "decade": "2000s",
-        "datetime": "2004",
-        "dated": "2004",
-        "authors": "Scheuerell, S.J. and W.F. Mahaffee",
-        "citation": "Phytopathology, 94(11):1156-1163",
-        "url": "https://doi.org/10.1094/PHYTO.2004.94.11.1156"
-      },
-      {
-        "title": "Microbial growth under the snow: Implications for nutrient and allelochemical availability in temperate soils",
-        "collection": "field",
-        "type": "Journal article",
-        "decade": "2000s",
-        "datetime": "2004",
-        "dated": "2004",
-        "authors": "Schmidt, S.K. and D.A. Lipson",
-        "citation": "Plant and Soil, 259(1-2):1-7"
-      },
-      {
-        "title": "Top-down is bottom-up: Does predation in the rhizosphere regulate aboveground dynamics?",
-        "collection": "field",
-        "type": "Journal article",
-        "decade": "2000s",
-        "datetime": "2003",
-        "dated": "2003",
-        "authors": "Moore, J.C., K. McCann, H. Setälä and P.C. de Ruiter",
-        "citation": "Ecology, 84(4):846-857",
-        "url": "https://doi.org/10.1890/0012-9658(2003)084[0846:TIBDPI]2.0.CO;2"
-      },
-      {
-        "title": "Effect of cover crops and tillage system on symphylan (Symphyla: Scutigerella immaculata, Newport) and Pergamasus quisquiliarum Canestrini (Acari: Mesostigmata) populations",
-        "collection": "elaine",
-        "type": "Journal article",
-        "decade": "2000s",
-        "datetime": "2002",
-        "dated": "2002",
-        "authors": "Peachey, R.E., A. Moldenke, R.D. William, R. Berry, E. Ingham and E. Groth",
-        "citation": "Applied Soil Ecology, 21(1):59-70",
-        "url": "https://doi.org/10.1016/S0929-1393(02)00039-2"
-      },
-      {
-        "title": "Wildlife and the remediation of contaminated soils: Extending the analysis of ecological risks to habitat restoration",
-        "collection": "elaine",
-        "type": "Book chapter",
-        "decade": "2000s",
-        "datetime": "2002",
-        "dated": "2002",
-        "authors": "Linder, G., G. Henderson and E. Ingham",
-        "citation": "Handbook of Ecotoxicology, 191-214"
-      },
-      {
-        "title": "In situ and in vitro suppressive effect of agricultural composts and their water extracts on some phytopathogenic fungi",
-        "collection": "field",
-        "type": "Journal article",
-        "decade": "2000s",
-        "datetime": "2002",
-        "dated": "2002",
-        "authors": "El-Masry, M.H., A.I. Khalil, M.S. Hassouna and H.A.H. Ibrahim",
-        "citation": "World Journal of Microbiology and Biotechnology, 18:551-558",
-        "url": "https://doi.org/10.1023/A:1016302729218"
-      },
-      {
-        "title": "Micronized compost and microbial life in compost",
-        "collection": "elaine",
-        "type": "Magazine article",
-        "decade": "2000s",
-        "datetime": "2001",
-        "dated": "2001",
-        "authors": "Ingham, E.R.",
-        "citation": "BioCycle, 42(7):58"
-      },
-      {
-        "title": "Brewing compost tea",
-        "collection": "elaine",
-        "type": "Magazine article",
-        "decade": "2000s",
-        "datetime": "2000",
-        "dated": "2000",
-        "authors": "Ingham, E.R.",
-        "citation": "Kitchen Gardener, 29:16-19"
-      },
-      {
-        "title": "The Compost Tea Brewing Manual",
-        "collection": "elaine",
-        "type": "Book",
-        "decade": "2000s",
-        "datetime": "2000",
-        "dated": "2000",
-        "authors": "Ingham, E.R.",
-        "citation": "Sustainable Studies Institute, Eugene, OR. 60 pp.",
-        "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=iOm3z4AAAAAJ&citation_for_view=iOm3z4AAAAAJ:HoB7MX3m0LUC"
-      },
-      {
-        "title": "The functional roles of forest soil arthropods: The soil is a lively place",
-        "collection": "elaine",
-        "type": "Conference proceedings",
-        "decade": "2000s",
-        "datetime": "2000",
-        "dated": "2000",
-        "authors": "Moldenke, A., M. Pajutee and E. Ingham",
-        "citation": "Proceedings of the California Forest Soils Council Conference on Forest Soils Biology and Forest Management. USDA Forest Service, Pacific Southwest Research Station, Gen. Tech. Rep. PSW-GTR-178, pages 7-22"
-      },
-      {
-        "title": "Compost tea, Part I & II",
-        "collection": "elaine",
-        "type": "Magazine article",
-        "decade": "1990s",
-        "datetime": "1999",
-        "dated": "1999",
-        "authors": "Ingham, E.",
-        "citation": "BioCycle, 40:74-75"
-      },
-      {
-        "title": "Dynamics of soil fungal and bacterial biomass in a temperate climate alley cropping system",
-        "collection": "elaine",
-        "type": "Journal article",
-        "decade": "1990s",
-        "datetime": "1999",
-        "dated": "1999",
-        "authors": "Seiter, S., E.R. Ingham and R.D. William",
-        "citation": "Appl. Soil Ecol., 12(2):139-147",
-        "url": "https://doi.org/10.1016/S0929-1393(98)00163-2"
-      },
-      {
-        "title": "Effects of Klebsiella planticola SDF20 on soil biota and wheat growth in sandy soil",
-        "collection": "elaine",
-        "type": "Journal article",
-        "decade": "1990s",
-        "datetime": "1999",
-        "dated": "1999",
-        "authors": "Holmes, M.T., E.R. Ingham, J.D. Doyle and C.W. Hendricks",
-        "citation": "Appl. Soil Ecol., 11:67-78",
-        "url": "https://doi.org/10.1016/S0929-1393(98)00129-2"
-      },
-      {
-        "title": "Soil biology and ecology",
-        "collection": "elaine",
-        "type": "Book chapter",
-        "decade": "1990s",
-        "datetime": "1999",
-        "dated": "1999",
-        "authors": "Rygiewicz, P.T. and E.R. Ingham",
-        "citation": "Environmental Geology, 564-568"
-      },
-      {
-        "title": "The Compost Tea Handbook 1.1",
-        "collection": "elaine",
-        "type": "Book",
-        "decade": "1990s",
-        "datetime": "1999",
-        "dated": "1999",
-        "authors": "Ingham, E.R. and M. Alms",
-        "citation": "Self-published"
-      },
-      {
-        "title": "The mycorrhizal colonization of six wetland plant species at sites differing in land use history",
-        "collection": "elaine",
-        "type": "Journal article",
-        "decade": "1990s",
-        "datetime": "1999",
-        "dated": "1999",
-        "authors": "Ingham, E.R. and M.V. Wilson",
-        "citation": "Mycorrhiza, 9(4):233-235",
-        "url": "https://doi.org/10.1007/s005720050272"
-      },
-      {
-        "title": "The Soil Biology Primer, Chapters 1-5: The Soil Foodweb; Soil Bacteria; Soil Fungi; Soil Protozoa; Soil Nematodes",
-        "collection": "elaine",
-        "type": "USDA publication",
-        "decade": "1990s",
-        "datetime": "1999",
-        "dated": "1999",
-        "authors": "Ingham, E.R.",
-        "citation": "NRCS Soil Quality Institute, USDA",
-        "url": "https://www.nrcs.usda.gov/resources/education-and-teaching-materials/soil-biology-primer"
-      },
-      {
-        "title": "Heavy metals bioremediation of soil",
-        "collection": "field",
-        "type": "Journal article",
-        "decade": "1990s",
-        "datetime": "1999",
-        "dated": "1999",
-        "authors": "Diels, L., M. De Smet, L. Hooyberghs and P. Corbisier",
-        "citation": "Molecular Biotechnology, 12(2):149-158",
-        "url": "https://doi.org/10.1385/MB:12:2:149"
-      },
-      {
-        "title": "Ectomycorrhizae establishment on Douglas-fir seedlings following chloropicrin treatment to control laminated-root rot disease: Assessment 4 and 5 years after outplanting",
-        "collection": "elaine",
-        "type": "Journal article",
-        "decade": "1990s",
-        "datetime": "1998",
-        "dated": "1998",
-        "authors": "Massicotte, H.B., L.E. Tackaberry, E.R. Ingham and W.G. Thies",
-        "citation": "Appl. Soil Ecol., 10:117-126",
-        "url": "https://www.sciencedirect.com/science/article/pii/S092913939800033X"
-      },
-      {
-        "title": "Foodweb methodology to assess ecological effects of anthropogenic stressors in soil",
-        "collection": "elaine",
-        "type": "Journal article",
-        "decade": "1990s",
-        "datetime": "1998",
-        "dated": "1998",
-        "authors": "Hendricks, C.W., M.T. Holmes and E.R. Ingham",
-        "citation": "Trends in Soil Science, 2:181-189"
-      },
-      {
-        "title": "Soil organisms and their role in healthy turf",
-        "collection": "elaine",
-        "type": "Magazine article",
-        "decade": "1990s",
-        "datetime": "1998",
-        "dated": "1998",
-        "authors": "Ingham, E.R.",
-        "citation": "Turf Grass Trends, 7:1-6"
-      },
-      {
-        "title": "Soil view: Anaerobic bacteria and compost tea",
-        "collection": "elaine",
-        "type": "Magazine article",
-        "decade": "1990s",
-        "datetime": "1998",
-        "dated": "1998",
-        "authors": "Ingham, E.R.",
-        "citation": "BioCycle, 39(6):86"
-      },
-      {
-        "title": "Sustainable agriculture and the ecology of soil",
-        "collection": "elaine",
-        "type": "Journal article",
-        "decade": "1990s",
-        "datetime": "1998",
-        "dated": "1998",
-        "authors": "Ingham, E.R. and J. Barlow",
-        "citation": "Perspectives on Business and Global Change, 12:31-42"
-      },
-      {
-        "title": "Compost and compost water extract-induced systemic acquired resistance in cucumber and Arabidopsis",
-        "collection": "field",
-        "type": "Journal article",
-        "decade": "1990s",
-        "datetime": "1998",
-        "dated": "1998",
-        "authors": "Zhang, W., D.Y. Han, W.A. Dick, K.R. Davis and H.A.J. Hoitink",
-        "citation": "Phytopathology, 88(5):450-455",
-        "url": "https://doi.org/10.1094/PHYTO.1998.88.5.450"
-      },
-      {
-        "title": "Trophic relationships in the soil microfood-web: Predicting the responses to a changing global environment",
-        "collection": "field",
-        "type": "Journal article",
-        "decade": "1990s",
-        "datetime": "1998",
-        "dated": "1998",
-        "authors": "Wardle, D.A., H.A. Verhoef and M. Clarholm",
-        "citation": "Global Change Biology, 4(7):713-727",
-        "url": "https://doi.org/10.1046/j.1365-2486.1998.00206.x"
-      },
-      {
-        "title": "Changes in rhizosphere microflora and microfauna 10 years following Douglas-fir live tree injection with chloropicrin or methylisothiocyanate",
-        "collection": "elaine",
-        "type": "Journal article",
-        "decade": "1990s",
-        "datetime": "1997",
-        "dated": "1997",
-        "authors": "Ingham, E.R. and W. Thies",
-        "citation": "Can. J. For. Res., 27:724-731",
-        "url": "https://doi.org/10.1139/x97-051"
-      },
-      {
-        "title": "Chemistry and microbial activity of forest and pasture riparian-zone soils along three Pacific Northwest streams",
-        "collection": "elaine",
-        "type": "Journal article",
-        "decade": "1990s",
-        "datetime": "1997",
-        "dated": "1997",
-        "authors": "Griffiths, R.P., J.A. Entry, E.R. Ingham and W.H. Emmingham",
-        "citation": "Plant and Soil, 190:169-178",
-        "url": "https://doi.org/10.1023/A:1004211121095"
-      },
-      {
-        "title": "Conventional and organic alternatives to methyl bromide on California strawberries: Effect of Brassica residues and spent mushroom compost following successive chemical fumigation",
-        "collection": "elaine",
-        "type": "Journal article",
-        "decade": "1990s",
-        "datetime": "1997",
-        "dated": "1997",
-        "authors": "Sances, F.V. and E.R. Ingham",
-        "citation": "Compost Science and Utilization, 5:23-37",
-        "url": "https://doi.org/10.1080/1065657X.1997.10701871"
-      },
-      {
-        "title": "Soil biology and ecology",
-        "collection": "elaine",
-        "type": "Book chapter",
-        "decade": "1990s",
-        "datetime": "1997",
-        "dated": "1997",
-        "authors": "Rygiewicz, P.T. and E.R. Ingham",
-        "citation": "In Fairbridge, R.W. and D.E. Alexander (eds), Encyclopedia of Environmental Science. Van Nostrand Reinhold, NY"
-      },
-      {
-        "title": "Soil foodweb structure and function in forests: A comparison of conifer, deciduous, riparian and managed forests",
-        "collection": "elaine",
-        "type": "Conference proceedings",
-        "decade": "1990s",
-        "datetime": "1997",
-        "dated": "1997",
-        "authors": "Ingham, E.R.",
-        "citation": "Proceedings of the IUFRO Interdisciplinary Uneven-aged Management Symposium"
-      },
-      {
-        "title": "Soil microbiology",
-        "collection": "elaine",
-        "type": "Book chapter",
-        "decade": "1990s",
-        "datetime": "1997",
-        "dated": "1997",
-        "authors": "Ingham, E.R.",
-        "citation": "In Sylvia, D. and P. Hartel (eds), Soil Microbiology: Environmental and Agricultural Perspectives. Oxford University Press"
-      },
-      {
-        "title": "Foundations of bio-diversity in managed Douglas-fir forests",
-        "collection": "elaine",
-        "type": "Conference proceedings",
-        "decade": "1990s",
-        "datetime": "1996",
-        "dated": "1996",
-        "authors": "Carey, A.B., D.R. Thysell, L.J. Villa, T.M. Wilson, S.M. Wilson, J.M. Trappe, W. Colgan, E.R. Ingham and M. Holmes",
-        "citation": "In: Peterson, D.L. and C.V. Klimas (eds), The role of restoration in the ecosystem. Proceedings of the 2nd Symposium for Ecological Restoration. Madison, WI: Society for Ecological Restoration, 68-82"
-      },
-      {
-        "title": "Responses of soil foodweb organisms in the first year following clearcutting and application of chloropicrin to control laminated root rot",
-        "collection": "elaine",
-        "type": "Journal article",
-        "decade": "1990s",
-        "datetime": "1996",
-        "dated": "1996",
-        "authors": "Ingham, E.R. and W.G. Thies",
-        "citation": "Applied Soil Ecol., 3:35-47",
-        "url": "https://doi.org/10.1016/0929-1393(95)00075-5"
-      },
-      {
-        "title": "Assessing interactions between the soil foodweb and a strain of Pseudomonas putida genetically engineered to degrade 2,4-D",
-        "collection": "elaine",
-        "type": "Journal article",
-        "decade": "1990s",
-        "datetime": "1995",
-        "dated": "1995",
-        "authors": "Ingham, E.R., J.D. Doyle and C.W. Hendricks",
-        "citation": "Applied Soil Ecology, 2:263-274"
-      },
-      {
-        "title": "Biosafety regulation",
-        "collection": "elaine",
-        "type": "Technical report",
-        "decade": "1990s",
-        "datetime": "1995",
-        "dated": "1995",
-        "authors": "Ingham, E.R.",
-        "citation": "Edmonds Institute, Edmonds, WA"
-      },
-      {
-        "title": "Biosafety regulations: A critique of existing documents",
-        "collection": "elaine",
-        "type": "Technical report",
-        "decade": "1990s",
-        "datetime": "1995",
-        "dated": "1995",
-        "authors": "Ingham, E.R. and M. Holmes",
-        "citation": "The Edmonds Institute, Edmonds, WA"
-      },
-      {
-        "title": "Microflora and microfauna on stems and trunks: Diversity, food webs and effects on plants",
-        "collection": "elaine",
-        "type": "Book chapter",
-        "decade": "1990s",
-        "datetime": "1995",
-        "dated": "1995",
-        "authors": "Ingham, E.R. and A. Moldenke",
-        "citation": "Pages 241-256 in Gartner, B.L. (ed), Plant Stems: Physiology and Functional Morphology. Academic Press, San Diego",
-        "url": "https://doi.org/10.1016/B978-012276460-8/50013-8"
-      },
-      {
-        "title": "Soil protozoa",
-        "collection": "elaine",
-        "type": "Journal article",
-        "decade": "1990s",
-        "datetime": "1995",
-        "dated": "1995",
-        "authors": "Ingham, E.R.",
-        "citation": "Soil Science, 159(4):281-282"
-      },
-      {
-        "title": "Standard Operating Procedure for Microbial Population Dynamics",
-        "collection": "elaine",
-        "type": "Peer-reviewed technical report",
-        "decade": "1990s",
-        "datetime": "1995",
-        "dated": "1995",
-        "authors": "Ingham, E.R.",
-        "citation": "USEPA Global Climate Change Program, Corvallis Environmental Research Lab"
-      },
-      {
-        "title": "Standard Operating Procedure for Nematode Population and Community Structure",
-        "collection": "elaine",
-        "type": "Peer-reviewed technical report",
-        "decade": "1990s",
-        "datetime": "1995",
-        "dated": "1995",
-        "authors": "Ingham, E.R.",
-        "citation": "USEPA Global Climate Change Program, Corvallis Environmental Research Lab"
-      },
-      {
-        "title": "Standard Operating Procedure for Protozoan Populations and Community Structure",
-        "collection": "elaine",
-        "type": "Peer-reviewed technical report",
-        "decade": "1990s",
-        "datetime": "1995",
-        "dated": "1995",
-        "authors": "Ingham, E.R.",
-        "citation": "USEPA Global Climate Change Program, Corvallis Environmental Research Lab"
-      },
-      {
-        "title": "Population responses of target and non-target forest-soil organisms to selected biocides",
-        "collection": "elaine",
-        "type": "Journal article",
-        "decade": "1990s",
-        "datetime": "1994",
-        "dated": "1994",
-        "authors": "Colinas, C., E. Ingham and R. Molina",
-        "citation": "Soil Biol. Biochem., 26:41-47",
-        "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=iOm3z4AAAAAJ&citation_for_view=iOm3z4AAAAAJ:g5m5HwL7SMYC"
-      },
-      {
-        "title": "Protozoan communities around conifer roots colonized by ectomycorrhizal fungi",
-        "collection": "elaine",
-        "type": "Journal article",
-        "decade": "1990s",
-        "datetime": "1994",
-        "dated": "1994",
-        "authors": "Ingham, E.R. and H. Massicotte",
-        "citation": "Mycorrhiza, 5:53-61",
-        "url": "https://doi.org/10.1007/BF00204020"
-      },
-      {
-        "title": "Soil organisms and forest health",
-        "collection": "elaine",
-        "type": "Magazine article",
-        "decade": "1990s",
-        "datetime": "1994",
-        "dated": "1994",
-        "authors": "Ingham, E.R.",
-        "citation": "Headwaters Journal, Spring:12-15"
-      },
-      {
-        "title": "Soil protozoa",
-        "collection": "elaine",
-        "type": "Book chapter",
-        "decade": "1990s",
-        "datetime": "1994",
-        "dated": "1994",
-        "authors": "Ingham, E.R.",
-        "citation": "In Methods of Soil Analysis, Part 2: Microbiological and Biochemical Properties, P. Bottomley (ed). Soil Science Society of America"
-      },
-      {
-        "title": "Standard Operating Procedure for Total Bacteria",
-        "collection": "elaine",
-        "type": "Peer-reviewed technical report",
-        "decade": "1990s",
-        "datetime": "1994",
-        "dated": "1994",
-        "authors": "Ingham, E.R.",
-        "citation": "USEPA Global Climate Change Program, Corvallis Environmental Research Lab"
-      },
-      {
-        "title": "Use of sulfamethoxazole-penicillin, oxytetracycline, carbofuran, carbaryl, naphthalene and Temik to remove key organism groups in soil in a corn agroecosystem",
-        "collection": "elaine",
-        "type": "Journal article",
-        "decade": "1990s",
-        "datetime": "1994",
-        "dated": "1994",
-        "authors": "Coleman, D.C., D.A. Crossley, Jr. and E.R. Ingham",
-        "citation": "J. Sustain. Agric., 4(3):7-30",
-        "url": "https://doi.org/10.1300/J064v04n03_03"
-      },
-      {
-        "title": "The functional significance and regulation of soil biodiversity: An executive summary of the Soil Ecology Society meeting",
-        "collection": "elaine",
-        "type": "Magazine article",
-        "decade": "1990s",
-        "datetime": "1993",
-        "dated": "1993",
-        "authors": "Ingham, E.R.",
-        "citation": "Soil Ecology Society Newsletter, 5:2-9"
-      },
-      {
-        "title": "The sustainable biosphere initiative: A commentary from the U.S. Soil Ecology Society",
-        "collection": "elaine",
-        "type": "Journal article",
-        "decade": "1990s",
-        "datetime": "1993",
-        "dated": "1993",
-        "authors": "Klopatek, C.C., E.G. O’Neill, D.W. Freckman, C.D. Bledsoe, D.A. Coleman, D.A. Crossley, Jr., E.R. Ingham, D. Parkinson and J.M. Klopatek",
-        "citation": "Bulletin of the Ecological Society of America, 73:223-228"
-      },
-      {
-        "title": "Use of soil foodweb structure and function to assess superfund sites",
-        "collection": "elaine",
-        "type": "Peer-reviewed technical report",
-        "decade": "1990s",
-        "datetime": "1993",
-        "dated": "1993",
-        "authors": "Ingham, E.R.",
-        "citation": "USEPA Ecological Site Assessment Program, Corvallis Environmental Research Lab"
-      },
-      {
-        "title": "Decomposition of fallen trees: Effects of initial conditions and heterotroph colonization rates",
-        "collection": "elaine",
-        "type": "Book chapter",
-        "decade": "1990s",
-        "datetime": "1992",
-        "dated": "1992",
-        "authors": "Schowalter, T.D., B.A. Caldwell, S.E. Carpenter, R.P. Griffiths, M.E. Harmon, E.R. Ingham, R.G. Kelsey, J.D. Lattin and A.R. Moldenke",
-        "citation": "Pages 373-383 in K.P. Singh and J.S. Singh (eds), Tropical Ecosystems: Ecology and Management. Wiley Eastern, New Delhi",
-        "url": "https://andrewsforest.oregonstate.edu/sites/default/files/lter/pubs/pdf/pub1122.pdf"
-      },
-      {
-        "title": "Evaluation of terrestrial indicators for use in ecological assessments at hazardous waste sites",
-        "collection": "elaine",
-        "type": "Peer-reviewed technical report",
-        "decade": "1990s",
-        "datetime": "1992",
-        "dated": "1992",
-        "authors": "Linder, G., E.R. Ingham, C.J. Brandt and G. Henderson",
-        "citation": "USEPA/600/R-92/183"
-      },
-      {
-        "title": "Biological nitrogen fixation for sustainable agriculture: A perspective",
-        "collection": "field",
-        "type": "Journal article",
-        "decade": "1990s",
-        "datetime": "1992",
-        "dated": "1992",
-        "authors": "Bohlool, B.B., J.K. Ladha, D.P. Garrity and T. George",
-        "citation": "Plant and Soil, 141(1-2):1-11",
-        "url": "https://doi.org/10.1007/BF00011307"
-      },
-      {
-        "title": "A comparison of agar film techniques for estimating fungal biovolumes in litter and soil",
-        "collection": "elaine",
-        "type": "Journal article",
-        "decade": "1990s",
-        "datetime": "1991",
-        "dated": "1991",
-        "authors": "Lodge, D.J. and E.R. Ingham",
-        "citation": "Agric. Ecosyst. Environ., 34:131-144",
-        "url": "https://doi.org/10.1016/0167-8809(91)90101-3"
-      },
-      {
-        "title": "Bioresponse of nontarget organisms resulting from the use of chloropicrin to control laminated root rot in a northwest conifer forest",
-        "collection": "elaine",
-        "type": "Peer-reviewed technical report",
-        "decade": "1990s",
-        "datetime": "1991",
-        "dated": "1991",
-        "authors": "Thies, W.G., M.A. Castellano, E.R. Ingham, D.L. Luoma and A.R. Moldenke",
-        "citation": "Report"
-      },
-      {
-        "title": "Bioresponse of nontarget organisms resulting from the use of chloropicrin to control laminated root rot in a northwest conifer forest",
-        "collection": "elaine",
-        "type": "Peer-reviewed technical report",
-        "decade": "1990s",
-        "datetime": "1991",
-        "dated": "1991",
-        "authors": "Ingham, E.R., W.G. Thies, D.L. Luoma, A.R. Moldenke and M.A. Castellano",
-        "citation": "Report"
-      },
-      {
-        "title": "Comparison of direct versus fumigation incubation microbial biomass estimates in ectomycorrhizal mat and non-mat soils",
-        "collection": "elaine",
-        "type": "Journal article",
-        "decade": "1990s",
-        "datetime": "1991",
-        "dated": "1991",
-        "authors": "Ingham, E.R., R. Griffiths, K. Cromack and J.A. Entry",
-        "citation": "Soil Biol. Biochem., 23:465-471",
-        "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=iOm3z4AAAAAJ&citation_for_view=iOm3z4AAAAAJ:iH-uZ7U-co4C"
-      },
-      {
-        "title": "Interactions among mycorrhizal fungi, rhizosphere organisms, and plants",
-        "collection": "elaine",
-        "type": "Book chapter",
-        "decade": "1990s",
-        "datetime": "1991",
-        "dated": "1991",
-        "authors": "Ingham, E.R. and R. Molina",
-        "citation": "Pages 169-197 in Barbosa, P., V.A. Krischik and C.G. Jones (eds), Microbial Mediation of Plant-Herbivore Interactions. John Wiley and Sons, NY",
-        "url": "https://andrewsforest.oregonstate.edu/publications/967"
-      },
-      {
-        "title": "Microbial characteristics of ectomycorrhizal mat communities in Oregon and California",
-        "collection": "elaine",
-        "type": "Journal article",
-        "decade": "1990s",
-        "datetime": "1991",
-        "dated": "1991",
-        "authors": "Griffiths, R.P., E.R. Ingham, B.A. Caldwell, M.A. Castellano and K. Cromack, Jr.",
-        "citation": "Biology and Fertility of Soils, 11:196-202",
-        "url": "https://doi.org/10.1007/BF00335767"
-      },
-      {
-        "title": "Reduction of microbial and faunal groups following application of streptomycin and captan in Georgia no-till agroecosystems",
-        "collection": "elaine",
-        "type": "Journal article",
-        "decade": "1990s",
-        "datetime": "1991",
-        "dated": "1991",
-        "authors": "Ingham, E.R., D.C. Coleman, R. Parmelee and D.A. Crossley",
-        "citation": "Pedobiologia, 35:297-304"
-      },
-      {
-        "title": "Seasonal and faunal effects on decomposition in semiarid prairie, meadow and lodgepole pine forest",
-        "collection": "elaine",
-        "type": "Journal article",
-        "decade": "1990s",
-        "datetime": "1990",
-        "dated": "1990",
-        "authors": "Coleman, D.C., E.R. Ingham, H.W. Hunt, E.T. Elliott, C.P.P. Reid and J.C. Moore",
-        "citation": "Pedobiologia, 34:207-219",
-        "url": "https://doi.org/10.1016/S0031-4056(24)00022-2"
-      },
-      {
-        "title": "Use of staining and inhibitors to separate fungal and bacterial activity in soil",
-        "collection": "elaine",
-        "type": "Journal article",
-        "decade": "1990s",
-        "datetime": "1990",
-        "dated": "1990",
-        "authors": "Stamatiadis, S., J.W. Doran and E.R. Ingham",
-        "citation": "Soil Biol. Biochem., 22:81-88",
-        "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=iOm3z4AAAAAJ&citation_for_view=iOm3z4AAAAAJ:pyW8ca7W8N0C"
-      },
-      {
-        "title": "Litter decomposition under snow cover in a balsam fir forest",
-        "collection": "field",
-        "type": "Journal article",
-        "decade": "1990s",
-        "datetime": "1990",
-        "dated": "1990",
-        "authors": "Taylor, B.R. and H.G. Jones",
-        "citation": "Canadian Journal of Botany, 68(1):112-120",
-        "url": "https://doi.org/10.1139/b90-016"
-      },
-      {
-        "title": "A general model of biotic interactions",
-        "collection": "elaine",
-        "type": "Peer-reviewed technical report",
-        "decade": "1980s",
-        "datetime": "1989",
-        "dated": "1989",
-        "authors": "Ingham, E.R., M.V. Wilson and C.D. McIntire",
-        "citation": "Special Report to the USEPA, CR-813570-01-0, 36 pp."
-      },
-      {
-        "title": "Analysis of food-web structure and function in a short grass prairie, a mountain meadow and lodgepole pine forest",
-        "collection": "elaine",
-        "type": "Journal article",
-        "decade": "1980s",
-        "datetime": "1989",
-        "dated": "1989",
-        "authors": "Ingham, E.R., D.C. Coleman and J.C. Moore",
-        "citation": "Biol. Fertil. Soils, 8:29-37",
-        "url": "https://doi.org/10.1007/BF00260513"
-      },
-      {
-        "title": "Carbon, nitrogen, phosphorus and sulfur cycling in terrestrial ecosystems",
-        "collection": "elaine",
-        "type": "Journal article",
-        "decade": "1980s",
-        "datetime": "1988",
-        "dated": "1988",
-        "authors": "Coleman, D.C. and E.R. Ingham",
-        "citation": "Biogeochemistry, 5:3-6",
-        "url": "https://doi.org/10.1007/BF02180315"
-      },
-      {
-        "title": "Early patterns of heterotroph activity in conifer logs",
-        "collection": "elaine",
-        "type": "Journal article",
-        "decade": "1980s",
-        "datetime": "1988",
-        "dated": "1988",
-        "authors": "Carpenter, S.E., M.E. Harmon, E.R. Ingham, R.G. Kelsey, J.D. Lattin and T.D. Schowalter",
-        "citation": "Proc. Roy. Soc. Edinburgh, 94B:33-43",
-        "url": "https://www.cambridge.org/core/journals/proceedings-of-the-royal-society-of-edinburgh-section-b-biological-sciences/article/abs/early-patterns-of-heterotroph-activity-in-conifer-logs/6261E9D64E9229199D30E72B33CC7154"
-      },
-      {
-        "title": "Interactions between soil animals and ectomycorrhizal fungal mats",
-        "collection": "elaine",
-        "type": "Journal article",
-        "decade": "1980s",
-        "datetime": "1988",
-        "dated": "1988",
-        "authors": "Cromack, K., Jr., B.L. Fichter, A.M. Moldenke, J.A. Entry and E.R. Ingham",
-        "citation": "Agric. Ecosyst. Environ., 24:161-168",
-        "url": "https://doi.org/10.1016/0167-8809(88)90063-1"
-      },
-      {
-        "title": "Nitrogen limitation of decomposition and primary production in short grass, mountain meadow and lodgepole pine forest",
-        "collection": "elaine",
-        "type": "Journal article",
-        "decade": "1980s",
-        "datetime": "1988",
-        "dated": "1988",
-        "authors": "Hunt, H.W., E.R. Ingham, D.C. Coleman, E.T. Elliott and C.P.P. Reid",
-        "citation": "Ecology, 69:1009-1016",
-        "url": "https://doi.org/10.2307/1941256"
-      },
-      {
-        "title": "Report on the selection of several potentially critical terrestrial systems",
-        "collection": "elaine",
-        "type": "Peer-reviewed technical report",
-        "decade": "1980s",
-        "datetime": "1988",
-        "dated": "1988",
-        "authors": "Wilson, M.V., E.R. Ingham, C.D. McIntire and M.L. Scott",
-        "citation": "USEPA"
-      },
-      {
-        "title": "Social and economic concerns with respect to the choice of critical terrestrial ecosystems",
-        "collection": "elaine",
-        "type": "Technical report",
-        "decade": "1980s",
-        "datetime": "1988",
-        "dated": "1988",
-        "authors": "Ingham, E.R., M.V. Wilson and C.D. McIntire",
-        "citation": "USEPA"
-      },
-      {
-        "title": "Bacterial, fungal and protozoan responses to chloroform fumigation in stored prairie soil",
-        "collection": "elaine",
-        "type": "Journal article",
-        "decade": "1980s",
-        "datetime": "1987",
-        "dated": "1987",
-        "authors": "Ingham, E.R. and K.A. Horton",
-        "citation": "Soil Biol. Biochem., 19:545-550",
-        "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=iOm3z4AAAAAJ&citation_for_view=iOm3z4AAAAAJ:hC7cP41nSMkC"
-      },
-      {
-        "title": "Inter- and intraspecific feeding selectivity of Folsomia candida (Willem) (Collembola, Isotomidae) on fungi: Method development and ecological consequences",
-        "collection": "elaine",
-        "type": "Journal article",
-        "decade": "1980s",
-        "datetime": "1987",
-        "dated": "1987",
-        "authors": "Moore, J.C., E.R. Ingham and D.C. Coleman",
-        "citation": "Biol. Fert. Soils, 5:6-12",
-        "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=iOm3z4AAAAAJ&citation_for_view=iOm3z4AAAAAJ:D03iK_w7-QYC"
-      },
-      {
-        "title": "The detrital food web in a short grass prairie",
-        "collection": "elaine",
-        "type": "Journal article",
-        "decade": "1980s",
-        "datetime": "1987",
-        "dated": "1987",
-        "authors": "Hunt, H.W., D.C. Coleman, E.R. Ingham, R.E. Ingham, E.T. Elliott, J.C. Moore, C.P.P. Reid and C.R. Morley",
-        "citation": "Biol. Fert. Soils, 3:57-68",
-        "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=iOm3z4AAAAAJ&citation_for_view=iOm3z4AAAAAJ:9ZlFYXVOiuMC"
-      },
-      {
-        "title": "Manipulation of bacteria, fungi and protozoa by biocides in lodgepole pine forest soil microcosms: Effects on organism interactions and nitrogen mineralization",
-        "collection": "elaine",
-        "type": "Journal article",
-        "decade": "1980s",
-        "datetime": "1986",
-        "dated": "1986",
-        "authors": "Ingham, E.R., C. Cambardella and D.C. Coleman",
-        "citation": "Can. J. Soil Sci., 66:261-272",
-        "url": "https://doi.org/10.4141/cjss86-028"
-      },
-      {
-        "title": "Trophic interactions and nitrogen cycling in a semiarid grassland soil. Part I. Seasonal dynamics of the natural populations, their interactions and effects on nitrogen cycling",
-        "collection": "elaine",
-        "type": "Journal article",
-        "decade": "1980s",
-        "datetime": "1986",
-        "dated": "1986",
-        "authors": "Ingham, E.R., J.A. Trofymow, R.N. Ames, H.W. Hunt, C.R. Morley, J.C. Moore and D.C. Coleman",
-        "citation": "J. Applied Ecology, 23:597-614",
-        "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=iOm3z4AAAAAJ&citation_for_view=iOm3z4AAAAAJ:u5HHmVD_uO8C"
-      },
-      {
-        "title": "Trophic interactions and nitrogen cycling in a semiarid grassland soil. Part II. System responses to removal of different groups of soil microbes or fauna",
-        "collection": "elaine",
-        "type": "Journal article",
-        "decade": "1980s",
-        "datetime": "1986",
-        "dated": "1986",
-        "authors": "Ingham, E.R., J.A. Trofymow, R.N. Ames, H.W. Hunt, C.R. Morley, J.C. Moore and D.C. Coleman",
-        "citation": "J. Applied Ecology, 23:615-630",
-        "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=iOm3z4AAAAAJ&citation_for_view=iOm3z4AAAAAJ:CHSYGLWDkRkC"
-      },
-      {
-        "title": "Filter-out grazers (FOG): A filtration experiment for separating protozoan grazers in soil",
-        "collection": "elaine",
-        "type": "Journal article",
-        "decade": "1980s",
-        "datetime": "1985",
-        "dated": "1985",
-        "authors": "Frey, J.S., J.F. McClellan, E.R. Ingham and D.C. Coleman",
-        "citation": "Biol. Fert. Soils, 1:73-79",
-        "url": "https://doi.org/10.1007/BF00255133"
-      },
-      {
-        "title": "Interactions of bacteria, fungi and their nematode grazers: Effects on nutrient cycling and plant growth",
-        "collection": "elaine",
-        "type": "Journal article",
-        "decade": "1980s",
-        "datetime": "1985",
-        "dated": "1985",
-        "authors": "Ingham, R.E., J.A. Trofymow, E.R. Ingham and D.C. Coleman",
-        "citation": "Ecological Monographs, 55:119-140",
-        "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=iOm3z4AAAAAJ&citation_for_view=iOm3z4AAAAAJ:RYcK_YlVTxYC"
-      },
-      {
-        "title": "Responses of microbial components of the rhizosphere to plant management strategies in semiarid rangeland",
-        "collection": "elaine",
-        "type": "Journal article",
-        "decade": "1980s",
-        "datetime": "1985",
-        "dated": "1985",
-        "authors": "Ingham, E.R., D.A. Klein and M.J. Trlica",
-        "citation": "Plant and Soil, 85:65-76",
-        "url": "https://doi.org/10.1007/BF02197801"
-      },
-      {
-        "title": "Review of the effects of twelve selected biocides on target and non-target soil organisms",
-        "collection": "elaine",
-        "type": "Journal article",
-        "decade": "1980s",
-        "datetime": "1985",
-        "dated": "1985",
-        "authors": "Ingham, E.R.",
-        "citation": "Crop Protection, 4:3-32"
-      },
-      {
-        "title": "Effects of streptomycin, cycloheximide, fungizone, captan, carbofuran, cygon and PCNB on soil microbe populations and nutrient cycling",
-        "collection": "elaine",
-        "type": "Journal article",
-        "decade": "1980s",
-        "datetime": "1984",
-        "dated": "1984",
-        "authors": "Ingham, E.R. and D.C. Coleman",
-        "citation": "Microbial Ecology, 10:345-358",
-        "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=iOm3z4AAAAAJ&citation_for_view=iOm3z4AAAAAJ:aqlVkmm33-oC"
-      },
-      {
-        "title": "Phosphatase activity of Penicillium citrinum submerged batch cultures and its relationship to fungal activity",
-        "collection": "elaine",
-        "type": "Journal article",
-        "decade": "1980s",
-        "datetime": "1984",
-        "dated": "1984",
-        "authors": "Ingham, E.R. and D.A. Klein",
-        "citation": "Plant and Soil, 81:61-68",
-        "url": "https://doi.org/10.1007/BF02206894"
-      },
-      {
-        "title": "Rhizosphere bacterial population responses to root colonization by a vesicular-arbuscular mycorrhizal fungus",
-        "collection": "elaine",
-        "type": "Journal article",
-        "decade": "1980s",
-        "datetime": "1984",
-        "dated": "1984",
-        "authors": "Ames, R.N., C.P.P. Reid and E.R. Ingham",
-        "citation": "New Phytol., 96:555-563",
-        "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=iOm3z4AAAAAJ&citation_for_view=iOm3z4AAAAAJ:Zph67rFs4hoC"
-      },
-      {
-        "title": "Soil fungi: Measurement of hyphal length",
-        "collection": "elaine",
-        "type": "Journal article",
-        "decade": "1980s",
-        "datetime": "1984",
-        "dated": "1984",
-        "authors": "Ingham, E.R. and D.A. Klein",
-        "citation": "Soil Biol. Biochem., 16:279-280",
-        "url": "https://doi.org/10.1016/0038-0717(84)90015-4"
-      },
-      {
-        "title": "Soil fungi: Relationships between hyphal activity and staining with fluorescein diacetate",
-        "collection": "elaine",
-        "type": "Journal article",
-        "decade": "1980s",
-        "datetime": "1984",
-        "dated": "1984",
-        "authors": "Ingham, E.R. and D.A. Klein",
-        "citation": "Soil Biol. Biochem., 16:273-278",
-        "url": "https://doi.org/10.1016/0038-0717(84)90014-2"
-      },
-      {
-        "title": "Relationship between fluorescein diacetate-stained hyphae and oxygen utilization, glucose utilization and biomass of submerged fungal batch cultures",
-        "collection": "elaine",
-        "type": "Journal article",
-        "decade": "1980s",
-        "datetime": "1982",
-        "dated": "1982",
-        "authors": "Ingham, E.R. and D.A. Klein",
-        "citation": "Appl. Environ. Microbiol., 44:363-370",
-        "url": "https://doi.org/10.1128/aem.44.2.363-370.1982"
-      },
-      {
-        "title": "The effect of chloroform on protozoa and other soil inhabitants",
-        "collection": "elaine",
-        "type": "Journal article",
-        "decade": "1980s",
-        "datetime": "1982",
-        "dated": "1982",
-        "authors": "McClellan, J.F., D.C. Coleman, K.A. Horton and E.R. Ingham",
-        "citation": "J. Protozool., 29:491"
-      },
-      {
-        "title": "Ultraviolet-induced autofluorescence of arbuscular mycorrhizal root infections: An alternative to clearing and staining methods for assessing infections",
-        "collection": "elaine",
-        "type": "Journal article",
-        "decade": "1980s",
-        "datetime": "1982",
-        "dated": "1982",
-        "authors": "Ames, R.N., E.R. Ingham and C.P.P. Reid",
-        "citation": "Can. J. Microbiol., 28:351-355",
-        "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=iOm3z4AAAAAJ&citation_for_view=iOm3z4AAAAAJ:Se3iqnhoufwC"
-      },
-      {
-        "title": "Ultraviolet-induced autofluorescence: a new method for detecting and quantifying vesicular-arbuscular mycorrhizal root infections",
-        "collection": "elaine",
-        "type": "Journal article",
-        "decade": "1980s",
-        "datetime": "1982",
-        "dated": "1982",
-        "authors": "Ames, R.N., E.R. Ingham and C.P.P. Reid",
-        "citation": "Phytopathology, 72(7):950"
-      },
-      {
-        "title": "The control of diseases on lettuce by the use of antagonistic organisms. 1. The control of Botrytis cinerea Pers.",
-        "collection": "field",
-        "type": "Journal article",
-        "decade": "pre1980",
-        "datetime": "1951",
-        "dated": "1951",
-        "authors": "Wood, R.K.S.",
-        "citation": "Annals of Applied Biology, 38(1):203-216",
-        "url": "https://doi.org/10.1111/j.1744-7348.1951.tb07797.x"
+    "columnNote": {
+      "h3": "Monthly column in BioCycle, about 1998 to 2000",
+      "body": "Monthly column including discussions of: Anaerobic Bacteria and Composting, The Good, the Bad and Facultative Anaerobes, What Organisms are in Compost?, What is Compost Tea?, Methyl Bromide Alternatives, Fungi and Disease-Suppression, Vermicompost versus Compost, What’s the Difference?",
+      "after": "Numerous other magazine and newspaper publications since 1999."
+    },
+    "sections": [
+      {
+        "slug": "papers",
+        "name": "Papers Published by Dr. Ingham",
+        "entries": [
+          {
+            "n": 1,
+            "title": "Ultraviolet-induced autofluorescence of arbuscular mycorrhizal root infections: An alternative to clearing and staining methods for assessing infections",
+            "year": 1982,
+            "type": "Journal article",
+            "authors": "Ames, R.N., E.R. Ingham and C.P.P. Reid",
+            "citation": "Can. J. Microbiol., 28:351-355",
+            "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=iOm3z4AAAAAJ&citation_for_view=iOm3z4AAAAAJ:Se3iqnhoufwC"
+          },
+          {
+            "n": 2,
+            "title": "Ultraviolet-induced autofluorescence: a new method for detecting and quantifying vesicular-arbuscular mycorrhizal root infections",
+            "year": 1982,
+            "type": "Journal article",
+            "authors": "Ames, R.N., E.R. Ingham and C.P.P. Reid",
+            "citation": "Phytopathology, 72(7):950"
+          },
+          {
+            "n": 3,
+            "title": "Relationship between fluorescein diacetate-stained hyphae and oxygen utilization, glucose utilization and biomass of submerged fungal batch cultures",
+            "year": 1982,
+            "type": "Journal article",
+            "authors": "Ingham, E.R. and D.A. Klein",
+            "citation": "Appl. Environ. Microbiol., 44:363-370",
+            "url": "https://doi.org/10.1128/aem.44.2.363-370.1982"
+          },
+          {
+            "n": 4,
+            "title": "The effect of chloroform on protozoa and other soil inhabitants",
+            "year": 1982,
+            "type": "Journal article",
+            "authors": "McClellan, J.F., D.C. Coleman, K.A. Horton and E.R. Ingham",
+            "citation": "J. Protozool., 29:491"
+          },
+          {
+            "n": 5,
+            "title": "Soil fungi: Relationships between hyphal activity and staining with fluorescein diacetate",
+            "year": 1984,
+            "type": "Journal article",
+            "authors": "Ingham, E.R. and D.A. Klein",
+            "citation": "Soil Biol. Biochem., 16:273-278",
+            "url": "https://doi.org/10.1016/0038-0717(84)90014-2"
+          },
+          {
+            "n": 6,
+            "title": "Soil fungi: Measurement of hyphal length",
+            "year": 1984,
+            "type": "Journal article",
+            "authors": "Ingham, E.R. and D.A. Klein",
+            "citation": "Soil Biol. Biochem., 16:279-280",
+            "url": "https://doi.org/10.1016/0038-0717(84)90015-4"
+          },
+          {
+            "n": 7,
+            "title": "Rhizosphere bacterial population responses to root colonization by a vesicular-arbuscular mycorrhizal fungus",
+            "year": 1984,
+            "type": "Journal article",
+            "authors": "Ames, R.N., C.P.P. Reid and E.R. Ingham",
+            "citation": "New Phytol., 96:555-563",
+            "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=iOm3z4AAAAAJ&citation_for_view=iOm3z4AAAAAJ:Zph67rFs4hoC"
+          },
+          {
+            "n": 8,
+            "title": "Phosphatase activity of Penicillium citrinum submerged batch cultures and its relationship to fungal activity",
+            "year": 1984,
+            "type": "Journal article",
+            "authors": "Ingham, E.R. and D.A. Klein",
+            "citation": "Plant and Soil, 81:61-68",
+            "url": "https://doi.org/10.1007/BF02206894"
+          },
+          {
+            "n": 9,
+            "title": "Effects of streptomycin, cycloheximide, fungizone, captan, carbofuran, cygon and PCNB on soil microbe populations and nutrient cycling",
+            "year": 1984,
+            "type": "Journal article",
+            "authors": "Ingham, E.R. and D.C. Coleman",
+            "citation": "Microbial Ecology, 10:345-358",
+            "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=iOm3z4AAAAAJ&citation_for_view=iOm3z4AAAAAJ:aqlVkmm33-oC"
+          },
+          {
+            "n": 10,
+            "title": "Interactions of bacteria, fungi and their nematode grazers: Effects on nutrient cycling and plant growth",
+            "year": 1985,
+            "type": "Journal article",
+            "authors": "Ingham, R.E., J.A. Trofymow, E.R. Ingham and D.C. Coleman",
+            "citation": "Ecological Monographs, 55:119-140",
+            "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=iOm3z4AAAAAJ&citation_for_view=iOm3z4AAAAAJ:RYcK_YlVTxYC"
+          },
+          {
+            "n": 11,
+            "title": "Review of the effects of twelve selected biocides on target and non-target soil organisms",
+            "year": 1985,
+            "type": "Journal article",
+            "authors": "Ingham, E.R.",
+            "citation": "Crop Protection, 4:3-32"
+          },
+          {
+            "n": 12,
+            "title": "Responses of microbial components of the rhizosphere to plant management strategies in semiarid rangeland",
+            "year": 1985,
+            "type": "Journal article",
+            "authors": "Ingham, E.R., D.A. Klein and M.J. Trlica",
+            "citation": "Plant and Soil, 85:65-76",
+            "url": "https://doi.org/10.1007/BF02197801"
+          },
+          {
+            "n": 13,
+            "title": "Manipulation of bacteria, fungi and protozoa by biocides in lodgepole pine forest soil microcosms: Effects on organism interactions and nitrogen mineralization",
+            "year": 1986,
+            "type": "Journal article",
+            "authors": "Ingham, E.R., C. Cambardella and D.C. Coleman",
+            "citation": "Can. J. Soil Sci., 66:261-272",
+            "url": "https://doi.org/10.4141/cjss86-028"
+          },
+          {
+            "n": 14,
+            "title": "Filter-out grazers (FOG): A filtration experiment for separating protozoan grazers in soil",
+            "year": 1985,
+            "type": "Journal article",
+            "authors": "Frey, J.S., J.F. McClellan, E.R. Ingham and D.C. Coleman",
+            "citation": "Biol. Fert. Soils, 1:73-79",
+            "url": "https://doi.org/10.1007/BF00255133"
+          },
+          {
+            "n": 15,
+            "title": "Trophic interactions and nitrogen cycling in a semiarid grassland soil. Part I. Seasonal dynamics of the natural populations, their interactions and effects on nitrogen cycling",
+            "year": 1986,
+            "type": "Journal article",
+            "authors": "Ingham, E.R., J.A. Trofymow, R.N. Ames, H.W. Hunt, C.R. Morley, J.C. Moore and D.C. Coleman",
+            "citation": "J. Applied Ecology, 23:597-614",
+            "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=iOm3z4AAAAAJ&citation_for_view=iOm3z4AAAAAJ:u5HHmVD_uO8C"
+          },
+          {
+            "n": 16,
+            "title": "Trophic interactions and nitrogen cycling in a semiarid grassland soil. Part II. System responses to removal of different groups of soil microbes or fauna",
+            "year": 1986,
+            "type": "Journal article",
+            "authors": "Ingham, E.R., J.A. Trofymow, R.N. Ames, H.W. Hunt, C.R. Morley, J.C. Moore and D.C. Coleman",
+            "citation": "J. Applied Ecology, 23:615-630",
+            "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=iOm3z4AAAAAJ&citation_for_view=iOm3z4AAAAAJ:CHSYGLWDkRkC"
+          },
+          {
+            "n": 17,
+            "title": "The detrital food web in a short grass prairie",
+            "year": 1987,
+            "type": "Journal article",
+            "authors": "Hunt, H.W., D.C. Coleman, E.R. Ingham, R.E. Ingham, E.T. Elliott, J.C. Moore, C.P.P. Reid and C.R. Morley",
+            "citation": "Biol. Fert. Soils, 3:57-68",
+            "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=iOm3z4AAAAAJ&citation_for_view=iOm3z4AAAAAJ:9ZlFYXVOiuMC"
+          },
+          {
+            "n": 18,
+            "title": "Inter- and intraspecific feeding selectivity of Folsomia candida (Willem) (Collembola, Isotomidae) on fungi: Method development and ecological consequences",
+            "year": 1987,
+            "type": "Journal article",
+            "authors": "Moore, J.C., E.R. Ingham and D.C. Coleman",
+            "citation": "Biol. Fert. Soils, 5:6-12",
+            "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=iOm3z4AAAAAJ&citation_for_view=iOm3z4AAAAAJ:D03iK_w7-QYC"
+          },
+          {
+            "n": 19,
+            "title": "Bacterial, fungal and protozoan responses to chloroform fumigation in stored prairie soil",
+            "year": 1987,
+            "type": "Journal article",
+            "authors": "Ingham, E.R. and K.A. Horton",
+            "citation": "Soil Biol. Biochem., 19:545-550",
+            "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=iOm3z4AAAAAJ&citation_for_view=iOm3z4AAAAAJ:hC7cP41nSMkC"
+          },
+          {
+            "n": 20,
+            "title": "Carbon, nitrogen, phosphorus and sulfur cycling in terrestrial ecosystems",
+            "year": 1988,
+            "type": "Journal article",
+            "authors": "Coleman, D.C. and E.R. Ingham",
+            "citation": "Biogeochemistry, 5:3-6",
+            "url": "https://doi.org/10.1007/BF02180315"
+          },
+          {
+            "n": 21,
+            "title": "Nitrogen limitation of decomposition and primary production in short grass, mountain meadow and lodgepole pine forest",
+            "year": 1988,
+            "type": "Journal article",
+            "authors": "Hunt, H.W., E.R. Ingham, D.C. Coleman, E.T. Elliott and C.P.P. Reid",
+            "citation": "Ecology, 69:1009-1016",
+            "url": "https://doi.org/10.2307/1941256"
+          },
+          {
+            "n": 22,
+            "title": "Early patterns of heterotroph activity in conifer logs",
+            "year": 1988,
+            "type": "Journal article",
+            "authors": "Carpenter, S.E., M.E. Harmon, E.R. Ingham, R.G. Kelsey, J.D. Lattin and T.D. Schowalter",
+            "citation": "Proc. Roy. Soc. Edinburgh, 94B:33-43",
+            "url": "https://www.cambridge.org/core/journals/proceedings-of-the-royal-society-of-edinburgh-section-b-biological-sciences/article/abs/early-patterns-of-heterotroph-activity-in-conifer-logs/6261E9D64E9229199D30E72B33CC7154"
+          },
+          {
+            "n": 24,
+            "title": "Social and economic concerns with respect to the choice of critical terrestrial ecosystems",
+            "year": 1988,
+            "type": "Technical report",
+            "authors": "Ingham, E.R., M.V. Wilson and C.D. McIntire",
+            "citation": "USEPA"
+          },
+          {
+            "n": 25,
+            "title": "Interactions between soil animals and ectomycorrhizal fungal mats",
+            "year": 1988,
+            "type": "Journal article",
+            "authors": "Cromack, K., Jr., B.L. Fichter, A.M. Moldenke, J.A. Entry and E.R. Ingham",
+            "citation": "Agric. Ecosyst. Environ., 24:161-168",
+            "url": "https://doi.org/10.1016/0167-8809(88)90063-1"
+          },
+          {
+            "n": 26,
+            "title": "Analysis of food-web structure and function in a short grass prairie, a mountain meadow and lodgepole pine forest",
+            "year": 1989,
+            "type": "Journal article",
+            "authors": "Ingham, E.R., D.C. Coleman and J.C. Moore",
+            "citation": "Biol. Fertil. Soils, 8:29-37",
+            "url": "https://doi.org/10.1007/BF00260513"
+          },
+          {
+            "n": 27,
+            "title": "Use of staining and inhibitors to separate fungal and bacterial activity in soil",
+            "year": 1990,
+            "type": "Journal article",
+            "authors": "Stamatiadis, S., J.W. Doran and E.R. Ingham",
+            "citation": "Soil Biol. Biochem., 22:81-88",
+            "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=iOm3z4AAAAAJ&citation_for_view=iOm3z4AAAAAJ:pyW8ca7W8N0C"
+          },
+          {
+            "n": 28,
+            "title": "Seasonal and faunal effects on decomposition in semiarid prairie, meadow and lodgepole pine forest",
+            "year": 1990,
+            "type": "Journal article",
+            "authors": "Coleman, D.C., E.R. Ingham, H.W. Hunt, E.T. Elliott, C.P.P. Reid and J.C. Moore",
+            "citation": "Pedobiologia, 34:207-219",
+            "url": "https://doi.org/10.1016/S0031-4056(24)00022-2"
+          },
+          {
+            "n": 29,
+            "title": "Comparison of direct versus fumigation incubation microbial biomass estimates in ectomycorrhizal mat and non-mat soils",
+            "year": 1991,
+            "type": "Journal article",
+            "authors": "Ingham, E.R., R. Griffiths, K. Cromack and J.A. Entry",
+            "citation": "Soil Biol. Biochem., 23:465-471",
+            "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=iOm3z4AAAAAJ&citation_for_view=iOm3z4AAAAAJ:iH-uZ7U-co4C"
+          },
+          {
+            "n": 30,
+            "title": "A comparison of agar film techniques for estimating fungal biovolumes in litter and soil",
+            "year": 1991,
+            "type": "Journal article",
+            "authors": "Lodge, D.J. and E.R. Ingham",
+            "citation": "Agric. Ecosyst. Environ., 34:131-144",
+            "url": "https://doi.org/10.1016/0167-8809(91)90101-3"
+          },
+          {
+            "n": 31,
+            "title": "Microbial characteristics of ectomycorrhizal mat communities in Oregon and California",
+            "year": 1991,
+            "type": "Journal article",
+            "authors": "Griffiths, R.P., E.R. Ingham, B.A. Caldwell, M.A. Castellano and K. Cromack, Jr.",
+            "citation": "Biology and Fertility of Soils, 11:196-202",
+            "url": "https://doi.org/10.1007/BF00335767"
+          },
+          {
+            "n": 32,
+            "title": "Reduction of microbial and faunal groups following application of streptomycin and captan in Georgia no-till agroecosystems",
+            "year": 1991,
+            "type": "Journal article",
+            "authors": "Ingham, E.R., D.C. Coleman, R. Parmelee and D.A. Crossley",
+            "citation": "Pedobiologia, 35:297-304"
+          },
+          {
+            "n": 33,
+            "title": "Decomposition of fallen trees: Effects of initial conditions and heterotroph colonization rates",
+            "year": 1992,
+            "type": "Book chapter",
+            "authors": "Schowalter, T.D., B.A. Caldwell, S.E. Carpenter, R.P. Griffiths, M.E. Harmon, E.R. Ingham, R.G. Kelsey, J.D. Lattin and A.R. Moldenke",
+            "citation": "Pages 373-383 in K.P. Singh and J.S. Singh (eds), Tropical Ecosystems: Ecology and Management. Wiley Eastern, New Delhi",
+            "url": "https://andrewsforest.oregonstate.edu/sites/default/files/lter/pubs/pdf/pub1122.pdf"
+          },
+          {
+            "n": 34,
+            "title": "The functional significance and regulation of soil biodiversity: An executive summary of the Soil Ecology Society meeting",
+            "year": 1993,
+            "type": "Magazine article",
+            "authors": "Ingham, E.R.",
+            "citation": "Soil Ecology Society Newsletter, 5:2-9"
+          },
+          {
+            "n": 35,
+            "title": "The sustainable biosphere initiative: A commentary from the U.S. Soil Ecology Society",
+            "year": 1993,
+            "type": "Journal article",
+            "authors": "Klopatek, C.C., E.G. O’Neill, D.W. Freckman, C.D. Bledsoe, D.A. Coleman, D.A. Crossley, Jr., E.R. Ingham, D. Parkinson and J.M. Klopatek",
+            "citation": "Bulletin of the Ecological Society of America, 73:223-228"
+          },
+          {
+            "n": 36,
+            "title": "Population responses of target and non-target forest-soil organisms to selected biocides",
+            "year": 1994,
+            "type": "Journal article",
+            "authors": "Colinas, C., E. Ingham and R. Molina",
+            "citation": "Soil Biol. Biochem., 26:41-47",
+            "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=iOm3z4AAAAAJ&citation_for_view=iOm3z4AAAAAJ:g5m5HwL7SMYC"
+          },
+          {
+            "n": 37,
+            "title": "Soil organisms and forest health",
+            "year": 1994,
+            "type": "Magazine article",
+            "authors": "Ingham, E.R.",
+            "citation": "Headwaters Journal, Spring:12-15"
+          },
+          {
+            "n": 38,
+            "title": "Use of sulfamethoxazole-penicillin, oxytetracycline, carbofuran, carbaryl, naphthalene and Temik to remove key organism groups in soil in a corn agroecosystem",
+            "year": 1994,
+            "type": "Journal article",
+            "authors": "Coleman, D.C., D.A. Crossley, Jr. and E.R. Ingham",
+            "citation": "J. Sustain. Agric., 4(3):7-30",
+            "url": "https://doi.org/10.1300/J064v04n03_03"
+          },
+          {
+            "n": 39,
+            "title": "Protozoan communities around conifer roots colonized by ectomycorrhizal fungi",
+            "year": 1994,
+            "type": "Journal article",
+            "authors": "Ingham, E.R. and H. Massicotte",
+            "citation": "Mycorrhiza, 5:53-61",
+            "url": "https://doi.org/10.1007/BF00204020"
+          },
+          {
+            "n": 40,
+            "title": "Assessing interactions between the soil foodweb and a strain of Pseudomonas putida genetically engineered to degrade 2,4-D",
+            "year": 1995,
+            "type": "Journal article",
+            "authors": "Ingham, E.R., J.D. Doyle and C.W. Hendricks",
+            "citation": "Applied Soil Ecology, 2:263-274"
+          },
+          {
+            "n": 41,
+            "title": "Soil protozoa",
+            "year": 1995,
+            "type": "Journal article",
+            "authors": "Ingham, E.R.",
+            "citation": "Soil Science, 159(4):281-282"
+          },
+          {
+            "n": 42,
+            "title": "Foundations of bio-diversity in managed Douglas-fir forests",
+            "year": 1996,
+            "type": "Conference proceedings",
+            "authors": "Carey, A.B., D.R. Thysell, L.J. Villa, T.M. Wilson, S.M. Wilson, J.M. Trappe, W. Colgan, E.R. Ingham and M. Holmes",
+            "citation": "In: Peterson, D.L. and C.V. Klimas (eds), The role of restoration in the ecosystem. Proceedings of the 2nd Symposium for Ecological Restoration. Madison, WI: Society for Ecological Restoration, 68-82"
+          },
+          {
+            "n": 43,
+            "title": "Responses of soil foodweb organisms in the first year following clearcutting and application of chloropicrin to control laminated root rot",
+            "year": 1996,
+            "type": "Journal article",
+            "authors": "Ingham, E.R. and W.G. Thies",
+            "citation": "Applied Soil Ecol., 3:35-47",
+            "url": "https://doi.org/10.1016/0929-1393(95)00075-5"
+          },
+          {
+            "n": 44,
+            "title": "Soil biology and ecology",
+            "year": 1997,
+            "type": "Book chapter",
+            "authors": "Rygiewicz, P.T. and E.R. Ingham",
+            "citation": "In Fairbridge, R.W. and D.E. Alexander (eds), Encyclopedia of Environmental Science. Van Nostrand Reinhold, NY"
+          },
+          {
+            "n": 45,
+            "title": "Conventional and organic alternatives to methyl bromide on California strawberries: Effect of Brassica residues and spent mushroom compost following successive chemical fumigation",
+            "year": 1997,
+            "type": "Journal article",
+            "authors": "Sances, F.V. and E.R. Ingham",
+            "citation": "Compost Science and Utilization, 5:23-37",
+            "url": "https://doi.org/10.1080/1065657X.1997.10701871"
+          },
+          {
+            "n": 46,
+            "title": "Chemistry and microbial activity of forest and pasture riparian-zone soils along three Pacific Northwest streams",
+            "year": 1997,
+            "type": "Journal article",
+            "authors": "Griffiths, R.P., J.A. Entry, E.R. Ingham and W.H. Emmingham",
+            "citation": "Plant and Soil, 190:169-178",
+            "url": "https://doi.org/10.1023/A:1004211121095"
+          },
+          {
+            "n": 47,
+            "title": "Changes in rhizosphere microflora and microfauna 10 years following Douglas-fir live tree injection with chloropicrin or methylisothiocyanate",
+            "year": 1997,
+            "type": "Journal article",
+            "authors": "Ingham, E.R. and W. Thies",
+            "citation": "Can. J. For. Res., 27:724-731",
+            "url": "https://doi.org/10.1139/x97-051"
+          },
+          {
+            "n": 48,
+            "title": "Soil foodweb structure and function in forests: A comparison of conifer, deciduous, riparian and managed forests",
+            "year": 1997,
+            "type": "Conference proceedings",
+            "authors": "Ingham, E.R.",
+            "citation": "Proceedings of the IUFRO Interdisciplinary Uneven-aged Management Symposium"
+          },
+          {
+            "n": 49,
+            "title": "Foodweb methodology to assess ecological effects of anthropogenic stressors in soil",
+            "year": 1998,
+            "type": "Journal article",
+            "authors": "Hendricks, C.W., M.T. Holmes and E.R. Ingham",
+            "citation": "Trends in Soil Science, 2:181-189"
+          },
+          {
+            "n": 50,
+            "title": "Ectomycorrhizae establishment on Douglas-fir seedlings following chloropicrin treatment to control laminated-root rot disease: Assessment 4 and 5 years after outplanting",
+            "year": 1998,
+            "type": "Journal article",
+            "authors": "Massicotte, H.B., L.E. Tackaberry, E.R. Ingham and W.G. Thies",
+            "citation": "Appl. Soil Ecol., 10:117-126",
+            "url": "https://www.sciencedirect.com/science/article/pii/S092913939800033X"
+          },
+          {
+            "n": 51,
+            "title": "Sustainable agriculture and the ecology of soil",
+            "year": 1998,
+            "type": "Journal article",
+            "authors": "Ingham, E.R. and J. Barlow",
+            "citation": "Perspectives on Business and Global Change, 12:31-42"
+          },
+          {
+            "n": 52,
+            "title": "Soil organisms and their role in healthy turf",
+            "year": 1998,
+            "type": "Magazine article",
+            "authors": "Ingham, E.R.",
+            "citation": "Turf Grass Trends, 7:1-6"
+          },
+          {
+            "n": 53,
+            "title": "Soil view: Anaerobic bacteria and compost tea",
+            "year": 1998,
+            "type": "Magazine article",
+            "authors": "Ingham, E.R.",
+            "citation": "BioCycle, 39(6):86"
+          },
+          {
+            "n": 54,
+            "title": "Effects of Klebsiella planticola SDF20 on soil biota and wheat growth in sandy soil",
+            "year": 1999,
+            "type": "Journal article",
+            "authors": "Holmes, M.T., E.R. Ingham, J.D. Doyle and C.W. Hendricks",
+            "citation": "Appl. Soil Ecol., 11:67-78",
+            "url": "https://doi.org/10.1016/S0929-1393(98)00129-2"
+          },
+          {
+            "n": 55,
+            "title": "The mycorrhizal colonization of six wetland plant species at sites differing in land use history",
+            "year": 1999,
+            "type": "Journal article",
+            "authors": "Ingham, E.R. and M.V. Wilson",
+            "citation": "Mycorrhiza, 9(4):233-235",
+            "url": "https://doi.org/10.1007/s005720050272"
+          },
+          {
+            "n": 56,
+            "title": "Dynamics of soil fungal and bacterial biomass in a temperate climate alley cropping system",
+            "year": 1999,
+            "type": "Journal article",
+            "authors": "Seiter, S., E.R. Ingham and R.D. William",
+            "citation": "Appl. Soil Ecol., 12(2):139-147",
+            "url": "https://doi.org/10.1016/S0929-1393(98)00163-2"
+          },
+          {
+            "n": 57,
+            "title": "Compost tea, Part I & II",
+            "year": 1999,
+            "type": "Magazine article",
+            "authors": "Ingham, E.",
+            "citation": "BioCycle, 40:74-75"
+          },
+          {
+            "n": 58,
+            "title": "The Soil Biology Primer, Chapters 1-5: The Soil Foodweb; Soil Bacteria; Soil Fungi; Soil Protozoa; Soil Nematodes",
+            "year": 1999,
+            "type": "USDA publication",
+            "authors": "Ingham, E.R.",
+            "citation": "NRCS Soil Quality Institute, USDA",
+            "url": "https://www.nrcs.usda.gov/resources/education-and-teaching-materials/soil-biology-primer"
+          },
+          {
+            "n": 59,
+            "title": "Soil biology and ecology",
+            "year": 1999,
+            "type": "Book chapter",
+            "authors": "Rygiewicz, P.T. and E.R. Ingham",
+            "citation": "Environmental Geology, 564-568"
+          },
+          {
+            "n": 60,
+            "title": "Brewing compost tea",
+            "year": 2000,
+            "type": "Magazine article",
+            "authors": "Ingham, E.R.",
+            "citation": "Kitchen Gardener, 29:16-19"
+          },
+          {
+            "n": 61,
+            "title": "The Compost Tea Brewing Manual",
+            "year": 2000,
+            "type": "Book",
+            "authors": "Ingham, E.R.",
+            "citation": "Sustainable Studies Institute, Eugene, OR. 60 pp.",
+            "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=iOm3z4AAAAAJ&citation_for_view=iOm3z4AAAAAJ:HoB7MX3m0LUC"
+          },
+          {
+            "n": 62,
+            "title": "The functional roles of forest soil arthropods: The soil is a lively place",
+            "year": 2000,
+            "type": "Conference proceedings",
+            "authors": "Moldenke, A., M. Pajutee and E. Ingham",
+            "citation": "Proceedings of the California Forest Soils Council Conference on Forest Soils Biology and Forest Management. USDA Forest Service, Pacific Southwest Research Station, Gen. Tech. Rep. PSW-GTR-178, pages 7-22"
+          },
+          {
+            "n": 63,
+            "title": "Micronized compost and microbial life in compost",
+            "year": 2001,
+            "type": "Magazine article",
+            "authors": "Ingham, E.R.",
+            "citation": "BioCycle, 42(7):58"
+          },
+          {
+            "n": 64,
+            "title": "Wildlife and the remediation of contaminated soils: Extending the analysis of ecological risks to habitat restoration",
+            "year": 2002,
+            "type": "Book chapter",
+            "authors": "Linder, G., G. Henderson and E. Ingham",
+            "citation": "Handbook of Ecotoxicology, 191-214"
+          },
+          {
+            "n": 65,
+            "title": "Effect of cover crops and tillage system on symphylan (Symphyla: Scutigerella immaculata, Newport) and Pergamasus quisquiliarum Canestrini (Acari: Mesostigmata) populations",
+            "year": 2002,
+            "type": "Journal article",
+            "authors": "Peachey, R.E., A. Moldenke, R.D. William, R. Berry, E. Ingham and E. Groth",
+            "citation": "Applied Soil Ecology, 21(1):59-70",
+            "url": "https://doi.org/10.1016/S0929-1393(02)00039-2"
+          },
+          {
+            "n": 66,
+            "title": "Effects of compost amended container media on ornamental plant growth",
+            "year": 2004,
+            "type": "Journal article",
+            "authors": "Highland, M.T.F., D.C. Sclar, E.R. Ingham, K.L. Gartley and J.E. Swasey",
+            "citation": "HortScience, 39(4):750C-750"
+          },
+          {
+            "n": 67,
+            "title": "The soil foodweb: soil and composts as living ecosystems",
+            "year": 2004,
+            "type": "Conference proceedings",
+            "authors": "Ingham, E.R. and M.D. Slaughter",
+            "citation": "First International Conference Soil and Compost Eco-Biology, León, Spain"
+          },
+          {
+            "n": 68,
+            "title": "Comparison of soil biota between organic and conventional agroecosystems in Oregon, USA",
+            "year": 2005,
+            "type": "Journal article",
+            "authors": "Ingham, E.R.",
+            "citation": "Pedosphere, 15(3):395-403"
+          },
+          {
+            "n": 69,
+            "title": "A comparison of soil food webs beneath C3- and C4-dominated grasslands",
+            "year": 2008,
+            "type": "Journal article",
+            "authors": "Dornbush, M., C. Cambardella, E. Ingham and J. Raich",
+            "citation": "Biology and Fertility of Soils, 45(1):73-81",
+            "url": "https://doi.org/10.1007/s00374-008-0312-4"
+          },
+          {
+            "n": 70,
+            "title": "Soil life in reconstructed ecosystems: initial soil food web responses after rebuilding a forest soil profile for a climate change experiment",
+            "year": 2010,
+            "type": "Journal article",
+            "authors": "Rygiewicz, P.T., V.J. Monleon, E.R. Ingham, K.J. Martin and M.G. Johnson",
+            "citation": "Applied Soil Ecology, 45(1):26-38",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S0929139310000119"
+          },
+          {
+            "n": 71,
+            "title": "Differences in milk characteristics between a cow herd transitioning to organic versus milk from a conventional dairy herd",
+            "year": 2015,
+            "type": "Journal article",
+            "authors": "Tunick, M.H., M. Paul, E.R. Ingham, H.J. Karreman and D.L. Van Hekken",
+            "citation": "International Journal of Dairy Technology, 68(4):511-518",
+            "url": "https://doi.org/10.1111/1471-0307.12255"
+          },
+          {
+            "n": 72,
+            "title": "Case study: Comparison of milk composition from adjacent organic and conventional farms in the USA",
+            "year": 2016,
+            "type": "Journal article",
+            "authors": "Tunick, M.H., D.L. Van Hekken, M. Paul, E.R. Ingham and H.J. Karreman",
+            "citation": "International Journal of Dairy Technology, 69(1):137-142",
+            "url": "https://doi.org/10.1111/1471-0307.12284"
+          }
+        ]
+      },
+      {
+        "slug": "chapters",
+        "name": "Book Chapters",
+        "entries": [
+          {
+            "n": 1,
+            "title": "Interactions among mycorrhizal fungi, rhizosphere organisms, and plants",
+            "year": 1991,
+            "type": "Book chapter",
+            "authors": "Ingham, E.R. and R. Molina",
+            "citation": "Pages 169-197 in Barbosa, P., V.A. Krischik and C.G. Jones (eds), Microbial Mediation of Plant-Herbivore Interactions. John Wiley and Sons, NY",
+            "url": "https://andrewsforest.oregonstate.edu/publications/967"
+          },
+          {
+            "n": 2,
+            "title": "Soil protozoa",
+            "year": 1994,
+            "type": "Book chapter",
+            "authors": "Ingham, E.R.",
+            "citation": "In Methods of Soil Analysis, Part 2: Microbiological and Biochemical Properties, P. Bottomley (ed). Soil Science Society of America"
+          },
+          {
+            "n": 3,
+            "title": "Microflora and microfauna on stems and trunks: Diversity, food webs and effects on plants",
+            "year": 1995,
+            "type": "Book chapter",
+            "authors": "Ingham, E.R. and A. Moldenke",
+            "citation": "Pages 241-256 in Gartner, B.L. (ed), Plant Stems: Physiology and Functional Morphology. Academic Press, San Diego",
+            "url": "https://doi.org/10.1016/B978-012276460-8/50013-8"
+          },
+          {
+            "n": 4,
+            "title": "Soil microbiology",
+            "year": 1997,
+            "type": "Book chapter",
+            "authors": "Ingham, E.R.",
+            "citation": "In Sylvia, D. and P. Hartel (eds), Soil Microbiology: Environmental and Agricultural Perspectives. Oxford University Press"
+          },
+          {
+            "n": 5,
+            "title": "The Compost Tea Handbook 1.1",
+            "year": 1999,
+            "type": "Book",
+            "authors": "Ingham, E.R. and M. Alms",
+            "citation": "Self-published"
+          },
+          {
+            "n": 6,
+            "title": "The soil foodweb: Its role in ecosystem health",
+            "year": 2004,
+            "type": "Book chapter",
+            "authors": "Ingham, E.R.",
+            "citation": "The Overstory Book: Cultivating Connections with Trees, 62"
+          }
+        ]
+      },
+      {
+        "slug": "peer-reports",
+        "name": "Peer-Reviewed Technical Reports",
+        "entries": [
+          {
+            "n": 1,
+            "title": "Report on the selection of several potentially critical terrestrial systems",
+            "year": 1988,
+            "type": "Peer-reviewed technical report",
+            "authors": "Wilson, M.V., E.R. Ingham, C.D. McIntire and M.L. Scott",
+            "citation": "USEPA"
+          },
+          {
+            "n": 2,
+            "title": "A general model of biotic interactions",
+            "year": 1989,
+            "type": "Peer-reviewed technical report",
+            "authors": "Ingham, E.R., M.V. Wilson and C.D. McIntire",
+            "citation": "Special Report to the USEPA, CR-813570-01-0, 36 pp."
+          },
+          {
+            "n": 3,
+            "title": "Bioresponse of nontarget organisms resulting from the use of chloropicrin to control laminated root rot in a northwest conifer forest",
+            "year": 1991,
+            "type": "Peer-reviewed technical report",
+            "authors": "Thies, W.G., M.A. Castellano, E.R. Ingham, D.L. Luoma and A.R. Moldenke",
+            "citation": "Report"
+          },
+          {
+            "n": 4,
+            "title": "Bioresponse of nontarget organisms resulting from the use of chloropicrin to control laminated root rot in a northwest conifer forest",
+            "year": 1991,
+            "type": "Peer-reviewed technical report",
+            "authors": "Ingham, E.R., W.G. Thies, D.L. Luoma, A.R. Moldenke and M.A. Castellano",
+            "citation": "Report"
+          },
+          {
+            "n": 5,
+            "title": "Evaluation of terrestrial indicators for use in ecological assessments at hazardous waste sites",
+            "year": 1992,
+            "type": "Peer-reviewed technical report",
+            "authors": "Linder, G., E.R. Ingham, C.J. Brandt and G. Henderson",
+            "citation": "USEPA/600/R-92/183"
+          },
+          {
+            "n": 6,
+            "title": "Use of soil foodweb structure and function to assess superfund sites",
+            "year": 1993,
+            "type": "Peer-reviewed technical report",
+            "authors": "Ingham, E.R.",
+            "citation": "USEPA Ecological Site Assessment Program, Corvallis Environmental Research Lab"
+          },
+          {
+            "n": 7,
+            "title": "Standard Operating Procedure for Microbial Population Dynamics",
+            "year": 1995,
+            "type": "Peer-reviewed technical report",
+            "authors": "Ingham, E.R.",
+            "citation": "USEPA Global Climate Change Program, Corvallis Environmental Research Lab"
+          },
+          {
+            "n": 8,
+            "title": "Standard Operating Procedure for Total Bacteria",
+            "year": 1994,
+            "type": "Peer-reviewed technical report",
+            "authors": "Ingham, E.R.",
+            "citation": "USEPA Global Climate Change Program, Corvallis Environmental Research Lab"
+          },
+          {
+            "n": 9,
+            "title": "Standard Operating Procedure for Nematode Population and Community Structure",
+            "year": 1995,
+            "type": "Peer-reviewed technical report",
+            "authors": "Ingham, E.R.",
+            "citation": "USEPA Global Climate Change Program, Corvallis Environmental Research Lab"
+          },
+          {
+            "n": 10,
+            "title": "Standard Operating Procedure for Protozoan Populations and Community Structure",
+            "year": 1995,
+            "type": "Peer-reviewed technical report",
+            "authors": "Ingham, E.R.",
+            "citation": "USEPA Global Climate Change Program, Corvallis Environmental Research Lab"
+          }
+        ]
+      },
+      {
+        "slug": "reports",
+        "name": "Technical Reports",
+        "entries": [
+          {
+            "n": 1,
+            "title": "Biosafety regulations: A critique of existing documents",
+            "year": 1995,
+            "type": "Technical report",
+            "authors": "Ingham, E.R. and M. Holmes",
+            "citation": "The Edmonds Institute, Edmonds, WA"
+          },
+          {
+            "n": 2,
+            "title": "Biosafety regulation",
+            "year": 1995,
+            "type": "Technical report",
+            "authors": "Ingham, E.R.",
+            "citation": "Edmonds Institute, Edmonds, WA"
+          }
+        ]
+      },
+      {
+        "slug": "other",
+        "name": "Other Relevant Publications",
+        "entries": [
+          {
+            "n": 1,
+            "title": "Litter decomposition under snow cover in a balsam fir forest",
+            "year": 1990,
+            "type": "Journal article",
+            "authors": "Taylor, B.R. and H.G. Jones",
+            "citation": "Canadian Journal of Botany, 68(1):112-120",
+            "url": "https://doi.org/10.1139/b90-016"
+          },
+          {
+            "n": 2,
+            "title": "Biological nitrogen fixation for sustainable agriculture: A perspective",
+            "year": 1992,
+            "type": "Journal article",
+            "authors": "Bohlool, B.B., J.K. Ladha, D.P. Garrity and T. George",
+            "citation": "Plant and Soil, 141(1-2):1-11",
+            "url": "https://doi.org/10.1007/BF00011307"
+          },
+          {
+            "n": 3,
+            "title": "Heavy metals bioremediation of soil",
+            "year": 1999,
+            "type": "Journal article",
+            "authors": "Diels, L., M. De Smet, L. Hooyberghs and P. Corbisier",
+            "citation": "Molecular Biotechnology, 12(2):149-158",
+            "url": "https://doi.org/10.1385/MB:12:2:149"
+          },
+          {
+            "n": 4,
+            "title": "In situ and in vitro suppressive effect of agricultural composts and their water extracts on some phytopathogenic fungi",
+            "year": 2002,
+            "type": "Journal article",
+            "authors": "El-Masry, M.H., A.I. Khalil, M.S. Hassouna and H.A.H. Ibrahim",
+            "citation": "World Journal of Microbiology and Biotechnology, 18:551-558",
+            "url": "https://doi.org/10.1023/A:1016302729218"
+          },
+          {
+            "n": 5,
+            "title": "Compost tea as a container medium drench for suppressing seedling damping-off caused by Pythium ultimum",
+            "year": 2004,
+            "type": "Journal article",
+            "authors": "Scheuerell, S.J. and W.F. Mahaffee",
+            "citation": "Phytopathology, 94(11):1156-1163",
+            "url": "https://doi.org/10.1094/PHYTO.2004.94.11.1156"
+          },
+          {
+            "n": 6,
+            "title": "Microbial growth under the snow: Implications for nutrient and allelochemical availability in temperate soils",
+            "year": 2004,
+            "type": "Journal article",
+            "authors": "Schmidt, S.K. and D.A. Lipson",
+            "citation": "Plant and Soil, 259(1-2):1-7"
+          },
+          {
+            "n": 7,
+            "title": "Bioremediation potential of spirulina: toxicity and biosorption studies of lead",
+            "year": 2005,
+            "type": "Journal article",
+            "authors": "Chen, H. and S. Pan",
+            "citation": "Journal of Zhejiang University SCIENCE, 6B(3):171-174",
+            "url": "https://doi.org/10.1631/jzus.2005.B0171"
+          },
+          {
+            "n": 8,
+            "title": "Uptake of lead by a ciliate, Stylonychia mytilus, isolated from industrial effluents: Potential use in bioremediation of wastewater",
+            "year": 2005,
+            "type": "Journal article",
+            "authors": "Rehman, A., S. Ashraf, J.I. Qazi and A.R. Shakoori",
+            "citation": "Bulletin of Environmental Contamination and Toxicology, 75(2):290-296",
+            "url": "https://doi.org/10.1007/s00128-005-0751-7"
+          },
+          {
+            "n": 9,
+            "title": "In vitro and in vivo evaluation of individually compost fungi for potato fusarium dry rot biocontrol",
+            "year": 2006,
+            "type": "Journal article",
+            "authors": "Daami-Remadi, M., H. Jabnoun-Khiareddine, F. Ayed, K. Hibar, I.E.A. Znaidi and M. El Mahjoub",
+            "citation": "Journal of Biological Sciences, 6(3):572-580",
+            "url": "https://doi.org/10.3923/jbs.2006.572.580"
+          },
+          {
+            "n": 10,
+            "title": "Foliar spraying of vermicompost extracts: effects on fruit quality and indications of late-blight suppression of field-grown tomatoes",
+            "year": 2006,
+            "type": "Journal article",
+            "authors": "Zaller, J.G.",
+            "citation": "Biological Agriculture & Horticulture, 24(2):165-180",
+            "url": "https://orgprints.org/id/eprint/10450/"
+          },
+          {
+            "n": 11,
+            "title": "Suppression of Phytophthora infestans in potatoes by foliar application of food nutrients and compost tea",
+            "year": 2007,
+            "type": "Journal article",
+            "authors": "Al-Mughrabi, K.I.",
+            "citation": "Australian Journal of Basic and Applied Sciences, 1(4):785-792"
+          },
+          {
+            "n": 12,
+            "title": "Compost and compost water extract-induced systemic acquired resistance in cucumber and Arabidopsis",
+            "year": 1998,
+            "type": "Journal article",
+            "authors": "Zhang, W., D.Y. Han, W.A. Dick, K.R. Davis and H.A.J. Hoitink",
+            "citation": "Phytopathology, 88(5):450-455",
+            "url": "https://doi.org/10.1094/PHYTO.1998.88.5.450"
+          },
+          {
+            "n": 13,
+            "title": "Aerobic compost tea, compost and a combination of both reduce the severity of common scab (Streptomyces scabiei) on potato tubers",
+            "year": 2008,
+            "type": "Journal article",
+            "authors": "Al-Mughrabi, K.I., C. Berthélémé, T. Livingston, A. Burgoyne, R. Poirier and A. Vikram",
+            "citation": "Journal of Plant Sciences, 3:168-175",
+            "url": "https://doi.org/10.3923/jps.2008.168.175"
+          },
+          {
+            "n": 14,
+            "title": "Effect of bacterial isolates obtained from animal manure compost extracts on the development of Fusarium oxysporum f. sp. radicis-lycopersici",
+            "year": 2008,
+            "type": "Journal article",
+            "authors": "Kerkeni, A., M. Daami-Remadi, N. Tarchoun and M.B. Khedher",
+            "citation": "Asian Journal of Plant Pathology, 2(1):15-23",
+            "url": "https://doi.org/10.3923/ajppaj.2008.15.23"
+          },
+          {
+            "n": 15,
+            "title": "Relative effects of biological amendments and crop rotations on soil microbial communities and soilborne diseases of potato",
+            "year": 2008,
+            "type": "Journal article",
+            "authors": "Larkin, R.P.",
+            "citation": "Soil Biology and Biochemistry, 40(6):1341-1351",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S0038071707001101"
+          },
+          {
+            "n": 16,
+            "title": "In vitro studies on control of soil-borne plant pathogens by earthworm Eudrilus eugeniae exudates",
+            "year": 2008,
+            "type": "Journal article",
+            "authors": "Shobha, S.V. and R.D. Kale",
+            "citation": "Journal citation not verified"
+          },
+          {
+            "n": 17,
+            "title": "The control of diseases on lettuce by the use of antagonistic organisms. 1. The control of Botrytis cinerea Pers.",
+            "year": 1951,
+            "type": "Journal article",
+            "authors": "Wood, R.K.S.",
+            "citation": "Annals of Applied Biology, 38(1):203-216",
+            "url": "https://doi.org/10.1111/j.1744-7348.1951.tb07797.x"
+          },
+          {
+            "n": 18,
+            "title": "Chitin signaling in plants: Insights into the perception of fungal pathogens and rhizobacterial symbionts",
+            "year": 2008,
+            "type": "Journal article",
+            "authors": "Eckardt, N.A.",
+            "citation": "The Plant Cell, 20:241-243",
+            "url": "https://doi.org/10.1105/tpc.108.058784"
+          },
+          {
+            "n": 19,
+            "title": "Potential application of compost teas of agricultural wastes in the control of the mushroom pathogen Verticillium fungicola",
+            "year": 2009,
+            "type": "Journal article",
+            "authors": "Gea, F.J., M.J. Navarro and J.C. Tello",
+            "citation": "Journal of Plant Diseases and Protection, 116:271-273",
+            "url": "https://doi.org/10.1007/BF03356322"
+          },
+          {
+            "n": 20,
+            "title": "Vermicompost extracts influence growth, mineral nutrients, phytonutrients and antioxidant activity in pak choi (Brassica rapa cv. Bonsai, Chinensis group) grown under vermicompost and chemical fertiliser",
+            "year": 2009,
+            "type": "Journal article",
+            "authors": "Pant, A.P., T.J.K. Radovich, N.V. Hue, S.T. Talcott and K.A. Krenek",
+            "citation": "Journal of the Science of Food and Agriculture, 89(14):2383-2392",
+            "url": "https://doi.org/10.1002/jsfa.3732"
+          },
+          {
+            "n": 21,
+            "title": "Control of powdery mildew (Erysiphe polygoni) in tomato by foliar applications of compost tea",
+            "year": 2009,
+            "type": "Journal article",
+            "authors": "Segarra, G., M. Reis, E. Casanova and M.I. Trillas",
+            "citation": "Journal of Plant Pathology, 91:683-689"
+          },
+          {
+            "n": 22,
+            "title": "Bio-potential of compost tea from agro-waste to suppress Choanephora cucurbitarum L. the causal pathogen of wet rot of okra",
+            "year": 2009,
+            "type": "Journal article",
+            "authors": "Siddiqui, Y., S. Meon, R. Ismail and M. Rahmani",
+            "citation": "Biological Control, 49:38-44",
+            "url": "https://doi.org/10.1016/j.biocontrol.2008.11.008"
+          },
+          {
+            "n": 23,
+            "title": "Biocontrol activity and induction of systemic resistance in pepper by compost water extracts against Phytophthora capsici",
+            "year": 2010,
+            "type": "Journal article",
+            "authors": "Sang, M.K., J.G. Kim and K.D. Kim",
+            "citation": "Phytopathology, 100:774-783",
+            "url": "https://doi.org/10.1094/PHYTO-100-8-0774"
+          },
+          {
+            "n": 24,
+            "title": "Evidence for nitrogen-fixation in the Salicaceae family",
+            "year": 2011,
+            "type": "Magazine article",
+            "authors": "von Wuehlisch, G.",
+            "citation": "Tree Planters’ Notes, 54(2):38-41"
+          },
+          {
+            "n": 25,
+            "title": "Phytotoxicity analysis of extracts from compost and their ability to inhibit soil-borne pathogenic fungi and reduce root-knot nematodes",
+            "year": 2011,
+            "type": "Journal article",
+            "authors": "Xu, D., W. Raza, G. Yu, Q. Zhao, Q. Shen and Q. Huang",
+            "citation": "World Journal of Microbiology and Biotechnology, 28(3):1193-1201",
+            "url": "https://doi.org/10.1007/s11274-011-0922-0"
+          },
+          {
+            "n": 26,
+            "title": "Microbiological community analysis of vermicompost tea and its influence on the growth of vegetables and cereals",
+            "year": 2012,
+            "type": "Journal article",
+            "authors": "Fritz, J.I., I.H. Franke-Whittle, S. Haindl, H. Insam and R. Braun",
+            "citation": "Canadian Journal of Microbiology, 58(7):836-847",
+            "url": "https://doi.org/10.1139/w2012-061"
+          },
+          {
+            "n": 27,
+            "title": "Biochemical properties of compost tea associated with compost quality and effects on pak choi growth",
+            "year": 2012,
+            "type": "Journal article",
+            "authors": "Pant, A.P., T.J.K. Radovich, N.V. Hue and R.E. Paull",
+            "citation": "Scientia Horticulturae, 148:138-146",
+            "url": "https://www.sciencedirect.com/science/article/pii/S0304423812004542"
+          },
+          {
+            "n": 28,
+            "title": "Compost and compost tea: Principles and prospects as substrates and soil-borne disease management strategies in soil-less vegetable production",
+            "year": 2012,
+            "type": "Journal article",
+            "authors": "St. Martin, C.C.G. and R.A.I. Brathwaite",
+            "citation": "Biological Agriculture & Horticulture, 28(1):1-33"
+          },
+          {
+            "n": 29,
+            "title": "Effects and relationships of compost type, aeration and brewing time on compost tea properties, efficacy against Pythium ultimum, phytotoxicity and potential as a nutrient amendment for seedling production",
+            "year": 2012,
+            "type": "Journal article",
+            "authors": "St. Martin, C.C.G., W. Dorinvil, R.A.I. Brathwaite and A. Ramsubhag",
+            "citation": "Biological Agriculture & Horticulture, 28(3):185-205",
+            "url": "https://doi.org/10.1080/01448765.2012.727667"
+          },
+          {
+            "n": 30,
+            "title": "Humic-like substances from different compost extracts could significantly promote cucumber growth",
+            "year": 2012,
+            "type": "Journal article",
+            "authors": "Xu, D., Q. Wang, Y. Wu, G. Yu, Q. Shen and Q. Huang",
+            "citation": "Pedosphere, 22(6):815-824",
+            "url": "https://doi.org/10.1016/S1002-0160(12)60067-8"
+          },
+          {
+            "n": 31,
+            "title": "In vitro and in vivo evaluation of microbial-enriched compost tea on the development of powdery mildew on melon",
+            "year": 2012,
+            "type": "Journal article",
+            "authors": "Naidu, Y., S. Meon and Y. Siddiqui",
+            "citation": "BioControl, 57(6):827-836",
+            "url": "https://doi.org/10.1007/s10526-012-9454-2"
+          },
+          {
+            "n": 32,
+            "title": "Characters of compost teas from different sources and their suppressive effect on fungal phytopathogens",
+            "year": 2013,
+            "type": "Journal article",
+            "authors": "Marín, F., M. Santos, F. Diánez, F. Carretero, F.J. Gea, J.A. Yau and M.J. Navarro",
+            "citation": "World Journal of Microbiology and Biotechnology, 29(8):1371-1382",
+            "url": "https://doi.org/10.1007/s11274-013-1300-x"
+          },
+          {
+            "n": 33,
+            "title": "Influence of the nitrogen form on in vitro organogenesis in Equisetum arvense",
+            "year": 2013,
+            "type": "Journal article",
+            "authors": "Nakatani, K. and Y. Fujii",
+            "citation": "Weed Biology and Management, 13(4):151-155"
+          },
+          {
+            "n": 34,
+            "title": "Non-growing season soil CO2 efflux and its changes in an alpine meadow ecosystem of the Qilian Mountains, Northwest China",
+            "year": 2013,
+            "type": "Journal article",
+            "authors": "Chang, Z.Q., X.Q. Liu, Q. Feng, Z.X. Che, H.Y. Xi, Y.H. Su and J.H. Si",
+            "citation": "Journal of Arid Land, 5(4):488-499",
+            "url": "https://doi.org/10.1007/s40333-013-0179-6"
+          },
+          {
+            "n": 35,
+            "title": "Using aerated compost tea in comparison with a chemical pesticide for controlling rose powdery mildew",
+            "year": 2014,
+            "type": "Journal article",
+            "authors": "Seddigh, S., L. Kiani, B. Tafaghodinia and B. Hashemi",
+            "citation": "Archives of Phytopathology and Plant Protection, 47(6):658-664",
+            "url": "https://doi.org/10.1080/03235408.2013.817075"
+          },
+          {
+            "n": 36,
+            "title": "Altered carbon delivery from roots: rapid, sustained inhibition of border cell dispersal in response to compost water extracts",
+            "year": 2015,
+            "type": "Journal article",
+            "authors": "Tollefson, S.J., G. Curlango-Rivera, D.A. Huskey, T. Pew, G. Giacomelli and M.C. Hawes",
+            "citation": "Plant and Soil, 389(1-2):145-156",
+            "url": "https://doi.org/10.1007/s11104-014-2350-z"
+          },
+          {
+            "n": 37,
+            "title": "Comparison of seasonal soil microbial process in snow-covered temperate ecosystems of Northern China",
+            "year": 2014,
+            "type": "Journal article",
+            "authors": "Zhang, X., W. Wang, W. Chen, N. Zhang and H. Zeng",
+            "citation": "PLoS ONE, 9(3):e92985",
+            "url": "https://doi.org/10.1371/journal.pone.0092985"
+          },
+          {
+            "n": 38,
+            "title": "Winter soil CO2 flux from different mid-latitude sites from Middle Taihang Mountain in North China",
+            "year": 2014,
+            "type": "Journal article",
+            "authors": "Shen, H., J. Cao, W. Zhang, X. Zeng and H. Wang",
+            "citation": "PLoS ONE, 9(3):e91589",
+            "url": "https://doi.org/10.1371/journal.pone.0091589"
+          },
+          {
+            "n": 39,
+            "title": "Overview of engineering problems of soil compaction and their effects on growth and yields of crops",
+            "year": 2018,
+            "type": "Journal article",
+            "authors": "Odey, S.",
+            "citation": "Journal of Advances in Engineering and Technology, 5(9):701-709"
+          },
+          {
+            "n": 40,
+            "title": "Biocontrol activity of endophytic fungus of barley, Microdochium bolleyi, against Gaeumannomyces graminis var. tritici",
+            "year": 2018,
+            "type": "Journal article",
+            "authors": "Shadmani, L., S. Jamali and A. Fatemi",
+            "citation": "Mycologia Iranica, 5(1):7-14",
+            "url": "https://doi.org/10.22043/mi.2019.118205"
+          },
+          {
+            "n": 41,
+            "title": "Top-down is bottom-up: Does predation in the rhizosphere regulate aboveground dynamics?",
+            "year": 2003,
+            "type": "Journal article",
+            "authors": "Moore, J.C., K. McCann, H. Setälä and P.C. de Ruiter",
+            "citation": "Ecology, 84(4):846-857",
+            "url": "https://doi.org/10.1890/0012-9658(2003)084[0846:TIBDPI]2.0.CO;2"
+          },
+          {
+            "n": 42,
+            "title": "Fungal-bacterial diversity and microbiome complexity predict ecosystem functioning",
+            "year": 2019,
+            "type": "Journal article",
+            "authors": "Wagg, C., K. Schlaeppi, S. Banerjee, E.E. Kuramae and M.G.A. van der Heijden",
+            "citation": "Nature Communications, 10:4841",
+            "url": "https://doi.org/10.1038/s41467-019-12798-y"
+          },
+          {
+            "n": 43,
+            "title": "Trophic relationships in the soil microfood-web: Predicting the responses to a changing global environment",
+            "year": 1998,
+            "type": "Journal article",
+            "authors": "Wardle, D.A., H.A. Verhoef and M. Clarholm",
+            "citation": "Global Change Biology, 4(7):713-727",
+            "url": "https://doi.org/10.1046/j.1365-2486.1998.00206.x"
+          }
+        ]
+      },
+      {
+        "slug": "internet",
+        "name": "Internet Articles",
+        "entries": [
+          {
+            "n": 1,
+            "title": "Study finds fungi, not plant matter, responsible for most carbon sequestration in northern forests",
+            "year": 2013,
+            "type": "Internet article",
+            "citation": "March 19, 2013",
+            "url": "https://m.phys.org/news/2013-03-fungi-responsible-carbon-sequestration-northern.html"
+          },
+          {
+            "n": 2,
+            "title": "Compost could be worth double or triple of current price only if…",
+            "year": 2018,
+            "type": "Internet article",
+            "citation": "September 18, 2018",
+            "url": "https://www.linkedin.com/pulse/compost-could-worth-double-triple-current-price-only-daniel-tyrkiel"
+          },
+          {
+            "n": 3,
+            "title": "Carbon sequestration: The climate change solution that virtually all climate activists ignore",
+            "year": 2015,
+            "type": "Internet article",
+            "citation": "February 3, 2015",
+            "url": "https://articles.mercola.com/sites/articles/archive/2015/02/03/carbon-sequestration-climate-change.aspx"
+          },
+          {
+            "n": 4,
+            "title": "Researchers propose ecological route to plant disease control",
+            "year": 2015,
+            "type": "Internet article",
+            "citation": "September 24, 2015",
+            "url": "https://www.york.ac.uk/news-and-events/news/2015/research/tomatoes-disease-biology/"
+          },
+          {
+            "n": 5,
+            "title": "Predatory earwigs are attracted by herbivore-induced plant volatiles linked with plant growth-promoting rhizobacteria",
+            "year": 2021,
+            "type": "Internet article",
+            "citation": "September 24, 2021",
+            "url": "https://drive.google.com/file/d/1nxNVpghLhyqI8rndiSyNhlg9wiBZ_qRK/view?usp=sharing"
+          }
+        ]
       }
     ]
   },
