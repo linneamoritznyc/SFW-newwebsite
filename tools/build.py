@@ -110,6 +110,110 @@ def steps(items, icon="i-cycle"):
     return out + "      </div>\n"
 
 
+# ------------------------------------------------------ photographs and motion
+# Added 11 September 2026 for the visual-language proposal.
+#
+# Every photograph on the site is the Foundation's own, from the asset library
+# in img/. Each one below was opened and looked at before it was placed: the
+# filenames describe almost nothing.
+#
+# CAPTION is deliberately a constant. Captions are the Foundation's to write,
+# and an invented one would be a claim about a real place and real people.
+CAPTION = "REPLACE_WITH_CAPTION"
+
+
+def shot(src, alt, cls="", cap=False, depth=0):
+    """One photograph, shown whole. Caption only where the layout wants one."""
+    c = ("shot " + cls).strip()
+    f = '<figure class="%s">\n        <img src="%s%s" alt="%s" loading="lazy" decoding="async">\n' % (
+        A(c), "../" * depth, A(src), A(alt))
+    if cap:
+        f += '        <figcaption class="cap--todo">%s</figcaption>\n' % e(CAPTION)
+    return f + "      </figure>"
+
+
+def filmstrip(items, depth=0):
+    """Photographs running edge to edge. Faces of the people doing the work."""
+    li = "".join(
+        '        <li><img src="%s%s" alt="%s" loading="lazy" decoding="async"></li>\n'
+        % ("../" * depth, A(src), A(alt)) for src, alt in items)
+    return '      <ul class="filmstrip">\n%s      </ul>\n' % li
+
+
+def ledger(items, depth=0):
+    """A tidy grid of photographs, each with a small caption underneath."""
+    li = ""
+    for src, alt, label in items:
+        li += ('        <li>\n          <figure>\n'
+               '            <img src="%s%s" alt="%s" loading="lazy" decoding="async">\n'
+               '            <figcaption><b>%s</b><span class="cap--todo">%s</span></figcaption>\n'
+               '          </figure>\n        </li>\n'
+               % ("../" * depth, A(src), A(alt), e(label), e(CAPTION)))
+    return '      <ul class="ledger">\n%s      </ul>\n' % li
+
+
+def banner(src, alt, h2, hid, lede="", ctas="", depth=0):
+    """One landscape photograph carrying a whole screen, with one line over it.
+
+    Landscape only and never a face: type sits on the image, so it needs a
+    scrim, and a scrim across somebody's face is exactly what was ruled out.
+    """
+    inner = '          <h2 id="%s">%s</h2>\n' % (A(hid), e(h2))
+    if lede:
+        inner += '          <p class="lede">%s</p>\n' % e(lede)
+    if ctas:
+        inner += '          <p style="margin-top:var(--s4);display:flex;flex-wrap:wrap;gap:var(--s2)">%s</p>\n' % ctas
+    return ('  <section class="banner bleed" aria-labelledby="%s">\n'
+            '    <img src="%s%s" alt="%s" loading="lazy" decoding="async">\n'
+            '    <div class="banner__in">\n      <div class="wrap">\n%s      </div>\n    </div>\n'
+            '  </section>\n' % (A(hid), "../" * depth, A(src), A(alt), inner))
+
+
+def scope(depth=0):
+    """The Foundation's own brightfield microscopy, looping silently inside a
+    round field with a reticle across it. Study 01 from /motion.
+
+    data-src rather than src: nothing downloads until the reader is near it.
+    The reticle ticks carry no numbers, because a real scale bar needs the
+    objective magnification and the sensor size, and neither is confirmed.
+    """
+    b = "../" * depth
+    return ('      <figure class="scope">\n'
+            '        <div class="scope__disc">\n'
+            '          <video data-loop muted loop playsinline preload="none"\n'
+            '                 poster="%simg/sfw-amoeba-poster-square.jpg"\n'
+            '                 data-src="%svideo/sfw-amoeba-loop-square.webm,%svideo/sfw-amoeba-loop-square.mp4"\n'
+            '                 aria-label="Brightfield microscopy from the Foundation archive, looping without sound"></video>\n'
+            '          <span class="scope__glass"></span>\n'
+            '          <svg class="scope__ret" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">\n'
+            '            <line x1="50" y1="0" x2="50" y2="100" stroke-width=".35"/>\n'
+            '            <line x1="0" y1="50" x2="100" y2="50" stroke-width=".35"/>\n'
+            '            <circle cx="50" cy="50" r="17" stroke-width=".35"/>\n'
+            '            <circle cx="50" cy="50" r="33" stroke-width=".35"/>\n'
+            '            <g stroke-width=".45">\n'
+            '              <line x1="22" y1="49" x2="22" y2="51"/><line x1="30" y1="49.5" x2="30" y2="50.5"/>\n'
+            '              <line x1="38" y1="49" x2="38" y2="51"/><line x1="62" y1="49" x2="62" y2="51"/>\n'
+            '              <line x1="70" y1="49.5" x2="70" y2="50.5"/><line x1="78" y1="49" x2="78" y2="51"/>\n'
+            '            </g>\n'
+            '          </svg>\n'
+            '        </div>\n'
+            '        <figcaption class="cap--todo">%s</figcaption>\n'
+            '      </figure>\n' % (b, b, b, e(CAPTION)))
+
+
+def doors(items, depth=0):
+    """Three audience doorways. The photograph is the target, type sits under."""
+    li = ""
+    for src, alt, href, title, body in items:
+        li += ('        <li>\n          <a class="door" href="%s">\n'
+               '            <img src="%s%s" alt="%s" loading="lazy" decoding="async">\n'
+               '            <h3>%s</h3>\n            <p>%s</p>\n'
+               '          </a>\n        </li>\n'
+               % (A(href), "../" * depth, A(src), A(alt), e(title), e(body)))
+    return '      <ul class="doors">\n%s      </ul>\n' % li
+
+
+
 # ------------------------------------------------------------------ chrome
 def chrome(depth=0):
     g = load("global")
@@ -234,67 +338,185 @@ MAIN = lambda s: '<main id="main">\n\n' + s + '\n</main>'
 
 # ------------------------------------------------------------------- pages
 def p_home():
+    """The homepage.
+
+    Evan asked for a community-led page with the faces of the movement up
+    front, more biology, depth and layering, and real photographs of people
+    doing the hands-on work. So: the specimen first, the people immediately
+    after, and the Foundation's own microscopy running silently before any
+    claim is made about what lives in soil.
+
+    Copy is untouched. Every string still comes from content/home.json.
+    """
     c = load("home"); o = []
+
+    # -- hero. The image note in home.json asks for hands holding living soil
+    #    with roots and fungal strands visible; this photograph is exactly that.
     h = c["hero"]
-    o.append('  <section class="stratum" style="border-top:0">\n    <div class="wrap">\n      <div class="grid">\n'
-             '        <div class="span-7">\n          %s\n          <h1>%s</h1>\n'
+    o.append('  <section class="stratum" style="border-top:0">\n    <div class="wrap">\n'
+             '      <div class="grid" style="align-items:center;row-gap:var(--s5)">\n'
+             '        <div class="span-6">\n          %s\n          <h1>%s</h1>\n'
              '          <p class="lede">%s</p>\n'
              '          <p style="margin-top:var(--s4);display:flex;flex-wrap:wrap;gap:var(--s2);align-items:center">%s %s</p>\n'
-             '        </div>\n        <figure class="plate span-5">\n'
-             '          <div class="plate__f" style="aspect-ratio:4/3" data-empty="%s"></div>\n'
-             '        </figure>\n      </div>\n    </div>\n  </section>\n'
+             '        </div>\n        <div class="span-6">\n          %s\n        </div>\n'
+             '      </div>\n    </div>\n  </section>\n'
              % (eyebrow(h["eyebrow"]), e(h["h1"]), e(h["subhead"]),
-                cta(h["primaryCta"]), cta(h["secondaryCta"], "btn btn--ghost"), A(h["image"]["note"])))
-    s = c["stats"]; cells = ""
+                cta(h["primaryCta"]), cta(h["secondaryCta"], "btn btn--ghost"),
+                shot("img/hand-soil-roots-fungi.jpg",
+                     "An open palm holding a clump of soil bound together by roots and pale fungal strands",
+                     cap=True)))
+
+    # -- the faces, immediately. No copy of its own: the photographs are the
+    #    argument. Edge to edge so the page opens out before the figures.
+    o.append('  <section class="stratum" aria-label="The community at work">\n'
+             '    <div class="bleed">\n%s    </div>\n  </section>\n'
+             % filmstrip([
+                 ("img/Carla-Nicks Son-Nick-ERI-Wild Soils Event-11-2024.jpg",
+                  "A group of people laughing as they work together outdoors with brushes and rakes"),
+                 ("img/ctpfw-student-moving-compost-1.jpg",
+                  "A student lifting an armful of finished compost while others watch and a hose is played over the pile"),
+                 ("img/erc-panchamana-treeplanting-3-fb-img-1666271008784.jpg",
+                  "A young man crouching to plant a seedling, with others planting along the same row behind him"),
+                 ("img/hvdb-inplanten-002.jpg",
+                  "A group planting young trees across an open field on a grey day"),
+                 ("img/el-nino-2017-tractor-in-mud-w-crew.jpg",
+                  "A crew digging a tractor out of deep mud under a wide sky"),
+             ]))
+
+    # -- the figures
+    s_ = c["stats"]; cells = ""
     for k in ("stat1", "stat2", "stat3"):
-        st = s[k]
+        st = s_[k]
         src_ = '<p class="source small">%s</p>' % e(st["source"]) if st.get("source") else ""
         cells += ('        <div class="span-4">\n          <p class="stat">%s</p>\n'
                   '          <p class="stat__label">%s</p>\n          %s\n        </div>\n'
                   % (e(st["value"]), e(st["label"]), src_))
     o.append(sec('      <h2 id="stats-h" class="visually-hidden">The Foundation in figures</h2>\n'
-                 '      <div class="grid">\n%s      </div>\n      %s' % (cells, note(s)),
-                 "stratum--deep", "stats-h"))
+                 '      <div class="grid">\n%s      </div>\n      %s' % (cells, note(s_)),
+                 label="stats-h"))
+
+    # -- the slide. The most valuable material the Foundation owns, given the
+    #    quietest treatment on the page: silent, contained, endless.
+    o.append(sec(scope(), "stratum--deep"))
+
+    # -- who we are, with the one legacy moment the homepage gets
     w = c["whoWeAre"]
-    o.append(sec('      <div class="grid">\n        <div class="span-7">\n          %s\n          <h2 id="who-h">%s</h2>\n'
-                 '          %s\n          <p><a href="%s">%s</a></p>\n        </div>\n      </div>\n      %s'
+    o.append(sec('      <div class="grid" style="align-items:center;row-gap:var(--s5)">\n'
+                 '        <div class="span-7">\n          %s\n          <h2 id="who-h">%s</h2>\n'
+                 '          %s\n          <p><a href="%s">%s</a></p>\n        </div>\n'
+                 '        <div class="span-5">\n          %s\n        </div>\n      </div>\n      %s'
                  % (eyebrow(w["eyebrow"]), e(w["h2"]),
                     "\n          ".join("<p>%s</p>" % e(p) for p in w["body"]),
-                    A(w["link"]["href"]), e(w["link"]["label"]), note(w)), label="who-h"))
+                    A(w["link"]["href"]), e(w["link"]["label"]),
+                    shot("img/Dr Elaine Ingham with Microscope.jpg",
+                         "Dr. Elaine Ingham beside a microscope, looking towards the camera",
+                         cls="shot--legacy", cap=True), note(w)), label="who-h"))
+
+    # -- the approach. Four steps, four photographs, numerals instead of the
+    #    drawn branch icons: the steps are a real sequence, so a numeral is
+    #    information. Nothing here is drawn.
     a = c["howItWorks"]
-    o.append(sec('      <div class="head">\n        %s\n        <h2 id="approach-h">%s</h2>\n      </div>\n%s'
-                 '      <p style="margin-top:var(--s4)"><a href="%s">%s</a></p>\n      %s'
-                 % (eyebrow(a["eyebrow"]), e(a["h2"]), steps(a["steps"]),
+    step_shots = [
+        ("img/Sampling equipment.jpg",
+         "A microscope on a bench beside racked sample tubes and bottles"),
+        ("img/hand-of-compost.jpg",
+         "A hand lifting a fistful of dark finished compost above the pile it came from"),
+        ("img/gloved-hands-red-bucket-mulch.jpg",
+         "Gloved hands reaching into a red bucket of shredded bark mulch, seen from above"),
+        ("img/erc-panchamana-garden.jpg",
+         "A planted garden of curved beds seen from above, dense with green growth"),
+    ]
+    cells = ""
+    for i, st in enumerate(a["steps"]):
+        src, alt = step_shots[i]
+        cells += ('        <div class="span-3">\n          <div class="step">\n            %s\n'
+                  '            <p class="step__n">%s</p>\n            <h3>%s</h3>\n            <p>%s</p>\n'
+                  '          </div>\n        </div>\n'
+                  % (shot(src, alt, cls="shot--crop"), e(str(st["n"])),
+                     e(st.get("title", "")), e(st["body"])))
+    o.append(sec('      <div class="head">\n        %s\n        <h2 id="approach-h">%s</h2>\n      </div>\n'
+                 '      <div class="grid" style="row-gap:var(--s5)">\n%s      </div>\n'
+                 '      <p style="margin-top:var(--s5)"><a href="%s">%s</a></p>\n      %s'
+                 % (eyebrow(a["eyebrow"]), e(a["h2"]), cells,
                     A(a["link"]["href"]), e(a["link"]["label"]), note(a)), label="approach-h"))
+
+    # -- learn with us. The existing card takes a photograph in .card__media.
     l = c["learnWithUs"]
+    card_shots = [
+        ("img/2-dirty-hands.jpg", "Two open palms held out, thickly covered in wet soil"),
+        ("img/Test tubes with sample_.jpg", "Sample tubes racked in front of a microscope, shallow focus"),
+        ("img/erc-rancho-cacachilas-agro8.jpg", "Rows of flowering crops and low tunnels seen from directly above"),
+        ("img/erc-panchamana-treeplanting-2-fb-img-1666270988322.jpg",
+         "People spread across a clearing planting seedlings among standing trees"),
+        ("img/ctpfw-student-squeezing-compost-1.jpg",
+         "A student in gloves squeezing a handful of compost to test it, with a group watching"),
+    ]
+    out = '      <ul class="cards">\n'
+    for i, cd in enumerate(l["cards"]):
+        src, alt = card_shots[i] if i < len(card_shots) else (None, "")
+        k = '        <li class="card">\n'
+        if src:
+            k += ('          <div class="card__media"><img src="%s" alt="%s" loading="lazy" decoding="async"></div>\n'
+                  % (A(src), A(alt)))
+        if cd.get("tag"):
+            k += '          <div class="card__kind"><span>%s</span></div>\n' % e(cd["tag"])
+        title = e(cd.get("title", ""))
+        if isinstance(cd.get("cta"), dict):
+            title = '<a href="%s">%s</a>' % (A(cd["cta"]["href"]), title)
+        k += '          <h3 class="card__title">%s</h3>\n' % title
+        if cd.get("body"):
+            k += '          <p class="card__line">%s</p>\n' % e(cd["body"])
+        if isinstance(cd.get("cta"), dict):
+            k += ('          <p class="card__line"><a href="%s">%s &rarr;</a></p>\n'
+                  % (A(cd["cta"]["href"]), e(cd["cta"]["label"])))
+        n_ = note(cd)
+        if n_:
+            k += "          " + n_ + "\n"
+        out += k + "        </li>\n"
+    out += "      </ul>\n"
     o.append(sec('      <div class="head">\n        %s\n        <h2 id="learn-h">%s</h2>\n      </div>\n%s      %s'
-                 % (eyebrow(l["eyebrow"]), e(l["h2"]), cards(l["cards"]),
-                    '<p class="todo">%s</p>' % e(l["layoutNote"])), "stratum--deep", "learn-h"))
+                 % (eyebrow(l["eyebrow"]), e(l["h2"]), out,
+                    '<p class="todo">%s</p>' % e(l["layoutNote"])), label="learn-h"))
+
+    # -- what's new, as an index list: thumbnail, date, line, category right.
     n = c["whatsNew"]
     links = " &middot; ".join('<a href="%s">%s</a>' % (A(x["href"]), e(x["label"])) for x in n["links"])
     o.append(sec('      <div class="head">\n        %s\n        <h2 id="new-h">%s</h2>\n      </div>\n'
-                 '      <ul class="rule-list">\n'
-                 '        <li class="entry">\n          <span class="dated"><time datetime="2026-09-16">16 September to 20 December 2026</time></span>\n'
+                 '      <ul class="rule-list rule-list--thumb">\n'
+                 '        <li class="entry entry--thumb">\n'
+                 '          <span class="entry__thumb"><img src="img/erc-rancho-cacachilas-agro2.jpg" alt="A broad tree standing over dense green undergrowth" loading="lazy" decoding="async"></span>\n'
+                 '          <span class="dated"><time datetime="2026-09-16">16 September to 20 December 2026</time></span>\n'
                  '          <h3 class="entry__t"><a href="learn.html#pdc">Permaculture Design Certification cohort begins</a></h3>\n'
                  '          <span class="entry__kind">Course, cohort</span>\n        </li>\n'
-                 '        <li class="entry">\n          <span class="dated"><time datetime="2026-10">October 2026, dates to confirm</time></span>\n'
+                 '        <li class="entry entry--thumb">\n'
+                 '          <span class="entry__thumb"><img src="img/2-hands-planting-shrub.jpg" alt="Two hands firming red soil around the base of a newly planted shrub" loading="lazy" decoding="async"></span>\n'
+                 '          <span class="dated"><time datetime="2026-10">October 2026, dates to confirm</time></span>\n'
                  '          <h3 class="entry__t"><a href="calendar.html#workshops">India Accelerator Workshop, Coimbatore</a></h3>\n'
                  '          <span class="entry__kind">Workshop</span>\n        </li>\n      </ul>\n'
                  '      <p style="margin-top:var(--s4)">%s</p>\n      %s' % (eyebrow(n["eyebrow"]), e(n["h2"]), links, note(n)),
                  label="new-h"))
+
     t = c["testimonial"]
     o.append(sec("      %s\n      %s" % (note(t["quote"]), note(t["attribution"])), "notes-only"))
+
+    # .head puts the h2 left and the lede right; this section's h2 is
+    # visually hidden, which left the lede stranded in an empty right column.
     ec = c["ecosystem"]
-    o.append(sec('      <div class="head">\n        %s\n        <h2 id="eco-h" class="visually-hidden">Our ecosystem</h2>\n'
-                 '        <p class="lede">%s</p>\n      </div>\n      <p>%s</p>\n      %s'
+    o.append(sec('      <h2 id="eco-h" class="visually-hidden">Our ecosystem</h2>\n      %s\n'
+                 '      <p class="lede" style="max-width:44ch;margin-top:var(--s2)">%s</p>\n'
+                 '      <p style="margin-top:var(--s4)">%s</p>\n      %s'
                  % (eyebrow(ec["eyebrow"]), e(ec["line"]), cta(ec["cta"], "btn btn--ghost"), note(ec)),
-                 "stratum--deep", "eco-h"))
+                 label="eco-h"))
+
+    # -- the close. One landscape photograph carrying the whole screen, with
+    #    the join line over it. No people in the frame, so the scrim the type
+    #    needs falls on land and sky only.
     j = c["joinBand"]
     btns = " ".join(cta(x, "btn" if i == 0 else "btn btn--ghost")
                     for i, x in enumerate(j["ctas"]) if x.get("type") != "email")
-    o.append(sec('      <h2 id="join-h">%s</h2>\n      <p class="lede" style="color:var(--paper)">%s</p>\n'
-                 '      <p style="margin-top:var(--s4);display:flex;flex-wrap:wrap;gap:var(--s2)">%s</p>'
-                 % (e(j["h2"]), e(j["body"]), btns), "stratum--moss", "join-h"))
+    o.append(banner("img/erc-rancho-cacachilas-agro.jpg",
+                    "Long rows of crops running to a line of trees under a wide clouded sky",
+                    j["h2"], "join-h", j["body"], btns))
     return MAIN("\n".join(o))
 
 

@@ -200,3 +200,90 @@
     if (p === "1" || p === "true") document.documentElement.setAttribute("data-notes", "");
   } catch (e) { /* no URLSearchParams: notes stay hidden, which is the safe default */ }
 })();
+
+/* ---------- 8. Microscopy loops ---------- */
+// Every <video data-loop> on the site is the Foundation's own brightfield
+// footage. Three rules, in this order:
+//   1. Nothing downloads until it is near the viewport. The markup carries
+//      data-src rather than src, so a page with a clip below the fold costs
+//      nothing until the reader goes there.
+//   2. A clip plays only while it is on screen. Off screen it pauses, so a
+//      long page never has more than one or two decoding at once.
+//   3. Reduced motion means reduced motion. The clip loads and shows its
+//      first frame, and never runs.
+(function () {
+  var vids = document.querySelectorAll("video[data-loop]");
+  if (!vids.length) return;
+  var still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function load(v) {
+    if (v.dataset.loaded) return;
+    v.dataset.loaded = "1";
+    (v.dataset.src || "").split(",").forEach(function (src) {
+      src = src.trim();
+      if (!src) return;
+      var s = document.createElement("source");
+      s.src = src;
+      s.type = src.slice(-5) === ".webm" ? "video/webm" : "video/mp4";
+      v.appendChild(s);
+    });
+    v.load();
+  }
+
+  if (!("IntersectionObserver" in window)) {
+    // No observer: load everything and let the browser decide. Correctness
+    // over thrift on browsers this old.
+    Array.prototype.forEach.call(vids, function (v) { load(v); if (!still) v.play().catch(function () {}); });
+    return;
+  }
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      var v = en.target;
+      if (!en.isIntersecting) { v.pause(); return; }
+      load(v);
+      if (!still && !v.hasAttribute("data-scrub")) v.play().catch(function () {});
+    });
+  }, { rootMargin: "200px 0px" });
+
+  Array.prototype.forEach.call(vids, function (v) { io.observe(v); });
+})();
+
+/* ---------- 9. The rack ---------- */
+// <div class="rack"> holding a <video data-loop data-scrub>. Scroll position
+// through the block drives the playhead and the focus together: sharp as the
+// block passes the middle of the window, soft at either end. The organism
+// moves when the reader moves. Study 14 from /motion.
+//
+// Reduced motion turns it into an ordinary still frame, because the whole
+// point of it is motion tied to scrolling.
+(function () {
+  var racks = document.querySelectorAll(".rack video[data-scrub]");
+  if (!racks.length) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  var ticking = false;
+  function update() {
+    ticking = false;
+    Array.prototype.forEach.call(racks, function (v) {
+      var box = v.closest(".rack");
+      var r = box.getBoundingClientRect();
+      if (r.bottom < -200 || r.top > window.innerHeight + 200) return;
+      var p = (window.innerHeight - r.top) / (window.innerHeight + r.height);
+      p = p < 0 ? 0 : p > 1 ? 1 : p;
+      var d = v.duration;
+      if (d && isFinite(d)) { try { v.currentTime = p * d * 0.999; } catch (e) { /* not seekable yet */ } }
+      var focus = Math.abs(p - 0.5) * 2;
+      v.style.filter = "brightness(.8) contrast(6.5) saturate(.42) blur(" + (focus * focus * 6).toFixed(2) + "px)";
+      var m = box.querySelector(".rack__meter i");
+      if (m) m.style.width = (p * 100).toFixed(1) + "%";
+    });
+  }
+  function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll);
+  Array.prototype.forEach.call(racks, function (v) {
+    v.addEventListener("loadedmetadata", update, { once: true });
+  });
+  update();
+})();

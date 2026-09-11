@@ -10,8 +10,18 @@
    -------------------------------------------------------------------------- */
 :root {
   /* Colour. Roles from the SFWF Website Design & Content Spec, section 3.1. */
-  --paper:        #F4F1EA;   /* Organic Cream: default page background */
-  --paper-deep:   #FFFFFF;   /* alternate section band, per spec 3.3 */
+  --paper:        #FFFFFF;   /* the page. White, and mostly empty. */
+  --paper-deep:   #FFFFFF;   /* alternating bands retired: the page is one white field */
+  --panel:        #F4F1EA;   /* Organic Cream, demoted to a SHAPE. Never the page.
+                                Use only as a bound rectangle behind a group of
+                                photographs, the way a museum sets a tinted card
+                                behind a label. .panel is the only thing that may
+                                carry it. */
+  --scope:        #3C3841;   /* Deep, read off the microscopy. Grounds the footage. */
+  --membrane:     #9E8FC2;   /* Membrane violet, from the amoeba's own wall */
+  --living:       #A2AE77;   /* Living green, from the field of the slide */
+  --glow:         #DBE6A7;   /* Glow, the brightest thing in the frame */
+  --legacy:       #6B4C7A;   /* Legacy Purple. Dr. Elaine content ONLY. */
   --ink:          #333130;   /* body text: warm near-black (spec 3.1) */
   --ink-soft:     #4A463F;   /* secondary text */
   --ink-faint:    #6A665C;   /* captions, source lines. AA on cream at 13px */
@@ -2505,4 +2515,195 @@ code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .9em; }
 .lv .pg-strip figure:nth-child(3n) {
   aspect-ratio: auto;
   height: clamp(300px, 46vh, 560px);
+}
+
+/* ==========================================================================
+   16. PHOTOGRAPHY AND MOTION
+   Added 11 September 2026, for the visual-language proposal.
+
+   The argument of this section: the Foundation's own photographs and its own
+   microscopy are the design. Everything here exists to get them large, whole
+   and quiet on white, and to keep anything drawn or decorative off them.
+
+   Nothing in here draws an organism, a branch, a root or a spore. The site
+   has real ones.
+   ========================================================================== */
+
+/* --- a photograph, shown whole ------------------------------------------ */
+.shot { margin: 0; max-width: none; }
+.shot img { width: 100%; height: auto; display: block; background: var(--panel); }
+.shot figcaption { margin-top: var(--s1); font-size: var(--t-1); color: var(--ink-faint); line-height: 1.4; }
+
+/* A caption the Foundation has not written yet. The string stays in the
+   markup so it can be found and replaced, but it is hidden from visitors
+   until ?notes=1, which is how every other placeholder on this site behaves.
+   An invented caption would be a claim about a real place and real people. */
+.cap--todo { display: none; }
+[data-notes] .cap--todo { display: block; color: var(--legacy); }
+[data-notes] .cap--todo::before { content: "Caption needed: "; font-weight: 600; }
+
+/* Cropping is opt-in and never the default: a photograph keeps its own shape
+   unless a layout genuinely needs a common edge. */
+.shot--crop img { aspect-ratio: 4 / 3; object-fit: cover; }
+.shot--tall img { aspect-ratio: 3 / 4; object-fit: cover; }
+.shot--wide img { aspect-ratio: 16 / 9; object-fit: cover; }
+.shot--square img { aspect-ratio: 1; object-fit: cover; }
+
+/* Faces are never cropped through. Where a portrait has to sit in a fixed
+   box, it is positioned high so the crop takes the body, not the head. */
+.shot--face img { object-position: 50% 22%; }
+
+/* --- the beige, as a shape ----------------------------------------------
+   The only place --panel is allowed. A tinted rectangle set behind a group
+   of photographs to bind them into one object. It always has a photograph
+   overhanging it, so it reads as a card behind, not as a section band. */
+.panel { background: var(--panel); padding: var(--s5) var(--s4); }
+@media (min-width: 48em) { .panel { padding: var(--s6) var(--s5); } }
+
+/* --- full bleed ---------------------------------------------------------- */
+.bleed { width: 100vw; margin-left: calc(50% - 50vw); }
+
+/* --- one photograph carrying a whole screen, with one line over it -------
+   Type sits on the photograph, so the photograph has to earn it: landscape
+   only, no faces, and a scrim heavy enough to hold AA at the type size used.
+   The scrim is a gradient, not a texture. */
+.banner { position: relative; isolation: isolate; }
+.banner img { width: 100%; height: clamp(24rem, 68vh, 46rem); object-fit: cover; display: block; }
+.banner::after {
+  content: ""; position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(to top, rgba(34,55,31,.86) 0%, rgba(34,55,31,.55) 38%, rgba(34,55,31,.12) 72%, rgba(34,55,31,0) 100%);
+}
+.banner__in {
+  position: absolute; inset: auto 0 0 0; z-index: 2;
+  padding: var(--s5) 0 var(--s5);
+}
+.banner__in > .wrap > * { color: var(--paper); }
+.banner h2 {
+  color: var(--paper);
+  font-size: clamp(2rem, 1.2rem + 3.4vw, 4rem);
+  line-height: 1.04; max-width: 18ch; margin-bottom: var(--s3);
+}
+.banner .lede { color: var(--paper); max-width: 46ch; }
+.banner a { color: var(--paper); }
+.banner .btn--ghost { border-color: var(--paper); color: var(--paper); }
+.banner .btn--ghost:hover { background: var(--paper); color: var(--moss); }
+
+/* --- the filmstrip: photographs running edge to edge ---------------------
+   Scrolls on a phone rather than shrinking to thumbnails, because the point
+   of it is that each frame is still legible. */
+.filmstrip {
+  max-width: none;              /* site.css caps every ul at a reading measure */
+  display: grid; grid-auto-flow: column; grid-auto-columns: minmax(16rem, 1fr);
+  gap: 2px; overflow-x: auto; scroll-snap-type: x mandatory;
+  margin: 0; padding: 0; list-style: none;
+  scrollbar-width: thin;
+}
+.filmstrip > li { scroll-snap-align: start; margin: 0; }
+.filmstrip img { width: 100%; height: clamp(13rem, 26vw, 21rem); object-fit: cover; display: block; }
+@media (min-width: 60em) { .filmstrip { grid-auto-columns: 1fr; overflow-x: visible; } }
+
+/* --- the ledger: a tidy grid of photographs, small captions --------------
+   Nine by default. Every cell the same edge and baseline, so the group reads
+   as one object and the differences between the photographs do the work. */
+.ledger { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--s4) var(--col-gap); list-style: none; margin: 0; padding: 0; max-width: none; }
+@media (min-width: 48em) { .ledger { grid-template-columns: repeat(3, 1fr); } }
+.ledger > li { margin: 0; }
+.ledger figure { margin: 0; }
+.ledger img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; background: var(--panel); }
+.ledger figcaption { margin-top: var(--s1); font-size: var(--t-1); color: var(--ink-faint); line-height: 1.35; }
+.ledger figcaption b { display: block; color: var(--soil); font-weight: 600; font-size: var(--t0); font-family: var(--serif); }
+
+/* --- the index list: a thumbnail beside the line ------------------------
+   Extends .entry rather than replacing it, so dates, titles and the category
+   on the right keep the behaviour they already had. */
+.entry--thumb { align-items: start; }
+.entry__thumb { display: none; }
+.entry__thumb img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; background: var(--panel); }
+@media (min-width: 50em) {
+  .rule-list--thumb .rule-list__head,
+  .rule-list--thumb .entry--thumb { grid-template-columns: 7rem 9rem minmax(0, 1fr) 10rem; }
+  .entry__thumb { display: block; }
+}
+
+/* --- the doorways: three audiences, one photograph each -----------------
+   A doorway is a photograph you walk through, so the whole cell is the
+   target and the type sits under it, not on it. */
+.doors { display: grid; gap: var(--s5) var(--col-gap); list-style: none; margin: 0; padding: 0; max-width: none; }
+@media (min-width: 52em) { .doors { grid-template-columns: repeat(3, 1fr); } }
+.doors > li { margin: 0; }
+.door { display: block; text-decoration: none; color: inherit; }
+.door img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; display: block; background: var(--panel); transition: filter var(--dur) var(--ease); }
+.door:hover img, .door:focus-visible img { filter: saturate(1.12) brightness(1.03); }
+.door h3 { margin: var(--s3) 0 var(--s1); font-size: var(--t3); }
+.door:hover h3 { text-decoration: underline; text-underline-offset: .14em; }
+.door p { margin: 0; font-size: var(--t0); color: var(--ink-soft); }
+
+/* --- the step, numbered ------------------------------------------------
+   Replaces the drawn branch icon. The four steps are a real sequence, so a
+   numeral is information rather than decoration. */
+.step { display: grid; gap: var(--s2); }
+.step__n {
+  font-family: var(--display); font-weight: 700; font-size: var(--t4);
+  line-height: 1; color: var(--living); margin: 0;
+  font-variant-numeric: tabular-nums;
+}
+.step h3 { margin: 0; }
+.step p { margin: 0; font-size: var(--t0); color: var(--ink-soft); }
+.step .shot { margin-bottom: var(--s2); }
+
+/* ==========================================================================
+   The microscope field.
+   One clip of the Foundation's own brightfield microscopy, looping silently
+   inside a round field with a reticle across it, the way it looks down an
+   eyepiece. Study 01 from /motion.
+
+   The reel is nearly flat: luminance runs 152 to 174 out of 255 and mean
+   saturation is 3.7, so it needs a hard stretch before anything reads.
+   brightness() first, because contrast() alone on a mean of 0.64 only ever
+   gets brighter. saturate() is held BELOW 1 on purpose: contrast() already
+   multiplies chroma by the same factor, and left alone the compression noise
+   goes neon while the violet membrane, the one real colour in the frame,
+   stops being special.
+   ========================================================================== */
+.scope { display: grid; place-items: center; padding-block: var(--s4); }
+.scope__disc {
+  position: relative; width: min(82vw, 34rem); aspect-ratio: 1;
+  border-radius: 50%; overflow: hidden;
+  box-shadow: 0 0 0 1px rgba(158,143,194,.55), 0 0 0 10px var(--paper), 0 0 60px rgba(60,56,65,.5) inset;
+}
+.scope__disc video {
+  width: 100%; height: 100%; object-fit: cover;
+  transform: scale(1.9);
+  filter: brightness(.8) contrast(6.5) saturate(.42);
+  animation: scoperack 21s cubic-bezier(.45,0,.55,1) infinite;
+}
+@keyframes scoperack {
+   0%  { filter: brightness(.80) contrast(6.5) saturate(.42) blur(0px); transform: scale(1.90); }
+  38%  { filter: brightness(.86) contrast(3.4) saturate(.30) blur(4px); transform: scale(1.96); }
+  52%  { filter: brightness(.76) contrast(8.2) saturate(.48) blur(0px); transform: scale(1.90); }
+ 100%  { filter: brightness(.80) contrast(6.5) saturate(.42) blur(0px); transform: scale(1.90); }
+}
+.scope__glass {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 50%, transparent 54%, rgba(60,56,65,.8) 99%),
+    radial-gradient(circle at 38% 34%, rgba(219,230,167,.14), transparent 46%);
+}
+.scope__ret { position: absolute; inset: 0; pointer-events: none; color: var(--glow); opacity: .42; }
+.scope__ret line, .scope__ret circle { stroke: currentColor; fill: none; vector-effect: non-scaling-stroke; }
+.scope figcaption { margin-top: var(--s3); font-size: var(--t-1); color: var(--ink-faint); text-align: center; }
+
+/* --- the rack: scroll drives the playhead. Study 14 from /motion. --------
+   The only motion on the site that the reader performs. Used where looking
+   closely is the point. */
+.rack { position: relative; overflow: hidden; background: var(--scope); }
+.rack video { width: 100%; height: 100%; object-fit: cover; display: block;
+  filter: brightness(.8) contrast(6.5) saturate(.42); }
+.rack__meter { position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: rgba(219,230,167,.18); }
+.rack__meter i { display: block; height: 100%; width: 0; background: var(--glow); }
+
+/* Motion is gentle by default and stops entirely on request. */
+@media (prefers-reduced-motion: reduce) {
+  .scope__disc video { animation: none; }
+  .door img { transition: none; }
 }
