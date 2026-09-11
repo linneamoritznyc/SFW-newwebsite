@@ -148,6 +148,10 @@
           {
             "label": "Join the community",
             "href": "community.html#join"
+          },
+          {
+            "label": "Volunteer with us",
+            "href": "volunteer.html"
           }
         ],
         "note": "Find a Professional removed Sep 7, reached from Practice only; directory content still lives on the Community page."
@@ -263,7 +267,7 @@
           },
           {
             "label": "Volunteer with us",
-            "href": "donate.html#volunteer"
+            "href": "volunteer.html"
           },
           {
             "label": "Invite us to speak",

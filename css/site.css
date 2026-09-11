@@ -276,14 +276,32 @@ a.chip:hover, a.chip:focus-visible { background: var(--ink); color: var(--paper)
 .wordmark__logo { display: none; }
 /* The mark is a roundel with the wordmark set inside it, so it has to be big
    enough to read the words, not just recognise the shape. */
-.wordmark--image .wordmark__logo { display: block; width: auto; height: 3.5rem; }
+.wordmark--image .wordmark__logo { display: block; width: auto; height: 4.25rem; }
+/* The mark is tall and dense, so it needs the height. Taking it out of the
+   header's own padding keeps the bar the same size it was with type. A plain
+   class rather than :has(), so it works in older browsers too. */
+.site-header .wrap--logo { padding-block: var(--s1); }
 .wordmark--image .wordmark__name,
 .wordmark--image .wordmark__status {
   position: absolute; width: 1px; height: 1px; overflow: hidden;
   clip-path: inset(50%); white-space: nowrap;
 }
-.site-footer .wordmark--image .wordmark__logo { height: 4.5rem; }
-@media (max-width: 30em) { .wordmark--image .wordmark__logo { height: 2.75rem; } }
+/* The mark is a green roundel with dark brown roots, drawn for light
+   backgrounds. On the dark green overlay it is green on green and all but
+   invisible; in the dark footer the roots and "FOUNDATION" disappear. Until
+   the Foundation supplies a reversed version, dark surfaces keep the type-set
+   wordmark, which is white and reads at any size. The header, which is white,
+   carries the logo. */
+.site-footer .wordmark--image .wordmark__logo,
+.overlay__top .wordmark--image .wordmark__logo { display: none; }
+.site-footer .wordmark--image .wordmark__name,
+.site-footer .wordmark--image .wordmark__status,
+.overlay__top .wordmark--image .wordmark__name,
+.overlay__top .wordmark--image .wordmark__status {
+  position: static; width: auto; height: auto; overflow: visible;
+  clip-path: none; white-space: normal;
+}
+@media (max-width: 30em) { .wordmark--image .wordmark__logo { height: 3.25rem; } }
 
 .site-header__links { display: none; gap: var(--s3); list-style: none; margin: 0; padding: 0; }
 .site-header__links a { color: var(--ink); text-decoration: none; font-weight: 600; font-size: var(--t0); }
@@ -3315,6 +3333,19 @@ a:hover { color: var(--accent-deep); }
 @media (max-width: 40em) {
   .site-header .btn { padding: .8em 1.05em; }
 }
+/* And the same again below 400px. The 40em rule above was tuned for 390,
+   but at the time section 19 was unreachable (see the missing brace further
+   up), so it was tuned against rectangular buttons and never against the
+   wider seed shape that actually ships. Wordmark, Donate
+   and Menu did not fit, so the row scrolled sideways on every page of the
+   site. The gutter gives back 16px and the two controls give back the rest.
+   Found while building /volunteer; it was never specific to that page. */
+@media (max-width: 25em) {
+  .site-header .wrap { padding-inline: 1rem; gap: var(--s1); }
+  .site-header .btn { padding: .75em .85em; }
+  .site-header .menu-btn { padding: .7em .6em; }
+  .wordmark__name { font-size: var(--t0); }
+}
 
 /* ==========================================================================
    20. THE THEATRE
@@ -3425,7 +3456,292 @@ a:hover { color: var(--accent-deep); }
 .entry__t a:hover .icon, .entry__t a:focus .icon { color: inherit; }
 
 /* ==========================================================================
-   14. Community, and the Wild Ken Hill story. Added 11 September 2026.
+   21. THE VOLUNTEER PAGE
+   Added 11 September 2026 for /volunteer.
+
+   Everything here is a component the site did not already have. The role
+   cards are .cards, the time filter is .chips driven by the filter already
+   in site.js, the dated openings are .rule-list, the four steps beside the
+   form are .steps, and the quotes are .testimonial. Only the things below
+   had no equivalent: the hero collage, the soil-profile ladder, the
+   photograph slot that is still waiting for a photograph, and the four
+   media components the visual system asks for (a background loop, a before
+   and after slider, a wall of squares, a cut-out in the margin).
+   -------------------------------------------------------------------------- */
+
+/* --- a slot waiting for a photograph -------------------------------------
+   Not a grey box with "image here" written in it. A toned block the colour
+   of the panel, holding its shape in the layout, carrying the instruction
+   for whoever fills it on data-empty, where ?notes=1 reveals it exactly the
+   way every other placeholder on this site is revealed. */
+.slot {
+  background: var(--panel);
+  border: var(--hairline) solid var(--rule);
+  border-radius: var(--radius-card);
+  display: block;
+  overflow: hidden;
+}
+.slot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+[data-notes] .slot { border-style: dashed; border-color: var(--rule-strong); }
+
+/* --- the hero collage ----------------------------------------------------
+   Five photographs of different shapes, interlocking. Not a carousel and not
+   five equal squares: the unevenness is the point, because the pictures come
+   from five different places and five different cameras. */
+.collage {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-auto-rows: clamp(3.2rem, 6.2vw, 4.6rem);
+  gap: var(--s1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  max-width: none;
+}
+.collage > li { margin: 0; }
+.collage > li:nth-child(1) { grid-column: 1 / 4; grid-row: 1 / 4; }
+.collage > li:nth-child(2) { grid-column: 4 / 7; grid-row: 1 / 3; }
+.collage > li:nth-child(3) { grid-column: 4 / 6; grid-row: 3 / 6; }
+.collage > li:nth-child(4) { grid-column: 1 / 4; grid-row: 4 / 6; }
+.collage > li:nth-child(5) { grid-column: 6 / 7; grid-row: 3 / 6; }
+.collage .slot { height: 100%; }
+/* Under 30em five interlocking shapes become five slivers. Two columns of
+   ordinary rectangles instead, which is the same pictures at a readable size. */
+@media (max-width: 30em) {
+  .collage { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 7.5rem; }
+  .collage > li:nth-child(n) { grid-column: auto; grid-row: auto; }
+  .collage > li:nth-child(1) { grid-column: 1 / 3; grid-row: span 2; }
+}
+
+/* --- the statement, set beside its own gloss -----------------------------
+   .statement is a whole band with one sentence in it. This is the same
+   sentence carrying a column of running text next to it, so it drops the
+   band's padding and keeps only the type. */
+.statement--flush { padding-block: 0; }
+.statement--flush p {
+  font-family: var(--text-serif);
+  font-size: clamp(1.6rem, 1.1rem + 1.9vw, 2.15rem);
+  line-height: 1.28;
+  max-width: 20ch;
+}
+
+/* --- the soil profile: the volunteer ladder ------------------------------
+   Four layers of a soil profile, read downward, each one a stage a
+   volunteer can reach. The colours are a real profile: pale organic litter
+   at the surface, topsoil, subsoil, and the dark horizon at the bottom,
+   which is --soil itself. The dotted green edge along the top is the living
+   surface; the hairline down the left is a root going through all four.
+
+   This is the one component on the page that is a picture as much as a
+   layout, so it is specified exactly and does not reflow into cards. */
+.profile { position: relative; border-radius: var(--radius-card); overflow: hidden; margin-top: var(--s4); }
+.layer {
+  position: relative;
+  display: grid;
+  grid-template-columns: 5.5rem 13rem minmax(0, 1fr);
+  gap: var(--s4);
+  align-items: start;
+  padding: var(--s4) var(--s4) var(--s4) 0;
+}
+.layer .layer__depth {
+  font-family: var(--display); font-weight: 700; font-size: var(--t4);
+  line-height: 1; text-align: center; opacity: .9; margin: 0;
+  font-variant-numeric: tabular-nums;
+}
+.layer h3 { font-size: var(--t2); margin: 0 0 .2em; }
+.layer__name {
+  display: block; font-family: var(--sans); font-size: var(--t-1);
+  font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+}
+.layer p { margin: 0; font-size: var(--t0); max-width: 52ch; }
+
+.layer--1 { background: #E9DFCC; color: var(--ink); }
+.layer--1 h3, .layer--1 .layer__depth { color: var(--soil); }
+.layer--1 .layer__name { color: #7A5133; }
+.layer--2 { background: #B8906B; color: #2E211C; }
+.layer--2 h3, .layer--2 .layer__depth { color: #2E211C; }
+.layer--2 .layer__name { color: #4F3433; }
+.layer--3 { background: #7A5640; color: #F3E9DE; }
+.layer--3 h3, .layer--3 .layer__depth { color: var(--white); }
+.layer--3 .layer__name { color: #EBD6BC; }
+.layer--4 { background: #4F3433; color: #EFE3D6; }
+.layer--4 h3, .layer--4 .layer__depth { color: var(--white); }
+.layer--4 .layer__name { color: #E0C8A8; }
+
+/* the living surface: a dotted green line along the top of the first layer */
+.layer--1::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 6px;
+  background: repeating-linear-gradient(90deg, var(--green-legacy) 0 3px, transparent 3px 9px);
+}
+/* the root, through all four layers, in the column the numerals sit in */
+.profile .root-line { width: 5.5rem; }
+.profile .root-line path { stroke: var(--green-legacy); stroke-width: 2; opacity: .6; }
+
+@media (max-width: 52em) {
+  .layer { grid-template-columns: 3.25rem minmax(0, 1fr); gap: var(--s2) var(--s3); padding-right: var(--s3); }
+  /* :not(.layer__depth), because the numeral is a <p> too and this rule was
+     sending it to column 2 and pushing the title into the numeral's column. */
+  .layer > p:not(.layer__depth) { grid-column: 2; }
+  .profile .root-line { width: 3.25rem; }
+}
+
+/* --- a background loop behind a band -------------------------------------
+   The Foundation's own microscopy, muted, silent and slow, under a band of
+   type. The poster image is what a reduced-motion visitor sees, and what
+   everybody sees until the clip is near enough the viewport to be worth
+   fetching. The scrim is what keeps the type at AA over moving footage.
+   A pause control, because autoplaying motion a reader cannot stop is a
+   WCAG 2.2.2 failure, not a style choice. */
+.loopbg { position: relative; isolation: isolate; overflow: hidden; }
+.loopbg__media { position: absolute; inset: 0; z-index: 0; }
+.loopbg__media img, .loopbg__media video {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+}
+.loopbg__media video { position: absolute; inset: 0; }
+.loopbg::after {
+  content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: linear-gradient(to bottom, rgba(34,55,31,.92), rgba(34,55,31,.86));
+}
+.loopbg > .wrap { position: relative; z-index: 2; }
+.loopbg__pause {
+  position: absolute; z-index: 3; right: var(--gutter); bottom: var(--s2);
+  font: inherit; font-family: var(--display); font-size: var(--t-1); font-weight: 600;
+  color: var(--white); background: rgba(35,31,29,.72);
+  border: var(--hairline) solid var(--rule-inverse); border-radius: 1.15em .45em 1.15em .45em;
+  padding: .45em 1em; cursor: pointer;
+}
+.loopbg__pause:hover { background: var(--ground); }
+/* No clip, no control: the button is written by site.js only where a video
+   is actually playing, so it never sits over a still poster doing nothing. */
+
+/* --- before and after ----------------------------------------------------
+   One field, two dates, one handle. A range input is the control, because a
+   div with pointer events is not reachable from a keyboard and this is. */
+.compare { margin: 0; max-width: none; }
+.compare__frame { position: relative; overflow: hidden; border-radius: var(--radius-card); background: var(--panel); }
+.compare__frame > .slot, .compare__frame > img { width: 100%; display: block; aspect-ratio: 3 / 2; }
+.compare__after {
+  position: absolute; inset: 0;
+  clip-path: inset(0 0 0 var(--split, 50%));
+}
+.compare__after > .slot, .compare__after > img { width: 100%; height: 100%; }
+.compare__line {
+  position: absolute; top: 0; bottom: 0; left: var(--split, 50%);
+  width: 2px; margin-left: -1px; background: var(--white); pointer-events: none;
+  box-shadow: 0 0 0 1px rgba(35,31,29,.35);
+}
+.compare__range {
+  position: absolute; inset: auto 0 0 0; width: 100%; margin: 0;
+  padding: 0 0 var(--s2); background: none; border: 0; appearance: none; cursor: ew-resize;
+}
+.compare__range::-webkit-slider-thumb {
+  appearance: none; width: 2.25rem; height: 2.25rem; border-radius: 50%;
+  background: var(--white); border: var(--hairline) solid var(--rule-strong);
+  box-shadow: var(--shadow); cursor: ew-resize;
+}
+.compare__range::-moz-range-thumb {
+  width: 2.25rem; height: 2.25rem; border-radius: 50%;
+  background: var(--white); border: var(--hairline) solid var(--rule-strong); cursor: ew-resize;
+}
+.compare__range::-webkit-slider-runnable-track { background: none; }
+.compare__range::-moz-range-track { background: none; }
+.compare__range:focus-visible { outline: var(--focus); outline-offset: 4px; }
+.compare__tag {
+  position: absolute; top: var(--s2); font-family: var(--display); font-size: var(--t-1);
+  font-weight: 600; color: var(--white); background: rgba(35,31,29,.72); padding: .3em .7em;
+  border-radius: var(--radius-btn);
+}
+.compare__tag--a { left: var(--s2); }
+.compare__tag--b { right: var(--s2); }
+.compare figcaption { margin-top: var(--s2); }
+
+/* --- the wall: squares people tagged -------------------------------------
+   A grid of squares and nothing else. No captions, no chrome: the point is
+   the accumulation, and anything set between them breaks it up. */
+.wall {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+  list-style: none; margin: 0; padding: 0; max-width: none;
+}
+.wall > li { margin: 0; }
+.wall .slot { aspect-ratio: 1; border-radius: 0; }
+.wall a { display: block; }
+
+/* --- shorts: the facade, in portrait ------------------------------------- */
+.films--shorts { grid-template-columns: repeat(3, 1fr); gap: var(--s3); }
+.films--shorts .film__go img, .films--shorts .slot, .films--shorts iframe { aspect-ratio: 9 / 16; }
+.films--shorts .film__go, .films--shorts .film__go .slot { border-radius: var(--radius-card); }
+.films--shorts figcaption { margin-top: var(--s2); font-size: var(--t-1); }
+
+/* --- the cut-out in the margin -------------------------------------------
+   A scanned piece of real moss or lichen on transparency, set at the edge of
+   a band with nothing behind it. Placed, never animated, never more than two
+   in view, and gone entirely on a phone, where there is no margin to put it
+   in. Decorative: aria-hidden, and it never carries meaning. */
+.cut {
+  position: absolute; pointer-events: none; z-index: 0;
+  width: clamp(7rem, 13vw, 13rem); opacity: .9;
+}
+.cut img { width: 100%; height: auto; display: block; }
+/* Flush with the band's own edge, not pulled past it. The overlay's cut-out
+   bleeds 12% and buys 12px of sideways scroll on a phone for it; this one
+   sits in the margin the centred .wrap already leaves, which is 120px each
+   side at 1440 and is margin enough. */
+.cut--left  { left: 0; }
+.cut--right { right: 0; }
+@media (max-width: 62em) { .cut { display: none; } }
+/* A positioned element paints above a non-positioned sibling whatever the
+   z-index says, so the wrap beside a cut-out has to be positioned too. */
+.stratum > .cut + .wrap { position: relative; z-index: 1; }
+
+/* --- the questions -------------------------------------------------------
+   Disclosures, not an accordion widget: <details> answers the question with
+   no script at all, which is why the answers are still there when the script
+   is not. */
+.faqs { margin: 0; max-width: none; }
+.faqs > details { border-bottom: var(--hairline) solid var(--rule); padding: var(--s3) 0; }
+.faqs > details:first-child { border-top: var(--hairline) solid var(--rule-strong); }
+.faqs summary {
+  font-family: var(--display); font-weight: 600; font-size: var(--t1);
+  color: var(--soil); cursor: pointer; list-style-position: outside;
+}
+.faqs summary:hover { color: var(--accent); }
+.faqs details p { margin: var(--s2) 0 0; font-size: var(--t0); color: var(--ink-soft); }
+.faqs details[open] summary { color: var(--accent); }
+
+/* --- a bordered aside ----------------------------------------------------
+   The tax note. Not a placeholder and not a source line: a standing caveat
+   that has to sit apart from the paragraph above it without shouting. */
+.aside-note {
+  font-size: var(--t-1); color: var(--ink-soft); line-height: 1.5;
+  border-left: 3px solid var(--gold); padding-left: var(--s2); max-width: 52ch;
+}
+
+/* --- four steps in one column -------------------------------------------
+   .steps is three across, which is right beside a full-width heading and
+   wrong inside a five-column pane. */
+.steps--stack { grid-template-columns: 1fr !important; gap: var(--s4); }
+.steps--stack .step { grid-template-columns: 2.5rem minmax(0, 1fr); align-items: baseline; }
+.steps--stack .step__n { font-size: var(--t3); }
+.steps--stack .step > h3, .steps--stack .step > p { grid-column: 2; }
+.steps--stack .step h3 { font-size: var(--t1); }
+
+/* --- the steps on the dark band ------------------------------------------
+   .step p is --ink-soft, which is a warm near-black and invisible on moss. */
+.stratum--moss .step p { color: rgba(255,255,255,.86); }
+.stratum--moss .step a { color: var(--paper); }
+
+/* --- quotes on the dark band --------------------------------------------- */
+.stratum--moss .testimonial blockquote p { color: var(--paper); }
+.stratum--moss .testimonial figcaption { color: var(--sage); }
+.stratum--moss .slot { background: rgba(255,255,255,.06); border-color: var(--rule-inverse); }
+.stratum--moss .lede { color: var(--paper); }
+
+/* --- the openings list: the kind column carries a link -------------------- */
+.entry__kind .btn--bare { color: var(--accent); text-decoration: underline; text-underline-offset: .14em; }
+.stratum--moss .entry__kind .btn--bare { color: var(--paper); }
+
+/* ==========================================================================
+   22. Community, and the Wild Ken Hill story. Added 11 September 2026.
    Built to the approved Community mockup (docs/sfw-community-mockup.html).
    Two notes where this departs from the rules set out at the top of this file:
    --panel is carried here by .sidecard as well as by .panel, because the
@@ -3605,6 +3921,14 @@ a:hover { color: var(--accent-deep); }
 figure > .media-missing { aspect-ratio: 3 / 2; min-height: 0; max-height: 20rem; }
 .shot--wide > .media-missing { aspect-ratio: 16 / 9; }
 .clip__frame .media-missing { border: 0; aspect-ratio: 1; max-height: none; }
+
+/* A photograph that has not been uploaded yet paints nothing while it waits.
+   Every other photograph on this site sits on a cream tint until it decodes,
+   which is right when the file is coming; here the file may not exist, and a
+   cream rectangle that appears for a moment and is then taken away is worse
+   than a space that was never coloured in. The proportions are still reserved,
+   so the slot keeps its place until site.js retires it. */
+img[data-optional] { background: none; }
 
 /* --- two photographs side by side inside an article --------------------- */
 .pair { list-style: none; margin: 0; padding: 0; max-width: none; display: grid; gap: var(--s3) var(--col-gap); }

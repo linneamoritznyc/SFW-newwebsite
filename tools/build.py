@@ -530,10 +530,25 @@ def doors(items, depth=0):
 # It stays absent rather than approximated. A hand-traced copy of a brand mark
 # is not the brand mark. Decision 16.
 def _find_logo():
+    """Any image in img/ with "logo" in its name, vector first.
+
+    The canonical names win if they exist, but nobody should have to remember
+    a naming rule to change the logo: sfwlogo-240.png works as well as
+    logo.svg does.
+    """
+    d = os.path.join(ROOT, "img")
+    if not os.path.isdir(d):
+        return None
     for name in ("logo.svg", "logo.png", "logo.webp", "logo.jpg"):
-        if os.path.exists(os.path.join(ROOT, "img", name)):
+        if os.path.exists(os.path.join(d, name)):
             return "img/" + name
-    return None
+    rank = {".svg": 0, ".png": 1, ".webp": 2, ".jpg": 3, ".jpeg": 3}
+    found = [f for f in os.listdir(d)
+             if "logo" in f.lower() and os.path.splitext(f)[1].lower() in rank]
+    if not found:
+        return None
+    found.sort(key=lambda f: (rank[os.path.splitext(f)[1].lower()], f.lower()))
+    return "img/" + found[0]
 
 
 LOGO = _find_logo()
@@ -600,7 +615,7 @@ def chrome(depth=0):
            '<div class="utility">\n  <div class="wrap">\n'
            '    <p class="utility__tagline">%s</p>\n'
            '    <ul class="utility__links">%s</ul>\n  </div>\n</div>\n'
-           '<header class="site-header">\n  <div class="wrap">\n'
+           '<header class="site-header">\n  <div class="wrap%s">\n'
            '    %s\n'
            '    <ul class="site-header__links">%s</ul>\n'
            '    <a class="btn btn--donate" href="%s">Donate</a>\n'
@@ -621,7 +636,7 @@ def chrome(depth=0):
            '        <a class="more" href="%s">%s</a>\n'
            '      </aside>\n    </div>\n'
            '  </div>\n</div>\n\n'
-           % (e(u["tagline"]), util, wordmark(depth), topnav, A(h("donate.html")),
+           % (e(u["tagline"]), util, " wrap--logo" if LOGO else "", wordmark(depth), topnav, A(h("donate.html")),
               wordmark(depth, tag="span"),
               acc, util, e(n["heading"]), now_li, A(h(n["more"]["href"])), e(n["more"]["label"])))
 
@@ -1645,13 +1660,14 @@ def p_donate():
                     e(c["whyMonthly"]["h2"]), note(c["whyMonthly"]),
                     e(c["otherGiving"]["body"]), A(c["otherGiving"]["link"]["href"]), e(c["otherGiving"]["link"]["label"])),
                  label="gift-h"))
+    # Volunteering has its own page now, so this is a signpost rather than a
+    # second form. Two forms for one thing is how a nonprofit ends up with two
+    # inboxes and half the replies going to neither.
     v = c["volunteer"]
-    fields = "".join('          <p><label for="v-%d">%s</label><br><input class="input" id="v-%d" type="text"></p>\n' % (i, e(f), i)
-                     for i, f in enumerate(v["form"]["fields"]))
     o.append(sec('      <div class="head">\n        %s\n        <h2 id="vol-h">%s</h2>\n        <p>%s</p>\n      </div>\n'
-                 '      <div class="grid"><div class="span-6"><form action="mailto:info@soilfoodweb.com" method="post">\n%s'
-                 '        <p><button class="btn" type="submit">Send</button></p>\n      </form>\n      %s</div></div>'
-                 % (eyebrow(v["eyebrow"]), e(v["h2"]), e(v["lede"]), fields, note(v)),
+                 '      <p><a class="btn" href="%s">%s</a></p>\n      %s'
+                 % (eyebrow(v["eyebrow"]), e(v["h2"]), e(v["lede"]),
+                    A(v["link"]["href"]), e(v["link"]["label"]), note(v)),
                  "stratum--deep", "vol-h", "volunteer"))
     return MAIN("\n".join(o))
 
@@ -1756,7 +1772,7 @@ PAGES = [
 HAND_WRITTEN = [
     "about-elaine.html", "about-governance.html", "about-team.html",
     "accessibility.html", "contact.html", "directory.html", "privacy.html",
-    "terms.html", "projects/market-garden-sweden.html",
+    "terms.html", "volunteer.html", "projects/market-garden-sweden.html",
     "news/wild-ken-hill-2026.html",
 ]
 
@@ -1775,8 +1791,16 @@ def restamp_head(path, doc):
     title = re.search(r"<title>(.*?)</title>", doc, re.S).group(1).strip()
     d = re.search(r'<meta name="description" content="([^"]*)"', doc)
     desc = d.group(1) if d else title
+    # A page may name its own share image with <!-- share: img/x.jpg -->.
+    # Without that the first photograph in the document is used, which is
+    # right until the first thing in the document is a decorative cut-out
+    # in a margin, and then the page unfurls as a piece of moss.
+    pick = re.search(r"<!--\s*share:\s*([^\s>]+?)\s*-->", doc)
     m = SHARE_RE.search(doc)
-    rel = re.sub(r"^(\.\./)+", "", m.group(1)) if m else "img/hand-soil-roots-fungi.jpg"
+    if pick:
+        rel = pick.group(1)
+    else:
+        rel = re.sub(r"^(\.\./)+", "", m.group(1)) if m else "img/hand-soil-roots-fungi.jpg"
     img_abs = SITE + "/" + web(rel)
     tags = ('\n  <meta property="og:type" content="website">'
             '\n  <meta property="og:title" content="%s">'

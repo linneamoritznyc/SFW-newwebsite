@@ -158,7 +158,11 @@
           if (!show) return;
           var on = group.querySelector('[data-filter][aria-pressed="true"]');
           var key = on ? on.getAttribute("data-filter") : "all";
-          if (key !== "all" && !holds(item, attrs[i], key)) show = false;
+          // "all" on the ITEM, not just on the chip: a row that answers every
+          // filter rather than one of them. The volunteer page's "Something
+          // else" card is one, because no amount of time rules it out.
+          if (key !== "all" && !holds(item, attrs[i], "all")
+              && !holds(item, attrs[i], key)) show = false;
         });
         item.hidden = !show;
         if (show) shown++;
@@ -634,7 +638,150 @@
   });
 })();
 
-/* ---------- 13. A file that has not arrived yet ----------
+/* ---------- 13. Toggle chips (the volunteer form) ----------
+   The filter chips in job 4 are a radio group: one on at a time, and they
+   hide things. These are the other kind: a handful of chips where any number
+   can be on at once, and they answer a question rather than filtering a list.
+
+   Two extras, both of them things a plain toggle cannot do on its own:
+
+   1. A chip with data-reveals="#id" shows that element while it is pressed,
+      and moves focus into the field inside it, so "Other" opens a box and
+      the caret is already in it.
+   2. The group writes its pressed labels into the hidden input named by
+      data-chip-out. Without that the answer never leaves the page: a button
+      is not a form control, and the form here is a plain submission with no
+      script behind it.  */
+(function () {
+  "use strict";
+  var groups = document.querySelectorAll("[data-chips]");
+  Array.prototype.forEach.call(groups, function (group) {
+    var chips = group.querySelectorAll('[aria-pressed]');
+    var out = group.getAttribute("data-chip-out");
+    var field = out ? document.querySelector(out) : null;
+
+    function collect() {
+      if (!field) return;
+      var on = [];
+      Array.prototype.forEach.call(chips, function (c) {
+        if (c.getAttribute("aria-pressed") === "true") on.push(c.textContent.trim());
+      });
+      field.value = on.join(", ");
+    }
+
+    Array.prototype.forEach.call(chips, function (chip) {
+      chip.addEventListener("click", function () {
+        var on = chip.getAttribute("aria-pressed") !== "true";
+        chip.setAttribute("aria-pressed", on ? "true" : "false");
+        var sel = chip.getAttribute("data-reveals");
+        if (sel) {
+          var panel = document.querySelector(sel);
+          if (panel) {
+            panel.hidden = !on;
+            if (on) {
+              var f = panel.querySelector("input, textarea, select");
+              if (f) f.focus();
+            }
+          }
+        }
+        collect();
+      });
+    });
+    collect();
+  });
+})();
+
+/* ---------- 14. The background loop ----------
+   A silent clip running under a band of type, with the poster image showing
+   until it is worth fetching one and instead of it when it is not.
+
+   Three rules, and the order matters:
+   1. Reduced motion means the poster and nothing else. The video element is
+      removed rather than paused, so nothing is fetched and nothing can start.
+   2. Nothing downloads until the band is near the viewport, and the clip
+      pauses again the moment it leaves. data-src rather than src, the same
+      way job 8 does it.
+   3. It can be stopped. Motion that starts by itself and runs for more than
+      five seconds needs a control (WCAG 2.2.2), so the pause button is
+      written in here, beside the clip it controls, rather than sitting in
+      the markup over a poster on a machine that will never play anything. */
+(function () {
+  "use strict";
+  var holders = document.querySelectorAll("[data-loopbg]");
+  if (!holders.length) return;
+  var still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  Array.prototype.forEach.call(holders, function (holder) {
+    var v = holder.querySelector("video");
+    if (!v) return;
+    if (still || !("IntersectionObserver" in window)) { v.parentNode.removeChild(v); return; }
+
+    var band = holder.closest(".loopbg") || holder.parentNode;
+    var loaded = false, wanted = true;
+
+    function load() {
+      if (loaded) return;
+      loaded = true;
+      (v.getAttribute("data-src") || "").split(",").forEach(function (src) {
+        src = src.trim();
+        if (!src) return;
+        var s = document.createElement("source");
+        s.src = src;
+        s.type = src.slice(-5) === ".webm" ? "video/webm" : "video/mp4";
+        v.appendChild(s);
+      });
+      v.load();
+    }
+
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "loopbg__pause";
+    btn.hidden = true;
+    btn.textContent = "Pause the background clip";
+    btn.addEventListener("click", function () {
+      wanted = !wanted;
+      btn.textContent = wanted ? "Pause the background clip" : "Play the background clip";
+      if (wanted) { v.play().catch(function () {}); } else { v.pause(); }
+    });
+    band.appendChild(btn);
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) { v.pause(); return; }
+        load();
+        if (wanted) {
+          v.play().then(function () { btn.hidden = false; }).catch(function () {});
+        }
+      });
+    }, { rootMargin: "200px 0px" });
+    io.observe(band);
+  });
+})();
+
+/* ---------- 15. Before and after ----------
+   Two photographs of the same ground on two dates, one on top of the other,
+   and a handle that decides how much of the top one you see.
+
+   The handle is a range input rather than a draggable div, because a div
+   cannot be reached with a keyboard, cannot be read by a screen reader, and
+   has no value to announce. A range has all three for free, and pointer
+   dragging is what a range already does. The slider only moves the clip: if
+   the script never runs, the "after" photograph is simply shown whole, which
+   is the more useful of the two to be left with. */
+(function () {
+  "use strict";
+  var figs = document.querySelectorAll("[data-compare]");
+  Array.prototype.forEach.call(figs, function (fig) {
+    var range = fig.querySelector('input[type="range"]');
+    if (!range) return;
+    function draw() { fig.style.setProperty("--split", range.value + "%"); }
+    range.addEventListener("input", draw);
+    range.addEventListener("change", draw);
+    draw();
+  });
+})();
+
+/* ---------- 16. A file that has not arrived yet ----------
    The Wild Ken Hill photographs and clips are referenced at their final paths
    before the real files are uploaded to public/assets/community/. Until they
    land, a missing one has to fail quietly: no broken-image icon, no shift in
@@ -745,7 +892,7 @@
   window.addEventListener("load", sweep);
 })();
 
-/* ---------- 14. The reel: short silent clips cut to circles ----------
+/* ---------- 17. The reel: short silent clips cut to circles ----------
    The one piece of motion on the site. Autoplay is never written into the
    markup, so with JavaScript off every clip sits on its poster behind a play
    button and nothing moves on its own.

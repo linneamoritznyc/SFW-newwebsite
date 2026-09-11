@@ -38,16 +38,11 @@
   "volunteer": {
     "eyebrow": "VOLUNTEER",
     "h2": "Volunteer with us",
-    "lede": "Want to donate your time or expertise to furthering our mission? Fill out the form to get in touch, tell us your skills and your region, and we’ll find you a place as our global volunteer network takes root.",
-    "form": {
-      "fields": [
-        "Name",
-        "Email",
-        "Skills/expertise",
-        "How would you like to help?"
-      ],
-      "note": "Routes to info@soilfoodweb.com"
+    "lede": "Give your time instead of, or as well as, your money. There are roles that take one afternoon and roles that take a few hours a month.",
+    "link": {
+      "label": "See the ways to help and sign up",
+      "href": "volunteer.html"
     },
-    "note": "Section simplified Sep 7 (Evan): “Invite us to speak” and “Use our name or logo” cards removed; partnership ribbon removed."
+    "note": "Form moved to volunteer.html on 11 September 2026. This block is now one line and a link, so there is one volunteer form on the site rather than two."
   }
 }

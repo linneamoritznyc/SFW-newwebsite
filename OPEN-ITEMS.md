@@ -48,6 +48,28 @@ A placeholder leaves this list only when the real thing is in the repository. "C
 | A restoration-segment case study | practice.html | Three agricultural and practitioner films are in. The restoration case is missing, and the section claims all three segments. |
 | The written detail behind each case study | practice.html | Where each grower started, what they practiced, what was measured. The films carry the story; the page carries no numbers. |
 
+## Waiting on Evan, the volunteer page
+
+`volunteer.html`, built 11 September 2026 from the volunteer mockup. The page is complete and
+every placeholder below is visible with `?notes=1`. Production briefs for the photography and
+video are in `docs/volunteer-visuals.md`.
+
+| What | Where | Note |
+| :-- | :-- | :-- |
+| **"More than half of our students live in the United States"** | volunteer.html, the statement | The headline sentence of the page and the reason the page exists. Not verified against enrolment records. Confirm the figure or change the sentence before publishing. |
+| **The three "Open right now" openings** | volunteer.html, Open right now | Dates, places and hours all come from the mockup and are invented. Replace with real openings, or take the section down. This list wants feeding from the same dated index the calendar uses. |
+| **The three volunteer quotes, names and portraits** | volunteer.html, From the people doing it | Nobody said these words. Three real quotes gathered with permission, with a name, a region and a portrait each, or cut the section. |
+| **The five FAQ answers** | volunteer.html, Questions people ask first | Drafts. The last one promises a starter guide and direct contact with staff; confirm both exist. |
+| **Volunteer form routing** | volunteer.html, Join the volunteer network | Posts to info@soilfoodweb.com like the contact form, which opens the visitor's mail client rather than really submitting. Confirm the recipient, who owns the replies, and whether a form service is wanted. Same open question as the contact form. |
+| **"We confirm your hours when your employer asks"** | volunteer.html, Volunteer as a team | A commitment to US employers' giving portals. Confirm the Foundation will do it, and who. The tax note beside it is general and is not tax advice; legal review. |
+| **Team day link** | volunteer.html, Plan a team day | The mockup pointed at `/contact?topic=team-volunteering`. The contact form has no topic parameter, so the button goes to the contact page. Add the parameter or leave it. |
+| **Which animation "Watch the animation" means** | volunteer.html, Start in the next ten minutes | The mockup linked to nothing. It points at the science page, which carries the animations. Confirm, or give the exact URL. |
+| **Every photograph and caption on the page** | volunteer.html, 20 slots | The hero holds five stand-ins from the Foundation's own library, labelled as stand-ins; none of them shows a volunteer volunteering. Everything else is an empty labelled slot. Briefs and formats: `docs/volunteer-visuals.md`. |
+| **Instagram wall permissions** | volunteer.html, On Instagram | Six squares, waiting on written permission from each poster. A feed widget was deliberately not used: it is a third-party script on every page load and it cannot ask permission. |
+| **Openly licensed stand-ins were not fetched** | `img/pd/` does not exist | This build environment's egress proxy refuses commons.wikimedia.org, nrcs.usda.gov and archive.org, all with 403. `tools/pd-assets.py --fetch` does the work and records source, author and licence for every file; run it from a machine with normal internet access. |
+
+---
+
 ## Waiting on the Foundation
 
 | What | Where | Note |
@@ -131,6 +153,7 @@ subjects.
 
 | What | Answer | Source |
 | :-- | :-- | :-- |
+| **The YouTube channel** | `youtube.com/@soilfoodwebschool`. In use on volunteer.html. | Linnea, 11 September 2026. Note: copy deck 6.3 carries a different address for the same channel, `youtube.com/channel/UCSAU5ludwNyqMHBaR1ZfheQ`. Confirm the two resolve to one channel before the webinars page links to either. |
 | **Decision 11, Kavi Reddy's title** | Growth, Partnerships, and Permaculture | Public staff page |
 | **Decision 12, India workshop dates** | 19 to 30 October 2026. Accelerator Workshop India 2026, Save Soil Farm near the Isha Yoga Center, Coimbatore, Tamil Nadu, in collaboration with Isha Outreach. | The live enrollment page, school.soilfoodweb.com/courses/india-workshop-2026 |
 | **Decision 17, the two India events** | One event, not two. The copy deck's "Asia-Pacific Workshop, October 2027" was the same workshop with the wrong year. | Same |
