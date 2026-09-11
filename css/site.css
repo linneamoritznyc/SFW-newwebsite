@@ -2714,8 +2714,19 @@ code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .9em; }
    and never anything laid on her face. */
 .shot--legacy img { border-bottom: 3px solid var(--legacy); }
 .legacy .eyebrow { color: var(--legacy); }
-.legacy h2 { color: var(--legacy); }
+.legacy h1, .legacy h2 { color: var(--legacy); }
+
+/* .entry lays out date | title | category in three fixed columns, which is
+   right at full width and crushes the title to one word per line inside a
+   narrow column. This keeps it in one column wherever it is placed. */
+.rule-list--plain .entry { grid-template-columns: 1fr; }
+.rule-list--plain .entry__kind { text-align: left; }
 
 /* a photograph filling a plate slot, where the plate used to hold a placeholder */
 .plate__img { width: 100%; height: auto; display: block; background: var(--panel); }
 .plate__img--band { aspect-ratio: 4 / 3; object-fit: cover; }
+
+/* her page: six frames read better two and three up than three across */
+.ledger--two { grid-template-columns: repeat(2, 1fr); }
+@media (min-width: 60em) { .ledger--two { grid-template-columns: repeat(3, 1fr); } }
+.legacy .ledger img { border-bottom: 3px solid var(--legacy); }
