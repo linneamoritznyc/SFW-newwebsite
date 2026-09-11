@@ -92,19 +92,36 @@ These four are on the Thinkific CDN. They could not be downloaded from the build
 
 ## Decisions on the Community rebuild
 
-Three places where the approved mockup and the copy in `docs/wild-ken-hill-2026-blog-post.md`
-run against a rule in `CLAUDE.md`. All three were built the mockup's way, since
-the mockup is the approved design and is the later document, and are listed here
-so they can be settled rather than left to drift.
+Two places where the approved mockup and the copy in `docs/wild-ken-hill-2026-blog-post.md`
+run against a rule in `CLAUDE.md`. Both were built the mockup's way, since the
+mockup is the approved design and is the later document, and are listed here so
+they can be settled rather than left to drift.
+
+**"certified" is settled.** Linnea said do not write it, 11 September 2026, and
+the three uses in the community log are gone: "Certified consultant Nick
+Padwick" is now "Consultant Nick Padwick", "107 people became certified
+lab-techs" is "107 people earned the lab-tech title", and "we also certified our
+50th consultant" is "Our 50th consultant finished the program". One use is left
+on the site, in `about-team.html`, inside the 32 imported biographies. Those are
+people's own words and are already on this list to be rewritten with their
+subjects.
 
 | What | Where | The conflict |
 | :-- | :-- | :-- |
-| **"certified"** | `community.html`, two posts | The rule is no "certified" anywhere in public text. The approved mockup carries "Certified consultant Nick Padwick", "107 people became certified lab-techs" and "we also certified our 50th consultant". Reword the three, or drop the rule for reporting on what people actually earned. |
 | **The course link on the story** | `news/wild-ken-hill-2026.html` | The approved copy points "See every program and price" at `soilfoodweb.com/sfw-courses-overview/`. The rule is that programs link to `learn.html` and to school.soilfoodweb.com, never to the old WordPress site, so it points at `learn.html`. Confirm, or name the page it should be. |
 | **Cream as a box, not a band** | `community.html`, "Coming up", "Community by region" and "Work with one of us" | The mockup gives the sidebar boxes and the directory band a full cream background. `site.css` says Organic Cream is a shape, never the page, so the sidebar boxes are cream boxes and the directory band is a cream box inside a white band rather than a cream stripe across the window. Same colour, one step short of the mockup. |
 
 ## Two smaller notes on the Community rebuild
 
+- **An empty slot is invisible to a visitor.** Both pages went live before the
+  photographs and clips arrived, so a file that is not there yet takes its slot
+  with it: the figure is removed and the list around it goes too, and the page
+  reads as finished rather than as a building site. The one exception is the
+  feature block at the top of Community, where the photograph's half stays as a
+  cream field beside the green panel. Add `?notes=1` to either URL and every
+  empty slot comes back as a dashed box carrying the description of what belongs
+  in it, which is how every other placeholder on this site is read. Drop the real
+  files into `public/assets/community/` and they appear; nothing else changes.
 - **The Google Drive gallery is gone.** The mockup listed 39 Drive links under the Wild Ken Hill post, still in HEIC and MOV. Those files belong on the story page, converted and hosted here, so the post links to the story instead and the conversion note is a placeholder rather than public text.
 - **The map.** The mockup replaces the community map with the "Community by region" list, and the overlay menu on every page still links to `community.html#community-map`. That anchor now lands on the regions list, which carries the note saying the interactive map is still to come. If the map is not coming back, the menu label should change from "Community map" to something the list actually answers to.
 

@@ -644,6 +644,12 @@
    screen-reader user would have heard. Capture phase, because the error event
    on an image does not bubble. */
 (function () {
+  // On a live page an empty slot goes away rather than standing there as a
+  // dashed box: a visitor should see a finished page, not the production
+  // schedule. Add ?notes=1, the way every other placeholder on this site is
+  // read, and the box comes back with the description of what belongs in it.
+  var notes = document.documentElement.hasAttribute("data-notes");
+
   function box(text) {
     var p = document.createElement("p");
     p.className = "media-missing";
@@ -651,10 +657,36 @@
     return p;
   }
 
+  function retire(el, text) {
+    if (!el.parentNode) return;
+    if (notes) { el.parentNode.replaceChild(box(text), el); return; }
+    // The feature block is the exception. Its photograph is one half of a
+    // two-part object, and the empty half is a cream field beside the green
+    // panel, which still reads as a design rather than as a hole.
+    if (el.closest(".latest__img")) { el.parentNode.removeChild(el); return; }
+    // The list item first, then the figure. Asking closest() for both at once
+    // returns the figure every time, because the figure is the nearer ancestor,
+    // and an empty list item would be left holding a gap in the grid.
+    var slot = el.closest(".reel > li, .pair > li, .post__pics > li") || el.closest("figure") || el;
+    slot.hidden = true;
+  }
+
+  // A list of photographs with every photograph gone is an empty list with
+  // spacing around it. Take the list with them.
+  function tidy() {
+    Array.prototype.forEach.call(document.querySelectorAll(".post__pics, .pair, .reel"), function (ul) {
+      var kids = Array.prototype.slice.call(ul.children);
+      if (kids.length && kids.every(function (li) { return li.hidden; })) ul.hidden = true;
+    });
+  }
+
   function dropImage(el) {
     if (el.getAttribute("data-failed") === "true" || !el.parentNode) return;
     el.setAttribute("data-failed", "true");
-    el.parentNode.replaceChild(box(el.alt || "Photograph to come"), el);
+    retire(el, el.alt || "Photograph to come");
+    // Here rather than only in the sweep: a lazy photograph below the fold
+    // does not try to load until it is scrolled to, long after load fired.
+    tidy();
   }
 
   document.addEventListener("error", function (e) {
@@ -684,7 +716,8 @@
         // the box that says the file has not arrived.
         var go = v.parentNode.querySelector(".clip__go");
         if (go) go.parentNode.removeChild(go);
-        v.parentNode.replaceChild(box(text), v);
+        retire(v, text);
+        tidy();
       }
       // A poster that does load is a perfectly good still, so keep it and
       // only fall back to text when there is nothing at all to show.
@@ -705,6 +738,7 @@
     Array.prototype.forEach.call(document.querySelectorAll("img[data-optional]"), function (im) {
       if (im.complete && im.naturalWidth === 0) dropImage(im);
     });
+    tidy();
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", sweep);
   else sweep();
