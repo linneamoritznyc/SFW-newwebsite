@@ -1444,13 +1444,14 @@ def p_donate():
                     e(c["whyMonthly"]["h2"]), note(c["whyMonthly"]),
                     e(c["otherGiving"]["body"]), A(c["otherGiving"]["link"]["href"]), e(c["otherGiving"]["link"]["label"])),
                  label="gift-h"))
+    # Volunteering has its own page now, so this is a signpost rather than a
+    # second form. Two forms for one thing is how a nonprofit ends up with two
+    # inboxes and half the replies going to neither.
     v = c["volunteer"]
-    fields = "".join('          <p><label for="v-%d">%s</label><br><input class="input" id="v-%d" type="text"></p>\n' % (i, e(f), i)
-                     for i, f in enumerate(v["form"]["fields"]))
     o.append(sec('      <div class="head">\n        %s\n        <h2 id="vol-h">%s</h2>\n        <p>%s</p>\n      </div>\n'
-                 '      <div class="grid"><div class="span-6"><form action="mailto:info@soilfoodweb.com" method="post">\n%s'
-                 '        <p><button class="btn" type="submit">Send</button></p>\n      </form>\n      %s</div></div>'
-                 % (eyebrow(v["eyebrow"]), e(v["h2"]), e(v["lede"]), fields, note(v)),
+                 '      <p><a class="btn" href="%s">%s</a></p>\n      %s'
+                 % (eyebrow(v["eyebrow"]), e(v["h2"]), e(v["lede"]),
+                    A(v["link"]["href"]), e(v["link"]["label"]), note(v)),
                  "stratum--deep", "vol-h", "volunteer"))
     return MAIN("\n".join(o))
 
@@ -1555,7 +1556,7 @@ PAGES = [
 HAND_WRITTEN = [
     "about-elaine.html", "about-governance.html", "about-team.html",
     "accessibility.html", "contact.html", "directory.html", "privacy.html",
-    "terms.html", "projects/market-garden-sweden.html",
+    "terms.html", "volunteer.html", "projects/market-garden-sweden.html",
 ]
 
 HDR_RE = re.compile(
@@ -1573,8 +1574,16 @@ def restamp_head(path, doc):
     title = re.search(r"<title>(.*?)</title>", doc, re.S).group(1).strip()
     d = re.search(r'<meta name="description" content="([^"]*)"', doc)
     desc = d.group(1) if d else title
+    # A page may name its own share image with <!-- share: img/x.jpg -->.
+    # Without that the first photograph in the document is used, which is
+    # right until the first thing in the document is a decorative cut-out
+    # in a margin, and then the page unfurls as a piece of moss.
+    pick = re.search(r"<!--\s*share:\s*([^\s>]+?)\s*-->", doc)
     m = SHARE_RE.search(doc)
-    rel = re.sub(r"^(\.\./)+", "", m.group(1)) if m else "img/hand-soil-roots-fungi.jpg"
+    if pick:
+        rel = pick.group(1)
+    else:
+        rel = re.sub(r"^(\.\./)+", "", m.group(1)) if m else "img/hand-soil-roots-fungi.jpg"
     img_abs = SITE + "/" + web(rel)
     tags = ('\n  <meta property="og:type" content="website">'
             '\n  <meta property="og:title" content="%s">'
