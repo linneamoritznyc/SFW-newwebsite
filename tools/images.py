@@ -36,7 +36,10 @@ OUT = os.path.join(SRC, "w")
 # tier the homepage ships 1600px files into 300px boxes.
 WIDTHS = [1600, 800]
 QUALITY = 78
-SKIP = ("icons.svg", "cutout-placeholder.svg")
+# The logo is left alone: this script writes JPEGs, and a JPEG cannot hold
+# the transparency a logo needs.
+SKIP = ("icons.svg", "cutout-placeholder.svg",
+        "logo.svg", "logo.png", "logo.webp", "logo.jpg")
 
 
 def safe_stem(filename):
