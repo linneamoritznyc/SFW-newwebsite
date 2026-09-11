@@ -122,11 +122,48 @@ def steps(items, icon="i-cycle"):
 CAPTION = "REPLACE_WITH_CAPTION"
 
 
+
+def web(src):
+    """Point at the web-sized derivative, not the original.
+
+    img/ holds the Foundation's originals at the sizes they arrived with, some
+    of them several megabytes. tools/images.py writes a capped progressive JPEG
+    for each one into img/w/, and every page references those. The originals
+    stay exactly as they are, filenames included, as the library.
+    """
+    if not src.startswith("img/") or src.startswith("img/w/"):
+        return src
+    name = src[len("img/"):]
+    if name.lower().endswith(".svg"):
+        return src
+    # must match tools/images.py safe_stem: srcset is space delimited, so a
+    # filename with a space in it would break the attribute silently.
+    stem = re.sub(r"[^a-z0-9]+", "-", os.path.splitext(name)[0].lower()).strip("-")
+    return "img/w/" + stem + ".jpg"
+
+
+
+def img(src, alt, sizes="(max-width: 48em) 100vw, 33vw", depth=0, eager=False, cls=""):
+    """One <img>, pointed at the derivatives and told how wide it will be drawn.
+
+    Without sizes the browser assumes 100vw and pulls the 1600px file into a
+    300px box. The homepage was shipping 4.3 MB of photographs that way.
+    """
+    b = "../" * depth
+    w = web(src)
+    small = w[:-4] + "-800.jpg"
+    c = ' class="%s"' % A(cls) if cls else ""
+    return ('<img%s src="%s%s" srcset="%s%s 800w, %s%s 1600w" sizes="%s" alt="%s"'
+            ' loading="%s" decoding="async">'
+            % (c, b, A(w), b, A(small), b, A(w), A(sizes), A(alt),
+               "eager" if eager else "lazy"))
+
+
 def shot(src, alt, cls="", cap=False, depth=0):
     """One photograph, shown whole. Caption only where the layout wants one."""
     c = ("shot " + cls).strip()
-    f = '<figure class="%s">\n        <img src="%s%s" alt="%s" loading="lazy" decoding="async">\n' % (
-        A(c), "../" * depth, A(src), A(alt))
+    f = '<figure class="%s">\n        %s\n' % (
+        A(c), img(src, alt, sizes="(max-width: 48em) 100vw, 50vw", depth=depth))
     if cap:
         f += '        <figcaption class="cap--todo">%s</figcaption>\n' % e(CAPTION)
     return f + "      </figure>"
@@ -135,8 +172,8 @@ def shot(src, alt, cls="", cap=False, depth=0):
 def filmstrip(items, depth=0):
     """Photographs running edge to edge. Faces of the people doing the work."""
     li = "".join(
-        '        <li><img src="%s%s" alt="%s" loading="lazy" decoding="async"></li>\n'
-        % ("../" * depth, A(src), A(alt)) for src, alt in items)
+        '        <li>%s</li>\n'
+        % img(src, alt, sizes="(max-width: 60em) 60vw, 20vw", depth=depth) for src, alt in items)
     return '      <ul class="filmstrip">\n%s      </ul>\n' % li
 
 
@@ -152,11 +189,10 @@ def ledger(items, depth=0):
         src, alt = it[0], it[1]
         label = it[2] if len(it) > 2 else ""
         cap = ('<b>%s</b>' % e(label) if label else "") + '<span class="cap--todo">%s</span>' % e(CAPTION)
-        li += ('        <li>\n          <figure>\n'
-               '            <img src="%s%s" alt="%s" loading="lazy" decoding="async">\n'
+        li += ('        <li>\n          <figure>\n            %s\n'
                '            <figcaption>%s</figcaption>\n'
                '          </figure>\n        </li>\n'
-               % ("../" * depth, A(src), A(alt), cap))
+               % (img(src, alt, sizes="(max-width: 48em) 50vw, 30vw", depth=depth), cap))
     return '      <ul class="ledger">\n%s      </ul>\n' % li
 
 
@@ -174,10 +210,9 @@ def banner(src, alt, h2, hid, lede="", ctas="", depth=0, tag="h2", eyeb=""):
         inner += '          <p class="lede">%s</p>\n' % e(lede)
     if ctas:
         inner += '          <p style="margin-top:var(--s4);display:flex;flex-wrap:wrap;gap:var(--s2)">%s</p>\n' % ctas
-    return ('  <section class="banner bleed" aria-labelledby="%s">\n'
-            '    <img src="%s%s" alt="%s" loading="lazy" decoding="async">\n'
+    return ('  <section class="banner bleed" aria-labelledby="%s">\n    %s\n'
             '    <div class="banner__in">\n      <div class="wrap">\n%s      </div>\n    </div>\n'
-            '  </section>\n' % (A(hid), "../" * depth, A(src), A(alt), inner))
+            '  </section>\n' % (A(hid), img(src, alt, sizes="100vw", depth=depth), inner))
 
 
 def scope(depth=0):
@@ -192,7 +227,7 @@ def scope(depth=0):
     return ('      <figure class="scope">\n'
             '        <div class="scope__disc">\n'
             '          <video data-loop muted loop playsinline preload="none"\n'
-            '                 poster="%simg/sfw-amoeba-poster-square.jpg"\n'
+            '                 poster="%simg/w/sfw-amoeba-poster-square.jpg"\n'
             '                 data-src="%svideo/sfw-amoeba-loop-square.webm,%svideo/sfw-amoeba-loop-square.mp4"\n'
             '                 aria-label="Brightfield microscopy from the Foundation archive, looping without sound"></video>\n'
             '          <span class="scope__glass"></span>\n'
@@ -216,11 +251,11 @@ def doors(items, depth=0):
     """Three audience doorways. The photograph is the target, type sits under."""
     li = ""
     for src, alt, href, title, body in items:
-        li += ('        <li>\n          <a class="door" href="%s">\n'
-               '            <img src="%s%s" alt="%s" loading="lazy" decoding="async">\n'
+        li += ('        <li>\n          <a class="door" href="%s">\n            %s\n'
                '            <h3>%s</h3>\n            <p>%s</p>\n'
                '          </a>\n        </li>\n'
-               % (A(href), "../" * depth, A(src), A(alt), e(title), e(body)))
+               % (A(href), img(src, alt, sizes="(max-width: 52em) 100vw, 32vw", depth=depth),
+                  e(title), e(body)))
     return '      <ul class="doors">\n%s      </ul>\n' % li
 
 
@@ -467,8 +502,8 @@ def p_home():
         src, alt = card_shots[i] if i < len(card_shots) else (None, "")
         k = '        <li class="card">\n'
         if src:
-            k += ('          <div class="card__media"><img src="%s" alt="%s" loading="lazy" decoding="async"></div>\n'
-                  % (A(src), A(alt)))
+            k += ('          <div class="card__media">%s</div>\n'
+                  % img(src, alt, sizes="(max-width: 48em) 100vw, 30vw"))
         if cd.get("tag"):
             k += '          <div class="card__kind"><span>%s</span></div>\n' % e(cd["tag"])
         title = e(cd.get("title", ""))
@@ -495,12 +530,12 @@ def p_home():
     o.append(sec('      <div class="head">\n        %s\n        <h2 id="new-h">%s</h2>\n      </div>\n'
                  '      <ul class="rule-list rule-list--thumb">\n'
                  '        <li class="entry entry--thumb">\n'
-                 '          <span class="entry__thumb"><img src="img/erc-rancho-cacachilas-agro2.jpg" alt="A broad tree standing over dense green undergrowth" loading="lazy" decoding="async"></span>\n'
+                 '          <span class="entry__thumb"><img src="img/w/erc-rancho-cacachilas-agro2-800.jpg" alt="A broad tree standing over dense green undergrowth" loading="lazy" decoding="async"></span>\n'
                  '          <span class="dated"><time datetime="2026-09-16">16 September to 20 December 2026</time></span>\n'
                  '          <h3 class="entry__t"><a href="learn.html#pdc">Permaculture Design Certification cohort begins</a></h3>\n'
                  '          <span class="entry__kind">Course, cohort</span>\n        </li>\n'
                  '        <li class="entry entry--thumb">\n'
-                 '          <span class="entry__thumb"><img src="img/2-hands-planting-shrub.jpg" alt="Two hands firming red soil around the base of a newly planted shrub" loading="lazy" decoding="async"></span>\n'
+                 '          <span class="entry__thumb"><img src="img/w/2-hands-planting-shrub-800.jpg" alt="Two hands firming red soil around the base of a newly planted shrub" loading="lazy" decoding="async"></span>\n'
                  '          <span class="dated"><time datetime="2026-10">October 2026, dates to confirm</time></span>\n'
                  '          <h3 class="entry__t"><a href="calendar.html#workshops">India Accelerator Workshop, Coimbatore</a></h3>\n'
                  '          <span class="entry__kind">Workshop</span>\n        </li>\n      </ul>\n'
@@ -657,8 +692,8 @@ def p_learn():
     rows = ""
     for pr in c["programs"]:
         src, alt = program_shots.get(pr["id"], (None, ""))
-        thumb = ('          <span class="entry__thumb"><img src="%s" alt="%s" loading="lazy" decoding="async"></span>\n'
-                 % (A(src), A(alt))) if src else '          <span class="entry__thumb"></span>\n'
+        thumb = ('          <span class="entry__thumb">%s</span>\n'
+                 % img(src, alt, sizes="10rem")) if src else '          <span class="entry__thumb"></span>\n'
         rows += ('        <li class="entry entry--thumb" id="%s">\n%s'
                  '          <span class="entry__kind" style="text-align:left">%s</span>\n'
                  '          <div><h3 class="entry__t">%s</h3>\n'
@@ -730,7 +765,7 @@ def p_science():
             media = ('        <figure class="plate span-6 start-7">\n'
                      '          <div class="rack" style="aspect-ratio:16/9">\n'
                      '            <video data-loop data-scrub muted playsinline preload="none"\n'
-                     '                   poster="img/sfw-amoeba-poster-hero.jpg"\n'
+                     '                   poster="img/w/sfw-amoeba-poster-hero.jpg"\n'
                      '                   data-src="video/sfw-amoeba-lab-640.webm,video/sfw-amoeba-lab-640.mp4"\n'
                      '                   aria-label="Brightfield microscopy from the Foundation archive. Scroll to move through the clip."></video>\n'
                      '            <span class="rack__meter"><i></i></span>\n          </div>\n'
@@ -739,10 +774,11 @@ def p_science():
         else:
             src, alt = mech_media[n]
             media = ('        <figure class="plate span-6 start-7">\n'
-                     '          <img class="plate__img plate__img--band" src="%s" alt="%s" loading="lazy" decoding="async">\n'
+                     '          %s\n'
                      '          <figcaption><span class="plate__n">Plate %d.</span> <span class="plate__t">%s</span>'
                      '<span class="cap--todo">%s</span></figcaption>\n        </figure>\n'
-                     % (A(src), A(alt), n, e(m["title"]), e(CAPTION)))
+                     % (img(src, alt, sizes="(max-width: 48em) 100vw, 50vw",
+                            cls="plate__img plate__img--band"), n, e(m["title"]), e(CAPTION)))
         body += ('      <div class="grid" style="padding-block:var(--s6);border-top:var(--hairline) solid var(--rule);align-items:center" id="mechanism-%d">\n'
                  '        <div class="span-5">\n          <p class="small" style="color:var(--ink-faint)">%d of 6</p>\n'
                  '          <h3>%s</h3>\n          <p>%s</p>\n          <p class="todo">%s</p>\n        </div>\n%s      </div>\n'
