@@ -215,36 +215,48 @@ def banner(src, alt, h2, hid, lede="", ctas="", depth=0, tag="h2", eyeb=""):
             '  </section>\n' % (A(hid), img(src, alt, sizes="100vw", depth=depth), inner))
 
 
-def scope(depth=0):
-    """The Foundation's own brightfield microscopy, looping silently inside a
-    round field with a reticle across it. Study 01 from /motion.
+def slides(depth=0):
+    """Three live circles, one drop of water.
 
-    data-src rather than src: nothing downloads until the reader is near it.
-    The reticle ticks carry no numbers, because a real scale bar needs the
-    objective magnification and the sensor size, and neither is confirmed.
+    All three run the same reel from the Foundation's archive, framed on
+    different parts of the slide and entered at different seconds of the loop,
+    so they read as three moments rather than three copies. Positions were
+    measured off the square still: the two organisms meet at the centre of the
+    frame, and the dark body sits at 24% across, 27% down.
+
+    Nothing here is colour graded. The rest of the site stretches this reel
+    hard because it is nearly flat; these are meant to look like the footage
+    looks, so legibility comes from framing instead.
+
+    No name, magnification or scale bar on any of them. Naming the organism or
+    printing a scale would be inventing a fact: the species has not been
+    identified for the web and the objective magnification is not recorded.
     """
     b = "../" * depth
-    return ('      <figure class="scope">\n'
-            '        <div class="scope__disc">\n'
-            '          <video data-loop muted loop playsinline preload="none"\n'
-            '                 poster="%simg/w/sfw-amoeba-poster-square.jpg"\n'
-            '                 data-src="%svideo/sfw-amoeba-loop-square.webm,%svideo/sfw-amoeba-loop-square.mp4"\n'
-            '                 aria-label="Brightfield microscopy from the Foundation archive, looping without sound"></video>\n'
-            '          <span class="scope__glass"></span>\n'
-            '          <svg class="scope__ret" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">\n'
-            '            <line x1="50" y1="0" x2="50" y2="100" stroke-width=".35"/>\n'
-            '            <line x1="0" y1="50" x2="100" y2="50" stroke-width=".35"/>\n'
-            '            <circle cx="50" cy="50" r="17" stroke-width=".35"/>\n'
-            '            <circle cx="50" cy="50" r="33" stroke-width=".35"/>\n'
-            '            <g stroke-width=".45">\n'
-            '              <line x1="22" y1="49" x2="22" y2="51"/><line x1="30" y1="49.5" x2="30" y2="50.5"/>\n'
-            '              <line x1="38" y1="49" x2="38" y2="51"/><line x1="62" y1="49" x2="62" y2="51"/>\n'
-            '              <line x1="70" y1="49.5" x2="70" y2="50.5"/><line x1="78" y1="49" x2="78" y2="51"/>\n'
-            '            </g>\n'
-            '          </svg>\n'
-            '        </div>\n'
-            '        <figcaption class="cap--todo">%s</figcaption>\n'
-            '      </figure>\n' % (b, b, b, e(CAPTION)))
+    # (framing label, zoom, point of interest as %, seconds into the loop)
+    views = [
+        ("The field", 1.0, 50, 50, 0.0),
+        ("Where they meet", 2.4, 50, 50, 3.3),
+        ("The upper left", 2.4, 24, 27, 6.6),
+    ]
+    li = ""
+    for label, z, px, py, t in views:
+        tx, ty = 50 - px, 50 - py
+        transform = "scale(%s)" % z if z == 1.0 else "scale(%s) translate(%d%%, %d%%)" % (z, tx, ty)
+        li += ('        <li>\n          <figure class="slide">\n'
+               '            <div class="slide__disc">\n'
+               '              <video data-loop data-start="%s" muted loop playsinline preload="none"\n'
+               '                     style="transform:%s"\n'
+               '                     poster="%simg/w/sfw-amoeba-still-square.jpg"\n'
+               '                     data-src="%svideo/sfw-amoeba-loop-square.webm,%svideo/sfw-amoeba-loop-square.mp4"\n'
+               '                     aria-label="Brightfield microscopy from the Foundation archive, looping without sound"></video>\n'
+               '            </div>\n'
+               '            <figcaption>\n              <span class="slide__n">%s</span>\n'
+               '              <span class="slide__d">Brightfield microscopy, Foundation archive</span>\n'
+               '              <span class="cap--todo">%s</span>\n            </figcaption>\n'
+               '          </figure>\n        </li>\n'
+               % (t, transform, b, b, b, e(label), e(CAPTION)))
+    return '      <ul class="slides">\n%s      </ul>\n' % li
 
 
 def doors(items, depth=0):
@@ -443,7 +455,10 @@ def p_home():
 
     # -- the slide. The most valuable material the Foundation owns, given the
     #    quietest treatment on the page: silent, contained, endless.
-    o.append(sec(scope(), "stratum--deep"))
+    o.append(sec('      <h2 id="slide-h" class="visually-hidden">One drop of soil water, under the microscope</h2>\n'
+                 '%s      <p class="todo">Species, objective magnification and a scale bar for these three frames, '
+                 'so they can be labelled the way a specimen plate should be. The Foundation microscopy team.</p>'
+                 % slides(), label="slide-h"))
 
     # -- who we are, with the one legacy moment the homepage gets
     w = c["whoWeAre"]
@@ -765,7 +780,7 @@ def p_science():
             media = ('        <figure class="plate span-6 start-7">\n'
                      '          <div class="rack" style="aspect-ratio:16/9">\n'
                      '            <video data-loop data-scrub muted playsinline preload="none"\n'
-                     '                   poster="img/w/sfw-amoeba-poster-hero.jpg"\n'
+                     '                   poster="img/w/sfw-amoeba-still-wide.jpg"\n'
                      '                   data-src="video/sfw-amoeba-lab-640.webm,video/sfw-amoeba-lab-640.mp4"\n'
                      '                   aria-label="Brightfield microscopy from the Foundation archive. Scroll to move through the clip."></video>\n'
                      '            <span class="rack__meter"><i></i></span>\n          </div>\n'

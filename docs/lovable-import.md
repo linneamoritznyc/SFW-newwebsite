@@ -54,12 +54,15 @@ seven with spaces and capitals.
 ## Does not translate cleanly
 
 **1. There is no `/public/video/` in the repository.** No `sfw-amoeba-loop-hero.mp4`,
-no square or 4:5 cut, no stills, no `sfw-amoeba-brand-board.png`. The three
-loops were supplied separately and are now in `video/`. The brand board and the
-two stills exist only as images pasted into a conversation, so they are not
-committed. The poster frames in `img/sfw-amoeba-poster-*.jpg` were pulled from
-the video at frame 90 as a stand-in. Supply the originals if they should live
-in the repository.
+no square or 4:5 cut, no stills, no `sfw-amoeba-brand-board.png`. Everything was
+supplied separately instead.
+
+*Resolved 11 September 2026.* The amoeba kit arrived as a zip and the rest is
+now committed: `img/sfw-amoeba-still-square.jpg`,
+`img/sfw-amoeba-still-wide.jpg` and `img/sfw-amoeba-brand-board.png`. The three
+loops in the kit are byte-identical to the ones already in `video/`, so nothing
+was re-encoded. The stand-in poster frames pulled from the video at frame 90
+have been deleted; the real stills are the posters now.
 
 **2. Design tokens could not go in `:root`, against the house rule.** Both
 projects use the same token names for different values: `--moss` is `#59a66c`
