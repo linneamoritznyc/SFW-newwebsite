@@ -60,7 +60,6 @@ video are in `docs/volunteer-visuals.md`.
 | **The three "Open right now" openings** | volunteer.html, Open right now | Dates, places and hours all come from the mockup and are invented. Replace with real openings, or take the section down. This list wants feeding from the same dated index the calendar uses. |
 | **The three volunteer quotes, names and portraits** | volunteer.html, From the people doing it | Nobody said these words. Three real quotes gathered with permission, with a name, a region and a portrait each, or cut the section. |
 | **The five FAQ answers** | volunteer.html, Questions people ask first | Drafts. The last one promises a starter guide and direct contact with staff; confirm both exist. |
-| **The YouTube handle** | volunteer.html, Shorts on YouTube | `@soilfoodweb` was not supplied and was not read off a Foundation page. It may be somebody else's channel. Confirm before publishing. |
 | **Volunteer form routing** | volunteer.html, Join the volunteer network | Posts to info@soilfoodweb.com like the contact form, which opens the visitor's mail client rather than really submitting. Confirm the recipient, who owns the replies, and whether a form service is wanted. Same open question as the contact form. |
 | **"We confirm your hours when your employer asks"** | volunteer.html, Volunteer as a team | A commitment to US employers' giving portals. Confirm the Foundation will do it, and who. The tax note beside it is general and is not tax advice; legal review. |
 | **Team day link** | volunteer.html, Plan a team day | The mockup pointed at `/contact?topic=team-volunteering`. The contact form has no topic parameter, so the button goes to the contact page. Add the parameter or leave it. |
@@ -109,6 +108,7 @@ These four are on the Thinkific CDN. They could not be downloaded from the build
 
 | What | Answer | Source |
 | :-- | :-- | :-- |
+| **The YouTube channel** | `youtube.com/@soilfoodwebschool`. In use on volunteer.html. | Linnea, 11 September 2026. Note: copy deck 6.3 carries a different address for the same channel, `youtube.com/channel/UCSAU5ludwNyqMHBaR1ZfheQ`. Confirm the two resolve to one channel before the webinars page links to either. |
 | **Decision 11, Kavi Reddy's title** | Growth, Partnerships, and Permaculture | Public staff page |
 | **Decision 12, India workshop dates** | 19 to 30 October 2026. Accelerator Workshop India 2026, Save Soil Farm near the Isha Yoga Center, Coimbatore, Tamil Nadu, in collaboration with Isha Outreach. | The live enrollment page, school.soilfoodweb.com/courses/india-workshop-2026 |
 | **Decision 17, the two India events** | One event, not two. The copy deck's "Asia-Pacific Workshop, October 2027" was the same workshop with the wrong year. | Same |
