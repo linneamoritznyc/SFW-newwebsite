@@ -25,7 +25,7 @@ A placeholder leaves this list only when the real thing is in the repository. "C
 | **Decision 13, Soil Sponge Workshop** | calendar.html | Next cohort dates, or take registration down. |
 | **Decision 14, newsletter tool** | footer, every page | Which service receives the footer email field. Needed for the form action; the form currently posts nowhere. |
 | **Decision 15, directory counts** | learn.html, directory.html | Confirm roughly 100 consultants and 250 lab technicians in 45 countries. These print on every program row once confirmed. |
-| **Decision 16, logo artwork** | every page | SVG of the approved mark. The site uses a type-set wordmark until it arrives. |
+| **Decision 16, logo artwork** | every page | The mark was shown in chat but the file never reached the repository, and a hand-traced copy of a brand mark is not the brand mark. **The slot is built and waiting:** put the artwork at `img/logo.svg` (SVG preferred; a transparent PNG at 3x works) and set `LOGO = "img/logo.svg"` at the top of `tools/build.py`. Header, overlay menu and footer all pick it up, sized and positioned, and the type-set wordmark becomes the accessible name. |
 | Partner names and logo files | index.html, partner strip | Isha Outreach is named. Every other partner still to come. |
 | Dr. Adam Cobb's biography and portrait | about-team.html | Named on the public staff list, no bio anywhere. |
 | The 32 imported biographies | about-team.html | Carried over word for word from the old site. Between them: "certified consultant", "Certified Lab-Tech", acreage claims, unattributed superlatives, and the "SFW" acronym. They are people's own words, so they need rewriting with their subjects, not without them. |

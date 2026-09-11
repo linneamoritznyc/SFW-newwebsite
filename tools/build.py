@@ -370,6 +370,36 @@ def doors(items, depth=0):
 
 
 # ------------------------------------------------------------------ chrome
+# The approved mark, once the artwork is in the repository. Drop the file at
+# img/logo.svg (or .png) and set LOGO to its path: the header, the overlay and
+# the footer all pick it up and the type-set wordmark steps aside. Until then
+# LOGO stays None, because a hand-traced approximation of a brand mark is not
+# the brand mark. Decision 16.
+LOGO = None
+LOGO_ALT = "Soil Food Web Foundation"
+
+
+def wordmark(depth=0, tag="a", href="index.html", cls=""):
+    """The mark in the header, the overlay and the footer.
+
+    One function so the logo lands in all three the moment the file exists.
+    The name and the 501(c)(3) line stay in the markup either way: they are
+    the accessible name when the logo is an image, and the whole mark until
+    the artwork arrives.
+    """
+    b = "../" * depth
+    inner = ""
+    if LOGO:
+        inner = ('<img class="wordmark__logo" src="%s%s" alt="%s" width="240" height="200" decoding="async">'
+                 % (b, A(LOGO), A(LOGO_ALT)))
+    inner += ('<span class="wordmark__name">Soil Food Web Foundation</span>'
+              '<span class="wordmark__status">A 501(c)(3) nonprofit</span>')
+    k = ("wordmark" + (" " + cls if cls else "")) + (" wordmark--image" if LOGO else "")
+    if tag == "a":
+        return '<a class="%s" href="%s%s">%s</a>' % (k, b, A(href), inner)
+    return '<span class="%s">%s</span>' % (k, inner)
+
+
 def chrome(depth=0):
     g = load("global")
     b = "../" * depth
@@ -407,9 +437,7 @@ def chrome(depth=0):
            '    <p class="utility__tagline">%s</p>\n'
            '    <ul class="utility__links">%s</ul>\n  </div>\n</div>\n'
            '<header class="site-header">\n  <div class="wrap">\n'
-           '    <a class="wordmark" href="%s">\n'
-           '      <span class="wordmark__name">Soil Food Web Foundation</span>\n'
-           '      <span class="wordmark__status">A 501(c)(3) nonprofit</span>\n    </a>\n'
+           '    %s\n'
            '    <ul class="site-header__links">%s</ul>\n'
            '    <a class="btn btn--donate" href="%s">Donate</a>\n'
            '    <button class="menu-btn" type="button" data-menu-open aria-controls="overlay" aria-expanded="false">\n'
@@ -417,9 +445,7 @@ def chrome(depth=0):
            '    </button>\n  </div>\n</header>\n\n'
            '<div class="overlay" id="overlay" data-open="false" role="dialog" aria-modal="true" aria-label="Site menu">\n'
            '  <div class="wrap">\n    <div class="overlay__top">\n'
-           '      <span class="wordmark">\n'
-           '        <span class="wordmark__name">Soil Food Web Foundation</span>\n'
-           '        <span class="wordmark__status">A 501(c)(3) nonprofit</span>\n      </span>\n'
+           '      %s\n'
            '      <button class="menu-btn" type="button" data-menu-close>\n'
            '        <svg class="icon" aria-hidden="true"><use href="#i-close"/></svg>Close\n'
            '      </button>\n    </div>\n'
@@ -431,7 +457,8 @@ def chrome(depth=0):
            '        <a class="more" href="%s">%s</a>\n'
            '      </aside>\n    </div>\n'
            '  </div>\n</div>\n\n'
-           % (e(u["tagline"]), util, A(h("index.html")), topnav, A(h("donate.html")),
+           % (e(u["tagline"]), util, wordmark(depth), topnav, A(h("donate.html")),
+              wordmark(depth, tag="span"),
               acc, util, e(n["heading"]), now_li, A(h(n["more"]["href"])), e(n["more"]["label"])))
 
     f = g["footer"]
@@ -447,8 +474,7 @@ def chrome(depth=0):
     ftr = ('<!-- ============ FOOTER (every page) ============ -->\n'
            '<footer class="site-footer">\n  <div class="wrap">\n    <div class="grid">\n'
            '      <div class="span-4">\n'
-           '        <span class="wordmark"><span class="wordmark__name">Soil Food Web Foundation</span>'
-           '<span class="wordmark__status">A 501(c)(3) nonprofit</span></span>\n'
+           '        %s\n'
            '        <p class="footer__tag">%s</p>\n'
            '        <form class="footer__news" action="#" method="post" aria-label="Newsletter">\n'
            '          <label for="footer-email" class="visually-hidden">Email address</label>\n'
@@ -462,7 +488,8 @@ def chrome(depth=0):
            '      %s\n      <ul>\n        <li>%s</li>\n'
            '        <li><a href="%s">Privacy</a></li>\n        <li><a href="%s">Terms</a></li>\n'
            '        <li><a href="%s">Accessibility</a></li>\n      </ul>\n    </div>\n  </div>\n</footer>\n\n'
-           % (e(f["brandLine"]), navs, A(h("about-governance.html")), note(f.get("social", {})), e(f["legalLine"]),
+           % (wordmark(depth, tag="span"), e(f["brandLine"]), navs, A(h("about-governance.html")),
+              note(f.get("social", {})), e(f["legalLine"]),
               A(h("privacy.html")), A(h("terms.html")), A(h("accessibility.html"))))
     return hdr, ftr
 
@@ -826,8 +853,8 @@ def p_learn():
                                "Two open palms held out, thickly covered in wet soil"),
         "complete-practicum": ("img/Sampling equipment.jpg",
                                "A microscope on a bench beside racked sample tubes and bottles"),
-        "pdc": ("img/erc-panchamana-garden.jpg",
-                "A planted garden of curved beds seen from above, dense with green growth"),
+        "permaculture": ("img/erc-panchamana-garden.jpg",
+                         "A planted garden of curved beds seen from above, dense with green growth"),
         "restoration": ("img/erc-panchamana-treeplanting-2-fb-img-1666270988322.jpg",
                         "People spread across a clearing planting seedlings among standing trees"),
         "workshops": ("img/ctpfw-student-squeezing-compost-1.jpg",
@@ -835,11 +862,14 @@ def p_learn():
         "webinars": ("img/soil-sample-close-up-test-tube.jpg",
                      "Gloved hands holding a sample tube and a probe over dark soil"),
     }
+    missing = [pr["id"] for pr in c["programs"] if pr["id"] not in program_shots]
+    if missing:
+        raise SystemExit("no thumbnail for program id(s): " + ", ".join(missing)
+                         + ". Add one to program_shots, or the row renders an empty box.")
     rows = ""
     for pr in c["programs"]:
-        src, alt = program_shots.get(pr["id"], (None, ""))
-        thumb = ('          <span class="entry__thumb">%s</span>\n'
-                 % img(src, alt, sizes="10rem")) if src else '          <span class="entry__thumb"></span>\n'
+        src, alt = program_shots[pr["id"]]
+        thumb = '          <span class="entry__thumb">%s</span>\n' % img(src, alt, sizes="10rem")
         rows += ('        <li class="entry entry--thumb" id="%s">\n%s'
                  '          <span class="entry__kind" style="text-align:left">%s</span>\n'
                  '          <div><h3 class="entry__t">%s</h3>\n'
