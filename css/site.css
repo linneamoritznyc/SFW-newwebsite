@@ -3739,3 +3739,198 @@ a:hover { color: var(--accent-deep); }
 /* --- the openings list: the kind column carries a link -------------------- */
 .entry__kind .btn--bare { color: var(--accent); text-decoration: underline; text-underline-offset: .14em; }
 .stratum--moss .entry__kind .btn--bare { color: var(--paper); }
+
+/* ==========================================================================
+   22. Community, and the Wild Ken Hill story. Added 11 September 2026.
+   Built to the approved Community mockup (docs/sfw-community-mockup.html).
+   Two notes where this departs from the rules set out at the top of this file:
+   --panel is carried here by .sidecard as well as by .panel, because the
+   mockup's "Coming up" and "Community by region" boxes are cream boxes with
+   no photograph in them. Everything else uses the tokens as they stand.
+   ========================================================================== */
+
+/* --- the latest story: one photograph, one deep green panel beside it ----- */
+.latest { display: grid; grid-template-columns: 1fr; max-width: none; }
+@media (min-width: 52em) { .latest { grid-template-columns: 7fr 5fr; } }
+/* The height and the cream sit on the figure, not on the photograph inside it,
+   so the block keeps its shape on a page where the photograph has not arrived:
+   an empty half reads as a colour field beside the panel, not as a hole. */
+.latest__img { margin: 0; background: var(--panel); min-height: 16rem; }
+@media (min-width: 52em) { .latest__img { min-height: 26rem; } }
+.latest__img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.latest__panel {
+  background: var(--moss); color: var(--paper);
+  padding: var(--s5) var(--s4); display: flex; flex-direction: column; justify-content: center;
+}
+@media (min-width: 52em) { .latest__panel { padding: var(--s6) var(--s5); } }
+.latest__panel h2 { color: var(--paper); font-size: var(--t3); margin: var(--s1) 0 var(--s2); }
+.latest__panel p { color: var(--paper); }
+.latest__when { font-family: var(--display); font-weight: 600; font-size: var(--t0); color: #CFE3D3; margin: 0; }
+.latest__people { font-style: italic; color: #D8E6DA; font-size: var(--t0); }
+.latest__row { display: flex; flex-wrap: wrap; gap: var(--s2); margin-top: var(--s3); }
+.latest__panel .btn--ghost { border-color: var(--paper); color: var(--paper); }
+.latest__panel .btn--ghost:hover, .latest__panel .btn--ghost:focus-visible { background: var(--paper); color: var(--moss); }
+
+/* --- the community log -------------------------------------------------
+   A dated list, newest first, ruled off by month. Filtered, never paginated.
+   The month rule is a list item of its own carrying the union of the kinds
+   and periods of the posts beneath it, so the filter in site.js hides it
+   along with them. One post per month in the current data, which is what
+   makes that exact; a month holding two posts of different kinds would keep
+   its rule while one of the two was filtered out. */
+.feed { list-style: none; margin: 0; padding: 0; max-width: none; }
+.feed__month {
+  font-family: var(--display); font-weight: 600; font-size: var(--t0);
+  letter-spacing: .06em; text-transform: uppercase; color: var(--green);
+  margin: var(--s5) 0 0; padding-bottom: var(--s1);
+  border-bottom: 2px solid var(--green);
+}
+.feed > li:first-child.feed__month { margin-top: 0; }
+.feed__empty { padding: var(--s4) 0; color: var(--ink-soft); }
+
+.post {
+  display: grid; gap: var(--s2); margin: 0;
+  padding: var(--s4) 0; border-bottom: var(--hairline) solid var(--rule);
+  scroll-margin-top: var(--s4);
+}
+@media (min-width: 40em) { .post { grid-template-columns: 7rem minmax(0, 1fr); column-gap: var(--s4); } }
+.post__date { font-family: var(--display); }
+.post__d { display: block; font-size: var(--t4); font-weight: 700; color: var(--soil); line-height: 1; font-variant-numeric: tabular-nums; }
+.post__m { font-size: var(--t0); font-weight: 600; color: var(--ink-soft); }
+@media (max-width: 39.99em) { .post__d { display: inline; font-size: var(--t2); margin-right: .35em; } }
+.post__place { font-weight: 600; font-size: var(--t0); color: var(--green); margin: 0 0 var(--s1); }
+.post__t { font-family: var(--serif); font-size: var(--t2); font-weight: 600; line-height: 1.2; color: var(--soil); margin: 0 0 var(--s2); }
+.post__t a { color: inherit; text-decoration: none; }
+.post__t a:hover { text-decoration: underline; }
+.post__people { font-style: italic; color: var(--ink-soft); font-size: var(--t0); }
+.post__pics { list-style: none; margin: 0 0 var(--s2); padding: 0; max-width: none; display: grid; gap: var(--s1); }
+@media (min-width: 36em) { .post__pics--two { grid-template-columns: 1fr 1fr; } }
+.post__pics figure { margin: 0; }
+.post__pics img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; display: block; background: var(--panel); }
+.post__acts { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--s1) var(--s3); font-size: var(--t0); margin: 0; }
+.post__kind { font-size: var(--t-1); color: var(--ink-faint); }
+
+/* --- the sidebar boxes -------------------------------------------------- */
+.sidecard { background: var(--panel); padding: var(--s4); margin-bottom: var(--s4); }
+.sidecard > h3 { font-family: var(--display); font-size: var(--t1); font-weight: 600; color: var(--soil); margin: 0 0 var(--s2); }
+.sidelist { list-style: none; margin: 0; padding: 0; max-width: none; font-size: var(--t1); }
+.sidelist > li { padding: var(--s2) 0; border-top: var(--hairline) solid var(--rule); }
+.sidelist > li:first-child { border-top: 0; padding-top: 0; }
+.sidelist__when { display: block; font-weight: 600; color: var(--soil); font-size: var(--t0); }
+.sidelist--split > li { display: flex; justify-content: space-between; gap: var(--s2); border-top: 0; border-bottom: var(--hairline) solid var(--rule); }
+.sidelist--split > li:first-child { padding-top: var(--s2); }
+.sidelist--split span { color: var(--ink-faint); font-size: var(--t0); }
+
+/* --- the story form ----------------------------------------------------- */
+.form-grid { display: grid; grid-template-columns: 1fr; gap: var(--s3); max-width: none; }
+@media (min-width: 36em) { .form-grid { grid-template-columns: 1fr 1fr; } }
+.form-grid > .full { grid-column: 1 / -1; }
+.form-grid label { display: flex; flex-direction: column; gap: var(--s1); font-size: var(--t0); font-weight: 600; color: var(--ink-soft); }
+.form-grid textarea.input { min-height: 7rem; resize: vertical; font-family: var(--sans); line-height: 1.5; }
+.drop {
+  border: 2px dashed var(--rule-strong); border-radius: var(--radius-btn);
+  padding: var(--s3); text-align: center; color: var(--ink-faint);
+  font-size: var(--t0); font-weight: 400;
+}
+
+/* --- the article: one reading column, figures allowed to run wider ------- */
+.prose { display: grid; grid-template-columns: minmax(0, 62ch); row-gap: var(--s3); max-width: none; }
+@media (min-width: 62em) { .prose { grid-template-columns: minmax(0, 62ch) minmax(0, 1fr); column-gap: var(--col-gap); } }
+.prose > * { grid-column: 1; margin: 0; max-width: none; }
+.prose > figure, .prose > .reel, .prose > .pair { grid-column: 1 / -1; margin-block: var(--s3); }
+.prose > h2 { font-size: var(--t3); margin-top: var(--s4); }
+
+/* --- the reel: short silent clips, each cut to a circle ------------------
+   The one piece of motion on this site. No library, no scroll effects: the
+   clips loop, and that is all. They are muted and playsinline so a phone
+   plays them in place, and preload="metadata" so a page of four costs four
+   headers rather than four films. Autoplay is never in the markup; site.js
+   starts a clip when it scrolls into view and pauses it when it leaves, so
+   a phone is not decoding four videos it cannot see. Where a visitor has
+   asked for reduced motion nothing starts on its own and every clip shows
+   its poster behind a play button instead.
+   Circles of different sizes, set off their line: --d is the diameter and
+   --y the offset, both per clip and both ignored below 48em, where the
+   clips fall into a plain two-up grid. */
+.reel {
+  list-style: none; margin: 0; padding: 0; max-width: none;
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--s4) var(--s3);
+  justify-items: center;
+}
+@media (min-width: 48em) {
+  .reel { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-start; gap: var(--s4) var(--s5); }
+  .reel > li { flex: 0 0 auto; width: var(--d, 12rem); transform: translateY(var(--y, 0)); }
+}
+.reel > li { margin: 0; width: 100%; max-width: 13rem; }
+
+.clip { margin: 0; width: 100%; }
+.clip__frame {
+  position: relative; width: 100%; aspect-ratio: 1;
+  border-radius: 50%; overflow: hidden;
+  background: var(--panel); border: var(--hairline) solid var(--rule);
+}
+.clip__frame video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.clip figcaption { margin-top: var(--s2); font-size: var(--t-1); color: var(--ink-faint); line-height: 1.35; text-align: center; }
+
+/* The control a clip is stopped with. It is written into the page by site.js,
+   never by the markup, so with JavaScript off there is no button and no clip
+   moving for it to stop. A clip that is playing loops for as long as it is on
+   screen, so the control never leaves the page or the tab order while it runs:
+   it fades back to let the picture through and returns on hover or on focus,
+   showing a pause mark instead of a play mark. */
+.clip__go {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  display: grid; place-items: center; padding: 0; border: 0;
+  background: transparent; cursor: pointer;
+  transition: opacity var(--dur) var(--ease);
+}
+.clip__go[hidden] { display: none; }
+.clip__go::before {
+  content: ""; width: 3.25rem; height: 3.25rem; border-radius: 50%;
+  background: rgba(255, 255, 255, .94)
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23156826'><path d='M9 7l8 5-8 5z'/></svg>") center/22px no-repeat;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, .3);
+}
+.clip__go[data-state="playing"] { opacity: 0; }
+.clip__go[data-state="playing"]:hover,
+.clip__go[data-state="playing"]:focus-visible { opacity: 1; }
+.clip__go[data-state="playing"]::before {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23156826'><path d='M8 6h3v12H8zM13 6h3v12h-3z'/></svg>");
+}
+.clip__go:focus-visible { outline: var(--focus); outline-offset: -5px; border-radius: 50%; }
+@media (prefers-reduced-motion: reduce) { .clip__go { transition: none; } }
+
+/* --- a file that has not arrived yet ------------------------------------
+   Every photograph and clip in public/assets/community/ is referenced before
+   the real file is uploaded. A missing one prints its own alt text in a toned
+   box rather than a broken-image icon, so the page holds its shape and the
+   slot still says what belongs in it. site.js writes these on the error event. */
+.media-missing {
+  display: grid; place-items: center; text-align: center;
+  width: 100%; height: 100%; min-height: 7rem; padding: var(--s3); margin: 0;
+  /* it is a <p>, and every <p> on this site is capped at a reading measure,
+     which would leave the box narrower than the slot it stands in */
+  max-width: none;
+  background: var(--panel); color: var(--ink-faint);
+  font-size: var(--t-1); line-height: 1.4;
+  border: var(--hairline) dashed var(--rule-strong);
+}
+/* Roughly the footprint of the photograph that is coming, so the page reads at
+   the proportions it will really have, but capped: six full-width 3:2 boxes
+   would push the words off the screen while the files are still being made. */
+figure > .media-missing { aspect-ratio: 3 / 2; min-height: 0; max-height: 20rem; }
+.shot--wide > .media-missing { aspect-ratio: 16 / 9; }
+.clip__frame .media-missing { border: 0; aspect-ratio: 1; max-height: none; }
+
+/* A photograph that has not been uploaded yet paints nothing while it waits.
+   Every other photograph on this site sits on a cream tint until it decodes,
+   which is right when the file is coming; here the file may not exist, and a
+   cream rectangle that appears for a moment and is then taken away is worse
+   than a space that was never coloured in. The proportions are still reserved,
+   so the slot keeps its place until site.js retires it. */
+img[data-optional] { background: none; }
+
+/* --- two photographs side by side inside an article --------------------- */
+.pair { list-style: none; margin: 0; padding: 0; max-width: none; display: grid; gap: var(--s3) var(--col-gap); }
+@media (min-width: 40em) { .pair { grid-template-columns: 1fr 1fr; } }
+.pair > li { margin: 0; }

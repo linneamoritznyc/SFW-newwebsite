@@ -1,51 +1,232 @@
 {
-  "_source": "SFWF Website Copy Deck v1.0, section 10. Copy verbatim.",
+  "_source": "Approved Community mockup, docs/sfw-community-mockup.html, 11 September 2026. Copy verbatim. Supersedes the copy-deck v1 Community section for this page.",
+  "_today": "2026-09-11",
+  "_imageNote": "Photographs live in public/assets/community/img/ and are listed in that folder's README. The mockup hot-linked them from soilfoodweb.com/wp-content/uploads; they are referenced locally here so the new site does not depend on the old one's uploads directory. A file that has not arrived yet prints its alt text in a toned box, see site.js job 13.",
   "hero": {
-    "eyebrow": "COMMUNITY",
-    "h1": "A world of Soil Regenerators",
-    "intro": "Students, graduates, consultants, and lab-techs in more than 100 countries, learning, practicing, and restoring living soil where they live. Explore the map, find a professional for your land or lab, or put yourself on it.",
-    "anchorPills": [
-      "Community map",
-      "Find a professional",
-      "Join"
-    ],
+    "h1": "We are Soil Regenerators",
+    "intro": "Students, graduates, consultants, and lab-techs in more than 100 countries, on six continents. Here is what we have been doing, where, and when.",
     "source": "enrollment records, confirmed August 2026"
   },
-  "map": {
-    "eyebrow": "COMMUNITY MAP",
-    "h2": "Where this movement lives",
-    "lede": "Every point is a person, a hub, a workshop, or a documented case-study site.",
-    "status": "placeholder",
-    "note": "Interactive map embed. Opt-in member locations at city/region level only, never exact addresses. Legend: green = members & professionals, gold = hubs & workshop sites. Data: alumni opt-in + events system."
+  "latest": {
+    "readMore": "Read more",
+    "allNews": "All news"
   },
-  "directory": {
-    "eyebrow": "FIND A PROFESSIONAL",
-    "h2": "Hire an earned title, not a claim",
-    "clarifyingHeader": "Everyone listed here has earned their title through our programs: Soil Food Web Consultants have completed the full Complete Practicum, all four Advanced Programs, and Soil Food Web Lab-Techs have completed the Microscopy Advanced Program. Search by region or specialty to find the right person for your land or lab.",
-    "searchUi": {
-      "placeholder": "Search by name, country, or keyword",
-      "filters": [
-        "Region, any",
-        "Specialty, any"
-      ],
-      "cta": "Search"
+  "log": {
+    "h2": "News from the community",
+    "sourceLine": "Every post is drawn from soilfoodweb.com and links to its source.",
+    "timeLabel": "Time",
+    "kindLabel": "Type",
+    "time": [
+      { "key": "all", "label": "All time" },
+      { "key": "year", "label": "This year" },
+      { "key": "month", "label": "This month" }
+    ],
+    "kinds": [
+      { "key": "all", "label": "Everything" },
+      { "key": "event", "label": "Workshops and events" },
+      { "key": "hub", "label": "Hubs" },
+      { "key": "grad", "label": "Graduates" },
+      { "key": "case", "label": "Case studies" }
+    ],
+    "kindNames": {
+      "event": "Workshop or event",
+      "hub": "New hub",
+      "grad": "Graduates",
+      "case": "Case study"
     },
-    "footerLine": "Directory entries are maintained by the Foundation; titles are verified against program records. Are you a graduate who should be listed? Update your profile →",
-    "dataStatus": "placeholder",
-    "dataNote": "The directory prototype's dataset is fictional (src/lib/data.ts declares it). Real practitioner records required before this ships."
+    "emptyLead": "Nothing here for this filter yet. Try All time, or",
+    "emptyLink": "tell us what you did"
+  },
+  "posts": [
+    {
+      "id": "wkh-2026",
+      "date": "2026-06-15",
+      "kind": "event",
+      "place": "Wild Ken Hill, Norfolk, England",
+      "region": "Europe",
+      "title": "Accelerator Workshop at Wild Ken Hill",
+      "body": "Our ten-day Accelerator Workshop ran from 15 to 26 June 2026 at Wild Ken Hill, a regenerative farm and rewilding estate on the Norfolk coast. All 25 places sold out.",
+      "people": "Led by our Advanced Program mentors",
+      "imgs": [
+        {
+          "src": "public/assets/community/img/wild-ken-hill-group.jpg",
+          "alt": "Fields and hedgerows at Wild Ken Hill, Norfolk"
+        }
+      ],
+      "href": "news/wild-ken-hill-2026.html",
+      "link": "Read the story",
+      "src": "https://soilfoodweb.com/jun2026-aw/",
+      "note": "The mockup carried 39 photographs and clips from these ten days as Google Drive links, still in HEIC and MOV. They belong on the story page instead, converted, at public/assets/community/. Linnea supplies the files; the story page holds the slots.",
+      "noteStatus": "placeholder"
+    },
+    {
+      "id": "pdc-2026",
+      "date": "2026-04-13",
+      "kind": "event",
+      "place": "Online",
+      "title": "Our first Permaculture Design Certification cohort begins",
+      "body": "The school launched its first Permaculture Design Certification course. The next cohort starts on 16 September 2026.",
+      "src": "https://soilfoodweb.com/soil-food-web-school-first-permaculture-design-certificate-course/"
+    },
+    {
+      "id": "living-legacy",
+      "date": "2025-11-03",
+      "kind": "event",
+      "place": "Online",
+      "title": "A Living Legacy: four webinars in honour of Dr. Elaine",
+      "body": "Longtime students of Dr. Elaine shared how her research shaped their own work, in a free four-part webinar series.",
+      "people": "With Daniel Tyrkiel and Adam Swann, Todd Harrington, Celine Basset, Nick Tomasini, Vivian Kaloxilos, and Jo Tobias",
+      "imgs": [
+        {
+          "src": "public/assets/community/img/living-legacy-webinar.jpg",
+          "alt": "Daniel Tyrkiel and Adam Swann presenting in the webinar series"
+        }
+      ],
+      "src": "https://soilfoodweb.com/2025-in-review-a-time-of-transition-honoring-our-founder-and-guiding-spirit-building-stronger-community-and-preparing-for-a-bright-future/"
+    },
+    {
+      "id": "pakistan-2025",
+      "date": "2025-09-22",
+      "kind": "event",
+      "place": "Karachi and Sindh, Pakistan",
+      "region": "Asia",
+      "title": "Soil Health Week in Karachi and Sindh",
+      "body": "Consultant Nick Padwick of Wild Soils UK and the TrashIt team ran six days of talks, farm visits, and compost demonstrations for more than 600 people from 60 districts. They taught at Karachi University, Habib University, and Sindh Agriculture University, and hosted the first Farmers' Baithak at Rahuki Farms in Hyderabad, with growers from seven districts. TrashIt's founders studied with us on scholarship, and TrashIt has since opened a soil microbiology lab.",
+      "people": "With Nick Padwick and the TrashIt team",
+      "imgs": [
+        {
+          "src": "public/assets/community/img/soil-health-week-karachi-university.jpg",
+          "alt": "Nick Padwick teaching soil biology at Karachi University"
+        },
+        {
+          "src": "public/assets/community/img/soil-health-week-pakistan.jpg",
+          "alt": "Soil Health Week 2025 in Pakistan"
+        }
+      ],
+      "src": "https://soilfoodweb.com/soil-health-week-2025-wild-soils-uk-and-trashit-bring-the-soil-food-web-approach-to-pakistan/"
+    },
+    {
+      "id": "guardian-2025",
+      "date": "2025-08-29",
+      "kind": "grad",
+      "place": "United Kingdom",
+      "region": "Europe",
+      "title": "Nick Padwick and Daniel Tyrkiel in The Guardian",
+      "body": "The Guardian featured mentor Nick Padwick, who now grows wheat in a biologically healthy system for a premium market, and graduate Daniel Tyrkiel, who runs microbiology field trials with University of Manchester researcher Dr. Janice Lake.",
+      "href": "https://www.theguardian.com/environment/2025/aug/29/down-and-dirty-how-regenerative-farming-is-digging-into-microscopic-soil-life",
+      "link": "Read the article",
+      "src": "https://soilfoodweb.com/2025-in-review-a-time-of-transition-honoring-our-founder-and-guiding-spirit-building-stronger-community-and-preparing-for-a-bright-future/"
+    },
+    {
+      "id": "uk-2025",
+      "date": "2025-06-15",
+      "kind": "event",
+      "place": "Nick Padwick's farm, England",
+      "region": "Europe",
+      "monthOnly": true,
+      "title": "Our June workshop on Nick Padwick's farm",
+      "body": "Mentor Nick Padwick hosted our June workshop on the regenerative farm he runs in the UK. One student, Melita Coggins, called it a life changing experience.",
+      "people": "With mentor Nick Padwick",
+      "src": "https://soilfoodweb.com/2025-in-review-a-time-of-transition-honoring-our-founder-and-guiding-spirit-building-stronger-community-and-preparing-for-a-bright-future/"
+    },
+    {
+      "id": "costa-rica-2025",
+      "date": "2025-03-15",
+      "kind": "event",
+      "place": "Costa Rica",
+      "region": "Latin America",
+      "monthOnly": true,
+      "title": "Workshop in Costa Rica",
+      "body": "Mentor Gerald Ramirez showed students how to make biological liquid amendments, and students and mentors spent long sessions at the microscope together.",
+      "people": "With mentor Gerald Ramirez",
+      "imgs": [
+        {
+          "src": "public/assets/community/img/costa-rica-liquid-amendments.jpg",
+          "alt": "Mentor Gerald Ramirez demonstrating liquid amendments in Costa Rica"
+        },
+        {
+          "src": "public/assets/community/img/costa-rica-microscopes.jpg",
+          "alt": "Students and mentors at microscopes in Costa Rica"
+        }
+      ],
+      "src": "https://soilfoodweb.com/2025-in-review-a-time-of-transition-honoring-our-founder-and-guiding-spirit-building-stronger-community-and-preparing-for-a-bright-future/"
+    },
+    {
+      "id": "grads-2024",
+      "date": "2024-12-23",
+      "kind": "grad",
+      "place": "Online",
+      "title": "Our 2024 graduates",
+      "body": "107 people earned the lab-tech title in 2024, and 28 finished our consultant and grower programs. Our 50th consultant finished the program this year.",
+      "people": "Congratulations to Alex Yakaumo, Anton de Jager, Declan Ramsay, Kent Holle, Kevin Chee, Leslie Lewis, Nick Padwick, Robbin Pott, Vera Dorzhinova, Dora Taklec, Stefan Nieuwenhuijsen, Nathalie Sequeira, Arved Meinzer, Joshua Stone, Mario Villamiel, Wes Sanders, Niels de Jong, Wendy Mickle, Kyle Babcock, Jeroen Boss, Nicolas Rondeau, Reinhard Leeb, Jana Paskova, Julian Ravenscroft, Mary Beerman, Dorota Romanowski, Bianca Lech, and Richard Oosthuysen",
+      "src": "https://soilfoodweb.com/beneath-the-surface-a-soil-food-web-school-newsletter/"
+    },
+    {
+      "id": "cr-2024",
+      "date": "2024-07-15",
+      "kind": "event",
+      "place": "Costa Rica",
+      "region": "Latin America",
+      "monthOnly": true,
+      "title": "Compost workshop in Costa Rica",
+      "body": "Students from our consultant and grower programs came together for a hands-on workshop on making biologically complete compost.",
+      "src": "https://soilfoodweb.com/beneath-the-surface-a-soil-food-web-school-newsletter/"
+    },
+    {
+      "id": "mexico-2024",
+      "date": "2024-02-15",
+      "kind": "event",
+      "place": "Mexico",
+      "region": "Latin America",
+      "monthOnly": true,
+      "title": "Workshop in Mexico with Ecosystem Restoration Camps",
+      "body": "We ran a workshop in Mexico together with Ecosystem Restoration Camps.",
+      "src": "https://soilfoodweb.com/beneath-the-surface-a-soil-food-web-school-newsletter/"
+    }
+  ],
+  "comingUp": {
+    "h3": "Coming up",
+    "items": [
+      { "when": "16 September to 20 December 2026", "label": "Permaculture Design Certification cohort", "href": "calendar.html" },
+      { "when": "19 to 30 October 2026", "label": "Accelerator Workshop India 2026, Coimbatore", "href": "calendar.html#workshops" },
+      { "when": "1 to 7 December 2026", "label": "Soil Health Week Pakistan 2026", "href": "calendar.html#workshops" }
+    ]
+  },
+  "regions": {
+    "h3": "Community by region",
+    "note": "Interactive map embed. Opt-in member locations at city/region level only, never exact addresses. Legend: green = members & professionals, gold = hubs & workshop sites. Data: alumni opt-in + events system.",
+    "noteStatus": "placeholder"
+  },
+  "share": {
+    "h2": "Tell us what you did",
+    "body": "Ran a workshop, opened a lab, planted a field, looked at your first nematode? Send us the story and a few photos. We post it here.",
+    "fine": "The communications team reads every submission before it goes up.",
+    "legend": "Share a story",
+    "cta": "Send your story",
+    "fields": [
+      { "label": "What happened", "type": "textarea", "full": true, "placeholder": "Two or three sentences. Who was there, what you did, what you saw." },
+      { "label": "Where", "type": "text", "placeholder": "Town and country" },
+      { "label": "When", "type": "text", "placeholder": "Date" },
+      { "label": "Names of people in the photos", "type": "text", "placeholder": "With their permission" },
+      { "label": "Your email", "type": "email" },
+      { "label": "Photos or a short video", "type": "drop", "full": true, "placeholder": "Drop files here or choose from your device" }
+    ],
+    "note": "Decision 14, the newsletter and forms tool. This form posts nowhere until the service that receives it is named, and file uploads need somewhere to land.",
+    "noteStatus": "placeholder"
+  },
+  "work": {
+    "h2": "Work with one of us",
+    "body": "Every consultant and lab-tech in our directory trained with us and earned their title. Consultants finished our full professional program. Lab-techs finished our microscopy training. Search by region or specialty.",
+    "cta": { "label": "Find a professional", "href": "directory.html" },
+    "note": "The directory prototype's dataset is fictional (src/lib/data.ts declares it). Real practitioner records required before this ships.",
+    "noteStatus": "placeholder"
   },
   "joinBand": {
-    "h2": "Put yourself on this map",
-    "body": "Every Soil Regenerator started with one course, one webinar, or one afternoon with a microscope. Your dot is waiting.",
+    "h2": "Join us",
+    "body": "Every one of us started with one course, one webinar, or one afternoon at a microscope.",
     "ctas": [
-      {
-        "label": "See every program and price",
-        "href": "learn.html"
-      },
-      {
-        "label": "Start with a free webinar",
-        "href": "learn-webinars.html"
-      }
+      { "label": "See every program and price", "href": "learn.html" },
+      { "label": "Start with a free webinar", "href": "learn-webinars.html" }
     ]
   }
 }
