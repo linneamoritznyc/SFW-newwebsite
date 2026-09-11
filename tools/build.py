@@ -521,11 +521,25 @@ def p_home():
 
 
 def p_about():
-    c = load("about"); o = [hero(c["hero"], "about-h")]
+    c = load("about"); o = []
+
+    # hero, with one photograph beside it
+    h = c["hero"]
+    o.append('  <section class="stratum" style="border-top:0">\n    <div class="wrap">\n'
+             '      <div class="grid" style="align-items:center;row-gap:var(--s5)">\n'
+             '        <div class="span-6">\n          %s\n          <h1 id="about-h">%s</h1>\n'
+             '          <p class="lede">%s</p>\n        </div>\n'
+             '        <div class="span-6">\n          %s\n        </div>\n      </div>\n    </div>\n  </section>\n'
+             % (eyebrow(h.get("eyebrow")), e(h["h1"]), e(h.get("intro") or h.get("subhead") or ""),
+                shot("img/handling-loose-soil.jpg",
+                     "Hands letting dry crumbs of soil fall back to the ground in low sunlight, a green field behind",
+                     cap=True)))
+
     m = c["missionVision"]
     o.append(sec('      <div class="grid">\n        <div class="span-6"><h2 id="mission-h">Mission</h2><p class="lede">%s</p></div>\n'
                  '        <div class="span-6"><h2>Vision</h2><p class="lede">%s</p></div>\n      </div>'
-                 % (e(m["mission"]), e(m["vision"])), "stratum--deep", "mission-h", "mission"))
+                 % (e(m["mission"]), e(m["vision"])), "", "mission-h", "mission"))
+
     hi = c["history"]
     rows = "".join('        <li class="entry">\n          <span class="dated">%s</span>\n'
                    '          <div><h3 class="entry__t">%s</h3><p class="entry__line">%s</p>%s</div>\n'
@@ -535,21 +549,52 @@ def p_about():
                    for x in hi["entries"])
     o.append(sec('      <div class="head"><h2 id="story-h">%s</h2></div>\n      <ul class="rule-list">\n%s      </ul>'
                  % (e(hi["h2"]), rows), label="story-h", sid="our-story"))
+
+    # The four pillars. The drawn web-diagram icon is gone: circles joined by
+    # lines is exactly the thing that was ruled out. Photographs and numerals
+    # instead, because the pillars are four real kinds of work.
     wd = c["whatWeDo"]
-    o.append(sec('      <div class="head"><h2 id="wd-h">%s</h2></div>\n%s'
-                 % (e(wd["h2"]), steps([{"n": p["n"], "title": p["title"], "body": p["body"]} for p in wd["pillars"]], "i-web")),
-                 "stratum--deep", "wd-h", "what-we-do"))
+    pillar_shots = [
+        ("img/Elaine and nematode extraction.png",
+         "Dr. Elaine Ingham pouring a sample through a filter while students watch closely"),
+        ("img/soil-sample-close-up-test-tube.jpg",
+         "Gloved hands holding a sample tube and a probe over dark soil"),
+        ("img/erc-panchmana-treeplanting-fb-img-1666270907385.jpg",
+         "A long line of people planting seedlings through a stand of tall trees"),
+        ("img/Carla-Nicks Son-Nick-ERI-Wild Soils Event-11-2024.jpg",
+         "A group of people laughing as they work together outdoors with brushes and rakes"),
+    ]
+    cells = ""
+    for i, pl in enumerate(wd["pillars"]):
+        src, alt = pillar_shots[i]
+        cells += ('        <div class="span-3">\n          <div class="step">\n            %s\n'
+                  '            <p class="step__n">%s</p>\n            <h3>%s</h3>\n            <p>%s</p>\n'
+                  '          </div>\n        </div>\n'
+                  % (shot(src, alt, cls="shot--crop"), e(str(pl["n"])), e(pl["title"]), e(pl["body"])))
+    o.append(sec('      <div class="head"><h2 id="wd-h">%s</h2></div>\n'
+                 '      <div class="grid" style="row-gap:var(--s5)">\n%s      </div>'
+                 % (e(wd["h2"]), cells), "", "wd-h", "what-we-do"))
+
     t = c["team"]
     o.append(sec('      <div class="head"><h2 id="team-h">%s</h2></div>\n'
                  '      <p>The full roster, taken from soilfoodweb.com, lives on the team page.</p>\n'
                  '      <p><a class="btn btn--ghost" href="about-team.html">Our team and board</a></p>\n      %s'
                  % (e(t["h2"]), note(t)), label="team-h", sid="team"))
+
+    # The legacy section. Legacy Purple appears here and on her own page, and
+    # nowhere else on the site. Her face is shown whole and untouched.
     el = c["elaine"]
-    o.append(sec('      <div class="head">\n        %s\n        <h2 id="el-h">%s</h2>\n      </div>\n      %s\n'
-                 '      <p><a href="%s">%s</a></p>'
-                 % (eyebrow(el["eyebrow"]), e(el["h2"]),
-                    "\n      ".join("<p>%s</p>" % e(p) for p in el["body"]),
-                    A(el["link"]["href"]), e(el["link"]["label"])), "stratum--deep", "el-h", "dr-elaines-legacy"))
+    o.append(sec('      <div class="grid legacy" style="align-items:center;row-gap:var(--s5)">\n'
+                 '        <div class="span-5">\n          %s\n        </div>\n'
+                 '        <div class="span-6 start-7">\n          %s\n          <h2 id="el-h">%s</h2>\n          %s\n'
+                 '          <p><a href="%s">%s</a></p>\n        </div>\n      </div>'
+                 % (shot("img/copy-of-9.jpg",
+                         "Dr. Elaine Ingham outdoors in a blue patterned shirt, looking towards the camera",
+                         cls="shot--legacy", cap=True),
+                    eyebrow(el["eyebrow"]), e(el["h2"]),
+                    "\n          ".join("<p>%s</p>" % e(p) for p in el["body"]),
+                    A(el["link"]["href"]), e(el["link"]["label"])), "", "el-h", "dr-elaines-legacy"))
+
     cl = c["contactLegal"]
     o.append(sec('      <div class="grid">\n        <div class="span-6"><h2 id="cl-h">Contact &amp; Legal</h2>\n'
                  '          <p>%s</p><p><a class="btn btn--ghost" href="contact.html">Contact us</a></p></div>\n'
@@ -591,24 +636,78 @@ def p_learn():
 
 
 def p_science():
-    c = load("science"); o = [hero(c["hero"], "sci-h")]
+    """How the soil food web works.
+
+    Six mechanisms. The first one IS the microscopy, so it gets the rack:
+    scroll drives the playhead and the focus together, and reading the page
+    becomes the act of looking down a microscope. Study 14 from /motion.
+
+    The other five take photographs from the Foundation's own library. The
+    Vimeo animation notes stay on every one of them as production notes: the
+    animations are real assets and these photographs do not replace them.
+    """
+    c = load("science"); o = []
+
+    h = c["hero"]
+    o.append('  <section class="stratum" style="border-top:0">\n    <div class="wrap">\n'
+             '      <div class="grid" style="align-items:center;row-gap:var(--s5)">\n'
+             '        <div class="span-6">\n          %s\n          <h1 id="sci-h">%s</h1>\n'
+             '          <p class="lede">%s</p>\n        </div>\n'
+             '        <div class="span-6">\n          %s\n        </div>\n      </div>\n    </div>\n  </section>\n'
+             % (eyebrow(h.get("eyebrow")), e(h["h1"]), e(h.get("intro") or h.get("subhead") or ""),
+                shot("img/fungal-spores-in-suspension.jpg",
+                     "A brightfield microscope view of a pale green field scattered with dark spores and debris",
+                     cap=True)))
+
+    mech_media = {
+        2: ("img/harringtons-organic-land-care-brick-york-farms-3-768x1024.jpg",
+            "An earthworm in a broken clod of dark soil"),
+        3: ("img/harringtons-organic-land-care-brick-york-farms-2-768x1024.jpg",
+            "Dark soil threaded through with pale fungal strands holding the crumbs together"),
+        4: ("img/fungi-in-under-grape-soil.jpg",
+            "A pale mushroom standing in green cover crop beneath a trained vine row"),
+        5: ("img/harringtons-organic-land-care-york-farms-1-768x1024.jpg",
+            "A green seedling pushing up through soil beside an earthworm"),
+        6: ("img/2-hands-clasped-holding-plant-roots.jpg",
+            "Two hands cupped around a clod of soil held together by fine roots"),
+    }
+
     body = ""
     for m in c["mechanisms"]:
-        body += ('      <div class="grid" style="padding-block:var(--s5);border-top:var(--hairline) solid var(--rule)" id="mechanism-%d">\n'
+        n = m["n"]
+        if n == 1:
+            # the rack: the Foundation's own brightfield footage, scrubbed by
+            # the reader's own scrolling. Nothing plays on its own.
+            media = ('        <figure class="plate span-6 start-7">\n'
+                     '          <div class="rack" style="aspect-ratio:16/9">\n'
+                     '            <video data-loop data-scrub muted playsinline preload="none"\n'
+                     '                   poster="img/sfw-amoeba-poster-hero.jpg"\n'
+                     '                   data-src="video/sfw-amoeba-lab-640.webm,video/sfw-amoeba-lab-640.mp4"\n'
+                     '                   aria-label="Brightfield microscopy from the Foundation archive. Scroll to move through the clip."></video>\n'
+                     '            <span class="rack__meter"><i></i></span>\n          </div>\n'
+                     '          <figcaption><span class="plate__n">Plate %d.</span> <span class="plate__t">%s</span>'
+                     '<span class="cap--todo">%s</span></figcaption>\n        </figure>\n' % (n, e(m["title"]), e(CAPTION)))
+        else:
+            src, alt = mech_media[n]
+            media = ('        <figure class="plate span-6 start-7">\n'
+                     '          <img class="plate__img plate__img--band" src="%s" alt="%s" loading="lazy" decoding="async">\n'
+                     '          <figcaption><span class="plate__n">Plate %d.</span> <span class="plate__t">%s</span>'
+                     '<span class="cap--todo">%s</span></figcaption>\n        </figure>\n'
+                     % (A(src), A(alt), n, e(m["title"]), e(CAPTION)))
+        body += ('      <div class="grid" style="padding-block:var(--s6);border-top:var(--hairline) solid var(--rule);align-items:center" id="mechanism-%d">\n'
                  '        <div class="span-5">\n          <p class="small" style="color:var(--ink-faint)">%d of 6</p>\n'
-                 '          <h3>%s</h3>\n          <p>%s</p>\n        </div>\n'
-                 '        <figure class="plate span-6 start-7">\n'
-                 '          <div class="plate__f" style="aspect-ratio:16/9" data-empty="%s"></div>\n'
-                 '          <figcaption><span class="plate__n">Plate %d.</span> <span class="plate__t">%s</span></figcaption>\n'
-                 '        </figure>\n      </div>\n'
-                 % (m["n"], m["n"], e(m["title"]), e(m["body"]), A(m["animation"]["note"]), m["n"], e(m["title"])))
-    o.append('  <section class="stratum" aria-labelledby="mech-h">\n    <div class="wrap">\n'
+                 '          <h3>%s</h3>\n          <p>%s</p>\n          <p class="todo">%s</p>\n        </div>\n%s      </div>\n'
+                 % (n, n, e(m["title"]), e(m["body"]), e(m["animation"]["note"]), media))
+
+    o.append('  <section class="stratum" aria-labelledby="mech-h" style="border-top:0">\n    <div class="wrap">\n'
              '      <h2 id="mech-h" class="visually-hidden">The six mechanisms</h2>\n%s    </div>\n  </section>\n' % body)
+
     br = c["bridge"]
     o.append(sec('      <div class="head"><h2 id="br-h">%s</h2><p>%s</p></div>\n'
                  '      <p><a class="btn" href="practice.html#case-studies">Case studies</a> '
                  '<a class="btn btn--ghost" href="learn.html">Explore our programs</a></p>'
-                 % (e(br["title"]), e(br["body"])), "stratum--deep", "br-h"))
+                 % (e(br["title"]), e(br["body"])), "", "br-h"))
+
     cs = c["cases"]
     o.append(sec('      <div class="head"><h2 id="cs-h">%s</h2><p>%s</p></div>\n      %s\n'
                  '      <p class="small">%s</p>' % (e(cs["h2"]), e(cs["intro"]), note(cs["cards"]), e(c["honestFooter"])),

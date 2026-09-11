@@ -2707,3 +2707,15 @@ code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .9em; }
   .scope__disc video { animation: none; }
   .door img { transition: none; }
 }
+
+/* --- Dr. Elaine Ingham -------------------------------------------------
+   Legacy Purple appears on her content and nowhere else. It is a hairline
+   under the photograph and a rule beside the text: never a wash over her,
+   and never anything laid on her face. */
+.shot--legacy img { border-bottom: 3px solid var(--legacy); }
+.legacy .eyebrow { color: var(--legacy); }
+.legacy h2 { color: var(--legacy); }
+
+/* a photograph filling a plate slot, where the plate used to hold a placeholder */
+.plate__img { width: 100%; height: auto; display: block; background: var(--panel); }
+.plate__img--band { aspect-ratio: 4 / 3; object-fit: cover; }

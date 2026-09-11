@@ -273,8 +273,9 @@
       p = p < 0 ? 0 : p > 1 ? 1 : p;
       var d = v.duration;
       if (d && isFinite(d)) { try { v.currentTime = p * d * 0.999; } catch (e) { /* not seekable yet */ } }
-      var focus = Math.abs(p - 0.5) * 2;
-      v.style.filter = "brightness(.8) contrast(6.5) saturate(.42) blur(" + (focus * focus * 6).toFixed(2) + "px)";
+      // sharp across the middle half of the pass, soft only at the extremes
+      var focus = Math.max(0, (Math.abs(p - 0.5) * 2 - 0.45) / 0.55);
+      v.style.filter = "brightness(.8) contrast(6.5) saturate(.42) blur(" + (focus * focus * 3.2).toFixed(2) + "px)";
       var m = box.querySelector(".rack__meter i");
       if (m) m.style.width = (p * 100).toFixed(1) + "%";
     });
