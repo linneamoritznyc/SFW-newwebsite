@@ -35,6 +35,12 @@
   --tan:          #C89B7B;   /* secondary backgrounds, card borders, dividers */
   --gold:         #C9A227;   /* Harvest Gold: Donate button only */
   --white:        #FFFFFF;
+  --ground:       #231F1D;   /* the dark ground: footer and utility bar.
+                                Was --soil (#4F3433), which reads as a muddy
+                                maroon at full-bleed size. --soil stays as the
+                                heading colour, where it is warm rather than
+                                purple, so this is a new token rather than a
+                                change to that one. */
 
   --rule:         rgba(79, 52, 51, .22);
   --rule-strong:  rgba(79, 52, 51, .55);
@@ -381,7 +387,7 @@ figcaption, .caption, .source {
 /* --------------------------------------------------------------------------
    11. Footer
    -------------------------------------------------------------------------- */
-.site-footer { background: var(--soil); color: var(--paper); border-top: var(--hairline) solid var(--rule-strong); padding-block: var(--s6) var(--s4); font-size: var(--t0); }
+.site-footer { background: var(--ground); color: var(--paper); border-top: var(--hairline) solid var(--rule-strong); padding-block: var(--s6) var(--s4); font-size: var(--t0); }
 .site-footer a { color: var(--paper); }
 .site-footer a:hover { color: var(--gold); }
 .site-footer h2 { color: var(--paper); font-family: var(--sans); font-size: var(--t0); font-weight: 600; margin-bottom: var(--s2); }
@@ -569,7 +575,7 @@ code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .9em; }
    15. Utility bar: the slim band above the header carrying the community
        tagline and the three action links (spec 3.4, 4.2). Added 9 Sep 2026.
    -------------------------------------------------------------------------- */
-.utility { background: var(--soil); color: var(--white); font-size: var(--t-1); }
+.utility { background: var(--ground); color: var(--white); font-size: var(--t-1); }
 .utility .wrap { display: flex; flex-wrap: wrap; gap: var(--s2) var(--s3); align-items: center;
   justify-content: space-between; padding-block: .55rem; }
 .utility__tagline { margin: 0; font-family: var(--display); font-weight: 600; letter-spacing: .01em; max-width: none; }
