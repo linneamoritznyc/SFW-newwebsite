@@ -1,0 +1,7 @@
+Pathway Gothic One is licensed under the SIL Open Font License, Version 1.1.
+Copyright (c) 2011 Font Diner, Inc (https://www.fontdiner.com)
+Full licence: https://openfontlicense.org
+Retrieved from Google Fonts (fonts.gstatic.com), 11 September 2026, as the
+latin subset, regular weight, which is the only weight the family has.
+Named in the Soil Food Web brand style guide, page 4, alongside Montserrat
+and Source Sans. Used on learn-brand.html only.
