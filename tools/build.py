@@ -616,33 +616,71 @@ def p_about():
 
 
 def p_learn():
-    c = load("learn"); o = [hero(c["hero"], "learn-h")]
+    """Learn. The programs list becomes the index list: a thumbnail beside each
+    line, the tagline on the left, the category on the right, thin rules
+    between. One photograph per program, chosen for what the program actually
+    involves rather than for decoration.
+    """
+    c = load("learn"); o = []
+
+    h = c["hero"]
+    o.append('  <section class="stratum" style="border-top:0">\n    <div class="wrap">\n'
+             '      <div class="grid" style="align-items:center;row-gap:var(--s5)">\n'
+             '        <div class="span-6">\n          %s\n          <h1 id="learn-h">%s</h1>\n'
+             '          <p class="lede">%s</p>\n        </div>\n'
+             '        <div class="span-6">\n          %s\n        </div>\n      </div>\n    </div>\n  </section>\n'
+             % (eyebrow(h.get("eyebrow")), e(h["h1"]), e(h.get("intro") or h.get("subhead") or ""),
+                shot("img/Elaine Flower Shirt Microscope.png",
+                     "A researcher at a microscope in a laboratory, reading from a screen beside her",
+                     cap=True)))
+
     ps = c["pathSelector"]
     o.append(sec('      <div class="head"><h2 id="path-h">%s</h2></div>\n'
                  '      <ul class="chips" aria-label="Paths">%s</ul>'
                  % (e(ps["h2"]), "".join('<li><span class="chip">%s</span></li>' % e(x) for x in ps["chips"])),
-                 "stratum--deep", "path-h"))
+                 "", "path-h"))
+
+    program_shots = {
+        "foundation-courses": ("img/2-dirty-hands.jpg",
+                               "Two open palms held out, thickly covered in wet soil"),
+        "complete-practicum": ("img/Sampling equipment.jpg",
+                               "A microscope on a bench beside racked sample tubes and bottles"),
+        "pdc": ("img/erc-panchamana-garden.jpg",
+                "A planted garden of curved beds seen from above, dense with green growth"),
+        "restoration": ("img/erc-panchamana-treeplanting-2-fb-img-1666270988322.jpg",
+                        "People spread across a clearing planting seedlings among standing trees"),
+        "workshops": ("img/ctpfw-student-squeezing-compost-1.jpg",
+                      "A student in gloves squeezing a handful of compost to test it, with a group watching"),
+        "webinars": ("img/soil-sample-close-up-test-tube.jpg",
+                     "Gloved hands holding a sample tube and a probe over dark soil"),
+    }
     rows = ""
-    for p in c["programs"]:
-        rows += ('        <li class="entry" id="%s">\n          <span class="entry__kind" style="text-align:left">%s</span>\n'
+    for pr in c["programs"]:
+        src, alt = program_shots.get(pr["id"], (None, ""))
+        thumb = ('          <span class="entry__thumb"><img src="%s" alt="%s" loading="lazy" decoding="async"></span>\n'
+                 % (A(src), A(alt))) if src else '          <span class="entry__thumb"></span>\n'
+        rows += ('        <li class="entry entry--thumb" id="%s">\n%s'
+                 '          <span class="entry__kind" style="text-align:left">%s</span>\n'
                  '          <div><h3 class="entry__t">%s</h3>\n'
                  '            <p class="entry__line">%s</p>\n            <p class="entry__line">%s</p>%s</div>\n'
                  '          <span></span>\n        </li>\n'
-                 % (A(p["id"]), e(p["tagline"]), e(p["name"]), e(p["body"]),
-                    '<a href="%s">%s &rarr;</a>' % (A(p["cta"]["href"]), e(p["cta"]["label"])), note(p)))
+                 % (A(pr["id"]), thumb, e(pr["tagline"]), e(pr["name"]), e(pr["body"]),
+                    '<a href="%s">%s &rarr;</a>' % (A(pr["cta"]["href"]), e(pr["cta"]["label"])), note(pr)))
     o.append(sec('      <div class="head"><h2 id="prog-h" class="visually-hidden">Programs</h2></div>\n'
-                 '      <ul class="rule-list">\n%s      </ul>\n'
+                 '      <ul class="rule-list rule-list--thumb">\n%s      </ul>\n'
                  '      <p class="ribbon">%s</p>\n      %s'
                  % (rows, e(c["guarantee"]["ribbon"]), note(c["guarantee"])), label="prog-h", sid="programs"))
+
     t = c["testimonials"]
     o.append(sec('      <div class="head"><h2 id="tq-h">%s</h2></div>\n      %s'
                  % (e(t["h2"]), "\n      ".join(note(q) for q in t["quotes"])), "notes-only", "tq-h"))
+
     f = c["faq"]
     rows = "".join('        <li class="entry">\n          <span></span>\n'
                    '          <div><h3 class="entry__t">%s</h3><p class="entry__line">%s</p>%s</div>\n'
                    '          <span></span>\n        </li>\n' % (e(q["q"]), e(q["a"]), note(q)) for q in f["items"])
     o.append(sec('      <div class="head"><h2 id="faq-h">%s</h2></div>\n      <ul class="rule-list">\n%s      </ul>'
-                 % (e(f["h2"]), rows), "stratum--deep", "faq-h"))
+                 % (e(f["h2"]), rows), "", "faq-h"))
     return MAIN("\n".join(o))
 
 

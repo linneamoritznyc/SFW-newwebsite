@@ -2621,7 +2621,7 @@ code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .9em; }
 .entry__thumb img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; background: var(--panel); }
 @media (min-width: 50em) {
   .rule-list--thumb .rule-list__head,
-  .rule-list--thumb .entry--thumb { grid-template-columns: 7rem 9rem minmax(0, 1fr) 10rem; }
+  .rule-list--thumb .entry--thumb { grid-template-columns: 8rem 10rem minmax(0, 1fr) 8rem; align-items: start; }
   .entry__thumb { display: block; }
 }
 
