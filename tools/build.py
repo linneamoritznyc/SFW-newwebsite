@@ -137,7 +137,7 @@ def steps(items, icon="i-cycle"):
 #
 # CAPTION is deliberately a constant. Captions are the Foundation's to write,
 # and an invented one would be a claim about a real place and real people.
-CAPTION = "Caption needed: the place, the people and the date. Foundation to supply."
+CAPTION = "the place, the people and the date. Foundation to supply."
 
 
 
@@ -214,6 +214,34 @@ def ledger(items, depth=0):
     return '      <ul class="ledger">\n%s      </ul>\n' % li
 
 
+def films(items, depth=0):
+    """Films from the field, as facades.
+
+    A still with a play button, and nothing from Vimeo until somebody presses
+    it: an iframe per card would pull a player and its cookies onto the page
+    for every visitor who never watches. The privacy hash rides in data-h,
+    because these are unlisted videos and the player refuses them without it.
+    """
+    li = ""
+    for f in items:
+        src = "https://player.vimeo.com/video/%s?h=%s&badge=0&byline=0&portrait=0&title=0" % (
+            f["vimeo"], f["hash"])
+        li += ('        <li>\n'
+               '          <figure class="film">\n'
+               '            <button class="film__go" type="button" data-film="%s"\n'
+               '                    aria-label="Play the film with %s, %s">\n'
+               '              %s\n'
+               '              <span class="film__play" aria-hidden="true">\u25b6</span>\n'
+               '            </button>\n'
+               '            <figcaption>\n              <b>%s</b>\n'
+               '              <span>%s</span>\n              <span>%s</span>\n'
+               '            </figcaption>\n          </figure>\n        </li>\n'
+               % (A(src), A(f["name"]), A(f["place"]),
+                  img(f["poster"], f["posterAlt"], sizes="(max-width: 52em) 100vw, 32vw", depth=depth),
+                  e(f["name"]), e(f["place"]), e(f["kind"])))
+    return '      <ul class="films">\n%s      </ul>\n' % li
+
+
 def banner(src, alt, h2, hid, lede="", ctas="", depth=0, tag="h2", eyeb="", source=""):
     """One landscape photograph carrying a whole screen, with one line over it.
 
@@ -282,6 +310,16 @@ def slides(depth=0):
     return ('      <ul class="slides">\n%s      </ul>\n'
             '      <p class="source small" style="margin-top:var(--s4)">'
             'Brightfield microscopy, Soil Food Web Foundation archive</p>\n' % li)
+
+
+def partners(items):
+    """The organizations named so far. A name and a line each: the Foundation
+    has not supplied logo files, and a name is worth more than a grey box."""
+    if not items:
+        return ""
+    li = "".join('        <li>\n          <a href="%s"><b>%s</b></a>\n          <span>%s</span>\n        </li>\n'
+                 % (A(x["href"]), e(x["name"]), e(x["line"])) for x in items)
+    return '      <ul class="partners">\n%s      </ul>\n' % li
 
 
 def doors(items, depth=0):
@@ -594,16 +632,25 @@ def p_home():
                  % (eyebrow(n["eyebrow"]), e(n["h2"]), rows, links, note(n)),
                  label="new-h"))
 
+    # -- the testimonial. A real one, named, with its source under it.
     t = c["testimonial"]
-    o.append(sec("      %s\n      %s" % (note(t["quote"]), note(t["attribution"])), "notes-only"))
+    if isinstance(t.get("quote"), str):
+        o.append(sec('      <h2 id="say-h" class="visually-hidden">What people say</h2>\n'
+                     '      <figure class="testimonial">\n        <blockquote><p>%s</p></blockquote>\n'
+                     '        <figcaption>%s</figcaption>\n      </figure>\n'
+                     '      <p class="source small">%s</p>\n      %s'
+                     % (e(t["quote"]), e(t["attribution"]), e(t["source"]), note(t)), label="say-h"))
+    else:
+        o.append(sec("      %s\n      %s" % (note(t["quote"]), note(t["attribution"])), "notes-only"))
 
     # .head puts the h2 left and the lede right; this section's h2 is
     # visually hidden, which left the lede stranded in an empty right column.
     ec = c["ecosystem"]
     o.append(sec('      <h2 id="eco-h" class="visually-hidden">Our ecosystem</h2>\n      %s\n'
-                 '      <p class="lede" style="max-width:44ch;margin-top:var(--s2)">%s</p>\n'
+                 '      <p class="lede" style="max-width:44ch;margin-top:var(--s2)">%s</p>\n%s'
                  '      <p style="margin-top:var(--s4)">%s</p>\n      %s'
-                 % (eyebrow(ec["eyebrow"]), e(ec["line"]), cta(ec["cta"], "btn btn--ghost"), note(ec)),
+                 % (eyebrow(ec["eyebrow"]), e(ec["line"]), partners(ec.get("partners", [])),
+                    cta(ec["cta"], "btn btn--ghost"), note(ec)),
                  label="eco-h"))
 
     # -- the close. One landscape photograph carrying the whole screen, with
@@ -874,9 +921,12 @@ def p_practice():
     o.append(sec("      " + note(c["projects"]), "notes-only"))
 
     cs = c["caseStudies"]
-    o.append(sec('      <div class="head">\n        %s\n        <h2 id="csx-h">%s</h2>\n        <p>%s</p>\n      </div>\n      %s\n'
-                 '      <p><a class="btn btn--ghost" href="projects/market-garden-sweden.html">Market garden makeover, Sweden</a></p>'
-                 % (eyebrow(cs["eyebrow"]), e(cs["h2"]), e(cs["lede"]), note(cs["cards"])),
+    o.append(sec('      <div class="head">\n        %s\n        <h2 id="csx-h">%s</h2>\n        <p>%s</p>\n      </div>\n%s'
+                 '      <p class="source small">%s</p>\n'
+                 '      <p style="margin-top:var(--s4)"><a class="btn btn--ghost" href="projects/market-garden-sweden.html">Read the Sweden market garden case study</a></p>\n'
+                 '      %s%s'
+                 % (eyebrow(cs["eyebrow"]), e(cs["h2"]), e(cs["lede"]), films(cs["cards"]),
+                    e(cs["source"]), note(cs), note(cs["more"])),
                  label="csx-h", sid="case-studies"))
 
     w = c["workWithUs"]
@@ -978,12 +1028,16 @@ def p_calendar():
             '            <svg class="icon icon--olive" aria-hidden="true"><use href="#i-scholarship"/></svg>\n'
             '            <span><span class="cal__name">Permaculture Design Certification</span>'
             '<span class="cal__when">16 September to 20 December 2026</span></span>\n          </div>\n'
-            '          <div class="cal__track"><span class="cal__bar" style="--l:4.11%;--w:26.301%"></span></div>\n        </li>\n'
+            '          <div class="cal__track"><a class="cal__bar" href="learn.html#permaculture"'
+            ' aria-label="Permaculture Design Certification, 16 September to 20 December 2026"'
+            ' style="--l:4.11%;--w:26.301%"></a></div>\n        </li>\n'
             '        <li class="cal__row">\n          <div class="cal__rail">\n'
             '            <svg class="icon icon--olive" aria-hidden="true"><use href="#i-workshop"/></svg>\n'
-            '            <span><span class="cal__name">India Accelerator Workshop, Coimbatore</span>'
+            '            <span><span class="cal__name">' + e(iw["title"]) + '</span>'
             '<span class="cal__when">' + e(iw["dated"]) + '</span></span>\n          </div>\n'
-            '          <div class="cal__track"><span class="cal__bar" style="--l:12.877%;--w:3.836%"></span></div>\n        </li>\n'
+            '          <div class="cal__track"><a class="cal__bar" href="#workshops"'
+            ' aria-label="' + A(iw["title"]) + ', ' + A(iw["dated"]) + '"'
+            ' style="--l:13.151%;--w:3.288%"></a></div>\n        </li>\n'
             '        <li class="cal__row">\n          <div class="cal__rail">\n'
             '            <svg class="icon icon--olive" aria-hidden="true"><use href="#i-calendar"/></svg>\n'
             '            <span><span class="cal__name">The rest of 2027</span><span class="cal__when">Not yet scheduled</span></span>\n'
@@ -1020,8 +1074,12 @@ def p_calendar():
                    '          <span class="entry__kind">Public webinar</span>\n        </li>\n      </ul>\n      %s\n'
                    '      <p class="small">%s</p>'
                    % (grid, months, rows, A(iw["datetime"]), e(iw["dated"]),
-                      e(f["title"]), e(f["body"]), cta(f["cta"], "btn btn--ghost"),
-                      note(f) + note(iw) + note(c["otherListings"]), e(c["footerLine"])), label="cal-h"))
+                      e(f["title"]), e(f["body"]),
+                      cta(f["cta"], "btn btn--ghost") + " "
+                      + " &middot; ".join('<a href="%s">%s</a>' % (A(x["href"]), e(x["label"]))
+                                          for x in c["links"]),
+                      '<p class="source small">%s</p>' % e(f["source"])
+                      + note(f) + note(c["otherListings"]), e(c["footerLine"])), label="cal-h"))
     return MAIN("\n".join(o))
 
 
@@ -1083,10 +1141,10 @@ def p_login():
     for ch in c["choosers"]:
         nm = ch["name"]["note"] if isinstance(ch["name"], dict) else ch["name"]
         pg = ch["programs"]["note"] if isinstance(ch["programs"], dict) else ch["programs"]
-        items.append({"title": nm, "body": pg, "cta": ch["cta"] if ch["cta"]["href"] != "#" else None,
-                      "note": "confirm which programs live on which platform before publish. Evan.", "status": "verify"})
+        items.append({"title": nm, "body": pg, "cta": ch["cta"] if ch["cta"]["href"] != "#" else None})
     o.append(sec('      <h2 id="lms-h" class="visually-hidden">Choose your platform</h2>\n'
-                 + cards(items) + '      <p>%s</p>' % e(c["helpLine"]), "stratum--deep", "lms-h"))
+                 + cards(items) + '      <p>%s</p>\n      <p class="source small">%s</p>'
+                 % (e(c["helpLine"]), e(c["source"])), "stratum--deep", "lms-h"))
     return MAIN("\n".join(o))
 
 

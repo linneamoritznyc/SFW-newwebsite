@@ -7,30 +7,22 @@
   },
   "choosers": [
     {
-      "name": {
-        "status": "verify",
-        "note": "Platform name to confirm. This button goes to school.soilfoodweb.com, the Thinkific school. Evan."
-      },
-      "programs": "Foundation Courses & Advanced Programs",
+      "name": "New platform, Soil Food Web School on Thinkific",
+      "programs": "For courses bought after 15 March 2026, or accounts that have already moved.",
       "cta": {
-        "label": "Log in",
+        "label": "Log in on school.soilfoodweb.com",
         "href": "https://school.soilfoodweb.com/users/sign_in"
       }
     },
     {
-      "name": {
-        "status": "verify",
-        "note": "Second platform: name, address and the programs it hosts all to confirm. No button is shown until there is a real address to send people to. Evan."
-      },
-      "programs": {
-        "status": "verify",
-        "note": "Programs hosted on the second platform, to confirm. Evan."
-      },
+      "name": "Original platform",
+      "programs": "For courses bought before 15 March 2026 whose accounts have not moved yet.",
       "cta": {
-        "label": "Log in",
-        "href": "#"
+        "label": "Log in on soilfoodweb.com",
+        "href": "https://soilfoodweb.com/login/"
       }
     }
   ],
-  "helpLine": "Not sure where your course lives? Check your enrollment email, or contact info@soilfoodweb.com."
+  "helpLine": "Students are moving to the new platform in stages. You will get an email when your account moves. Unsure? Write to info@soilfoodweb.com.",
+  "source": "The live login page at soilfoodweb.com, checked 11 September 2026. The split is by purchase date and migration status."
 }

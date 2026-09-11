@@ -13,9 +13,40 @@
     "eyebrow": "CASE STUDIES",
     "h2": "Documented results, one site at a time",
     "lede": "Each case study pairs a grower’s story with the data behind it, where they started, what they practiced, and what was measured.",
-    "cards": {
-      "status": "placeholder",
-      "note": "3 launch cases from the Case Study Kit pipeline (the Shane Plath story is the seed of the first). Each card: grower/site, region, baseline → practice → measured outcome. INTERIM CONTENT (Evan, Sep 7): video cases from the existing Consultant & Farmer Case Studies playlists run as “stories from the field”. VERIFY Vimeo account access."
+    "cards": [
+      {
+        "name": "Roberto Silva",
+        "place": "Piura, Peru",
+        "kind": "Agricultural",
+        "vimeo": "790985081",
+        "hash": "92231c295c",
+        "poster": "img/erc-rancho-cacachilas-agro.jpg",
+        "posterAlt": "Long rows of crops running to a line of trees under a wide clouded sky"
+      },
+      {
+        "name": "Cory Miller",
+        "place": "Montana, USA",
+        "kind": "Agricultural",
+        "vimeo": "812185778",
+        "hash": "dd3a45ec17",
+        "poster": "img/harringtons-organic-land-care-york-farms-1-768x1024.jpg",
+        "posterAlt": "A gloved hand holding back a mat of crop residue to show dark crumb soil underneath"
+      },
+      {
+        "name": "Nick Tomasini",
+        "place": "Portland, Oregon",
+        "kind": "Soil Food Web Consultant",
+        "vimeo": "410049306",
+        "hash": "251e4606ca",
+        "poster": "img/hand-soil-roots-fungi.jpg",
+        "posterAlt": "An open palm holding a clump of soil bound together by roots and pale fungal strands"
+      }
+    ],
+    "source": "The practitioners' own films, from the Foundation's Vimeo library.",
+    "status": "placeholder",
+    "note": "Three of the launch cases are here. Still open: a restoration-segment case, and the written detail behind each film, where they started, what they practiced and what was measured. Evan and Stephanie. Acreage figures the old site printed beside these names are left out under the claims rule.",
+    "more": {
+      "note": "Also filmed and available for later cards: Adam York, Illinois (792733797 / e809b1fad3); Jenn Sirp, California (812188293 / 6ed8f0fbef); Brian Vagg, Auburn, California (380296081 / 4da9889266); Keisha and Casey, Nevada City, California (380297602 / 7a71e6701c); Todd Harrington, Bloomfield, Connecticut (470279480 / 103139eeb8)."
     }
   },
   "workWithUs": {

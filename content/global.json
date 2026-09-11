@@ -164,9 +164,9 @@
         "href": "learn.html#permaculture"
       },
       {
-        "datetime": "2026-10-18",
-        "dated": "18 to 31 October 2026, dates to confirm",
-        "label": "India Accelerator Workshop, Coimbatore",
+        "datetime": "2026-10-19",
+        "dated": "19 to 30 October 2026",
+        "label": "Accelerator Workshop India 2026, Coimbatore",
         "href": "calendar.html#workshops"
       }
     ],
@@ -174,9 +174,7 @@
       "label": "Everything that is happening",
       "href": "calendar.html"
     },
-    "status": "verify",
-    "note": "India Accelerator Workshop dates: the course page says 18 to 31 October 2026, the current footer says 19 to 30 October, the handbook room section says 12 nights against 13 in the inclusions. Decision 12. The line reads 'dates to confirm' until Evan answers.",
-    "_note2": "Two items only until the events database has more dated entries. Copy deck 1.2 asks for the three most recent."
+    "note": "Two items only until the events database has more dated entries. Copy deck 1.2 asks for the three most recent."
   },
   "footer": {
     "brandLine": "Healing soil. Feeding humanity. Restoring the living world.",
@@ -184,37 +182,85 @@
       {
         "head": "Foundation",
         "links": [
-          { "label": "About us", "href": "about.html" },
-          { "label": "Our team and board", "href": "about-team.html" },
-          { "label": "Governance and financials", "href": "about-governance.html" },
-          { "label": "Contact us", "href": "contact.html" }
+          {
+            "label": "About us",
+            "href": "about.html"
+          },
+          {
+            "label": "Our team and board",
+            "href": "about-team.html"
+          },
+          {
+            "label": "Governance and financials",
+            "href": "about-governance.html"
+          },
+          {
+            "label": "Contact us",
+            "href": "contact.html"
+          }
         ]
       },
       {
         "head": "Learn",
         "links": [
-          { "label": "Every program and what it costs", "href": "learn.html" },
-          { "label": "Calendar of events", "href": "calendar.html" },
-          { "label": "Free webinars", "href": "learn-webinars.html" },
-          { "label": "Scholarships", "href": "learn-scholarships.html" }
+          {
+            "label": "Every program and what it costs",
+            "href": "learn.html"
+          },
+          {
+            "label": "Calendar of events",
+            "href": "calendar.html"
+          },
+          {
+            "label": "Free webinars",
+            "href": "learn-webinars.html"
+          },
+          {
+            "label": "Scholarships",
+            "href": "learn-scholarships.html"
+          }
         ]
       },
       {
         "head": "Resources",
         "links": [
-          { "label": "How the soil food web works", "href": "science.html" },
-          { "label": "Research and publications", "href": "research.html" },
-          { "label": "Case studies", "href": "practice.html#case-studies" },
-          { "label": "Media and press", "href": "contact.html#media" }
+          {
+            "label": "How the soil food web works",
+            "href": "science.html"
+          },
+          {
+            "label": "Research and publications",
+            "href": "research.html"
+          },
+          {
+            "label": "Case studies",
+            "href": "practice.html#case-studies"
+          },
+          {
+            "label": "Media and press",
+            "href": "contact.html#media"
+          }
         ]
       },
       {
         "head": "Get involved",
         "links": [
-          { "label": "Donate", "href": "donate.html" },
-          { "label": "Volunteer with us", "href": "donate.html#volunteer" },
-          { "label": "Find a professional", "href": "directory.html" },
-          { "label": "Logo and name use", "href": "contact.html#logo" }
+          {
+            "label": "Donate",
+            "href": "donate.html"
+          },
+          {
+            "label": "Volunteer with us",
+            "href": "donate.html#volunteer"
+          },
+          {
+            "label": "Find a professional",
+            "href": "directory.html"
+          },
+          {
+            "label": "Logo and name use",
+            "href": "contact.html#logo"
+          }
         ]
       }
     ],

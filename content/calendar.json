@@ -13,24 +13,35 @@
     "Speaking and conferences"
   ],
   "featured": {
-    "title": "Asia-Pacific Workshop",
-    "body": "with the Isha Foundation, India (October 2027). Our first workshop on the subcontinent, in partnership with the Isha Foundation. Hands in soil, microscopes on tables, and a community milestone for the region.",
+    "title": "Accelerator Workshop India 2026",
+    "body": "In collaboration with Isha Outreach. 19 to 30 October 2026 at Save Soil Farm, near the Isha Yoga Center, Coimbatore, Tamil Nadu. Our first workshop on the subcontinent. Hands in soil, microscopes on tables, and a community milestone for the region.",
+    "source": "school.soilfoodweb.com/courses/india-workshop-2026, the live enrollment page, checked 11 September 2026",
     "cta": {
-      "label": "Register your interest on the school site",
-      "href": "https://school.soilfoodweb.com/pages/workshop-interest"
+      "label": "Enroll on the school site",
+      "href": "https://school.soilfoodweb.com/courses/india-workshop-2026"
     },
-    "status": "verify",
-    "note": "This featured card says Asia-Pacific Workshop with the Isha Foundation, India, October 2027, while the listing below says India Accelerator Workshop, Coimbatore, October 2026. Confirm whether these are two events or one, and which year is right. Evan."
+    "status": "verified",
+    "note": "The copy deck called this the Asia-Pacific Workshop in October 2027 and the old footer said 19 to 30 October. The live sales page says October 2026, and that is what prints here."
   },
   "otherListings": {
     "status": "placeholder",
-    "note": "populated from events system: title, date, type tag, one line, CTA."
+    "note": "Webinar listings come from webinar.soilfoodweb.com, where the current series includes Vandana Shiva with Evan Buckman, and Dr. Carla Portugal and Dr. Adam Cobb on soil biology and permaculture. Future workshops collect interest at school.soilfoodweb.com/pages/workshop-interest. Still open: the feed format and which system is the source of truth for dates. Evan."
   },
   "footerLine": "Past events collapse into an archive automatically. Want us at your event? Invite us to speak →",
   "indiaWorkshop": {
-    "datetime": "2026-10-18",
-    "dated": "18 to 31 October 2026, dates to confirm",
-    "status": "verify",
-    "note": "Decision 12. The course page says 18 to 31 October 2026, the current footer says 19 to 30 October, and the handbook gives 13 nights in the inclusions against 12 in the room section. The line reads 'dates to confirm' until Evan answers."
-  }
+    "datetime": "2026-10-19",
+    "dated": "19 to 30 October 2026",
+    "title": "Accelerator Workshop India 2026, Coimbatore",
+    "status": "verified"
+  },
+  "links": [
+    {
+      "label": "See the webinar series",
+      "href": "learn-webinars.html"
+    },
+    {
+      "label": "Register interest in a future workshop",
+      "href": "https://school.soilfoodweb.com/pages/workshop-interest"
+    }
+  ]
 }

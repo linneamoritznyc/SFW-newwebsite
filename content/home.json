@@ -42,8 +42,7 @@
     "link": {
       "label": "Read our mission and story →",
       "href": "about.html"
-    },
-    "note": "Merge with the team’s in-refinement “Who We Are” draft, one owner reconciles."
+    }
   },
   "howItWorks": {
     "eyebrow": "THE SOIL FOOD WEB APPROACH",
@@ -157,23 +156,20 @@
       {
         "img": "img/w/2-hands-planting-shrub-800.jpg",
         "alt": "Two hands firming red soil around the base of a newly planted shrub",
-        "datetime": "2026-10-18",
-        "dated": "18 to 31 October 2026, dates to confirm",
-        "label": "India Accelerator Workshop, Coimbatore",
-        "href": "calendar.html#workshops",
+        "datetime": "2026-10-19",
+        "dated": "19 to 30 October 2026",
+        "label": "Accelerator Workshop India 2026, Coimbatore",
+        "href": "https://school.soilfoodweb.com/courses/india-workshop-2026",
         "kind": "Workshop"
       }
     ]
   },
   "testimonial": {
-    "quote": {
-      "status": "placeholder",
-      "note": "strongest graduate testimonial from the case-study pipeline: one or two sentences on what changed."
-    },
-    "attribution": {
-      "status": "placeholder",
-      "note": "[Name], Soil Food Web Consultant · [Country]"
-    }
+    "quote": "Restoring the Soil Food Web to agricultural soils restores productivity and profitability to agriculture and results in substantial levels of carbon sequestration.",
+    "attribution": "Dr. David Johnson, Research Scientist and Molecular Biologist, New Mexico State University",
+    "source": "soilfoodweb.com homepage testimonial. Retained at Evan's request, August 2026.",
+    "status": "verified",
+    "note": "The original continues into a claim about returning atmospheric carbon to IPCC safe levels. That sentence is cut: it is a global outcome claim under the claims rule. Restore it only as a clearly attributed third-party statement if Evan wants it."
   },
   "ecosystem": {
     "eyebrow": "OUR ECOSYSTEM",
@@ -182,8 +178,15 @@
       "label": "Start a partnership conversation",
       "href": "practice.html#work-with-us"
     },
-    "note": "Ecosystem strip, renamed from Partners & Sponsors, Sep 7. Partner names and marks not yet supplied.",
-    "status": "placeholder"
+    "note": "One partner named so far. Every other partner name and logo file still to come. Evan.",
+    "status": "placeholder",
+    "partners": [
+      {
+        "name": "Isha Outreach",
+        "line": "Conscious Planet: Save Soil. Partner on the Accelerator Workshop India 2026.",
+        "href": "https://school.soilfoodweb.com/courses/india-workshop-2026"
+      }
+    ]
   },
   "joinBand": {
     "h2": "Be part of the soil-ution",
