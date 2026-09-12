@@ -1796,10 +1796,6 @@ PAGES = [
      "img/fungal-spores-in-suspension.jpg", "t-science"),
     ("practice.html", "Practice, Soil Food Web Foundation", "practice", p_practice,
      "img/red-soil-hand.jpg", "t-practice"),
-    ("community.html", "Community, Soil Food Web Foundation", "community", p_community,
-     "img/erc-rancho-cacachilas-aerial-2.jpg"),
-    ("calendar.html", "Calendar, Soil Food Web Foundation", "calendar", p_calendar,
-     "img/ctpfw-student-moving-compost-1.jpg", "t-learn"),
     ("news.html", "News and stories, Soil Food Web Foundation", "news", p_news,
      "img/Carla-Nicks Son-Nick-ERI-Wild Soils Event-11-2024.jpg"),
     ("research.html", "Research, Soil Food Web Foundation", "research", p_research,
@@ -1810,14 +1806,20 @@ PAGES = [
      "img/erc-panchamana-treeplanting-2-fb-img-1666270988322.jpg"),
     ("learn-scholarships.html", "Scholarships, Soil Food Web Foundation", "scholarships", p_scholarships,
      "img/hvdb-inplanten-002.jpg", "t-learn"),
-    ("learn-webinars.html", "Free webinars, Soil Food Web Foundation", "webinars", p_webinars,
-     "img/Sampling equipment.jpg", "t-learn"),
 ]
 
 # Pages written by hand rather than rendered from content/. They carry the same
 # header and footer, so the chrome is re-stamped into them here: without this the
 # nav drifts out of step with the generated pages every time a label changes.
+# calendar, community and learn-webinars were rendered from content/ until
+# their pages were edited by hand and the builders were not kept up. Running
+# build.py rebuilt them from the stale templates and silently deleted the
+# newer work: 25, 34 and 46 lines of it. p_calendar, p_community and
+# p_webinars are still here and still correct as far as they go, so moving a
+# page back is a matter of reconciling its builder with the page and putting
+# its row back in PAGES.
 HAND_WRITTEN = [
+    "calendar.html", "community.html", "learn-webinars.html",
     "about-elaine.html", "about-governance.html", "about-team.html",
     "accessibility.html", "contact.html", "directory.html", "privacy.html",
     "terms.html", "volunteer.html", "projects/market-garden-sweden.html",
@@ -1843,7 +1845,10 @@ def restamp_head(path, doc):
     # Without that the first photograph in the document is used, which is
     # right until the first thing in the document is a decorative cut-out
     # in a margin, and then the page unfurls as a piece of moss.
-    pick = re.search(r"<!--\s*share:\s*([^\s>]+?)\s*-->", doc)
+    # Not [^\s>]: several photographs in img/ have spaces in their filenames,
+    # and stopping at the first space silently picked a path that does not
+    # exist, so the page fell back to the logo.
+    pick = re.search(r"<!--\s*share:\s*(.+?)\s*-->", doc)
     m = SHARE_RE.search(doc)
     if pick:
         rel = pick.group(1)

@@ -188,8 +188,7 @@
     "h3": "Coming up",
     "items": [
       { "when": "16 September to 20 December 2026", "label": "Permaculture Design Certification cohort", "href": "calendar.html" },
-      { "when": "19 to 30 October 2026", "label": "Accelerator Workshop India 2026, Coimbatore", "href": "calendar.html#workshops" },
-      { "when": "1 to 7 December 2026", "label": "Soil Health Week Pakistan 2026", "href": "calendar.html#workshops" }
+      { "when": "19 to 30 October 2026", "label": "Accelerator Workshop India 2026, Coimbatore", "href": "calendar.html#workshops" }
     ]
   },
   "regions": {
