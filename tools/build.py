@@ -235,8 +235,9 @@ def mmss(sec):
 def thumb_src(v, b):
     """A local file if we have one, the old site's if we do not, nothing if
     neither. remoteThumb still points at soilfoodweb.com: run
-    tools/playlist.py --thumbs to bring those in and stop the new site
-    depending on the old one."""
+    tools/thumbs.py to bring those in and stop the new site depending on the
+    old one. Until that is done, vercel.json has to keep soilfoodweb.com in
+    the Content-Security-Policy's img-src or these load as broken images."""
     t = v.get("thumb") or ""
     if t:
         return b + t
@@ -1145,6 +1146,51 @@ def p_science():
     return MAIN("\n".join(o))
 
 
+def app_band(a):
+    """A web app, offered honestly.
+
+    sMApp has no App Store or Google Play listing, so there are no store
+    buttons here. Read the _note in content/practice.json before adding any:
+    the "SoilMapp" in both stores is a different organisation's app, and
+    searching the stores by name lands on it.
+
+    What a store install would really have bought is an icon on the home
+    screen, so this offers that route instead, spelled out for both phones in
+    plain HTML. No user agent sniffing: the string lies, sniffing fingerprints
+    the reader, it breaks with scripting off, and it hides the desktop path
+    from someone on a phone who wants it. The band needs no JavaScript at all.
+
+    The address is a literal absolute https URL carried in the content file,
+    never assembled at runtime, so there is no way to steer it with a query
+    parameter. It opens in the same tab, like all 144 other outbound links on
+    this site, which leaves no window.opener handle behind for the far end to
+    reach back through. The host is printed next to the button so a reader can
+    check it against the address bar before signing in.
+    """
+    plats = ""
+    for pl in a["install"]["platforms"]:
+        li = "".join("            <li>%s</li>\n" % e(x) for x in pl["steps"])
+        plats += ('        <li>\n          <h4>%s</h4>\n          <ol>\n%s          </ol>\n        </li>\n'
+                  % (e(pl["name"]), li))
+    return ('      <div class="head">\n        %s\n        <h2 id="app-h">%s</h2>\n      </div>\n'
+            '      <div class="getapp">\n'
+            '      <p class="lede">%s</p>\n      <p>%s</p>\n      %s\n'
+            '        <p class="getapp__go">\n'
+            '          <a class="btn" href="%s">'
+            '<svg class="icon" aria-hidden="true" focusable="false"><use href="#i-web"/></svg>%s</a>\n'
+            '          <span class="getapp__host">%s Opens <b>%s</b></span>\n'
+            '        </p>\n        <p class="getapp__limit">%s</p>\n'
+            '        <div class="getapp__install">\n          <h3>%s</h3>\n          <p>%s</p>\n'
+            '          <ul class="getapp__steps">\n%s          </ul>\n        </div>\n'
+            '      </div>\n      <p class="source small">%s</p>\n'
+            % (eyebrow(a.get("eyebrow")), e(a["h2"]),
+               e(a["what"]), e(a["detail"]), note(a.get("access", {})),
+               A(a["cta"]["href"]), e(a["cta"]["label"]),
+               e(a["free"]), e(a["host"]), e(a["limit"]),
+               e(a["install"]["h3"]), e(a["install"]["lede"]), plats,
+               e(a["source"])))
+
+
 def p_practice():
     """Practice. Carries the three audience doorways Evan approved.
 
@@ -1184,6 +1230,8 @@ def p_practice():
                  % (eyebrow(cs["eyebrow"]), e(cs["h2"]), e(cs["lede"]), stage,
                     e(cs["source"]), note(cs), note(cs["more"])),
                  label="csx-h", sid="case-studies"))
+
+    o.append(sec(app_band(c["app"]), "", "app-h", "app"))
 
     w = c["workWithUs"]
     door_shots = [
@@ -1748,10 +1796,6 @@ PAGES = [
      "img/fungal-spores-in-suspension.jpg", "t-science"),
     ("practice.html", "Practice, Soil Food Web Foundation", "practice", p_practice,
      "img/red-soil-hand.jpg", "t-practice"),
-    ("community.html", "Community, Soil Food Web Foundation", "community", p_community,
-     "img/erc-rancho-cacachilas-aerial-2.jpg"),
-    ("calendar.html", "Calendar, Soil Food Web Foundation", "calendar", p_calendar,
-     "img/ctpfw-student-moving-compost-1.jpg", "t-learn"),
     ("news.html", "News and stories, Soil Food Web Foundation", "news", p_news,
      "img/Carla-Nicks Son-Nick-ERI-Wild Soils Event-11-2024.jpg"),
     ("research.html", "Research, Soil Food Web Foundation", "research", p_research,
@@ -1762,14 +1806,20 @@ PAGES = [
      "img/erc-panchamana-treeplanting-2-fb-img-1666270988322.jpg"),
     ("learn-scholarships.html", "Scholarships, Soil Food Web Foundation", "scholarships", p_scholarships,
      "img/hvdb-inplanten-002.jpg", "t-learn"),
-    ("learn-webinars.html", "Free webinars, Soil Food Web Foundation", "webinars", p_webinars,
-     "img/Sampling equipment.jpg", "t-learn"),
 ]
 
 # Pages written by hand rather than rendered from content/. They carry the same
 # header and footer, so the chrome is re-stamped into them here: without this the
 # nav drifts out of step with the generated pages every time a label changes.
+# calendar, community and learn-webinars were rendered from content/ until
+# their pages were edited by hand and the builders were not kept up. Running
+# build.py rebuilt them from the stale templates and silently deleted the
+# newer work: 25, 34 and 46 lines of it. p_calendar, p_community and
+# p_webinars are still here and still correct as far as they go, so moving a
+# page back is a matter of reconciling its builder with the page and putting
+# its row back in PAGES.
 HAND_WRITTEN = [
+    "calendar.html", "community.html", "learn-webinars.html",
     "about-elaine.html", "about-governance.html", "about-team.html",
     "accessibility.html", "contact.html", "directory.html", "privacy.html",
     "terms.html", "volunteer.html", "projects/market-garden-sweden.html",
@@ -1795,7 +1845,10 @@ def restamp_head(path, doc):
     # Without that the first photograph in the document is used, which is
     # right until the first thing in the document is a decorative cut-out
     # in a margin, and then the page unfurls as a piece of moss.
-    pick = re.search(r"<!--\s*share:\s*([^\s>]+?)\s*-->", doc)
+    # Not [^\s>]: several photographs in img/ have spaces in their filenames,
+    # and stopping at the first space silently picked a path that does not
+    # exist, so the page fell back to the logo.
+    pick = re.search(r"<!--\s*share:\s*(.+?)\s*-->", doc)
     m = SHARE_RE.search(doc)
     if pick:
         rel = pick.group(1)

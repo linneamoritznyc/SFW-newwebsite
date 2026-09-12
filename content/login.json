@@ -21,6 +21,14 @@
         "label": "Log in on soilfoodweb.com",
         "href": "https://soilfoodweb.com/login/"
       }
+    },
+    {
+      "name": "sMApp, the microscope tool",
+      "programs": "Turns what you count through a microscope into biomass figures and a report. A separate free tool with its own account, not a course platform. Accounts are for enrolled students for now.",
+      "cta": {
+        "label": "Open sMApp on soilmapp.com",
+        "href": "https://www.soilmapp.com/"
+      }
     }
   ],
   "helpLine": "Students are moving to the new platform in stages. You will get an email when your account moves. Unsure? Write to info@soilfoodweb.com.",
