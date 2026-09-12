@@ -193,39 +193,45 @@
     <div class="wrap">
       <h2 id="news-list-h" class="visually-hidden">All posts</h2>
       <ul class="chips" data-filter-for="#news-list" aria-label="Category"><li><button class="chip" type="button" data-filter="all" aria-pressed="true">All</button></li><li><button class="chip" type="button" data-filter="foundation-news" aria-pressed="false">Foundation news</button></li><li><button class="chip" type="button" data-filter="blog" aria-pressed="false">Blog</button></li><li><button class="chip" type="button" data-filter="community-activity" aria-pressed="false">Community activity</button></li><li><button class="chip" type="button" data-filter="worldwide-news" aria-pressed="false">Worldwide news</button></li><li class="small" data-filter-status style="align-self:center;color:var(--ink-faint)"></li></ul>
-      <ul class="rule-list" id="news-list">
-        <li class="entry" data-kind="blog">
-          <span class="dated"><time datetime="2026-08-14">14 Aug 2026</time></span>
-          <div><h3 class="entry__t">Learning to see: what is your soil test really telling you?</h3></div>
-          <span class="entry__kind">Blog</span>
+      <ul class="cards" id="news-list">
+        <li class="card" data-kind="blog">
+          <div class="card__media"><img src="img/w/elaine-flower-shirt-microscope-800.jpg" alt="" loading="lazy" decoding="async"></div>
+          <div class="card__kind"><span>Blog</span><time datetime="2026-08-14">14 Aug 2026</time></div>
+          <h3 class="card__title">Learning to see: what is your soil test really telling you?</h3>
+          <p class="card__line">A guide to reading soil biology assays and understanding what the numbers mean for your land.</p>
         </li>
-        <li class="entry" data-kind="blog">
-          <span class="dated"><time datetime="2026-07-14">14 Jul 2026</time></span>
-          <div><h3 class="entry__t">A brief history of the fungi-to-bacteria ratio</h3></div>
-          <span class="entry__kind">Wes Sander</span>
+        <li class="card" data-kind="blog">
+          <div class="card__media"><img src="img/w/copy-of-17-800.jpg" alt="" loading="lazy" decoding="async"></div>
+          <div class="card__kind"><span>Blog</span><time datetime="2026-07-14">14 Jul 2026</time></div>
+          <h3 class="card__title">A brief history of the fungi-to-bacteria ratio</h3>
+          <p class="card__line">Wes Sander</p>
         </li>
-        <li class="entry" data-kind="blog">
-          <span class="dated"><time datetime="2026-05-01">1 May 2026</time></span>
-          <div><h3 class="entry__t">Ciliates, cysts and the clues in a struggling watermelon crop</h3></div>
-          <span class="entry__kind">Wes Sander</span>
+        <li class="card" data-kind="blog">
+          <div class="card__media"><img src="img/w/copy-of-9-800.jpg" alt="" loading="lazy" decoding="async"></div>
+          <div class="card__kind"><span>Blog</span><time datetime="2026-05-01">1 May 2026</time></div>
+          <h3 class="card__title">Ciliates, cysts and the clues in a struggling watermelon crop</h3>
+          <p class="card__line">Wes Sander</p>
         </li>
-        <li class="entry" data-kind="foundation-news">
-          <span class="dated"><time datetime="2026-04-13">13 Apr 2026</time></span>
-          <div><h3 class="entry__t">The School launches its first Permaculture Design Certificate course</h3></div>
-          <span class="entry__kind">Foundation News</span>
+        <li class="card" data-kind="foundation-news">
+          <div class="card__media"><img src="img/w/ctpfw-student-moving-compost-1-800.jpg" alt="" loading="lazy" decoding="async"></div>
+          <div class="card__kind"><span>Foundation news</span><time datetime="2026-04-13">13 Apr 2026</time></div>
+          <h3 class="card__title">The School launches its first Permaculture Design Certificate course</h3>
         </li>
-        <li class="entry" data-kind="foundation-news">
-          <span class="dated"><time datetime="2026-02-23">23 Feb 2026</time></span>
-          <div><h3 class="entry__t">Advanced Programs are reopening</h3></div>
-          <span class="entry__kind">Evan Buckman</span>
+        <li class="card" data-kind="foundation-news">
+          <div class="card__media"><img src="img/w/2-hands-clasped-holding-plant-roots-800.jpg" alt="" loading="lazy" decoding="async"></div>
+          <div class="card__kind"><span>Foundation news</span><time datetime="2026-02-23">23 Feb 2026</time></div>
+          <h3 class="card__title">Advanced Programs are reopening</h3>
+          <p class="card__line">Evan Buckman</p>
         </li>
-        <li class="entry" data-kind="foundation-news">
-          <span class="dated"><time datetime="2026-02-18">18 Feb 2026</time></span>
-          <div><h3 class="entry__t">Obituary for Dr. Elaine Ingham</h3></div>
-          <span class="entry__kind">Foundation News</span>
+        <li class="card" data-kind="foundation-news">
+          <div class="card__media"><img src="img/w/elaine-smile-talking-800.jpg" alt="" loading="lazy" decoding="async"></div>
+          <div class="card__kind"><span>Foundation news</span><time datetime="2026-02-18">18 Feb 2026</time></div>
+          <h3 class="card__title">Obituary for Dr. Elaine Ingham</h3>
         </li>
       </ul>
+      <p class="small" data-filter-empty hidden>No posts match this filter.</p>
       <p class="todo">the six posts above carry no link until the blog is migrated to /news/[slug], and all earlier posts still need pulling from the archive. Run crawl.py locally, keep every date and author. Linnea.</p>
+      <p class="todo">card thumbnails are placeholder images from the repo; replace with actual post images when the blog migration is complete. Every card alt attribute needs a real description. Linnea.</p>
       <p class="small">Rotates: case study &gt; major announcement &gt; best recent blog.</p>
     </div>
   </section>
