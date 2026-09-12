@@ -499,7 +499,7 @@
       <div class="span-4">
         <span class="wordmark wordmark--image"><img class="wordmark__logo" src="img/sfwlogo-240.png" alt="Soil Food Web Foundation" decoding="async"><span class="wordmark__name">Soil Food Web Foundation</span><span class="wordmark__status">A 501(c)(3) nonprofit</span></span>
         <p class="footer__tag">Healing soil. Feeding humanity. Restoring the living world.</p>
-        <form class="footer__news" action="#" method="post" aria-label="Newsletter">
+        <form class="footer__news" action="#" method="post" aria-label="Newsletter" data-newsletter>
           <label for="footer-email" class="visually-hidden">Email address</label>
           <input class="input" id="footer-email" type="email" name="email" placeholder="Email for the newsletter" required>
           <button class="btn" type="submit">Subscribe</button>
@@ -561,6 +561,15 @@
   </div>
 </footer>
 
+<aside class="nudge" id="nudge" data-visible="false" aria-label="Newsletter signup">
+  <button class="nudge__close" type="button" aria-label="Close">&times;</button>
+  <p class="nudge__copy">Get soil science in your inbox</p>
+  <form class="nudge__form" action="#" method="post" data-newsletter>
+    <label for="nudge-email" class="visually-hidden">Email address</label>
+    <input class="input" id="nudge-email" type="email" name="email" placeholder="Email address" required>
+    <button class="btn" type="submit">Subscribe</button>
+  </form>
+</aside>
 <script src="js/site.js"></script>
 </body>
 </html>

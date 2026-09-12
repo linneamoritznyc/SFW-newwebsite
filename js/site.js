@@ -1001,3 +1001,59 @@
     }, 4000);
   });
 })();
+
+/* ---------- 18. Newsletter submission ---------- */
+(function () {
+  "use strict";
+  var forms = document.querySelectorAll("[data-newsletter]");
+  if (!forms.length) return;
+
+  function handle(form) {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var input = form.querySelector('input[type="email"]');
+      if (!input || !input.value) return;
+      var btn = form.querySelector('button[type="submit"]');
+      if (btn) { btn.disabled = true; btn.textContent = "Subscribed"; }
+      input.disabled = true;
+      try { sessionStorage.setItem("sfw-subscribed", "1"); } catch (ex) {}
+    });
+  }
+  Array.prototype.forEach.call(forms, handle);
+})();
+
+/* ---------- 19. Newsletter nudge (slide-in) ---------- */
+(function () {
+  "use strict";
+  var nudge = document.getElementById("nudge");
+  if (!nudge) return;
+
+  try { if (sessionStorage.getItem("sfw-nudge-dismissed") || sessionStorage.getItem("sfw-subscribed")) return; }
+  catch (e) {}
+
+  var closeBtn = nudge.querySelector(".nudge__close");
+  var shown = false;
+
+  function dismiss() {
+    nudge.setAttribute("data-visible", "false");
+    try { sessionStorage.setItem("sfw-nudge-dismissed", "1"); } catch (ex) {}
+  }
+
+  closeBtn.addEventListener("click", dismiss);
+
+  nudge.querySelector("[data-newsletter]").addEventListener("submit", function () {
+    setTimeout(dismiss, 800);
+  });
+
+  function check() {
+    if (shown) return;
+    var scrolled = window.scrollY || window.pageYOffset || 0;
+    var total = document.documentElement.scrollHeight - window.innerHeight;
+    if (total > 0 && scrolled / total >= 0.6) {
+      shown = true;
+      nudge.setAttribute("data-visible", "true");
+    }
+  }
+
+  window.addEventListener("scroll", check, { passive: true });
+})();
