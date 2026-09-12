@@ -311,6 +311,7 @@ a.chip:hover, a.chip:focus-visible { background: var(--ink); color: var(--paper)
 .menu-btn {
   font: inherit; font-weight: 600; font-size: var(--t0); background: none; border: var(--hairline) solid var(--ink);
   color: var(--ink); padding: .7em 1em; cursor: pointer; display: inline-flex; align-items: center; gap: .6em; border-radius: 0;
+  min-height: 44px; min-width: 44px;
 }
 .menu-btn:hover { background: var(--ink); color: var(--paper); }
 .menu-btn .icon { width: 18px; height: 18px; }
@@ -352,14 +353,14 @@ a.chip:hover, a.chip:focus-visible { background: var(--ink); color: var(--paper)
 .acc__item[data-open="true"] .acc__panel { grid-template-rows: 1fr; }
 .acc__links { list-style: none; margin: 0; padding: 0 0 var(--s3); columns: 1; }
 .acc__links li { break-inside: avoid; }
-.acc__links a { display: inline-block; color: var(--paper); text-decoration: none; font-size: var(--t2); font-family: var(--serif); padding: .2em 0; }
+.acc__links a { display: inline-block; color: var(--paper); text-decoration: none; font-size: var(--t2); font-family: var(--serif); padding: .2em 0; min-height: 44px; line-height: 44px; }
 .acc__links a:hover { text-decoration: underline; }
 @media (min-width: 48em) { .acc__links { columns: 2; column-gap: var(--col-gap); } .acc__desc { max-width: none; } }
 @media (max-width: 47.99em) { .acc__btn { grid-template-columns: 1fr; font-size: var(--t4); } .acc__desc { text-align: left; max-width: none; } }
 
 /* Mobile-only links inside the overlay (What's happening, Student login) */
 .overlay__utility { list-style: none; margin: var(--s4) 0 0; padding: 0; display: flex; gap: var(--s3); flex-wrap: wrap; }
-.overlay__utility a { color: var(--paper); font-weight: 600; text-decoration: none; }
+.overlay__utility a { color: var(--paper); font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px; }
 .overlay__utility a:hover { text-decoration: underline; }
 @media (min-width: 48em) { .overlay__utility { display: none; } }
 
@@ -461,6 +462,7 @@ a.chip:hover, a.chip:focus-visible { background: var(--ink); color: var(--paper)
 .footer__legal { border-top: var(--hairline) solid var(--rule-inverse); margin-top: var(--s5); padding-top: var(--s3); font-size: var(--t-1); color: rgba(251,250,246,.8); }
 .footer__legal p { max-width: 80ch; }
 .footer__legal ul { display: flex; flex-wrap: wrap; gap: var(--s2); margin-top: var(--s2); }
+.footer__legal a { display: inline-flex; align-items: center; min-height: 44px; }
 
 /* --------------------------------------------------------------------------
    12. Demo-only helpers (safe to delete in production)
@@ -603,7 +605,7 @@ code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .9em; }
   background: var(--sage); border: var(--hairline) solid var(--olive); }
 /* A solid bar is a real, dated event, so it is a link to that event. The bar
    carries no text, so its accessible name lives on the element itself. */
-a.cal__bar { text-decoration: none; cursor: pointer; transition: filter var(--dur) var(--ease); }
+a.cal__bar { text-decoration: none; cursor: pointer; transition: filter var(--dur) var(--ease); min-width: 44px; }
 a.cal__bar:hover, a.cal__bar:focus-visible { filter: brightness(.92) saturate(1.1); }
 a.cal__bar:focus-visible { outline: 2px solid var(--soil); outline-offset: 2px; }
 .cal__bar--band { background: var(--paper-deep); }
@@ -648,7 +650,7 @@ a.cal__bar:focus-visible { outline: 2px solid var(--soil); outline-offset: 2px; 
   justify-content: space-between; padding-block: .55rem; }
 .utility__tagline { margin: 0; font-family: var(--display); font-weight: 600; letter-spacing: .01em; max-width: none; }
 .utility__links { display: flex; flex-wrap: wrap; gap: var(--s3); list-style: none; margin: 0; padding: 0; max-width: none; }
-.utility__links a { color: var(--white); text-decoration: none; font-family: var(--display); font-weight: 600; }
+.utility__links a { color: var(--white); text-decoration: none; font-family: var(--display); font-weight: 600; display: inline-flex; align-items: center; min-height: 44px; }
 .utility__links a:hover { text-decoration: underline; }
 @media (max-width: 40em) { .utility__tagline { display: none; } .utility .wrap { justify-content: center; } }
 
