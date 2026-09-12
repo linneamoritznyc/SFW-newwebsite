@@ -23,8 +23,8 @@
       }
     },
     {
-      "name": "sMApp",
-      "programs": "A separate free tool with its own account, not a course platform. It runs in a browser on a phone or a computer.",
+      "name": "sMApp, the microscope tool",
+      "programs": "Turns what you count through a microscope into biomass figures and a report. A separate free tool with its own account, not a course platform. Accounts are for enrolled students for now.",
       "cta": {
         "label": "Open sMApp on soilmapp.com",
         "href": "https://www.soilmapp.com/"

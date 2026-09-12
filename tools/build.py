@@ -1174,19 +1174,19 @@ def app_band(a):
                   % (e(pl["name"]), li))
     return ('      <div class="head">\n        %s\n        <h2 id="app-h">%s</h2>\n      </div>\n'
             '      <div class="getapp">\n'
-            '%s        %s\n'
+            '      <p class="lede">%s</p>\n      <p>%s</p>\n      %s\n'
             '        <p class="getapp__go">\n'
             '          <a class="btn" href="%s">'
             '<svg class="icon" aria-hidden="true" focusable="false"><use href="#i-web"/></svg>%s</a>\n'
             '          <span class="getapp__host">%s Opens <b>%s</b></span>\n'
-            '        </p>\n'
+            '        </p>\n        <p class="getapp__limit">%s</p>\n'
             '        <div class="getapp__install">\n          <h3>%s</h3>\n          <p>%s</p>\n'
             '          <ul class="getapp__steps">\n%s          </ul>\n        </div>\n'
             '      </div>\n      <p class="source small">%s</p>\n'
             % (eyebrow(a.get("eyebrow")), e(a["h2"]),
-               awaiting(a["what"]), note(a["what"]),
+               e(a["what"]), e(a["detail"]), note(a.get("access", {})),
                A(a["cta"]["href"]), e(a["cta"]["label"]),
-               e(a["free"]), e(a["host"]),
+               e(a["free"]), e(a["host"]), e(a["limit"]),
                e(a["install"]["h3"]), e(a["install"]["lede"]), plats,
                e(a["source"])))
 

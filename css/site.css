@@ -3968,6 +3968,7 @@ img[data-optional] { background: none; }
 .getapp__go .icon { width: 1.15rem; height: 1.15rem; }
 .getapp__host { font-size: var(--t-1); color: var(--ink-soft); }
 .getapp__host b { font-family: var(--display); color: var(--ink); font-weight: 600; }
+.getapp__limit { font-size: var(--t-1); color: var(--ink-soft); margin-top: var(--s2); }
 
 .getapp__install { margin-top: var(--s4); border-top: var(--hairline) solid var(--rule); padding-top: var(--s3); }
 .getapp__install h3 { font-size: var(--t1); margin-bottom: var(--s1); }
