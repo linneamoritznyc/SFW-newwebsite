@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /_dev/
 
-Sitemap: https://www.soilfoodweb.com/sitemap.xml
+Sitemap: https://soilfoodweb.org/sitemap.xml

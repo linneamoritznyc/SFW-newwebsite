@@ -556,7 +556,7 @@ LOGO = _find_logo()
 LOGO_ALT = "Soil Food Web Foundation"
 
 
-def wordmark(depth=0, tag="a", href="index.html", cls=""):
+def wordmark(depth=0, tag="a", href="/", cls=""):
     """The mark in the header, the overlay and the footer.
 
     One function so the logo lands in all three the moment the file exists.
@@ -983,7 +983,7 @@ def p_about():
     t = c["team"]
     o.append(sec('      <div class="head"><h2 id="team-h">%s</h2></div>\n'
                  '      <p>The full roster, taken from soilfoodweb.com, lives on the team page.</p>\n'
-                 '      <p><a class="btn btn--ghost" href="about-team.html">Our team and board</a></p>\n      %s'
+                 '      <p><a class="btn btn--ghost" href="about-team">Our team and board</a></p>\n      %s'
                  % (e(t["h2"]), note(t)), label="team-h", sid="team"))
 
     # The legacy section. Legacy Purple appears here and on her own page, and
@@ -1002,7 +1002,7 @@ def p_about():
 
     cl = c["contactLegal"]
     o.append(sec('      <div class="grid">\n        <div class="span-6"><h2 id="cl-h">Contact &amp; Legal</h2>\n'
-                 '          <p>%s</p><p><a class="btn btn--ghost" href="contact.html">Contact us</a></p></div>\n'
+                 '          <p>%s</p><p><a class="btn btn--ghost" href="contact">Contact us</a></p></div>\n'
                  '        <div class="span-5 start-8"><p class="small">%s</p><p class="small">%s</p>%s</div>\n      </div>'
                  % (e(cl["contact"]), e(cl["legal"]), e(cl["brandUse"]),
                     note({"note": cl["brandUseNote"], "status": "note"})), label="cl-h", sid="contact-legal"))
@@ -1134,8 +1134,8 @@ def p_science():
 
     br = c["bridge"]
     o.append(sec('      <div class="head"><h2 id="br-h">%s</h2><p>%s</p></div>\n'
-                 '      <p><a class="btn" href="practice.html#case-studies">Case studies</a> '
-                 '<a class="btn btn--ghost" href="learn.html">See every program and price</a></p>'
+                 '      <p><a class="btn" href="practice#case-studies">Case studies</a> '
+                 '<a class="btn btn--ghost" href="learn">See every program and price</a></p>'
                  % (e(br["title"]), e(br["body"])), "", "br-h"))
 
     cs = c["cases"]
@@ -1225,7 +1225,7 @@ def p_practice():
     stage = theatre(only=load("videos")["onPractice"])
     o.append(sec('      <div class="head">\n        %s\n        <h2 id="csx-h">%s</h2>\n        <p>%s</p>\n      </div>\n%s'
                  '      <p class="source small">%s</p>\n'
-                 '      <p style="margin-top:var(--s4)"><a class="btn btn--ghost" href="projects/market-garden-sweden.html">Read the Sweden market garden case study</a></p>\n'
+                 '      <p style="margin-top:var(--s4)"><a class="btn btn--ghost" href="projects/market-garden-sweden">Read the Sweden market garden case study</a></p>\n'
                  '      %s%s'
                  % (eyebrow(cs["eyebrow"]), e(cs["h2"]), e(cs["lede"]), stage,
                     e(cs["source"]), note(cs), note(cs["more"])),
@@ -1527,7 +1527,7 @@ def p_calendar():
             '            <svg class="icon icon--olive" aria-hidden="true"><use href="#i-scholarship"/></svg>\n'
             '            <span><span class="cal__name">Permaculture Design Certification</span>'
             '<span class="cal__when">16 September to 20 December 2026</span></span>\n          </div>\n'
-            '          <div class="cal__track"><a class="cal__bar" href="learn.html#permaculture"'
+            '          <div class="cal__track"><a class="cal__bar" href="learn#permaculture"'
             ' aria-label="Permaculture Design Certification, 16 September to 20 December 2026"'
             ' style="--l:4.11%;--w:26.301%"></a></div>\n        </li>\n'
             '        <li class="cal__row">\n          <div class="cal__rail">\n'
@@ -1569,7 +1569,7 @@ def p_calendar():
                    '          <span class="entry__kind">Workshop</span>\n        </li>\n'
                    '        <li class="entry" data-kind="public-webinars">\n'
                    '          <span class="dated">Monthly</span>\n'
-                   '          <div><h3 class="entry__t"><a href="learn-webinars.html">Free educational webinar</a></h3></div>\n'
+                   '          <div><h3 class="entry__t"><a href="learn-webinars">Free educational webinar</a></h3></div>\n'
                    '          <span class="entry__kind">Public webinar</span>\n        </li>\n      </ul>\n      %s\n'
                    '      <p class="small">%s</p>'
                    % (grid, months, rows, A(iw["datetime"]), e(iw["dated"]),
