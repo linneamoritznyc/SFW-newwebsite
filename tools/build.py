@@ -235,8 +235,9 @@ def mmss(sec):
 def thumb_src(v, b):
     """A local file if we have one, the old site's if we do not, nothing if
     neither. remoteThumb still points at soilfoodweb.com: run
-    tools/playlist.py --thumbs to bring those in and stop the new site
-    depending on the old one."""
+    tools/thumbs.py to bring those in and stop the new site depending on the
+    old one. Until that is done, vercel.json has to keep soilfoodweb.com in
+    the Content-Security-Policy's img-src or these load as broken images."""
     t = v.get("thumb") or ""
     if t:
         return b + t
