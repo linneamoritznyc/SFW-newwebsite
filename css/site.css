@@ -281,7 +281,15 @@ a.chip:hover, a.chip:focus-visible { background: var(--ink); color: var(--paper)
 .pathway__box:hover { border-color: var(--green); color: var(--green); text-decoration: none; }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(.5rem); } to { opacity: 1; transform: translateY(0); } }
 
-/* 5c. Data table */
+/* 5c. Microbe gallery */
+.microbe-gallery { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: var(--s4); }
+.microbe-gallery__item { flex: 0 0 auto; width: 10rem; text-align: center; margin: 0; }
+.microbe-gallery__item img { width: 100%; height: auto; filter: drop-shadow(0 2px 8px rgba(0,0,0,.08)); transition: transform .2s; }
+.microbe-gallery__item img:hover { transform: scale(1.1); }
+.microbe-gallery__item figcaption { font-size: var(--t-1); color: var(--ink-faint); margin-top: var(--s1); }
+@media (min-width: 48em) { .microbe-gallery__item { width: 12rem; } }
+
+/* 5d. Data table */
 .data-table { border-collapse: collapse; font-size: var(--t-1); }
 .data-table th { text-align: left; font-weight: 600; padding: .6em .8em; border-bottom: 2px solid var(--ink); white-space: nowrap; }
 .data-table td { padding: .6em .8em; border-bottom: 1px solid var(--rule); vertical-align: top; }
