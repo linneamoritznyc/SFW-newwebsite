@@ -318,6 +318,12 @@ a.chip:hover, a.chip:focus-visible { background: var(--ink); color: var(--paper)
 .site-header__links a { color: var(--ink); text-decoration: none; font-weight: 600; font-size: var(--t0); }
 .site-header__links a:hover { color: var(--green); text-decoration: underline; }
 @media (min-width: 48em) { .site-header__links { display: flex; } }
+.has-drop { position: relative; }
+.drop { display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); min-width: 14rem; background: var(--paper); border: var(--hairline) solid var(--rule); border-radius: var(--radius); box-shadow: 0 4px 16px rgba(0,0,0,.1); padding: var(--s2) 0; margin: .4rem 0 0; list-style: none; z-index: 100; }
+.drop li { margin: 0; }
+.drop a { display: block; padding: .4em var(--s3); font-weight: 400; font-size: var(--t-1); white-space: nowrap; }
+.drop a:hover { background: var(--tint); color: var(--green); text-decoration: none; }
+.has-drop:hover > .drop, .has-drop:focus-within > .drop { display: block; }
 
 .menu-btn {
   font: inherit; font-weight: 600; font-size: var(--t0); background: none; border: var(--hairline) solid var(--ink);
