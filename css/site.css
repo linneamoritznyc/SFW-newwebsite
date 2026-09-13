@@ -2656,6 +2656,8 @@ a.cal__bar:focus-visible { outline: 2px solid var(--soil); outline-offset: 2px; 
 .shot--tall img { aspect-ratio: 3 / 4; object-fit: cover; }
 .shot--wide img { aspect-ratio: 16 / 9; object-fit: cover; }
 .shot--square img { aspect-ratio: 1; object-fit: cover; }
+.shot--full { width: 100vw; margin-left: calc(50% - 50vw); }
+.shot--full img { aspect-ratio: 21 / 9; object-fit: cover; width: 100%; }
 
 /* Faces are never cropped through. Where a portrait has to sit in a fixed
    box, it is positioned high so the crop takes the body, not the head. */
