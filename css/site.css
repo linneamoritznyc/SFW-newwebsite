@@ -255,6 +255,17 @@ figcaption, .caption, .source {
    behaves like the rest of the site's links do on hover. */
 a.chip { text-decoration: none; display: inline-block; }
 a.chip:hover, a.chip:focus-visible { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.chips--carousel { flex-wrap: nowrap; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: thin; padding-bottom: var(--s1); }
+.chips--carousel > li { flex: 0 0 auto; scroll-snap-align: start; }
+.chips--carousel .chip { white-space: nowrap; border-radius: 2em; }
+.bundle-callout { font-family: var(--display); font-weight: 700; font-size: var(--t0); background: var(--gold); color: var(--ground); padding: .6em 1.2em; border-radius: var(--radius); display: inline-block; margin-bottom: var(--s3); }
+.bundle-callout a { color: inherit; }
+.pathway__nodes--4col { grid-template-columns: repeat(2, 1fr); }
+.pathway__nodes--3col { grid-template-columns: repeat(2, 1fr); }
+@media (min-width: 48em) {
+  .pathway__nodes--4col { grid-template-columns: repeat(4, 1fr); }
+  .pathway__nodes--3col { grid-template-columns: repeat(3, 1fr); }
+}
 
 /* --------------------------------------------------------------------------
    6. Header
