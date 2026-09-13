@@ -1135,7 +1135,7 @@ def p_science():
     br = c["bridge"]
     o.append(sec('      <div class="head"><h2 id="br-h">%s</h2><p>%s</p></div>\n'
                  '      <p><a class="btn" href="practice#case-studies">Case studies</a> '
-                 '<a class="btn btn--ghost" href="learn">See every program and price</a></p>'
+                 '<a class="btn btn--ghost" href="learn">Explore our programs</a></p>'
                  % (e(br["title"]), e(br["body"])), "", "br-h"))
 
     cs = c["cases"]

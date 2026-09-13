@@ -2,6 +2,31 @@
 
 This maps every section in the static site to the Salient/WPBakery element that replaces it, plus instructions for the microscopy video circles, buttons, and interactive components.
 
+Updated 13 September 2026 against Evan's audit. The brief for the rebuild is `salient-rebuild-brief.md`; the photograph list is `image-map-for-salient.md`. Line numbers below refer to the pages on branch `claude/new-session-12x7z2`.
+
+## Audit changes that must carry into WordPress
+
+Every one of these is already on the static pages. Check each against the Salient build before sign-off.
+
+| Where | Now reads | Never |
+| :-- | :-- | :-- |
+| Utility bar (dark strip above the header) | "The Soil Food Web Foundation 501(c)(3)", with Student login, Subscribe, Donate | "Join a global community..." as the strip text |
+| Homepage h1 | "Join a global community of Soil Regenerators" | The tagline as the h1 |
+| Homepage lede under the h1 | "Healing soil. Feeding humanity. Restoring the living world." | |
+| Learn page h1 | "Partner with nature's intelligence" | "Work with the life in your soil" |
+| Every programs button | "Explore our programs" | "See every program and price" |
+| Newsletter button and utility link | "Subscribe" | "Subscribe to the newsletter" |
+| Anywhere | | "nature's operating system", em dashes, "certified", FC, AP or PDC as acronyms, a percentage without a named source |
+
+Layout points Evan stressed:
+
+- The hero photograph is constrained to the content width (`.shot--wide`, 80rem), never edge to edge.
+- The hero photograph is a group photograph from a workshop, people around a compost pile, not a portrait at a microscope. The static build uses `img/w/workshop-group-around-compost-pile.jpg`; the caption is still to come from the Foundation.
+- Microscopy is the differentiator. The floating microbe cutouts (`img/uploads/1.png` to `7.png`) sit near the top of Science and on Volunteer, and the Science hero is a microscope image.
+- More photographs, less white space: where a section is text-heavy, use Salient's large image cards (`[fancy_box]` or `[nectar_image_with_hotspots]`) with text beside or over the picture.
+- The stats row shows all three numbers: 100+ countries, 10,000+ enrolled, 40-year legacy. Each keeps its source line.
+- The learning pathway on Learn is an eight-column grid, every column visible at once (horizontal scroll on phones). It is not an accordion and nothing is hidden behind a click.
+
 ---
 
 ## How to use the exported video assets
@@ -47,26 +72,31 @@ The `exports/circular-videos/` folder contains ready-to-upload versions of the t
 
 ## Homepage section-by-section mapping
 
-### 1. Hero (lines 172-190 in index.html)
-**Static:** `.stratum` > `.wrap` > `.grid` with `.span-6` text + `.span-6` image
+### 0. Utility bar (every page)
+**Static:** `.utility` > `.utility__tagline` + `.utility__links`
+
+**Salient:** Header Builder > Secondary Navigation. Left text "The Soil Food Web Foundation 501(c)(3)". Right links: Student login, Subscribe, Donate. Dark background (Deep Loam), small type.
+
+### 1. Hero (lines 218-229 in index.html)
+**Static:** `.stratum` > `.shot.shot--wide` photograph, then `.wrap` with eyebrow, h1, lede, one paragraph and two buttons. The photograph sits above the text at content width, 16:9 crop.
 
 **Salient:**
 ```
-[vc_row type="full_width_content" full_screen_row_position="middle"]
-  [vc_column width="1/2"]
+[vc_row type="in_container"]
+  [vc_column]
+    [image_with_animation image_url="workshop-group-around-compost-pile.jpg" alignment="center" img_link_large="no" border_radius="10px"]
     [vc_column_text]
       <p class="eyebrow">SOIL FOOD WEB FOUNDATION</p>
-      <h1>Healing soil. Feeding humanity. Restoring the living world.</h1>
-      <p>The ground beneath our farms and forests is alive...</p>
+      <h1>Join a global community of Soil Regenerators</h1>
+      <p class="lede">Healing soil. Feeding humanity. Restoring the living world.</p>
+      <p>The ground beneath our farms and forests is alive. Learn, restore, and demonstrate the power of the soil food web on every continent.</p>
     [/vc_column_text]
     [nectar_btn url="community#join" text="Join the community" ...]
-    [nectar_btn url="learn" text="See every program and price" style="see-through" ...]
-  [/vc_column]
-  [vc_column width="1/2"]
-    [image_with_animation image_url="hand-soil-roots-fungi.jpg" animation="Fade In"]
+    [nectar_btn url="learn" text="Programs" style="see-through" ...]
   [/vc_column]
 [/vc_row]
 ```
+Do not use `full_width_content` for the photograph: Evan asked that the hero not run edge to edge.
 
 ### 2. Photo filmstrip (lines 192-202)
 **Static:** `.bleed` > `.filmstrip` (horizontal scroll of 5 images)
@@ -82,25 +112,30 @@ The `exports/circular-videos/` folder contains ready-to-upload versions of the t
 ```
 Or use `[nectar_cascading_images]` for the filmstrip scroll effect.
 
-### 3. Stats (lines 204-221)
-**Static:** `.stat` large numbers + `.stat__label`
+### 3. Stats (lines 243-264)
+**Static:** three `.stat` large numbers, each with `.stat__label` and a `.source` line
 
 **Salient:**
 ```
 [vc_row]
-  [vc_column width="1/2"]
-    [milestone number="100" symbol="+" subject_padding="..." 
-     heading_tag="p" text="Countries in our student & practitioner community"]
+  [vc_column width="1/3"]
+    [milestone number="100" symbol="+" heading_tag="p"
+     text="Countries in our student & practitioner community"]
   [/vc_column]
-  [vc_column width="1/2"]
-    [milestone number="10000" symbol="+" 
-     heading_tag="p" text="Individuals enrolled in our programs"]
+  [vc_column width="1/3"]
+    [milestone number="10000" symbol="+" heading_tag="p"
+     text="Individuals enrolled in our programs"]
+  [/vc_column]
+  [vc_column width="1/3"]
+    [milestone number="40" heading_tag="p"
+     text="Year legacy of pioneering soil biology research & regenerative practice"]
   [/vc_column]
 [/vc_row]
 ```
+All three must be visible on every screen size. Keep the source line under each number as a `[vc_column_text]` in small type.
 
-### 4. Three ways in / doors (lines 223-257)
-**Static:** `.doors` > `.door` (3-column linked cards with images)
+### 4. Choose your path (lines 266-300)
+**Static:** `.doors` > `.door` (3-column linked cards with images). The heading is "Choose your path". Evan flagged the old "three ways in" and "come in the door that is yours" wording as reading like a machine wrote it; do not bring it back.
 
 **Salient:**
 ```
@@ -121,10 +156,24 @@ Or use `[nectar_cascading_images]` for the filmstrip scroll effect.
 [/vc_row]
 ```
 
-### 5. Microscopy circles (lines 259-303)
+### 5. Microscopy circles (lines 302-346)
 **Static:** `.slides` > `.slide` > `.slide__disc` (CSS circle-masked video)
 
 **Salient:** See "Recreating the circular video look in Salient" above.
+
+### 5b. Floating microbe gallery (science.html and volunteer.html)
+**Static:** `.microbe-gallery` > `.microbe-gallery__item` (seven transparent PNG cutouts, `img/uploads/1.png` to `7.png`, each with a caption, drifting up and down on a four-second loop, staggered)
+
+**Salient:**
+```
+[vc_row]
+  [vc_column]
+    [vc_column_text]<h2 style="text-align:center">The organisms in your soil</h2>[/vc_column_text]
+    [image_with_animation image_url="1.png" animation="Fade In" ...] x7, in a 7-column or flex row
+  [/vc_column]
+[/vc_row]
+```
+Add the `.microbe-gallery` rules from site.css (lines 297-310) to the custom CSS so the cutouts float. Microscopy is the differentiator, so this block sits high on Science, directly under the hero.
 
 ### 6. Who we are (lines 305-324)
 **Static:** `.grid` 7/5 split, text + image
@@ -314,7 +363,7 @@ These components from `site.js` don't have Salient equivalents. Either add them 
 | **Before/after slider** (`[data-compare]`) | Use Salient's built-in Image Comparison element if available, otherwise raw HTML + site.js |
 | **Video theatre with playlist** (`[data-theatre]`) | Raw HTML shortcode + site.js. Too complex for a WPBakery element |
 | **Filter chips** (`[data-filter-for]`) | Raw HTML + site.js, or use a taxonomy filter plugin |
-| **Pathway diagram** (`[data-pathway]`) | Raw HTML + site.js |
+| **Learning pathway grid** (`.pathway-grid`, learn.html) | Raw HTML + the `.pathway-grid` rules from site.css. Eight columns, an oval role label over one or two course boxes each, all visible at once and scrolling sideways on phones. CSS only, no script, no accordion. |
 | **Overlay menu accordion** | Replace with Salient's built-in Ocm (Off-Canvas Menu) |
 | **Scroll-drawn root line** | Raw HTML + site.js (SVG) |
 

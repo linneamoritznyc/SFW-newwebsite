@@ -224,7 +224,7 @@
     "h2": "Join us",
     "body": "Every one of us started with one course, one webinar, or one afternoon at a microscope.",
     "ctas": [
-      { "label": "See every program and price", "href": "learn" },
+      { "label": "Explore our programs", "href": "learn" },
       { "label": "Start with a free webinar", "href": "learn-webinars" }
     ]
   }
