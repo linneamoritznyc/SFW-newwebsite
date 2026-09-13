@@ -59,13 +59,58 @@
 <div class="utility">
   <div class="wrap">
     <p class="utility__tagline">Join a global community of Soil Regenerators</p>
-    <ul class="utility__links"><li><a href="login">Student login</a></li><li><a href="news#subscribe">Subscribe to the newsletter</a></li><li><a href="donate">Donate</a></li></ul>
+    <ul class="utility__links"><li><a href="login">Student login</a></li><li><a href="news#subscribe">Subscribe</a></li><li><a href="donate">Donate</a></li></ul>
   </div>
 </div>
 <header class="site-header">
   <div class="wrap wrap--logo">
     <a class="wordmark wordmark--image" href="/"><img class="wordmark__logo" src="img/sfwlogo-240.png" alt="Soil Food Web Foundation" decoding="async"><span class="wordmark__name">Soil Food Web Foundation</span><span class="wordmark__status">A 501(c)(3) nonprofit</span></a>
-    <ul class="site-header__links"><li><a href="about">About us</a></li><li><a href="learn">Learn</a></li><li><a href="science">Science</a></li><li><a href="practice">Practice</a></li><li><a href="community">Community</a></li></ul>
+    <ul class="site-header__links">
+      <li class="has-drop"><a href="about">About us</a>
+        <ul class="drop">
+          <li><a href="about#mission">Mission, vision and story</a></li>
+          <li><a href="about-team">Our team and board</a></li>
+          <li><a href="about-governance">Governance and financials</a></li>
+          <li><a href="about-elaine">Dr. Elaine Ingham</a></li>
+          <li><a href="news#foundation">Foundation news</a></li>
+          <li><a href="contact">Contact us</a></li>
+        </ul>
+      </li>
+      <li class="has-drop"><a href="learn">Learn</a>
+        <ul class="drop">
+          <li><a href="learn">All programs and prices</a></li>
+          <li><a href="https://school.soilfoodweb.com">Courses on school.soilfoodweb.com</a></li>
+          <li><a href="calendar#workshops">In-person workshops</a></li>
+          <li><a href="calendar">Calendar of events</a></li>
+          <li><a href="learn-webinars">Free webinars</a></li>
+          <li><a href="learn-scholarships">Scholarships</a></li>
+          <li><a href="login">Student login</a></li>
+        </ul>
+      </li>
+      <li class="has-drop"><a href="science">Science</a>
+        <ul class="drop">
+          <li><a href="science">How the soil food web works</a></li>
+          <li><a href="research">Research and publications</a></li>
+          <li><a href="research#work-with-us">Partner on research</a></li>
+        </ul>
+      </li>
+      <li class="has-drop"><a href="practice">Practice</a>
+        <ul class="drop">
+          <li><a href="practice#case-studies">Case studies</a></li>
+          <li><a href="directory">Find a professional</a></li>
+          <li><a href="practice#work-with-us">Work with us</a></li>
+        </ul>
+      </li>
+      <li class="has-drop"><a href="community">Community</a>
+        <ul class="drop">
+          <li><a href="community#community-map">Community map</a></li>
+          <li><a href="news">News and stories</a></li>
+          <li><a href="calendar">Calendar of events</a></li>
+          <li><a href="community#join">Join the community</a></li>
+          <li><a href="volunteer">Volunteer with us</a></li>
+        </ul>
+      </li>
+    </ul>
     <a class="btn btn--donate" href="donate">Donate</a>
     <button class="menu-btn" type="button" data-menu-open aria-controls="overlay" aria-expanded="false">
       <svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg><span class="menu-btn__label">Menu</span>
@@ -105,7 +150,7 @@
             </button>
             <div class="acc__panel" id="acc-learn" data-acc-panel><div>
               <ul class="acc__links">
-                <li><a href="learn">Every program and what it costs</a></li>
+                <li><a href="learn">All programs and prices</a></li>
                 <li><a href="https://school.soilfoodweb.com">Courses on school.soilfoodweb.com</a></li>
                 <li><a href="calendar#workshops">In-person workshops</a></li>
                 <li><a href="calendar">Calendar of events</a></li>
@@ -154,7 +199,7 @@
             </div></div>
           </li>
         </ul>
-        <ul class="overlay__utility"><li><a href="login">Student login</a></li><li><a href="news#subscribe">Subscribe to the newsletter</a></li><li><a href="donate">Donate</a></li></ul>
+        <ul class="overlay__utility"><li><a href="login">Student login</a></li><li><a href="news#subscribe">Subscribe</a></li><li><a href="donate">Donate</a></li></ul>
       </nav>
       <aside class="overlay__now" aria-labelledby="now-h">
         <h2 id="now-h">Happening now</h2>
@@ -171,21 +216,14 @@
 <main id="main">
 
   <section class="stratum" style="border-top:0">
-    <div class="wrap">
-      <div class="grid" style="align-items:center;row-gap:var(--s5)">
-        <div class="span-6">
-          <p class="eyebrow">SOIL FOOD WEB FOUNDATION</p>
-          <h1>Healing soil. Feeding humanity. Restoring the living world.</h1>
-          <p class="lede">The ground beneath our farms and forests is alive. Join a global community of Soil Regenerators learning, restoring, and demonstrating the power of the soil food web on every continent.</p>
-          <p style="margin-top:var(--s4);display:flex;flex-wrap:wrap;gap:var(--s2);align-items:center"><a class="btn" href="community#join">Join the community</a> <a class="btn btn--ghost" href="learn">See every program and price</a></p>
-        </div>
-        <div class="span-6">
-          <figure class="shot">
-        <img src="img/w/hand-soil-roots-fungi.jpg" srcset="img/w/hand-soil-roots-fungi-800.jpg 800w, img/w/hand-soil-roots-fungi.jpg 1600w" sizes="(max-width: 48em) 100vw, 50vw" alt="An open palm holding a clump of soil bound together by roots and pale fungal strands" loading="lazy" decoding="async">
-        <figcaption class="cap--todo">the place, the people and the date. Foundation to supply.</figcaption>
-      </figure>
-        </div>
-      </div>
+    <figure class="shot shot--full">
+      <img src="img/w/dr-elaine-ingham-with-microscope.jpg" srcset="img/w/dr-elaine-ingham-with-microscope-800.jpg 800w, img/w/dr-elaine-ingham-with-microscope.jpg 1600w" sizes="100vw" alt="Dr. Elaine Ingham in her laboratory, standing behind a microscope" decoding="async">
+    </figure>
+    <div class="wrap" style="margin-top:var(--s5)">
+      <p class="eyebrow">SOIL FOOD WEB FOUNDATION</p>
+      <h1>Healing soil. Feeding humanity. Restoring the living world.</h1>
+      <p class="lede">The ground beneath our farms and forests is alive. Join a global community of Soil Regenerators learning, restoring, and demonstrating the power of the soil food web on every continent.</p>
+      <p style="margin-top:var(--s4);display:flex;flex-wrap:wrap;gap:var(--s2);align-items:center"><a class="btn" href="community#join">Join the community</a> <a class="btn btn--ghost" href="learn">Programs</a></p>
     </div>
   </section>
 
@@ -224,7 +262,7 @@
     <div class="wrap">
       <div class="head">
         <p class="eyebrow">COME IN THE DOOR THAT IS YOURS</p>
-        <h2 id="doors-h">Three ways in</h2>
+        <h2 id="doors-h">Come in the door that is yours</h2>
       </div>
       <ul class="doors">
         <li>
@@ -281,7 +319,7 @@
                      aria-hidden="true" tabindex="-1"
                      data-src="video/sfw-amoeba-lab-640.webm,video/sfw-amoeba-lab-640.mp4"></video>
             </span>
-            <span class="slide__n">Every program and its price <span class="slide__go" aria-hidden="true">&rarr;</span></span>
+            <span class="slide__n">Programs <span class="slide__go" aria-hidden="true">&rarr;</span></span>
           </a>
         </li>
         <li>
@@ -307,15 +345,14 @@
       <div class="grid" style="align-items:center;row-gap:var(--s5)">
         <div class="span-7">
           <p class="eyebrow">WHO WE ARE</p>
-          <h2 id="who-h">A foundation built on living soil</h2>
+          <h2 id="who-h">About the Foundation</h2>
           <p>For four decades, Dr. Elaine Ingham showed the world what farmers and foresters have always sensed: soil is not dirt. It is a living web of bacteria, fungi, protozoa, nematodes, and micro-arthropods that feeds plants, stores carbon, holds water, and sustains every terrestrial ecosystem on Earth.</p>
           <p>The Soil Food Web Foundation was created to carry that work forward. We teach the science through the Soil Food Web School, pursue and share new knowledge, incubate regenerative practice in ecoregions around the world, and build the community that makes it all last.</p>
           <p><a href="about">Read our mission and story →</a></p>
         </div>
         <div class="span-5">
-          <figure class="shot">
-        <img src="img/w/hand-wet-dirt-worm.jpg" srcset="img/w/hand-wet-dirt-worm-800.jpg 800w, img/w/hand-wet-dirt-worm.jpg 1600w" sizes="(max-width: 48em) 100vw, 50vw" alt="A hand holding a broken clod of wet dark soil over freshly turned ground" loading="lazy" decoding="async">
-        <figcaption class="cap--todo">the place, the people and the date. Foundation to supply.</figcaption>
+          <figure class="shot shot--wide">
+        <img src="img/w/elaine-smile-talking.jpg" srcset="img/w/elaine-smile-talking-800.jpg 800w, img/w/elaine-smile-talking.jpg 1600w" sizes="(max-width: 48em) 100vw, 40vw" alt="Dr. Elaine Ingham smiling while talking with someone at an outdoor event" loading="lazy" decoding="async">
       </figure>
         </div>
       </div>
@@ -326,14 +363,13 @@
   <section class="stratum" aria-labelledby="approach-h">
     <div class="wrap">
       <div class="head">
-        <p class="eyebrow">THE SOIL FOOD WEB APPROACH</p>
-        <h2 id="approach-h">Work with the life in your soil</h2>
+        <h2 id="approach-h">The Soil Food Web Approach</h2>
       </div>
       <div class="case">
         <div class="grid" style="row-gap:var(--s5)">
         <div class="span-3">
           <div class="step">
-            <figure class="shot shot--crop">
+            <figure class="shot shot--wide">
         <img src="img/w/soil-sample-close-up-test-tube.jpg" srcset="img/w/soil-sample-close-up-test-tube-800.jpg 800w, img/w/soil-sample-close-up-test-tube.jpg 1600w" sizes="(max-width: 48em) 100vw, 50vw" alt="A gloved hand holding a sample tube and a probe over dark soil" loading="lazy" decoding="async">
       </figure>
             <span class="fig-n">Fig. 01</span>
@@ -343,7 +379,7 @@
         </div>
         <div class="span-3">
           <div class="step">
-            <figure class="shot shot--crop">
+            <figure class="shot shot--wide">
         <img src="img/w/hand-of-compost.jpg" srcset="img/w/hand-of-compost-800.jpg 800w, img/w/hand-of-compost.jpg 1600w" sizes="(max-width: 48em) 100vw, 50vw" alt="A hand lifting a fistful of dark finished compost above the pile it came from" loading="lazy" decoding="async">
       </figure>
             <span class="fig-n">Fig. 02</span>
@@ -353,7 +389,7 @@
         </div>
         <div class="span-3">
           <div class="step">
-            <figure class="shot shot--crop">
+            <figure class="shot shot--wide">
         <img src="img/w/hand-scooping-planter-bed-soil.jpg" srcset="img/w/hand-scooping-planter-bed-soil-800.jpg 800w, img/w/hand-scooping-planter-bed-soil.jpg 1600w" sizes="(max-width: 48em) 100vw, 50vw" alt="A hand lifting a scoop of dark crumbly soil from a planting bed" loading="lazy" decoding="async">
       </figure>
             <span class="fig-n">Fig. 03</span>
@@ -363,7 +399,7 @@
         </div>
         <div class="span-3">
           <div class="step">
-            <figure class="shot shot--crop">
+            <figure class="shot shot--wide">
         <img src="img/w/handling-loose-soil.jpg" srcset="img/w/handling-loose-soil-800.jpg 800w, img/w/handling-loose-soil.jpg 1600w" sizes="(max-width: 48em) 100vw, 50vw" alt="Hands letting dry crumbs of soil fall back to the ground in low sunlight" loading="lazy" decoding="async">
       </figure>
             <span class="fig-n">Fig. 04</span>
@@ -382,7 +418,7 @@
     <div class="wrap">
       <div class="head">
         <p class="eyebrow">LEARN WITH US</p>
-        <h2 id="learn-h">Customize your learning path according to your needs and goals</h2>
+        <h2 id="learn-h">Programs</h2>
       </div>
       <ul class="cards">
         <li class="card">
@@ -483,7 +519,7 @@
     <img src="img/w/erc-rancho-cacachilas-agro.jpg" srcset="img/w/erc-rancho-cacachilas-agro-800.jpg 800w, img/w/erc-rancho-cacachilas-agro.jpg 1600w" sizes="100vw" alt="Long rows of crops running to a line of trees under a wide clouded sky" loading="lazy" decoding="async">
     <div class="banner__in">
       <div class="wrap">
-          <h2 id="join-h">Be part of the soil-ution</h2>
+          <h2 id="join-h">Get involved</h2>
           <p class="lede">Wherever you are, whether a farm, a garden, a lab or a classroom, there’s living soil beneath you and a global community beside you.</p>
           <p style="margin-top:var(--s4);display:flex;flex-wrap:wrap;gap:var(--s2)"><a class="btn" href="community#join">Join the community</a> <a class="btn btn--ghost" href="donate">Donate</a></p>
       </div>
@@ -519,7 +555,7 @@
       <nav class="span-2" aria-labelledby="f-1">
         <h2 id="f-1">Learn</h2>
         <ul>
-          <li><a href="learn">Every program and what it costs</a></li>
+          <li><a href="learn">All programs and prices</a></li>
           <li><a href="https://school.soilfoodweb.com">Courses on school.soilfoodweb.com</a></li>
           <li><a href="calendar#workshops">Workshops and events</a></li>
           <li><a href="calendar">Calendar of events</a></li>
