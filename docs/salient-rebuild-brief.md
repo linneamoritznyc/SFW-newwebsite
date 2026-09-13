@@ -2,6 +2,8 @@
 
 The brief for rebuilding this site in the Salient Nonprofit theme, as received on 13 September 2026. Kept here word for word so the WordPress build works from the same list as the static reference. The reference build now lives on branch `claude/new-session-12x7z2`, which carries everything on `claude/session-gni7rl` plus the audit changes listed below. Section-by-section element mappings are in `salient-migration-guide.md`; the photograph list is in `image-map-for-salient.md`.
 
+Two items under "Images still needed" below were already in the repository when the brief arrived: the microbe cutout PNGs (`img/uploads/1.png` to `7.png`, on Science and Volunteer) and the Wild Ken Hill highlight reel (`video/wild-ken-hill/wkh-2026-reel.mp4`, on the story page since 13 September 2026). The five community photographs, the staff headshots, the hero photograph's caption and the Vimeo ids are still open.
+
 ---
 
 # Fable Prompt: SFW Website Rebuild for Salient WordPress Theme
