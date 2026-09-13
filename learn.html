@@ -237,106 +237,54 @@
     <div class="wrap">
       <div class="head"><h2 id="pathway-h">Your learning pathway</h2></div>
 
-      <p style="font-family:var(--display);font-weight:600;font-size:var(--t1);margin-bottom:var(--s2)">Select the path that's right for you.</p>
-      <ul class="chips chips--carousel" role="list" aria-label="Learning paths by role">
-        <li><a class="chip" href="#foundation-courses">Designer</a></li>
-        <li><a class="chip" href="#foundation-courses">Farmer</a></li>
-        <li><a class="chip" href="#complete-practicum">Consultant</a></li>
-        <li><a class="chip" href="#complete-practicum">Lab Tech</a></li>
-        <li><a class="chip" href="#foundation-courses">Composter</a></li>
-        <li><a class="chip" href="#foundation-courses">Gardener</a></li>
-        <li><a class="chip" href="#permaculture">Ecosystem Restoration</a></li>
+      <p style="font-family:var(--display);font-weight:600;font-size:var(--t1);margin-bottom:var(--s2)">Select the path that’s right for you.</p>
+
+      <ul class="role-picker" aria-label="Choose a role to see recommended courses" data-role-picker>
+        <li class="role-picker__item" data-role="designer"><button class="role-picker__label" type="button">Designer</button></li>
+        <li class="role-picker__item" data-role="farmer"><button class="role-picker__label" type="button">Farmer</button></li>
+        <li class="role-picker__item" data-role="consultant"><button class="role-picker__label" type="button">Consultant</button></li>
+        <li class="role-picker__item" data-role="labtech"><button class="role-picker__label" type="button">Lab Tech</button></li>
+        <li class="role-picker__item" data-role="composter"><button class="role-picker__label" type="button">Composter</button></li>
+        <li class="role-picker__item" data-role="gardener"><button class="role-picker__label" type="button">Gardener</button></li>
+        <li class="role-picker__item" data-role="restoration"><button class="role-picker__label" type="button">Ecosystem Restorationist</button></li>
+        <li class="role-picker__item" data-role="scientist"><button class="role-picker__label" type="button">Scientist</button></li>
       </ul>
 
-      <div class="pathway" data-pathway>
-
-        <aside class="bundle-callout">Bundle and Save! <a href="https://school.soilfoodweb.com/bundles/complete-practicum">See bundles &rarr;</a></aside>
-
-        <!-- Stage 1: Foundation Courses -->
-        <ul class="pathway__stages">
-          <li class="pathway__stage" id="foundation-courses">
-            <p class="pathway__stage-t">Start here</p>
-            <ul class="pathway__nodes">
-              <li class="pathway__node pathway__node--required">
-                <button class="pathway__btn" type="button" data-pathway-btn aria-controls="pw-foundation" aria-expanded="false">Foundation Courses</button>
-                <div class="pathway__panel" id="pw-foundation" hidden>
-                  <p>Understand soil from new dimensions, meet the soil food web organisms and understand their ecosystem role, and learn the fundamentals of farming microbes in compost and applying them with compost extracts and teas. The prerequisites for our Advanced Programs.</p>
-                  <p><a href="https://school.soilfoodweb.com/bundles/soilfoodweb-foundation-courses">See the Foundation Courses on the school site &rarr;</a></p>
-                </div>
-              </li>
-            </ul>
-          </li>
-        </ul>
-
-        <!-- Stage 2: Advanced Programs (four parallel tracks) -->
-        <ul class="pathway__stages">
-          <li class="pathway__stage" id="complete-practicum">
-            <p class="pathway__stage-t">Advanced Programs</p>
-            <ul class="pathway__nodes pathway__nodes--4col">
-              <li class="pathway__node pathway__node--required">
-                <button class="pathway__btn" type="button" data-pathway-btn aria-controls="pw-microscopy" aria-expanded="false">Soil Microscopy</button>
-                <div class="pathway__panel" id="pw-microscopy" hidden>
-                  <p>Learn to identify the organisms in your soil under the microscope. Complete this program to earn the Soil Food Web Lab-Tech title.</p>
-                  <p><a href="https://school.soilfoodweb.com/bundles/complete-practicum">See on the school site &rarr;</a></p>
-                </div>
-              </li>
-              <li class="pathway__node pathway__node--required">
-                <button class="pathway__btn" type="button" data-pathway-btn aria-controls="pw-compost" aria-expanded="false">BioComplete&trade; Compost Production</button>
-                <div class="pathway__panel" id="pw-compost" hidden>
-                  <p>Learn to produce biologically complete compost: not just organic matter, but a living culture, built deliberately.</p>
-                  <p><a href="https://school.soilfoodweb.com/bundles/complete-practicum">See on the school site &rarr;</a></p>
-                </div>
-              </li>
-              <li class="pathway__node pathway__node--required">
-                <button class="pathway__btn" type="button" data-pathway-btn aria-controls="pw-amendments" aria-expanded="false">Biological Liquid Amendments</button>
-                <div class="pathway__panel" id="pw-amendments" hidden>
-                  <p>Learn to multiply the life in your compost into liquid amendments that can be applied across whole fields and gardens.</p>
-                  <p><a href="https://school.soilfoodweb.com/bundles/complete-practicum">See on the school site &rarr;</a></p>
-                </div>
-              </li>
-              <li class="pathway__node pathway__node--required">
-                <button class="pathway__btn" type="button" data-pathway-btn aria-controls="pw-fieldtrial" aria-expanded="false">Field Trial</button>
-                <div class="pathway__panel" id="pw-fieldtrial" hidden>
-                  <p>Design and run a real-world field trial applying everything you have learned. Complete all four Advanced Programs to earn the Soil Food Web Consultant title and join our professional directory.</p>
-                  <p><a href="https://school.soilfoodweb.com/bundles/complete-practicum">See on the school site &rarr;</a></p>
-                </div>
-              </li>
-            </ul>
-          </li>
-        </ul>
-
-        <!-- Stage 3: Additional programs -->
-        <ul class="pathway__stages pathway__stages--parallel">
-          <li class="pathway__stage" id="permaculture">
-            <p class="pathway__stage-t">Also available</p>
-            <ul class="pathway__nodes pathway__nodes--3col">
-              <li class="pathway__node">
-                <button class="pathway__btn" type="button" data-pathway-btn aria-controls="pw-pdc" aria-expanded="false">Permaculture Design Certification</button>
-                <div class="pathway__panel" id="pw-pdc" hidden>
-                  <p>Whole-system design on a foundation of living soil. Water, plants, structures, community, design them as one living system.</p>
-                  <p><a href="https://school.soilfoodweb.com/courses/permaculture-design-certification">See the Permaculture Design Certification on the school site &rarr;</a></p>
-                </div>
-              </li>
-              <li class="pathway__node">
-                <button class="pathway__btn" type="button" data-pathway-btn aria-controls="pw-restoration" aria-expanded="false">Ecosystem Restoration Courses</button>
-                <div class="pathway__panel" id="pw-restoration" hidden>
-                  <p>Bringing damaged land back to life with biology. Learn ecological principles and practical restoration techniques.</p>
-                  <p><a href="https://school.soilfoodweb.com/bundles/introduction-to-ecosystem-restoration">See Introduction to Ecosystem Restoration on the school site &rarr;</a></p>
-                  <p class="todo" data-status="verify">VERIFY course lineup &amp; sales page URL</p>
-                </div>
-              </li>
-              <li class="pathway__node">
-                <button class="pathway__btn" type="button" data-pathway-btn aria-controls="pw-workshops" aria-expanded="false">Workshops</button>
-                <div class="pathway__panel" id="pw-workshops" hidden>
-                  <p>Gain a year’s worth of hands-on experience in one immersive 10-day workshop. Build community with instructors and fellow students on real sites.</p>
-                  <p><a href="calendar#workshops">See upcoming workshops &rarr;</a></p>
-                </div>
-              </li>
-            </ul>
-          </li>
-        </ul>
-
+      <!-- Course grids per role, shown on hover/click -->
+      <div data-role-courses="designer" class="role-picker__courses">
+        <a class="role-picker__course" href="https://school.soilfoodweb.com/courses/permaculture-design-certification">Permaculture Design Course</a>
+        <a class="role-picker__course" href="https://school.soilfoodweb.com/bundles/soilfoodweb-foundation-courses">Intro to Foundation Courses</a>
       </div>
+      <div data-role-courses="farmer" class="role-picker__courses">
+        <a class="role-picker__course" href="https://school.soilfoodweb.com/bundles/soilfoodweb-foundation-courses">Foundation Courses</a>
+        <a class="role-picker__course" href="https://school.soilfoodweb.com/bundles/complete-practicum">Complete Practicum</a>
+      </div>
+      <div data-role-courses="consultant" class="role-picker__courses">
+        <a class="role-picker__course" href="https://school.soilfoodweb.com/bundles/soilfoodweb-foundation-courses">Foundation Courses</a>
+        <a class="role-picker__course" href="https://school.soilfoodweb.com/bundles/complete-practicum">Complete Practicum</a>
+      </div>
+      <div data-role-courses="labtech" class="role-picker__courses">
+        <a class="role-picker__course" href="https://school.soilfoodweb.com/bundles/soilfoodweb-foundation-courses">Foundation Courses</a>
+        <a class="role-picker__course" href="https://school.soilfoodweb.com/bundles/complete-practicum">Soil Microscopy</a>
+      </div>
+      <div data-role-courses="composter" class="role-picker__courses">
+        <a class="role-picker__course" href="https://school.soilfoodweb.com/bundles/soilfoodweb-foundation-courses">Foundation Courses</a>
+        <a class="role-picker__course" href="https://school.soilfoodweb.com/bundles/complete-practicum">BioComplete&trade; Compost Production</a>
+      </div>
+      <div data-role-courses="gardener" class="role-picker__courses">
+        <a class="role-picker__course" href="https://school.soilfoodweb.com/bundles/soilfoodweb-foundation-courses">Intro to Foundation Courses</a>
+        <a class="role-picker__course" href="https://school.soilfoodweb.com/bundles/complete-practicum">Compost Intensive Course</a>
+      </div>
+      <div data-role-courses="restoration" class="role-picker__courses">
+        <a class="role-picker__course" href="https://school.soilfoodweb.com/bundles/soilfoodweb-foundation-courses">Intro to Foundation Courses</a>
+        <a class="role-picker__course" href="https://school.soilfoodweb.com/bundles/introduction-to-ecosystem-restoration">Ecosystem Restoration</a>
+      </div>
+      <div data-role-courses="scientist" class="role-picker__courses">
+        <a class="role-picker__course" href="https://school.soilfoodweb.com/bundles/soilfoodweb-foundation-courses">Foundation Courses</a>
+        <a class="role-picker__course" href="https://school.soilfoodweb.com/bundles/complete-practicum">Complete Practicum</a>
+      </div>
+
+      <aside class="bundle-callout" style="margin-top:var(--s3)">Bundle and Save! <a href="https://school.soilfoodweb.com/bundles/complete-practicum">See bundles &rarr;</a></aside>
 
       <p style="margin-top:var(--s4)"><a href="learn-webinars">Start free: register for the next webinar &rarr;</a></p>
       <p class="ribbon">Our guarantee: 30-day, no-questions-asked money-back guarantee (terms and conditions apply).</p>

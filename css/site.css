@@ -267,6 +267,21 @@ a.chip:hover, a.chip:focus-visible { background: var(--ink); color: var(--paper)
   .pathway__nodes--3col { grid-template-columns: repeat(3, 1fr); }
 }
 
+/* Role picker: hover/tap a role oval to reveal its courses */
+.role-picker { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: nowrap; overflow-x: auto; gap: var(--s2); scroll-snap-type: x mandatory; scrollbar-width: thin; padding-bottom: var(--s1); }
+.role-picker__item { flex: 0 0 auto; scroll-snap-align: start; position: relative; }
+.role-picker__label { display: inline-block; padding: .5em 1.4em; border: 2px solid var(--ink); border-radius: 2em; font-family: var(--display); font-weight: 600; font-size: var(--t-1); white-space: nowrap; cursor: pointer; background: var(--paper); color: var(--ink); transition: background .15s, color .15s; }
+.role-picker__item.is-active .role-picker__label,
+.role-picker__label:hover { background: var(--ink); color: var(--paper); }
+.role-picker__courses { display: none; }
+.role-picker__courses.is-visible { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--s2); animation: fadeUp .2s ease-out; }
+@media (min-width: 48em) {
+  .role-picker__courses.is-visible { grid-template-columns: repeat(4, 1fr); }
+}
+.role-picker__course { border: 2px solid var(--rule); border-radius: var(--radius); padding: var(--s2) var(--s3); font-family: var(--display); font-weight: 600; font-size: var(--t-1); text-align: center; background: var(--paper); color: var(--ink); text-decoration: none; display: flex; align-items: center; justify-content: center; min-height: 4em; }
+.role-picker__course:hover { border-color: var(--green); color: var(--green); text-decoration: none; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(.5rem); } to { opacity: 1; transform: translateY(0); } }
+
 /* --------------------------------------------------------------------------
    6. Header
    -------------------------------------------------------------------------- */

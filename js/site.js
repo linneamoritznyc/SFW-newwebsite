@@ -223,6 +223,39 @@
   });
 })();
 
+/* ---------- 5b. Role picker (Learn) ---------- */
+(function () {
+  var picker = document.querySelector("[data-role-picker]");
+  if (!picker) return;
+  var items = picker.querySelectorAll("[data-role]");
+  var allCourses = document.querySelectorAll("[data-role-courses]");
+
+  function show(role) {
+    Array.prototype.forEach.call(items, function (el) {
+      el.classList.toggle("is-active", el.getAttribute("data-role") === role);
+    });
+    Array.prototype.forEach.call(allCourses, function (el) {
+      el.classList.toggle("is-visible", el.getAttribute("data-role-courses") === role);
+    });
+  }
+  function hideAll() {
+    Array.prototype.forEach.call(items, function (el) { el.classList.remove("is-active"); });
+    Array.prototype.forEach.call(allCourses, function (el) { el.classList.remove("is-visible"); });
+  }
+
+  Array.prototype.forEach.call(items, function (item) {
+    var role = item.getAttribute("data-role");
+    var btn = item.querySelector("button");
+    btn.addEventListener("mouseenter", function () { show(role); });
+    btn.addEventListener("focus", function () { show(role); });
+    btn.addEventListener("click", function () {
+      var wasActive = item.classList.contains("is-active");
+      if (wasActive) { hideAll(); } else { show(role); }
+    });
+  });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") hideAll(); });
+})();
+
 /* ---------- 6. Calendar today marker ---------- */
 // The site is static, so "today" cannot be baked into the HTML or it goes stale.
 // <div data-cal data-cal-start="YYYY-MM-DD" data-cal-end="YYYY-MM-DD"> with a
