@@ -285,11 +285,27 @@ a.chip:hover, a.chip:focus-visible { background: var(--ink); color: var(--paper)
 .pathway__box:hover { border-color: var(--green); color: var(--green); text-decoration: none; }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(.5rem); } to { opacity: 1; transform: translateY(0); } }
 
+/* 5b2. Pathway grid: 8-column role/course layout */
+.pathway-grid { overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: var(--s2); }
+.pathway-grid__inner { display: grid; grid-template-columns: repeat(8, minmax(9rem, 1fr)); gap: var(--s2); min-width: 72rem; }
+.pathway-grid__col { display: flex; flex-direction: column; align-items: center; gap: var(--s2); }
+.pathway-grid__oval { display: inline-flex; align-items: center; justify-content: center; min-width: 7em; padding: .7em 1.6em; border: 1.5px solid var(--ink); border-radius: 50%; font-family: var(--display); font-weight: 600; font-size: var(--t-1); white-space: nowrap; background: var(--paper); color: var(--ink); }
+.pathway-grid__box { border: 1.5px solid var(--rule); border-radius: .25rem; padding: var(--s2); font-family: var(--display); font-weight: 600; font-size: var(--t-1); text-align: center; background: var(--paper); color: var(--ink); text-decoration: none; display: flex; align-items: center; justify-content: center; min-height: 4em; width: 100%; box-sizing: border-box; }
+.pathway-grid__box:hover { border-color: var(--green); color: var(--green); text-decoration: none; }
+
 /* 5c. Microbe gallery */
 .microbe-gallery { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: var(--s4); }
 .microbe-gallery__item { flex: 0 0 auto; width: 10rem; text-align: center; margin: 0; }
 .microbe-gallery__item img { width: 100%; height: auto; filter: drop-shadow(0 2px 8px rgba(0,0,0,.08)); transition: transform .2s; }
 .microbe-gallery__item img:hover { transform: scale(1.1); }
+.microbe-gallery__item img { animation: microbeFloat 4s ease-in-out infinite; }
+.microbe-gallery__item:nth-child(2) img { animation-delay: -.6s; }
+.microbe-gallery__item:nth-child(3) img { animation-delay: -1.2s; }
+.microbe-gallery__item:nth-child(4) img { animation-delay: -1.8s; }
+.microbe-gallery__item:nth-child(5) img { animation-delay: -2.4s; }
+.microbe-gallery__item:nth-child(6) img { animation-delay: -3s; }
+.microbe-gallery__item:nth-child(7) img { animation-delay: -3.6s; }
+@keyframes microbeFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-.5rem); } }
 .microbe-gallery__item figcaption { font-size: var(--t-1); color: var(--ink-faint); margin-top: var(--s1); }
 @media (min-width: 48em) { .microbe-gallery__item { width: 12rem; } }
 
