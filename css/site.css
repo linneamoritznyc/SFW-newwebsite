@@ -274,10 +274,7 @@ a.chip:hover, a.chip:focus-visible { background: var(--ink); color: var(--paper)
 .role-picker__item.is-active .role-picker__label,
 .role-picker__label:hover { background: var(--ink); color: var(--paper); }
 .role-picker__courses { display: none; }
-.role-picker__courses.is-visible { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--s3); margin-top: var(--s3); animation: fadeUp .2s ease-out; }
-@media (min-width: 48em) {
-  .role-picker__courses.is-visible { grid-template-columns: repeat(4, 1fr); }
-}
+.role-picker__courses.is-visible { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s3); margin-top: var(--s3); width: 100%; box-sizing: border-box; animation: fadeUp .2s ease-out; }
 .role-picker__course { border: 1.5px solid var(--rule); border-radius: .75rem; padding: var(--s4) var(--s3); font-family: var(--display); font-weight: 600; font-size: var(--t0); text-align: center; background: var(--paper); color: var(--ink); text-decoration: none; display: flex; align-items: center; justify-content: center; min-height: 5em; }
 .role-picker__course:hover { border-color: var(--green); color: var(--green); text-decoration: none; }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(.5rem); } to { opacity: 1; transform: translateY(0); } }
