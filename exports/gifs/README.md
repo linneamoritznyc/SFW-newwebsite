@@ -4,7 +4,7 @@ Every moving thing on the live site, exported as a looping GIF for use off the w
 (slides, email, social, print reference). Made from the source videos in `video/` and
 from Playwright captures of the live pages.
 
-30 files, about 55 MB.
+35 files, about 80 MB.
 
 ## From the site's own video loops
 
@@ -22,8 +22,8 @@ from Playwright captures of the live pages.
 
 ## Circular, on white
 
-The site frames this footage in circles, so these are cut to a circle with a white
-surround rather than left square. 400x400, 10fps.
+Cut to a circle with a white surround. The amoeba set is 400x400, the field set
+360x360, both at 10fps.
 
 | File | Source |
 |---|---|
@@ -31,9 +31,35 @@ surround rather than left square. 400x400, 10fps.
 | `amoeba-circle-lab.gif` | `video/sfw-amoeba-lab-640`, centre cropped to square first |
 | `amoeba-circle-hero.gif` | `video/sfw-amoeba-loop-hero`, centre cropped to square first |
 | `amoeba-circle-social.gif` | `video/sfw-amoeba-instagram-4x5`, caption card cropped off first |
+| `wkh-circle-1465.gif` | `video/wild-ken-hill/IMG_1465`, centre cropped to square first |
+| `wkh-circle-1467.gif` | `video/wild-ken-hill/IMG_1467`, centre cropped to square first |
+| `wkh-circle-1471.gif` | `video/wild-ken-hill/IMG_1471`, centre cropped to square first |
+| `wkh-circle-reel.gif` | `video/wild-ken-hill/wkh-2026-reel-web`, first 8s, centre cropped |
 
-Note that `exports/circular-videos/amoeba-circle-1..3.gif`, which predate these, are
-not actually circular despite the name. They are plain 400x400 squares.
+These are larger than the rectangular versions, 2 to 6 MB, and the reason is worth
+knowing before anyone tries to shrink them. Three things each cost the white surround
+its purity, and all three had to go:
+
+1. **An alpha mask.** Building the circle by compositing through a mask PNG left the
+   surround at about 226,226,226, a faint ghost of the footage, because the mask's
+   black came back in limited range so "transparent" was never quite zero. The circle
+   is now painted directly with `geq`: inside the radius keep the pixel, outside write
+   255. No alpha anywhere.
+2. **Dithering.** Any dither stipples a flat area. `dither=none` for all eight.
+3. **`gifsicle --lossy`.** It shifts pixels against their neighbours, which pulls a
+   flat white field off white. Dropped entirely for these.
+
+One more, specific to the amoeba set: `palettegen=stats_mode=diff` builds its palette
+from frame to frame differences, and the static white surround never registers as a
+difference, so pure white never made it into the palette and the nearest neighbour was
+used instead. `stats_mode=full` fixes it and is why these files are bigger.
+
+Check a rebuild by measuring, not by looking. Sample the top left corner and require
+exactly 255,255,255. The leak is invisible on the pale microscopy footage and obvious
+on the field clips, so eyeballing one clip proves nothing about the others.
+
+Note that `exports/circular-videos/amoeba-circle-1..3.gif`, which predate all of this,
+are not circular at all despite the name. They are plain 400x400 squares.
 
 ## Supplied separately
 
