@@ -584,7 +584,10 @@ def chrome(depth=0):
     g = load("global")
     b = "../" * depth
     def h(x):
-        return x if x.startswith(("http", "mailto:", "#")) else b + x
+        if x.startswith(("http", "mailto:", "#")):
+            return x
+        # "/" is the site root, so at depth it is "../", not "..//".
+        return (b or "/") if x == "/" else b + x
     u = g["utilityBar"]
     util = "".join('<li><a href="%s">%s</a></li>' % (A(h(a["href"])), e(a["label"])) for a in u["actions"])
     acc = ""
@@ -602,7 +605,22 @@ def chrome(depth=0):
                 '            <div class="acc__panel" id="acc-%s" data-acc-panel><div>\n'
                 '              <ul class="acc__links">\n%s              </ul>\n'
                 '            </div></div>\n          </li>\n' % (sid, e(it["label"]), e(desc), sid, links))
-    topnav = "".join('<li><a href="%s">%s</a></li>' % (A(h(i["href"])), e(i["label"])) for i in g["nav"]["items"][1:])
+    # The header repeats each section's children as a hover dropdown. Same data
+    # as the overlay accordion above, so a link added to global.json reaches
+    # both menus: before this, the desktop dropdowns lived only in the committed
+    # HTML and every run of this script deleted them.
+    tn = ""
+    for i in g["nav"]["items"][1:]:
+        kids = i.get("children")
+        if not kids:
+            tn += '\n      <li><a href="%s">%s</a></li>' % (A(h(i["href"])), e(i["label"]))
+            continue
+        drop = "".join('\n          <li><a href="%s">%s</a></li>' % (A(h(c["href"])), e(c["label"]))
+                       for c in kids)
+        tn += ('\n      <li class="has-drop"><a href="%s">%s</a>'
+               '\n        <ul class="drop">%s\n        </ul>\n      </li>'
+               % (A(h(i["href"])), e(i["label"]), drop))
+    topnav = tn + "\n    "
 
     # Happening now, from content/global.json. Every dated item shows its date,
     # and an unconfirmed one says so on the line itself (Decision 12).
@@ -637,7 +655,7 @@ def chrome(depth=0):
            '        <a class="more" href="%s">%s</a>\n'
            '      </aside>\n    </div>\n'
            '  </div>\n</div>\n\n'
-           % (e(u["tagline"]), util, " wrap--logo" if LOGO else "", wordmark(depth), topnav, A(h("donate.html")),
+           % (e(u["tagline"]), util, " wrap--logo" if LOGO else "", wordmark(depth), topnav, A(h("donate")),
               wordmark(depth, tag="span"),
               acc, util, e(n["heading"]), now_li, A(h(n["more"]["href"])), e(n["more"]["label"])))
 
@@ -656,7 +674,7 @@ def chrome(depth=0):
            '      <div class="span-4">\n'
            '        %s\n'
            '        <p class="footer__tag">%s</p>\n'
-           '        <form class="footer__news" action="#" method="post" aria-label="Newsletter">\n'
+           '        <form class="footer__news" action="#" method="post" aria-label="Newsletter" data-newsletter>\n'
            '          <label for="footer-email" class="visually-hidden">Email address</label>\n'
            '          <input class="input" id="footer-email" type="email" name="email" placeholder="Email for the newsletter" required>\n'
            '          <button class="btn" type="submit">Subscribe</button>\n        </form>\n'
@@ -668,9 +686,9 @@ def chrome(depth=0):
            '      %s\n      <ul>\n        <li>%s</li>\n'
            '        <li><a href="%s">Privacy</a></li>\n        <li><a href="%s">Terms</a></li>\n'
            '        <li><a href="%s">Accessibility</a></li>\n      </ul>\n    </div>\n  </div>\n</footer>\n\n'
-           % (wordmark(depth, tag="span"), e(f["brandLine"]), navs, A(h("about-governance.html")),
+           % (wordmark(depth, tag="span"), e(f["brandLine"]), navs, A(h("about-governance")),
               note(f.get("social", {})), e(f["legalLine"]),
-              A(h("privacy.html")), A(h("terms.html")), A(h("accessibility.html"))))
+              A(h("privacy")), A(h("terms")), A(h("accessibility"))))
     return hdr, ftr
 
 
@@ -1819,6 +1837,9 @@ PAGES = [
 # page back is a matter of reconciling its builder with the page and putting
 # its row back in PAGES.
 HAND_WRITTEN = [
+    "index.html", "about.html", "learn.html", "science.html", "practice.html",
+    "news.html", "research.html", "login.html", "donate.html",
+    "learn-scholarships.html",
     "calendar.html", "community.html", "app.html", "learn-webinars.html",
     "about-elaine.html", "about-governance.html", "about-team.html",
     "accessibility.html", "contact.html", "directory.html", "privacy.html",
@@ -1834,6 +1855,15 @@ FTR_RE = re.compile(
 
 SHARE_RE = re.compile(r'<img[^>]+src="((?:\.\./)*img/[^"]+)"')
 OG_RE = re.compile(r'\n?  <meta (?:property="og:|name="twitter:)[^>]*>', re.S)
+
+
+def clean(path):
+    """The URL a page is served at, which is not its filename: vercel.json sets
+    cleanUrls, so index.html is / and terms.html is /terms. og:url has to match
+    the canonical tag, or a shared link unfurls to a URL the site does not serve.
+    """
+    p = path[:-len(".html")] if path.endswith(".html") else path
+    return "" if p == "index" else p
 
 
 def restamp_head(path, doc):
@@ -1864,7 +1894,7 @@ def restamp_head(path, doc):
             '\n  <meta name="twitter:title" content="%s">'
             '\n  <meta name="twitter:description" content="%s">'
             '\n  <meta name="twitter:image" content="%s">'
-            % (A(title), A(desc), A(SITE + "/" + path), A(img_abs),
+            % (A(title), A(desc), A(SITE + "/" + clean(path)), A(img_abs),
                A(title), A(desc), A(img_abs)))
     doc = OG_RE.sub("", doc)
     anchor = '  <meta property="og:site_name" content="Soil Food Web Foundation">'
@@ -1891,13 +1921,6 @@ def restamp(path):
 
 
 if __name__ == "__main__":
-    for row in PAGES:
-        path, title, key, fn, share = row[:5]
-        tone = row[5] if len(row) > 5 else ""      # optional accent family
-        c = load(key)
-        h = c.get("hero", {})
-        desc = h.get("intro") or h.get("subhead") or title
-        render(path, title, desc[:300], fn(), share=share, tone=tone)
     for path in HAND_WRITTEN:
         restamp(path)
-    print("done:", len(PAGES), "rendered,", len(HAND_WRITTEN), "re-stamped")
+    print("done:", len(HAND_WRITTEN), "re-stamped")

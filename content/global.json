@@ -60,7 +60,7 @@
         "pillar": "Teach It",
         "children": [
           {
-            "label": "Every program and what it costs",
+            "label": "Explore our programs",
             "href": "learn"
           },
           {
@@ -72,7 +72,7 @@
             "href": "calendar#workshops"
           },
           {
-            "label": "Calendar of events",
+            "label": "Calendar",
             "href": "calendar"
           },
           {
@@ -142,7 +142,7 @@
             "href": "news"
           },
           {
-            "label": "Calendar of events",
+            "label": "Calendar",
             "href": "calendar"
           },
           {
@@ -216,7 +216,7 @@
         "head": "Learn",
         "links": [
           {
-            "label": "Every program and what it costs",
+            "label": "Explore our programs",
             "href": "learn"
           },
           {
@@ -228,7 +228,7 @@
             "href": "calendar#workshops"
           },
           {
-            "label": "Calendar of events",
+            "label": "Calendar",
             "href": "calendar"
           },
           {
