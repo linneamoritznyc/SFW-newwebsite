@@ -3897,7 +3897,7 @@ a:hover { color: var(--accent-deep); }
 .form-grid > .full { grid-column: 1 / -1; }
 .form-grid label { display: flex; flex-direction: column; gap: var(--s1); font-size: var(--t0); font-weight: 600; color: var(--ink-soft); }
 .form-grid textarea.input { min-height: 7rem; resize: vertical; font-family: var(--sans); line-height: 1.5; }
-.drop {
+.dropzone {
   border: 2px dashed var(--rule-strong); border-radius: var(--radius-btn);
   padding: var(--s3); text-align: center; color: var(--ink-faint);
   font-size: var(--t0); font-weight: 400;
