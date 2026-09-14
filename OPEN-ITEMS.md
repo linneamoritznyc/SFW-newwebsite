@@ -2,7 +2,7 @@
 
 Everything the site still shows as a visible placeholder, with the person who supplies it.
 
-Last updated 11 September 2026 (Community rebuild and the Wild Ken Hill story added the same day). Placeholders render as dashed `.todo` blocks; add `?notes=1` to any page URL to reveal every one of them at once.
+Last updated 14 September 2026 (the mobile app page added under Community). Placeholders render as dashed `.todo` blocks; add `?notes=1` to any page URL to reveal every one of them at once.
 
 A placeholder leaves this list only when the real thing is in the repository. "Confirmed in a document" is not the same as "on the page".
 
@@ -23,6 +23,9 @@ A placeholder leaves this list only when the real thing is in the repository. "C
 | **Decision 9, public documents** | about-governance.html | IRS determination letter, financial statements, conflict-of-interest / whistleblower / document-retention policies, and the split showing where donations go. The Form 990 and annual report lines now read "will be posted here"; confirm the first filing date. |
 | **Decision 10, the rest of the board** | about-team.html | Four Executive Committee members are named. Still needed: officer titles (chair, secretary, treasurer), Jenna Noel's own title, any members beyond the Executive Committee, and board portraits. |
 | **Decision 13, Soil Sponge Workshop** | calendar.html | Next cohort dates, or take registration down. |
+| **The mobile app, store listings** | app.html, community.html | The name the app is published under, its Apple App Store URL and its Google Play URL. Nothing else on the page can be built until these arrive: a download button that guesses at a store page sends people to the wrong app. |
+| **The mobile app, what it does** | app.html | Feature by feature, confirmed against the build: whether lessons download for offline viewing, whether video plays in the background, whether notifications are per discussion, and whether a free community member without a course can sign in at all. |
+| **The mobile app, the three answers** | app.html | That it is free to download and adds no charge on top of a course, that it uses the same school.soilfoodweb.com account as the browser, and the minimum iOS and Android versions. |
 | **Decision 14, newsletter tool** | footer, every page | Which service receives the footer email field. Needed for the form action; the form currently posts nowhere. |
 | **Decision 15, directory counts** | learn.html, directory.html | Confirm roughly 100 consultants and 250 lab technicians in 45 countries. These print on every program row once confirmed. |
 | **Decision 16, logo artwork** | every page | The mark was shown in chat but the file never reached the repository, and a hand-traced copy of a brand mark is not the brand mark. **The slot is built and waiting:** put the artwork at `img/logo.svg` (SVG preferred; a transparent PNG at 3x works) and set `LOGO = "img/logo.svg"` at the top of `tools/build.py`. Header, overlay menu and footer all pick it up, sized and positioned, and the type-set wordmark becomes the accessible name. |
@@ -47,6 +50,7 @@ A placeholder leaves this list only when the real thing is in the repository. "C
 | :-- | :-- | :-- |
 | A restoration-segment case study | practice.html | Three agricultural and practitioner films are in. The restoration case is missing, and the section claims all three segments. |
 | The written detail behind each case study | practice.html | Where each grower started, what they practiced, what was measured. The films carry the story; the page carries no numbers. |
+| Mobile app screenshots | app.html | Three at phone size, taken from the shipped app rather than mocked up: the community feed, a course, and a lesson. |
 
 ## Waiting on Evan, the volunteer page
 

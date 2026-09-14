@@ -464,6 +464,26 @@ Seed: **Tomato growers, South Africa.** [PLACEHOLDER: this is the one claim Evan
 
 ---
 
+## 17a. The mobile app, `/community/app`
+
+Added 14 September 2026, after section 17 was written. The Foundation says a mobile app exists, carrying the community and the courses, published on both the Apple App Store and Google Play. The store listings have not been seen, so the page states only that, and holds everything else open.
+
+**H1:** The mobile app
+
+**Lede:** The community and your courses, on your phone. The app is on the Apple App Store and on Google Play.
+
+[SOURCE: the Foundation, 14 September 2026. The store listings themselves have not been seen.]
+
+**Get the app.** [PLACEHOLDER: the name the app is published under, its Apple App Store URL and its Google Play URL. Evan.] Until they arrive the page prints no download buttons, on the same rule as the footer social icons: nothing rather than a link to the wrong place. In their place it says the free community and enrolled courses open in a phone browser at school.soilfoodweb.com.
+
+**What it is for.** Two halves, the community and your courses, each linking to the page that already describes it. [PLACEHOLDER: what the app actually does, feature by feature, confirmed against the build: offline lessons, background video, per-discussion notifications, and whether a free community member without a course can sign in. Evan.]
+
+**Questions people ask.** One is answered: no, this is not sMApp. sMApp is the microscopy tool and runs in a browser at soilmapp.com. [PLACEHOLDER: what it costs, which sign-in it uses, minimum iOS and Android versions. Evan.]
+
+**What it looks like.** [PLACEHOLDER: three screenshots at phone size from the shipped app, the community feed, a course, and a lesson. Stephanie.]
+
+---
+
 ## 18. Find a professional, `/community/directory`
 
 **H1:** Find a professional
