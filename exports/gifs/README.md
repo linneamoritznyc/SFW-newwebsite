@@ -4,7 +4,7 @@ Every moving thing on the live site, exported as a looping GIF for use off the w
 (slides, email, social, print reference). Made from the source videos in `video/` and
 from Playwright captures of the live pages.
 
-26 files, about 45 MB.
+30 files, about 55 MB.
 
 ## From the site's own video loops
 
@@ -19,6 +19,27 @@ from Playwright captures of the live pages.
 | `wkh-clip-1467.gif` | `video/wild-ken-hill/IMG_1467` | 260x461, 8s | Wild Ken Hill workshop |
 | `wkh-clip-1471.gif` | `video/wild-ken-hill/IMG_1471` | 260x461, 7s | Wild Ken Hill workshop |
 | `wkh-reel-excerpt.gif` | `video/wild-ken-hill/wkh-2026-reel-web` | 260x461, 8s | First 8s only. The full reel is 41s, too long for a usable GIF. |
+
+## Circular, on white
+
+The site frames this footage in circles, so these are cut to a circle with a white
+surround rather than left square. 400x400, 10fps.
+
+| File | Source |
+|---|---|
+| `amoeba-circle-square.gif` | `video/sfw-amoeba-loop-square` |
+| `amoeba-circle-lab.gif` | `video/sfw-amoeba-lab-640`, centre cropped to square first |
+| `amoeba-circle-hero.gif` | `video/sfw-amoeba-loop-hero`, centre cropped to square first |
+| `amoeba-circle-social.gif` | `video/sfw-amoeba-instagram-4x5`, caption card cropped off first |
+
+Note that `exports/circular-videos/amoeba-circle-1..3.gif`, which predate these, are
+not actually circular despite the name. They are plain 400x400 squares.
+
+## Supplied separately
+
+| File | Source | Note |
+|---|---|---|
+| `teas7.gif` | `Teas7.mov`, supplied by Linnea | 400x224, 3.9s. The .mov is not in the repo, so this cannot be regenerated from what is checked in. |
 
 ## Captured from the live pages
 
