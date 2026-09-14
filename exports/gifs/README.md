@@ -4,7 +4,7 @@ Every moving thing on the live site, exported as a looping GIF for use off the w
 (slides, email, social, print reference). Made from the source videos in `video/` and
 from Playwright captures of the live pages.
 
-35 files, about 80 MB.
+37 files, about 84 MB.
 
 ## From the site's own video loops
 
@@ -35,6 +35,7 @@ Cut to a circle with a white surround. The amoeba set is 400x400, the field set
 | `wkh-circle-1467.gif` | `video/wild-ken-hill/IMG_1467`, centre cropped to square first |
 | `wkh-circle-1471.gif` | `video/wild-ken-hill/IMG_1471`, centre cropped to square first |
 | `wkh-circle-reel.gif` | `video/wild-ken-hill/wkh-2026-reel-web`, first 8s, centre cropped |
+| `teas-circle.gif` | `video/sfw-teas-square`, the compost tea clip |
 
 These are larger than the rectangular versions, 2 to 6 MB, and the reason is worth
 knowing before anyone tries to shrink them. Three things each cost the white surround
@@ -65,7 +66,11 @@ are not circular at all despite the name. They are plain 400x400 squares.
 
 | File | Source | Note |
 |---|---|---|
-| `teas7.gif` | `Teas7.mov`, supplied by Linnea | 400x224, 3.9s. The .mov is not in the repo, so this cannot be regenerated from what is checked in. |
+| `teas7.gif` | `Teas7.mov`, supplied by Linnea | 400x224, 3.9s, full landscape frame. |
+
+The `.mov` master is not in the repo. The square crop of it is, as
+`video/sfw-teas-square.mp4` and `.webm`, so `teas-circle.gif` can be rebuilt but
+`teas7.gif` cannot.
 
 ## Captured from the live pages
 
