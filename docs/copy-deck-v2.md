@@ -464,23 +464,36 @@ Seed: **Tomato growers, South Africa.** [PLACEHOLDER: this is the one claim Evan
 
 ---
 
-## 17a. The mobile app, `/community/app`
+## 17a. The Soil Food Web School app, `/community/app`
 
-Added 14 September 2026, after section 17 was written. The Foundation says a mobile app exists, carrying the community and the courses, published on both the Apple App Store and Google Play. The store listings have not been seen, so the page states only that, and holds everything else open.
+Added 14 September 2026, after section 17 was written. The app is published by the Soil Food Web Foundation under the name **Soil Food Web School**, free, on both stores.
 
-**H1:** The mobile app
+- Apple App Store: https://apps.apple.com/us/app/soil-food-web-school/id6777266606
+- Google Play: https://play.google.com/store/apps/details?id=com.soilfoodwebthnc.app
 
-**Lede:** The community and your courses, on your phone. The app is on the Apple App Store and on Google Play.
+**H1:** The Soil Food Web School app
 
-[SOURCE: the Foundation, 14 September 2026. The store listings themselves have not been seen.]
+**Lede:** Your courses and the community, on your phone. Free, on the Apple App Store and on Google Play.
 
-**Get the app.** [PLACEHOLDER: the name the app is published under, its Apple App Store URL and its Google Play URL. Evan.] Until they arrive the page prints no download buttons, on the same rule as the footer social icons: nothing rather than a link to the wrong place. In their place it says the free community and enrolled courses open in a phone browser at school.soilfoodweb.com.
+[SOURCE: the two store listings, read 14 September 2026]
 
-**What it is for.** Two halves, the community and your courses, each linking to the page that already describes it. [PLACEHOLDER: what the app actually does, feature by feature, confirmed against the build: offline lessons, background video, per-discussion notifications, and whether a free community member without a course can sign in. Evan.]
+**Get the app.** Two buttons, iPhone and iPad, and Android. Facts list underneath: published by the Soil Food Web Foundation, free, Education, rated 4 and over, English, 83.5 MB on iPhone. [PLACEHOLDER: minimum iOS and Android versions, off the two listings. Evan or Alex.] Then the browser alternative, because nothing in the app is app-only.
 
-**Questions people ask.** One is answered: no, this is not sMApp. sMApp is the microscopy tool and runs in a browser at soilmapp.com. [PLACEHOLDER: what it costs, which sign-in it uses, minimum iOS and Android versions. Evan.]
+**What it carries.** Two halves.
 
-**What it looks like.** [PLACEHOLDER: three screenshots at phone size from the shipped app, the community feed, a course, and a lesson. Stephanie.]
+> **Your courses.** Your library, the curriculum of each course chapter by chapter, and the lectures themselves. It keeps your place, so a lecture you stopped halfway through on a laptop opens where you left it, and it counts lessons completed against the chapter.
+
+> **The community.** The community, events and direct messages sit alongside the courses, one tap apart. On a phone this is the part people reach for most, because it is the part that moves every day.
+
+[SOURCE: the screenshots and description on the two store listings, read 14 September 2026]
+
+[PLACEHOLDER: whether lectures download for offline viewing, and whether audio keeps playing when the phone is locked. Neither listing says, and both matter to anyone studying on a commute or out on land without signal. Evan.]
+
+**Questions people ask.** One answer: no, this is not sMApp. sMApp is the microscopy tool and runs in a browser at soilmapp.com.
+
+**What it looks like.** [PLACEHOLDER: the three screenshots already on the App Store listing, source files into img/. Stephanie.]
+
+**A fix for the listings, not the site.** The App Store subtitle reads "A SFW Foundation Program". SFW is an acronym, which these rules put out of public text, and to a general reader it reads as something else entirely. Change it on both listings to "A program of the Soil Food Web Foundation".
 
 ---
 
