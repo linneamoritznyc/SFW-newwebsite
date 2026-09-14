@@ -101,15 +101,13 @@ repository from any of them, and none are referenced by the page.
 No stand-in file, author or licence is recorded below, because recording one without having fetched
 and checked the file would be inventing a citation. The table is laid out and empty on purpose.
 
-`tools/pd-assets.py` is in the repo and does the work in one pass where the network allows it. Run it
-locally, never against Google Drive and never against any Foundation account:
-
-```
-python3 tools/pd-assets.py --list                 # what it would fetch, and from where
-python3 tools/pd-assets.py --fetch --out img/pd   # into the repo only
-```
-It writes `img/pd/CREDITS.json` with the source URL, the author and the licence for every file it
-saves, and refuses to save a file whose licence it cannot read.
+`img/pd/` is where openly licensed files go, and `img/pd/README.md` carries the rules. There is no
+script: `tools/pd-assets.py` was written for this job and then removed with the other one-off import
+scripts, so both the fetching and the credit line are done by hand. Save the original at its largest
+size, name it for what is in it, and add an entry to `img/pd/CREDITS.json` with the source URL, the
+title, the author and the licence exactly as the source page gives them. A file whose licence cannot
+be read does not go in. To put one on a page, copy it up into `img/` and run `python3 tools/images.py`,
+which reads files directly in `img/` and writes the sizes the pages load.
 
 ### Where to look, and what the licence means before you take anything
 
