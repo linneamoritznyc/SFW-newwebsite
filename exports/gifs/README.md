@@ -47,7 +47,22 @@ Every other source in `video/` is clean footage with no text.
 
 ## How these were made
 
-ffmpeg with a per clip generated palette, then `gifsicle -O3`. The video derived GIFs
-use 64 colours and lossy compression to keep them under about 3 MB; the interface
-captures use no dithering so the flat brand colours stay flat. Regenerating them means
-rerunning the same two steps against the sources, there is no checked in script.
+ffmpeg with a per clip generated palette, then `gifsicle -O3`. Settings differ by
+footage type, and this matters:
+
+- **Live action (the Wild Ken Hill clips): 256 colours, `sierra2_4a` dither,
+  `--lossy=30`.** These were first encoded at 64 colours with heavy Bayer dither and
+  `--lossy=110`. That was wrong. With so few colours the palette was taken over by the
+  sand and concrete, and skin tones shifted from pink to sandy beige while the yellow
+  and teal marker tape disappeared. Anything with skin tones or a wide colour range
+  needs the full palette. The files are around 4 to 5 MB as a result, which is the
+  honest cost of correct colour.
+- **Microscopy (the amoeba loops): 64 colours, Bayer dither, `--lossy=110`.** Checked
+  against source and fine. That footage is close to monochrome grey and olive, so a
+  small palette costs nothing visible.
+- **Interface captures: 64 to 128 colours, no dithering**, so the flat brand colours
+  stay flat rather than being stippled.
+
+Regenerating means rerunning the same two steps against the sources, there is no
+checked in script. If you do regenerate, compare a frame against the source before
+trusting the result.
