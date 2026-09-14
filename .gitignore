@@ -28,3 +28,6 @@ npm-debug.log*
 # Crawl output (generated, large)
 docs/crawl/
 package*
+
+# Generated asset bundles (the GIFs themselves live in exports/gifs/)
+exports/*.zip
