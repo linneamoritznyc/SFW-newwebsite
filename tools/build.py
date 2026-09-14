@@ -1819,7 +1819,7 @@ PAGES = [
 # page back is a matter of reconciling its builder with the page and putting
 # its row back in PAGES.
 HAND_WRITTEN = [
-    "calendar.html", "community.html", "learn-webinars.html",
+    "calendar.html", "community.html", "app.html", "learn-webinars.html",
     "about-elaine.html", "about-governance.html", "about-team.html",
     "accessibility.html", "contact.html", "directory.html", "privacy.html",
     "terms.html", "volunteer.html", "projects/market-garden-sweden.html",
