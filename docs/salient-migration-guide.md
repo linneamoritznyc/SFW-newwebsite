@@ -20,7 +20,7 @@ Every one of these is already on the static pages. Check each against the Salien
 
 Layout points Evan stressed:
 
-- The hero photograph is constrained to the content width (`.shot--wide`, 80rem), never edge to edge.
+- The hero is two columns inside the content width: text on the left, photograph on the right. Never edge to edge.
 - The hero photograph is a group photograph from a workshop, people around a compost pile, not a portrait at a microscope. The static build uses `img/w/workshop-group-around-compost-pile.jpg`; the caption is still to come from the Foundation.
 - Microscopy is the differentiator. The floating microbe cutouts (`img/uploads/1.png` to `7.png`) sit near the top of Science and on Volunteer, and the Science hero is a microscope image.
 - More photographs, less white space: where a section is text-heavy, use Salient's large image cards (`[fancy_box]` or `[nectar_image_with_hotspots]`) with text beside or over the picture.
@@ -77,14 +77,13 @@ The `exports/circular-videos/` folder contains ready-to-upload versions of the t
 
 **Salient:** Header Builder > Secondary Navigation. Left text "The Soil Food Web Foundation 501(c)(3)". Right links: Student login, Subscribe, Donate. Dark background (Deep Loam), small type.
 
-### 1. Hero (lines 218-229 in index.html)
-**Static:** `.stratum` > `.shot.shot--wide` photograph, then `.wrap` with eyebrow, h1, lede, one paragraph and two buttons. The photograph sits above the text at content width, 16:9 crop.
+### 1. Hero (lines 218-236 in index.html)
+**Static:** `.stratum` > `.wrap` > `.grid` with `.span-5` text (eyebrow, h1, lede, one paragraph, two buttons) and `.span-7` photograph (`.shot`, rounded corners), vertically centred. On a phone the text comes first and the photograph below.
 
 **Salient:**
 ```
-[vc_row type="in_container"]
-  [vc_column]
-    [image_with_animation image_url="workshop-group-around-compost-pile.jpg" alignment="center" img_link_large="no" border_radius="10px"]
+[vc_row type="in_container" equal_height="yes" content_placement="middle"]
+  [vc_column width="5/12"]
     [vc_column_text]
       <p class="eyebrow">SOIL FOOD WEB FOUNDATION</p>
       <h1>Join a global community of Soil Regenerators</h1>
@@ -93,6 +92,9 @@ The `exports/circular-videos/` folder contains ready-to-upload versions of the t
     [/vc_column_text]
     [nectar_btn url="community#join" text="Join the community" ...]
     [nectar_btn url="learn" text="Programs" style="see-through" ...]
+  [/vc_column]
+  [vc_column width="7/12"]
+    [image_with_animation image_url="workshop-group-around-compost-pile.jpg" alignment="center" img_link_large="no" border_radius="10px"]
   [/vc_column]
 [/vc_row]
 ```
