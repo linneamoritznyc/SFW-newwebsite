@@ -1,0 +1,15 @@
+{
+  "_source": "One entry per file in img/pd/. Source URL, title, author and licence as the source page gives them. An empty string means not stated at the source; never a guess. See README.md in this folder.",
+  "_example": {
+    "file": "the filename in this folder, exactly",
+    "source": "the page the file came from, not the direct image link",
+    "title": "the title on the source page",
+    "author": "the photographer or agency named on the source page",
+    "licence": "the licence as stated, verbatim",
+    "place": "only if the source states it",
+    "date": "only if the source states it, ISO where possible",
+    "checked": "the date someone opened the source page and read the licence",
+    "checked_by": "who did that"
+  },
+  "files": []
+}
