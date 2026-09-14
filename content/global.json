@@ -150,6 +150,10 @@
             "href": "community#join"
           },
           {
+            "label": "The mobile app",
+            "href": "app"
+          },
+          {
             "label": "Volunteer with us",
             "href": "volunteer"
           }
