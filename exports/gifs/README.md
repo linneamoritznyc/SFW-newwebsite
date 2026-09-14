@@ -11,7 +11,8 @@ and from Playwright captures of the live pages.
 | `amoeba-loop-square.gif` | `video/sfw-amoeba-loop-square` | 360x360, 10s | Home page slideshow, first slide |
 | `amoeba-lab.gif` | `video/sfw-amoeba-lab-640` | 400x225, 10s | Home slideshow, learn.html, volunteer.html |
 | `amoeba-loop-hero.gif` | `video/sfw-amoeba-loop-hero` | 400x225, 10s | Home slideshow, third slide |
-| `amoeba-instagram-4x5.gif` | `video/sfw-amoeba-instagram-4x5` | 320x400, 10s | Social crop, not used on a page |
+| `amoeba-social-square.gif` | `video/sfw-amoeba-instagram-4x5` | 360x360, 10s | Social clip. The source has a caption card baked into the bottom 270px, cropped off here. Full frame kept. |
+| `amoeba-social-4x5.gif` | `video/sfw-amoeba-instagram-4x5` | 320x400, 10s | Same clip kept at 4:5 for social. Side cropped rather than bottom cropped, so no caption. |
 | `wkh-clip-1465.gif` | `video/wild-ken-hill/IMG_1465` | 260x461, 8s | Wild Ken Hill workshop footage |
 | `wkh-clip-1467.gif` | `video/wild-ken-hill/IMG_1467` | 260x461, 8s | Wild Ken Hill workshop footage |
 | `wkh-clip-1471.gif` | `video/wild-ken-hill/IMG_1471` | 260x461, 7s | Wild Ken Hill workshop footage |
@@ -36,6 +37,13 @@ mockups. Worth a look on the next cleanup pass.
 
 `fadeUp` is used only by `.role-picker__courses.is-visible`, which no current page
 builds, so it was not captured either.
+
+## A note on baked in text
+
+`video/sfw-amoeba-instagram-4x5.mp4` is the only source with text burned into the
+picture: a white caption card reading "What lives in one drop?" over the bottom 270px.
+The video area above it is a clean 1080x1080. Both GIFs made from it crop that card away.
+Every other source in `video/` is clean footage with no text.
 
 ## How these were made
 
