@@ -44,7 +44,7 @@
      pulling the photograph up with them, which is what made the panels look
      unrelated. */
   --band-h:  0.98in;
-  --photo-h: 1.02in;
+  --photo-h: 1.38in;
 }
 
 /* Fonts, self-hosted and subsetted, from the repository's own fonts/ folder.
@@ -85,8 +85,8 @@ html, body { margin: 0; padding: 0; background: var(--paper); }
   background: var(--paper);
   color: var(--ink);
   font-family: var(--sans);
-  font-size: 8.4pt;
-  line-height: 1.38;
+  font-size: 8.15pt;
+  line-height: 1.34;
   overflow: hidden;
 }
 .panel--wide { width: var(--w-wide); flex: 0 0 var(--w-wide); }
@@ -100,7 +100,7 @@ html, body { margin: 0; padding: 0; background: var(--paper); }
 /* --------------------------------------------------------------------------
    Type
    -------------------------------------------------------------------------- */
-p, ul { margin: 0 0 0.07in; }
+p, ul { margin: 0 0 0.055in; }
 p:last-child, ul:last-child { margin-bottom: 0; }
 strong { font-weight: 600; }
 
@@ -135,13 +135,13 @@ h3 {
   font-size: 8.4pt;
   color: var(--soil);
   line-height: 1.2;
-  margin: 0 0 0.03in;
+  margin: 0.02in 0 0.025in;
 }
 
 /* EB Garamond carries the small, considered text: ledes, captions, figure
    labels and pull quotes. css/site.css section 1, --text-serif. */
 .lede {
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-size: 9.8pt;
   line-height: 1.3;
   color: var(--ink);
@@ -164,23 +164,23 @@ h3 {
 .awaiting {
   font-family: var(--serif);
   font-style: italic;
-  font-size: 7.1pt;
-  line-height: 1.28;
+  font-size: 6.6pt;
+  line-height: 1.24;
   color: var(--ink-soft);
   border-left: 1.4pt solid var(--tan);
   padding: 0.005in 0 0.005in 0.07in;
-  margin: 0.06in 0;
+  margin: 0.05in 0;
 }
 .awaiting b { font-style: normal; font-weight: 600; color: var(--soil); }
 
 .pull {
-  font-family: var(--serif);
-  font-size: 8.9pt;
-  line-height: 1.29;
+  font-family: var(--sans);
+  font-size: 8.5pt;
+  line-height: 1.31;
   color: var(--ink);
 }
 .pull b {
-  font-family: var(--display);
+  font-family: var(--sans);
   font-weight: 700;
   font-size: 7.6pt;
   letter-spacing: .06em;
@@ -200,7 +200,7 @@ h3 {
 /* --------------------------------------------------------------------------
    Shapes and rules
    -------------------------------------------------------------------------- */
-.hr   { border: 0; border-top: 0.7pt solid var(--rule); margin: 0.085in 0; }
+.hr   { border: 0; border-top: 0.7pt solid var(--rule); margin: 0.07in 0; }
 .hr--strong { border-top: 1pt solid var(--rule-strong); }
 
 /* --------------------------------------------------------------------------
@@ -380,7 +380,7 @@ h3 {
 /* Organic Cream as a bounded rectangle behind a group, never as the page. */
 .card {
   background: var(--panel-green);
-  padding: 0.12in 0.13in;
+  padding: 0.10in 0.115in;
   border-radius: 0.045in;
   border-left: 1.6pt solid var(--green);
 }
