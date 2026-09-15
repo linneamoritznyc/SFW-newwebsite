@@ -210,7 +210,7 @@ h3 {
 /* --------------------------------------------------------------------------
    Shapes and rules
    -------------------------------------------------------------------------- */
-.hr   { border: 0; border-top: 0.7pt solid var(--rule); margin: 0.085in 0; }
+.hr   { border: 0; border-top: 0.7pt solid var(--rule); margin: 0.07in 0; }
 .hr--strong { border-top: 1pt solid var(--rule-strong); }
 
 /* --------------------------------------------------------------------------
@@ -488,6 +488,14 @@ h3 {
 .checks li.ico::before { content: none; }
 .checks li.ico .icon { width: 0.17in; height: 0.17in; margin-top: 0.008in; }
 
+/* A small photograph with its caption beside it rather than beneath it.
+   The caption is centred against the picture: a three or four line caption
+   against a taller picture left a notch of white under the text, which is
+   what made the block look badly set rather than deliberately asymmetric. */
+.figure--side { display: flex; gap: 0.13in; align-items: center; }
+.figure--side img { width: 1.3in; height: 0.85in; flex: 0 0 1.3in; }
+.figure--side .caption { margin-top: 0; }
+
 /* The pull quote's standfirst takes its icon the same way. */
 .pull b { display: flex; align-items: center; gap: 0.06in; }
 .pull b .icon { width: 0.18in; height: 0.18in; }
@@ -515,15 +523,20 @@ h3 {
 
 /* The three figures from the homepage, as a bounded cream shape. */
 .figures { display: flex; flex-direction: column; gap: 0.065in; }
-.figures .row { display: flex; align-items: baseline; gap: 0.085in; }
+/* Right-aligning these gave "100+", "10,000+" and "40" three different left
+   edges, which reads as an accident rather than a column. Left-aligned, the
+   numbers and the labels each hold one straight edge; the uneven gap between
+   a short number and its label is the price, and it is much the smaller of
+   the two problems. The column fits "10,000+" at this size with room. */
+.figures .row { display: flex; align-items: baseline; gap: 0.06in; }
 .figures .n {
   font-family: var(--display);
   font-weight: 700;
   font-size: 15pt;
   line-height: 1;
   color: var(--green);
-  flex: 0 0 0.72in;
-  text-align: right;
+  flex: 0 0 0.88in;
+  text-align: left;
   letter-spacing: -0.02em;
 }
 .figures .l { font-size: 7.9pt; line-height: 1.22; color: var(--ink-soft); }
