@@ -37,6 +37,14 @@
   --h:      8.5in;
   --bleed:  0.125in;
   --pad:    0.28in;   /* panel margin. Safe area is --pad in from trim. */
+
+  /* One rhythm across all six panels. The band and the photograph are fixed
+     heights, so their edges line up across both folds however long a heading
+     runs. Headings that need fewer lines sit lower in the band rather than
+     pulling the photograph up with them, which is what made the panels look
+     unrelated. */
+  --band-h:  1.05in;
+  --photo-h: 1.18in;
 }
 
 /* Fonts, self-hosted and subsetted, from the repository's own fonts/ folder.
@@ -209,9 +217,14 @@ h3 {
    neither blue nor purple holds against green; the accents still carry the
    QR rules, where they have room to read. */
 .banner {
-  margin: calc((var(--pad) + var(--bleed)) * -1) calc(var(--pad) * -1) 0.095in;
-  padding: calc(var(--bleed) + 0.15in) var(--pad) 0.10in;
-  background: linear-gradient(158deg, var(--green) 0%, var(--moss) 100%);
+  margin: calc((var(--pad) + var(--bleed)) * -1) calc(var(--pad) * -1) 0;
+  padding: calc(var(--bleed) + 0.13in) var(--pad) 0.11in;
+  height: calc(var(--band-h) + var(--bleed));
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background: linear-gradient(158deg, var(--field-a) 0%, var(--field-b) 100%);
 }
 .panel--first .banner {
   margin-left: calc((var(--pad) + var(--bleed)) * -1);
@@ -224,7 +237,7 @@ h3 {
 .banner .eyebrow,
 .banner .eyebrow--edu,
 .banner .eyebrow--legacy { color: rgba(255, 255, 255, 0.86); }
-.banner h2 { color: #FFFFFF; margin-bottom: 0; line-height: 1.04; }
+.banner h2 { color: #FFFFFF; margin-bottom: 0; line-height: 1.05; font-size: 14pt; }
 
 /* --------------------------------------------------------------------------
    Colour fields
@@ -243,7 +256,7 @@ h3 {
   margin-left: calc(var(--pad) * -1);
   margin-right: calc(var(--pad) * -1);
   padding: 0.16in var(--pad);
-  background: linear-gradient(158deg, var(--green) 0%, var(--moss) 100%);
+  background: linear-gradient(158deg, var(--field-a) 0%, var(--field-b) 100%);
   color: #FFFFFF;
 }
 .panel--first .field { margin-left: calc((var(--pad) + var(--bleed)) * -1); padding-left: calc(var(--pad) + var(--bleed)); }
@@ -252,24 +265,58 @@ h3 {
 
 /* A whole panel in the colour. Everything that carries an ink token has to be
    restated, or it keeps a colour tuned for white paper and disappears. */
-.panel--field {
-  background: linear-gradient(168deg, var(--green) 0%, var(--moss) 108%);
-  color: #FFFFFF;
+/* Every panel carries the two ends of its own gradient. Green is the default;
+   the story panel takes Legacy Purple and the teaching panel Education Blue,
+   so each pillar's accent becomes its field rather than only its QR rule. The
+   deep ends are the same hues taken down, not new tokens. */
+:root {
+  --field-a: var(--green);
+  --field-b: var(--moss);
+  --edu-deep:    #1F4E73;
+  --legacy-deep: #3F2C4B;
 }
-.panel--field .banner { background: none; margin-bottom: 0.10in; padding-bottom: 0; }
-.panel--field h2, .panel--field h3 { color: #FFFFFF; }
+.panel--field       { --field-a: var(--green);  --field-b: var(--moss); color: #FFFFFF; }
+.panel--field--edu    { --field-a: var(--edu);    --field-b: var(--edu-deep); }
+.panel--field--legacy { --field-a: var(--legacy); --field-b: var(--legacy-deep); }
+.panel--field .banner { background: none; margin-bottom: 0; padding-bottom: 0.11in; }
+
+/* Everything that sets its own ink colour has to be restated here, or it keeps
+   a value tuned for white paper and either disappears or sits at two or three
+   to one against the field. This is the full list as of this pass: if a new
+   component sets a colour, it belongs here too. */
+.panel--field h1,
+.panel--field h2,
+.panel--field h3,
+.panel--field .lede,
+.panel--field .pull,
+.panel--field .pull b,
+.panel--field .awaiting b,
+.panel--field .checks b,
+.panel--field .figures .n,
+.panel--field .qr .t,
+.panel--field .legal .addr,
+.panel--field .tagline,
+.panel--field .url,
+.panel--field a            { color: #FFFFFF; }
+.panel--field .eyebrow,
+.panel--field .eyebrow--edu,
+.panel--field .eyebrow--legacy { color: rgba(255, 255, 255, 0.86); }
+.panel--field .awaiting,
+.panel--field .legal,
+.panel--field .qr .d,
+.panel--field .figures .l  { color: rgba(255, 255, 255, 0.86); }
 .panel--field .caption,
-.panel--field .source      { color: rgba(255, 255, 255, 0.70); }
-.panel--field .legal       { color: rgba(255, 255, 255, 0.82); }
-.panel--field .legal .addr { color: #FFFFFF; }
-.panel--field .tagline     { color: #FFFFFF; }
+.panel--field .source,
+.panel--field .eyebrow span,
+.panel--field .qr .h       { color: rgba(255, 255, 255, 0.70); }
 .panel--field .hr          { border-top-color: rgba(255, 255, 255, 0.28); }
-.panel--field .qr--green   { border-top-color: rgba(255, 255, 255, 0.55); }
-.panel--field .qr .t       { color: #FFFFFF; }
-.panel--field .qr .d       { color: rgba(255, 255, 255, 0.82); }
-.panel--field .qr .h       { color: rgba(255, 255, 255, 0.66); }
-/* The code is Food Web Green and would vanish on its own panel, so it sits on
-   a white tile. A QR needs dark on light to scan at all. */
+.panel--field .pull        { border-left-color: rgba(255, 255, 255, 0.55); }
+.panel--field .awaiting    { border-left-color: rgba(255, 255, 255, 0.45); }
+.panel--field .checks li::before { background: rgba(255, 255, 255, 0.85); }
+.panel--field .qr--green,
+.panel--field .qr--edu,
+.panel--field .qr--legacy  { border-top-color: rgba(255, 255, 255, 0.55); }
+/* A code has to be dark on light to scan, whatever it is standing on. */
 .panel--field .qr img {
   background: #FFFFFF;
   padding: 0.055in;
@@ -294,7 +341,7 @@ h3 {
   content: "";
   position: absolute; left: 0; right: 0; bottom: 0;
   height: 0.7in;
-  background: linear-gradient(to bottom, rgba(34, 55, 31, 0) 0%, rgba(34, 55, 31, 0.92) 92%);
+  background: linear-gradient(to bottom, transparent 0%, var(--field-b) 94%);
   pointer-events: none;
   z-index: 0;
 }
@@ -322,7 +369,7 @@ h3 {
 .panel--field::before {
   content: "";
   position: absolute; inset: 0;
-  background: linear-gradient(168deg, var(--green) 0%, var(--moss) 108%);
+  background: linear-gradient(168deg, var(--field-a) 0%, var(--field-b) 108%);
   z-index: -1;
 }
 
@@ -348,7 +395,20 @@ h3 {
 .figure--full .caption { margin-left: var(--pad); margin-right: var(--pad); }
 .panel--first .figure--full .caption { margin-left: calc(var(--pad) + var(--bleed)); }
 .panel--last  .figure--full .caption { margin-right: calc(var(--pad) + var(--bleed)); }
-.figure img { display: block; width: 100%; object-fit: cover; }
+.figure img {
+  display: block;
+  width: 100%;
+  height: var(--photo-h);
+  object-fit: cover;
+}
+/* The lower edge is cut as a shallow, uneven arc rather than a straight line,
+   so the picture sits in the panel like a horizon rather than a pasted block.
+   Asymmetric on purpose: a true ellipse reads as a shape, this reads as ground. */
+.figure--full img {
+  border-bottom-left-radius: 48% 22%;
+  border-bottom-right-radius: 56% 26%;
+}
+.figure--full { margin-bottom: 0.06in; }
 
 .spacer { flex: 1 1 auto; min-height: 0.06in; }
 

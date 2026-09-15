@@ -89,6 +89,29 @@ scope, and the QR rule is the only place it appears. Education Blue stays on pan
 reason. Two accents against a green system read as accents rather than noise, and each one carries a
 meaning rather than decorating.
 
+## One rhythm across the panels
+
+The band and the photograph are fixed heights, `--band-h` and `--photo-h`, not
+sized to their contents. Before this they were neither: photographs ran from
+1.05in to 2.05in and bands grew with the heading, so every panel's edges landed
+somewhere different and the three columns read as unrelated pieces of paper.
+Now a heading that needs fewer lines sits lower in its band rather than pulling
+the photograph up with it.
+
+The cover is the deliberate exception: it carries the wordmark where the others
+carry a band.
+
+Photographs are cut with an uneven arc along the lower edge rather than a
+straight line, so a picture reads as ground rather than a pasted rectangle. The
+two radii differ on purpose; matching them produces an ellipse, which reads as
+a shape.
+
+**Both dimensions are load-bearing.** The six panels sit between 687 and 763
+points against 762 available, and `used` in the render report counts children
+only, not margins, so a panel can report under and still overflow. Trust the
+`overflow` figure. Raising `--photo-h` by a quarter inch is enough to push the
+practice panel over.
+
 ## The colour system
 
 The piece runs on one idea at three sizes, all Food Web Green into moss:
