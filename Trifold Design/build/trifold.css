@@ -285,6 +285,16 @@ h3 {
 .qr--edu    { border-top: 2pt solid var(--edu);    padding-top: 0.11in; }
 .qr--green  { border-top: 2pt solid var(--green);  padding-top: 0.11in; }
 
+/* A dated log of what the community actually did. Each line carries its own
+   date and place, which is the site's rule for every dated item. */
+.log { display: grid; gap: 0.06in; }
+.log .d {
+  font-family: var(--display); font-weight: 700; font-size: 6.6pt;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--green);
+  margin-bottom: 0.012in;
+}
+.log p { font-size: 8pt; line-height: 1.3; margin: 0; }
+
 /* The legal block, ratified wording, verbatim. */
 .legal { font-size: 6.8pt; line-height: 1.35; color: var(--ink-soft); }
 .legal .addr { font-family: var(--display); font-weight: 600; font-size: 7.6pt; color: var(--soil); line-height: 1.3; margin-bottom: 0.045in; }

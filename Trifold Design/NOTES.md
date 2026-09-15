@@ -222,3 +222,93 @@ before print if the new site is live by then**, or the code will need a redirect
   for its preset amounts waiting on program costs. Worth deciding whether a print piece should carry one.
 - Panel 1 is the only panel carrying the wordmark. On a folded piece the cover is the outward face, so
   that is correct, but confirm it against how the piece will actually be stacked and displayed.
+
+---
+
+## Pass 2, 15 September 2026
+
+Three open items closed, one reopened as a smaller question, and panel 6 reworked on Linnea's notes.
+
+### Open item 1 is answered. Dr. Ingham published 89 things.
+
+Counted from this repository's own rebuilt publications list, `content/research.json`,
+which holds 137 entries in six sections. Four of those sections are hers:
+
+| Section | Entries |
+| :-- | --: |
+| Papers Published by Dr. Ingham | 71 |
+| Book Chapters | 6 |
+| Peer-Reviewed Technical Reports | 10 |
+| Technical Reports | 2 |
+| **Authored or co-authored by Dr. Ingham** | **89** |
+| Other Relevant Publications (other authors) | 43 |
+| Internet Articles (other authors) | 5 |
+| Total entries on the publications page | 137 |
+
+Every one of those 89 carries "Ingham" in its author string. Not one of the other 48 does.
+By the `type` field on each entry the 89 are: 53 journal articles, 10 peer-reviewed technical
+reports, 9 book chapters, 7 magazine articles, 4 conference proceedings, 3 technical reports,
+2 books and 1 USDA publication, the last being the Soil Biology Primer.
+
+That is exactly what `about-elaine.html` and `about.html` already print: "89 publications:
+53 journal articles, 9 book chapters, 13 technical reports, and 14 others." Both live pages
+are right, and both are derivable from the data line by line. Panel 2 now prints the figure
+with a source line instead of a placeholder.
+
+**Where the other two numbers came from, so nobody reintroduces them.**
+
+- **"82 verified links" is a link count, not a publication count.** 87 of the 137 entries carry
+  a URL. Five of those are the internet-article links that `content/research.json` records as
+  never re-verified. 87 minus 5 is 82. The copy deck turned a count of working links into a
+  count of publications.
+- **"77 journal papers, 6 book chapters, 10 reports, 43 other" is the section grouping, and it
+  is wrong twice.** The Papers section holds 71 entries, not 77, and only 53 of them are journal
+  articles; the rest are magazine pieces, conference proceedings, books and the Primer. And the
+  43 "Other Relevant Publications" are by other authors entirely. Counting another scientist's
+  work as hers is the substantive error, not the arithmetic.
+- The old site's "Seventy-six papers", still flagged in `OPEN-ITEMS.md` against
+  `about-team.html`, is wrong too, and for the same reason: it counts a section, not an authorship.
+
+**If the brochure ever needs one number it is 89 publications, not 77 peer-reviewed journal
+papers.** There is no 77 in the data. The nearest peer-reviewed figure is 63: 53 journal
+articles plus 10 peer-reviewed technical reports.
+
+`OPEN-ITEMS.md` and `docs/copy-deck-v2.md` still carry the wrong figures. Correcting them is a
+separate edit outside this folder and has not been made.
+
+### Open item 7 is answered, with a caveat. The research roadmap is real.
+
+`SFWF_Messaging_House.docx` (Drive, v1.0, August 2026), pillar one, lists under "proof to build":
+published replications, open data releases, a microscopy methodology paper, and impact studies
+against conventional methods, all traced to the Strategic Priorities 2027 to 2029. Its "say
+today" line is the brochure draft's wording almost verbatim. Panel 4 now prints the roadmap with
+a source line. **The caveat:** that document is marked "For Board and Leadership Review" and
+section 8 asks for ratification. Confirm it is ratified before print.
+
+The same document also settles panel 5: "we're building ecoregion hubs that put compost,
+microscopy, consulting, and education under one roof" is approved present-tense language, so the
+hubs sentence is no longer hedged to "in planning". No hub is named publicly yet, which the
+panel still says.
+
+Worth knowing: all four panel headlines are the Messaging House's four pillar claims word for
+word, and the cover copy is its 100-word master narrative. The trifold was already on the house
+without either of us checking.
+
+### Panel 6, reworked on Linnea's notes
+
+1. **The tagline is three lines, not one.** "Healing soil. / Feeding humanity. / Restoring the
+   living world." Panel 1 already set it this way; panel 6 now matches.
+2. **The legal block is trimmed.** The Form 990 and financial statements sentence is gone: it
+   existed only to point at the governance page, and the website carries that better than a
+   printed panel can. What remains is what a printed piece is actually useful for, which is the
+   registered address, the 501(c)(3) status, the EIN, and the School's descriptor line, which the
+   Brand Guide Addendum requires in footers and formal documents.
+3. **The panel carries a dated log of real work.** Four entries, each with its own date and
+   place, from `community.html`: the India workshop, Wild Ken Hill, the first Permaculture Design
+   Certification cohort, and Soil Health Week in Pakistan. Source line beneath. Nothing invented;
+   everything already published on the community page.
+
+The group photograph shrank to a 0.62 in band to make room. It reads, but it is the thing to
+give height back to when the consent question on it is settled, or when a better community
+photograph arrives. The consent flag on that photograph is unchanged and still the most
+important thing on this list.
