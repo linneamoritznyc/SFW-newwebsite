@@ -195,6 +195,37 @@ h3 {
 .hr   { border: 0; border-top: 0.7pt solid var(--rule); margin: 0.085in 0; }
 .hr--strong { border-top: 1pt solid var(--rule-strong); }
 
+/* --------------------------------------------------------------------------
+   The colour band
+   --------------------------------------------------------------------------
+   Each pillar panel opens with its eyebrow and heading reversed out of Food
+   Web Green, running the full width of the panel and up through the panel's
+   own top padding into the bleed, so after trimming it sits flush to the top
+   edge. It costs almost no height: that top padding was already empty white,
+   so only the band's bottom padding is new.
+
+   The gradient runs green to moss, both already in the palette. The eyebrow
+   accent modifiers (--edu, --legacy) do not apply inside the band, since
+   neither blue nor purple holds against green; the accents still carry the
+   QR rules, where they have room to read. */
+.banner {
+  margin: calc((var(--pad) + var(--bleed)) * -1) calc(var(--pad) * -1) 0.095in;
+  padding: calc(var(--bleed) + 0.15in) var(--pad) 0.10in;
+  background: linear-gradient(158deg, var(--green) 0%, var(--moss) 100%);
+}
+.panel--first .banner {
+  margin-left: calc((var(--pad) + var(--bleed)) * -1);
+  padding-left: calc(var(--pad) + var(--bleed));
+}
+.panel--last .banner {
+  margin-right: calc((var(--pad) + var(--bleed)) * -1);
+  padding-right: calc(var(--pad) + var(--bleed));
+}
+.banner .eyebrow,
+.banner .eyebrow--edu,
+.banner .eyebrow--legacy { color: rgba(255, 255, 255, 0.86); }
+.banner h2 { color: #FFFFFF; margin-bottom: 0; line-height: 1.04; }
+
 /* Organic Cream as a bounded rectangle behind a group, never as the page. */
 .card {
   background: var(--panel);

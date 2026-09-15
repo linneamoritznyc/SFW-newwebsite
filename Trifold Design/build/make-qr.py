@@ -15,22 +15,22 @@ OUT.mkdir(exist_ok=True)
 BASE = "utm_source=trifold&utm_medium=print&utm_campaign=foundation_brochure"
 
 CODES = {
-    # panel 2, the Dr. Elaine story panel. --legacy, Legacy Purple.
+    # panel 6, Community. --green, Food Web Green.
     "community": (
         "https://school.soilfoodweb.com/products/communities/SFW-public-community"
         f"?{BASE}&utm_content=community",
+        "#156826",
+    ),
+    # panel 2, the Dr. Elaine story panel. --legacy, Legacy Purple.
+    "webinar": (
+        f"https://webinar.soilfoodweb.com/?{BASE}&utm_content=webinar",
         "#6B4C7A",
     ),
     # panel 3, Teaching. --edu, Education Blue.
-    "webinar": (
-        f"https://webinar.soilfoodweb.com/?{BASE}&utm_content=webinar",
-        "#3780B8",
-    ),
-    # panel 6, Community. --green, Food Web Green.
     "scholarship": (
         "https://soilfoodweb.com/scholarship-opportunities"
         f"?{BASE}&utm_content=scholarship",
-        "#156826",
+        "#3780B8",
     ),
 }
 
