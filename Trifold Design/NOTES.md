@@ -83,12 +83,82 @@ panel's accent, so moving a code means regenerating it. Moving the markup alone
 leaves all three mismatched, which is what happened on the first pass of this
 change.
 
-**Both of these want a human decision, not mine.** Two readings are defensible for `--legacy`: it is
-Dr. Elaine's panel, or a QR frame is decoration and the token should stay on editorial content about
-her. If Evan or Linnea prefer the second reading, the fallback is `--tan` #C89B7B, which is already in
-the token list for card borders and dividers and is outside the restricted set. One line changes in
-`build/make-qr.py` and one class in `build/outside.html`. **Nothing here should print until one of
-them signs off on the purple.**
+**Settled, 15 September.** Linnea signed off on the purple and gave design authority for the piece.
+Legacy Purple stays on panel 2: that panel is Dr. Elaine's content, which is the token's documented
+scope, and the QR rule is the only place it appears. Education Blue stays on panel 3 for the same
+reason. Two accents against a green system read as accents rather than noise, and each one carries a
+meaning rather than decorating.
+
+## One rhythm across the panels
+
+The band and the photograph are fixed heights, `--band-h` and `--photo-h`, not
+sized to their contents. Before this they were neither: photographs ran from
+1.05in to 2.05in and bands grew with the heading, so every panel's edges landed
+somewhere different and the three columns read as unrelated pieces of paper.
+Now a heading that needs fewer lines sits lower in its band rather than pulling
+the photograph up with it.
+
+The cover is the deliberate exception: it carries the wordmark where the others
+carry a band.
+
+Photographs are not cut with a shape of their own. **One curve is drawn across
+the whole sheet and each picture is clipped by the segment of it that falls in
+that panel**, so the three lower edges join into a single line across both
+folds. Flat, the eye reads one horizon; folded, each panel still stands up.
+
+The maths has to work in sheet coordinates, not per image. The cover's
+photograph starts higher than the other five, because that panel carries the
+wordmark where the others carry a band, so the same percentage is a different
+height on the page. `build/apply-curve.py` measures the real positions with
+`build/measure-figs.js` and generates the polygons from those, which is why the
+clip lives inline on each image rather than in the stylesheet.
+
+Rebuild the curve after changing `--band-h` or `--photo-h`:
+
+    python3 "Trifold Design/build/apply-curve.py"
+    node "Trifold Design/build/render.js"
+
+The crest is set to the shallowest photograph's lower edge and the trough
+leaves about two fifths of the frame, so the pictures are full at the middle of
+the spread without thinning to slivers at the outer edges.
+
+The band and the photograph both carry `flex: 0 0 auto`. Without it the panel,
+being a flex column, shrinks them on whichever panel holds the most copy: the
+practice panel's band came out a fifth of an inch short, which broke the rhythm
+on exactly one panel and pulled its photograph out of the curve.
+
+**Both dimensions are load-bearing.** The six panels sit between 687 and 763
+points against 762 available, and `used` in the render report counts children
+only, not margins, so a panel can report under and still overflow. Trust the
+`overflow` figure. Raising `--photo-h` by a quarter inch is enough to push the
+practice panel over.
+
+## The colour system
+
+The piece runs on one idea at three sizes, all Food Web Green into moss:
+
+| | What it is | Where |
+| :-- | :-- | :-- |
+| `.banner` | The eyebrow and heading at the top of a pillar panel, reversed out | Panels 2, 3, 4, 5, 6 |
+| `.field` | A bounded block inside a white panel | The cover's closing block |
+| `.panel--field` | A whole panel given to the colour | Panel 6 |
+
+**A background costs no height.** That is why panel 6 can turn green on a sheet where four of the six
+panels have under twelve points spare, and why the banner was affordable at all: its top padding was
+already empty white, so only its bottom padding is new. Bounded fields do cost their padding, which is
+what pushed the cover over on the first pass.
+
+`.carry` continues panel 6's colour left across the crease, so the field starts before the fold rather
+than at it. It is absolutely placed on the sheet, sized to panel 5's right padding exactly, so no copy
+ever sits on it.
+
+The photo fade belongs to `.panel--field` only. On a white panel the same fade lands behind the
+caption and turns grey italic type into grey type on a grey-green band. The caption carries a
+`z-index` so it clears the fade either way.
+
+Cards are pale green with a Food Web Green left edge. `.card--cream` keeps Organic Cream with a tan
+edge for anything that should read as a note rather than a panel. No panel has a cream background:
+cream is still a shape, never the page.
 
 Organic Cream `--panel` #F4F1EA is used only as bounded rectangles: the figures block on panel 1, the
 "On claims" box on panel 4, the directory box on panel 5, the legal block on panel 6. No panel has a
