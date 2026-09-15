@@ -43,8 +43,8 @@
      runs. Headings that need fewer lines sit lower in the band rather than
      pulling the photograph up with them, which is what made the panels look
      unrelated. */
-  --band-h:  1.05in;
-  --photo-h: 1.18in;
+  --band-h:  0.98in;
+  --photo-h: 1.02in;
 }
 
 /* Fonts, self-hosted and subsetted, from the repository's own fonts/ folder.
@@ -221,6 +221,10 @@ h3 {
   padding: calc(var(--bleed) + 0.13in) var(--pad) 0.11in;
   height: calc(var(--band-h) + var(--bleed));
   box-sizing: border-box;
+  /* The panel is a flex column, so without this the band and the photograph
+     are shrunk on whichever panel carries the most copy, and the rhythm the
+     fixed heights exist to create is quietly lost on exactly one panel. */
+  flex: 0 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -401,14 +405,13 @@ h3 {
   height: var(--photo-h);
   object-fit: cover;
 }
-/* The lower edge is cut as a shallow, uneven arc rather than a straight line,
-   so the picture sits in the panel like a horizon rather than a pasted block.
-   Asymmetric on purpose: a true ellipse reads as a shape, this reads as ground. */
-.figure--full img {
-  border-bottom-left-radius: 48% 22%;
-  border-bottom-right-radius: 56% 26%;
-}
-.figure--full { margin-bottom: 0.06in; }
+/* The lower edge of each photograph is not its own shape. One curve is drawn
+   across the whole sheet and each picture is clipped by the segment of it that
+   falls in that panel, so the three edges join into a single line across both
+   folds. The polygons are generated per panel from the panel spans that
+   build/measure.js reports; they are inline on the images because each one is
+   a different part of the same curve. */
+.figure--full { margin-bottom: 0.06in; flex: 0 0 auto; }
 
 .spacer { flex: 1 1 auto; min-height: 0.06in; }
 

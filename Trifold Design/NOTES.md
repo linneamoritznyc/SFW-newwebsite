@@ -101,10 +101,31 @@ the photograph up with it.
 The cover is the deliberate exception: it carries the wordmark where the others
 carry a band.
 
-Photographs are cut with an uneven arc along the lower edge rather than a
-straight line, so a picture reads as ground rather than a pasted rectangle. The
-two radii differ on purpose; matching them produces an ellipse, which reads as
-a shape.
+Photographs are not cut with a shape of their own. **One curve is drawn across
+the whole sheet and each picture is clipped by the segment of it that falls in
+that panel**, so the three lower edges join into a single line across both
+folds. Flat, the eye reads one horizon; folded, each panel still stands up.
+
+The maths has to work in sheet coordinates, not per image. The cover's
+photograph starts higher than the other five, because that panel carries the
+wordmark where the others carry a band, so the same percentage is a different
+height on the page. `build/apply-curve.py` measures the real positions with
+`build/measure-figs.js` and generates the polygons from those, which is why the
+clip lives inline on each image rather than in the stylesheet.
+
+Rebuild the curve after changing `--band-h` or `--photo-h`:
+
+    python3 "Trifold Design/build/apply-curve.py"
+    node "Trifold Design/build/render.js"
+
+The crest is set to the shallowest photograph's lower edge and the trough
+leaves about two fifths of the frame, so the pictures are full at the middle of
+the spread without thinning to slivers at the outer edges.
+
+The band and the photograph both carry `flex: 0 0 auto`. Without it the panel,
+being a flex column, shrinks them on whichever panel holds the most copy: the
+practice panel's band came out a fifth of an inch short, which broke the rhythm
+on exactly one panel and pulled its photograph out of the curve.
 
 **Both dimensions are load-bearing.** The six panels sit between 687 and 763
 points against 762 available, and `used` in the render report counts children
