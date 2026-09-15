@@ -226,13 +226,118 @@ h3 {
 .banner .eyebrow--legacy { color: rgba(255, 255, 255, 0.86); }
 .banner h2 { color: #FFFFFF; margin-bottom: 0; line-height: 1.04; }
 
+/* --------------------------------------------------------------------------
+   Colour fields
+   --------------------------------------------------------------------------
+   A field is a block of Food Web Green running to moss, carrying white type.
+   Three sizes of the same idea:
+
+     .banner        the eyebrow and heading at the top of a pillar panel
+     .field         a bounded block inside a white panel
+     .panel--field  a whole panel given over to the colour
+
+   A background costs no height, which is the reason a whole panel can turn
+   green on a sheet where four of the six panels have under 12 points spare.
+   Only the padding of a bounded field is new height. */
+.field {
+  margin-left: calc(var(--pad) * -1);
+  margin-right: calc(var(--pad) * -1);
+  padding: 0.16in var(--pad);
+  background: linear-gradient(158deg, var(--green) 0%, var(--moss) 100%);
+  color: #FFFFFF;
+}
+.panel--first .field { margin-left: calc((var(--pad) + var(--bleed)) * -1); padding-left: calc(var(--pad) + var(--bleed)); }
+.panel--last  .field { margin-right: calc((var(--pad) + var(--bleed)) * -1); padding-right: calc(var(--pad) + var(--bleed)); }
+.field--flush { margin-bottom: calc((var(--pad) + var(--bleed)) * -1); padding-bottom: calc(var(--pad) + var(--bleed)); }
+
+/* A whole panel in the colour. Everything that carries an ink token has to be
+   restated, or it keeps a colour tuned for white paper and disappears. */
+.panel--field {
+  background: linear-gradient(168deg, var(--green) 0%, var(--moss) 108%);
+  color: #FFFFFF;
+}
+.panel--field .banner { background: none; margin-bottom: 0.10in; padding-bottom: 0; }
+.panel--field h2, .panel--field h3 { color: #FFFFFF; }
+.panel--field .caption,
+.panel--field .source      { color: rgba(255, 255, 255, 0.70); }
+.panel--field .legal       { color: rgba(255, 255, 255, 0.82); }
+.panel--field .legal .addr { color: #FFFFFF; }
+.panel--field .tagline     { color: #FFFFFF; }
+.panel--field .hr          { border-top-color: rgba(255, 255, 255, 0.28); }
+.panel--field .qr--green   { border-top-color: rgba(255, 255, 255, 0.55); }
+.panel--field .qr .t       { color: #FFFFFF; }
+.panel--field .qr .d       { color: rgba(255, 255, 255, 0.82); }
+.panel--field .qr .h       { color: rgba(255, 255, 255, 0.66); }
+/* The code is Food Web Green and would vanish on its own panel, so it sits on
+   a white tile. A QR needs dark on light to scan at all. */
+.panel--field .qr img {
+  background: #FFFFFF;
+  padding: 0.055in;
+  border-radius: 0.035in;
+  width: 1.04in; height: 1.04in;
+}
+
+/* The figures block reversed out, for the cover's closing field. */
+.field .figures .n { color: #FFFFFF; }
+.field .figures .l { color: rgba(255, 255, 255, 0.86); }
+.field .source     { color: rgba(255, 255, 255, 0.68); }
+.field .tagline    { color: #FFFFFF; }
+
+/* A photograph in the colour panel fades into the field along its lower edge,
+   so the picture joins the green rather than sitting on it as a hard rectangle.
+
+   Only in the colour panel. On a white panel the same fade lands behind the
+   caption and turns it into grey type on a grey-green band, which is how it
+   first went out. The caption is lifted above the fade either way. */
+.figure { position: relative; }
+.panel--field .figure--fade::after {
+  content: "";
+  position: absolute; left: 0; right: 0; bottom: 0;
+  height: 0.7in;
+  background: linear-gradient(to bottom, rgba(34, 55, 31, 0) 0%, rgba(34, 55, 31, 0.92) 92%);
+  pointer-events: none;
+  z-index: 0;
+}
+.figure figcaption { position: relative; z-index: 1; }
+
+/* The fold carry.
+   Panel 6 is a colour field; this is the same field continuing left past the
+   crease, so the block reads as one shape folded rather than as a panel that
+   happens to be green. Width is panel 5's right padding exactly, so no copy
+   sits on it. Sheet geometry: panel 4 is wide + bleed, panel 5 is wide, so the
+   crease falls at (wide + bleed) + wide from the sheet's left edge. */
+.carry {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(var(--w-wide) + var(--bleed) + var(--w-wide) - var(--pad));
+  width: var(--pad);
+  background: linear-gradient(168deg, var(--green) 0%, var(--moss) 108%);
+  border-top-left-radius: 0.22in;
+  border-bottom-left-radius: 0.22in;
+  z-index: 0;
+}
+.panel { z-index: 1; }
+.panel--field { background: none; }
+.panel--field::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(168deg, var(--green) 0%, var(--moss) 108%);
+  z-index: -1;
+}
+
 /* Organic Cream as a bounded rectangle behind a group, never as the page. */
 .card {
-  background: var(--panel);
+  background: var(--panel-green);
   padding: 0.12in 0.13in;
   border-radius: 0.045in;
+  border-left: 1.6pt solid var(--green);
 }
-.card--green { background: var(--panel-green); }
+.card--cream { background: var(--panel); border-left-color: var(--tan); }
+.panel--field .card {
+  background: rgba(255, 255, 255, 0.12);
+  border-left-color: rgba(255, 255, 255, 0.65);
+}
 
 /* Photographs. .figure--full reaches both panel edges; add --bleed-l or
    --bleed-r on a panel that sits against the outer trim. */
