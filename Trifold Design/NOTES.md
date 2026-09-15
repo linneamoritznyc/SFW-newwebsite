@@ -69,9 +69,19 @@ The three QR treatments are therefore:
 
 | Panel | QR | Colour | Token |
 | :-- | :-- | :-- | :-- |
-| 2, Story | Join the free community | #6B4C7A | `--legacy` |
-| 3, Teaching | Watch a free webinar | #3780B8 | `--edu` |
-| 6, Community | Apply for a scholarship | #156826 | `--green` |
+| 2, Story | Watch a free webinar | #6B4C7A | `--legacy` |
+| 3, Teaching | Apply for a scholarship | #3780B8 | `--edu` |
+| 6, Community | Join the free community | #156826 | `--green` |
+
+Linnea reassigned these on 15 September: the scholarship code belongs on the
+education panel and the community code on the community panel. The webinar code
+took the slot that left on the story panel, since the one-code-per-panel rule
+holds and it is the lightest first step of the three.
+
+**The colour follows the panel, not the code.** Each code is generated in its
+panel's accent, so moving a code means regenerating it. Moving the markup alone
+leaves all three mismatched, which is what happened on the first pass of this
+change.
 
 **Both of these want a human decision, not mine.** Two readings are defensible for `--legacy`: it is
 Dr. Elaine's panel, or a QR frame is decoration and the token should stay on editorial content about
