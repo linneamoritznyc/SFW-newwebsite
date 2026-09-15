@@ -60,6 +60,11 @@ function serve() {
 
   for (const [src, out] of [['outside', 'outside-spread.png'], ['inside', 'inside-spread.png']]) {
     await page.goto(`http://127.0.0.1:${port}/Trifold%20Design/build/${src}.html`, { waitUntil: 'networkidle' });
+
+    // The review copy shows the production notes; the piece itself never does.
+    if (process.env.TRIFOLD_NOTES) {
+      await page.evaluate(() => document.querySelector('.sheet').setAttribute('data-notes', 'true'));
+    }
     await page.evaluate(() => document.fonts.ready);
 
     // Overflow check: does any panel's content run past its own box?

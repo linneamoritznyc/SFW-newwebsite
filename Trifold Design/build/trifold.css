@@ -27,9 +27,13 @@
   --rule:        rgba(79, 52, 51, .22);
   --rule-strong: rgba(79, 52, 51, .55);
 
+  /* Two faces, and only two. Montserrat sets every heading, label, number and
+     the tagline; Source Sans sets everything a reader reads in sentences, its
+     italic doing the work captions and source lines used to ask a third family
+     for. Six panels cannot carry three families without reading as three
+     different pieces, which is how it read. */
   --display: "Montserrat", "Helvetica Neue", Arial, sans-serif;
   --sans:    "Source Sans 3", "Helvetica Neue", Arial, sans-serif;
-  --serif:   "EB Garamond", Georgia, "Times New Roman", serif;
 
   /* Trim. Letter tri-fold: the tucked panel is 1/16in narrower. */
   --w-wide: 3.6875in;
@@ -44,19 +48,17 @@
      pulling the photograph up with them, which is what made the panels look
      unrelated. */
   --band-h:  0.98in;
-  --photo-h: 1.38in;
+  --photo-h: 1.60in;
 }
 
 /* Fonts, self-hosted and subsetted, from the repository's own fonts/ folder.
-   Rules copied from css/site.css section 2, paths rewritten for this depth. */
+   Rules copied from css/site.css section 2, paths rewritten for this depth.
+   The site's third family is deliberately not loaded here: see --display and
+   --sans above. */
 @font-face { font-family: "Montserrat";    font-style: normal; font-weight: 600 700; src: url("/fonts/montserrat-latin-variable.woff2") format("woff2-variations"); }
 @font-face { font-family: "Source Sans 3"; font-style: normal; font-weight: 400; src: url("/fonts/source-sans-3-latin-400-normal.woff2") format("woff2"); }
 @font-face { font-family: "Source Sans 3"; font-style: italic; font-weight: 400; src: url("/fonts/source-sans-3-latin-400-italic.woff2") format("woff2"); }
 @font-face { font-family: "Source Sans 3"; font-style: normal; font-weight: 600; src: url("/fonts/source-sans-3-latin-600-normal.woff2") format("woff2"); }
-@font-face { font-family: "EB Garamond";   font-style: normal; font-weight: 400; src: url("/fonts/eb-garamond-latin-400-normal.woff2") format("woff2"); }
-@font-face { font-family: "EB Garamond";   font-style: italic; font-weight: 400; src: url("/fonts/eb-garamond-latin-400-italic.woff2") format("woff2"); }
-@font-face { font-family: "EB Garamond";   font-style: normal; font-weight: 500; src: url("/fonts/eb-garamond-latin-500-normal.woff2") format("woff2"); }
-@font-face { font-family: "EB Garamond";   font-style: normal; font-weight: 600; src: url("/fonts/eb-garamond-latin-600-normal.woff2") format("woff2"); }
 
 * , *::before, *::after { box-sizing: border-box; }
 
@@ -85,8 +87,8 @@ html, body { margin: 0; padding: 0; background: var(--paper); }
   background: var(--paper);
   color: var(--ink);
   font-family: var(--sans);
-  font-size: 8.15pt;
-  line-height: 1.34;
+  font-size: 8.4pt;
+  line-height: 1.38;
   overflow: hidden;
 }
 .panel--wide { width: var(--w-wide); flex: 0 0 var(--w-wide); }
@@ -100,7 +102,7 @@ html, body { margin: 0; padding: 0; background: var(--paper); }
 /* --------------------------------------------------------------------------
    Type
    -------------------------------------------------------------------------- */
-p, ul { margin: 0 0 0.055in; }
+p, ul { margin: 0 0 0.07in; }
 p:last-child, ul:last-child { margin-bottom: 0; }
 strong { font-weight: 600; }
 
@@ -138,8 +140,6 @@ h3 {
   margin: 0.02in 0 0.025in;
 }
 
-/* EB Garamond carries the small, considered text: ledes, captions, figure
-   labels and pull quotes. css/site.css section 1, --text-serif. */
 .lede {
   font-family: var(--sans);
   font-size: 9.8pt;
@@ -147,8 +147,9 @@ h3 {
   color: var(--ink);
   margin: 0 0 0.085in;
 }
+/* Captions and source lines: the sans in italic, one size, on all six panels. */
 .caption, .source {
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-style: italic;
   font-size: 6.7pt;
   line-height: 1.26;
@@ -161,8 +162,17 @@ h3 {
    display:none until ?notes=1 is set; in a flattened print PNG that would
    render as nothing at all. So it is always visible here, in the .awaiting
    tone: a straight sentence about what is coming, not a grey box. */
+/* Production notes. These are addressed to the team, not the reader, and must
+   never appear in a piece that goes to print. They stay in the markup so the
+   outstanding questions travel with the file, and the review render turns them
+   on: set data-notes on the sheet, which is the same gesture the website uses.
+
+     node "Trifold Design/build/render.js"              the piece
+     TRIFOLD_NOTES=1 node "Trifold Design/build/render.js"   the review copy */
+.awaiting { display: none; }
+[data-notes] .awaiting { display: block; }
 .awaiting {
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-style: italic;
   font-size: 6.6pt;
   line-height: 1.24;
@@ -175,8 +185,8 @@ h3 {
 
 .pull {
   font-family: var(--sans);
-  font-size: 8.5pt;
-  line-height: 1.31;
+  font-size: 8.9pt;
+  line-height: 1.29;
   color: var(--ink);
 }
 .pull b {
@@ -200,7 +210,7 @@ h3 {
 /* --------------------------------------------------------------------------
    Shapes and rules
    -------------------------------------------------------------------------- */
-.hr   { border: 0; border-top: 0.7pt solid var(--rule); margin: 0.07in 0; }
+.hr   { border: 0; border-top: 0.7pt solid var(--rule); margin: 0.085in 0; }
 .hr--strong { border-top: 1pt solid var(--rule-strong); }
 
 /* --------------------------------------------------------------------------
@@ -380,7 +390,7 @@ h3 {
 /* Organic Cream as a bounded rectangle behind a group, never as the page. */
 .card {
   background: var(--panel-green);
-  padding: 0.10in 0.115in;
+  padding: 0.12in 0.13in;
   border-radius: 0.045in;
   border-left: 1.6pt solid var(--green);
 }
@@ -411,13 +421,77 @@ h3 {
    folds. The polygons are generated per panel from the panel spans that
    build/measure.js reports; they are inline on the images because each one is
    a different part of the same curve. */
-.figure--full { margin-bottom: 0.06in; flex: 0 0 auto; }
+.figure--full { margin-bottom: 0.05in; flex: 0 0 auto; }
 
-.spacer { flex: 1 1 auto; min-height: 0.06in; }
+.spacer { flex: 1 1 auto; min-height: 0.04in; }
 
 /* --------------------------------------------------------------------------
    Components
    -------------------------------------------------------------------------- */
+/* --------------------------------------------------------------------------
+   Icons
+   --------------------------------------------------------------------------
+   The site's own set, from img/icons.svg, inlined at the top of each sheet
+   because <use href="#id"> only reaches a symbol in the same document and
+   these files are opened directly by the renderer.
+
+   Two changes for print. The stroke is 1.2 rather than the site's 1, because
+   at these sizes a 1/24 stroke lands under three pixels at 300 DPI and prints
+   thin; and the colour is inherited, so an icon standing on a colour panel is
+   reversed by the same block that reverses everything else there. */
+.icon {
+  width: 0.2in; height: 0.2in;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex: none;
+  display: block;
+  color: var(--green);
+}
+.icon--lg { width: 0.3in; height: 0.3in; }
+.panel--field .icon { color: rgba(255, 255, 255, 0.92); }
+
+/* A row of pillars: icon over a one-word label. Used on the cover to name the
+   four parts of the Foundation, and on the community panel to name the four
+   ways in. Equal columns, so the labels sit on one baseline. */
+.pillars { display: flex; gap: 0.1in; }
+.pillars > div { flex: 1 1 0; text-align: center; }
+.pillars .icon { margin: 0 auto 0.045in; }
+.pillars .l {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 6.2pt;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  line-height: 1.16;
+  color: var(--soil);
+}
+.panel--field .pillars .l, .field .pillars .l { color: #FFFFFF; }
+.pillars .d { font-size: 6.8pt; line-height: 1.2; color: var(--ink-faint); margin-top: 0.025in; }
+.panel--field .pillars .d, .field .pillars .d { color: rgba(255, 255, 255, 0.82); }
+
+/* An icon on the heading line, not beside the block.
+   The first version of this put the icon in a column to the left of a heading
+   and its paragraph together, which took 0.29in off the measure on a panel
+   only 3.1in wide inside its margins. Three or four of those re-wrapped enough
+   copy to push two panels off the sheet. On the heading line the icon costs
+   nothing vertically and nothing at all to the paragraph under it. */
+.hd { display: flex; align-items: center; gap: 0.075in; margin-top: 0.02in; }
+.hd h3 { margin: 0; }
+.hd .icon { width: 0.19in; height: 0.19in; }
+
+/* The checks list takes icons in place of its dots. The dot rule stays for any
+   list that does not carry them. */
+.checks li.ico { padding-left: 0; display: flex; gap: 0.085in; align-items: flex-start; }
+.checks li.ico::before { content: none; }
+.checks li.ico .icon { width: 0.17in; height: 0.17in; margin-top: 0.008in; }
+
+/* The pull quote's standfirst takes its icon the same way. */
+.pull b { display: flex; align-items: center; gap: 0.06in; }
+.pull b .icon { width: 0.18in; height: 0.18in; }
+
 
 /* The masthead: the provisional logo, then the type-set wordmark, exactly
    as the live site does until the real vector mark arrives (Decision 16). */
@@ -432,7 +506,7 @@ h3 {
   color: var(--soil);
 }
 .mast .sub {
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-style: italic;
   font-size: 7.2pt;
   color: var(--ink-faint);
@@ -455,11 +529,11 @@ h3 {
 .figures .l { font-size: 7.9pt; line-height: 1.22; color: var(--ink-soft); }
 
 /* A stack of named items separated by hairlines. */
-.items > * + * { border-top: 0.7pt solid var(--rule); padding-top: 0.06in; margin-top: 0.06in; }
-.items p { margin: 0; font-size: 8.1pt; line-height: 1.33; }
+.items > * + * { border-top: 0.7pt solid var(--rule); padding-top: 0.05in; margin-top: 0.05in; }
+.items p { margin: 0; font-size: 8.1pt; line-height: 1.3; }
 
-.checks { list-style: none; padding: 0; margin: 0 0 0.085in; }
-.checks li { position: relative; padding-left: 0.135in; margin-bottom: 0.045in; font-size: 8.1pt; line-height: 1.33; }
+.checks { list-style: none; padding: 0; margin: 0 0 0.06in; }
+.checks li { position: relative; padding-left: 0.135in; margin-bottom: 0.03in; font-size: 8.1pt; line-height: 1.33; }
 .checks li:last-child { margin-bottom: 0; }
 .checks li::before {
   content: ""; position: absolute; left: 0.015in; top: 0.055in;
@@ -479,18 +553,22 @@ h3 {
   color: var(--soil);
 }
 .qr .d { font-size: 7.4pt; line-height: 1.28; color: var(--ink-soft); margin-top: 0.035in; }
-.qr .h { font-family: var(--serif); font-style: italic; font-size: 7pt; color: var(--ink-faint); margin-top: 0.035in; }
-.qr--legacy { border-top: 2pt solid var(--legacy); padding-top: 0.11in; }
-.qr--edu    { border-top: 2pt solid var(--edu);    padding-top: 0.11in; }
-.qr--green  { border-top: 2pt solid var(--green);  padding-top: 0.11in; }
+.qr .h { font-family: var(--sans); font-style: italic; font-size: 7pt; color: var(--ink-faint); margin-top: 0.035in; }
+.qr--legacy { border-top: 2pt solid var(--legacy); padding-top: 0.095in; }
+.qr--edu    { border-top: 2pt solid var(--edu);    padding-top: 0.095in; }
+.qr--green  { border-top: 2pt solid var(--green);  padding-top: 0.095in; }
 
 /* The legal block, ratified wording, verbatim. */
 .legal { font-size: 6.8pt; line-height: 1.35; color: var(--ink-soft); }
 .legal .addr { font-family: var(--display); font-weight: 600; font-size: 7.6pt; color: var(--soil); line-height: 1.3; margin-bottom: 0.045in; }
 
+/* The closing line. Montserrat, because it is a statement and not a sentence,
+   set lighter than a heading so it does not compete with one. */
 .tagline {
-  font-family: var(--serif);
-  font-size: 10.6pt;
-  line-height: 1.26;
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 10pt;
+  line-height: 1.3;
+  letter-spacing: -0.004em;
   color: var(--soil);
 }
