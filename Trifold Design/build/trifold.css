@@ -47,8 +47,19 @@
      runs. Headings that need fewer lines sit lower in the band rather than
      pulling the photograph up with them, which is what made the panels look
      unrelated. */
+  /* Vertical rhythm. Every gap in the piece is one of these four, and none of
+     them is written inline on an element. The brochure previously carried
+     thirteen different hand-set margin-top values between 0.02in and 0.15in,
+     every one of them a nudge to make some panel fit, and the result was that
+     no two panels breathed the same way. When a panel overflows now, the fix
+     is this scale or the copy, never a margin on one element. */
+  --s1: 0.035in;   /* a label to the thing it labels */
+  --s2: 0.06in;   /* between paragraphs */
+  --s3: 0.095in;   /* between blocks: after a photograph, before a heading */
+  --s4: 0.14in;   /* between sections */
+
   --band-h:  0.98in;
-  --photo-h: 1.60in;
+  --photo-h: 1.22in;
 }
 
 /* Fonts, self-hosted and subsetted, from the repository's own fonts/ folder.
@@ -102,7 +113,7 @@ html, body { margin: 0; padding: 0; background: var(--paper); }
 /* --------------------------------------------------------------------------
    Type
    -------------------------------------------------------------------------- */
-p, ul { margin: 0 0 0.07in; }
+p, ul { margin: 0 0 var(--s2); }
 p:last-child, ul:last-child { margin-bottom: 0; }
 strong { font-weight: 600; }
 
@@ -137,7 +148,7 @@ h3 {
   font-size: 8.4pt;
   color: var(--soil);
   line-height: 1.2;
-  margin: 0.02in 0 0.025in;
+  margin: var(--s3) 0 var(--s1);
 }
 
 .lede {
@@ -145,7 +156,7 @@ h3 {
   font-size: 9.8pt;
   line-height: 1.3;
   color: var(--ink);
-  margin: 0 0 0.085in;
+  margin: var(--s3) 0 var(--s2);
 }
 /* Captions and source lines: the sans in italic, one size, on all six panels. */
 .caption, .source {
@@ -154,7 +165,7 @@ h3 {
   font-size: 6.7pt;
   line-height: 1.26;
   color: var(--ink-faint);
-  margin: 0.045in 0 0;
+  margin: var(--s1) 0 var(--s2);
 }
 .source::before { content: "Source: "; font-style: normal; }
 
@@ -179,7 +190,7 @@ h3 {
   color: var(--ink-soft);
   border-left: 1.4pt solid var(--tan);
   padding: 0.005in 0 0.005in 0.07in;
-  margin: 0.05in 0;
+  margin: var(--s2) 0;
 }
 .awaiting b { font-style: normal; font-weight: 600; color: var(--soil); }
 
@@ -207,10 +218,22 @@ h3 {
   word-break: break-word;
 }
 
+/* A block that opens a panel, a card or an item does not also carry the gap
+   that would have separated it from something above it. */
+/* .banner is excluded on purpose: its negative top margin is what carries the
+   colour up through the panel's padding into the bleed, so zeroing it here
+   left a white strip along the top trim of every banner panel. */
+.panel > :first-child:not(.banner),
+.card > :first-child,
+.items > div > :first-child,
+.figure--side + .awaiting,
+.banner + * { margin-top: 0; }
+.card > :last-child, .items > div > :last-child { margin-bottom: 0; }
+
 /* --------------------------------------------------------------------------
    Shapes and rules
    -------------------------------------------------------------------------- */
-.hr   { border: 0; border-top: 0.7pt solid var(--rule); margin: 0.07in 0; }
+.hr   { border: 0; border-top: 0.7pt solid var(--rule); margin: var(--s3) 0; }
 .hr--strong { border-top: 1pt solid var(--rule-strong); }
 
 /* --------------------------------------------------------------------------
@@ -389,6 +412,7 @@ h3 {
 
 /* Organic Cream as a bounded rectangle behind a group, never as the page. */
 .card {
+  margin-top: var(--s3);
   background: var(--panel-green);
   padding: 0.12in 0.13in;
   border-radius: 0.045in;
@@ -421,7 +445,7 @@ h3 {
    folds. The polygons are generated per panel from the panel spans that
    build/measure.js reports; they are inline on the images because each one is
    a different part of the same curve. */
-.figure--full { margin-bottom: 0.05in; flex: 0 0 auto; }
+.figure--full { margin-bottom: var(--s2); flex: 0 0 auto; }
 
 .spacer { flex: 1 1 auto; min-height: 0.04in; }
 
@@ -456,7 +480,7 @@ h3 {
 /* A row of pillars: icon over a one-word label. Used on the cover to name the
    four parts of the Foundation, and on the community panel to name the four
    ways in. Equal columns, so the labels sit on one baseline. */
-.pillars { display: flex; gap: 0.1in; }
+.pillars { display: flex; gap: 0.1in; margin-top: var(--s3); }
 .pillars > div { flex: 1 1 0; text-align: center; }
 .pillars .icon { margin: 0 auto 0.045in; }
 .pillars .l {
@@ -478,7 +502,7 @@ h3 {
    only 3.1in wide inside its margins. Three or four of those re-wrapped enough
    copy to push two panels off the sheet. On the heading line the icon costs
    nothing vertically and nothing at all to the paragraph under it. */
-.hd { display: flex; align-items: center; gap: 0.075in; margin-top: 0.02in; }
+.hd { display: flex; align-items: center; gap: 0.075in; margin: var(--s3) 0 var(--s1); }
 .hd h3 { margin: 0; }
 .hd .icon { width: 0.19in; height: 0.19in; }
 
@@ -492,8 +516,8 @@ h3 {
    The caption is centred against the picture: a three or four line caption
    against a taller picture left a notch of white under the text, which is
    what made the block look badly set rather than deliberately asymmetric. */
-.figure--side { display: flex; gap: 0.13in; align-items: center; }
-.figure--side img { width: 1.3in; height: 0.85in; flex: 0 0 1.3in; }
+.figure--side { display: flex; gap: 0.13in; align-items: center; margin-top: var(--s3); }
+.figure--side img { width: 1.18in; height: 0.72in; flex: 0 0 1.18in; }
 .figure--side .caption { margin-top: 0; }
 
 /* The pull quote's standfirst takes its icon the same way. */
@@ -522,7 +546,7 @@ h3 {
 }
 
 /* The three figures from the homepage, as a bounded cream shape. */
-.figures { display: flex; flex-direction: column; gap: 0.065in; }
+.figures { display: flex; flex-direction: column; gap: var(--s2); }
 /* Right-aligning these gave "100+", "10,000+" and "40" three different left
    edges, which reads as an accident rather than a column. Left-aligned, the
    numbers and the labels each hold one straight edge; the uneven gap between
@@ -542,7 +566,7 @@ h3 {
 .figures .l { font-size: 7.9pt; line-height: 1.22; color: var(--ink-soft); }
 
 /* A stack of named items separated by hairlines. */
-.items > * + * { border-top: 0.7pt solid var(--rule); padding-top: 0.05in; margin-top: 0.05in; }
+.items > * + * { border-top: 0.7pt solid var(--rule); padding-top: var(--s2); margin-top: var(--s2); }
 .items p { margin: 0; font-size: 8.1pt; line-height: 1.3; }
 
 .checks { list-style: none; padding: 0; margin: 0 0 0.06in; }
@@ -567,9 +591,9 @@ h3 {
 }
 .qr .d { font-size: 7.4pt; line-height: 1.28; color: var(--ink-soft); margin-top: 0.035in; }
 .qr .h { font-family: var(--sans); font-style: italic; font-size: 7pt; color: var(--ink-faint); margin-top: 0.035in; }
-.qr--legacy { border-top: 2pt solid var(--legacy); padding-top: 0.095in; }
-.qr--edu    { border-top: 2pt solid var(--edu);    padding-top: 0.095in; }
-.qr--green  { border-top: 2pt solid var(--green);  padding-top: 0.095in; }
+.qr--legacy { border-top: 2pt solid var(--legacy); padding-top: var(--s2); }
+.qr--edu    { border-top: 2pt solid var(--edu);    padding-top: var(--s2); }
+.qr--green  { border-top: 2pt solid var(--green);  padding-top: var(--s2); }
 
 /* The legal block, ratified wording, verbatim. */
 .legal { font-size: 6.8pt; line-height: 1.35; color: var(--ink-soft); }
@@ -578,6 +602,7 @@ h3 {
 /* The closing line. Montserrat, because it is a statement and not a sentence,
    set lighter than a heading so it does not compete with one. */
 .tagline {
+  margin: var(--s3) 0 0;
   font-family: var(--display);
   font-weight: 600;
   font-size: 10pt;
