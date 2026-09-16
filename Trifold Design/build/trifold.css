@@ -557,25 +557,40 @@ h3 {
   margin-top: 0.015in;
 }
 
-/* The three figures from the homepage, as a bounded cream shape. */
-.figures { display: flex; flex-direction: column; gap: var(--s2); }
-/* Right-aligning these gave "100+", "10,000+" and "40" three different left
-   edges, which reads as an accident rather than a column. Left-aligned, the
-   numbers and the labels each hold one straight edge; the uneven gap between
-   a short number and its label is the price, and it is much the smaller of
-   the two problems. The column fits "10,000+" at this size with room. */
-.figures .row { display: flex; align-items: baseline; gap: 0.06in; }
+/* The three figures from the homepage.
+   Stacked, not columned. Two columns cannot work here: the numbers are 100+,
+   10,000+ and 40, so any fixed column either ragged-lefts them (right-aligned)
+   or leaves a void beside the short one (left-aligned), and the labels wrap to
+   two lines in the narrow measure that is left, which makes the row rhythm
+   uneven on top of it. Stacked, the label gets the full panel width and fits on
+   one line, every row is the same height, and a hairline does the separating
+   that the gutter was failing to do. */
+.figures { display: flex; flex-direction: column; }
+.figures .row + .row {
+  border-top: 0.7pt solid var(--rule);
+  margin-top: var(--s2);
+  padding-top: var(--s2);
+}
 .figures .n {
+  display: block;
   font-family: var(--display);
   font-weight: 700;
-  font-size: 15pt;
+  font-size: 17pt;
   line-height: 1;
   color: var(--green);
-  flex: 0 0 0.88in;
-  text-align: left;
   letter-spacing: -0.02em;
 }
-.figures .l { font-size: 7.9pt; line-height: 1.22; color: var(--ink-soft); }
+.figures .l {
+  display: block;
+  margin-top: 0.035in;
+  font-size: 7.9pt;
+  line-height: 1.24;
+  color: var(--ink-soft);
+}
+.field .figures .row + .row { border-top-color: rgba(255, 255, 255, 0.3); }
+/* The sign-off needs more air than the rows give each other, or it reads as a
+   fourth row of the stack rather than the close of the panel. */
+.field .tagline { margin-top: var(--s4); }
 
 /* A stack of named items separated by hairlines. */
 .items > * + * { border-top: 0.7pt solid var(--rule); padding-top: var(--s2); margin-top: var(--s2); }
