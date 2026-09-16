@@ -38,15 +38,23 @@ panel is which changed, so the print spec's width table still holds.
 
 Three things came with it:
 
-**The white carry.** The cover's paper now runs left past the crease into
-Community's right padding column, from the bottom of the cover's photograph to
-the top of its figures field. The green carry it replaces had sat at z-index 0
-behind an opaque panel background and never rendered at all; this one paints
-above the panels. It is positioned against `--hero-h` and `--cover-field-h`
-rather than against the cover's live layout, because the sheet element cannot be
-a child of a panel that clips its own overflow, so `render.js` now asserts on
-every build that the tongue starts at or below the photograph and stops above
-the field. Current clearances: 0 and 8.9px.
+**The white carry, and then no carry at all.** The first attempt ran the
+cover's paper left into Community's right padding column as a rounded tongue,
+which read as a sticker rather than a continuation, so the panel went the whole
+way instead: Community is no longer a colour field. Below its banner and its
+photograph it is the same paper as the cover, and the crease between them has no
+seam. Its type and icons, which were white out of green, are now the ordinary
+dark ink every white panel uses; nothing needed overriding, the `.panel--field`
+rules simply stopped applying. The tongue and its two positioning tokens are
+gone from the stylesheet along with the check render.js carried for them.
+
+Removing the tongue took `.panel { z-index: 1 }` with it, which was a mistake
+worth recording: that one line is what makes a panel a stacking context, and a
+field panel paints its colour in a `::before` at z-index -1. Without the context
+the purple and blue panels lost their colour entirely and their white type was
+left on white paper. The line is back with a comment on it.
+
+Total ink coverage came down from 311% to 305% with the green gone.
 
 **The masthead got a height.** Nothing had set one, so the cover's photograph
 started 0.16in above the photographs on the two panels beside it. On a sheet

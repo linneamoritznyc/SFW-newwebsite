@@ -92,34 +92,6 @@ function serve() {
     });
     console.log(src, JSON.stringify(report));
 
-    // The white carry is positioned against two tokens, --hero-h and
-    // --cover-field-h, rather than against the cover's live layout, because it
-    // sits on the sheet and cannot be a child of a panel that clips its own
-    // overflow. So check it: the tongue has to start at or below the cover's
-    // photograph and stop above the cover's figures field. A copy change that
-    // moves the field down is exactly the change that would put white over
-    // green without anyone noticing.
-    const carry = await page.evaluate(() => {
-      const el = document.querySelector('.carry--paper');
-      if (!el) return null;
-      const cov = document.querySelector('[data-panel="1"]');
-      if (!cov) return { error: 'carry without a cover panel on this sheet' };
-      const fig = cov.querySelector('.figure').getBoundingClientRect();
-      const fld = cov.querySelector('.field').getBoundingClientRect();
-      const c = el.getBoundingClientRect();
-      const inch = (v) => +(v / 96).toFixed(3);
-      return { top: inch(c.top), bottom: inch(c.bottom),
-               photoBottom: inch(fig.bottom), fieldTop: inch(fld.top),
-               clearsPhoto: +(c.top - fig.bottom).toFixed(1),
-               clearsField: +(fld.top - c.bottom).toFixed(1) };
-    });
-    if (carry) {
-      console.log('  carry', JSON.stringify(carry));
-      if (carry.error || carry.clearsPhoto < 0 || carry.clearsField < 0) {
-        console.error('  CARRY OUT OF BOUNDS: it is running over the photograph or the field.');
-        process.exitCode = 1;
-      }
-    }
 
     await page.screenshot({ path: path.join(OUT, out), scale: 'device' });
   }

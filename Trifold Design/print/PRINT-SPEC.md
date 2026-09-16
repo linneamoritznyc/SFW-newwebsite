@@ -35,7 +35,7 @@ equal, so the cover meets the folded edge.
    other. Normalizing both pages to the same panel order puts every panel 5/32
    in out of register with its own back.
 
-2. **Total ink coverage is 311% max.** Fine for coated sheetfed. If you are
+2. **Total ink coverage is 305% max.** Fine for coated sheetfed. If you are
    running uncoated or web, tell us your limit and we will re-separate.
 
 3. **Please scan the five QR codes on the press proof**, gold one first — it is

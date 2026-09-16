@@ -70,12 +70,8 @@
 
   --band-h:  0.98in;
   --photo-h: 1.20in;
-  /* The cover's photograph is taller than the pillar panels', and its foot
-     carries the figures field. Both are tokens because the carry below is
-     positioned against them. render.js asserts the carry still lands between
-     the two, so a copy change that moves the field cannot pass unnoticed. */
+  /* The cover's photograph is taller than the pillar panels'. */
   --hero-h:  1.58in;
-  --cover-field-h: 2.73in;
 }
 
 /* Fonts, self-hosted and subsetted, from the repository's own fonts/ folder.
@@ -406,34 +402,6 @@ h3 {
 }
 .figure figcaption { position: relative; z-index: 1; }
 
-/* The fold carry.
-   The cover's white field runs left past the crease into Community's right
-   padding column, so the two panels read as one sheet folded rather than as a
-   white panel butted against a green one. It is the cover's own paper, not a
-   shape: it starts where the cover's photograph ends and stops where the
-   cover's figures field begins, which is why both are tokens.
-
-   Width is Community's right padding exactly, so no copy sits on it, and it
-   paints ABOVE the panels rather than behind them. The green carry this
-   replaces sat at z-index 0 under an opaque panel background and never
-   rendered at all; it was in the stylesheet for a week doing nothing.
-
-   Sheet geometry on the outside: Teaching is tuck + bleed, Community is wide,
-   so the crease falls at (tuck + bleed) + wide from the sheet's left edge. */
-.carry {
-  position: absolute;
-  background: var(--paper);
-  z-index: 2;
-}
-.carry--paper {
-  left: calc(var(--w-tuck) + var(--bleed) + var(--w-wide) - var(--pad));
-  width: var(--pad);
-  top:    calc(var(--bleed) + var(--band-h) + var(--hero-h));
-  bottom: calc(var(--cover-field-h) + 0.09in);
-  border-top-left-radius: 0.22in;
-  border-bottom-left-radius: 0.22in;
-}
-.panel { z-index: 1; }
 
 /* A tinted ground for the practice panel.
    Panels 4 and 5 were both white, so the crease between them was invisible and
@@ -443,6 +411,13 @@ h3 {
    about 4% darker than the paper: enough to find the fold, not enough to read
    as a coloured panel beside the two that are. */
 .panel--cream { background: var(--panel); }
+/* The panel makes a stacking context so that a field panel's ::before, which
+   paints the colour at z-index -1, lands behind the panel's own content and in
+   front of the sheet. Take this away and the purple and blue panels lose their
+   colour entirely: the ::before drops behind the sheet's white background and
+   the white type is left on white paper. */
+.panel { z-index: 1; }
+
 .panel--field { background: none; }
 .panel--field::before {
   content: "";
