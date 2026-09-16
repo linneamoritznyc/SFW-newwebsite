@@ -448,6 +448,20 @@ h3 {
   height: var(--photo-h);
   object-fit: cover;
 }
+/* A photograph run to both panel edges and left square. Two things need it.
+   The curve is generated per panel by build/apply-curve.py, which pairs one
+   .figure--full with one panel, so a second clipped figure on a panel would
+   break the single line across the sheet; and this is used where the picture
+   is the evidence rather than the atmosphere, which wants a straight edge and
+   its caption underneath rather than beside it. */
+.figure--band { margin-left: calc(var(--pad) * -1); margin-right: calc(var(--pad) * -1); }
+.panel--first .figure--band { margin-left:  calc((var(--pad) + var(--bleed)) * -1); }
+.panel--last  .figure--band { margin-right: calc((var(--pad) + var(--bleed)) * -1); }
+.figure--band img { width: 100%; height: 1.00in; object-fit: cover; }
+.figure--band .caption { margin-left: var(--pad); margin-right: var(--pad); }
+.panel--first .figure--band .caption { margin-left:  calc(var(--pad) + var(--bleed)); }
+.panel--last  .figure--band .caption { margin-right: calc(var(--pad) + var(--bleed)); }
+
 /* The lower edge of each photograph is not its own shape. One curve is drawn
    across the whole sheet and each picture is clipped by the segment of it that
    falls in that panel, so the three edges join into a single line across both
@@ -626,6 +640,9 @@ h3 {
 .qr--edu    { border-top: 2pt solid var(--edu);    padding-top: var(--s2); }
 .qr--green  { border-top: 2pt solid var(--green);  padding-top: var(--s2); }
 .qr--gold   { border-top: 2pt solid var(--gold);   padding-top: var(--s2); }
+/* Code on the right, words on the left. Used on the community panel, where
+   the code sits under the photograph rather than at the foot. */
+.qr--flip { flex-direction: row-reverse; }
 
 /* The legal block, ratified wording, verbatim. */
 .legal { font-size: 6.8pt; line-height: 1.35; color: var(--ink-soft); }
