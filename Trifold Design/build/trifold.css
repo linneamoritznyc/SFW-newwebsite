@@ -470,6 +470,12 @@ h3 {
    a different part of the same curve. */
 .figure--full { margin-bottom: var(--s2); flex: 0 0 auto; }
 
+/* The cover opens with the masthead rather than a colour band, so it has room
+   the other five do not, and it was spending it on a gap above the green field.
+   It goes into the picture instead. The curve is a fraction of each frame, so a
+   taller frame keeps the same shape and still meets the fold. */
+.figure--hero img { height: 1.72in; }
+
 .spacer { flex: 1 1 auto; min-height: 0.04in; }
 
 /* --------------------------------------------------------------------------
@@ -554,7 +560,7 @@ h3 {
 /* The masthead: the provisional logo, then the type-set wordmark, exactly
    as the live site does until the real vector mark arrives (Decision 16). */
 .mast { display: flex; align-items: center; gap: 0.1in; }
-.mast img { width: 0.46in; height: auto; }
+.mast img { width: 0.62in; height: auto; }
 .mast .wordmark {
   font-family: var(--display);
   font-weight: 700;
