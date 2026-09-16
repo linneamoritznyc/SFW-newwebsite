@@ -54,6 +54,14 @@ Each fold mirrors the other. Practice folds in first, Our story folds over it,
 and the Cover lands face up. Community is the back of the folded piece, which
 is where the donation code sits.
 
+## Folding one by hand
+
+`HOME-PROOF-cut-and-fold.pdf` is a separate two-page proof for a desktop
+printer: the trimmed artwork at 94.2%, with a cut outline, corner crop marks and
+labelled fold ticks. Print at 100%, not fit-to-page. It is not for the press.
+
+    python3 "Trifold Design/build/make-home-proof.py"
+
 ## X-4 or X-1a
 
 **X-4 is the better file and the one to send.** It keeps live transparency, so

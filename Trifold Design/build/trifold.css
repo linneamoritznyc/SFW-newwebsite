@@ -635,15 +635,26 @@ h3 {
    panels beside it. On a sheet where all three are visible at once that reads
    as a mistake. The masthead is given exactly the height a banner leaves: the
    band, less the panel's own top padding, measured to the same bottom edge. */
-.mast {
-  display: flex;
+/* The cover's masthead is a banner too.
+   Teaching and Community open with a green band ending at 1.105in and the cover
+   opened with white, so the one edge every panel on that sheet shares was the
+   only one not drawn. The masthead now takes the banner's box exactly, in
+   Organic Cream instead of green: the same band, lighter, because it is the
+   cover. That is also where the pale green shape belongs. Height, margins and
+   the negative top margin into the bleed all come from .banner; this only turns
+   it back into a row and gives it its colour. */
+.banner--mast {
+  background: var(--panel-green);
+  flex-direction: row;
   align-items: center;
+  justify-content: flex-start;
   gap: 0.1in;
-  height: calc(var(--band-h) - var(--pad));
-  box-sizing: border-box;
-  flex: 0 0 auto;
+  /* Sat lower in its band than the eyebrows do in theirs, because a banner
+     pushes its text to the bottom and this centres a lockup instead. Less above
+     and more below lifts the whole group to about where the eyebrow sits. */
+  padding-top: calc(var(--bleed) + 0.10in);
+  padding-bottom: 0.16in;
 }
-.mast + * { margin-top: 0; }
 /* The mark is 240 x 208, so width sets the height. At 0.62in it stood 0.537in
    in a 0.70in box and was smaller than the box it sat in. 0.80in fills the box
    to 0.693in, and the wordmark is scaled with it: the lockup is the first thing

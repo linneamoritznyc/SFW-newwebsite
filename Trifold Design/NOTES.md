@@ -21,6 +21,39 @@ corrected for overflow and crop, re-rendered. Nothing outside `Trifold Design/` 
 Rebuild: `python3 "Trifold Design/build/make-qr.py"` then `node "Trifold Design/build/render.js"`,
 both from the repository root.
 
+## The curve, the cover band, and a proof you can fold
+
+**The curve was stale.** The photographs are clipped to one curve drawn across
+the sheet, and the clip paths are generated into the markup rather than computed
+at render time. When the panels were reordered the clip paths travelled with
+their sections, so each photograph was still wearing the segment of the curve
+that belonged to its old position. At the Community and cover crease the two
+edges met in a V. Nothing was wrong with the geometry; `apply-curve.py` simply
+had not been run since the panels moved. It has been now, and the lower edge is
+one line across both folds again. **Re-run it after any change to panel order,
+panel width, band height or photo height.**
+
+**The cover has a band now.** Teaching and Community open with a colour band
+ending at 1.105in and the cover opened with white, so the one horizontal edge
+every panel on that sheet could share was the only one not drawn. The masthead
+takes the banner's box exactly, in Organic Cream rather than green: the same
+band, lighter, because it is the cover. That is also where the pale green shape
+that had been asked for belongs, and why it is not a decoration sitting in a
+corner. The lockup sits a little higher in its band than centring gave it, so it
+lands at about the height of the eyebrows either side.
+
+**HOME-PROOF-cut-and-fold.pdf.** Three fold tests have now failed at the kitchen
+table, and the last two failures were as likely to be the fold landing in the
+wrong place as the allowance being wrong: the press file carries no crop or fold
+marks, because a shop reads the TrimBox, so folding one by hand means guessing
+where 3.75in falls on a sheet you cut with scissors. `make-home-proof.py` builds
+a separate Letter proof: the trimmed artwork at 94.2%, inside a margin a desktop
+printer can reach, with corner crop marks, a cut outline and labelled fold ticks.
+Print it at 100%, not fit-to-page, or the marks stop meaning anything. It never
+goes to a printer; the press file is unchanged.
+
+---
+
 ## Front and back made to line up, 16 September 2026
 
 The cover and Community are the front and the back of the folded piece and sit
