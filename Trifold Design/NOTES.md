@@ -294,9 +294,16 @@ version 5, 45 modules, **0.649mm a module**. The long URLs with UTM tails could 
 0.48 to 0.60mm, and the community code was under the practical print minimum. There is real margin
 now, but a proof scanned off the press rather than off a laser print is still worth asking for.
 
-Black on white rather than the panel accent: a code has to read before it has to be on brand, and
-these sit on four different coloured panels. The accent stays on the rule above each code, where
-nothing has to scan it.
+Each code carries its own panel's colour on a white ground: Legacy Purple on the Dr. Elaine panel,
+Education Blue on teaching, Food Web Green on practice, Moss on community, and a gold on the donate
+ask. Five colours, one per code.
+
+Two of the brand tokens cannot be used as ink at this size and `build/make-qr.py` refuses them.
+Education Blue `#3780B8` is 4.25:1 against white and the brand gold `#C9A227` is 2.42:1; a decoder run
+over the 300 DPI render could not read the blue one at all, which is how this was found. Both now use
+the deep end of their own gradient, `#1F4E73` at 8.77:1 and a gold taken down to `#8A6E15` at 4.86:1.
+The generator computes the contrast of every colour and exits rather than write a code under 4.5:1,
+so this cannot come back by someone picking a prettier hex.
 
 `build/make-qr.py` writes the placed SVGs and the standalone PNGs in `exports/qr/` from one table.
 `build/check-qr.py` decodes every placed code back out of the 300 DPI render and fails if any does
