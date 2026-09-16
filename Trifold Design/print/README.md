@@ -47,11 +47,12 @@ would be 5/32in out of register with its own back.
 
 | sheet | left to right | folds from its own left trim |
 | :-- | :-- | :-- |
-| page 1, outside | Teaching (**tuck**, 3.5625in), Our story, Cover | 3.5625in, 7.28125in |
-| page 2, inside | Research, Practice, Community (**tuck**, 3.5625in) | 3.71875in, 7.4375in |
+| page 1, outside | Teaching (**tuck**, 3.5625in), Community, Cover | 3.5625in, 7.28125in |
+| page 2, inside | Our story, Research, Practice (**tuck**, 3.5625in) | 3.71875in, 7.4375in |
 
-Each fold mirrors the other. Community folds in first, Research folds over it,
-and the Cover lands face up.
+Each fold mirrors the other. Practice folds in first, Our story folds over it,
+and the Cover lands face up. Community is the back of the folded piece, which
+is where the donation code sits.
 
 ## X-4 or X-1a
 

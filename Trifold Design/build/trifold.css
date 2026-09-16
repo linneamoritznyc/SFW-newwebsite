@@ -70,6 +70,12 @@
 
   --band-h:  0.98in;
   --photo-h: 1.20in;
+  /* The cover's photograph is taller than the pillar panels', and its foot
+     carries the figures field. Both are tokens because the carry below is
+     positioned against them. render.js asserts the carry still lands between
+     the two, so a copy change that moves the field cannot pass unnoticed. */
+  --hero-h:  1.58in;
+  --cover-field-h: 2.73in;
 }
 
 /* Fonts, self-hosted and subsetted, from the repository's own fonts/ folder.
@@ -401,21 +407,31 @@ h3 {
 .figure figcaption { position: relative; z-index: 1; }
 
 /* The fold carry.
-   Panel 6 is a colour field; this is the same field continuing left past the
-   crease, so the block reads as one shape folded rather than as a panel that
-   happens to be green. Width is panel 5's right padding exactly, so no copy
-   sits on it. Sheet geometry: panel 4 is wide + bleed, panel 5 is wide, so the
-   crease falls at (wide + bleed) + wide from the sheet's left edge. */
+   The cover's white field runs left past the crease into Community's right
+   padding column, so the two panels read as one sheet folded rather than as a
+   white panel butted against a green one. It is the cover's own paper, not a
+   shape: it starts where the cover's photograph ends and stops where the
+   cover's figures field begins, which is why both are tokens.
+
+   Width is Community's right padding exactly, so no copy sits on it, and it
+   paints ABOVE the panels rather than behind them. The green carry this
+   replaces sat at z-index 0 under an opaque panel background and never
+   rendered at all; it was in the stylesheet for a week doing nothing.
+
+   Sheet geometry on the outside: Teaching is tuck + bleed, Community is wide,
+   so the crease falls at (tuck + bleed) + wide from the sheet's left edge. */
 .carry {
   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: calc(var(--w-wide) + var(--bleed) + var(--w-wide) - var(--pad));
+  background: var(--paper);
+  z-index: 2;
+}
+.carry--paper {
+  left: calc(var(--w-tuck) + var(--bleed) + var(--w-wide) - var(--pad));
   width: var(--pad);
-  background: linear-gradient(168deg, var(--green) 0%, var(--moss) 108%);
+  top:    calc(var(--bleed) + var(--band-h) + var(--hero-h));
+  bottom: calc(var(--cover-field-h) + 0.09in);
   border-top-left-radius: 0.22in;
   border-bottom-left-radius: 0.22in;
-  z-index: 0;
 }
 .panel { z-index: 1; }
 
@@ -488,7 +504,7 @@ h3 {
    their full size, refuse to shrink, and run straight off the panel into the
    next one. The vertical overflow check cannot see that, which is why
    render.js now measures horizontally too. */
-.figure--trio img { flex: 1 1 0; width: auto; min-width: 0; height: 0.98in; object-fit: cover; }
+.figure--trio img { flex: 1 1 0; width: auto; min-width: 0; height: 0.82in; object-fit: cover; }
 
 /* The lower edge of each photograph is not its own shape. One curve is drawn
    across the whole sheet and each picture is clipped by the segment of it that
@@ -502,7 +518,7 @@ h3 {
    the other five do not, and it was spending it on a gap above the green field.
    It goes into the picture instead. The curve is a fraction of each frame, so a
    taller frame keeps the same shape and still meets the fold. */
-.figure--hero img { height: 1.72in; }
+.figure--hero img { height: var(--hero-h); }
 
 /* The spacer grows to push what follows to the foot of the panel. Its floor is
    only there so two blocks never touch when a panel is full; the gaps a reader
@@ -591,7 +607,20 @@ h3 {
 
 /* The masthead: the provisional logo, then the type-set wordmark, exactly
    as the live site does until the real vector mark arrives (Decision 16). */
-.mast { display: flex; align-items: center; gap: 0.1in; }
+/* The cover has no banner, so nothing set the height of its masthead and the
+   photograph under it started 0.16in higher than the photographs on the two
+   panels beside it. On a sheet where all three are visible at once that reads
+   as a mistake. The masthead is given exactly the height a banner leaves: the
+   band, less the panel's own top padding, measured to the same bottom edge. */
+.mast {
+  display: flex;
+  align-items: center;
+  gap: 0.1in;
+  height: calc(var(--band-h) - var(--pad));
+  box-sizing: border-box;
+  flex: 0 0 auto;
+}
+.mast + * { margin-top: 0; }
 .mast img { width: 0.62in; height: auto; }
 .mast .wordmark {
   font-family: var(--display);

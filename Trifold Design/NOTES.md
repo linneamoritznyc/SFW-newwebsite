@@ -21,6 +21,46 @@ corrected for overflow and crop, re-rendered. Nothing outside `Trifold Design/` 
 Rebuild: `python3 "Trifold Design/build/make-qr.py"` then `node "Trifold Design/build/render.js"`,
 both from the repository root.
 
+## Re-imposed after the second fold test, 16 September 2026
+
+The panels moved. Asked for: the donate ask on the back of the folded piece,
+Our story first of its three, and the Cover beside Community so white could
+carry across that crease.
+
+    outside   Teaching (tuck)  Community  Cover
+    inside    Our story        Research   Practice (tuck)
+
+Folded, the Cover is the front, Community the back, Practice the hidden tuck.
+Reading order is unchanged: Cover, then Our story beside Teaching, then Research
+beside Practice, then Community. The fold positions did not move, because the
+tuck is still first on the outside sheet and last on the inside; only which
+panel is which changed, so the print spec's width table still holds.
+
+Three things came with it:
+
+**The white carry.** The cover's paper now runs left past the crease into
+Community's right padding column, from the bottom of the cover's photograph to
+the top of its figures field. The green carry it replaces had sat at z-index 0
+behind an opaque panel background and never rendered at all; this one paints
+above the panels. It is positioned against `--hero-h` and `--cover-field-h`
+rather than against the cover's live layout, because the sheet element cannot be
+a child of a panel that clips its own overflow, so `render.js` now asserts on
+every build that the tongue starts at or below the photograph and stops above
+the field. Current clearances: 0 and 8.9px.
+
+**The masthead got a height.** Nothing had set one, so the cover's photograph
+started 0.16in above the photographs on the two panels beside it. On a sheet
+where all three are visible at once that reads as a mistake. It is now
+`--band-h` less the panel's top padding, which puts the three photograph tops on
+one line. The 0.16in it cost the cover came back out of the hero photograph,
+1.72in to 1.58in.
+
+**Practice became the tuck** and lost 5/32in of measure, which cost it 15px. The
+trio photographs came down from 0.98in to 0.82in, in proportion with the
+narrower panel, and the lede lost one "and".
+
+---
+
 ## Pass after the first home-printer test, 16 September 2026
 
 Four things came back from folding a printed copy by hand, and all four are fixed
@@ -107,20 +147,20 @@ register with its own back.
 
 | sheet | left to right | folds from its own left trim |
 | :-- | :-- | :-- |
-| inside | 4 Research (wide), 5 Practice (wide), 6 Community (**tuck**) | 3.71875in, 7.4375in |
-| outside | 3 Teaching (**tuck**), 2 Our story (wide), 1 Cover (wide) | 3.5625in, 7.28125in |
+| inside | 2 Our story (wide), 4 Research (wide), 5 Practice (**tuck**) | 3.71875in, 7.4375in |
+| outside | 3 Teaching (**tuck**), 6 Community (wide), 1 Cover (wide) | 3.5625in, 7.28125in |
 
 Each fold mirrors the other: 11 minus 3.5625 is 7.4375, and 11 minus 7.28125 is 3.71875. Measured
 from the rendered pages, not calculated by hand.
 
-Backing, which decides where the cover lands: inside panel 6 (Community, the tuck flap) folds in
-first, then panel 4 (Research) folds over it, so the face that ends up on top is the **back of panel
-4**, which is the cover. In the mirrored sheet the cover is the rightmost panel, and 11 minus its
-span puts it exactly behind panel 4. Note for anyone reading an older brief: the cover backs panel 4,
-not panel 6.
+Backing, which decides where the cover lands: inside panel 5 (Practice, the tuck flap) folds in
+first, then panel 2 (Our story) folds over it, so the face that ends up on top is the **back of panel
+2**, which is the cover. The back of the folded piece is then the back of panel 4 (Research), which
+is Community, and that is where the donation code sits. Note for anyone reading an older version of
+this file: the cover used to back Research and the tuck used to be Community. Both moved.
 
-The reading order is unchanged. Cover, Our story, Teaching is still the sequence a reader meets; only
-the order the panels are laid down on the sheet is reversed.
+The reading order is unchanged. Opening the piece gives Cover, then Our story beside Teaching, then
+Research beside Practice, then Community on the back: the same six in the same sequence as before.
 
 `.panel--first` and `.panel--last` used to hardcode `--w-wide` and `--w-tuck` respectively, which
 silently assumed the tuck panel is always last on a sheet. Each panel now carries its own trim width
