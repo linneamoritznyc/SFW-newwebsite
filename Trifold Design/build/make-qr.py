@@ -18,6 +18,12 @@ OUT.mkdir(exist_ok=True)
 # will actually read.
 BASE = "utm_source=trifold&utm_medium=print"
 
+# Every address printed here is a CURRENT soilfoodweb.com path, not a path on
+# the rebuilt site. The rebuild is not live yet, so /research, /practice and
+# /donate are 404s today and a printed code cannot be edited later. vercel.json
+# already 301s each of these to its new home, so they resolve now and keep
+# resolving after launch. Do not "modernise" them.
+
 CODES = {
     # panel 6, Community. --green, Food Web Green.
     "community": (
@@ -38,17 +44,17 @@ CODES = {
     ),
     # panel 5, Practice. --green. The eleven case study films, which is where
     # a reader who believes the practice panel wants to go next.
+    # 301s to /practice#case-studies.
     "case-studies": (
-        # The fragment goes last. Written the other way round the whole UTM
-        # tail lands inside the fragment and no analytics ever sees it.
-        f"https://soilfoodweb.com/practice?{BASE}&utm_content=case_studies#case-studies",
+        f"https://soilfoodweb.com/case-studies?{BASE}&utm_content=case_studies",
         "#156826",
     ),
     # panel 6, Community. --soil, not --gold: the brand's gold is #C9A227,
     # which against white gives a code a scanner has to work for. The gold
     # appears on the rule above the code instead, where nothing has to read it.
+    # 301s to /donate.
     "donate": (
-        f"https://soilfoodweb.com/donate?{BASE}&utm_content=donate",
+        f"https://soilfoodweb.com/donations?{BASE}&utm_content=donate",
         "#4F3433",
     ),
 }
