@@ -39,6 +39,11 @@ if missing:
 for name, src in FILES.items():
     shutil.copy2(src, OUT / name)
 
+# The README lives in build/ as a source file, not written into the folder by
+# hand: this script deletes the folder every run, so a note left in there would
+# be destroyed by the next rebuild. It was, once.
+shutil.copy2(pathlib.Path(__file__).parent / "delivery-README.md", OUT / "README.md")
+
 with zipfile.ZipFile(OUT / "sfw-brochure-2026-all.zip", "w", zipfile.ZIP_DEFLATED) as z:
     for name in FILES:
         z.write(OUT / name, name)
