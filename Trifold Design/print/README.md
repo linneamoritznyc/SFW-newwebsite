@@ -2,10 +2,8 @@
 
 Soil Food Web Foundation trifold, 2026 event brochure.
 
-**`PRINT-SPEC.md` in this folder is the specification to send with the file.**
-It carries the sizes, the fold and panel widths, the imposition warning, stock
-and ink notes, the measured total area coverage, and the one proofing request
-that matters: scan the QR codes off the press proof.
+**`PRINT-SPEC.md` is the one-page spec to send with the file.** Deliberately
+short. The background a shop does not need, but we might, is in this README.
 
 ## Send this one
 
