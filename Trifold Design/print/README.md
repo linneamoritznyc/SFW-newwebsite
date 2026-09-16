@@ -2,8 +2,15 @@
 
 Soil Food Web Foundation trifold, 2026 event brochure.
 
-**`PRINT-SPEC.md` is the one-page spec to send with the file.** Deliberately
-short. The background a shop does not need, but we might, is in this README.
+**Do not send anything from this folder.** The two files for the print shop are
+in `SEND-TO-PRINTER/` at the top of the repository, copied there by
+`build/assemble-delivery.py`.
+
+This folder is build output. `sfw-trifold-2page-CMYK-PDFX.pdf` is the master
+that gets copied; `alternates/` holds the X-1a versions, the single-sheet
+separates and the RGB source PDFs, none of which anyone needs unless a shop
+specifically asks. `PRINT-SPEC.md` is the one-page spec, deliberately short; the
+background a shop does not need, but we might, is in this README.
 
 ## Send this one
 

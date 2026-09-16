@@ -5,12 +5,12 @@
     python3 "Trifold Design/build/make-pdfx.py"
     python3 "Trifold Design/build/check-qr.py" "Trifold Design/print/<file>.pdf"
 
-Produces, in Trifold Design/print/:
+Produces one file to send and a folder of alternates nobody should have to
+choose between:
 
-    sfw-trifold-2page-CMYK-PDFX.pdf        X-4, both sheets. SEND THIS ONE.
-    sfw-trifold-{outside,inside}-CMYK-PDFX.pdf     X-4 separates
-    sfw-trifold-2page-CMYK-PDFX1a.pdf      X-1a, both sheets
-    sfw-trifold-{outside,inside}-CMYK-PDFX1a.pdf   X-1a separates
+    print/sfw-trifold-2page-CMYK-PDFX.pdf          X-4, both sheets. The file.
+    print/alternates/*-CMYK-PDFX.pdf               X-4 separates
+    print/alternates/*-CMYK-PDFX1a.pdf             X-1a, merged and separate
 
 X-4 keeps every vector: the type, the rules, and the QR codes as roughly 2,300
 path segments each. It is the better file and the one to send.
@@ -28,6 +28,7 @@ import pikepdf
 
 HERE = pathlib.Path(__file__).parent
 PRINT = HERE.parent / "print"
+ALT = PRINT / "alternates"     # everything that is not the file to send
 ICC = pathlib.Path("/usr/share/ghostscript/10.02.1/iccprofiles/default_cmyk.icc")
 
 PT = 72.0
@@ -142,23 +143,25 @@ def merge(outside, inside, dst):
 def main():
     if not ICC.exists():
         sys.exit(f"no CMYK profile at {ICC}")
+    ALT.mkdir(exist_ok=True)
     built = []
     for tag, convert, version in (("PDFX", to_cmyk_x4, "PDF/X-4"),
                                   ("PDFX1a", to_cmyk_x1a, "PDF/X-1a:2001")):
         pages = {}
         for src in ("outside", "inside"):
-            o = PRINT / f"sfw-trifold-{src}-CMYK-{tag}.pdf"
-            convert(PRINT / f"sfw-trifold-{src}.pdf", o)
+            o = ALT / f"sfw-trifold-{src}-CMYK-{tag}.pdf"
+            convert(ALT / f"sfw-trifold-{src}.pdf", o)
             finish(o, version)
             pages[src] = o
             built.append(o)
-        m = PRINT / f"sfw-trifold-2page-CMYK-{tag}.pdf"
+        m = (PRINT if tag == "PDFX" else ALT) / f"sfw-trifold-2page-CMYK-{tag}.pdf"
         merge(pages["outside"], pages["inside"], m)
         finish(m, version, pages=2)
         built.append(m)
 
     for p in built:
-        print(f"  {p.name:<42}{p.stat().st_size/1024/1024:>7.2f} MB")
+        where = "print/" if p.parent == PRINT else "print/alternates/"
+        print(f"  {where + p.name:<56}{p.stat().st_size/1024/1024:>7.2f} MB")
 
 
 if __name__ == "__main__":

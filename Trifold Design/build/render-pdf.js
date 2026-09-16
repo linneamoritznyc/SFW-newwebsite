@@ -18,7 +18,7 @@ const path = require('path');
 const fs = require('fs');
 
 const REPO = path.resolve(__dirname, '..', '..');
-const OUT = path.resolve(__dirname, '..', 'print');
+const OUT = path.resolve(__dirname, '..', 'print', 'alternates');  // RGB source, not for sending
 fs.mkdirSync(OUT, { recursive: true });
 
 const TYPES = { '.html':'text/html; charset=utf-8', '.css':'text/css; charset=utf-8',
