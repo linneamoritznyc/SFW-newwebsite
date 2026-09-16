@@ -79,8 +79,15 @@
 
   --band-h:  0.98in;
   --photo-h: 1.20in;
-  /* The cover's photograph is taller than the pillar panels'. */
-  --hero-h:  1.58in;
+  /* The cover's photograph used to be taller than the others. It is now the
+     same height, because the cover and Community sit side by side on the sheet
+     and are the front and the back of the folded piece: the bottom edge of the
+     photograph is a line that runs across both, and it only reads as one line
+     if the two are the same. */
+  --hero-h:  var(--photo-h);
+  /* Both closing fields on that sheet are exactly this tall, so the green foot
+     is one band across the crease and the white above it is one band too. */
+  --foot-h:  3.00in;
 }
 
 /* Fonts, self-hosted and subsetted, from the repository's own fonts/ folder.
@@ -326,6 +333,38 @@ h3 {
 .panel--first .field { margin-left: calc((var(--pad) + var(--bleed)) * -1); padding-left: calc(var(--pad) + var(--bleed)); }
 .panel--last  .field { margin-right: calc((var(--pad) + var(--bleed)) * -1); padding-right: calc(var(--pad) + var(--bleed)); }
 .field--flush { margin-bottom: calc((var(--pad) + var(--bleed)) * -1); padding-bottom: calc(var(--pad) + var(--bleed)); }
+
+/* The closing field on the cover and on Community. Fixed to the same height on
+   both rather than left to its own content, because the two panels are the
+   front and the back of the folded piece and the top edge of the green has to
+   be one line across the crease. Content sits at the foot of it, so the two
+   taglines land on the same baseline as well. */
+.field--foot {
+  height: var(--foot-h);
+  box-sizing: border-box;
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+/* Anything reversed out of a bounded field. These used to be written only for
+   .panel--field, a whole panel in the colour, because that was the only place
+   white type appeared. The closing field on Community is now the other place. */
+.field .card {
+  background: rgba(255, 255, 255, 0.12);
+  border-left-color: rgba(255, 255, 255, 0.65);
+}
+.field .legal        { color: rgba(255, 255, 255, 0.82); }
+.field .legal .addr  { color: #FFFFFF; }
+.field .qr .t        { color: #FFFFFF; }
+.field .qr .d        { color: rgba(255, 255, 255, 0.86); }
+.field .qr .h        { color: rgba(255, 255, 255, 0.70); }
+.field .qr img {
+  background: #FFFFFF;
+  padding: 0.05in;
+  border-radius: 0.035in;
+}
 
 /* A whole panel in the colour. Everything that carries an ink token has to be
    restated, or it keeps a colour tuned for white paper and disappears. */
@@ -605,11 +644,15 @@ h3 {
   flex: 0 0 auto;
 }
 .mast + * { margin-top: 0; }
-.mast img { width: 0.62in; height: auto; }
+/* The mark is 240 x 208, so width sets the height. At 0.62in it stood 0.537in
+   in a 0.70in box and was smaller than the box it sat in. 0.80in fills the box
+   to 0.693in, and the wordmark is scaled with it: the lockup is the first thing
+   on the cover and it was reading as the smallest. */
+.mast img { width: 0.80in; height: auto; }
 .mast .wordmark {
   font-family: var(--display);
   font-weight: 700;
-  font-size: 10.2pt;
+  font-size: 11.6pt;
   line-height: 1.12;
   letter-spacing: -0.008em;
   color: var(--soil);
@@ -617,7 +660,7 @@ h3 {
 .mast .sub {
   font-family: var(--sans);
   font-style: italic;
-  font-size: 7.2pt;
+  font-size: 8pt;
   color: var(--ink-faint);
   margin-top: 0.015in;
 }

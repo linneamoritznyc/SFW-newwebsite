@@ -21,6 +21,52 @@ corrected for overflow and crop, re-rendered. Nothing outside `Trifold Design/` 
 Rebuild: `python3 "Trifold Design/build/make-qr.py"` then `node "Trifold Design/build/render.js"`,
 both from the repository root.
 
+## Front and back made to line up, 16 September 2026
+
+The cover and Community are the front and the back of the folded piece and sit
+side by side on the same sheet, so every horizontal edge on one is read against
+the other. Three of them did not match. All three now do, and none of it is done
+by eye: the numbers below are measured out of the render on every build.
+
+**The photograph.** The cover's was 1.58in against 1.20in everywhere else, so
+its bottom edge sat 0.38in lower than its neighbour's. `--hero-h` is now
+`var(--photo-h)`. All three photographs on the sheet end at 2.305in.
+
+**The white.** It follows from the photograph above and the field below, so it
+is one band once those two agree.
+
+**The green foot.** Community had none: it ended in white where the cover ended
+in the figures field. Its legal block and donation code now sit in a
+`.field field--flush field--foot`, and both panels' fields are fixed to
+`--foot-h` rather than sized by their own content, so the top edge of the green
+is one line across the crease. Both open at 5.75in. Content is bottom-aligned
+inside, which is what keeps the two blocks looking set rather than dropped in.
+White type inside a bounded field had never been needed before, so the
+`.panel--field` reverse-out rules now have `.field` counterparts.
+
+Making the two fields equal cost 0.64in, because Community's foot wanted 3.37in
+and the cover could only reach 3.28in. Three things paid for it:
+
+- The cover's body lost the four-item list, which named teaching, research,
+  practice and community in a sentence sitting directly on top of four icons
+  labelled EDUCATION, RESEARCH, PRACTICE and COMMUNITY. It said the same thing
+  twice and the icons say it better.
+- The legal block's address lost its first line, "Soil Food Web Foundation",
+  which the sentence directly beneath it opens with.
+- **The tagline came off Community.** It is still on the cover, 3.75in away on
+  the same printed side, and on the folded piece the front carries it. Printing
+  it twice on one side of one sheet was the redundancy worth spending. It can go
+  back the moment something else gives up 0.42in.
+
+**The lockup is larger.** The mark is 240 x 208, so width sets its height: at
+0.62in it stood 0.537in inside a 0.70in box. It is 0.80in now, filling the box
+at 0.693in, and the wordmark went 10.2pt to 11.6pt with it.
+
+Ink coverage unchanged at 308%: the green Community's foot gained is the same
+green that came off its body.
+
+---
+
 ## Third fold test: the tuck allowance, settled at 1/4in
 
 Folded carefully from a cut sheet, the tuck flap still would not sit inside and
