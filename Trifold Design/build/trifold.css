@@ -454,10 +454,10 @@ h3 {
    break the single line across the sheet; and this is used where the picture
    is the evidence rather than the atmosphere, which wants a straight edge and
    its caption underneath rather than beside it. */
-.figure--band { margin-left: calc(var(--pad) * -1); margin-right: calc(var(--pad) * -1); }
+.figure--band { margin: var(--s3) calc(var(--pad) * -1) 0; }
 .panel--first .figure--band { margin-left:  calc((var(--pad) + var(--bleed)) * -1); }
 .panel--last  .figure--band { margin-right: calc((var(--pad) + var(--bleed)) * -1); }
-.figure--band img { width: 100%; height: 1.00in; object-fit: cover; }
+.figure--band img { width: 100%; height: 0.92in; object-fit: cover; }
 .figure--band .caption { margin-left: var(--pad); margin-right: var(--pad); }
 .panel--first .figure--band .caption { margin-left:  calc(var(--pad) + var(--bleed)); }
 .panel--last  .figure--band .caption { margin-right: calc(var(--pad) + var(--bleed)); }
