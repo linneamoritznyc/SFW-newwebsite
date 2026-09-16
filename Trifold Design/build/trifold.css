@@ -62,7 +62,7 @@
   --s4: 0.14in;   /* between sections */
 
   --band-h:  0.98in;
-  --photo-h: 1.22in;
+  --photo-h: 1.20in;
 }
 
 /* Fonts, self-hosted and subsetted, from the repository's own fonts/ folder.
@@ -528,6 +528,9 @@ h3 {
 .figure--side { display: flex; gap: 0.13in; align-items: center; margin-top: var(--s3); }
 .figure--side img { width: 1.18in; height: 0.72in; flex: 0 0 1.18in; }
 .figure--side .caption { margin-top: 0; }
+/* Bigger, for the one picture that is the argument rather than an
+   illustration: what a microscope count actually looks at. */
+.figure--side--lg img { width: 1.42in; height: 0.82in; flex: 0 0 1.42in; }
 
 /* The pull quote's standfirst takes its icon the same way. */
 .pull b { display: flex; align-items: center; gap: 0.06in; }
