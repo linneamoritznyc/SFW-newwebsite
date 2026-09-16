@@ -1,83 +1,67 @@
 #!/usr/bin/env python3
-"""Generate the QR codes for the trifold, one per panel.
+"""Generate the five QR codes for the trifold, and the standalone PNGs.
 
-Colours are taken from css/site.css section 1. See NOTES.md for the
-token decision behind each one. Run from the repo root:
+Each code carries a Switchy short link, not the destination. Three reasons,
+and the first two are the important ones:
+
+  1. A printed code cannot be changed. The short link can, so a destination
+     that moves, or a rebuilt site that renames a path, is a redirect edit
+     rather than a reprint. This brochure has already had three addresses go
+     404 under it once.
+  2. Short payloads mean few modules, and few modules mean each module is
+     physically large enough to survive press. These fit at error correction
+     H with room to spare; the long URLs with UTM tails did not.
+  3. The UTM parameters ride on the redirect, so the campaign reporting is
+     unchanged and none of it costs modules here.
+
+Pure black on white, error correction H, four modules of quiet zone.
 
     python3 "Trifold Design/build/make-qr.py"
+    python3 "Trifold Design/build/check-qr.py"   # decodes them back out
 """
 import pathlib
 import segno
 
-OUT = pathlib.Path(__file__).parent / "qr"
-OUT.mkdir(exist_ok=True)
+HERE = pathlib.Path(__file__).parent
+SVG_OUT = HERE / "qr"                                   # placed in the artwork
+PNG_OUT = HERE.parent.parent / "exports" / "qr"         # standalone, for reuse
+SVG_OUT.mkdir(exist_ok=True)
+PNG_OUT.mkdir(parents=True, exist_ok=True)
 
-# Short on purpose. Every character in the tail costs modules, every module
-# costs physical size, and a print code that will not scan is worth nothing at
-# all. utm_content still names the panel, which is the only breakdown anyone
-# will actually read.
-BASE = "utm_source=In%20Person&utm_medium=QRCode&utm_campaign=2026_Event_Brochure"
-
-# utm_term is deliberately absent. The Foundation's convention has
-# utm_term=in_person, which repeats utm_source=In Person and reports nothing the
-# other four parameters do not. Nineteen characters of it took the community
-# code to 61 modules, and 61 modules across the 29.2mm the panel can spare is
-# 0.479mm a module, under the practical minimum for press. Without it every code
-# is at 0.512mm or better. If analytics turns out to need it, the room has to
-# come from somewhere else: a shorter destination, or a bigger code.
-
-# The UTM convention is the Foundation's own, given for the 2026 event
-# brochure. The space in utm_source is written %20 rather than literally: a
-# raw space is not legal in a URL, and it decodes back to "In Person" in
-# analytics, so the reporting reads the same and the code cannot break on a
-# fussy scanner.
-#
-# Every address printed here is a CURRENT soilfoodweb.com path, not a path on
-# the rebuilt site. The rebuild is not live yet, so /research, /practice and
-# /donate are 404s today and a printed code cannot be edited later. vercel.json
-# already 301s each of these to its new home, so they resolve now and keep
-# resolving after launch. Do not "modernise" them.
+# A code has to read before it has to be on brand, and these sit on panels in
+# four different colours. Black on white everywhere: maximum contrast, nothing
+# for a scanner to argue with. The panel's own accent stays on the rule above
+# the code, where nothing has to read it.
+DARK, LIGHT = "#000000", "#FFFFFF"
+ECC = "h"      # 30% recoverable: survives a crease, a thumb, a bad press day
+QUIET = 4      # modules of quiet zone on every side, the spec minimum
 
 CODES = {
-    # panel 6, Community. --green, Food Web Green.
-    "community": (
-        "https://school.soilfoodweb.com/products/communities/SFW-public-community"
-        f"?{BASE}&utm_content=community",
-        "#156826",
-    ),
-    # panel 2, the Dr. Elaine story panel. --legacy, Legacy Purple.
-    "webinar": (
-        f"https://webinar.soilfoodweb.com/?{BASE}&utm_content=webinar",
-        "#6B4C7A",
-    ),
-    # panel 3, Teaching. --edu, Education Blue.
-    "scholarship": (
-        "https://soilfoodweb.com/scholarship-opportunities/"
-        f"?{BASE}&utm_content=scholarship",
-        "#1F4E73",
-    ),
-    # panel 5, Practice. --green. The eleven case study films, which is where
-    # a reader who believes the practice panel wants to go next.
-    # 301s to /practice#case-studies.
-    "case-studies": (
-        f"https://soilfoodweb.com/case-studies/?{BASE}&utm_content=case_studies",
-        "#156826",
-    ),
-    # panel 6, Community. --soil, not --gold: the brand's gold is #C9A227,
-    # which against white gives a code a scanner has to work for. The gold
-    # appears on the rule above the code instead, where nothing has to read it.
-    # 301s to /donate.
-    "donate": (
-        f"https://soilfoodweb.com/donations/?{BASE}&utm_content=donate",
-        "#4F3433",
-    ),
+    # name           short link                                      PNG name
+    "webinar":      ("https://www.sfw.one/brochure-webinar",      "webinar"),
+    "scholarship":  ("https://www.sfw.one/brochure-scholarship",  "scholarship"),
+    "case-studies": ("https://www.sfw.one/brochure-casestudies",  "casestudies"),
+    "community":    ("https://www.sfw.one/brochure-community",    "community"),
+    "donate":       ("https://www.sfw.one/brochure-donate",       "donate"),
 }
 
-for name, (url, colour) in CODES.items():
-    # M correction (15%). Q would be sturdier, but these URLs carry long UTM
-    # tails: at Q the community code is 65 modules, which at the 1.15in the
-    # panel can spare is 0.45mm a module, under the practical print minimum.
-    # M holds every code at 0.51mm or better. See NOTES.md.
-    qr = segno.make(url, error="m")
-    qr.save(OUT / f"{name}.svg", scale=10, border=2, dark=colour, light=None)
-    print(f"{name:<12} version {qr.version:>2}  {qr.symbol_size(scale=1, border=2)[0]:>3} modules  {url}")
+# The placed codes are 1.15in square including their quiet zone. Anything at or
+# above 2cm is fine for print; this is 29.2mm.
+PLACED_MM = 1.15 * 25.4
+
+print(f"{'code':<14}{'ver':>4}{'modules':>9}{'mm/module':>11}   payload")
+for name, (url, png_name) in CODES.items():
+    qr = segno.make(url, error=ECC)
+    modules = qr.symbol_size(scale=1, border=QUIET)[0]
+
+    # Vector for the artwork: no resolution to get wrong at the printer.
+    qr.save(SVG_OUT / f"{name}.svg", scale=10, border=QUIET,
+            dark=DARK, light=LIGHT)
+
+    # Standalone raster, comfortably over 1200px on the short side.
+    scale = -(-1200 // modules)          # ceiling division
+    qr.save(PNG_OUT / f"sfw-brochure-qr-{png_name}.png", scale=scale,
+            border=QUIET, dark=DARK, light=LIGHT)
+
+    print(f"{name:<14}{qr.version:>4}{modules:>9}{PLACED_MM/modules:>10.3f}   {url}")
+    print(f"{'':14}{'':>4}{'':>9}{'':>11}   png {modules*scale}x{modules*scale}px")

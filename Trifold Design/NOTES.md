@@ -277,18 +277,30 @@ panel 6, verbatim from `docs/copy-deck-v2.md` section 1.3. Every course link poi
 
 ## QR codes
 
-One per panel, never two on a page, on panels 2, 3 and 6. Panels 1, 4 and 5 carry none.
+Five, on panels 2, 3, 5 and 6. Panel 6 carries two, the free community under the photograph and the
+donate ask at its foot; they sit about six inches apart at opposite ends of the panel, which is far
+enough that a phone cannot frame both at once. Panels 1 and 4 carry none.
 
-Generated at **error correction M (15%)**, printed at **1.15in square**. Q correction would be
-sturdier, but these URLs carry long UTM tails: at Q the community code is 65 modules, which at 1.15in
-is 0.45mm a module, under the practical minimum for print. At M the codes are 49, 53 and 57 modules,
-which is 0.51 to 0.60mm a module. That is workable but not generous. **Ask the printer to scan a proof
-off the press, not off a laser print.** If any of them is marginal, the fix is short redirect addresses
-rather than a bigger code: the UTM tail is most of the payload.
+Every code holds a **Switchy short link** (`sfw.one/brochure-*`), not the destination. That is the
+important decision on this page. A printed code cannot be edited, and the destinations under this
+brochure have already moved once: three addresses pointed at rebuilt-site paths that 404 on the live
+WordPress site. With a short link in the code, a moved destination or a renamed path is a redirect
+edit rather than a reprint. The campaign UTM parameters ride on the redirect, so the reporting is
+unchanged and none of it costs modules here.
 
-The scholarship code points at `soilfoodweb.com/scholarship-opportunities`, which is the current
-WordPress page, as given in the brief. The new site has `learn-scholarships.html`. **Re-point this
-before print if the new site is live by then**, or the code will need a redirect on day one.
+The short payload also buys the error correction back. Generated at **H (30% recoverable)**, four
+modules of quiet zone, pure black on white, printed at **1.15in (29.2mm) square**. All five are
+version 5, 45 modules, **0.649mm a module**. The long URLs with UTM tails could only manage M at
+0.48 to 0.60mm, and the community code was under the practical print minimum. There is real margin
+now, but a proof scanned off the press rather than off a laser print is still worth asking for.
+
+Black on white rather than the panel accent: a code has to read before it has to be on brand, and
+these sit on four different coloured panels. The accent stays on the rule above each code, where
+nothing has to scan it.
+
+`build/make-qr.py` writes the placed SVGs and the standalone PNGs in `exports/qr/` from one table.
+`build/check-qr.py` decodes every placed code back out of the 300 DPI render and fails if any does
+not read. Run both after any change to a link, a colour, or the size of `.qr img`.
 
 ## Also worth a person's eye
 
