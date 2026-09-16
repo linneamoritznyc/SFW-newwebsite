@@ -39,15 +39,24 @@
   --sans:    "Source Sans 3", "Helvetica Neue", Arial, sans-serif;
 
   /* Trim. Letter roll fold. The tucked panel folds in first and the other two
-     close over it, so it has to be short enough to clear the far crease with
-     the paper's own thickness taken up as well. It was 1/16in narrower, which
-     is the tight end of the allowance and bound on the fold: the green panel
-     would not sit inside without bowing. It is now 5/32in narrower, and the
-     other two are equal so the cover meets the folded edge exactly rather than
-     leaving a strip of the panel behind it showing.
-       3.71875 + 3.71875 + 3.5625 = 11in. */
-  --w-wide: 3.71875in;
-  --w-tuck: 3.5625in;
+     close over it, so it has to clear the far crease with the paper's own
+     thickness taken up as well. This has now been tested on paper twice. At
+     1/16in short it bound. At 5/32in short it still would not sit inside a
+     sheet that had been cut and folded carefully, and had to be trimmed with
+     scissors. It is now a full 1/4in short, which is at the generous end of the
+     allowance and is the point: a flap that is a little shy of the crease is
+     invisible once the piece is closed, and one that is a little long is the
+     thing that has failed twice.
+
+     The other two are equal, so the cover meets the folded edge exactly rather
+     than leaving a strip of the panel behind it showing.
+
+       3.75 + 3.75 + 3.5 = 11in.
+
+     All three are whole pixels at 300 DPI (1125, 1125, 1050), which the old
+     sixteenths were not. */
+  --w-wide: 3.75in;
+  --w-tuck: 3.5in;
   --h:      8.5in;
   --bleed:  0.125in;
   --pad:    0.28in;   /* panel margin. Safe area is --pad in from trim. */

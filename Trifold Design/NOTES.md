@@ -21,6 +21,34 @@ corrected for overflow and crop, re-rendered. Nothing outside `Trifold Design/` 
 Rebuild: `python3 "Trifold Design/build/make-qr.py"` then `node "Trifold Design/build/render.js"`,
 both from the repository root.
 
+## Third fold test: the tuck allowance, settled at 1/4in
+
+Folded carefully from a cut sheet, the tuck flap still would not sit inside and
+had to be trimmed with scissors. That is the second time an allowance from the
+published letter-trifold specs has failed on real paper, so the allowance is now
+set from the test rather than from the spec sheets.
+
+    was   3.6875  / 3.6875  / 3.625     tuck 1/16in short   bound
+    then  3.71875 / 3.71875 / 3.5625    tuck 5/32in short   still bound
+    now   3.75    / 3.75    / 3.5       tuck 1/4in short
+
+The asymmetry is deliberate and it only goes one way. A flap that stops a little
+shy of the crease is invisible once the piece is closed; a flap that is a little
+long is the thing that has now failed twice and had to be cut. 1/4in is at the
+generous end of the range and that is the point.
+
+The round numbers are a bonus rather than the reason, but they are worth having:
+two panels at 3 3/4in and a flap at 3 1/2in is something a print shop can set
+without a calculator and something a person can find on a ruler, which the
+thirty-seconds were not. All three are whole pixels at 300 DPI as well, 1125 /
+1125 / 1050, so the panel edges no longer land on a fraction.
+
+The flap lost another 1/16in of measure. Practice absorbed it without
+overflowing; Teaching's opening line had to lose four words to keep "it." off a
+line of its own, and now reads "From first curiosity to professional practice."
+
+---
+
 ## Re-imposed after the second fold test, 16 September 2026
 
 The panels moved. Asked for: the donate ask on the back of the folded piece,
@@ -128,12 +156,12 @@ checked at printed size rather than enlarged.
 Both PNGs are **3375 x 2625 px**: the 3300 x 2550 trim asked for, plus **0.125in (37.5px) of bleed
 on all four sides**. Bleed is included, not skipped.
 
-- Panels 1, 2, 4, 5: 3.71875in wide (1115.625px at 300 DPI)
-- Panels 3 and 6, the tuck-in panels: 3.5625in wide (1068.75px)
+- Panels 1, 2, 4, 6: 3.75in wide (1125px at 300 DPI)
+- Panels 3 and 5, the tuck-in flap: 3.5in wide (1050px)
 - All panels 8.5in tall; the spread trims to 11in x 8.5in
 
-3.71875in at 300 DPI is 1115.625px, not a whole pixel, so the individual panel widths carry a
-fraction of one. The three add to exactly 3300px, which is what matters. Safe margin is 0.28in in from trim on
+All three are whole pixels at 300 DPI, which the sixteenths and thirty-seconds they replaced were
+not, and they add to exactly 3300px. Safe margin is 0.28in in from trim on
 every side; nothing but photography crosses it.
 
 Layout is written in inches and points and rendered at `deviceScaleFactor` 3.125 (CSS defines 1in as
@@ -145,7 +173,7 @@ screen pixels. Body text is 8.4pt, headlines 15.5 to 20pt.
 **Fixed.** This section used to say the imposition was as briefed and might be wrong; it was wrong,
 and it is corrected.
 
-A letter roll fold has one narrow tuck panel, 3.5625in against 3.71875in for the other two. That panel
+A letter roll fold has one narrow tuck panel, 3.5in against 3.75in for the other two. That panel
 is a single physical flap, so it sits on the right of one side of the sheet and on the **left** of
 the other. The brief asked for panels 1, 2, 3 across the outside and 4, 5, 6 across the inside, which
 put the narrow panel third on both sides. Printed that way every panel would have been 1/16in out of
@@ -155,11 +183,11 @@ register with its own back.
 
 | sheet | left to right | folds from its own left trim |
 | :-- | :-- | :-- |
-| inside | 2 Our story (wide), 4 Research (wide), 5 Practice (**tuck**) | 3.71875in, 7.4375in |
-| outside | 3 Teaching (**tuck**), 6 Community (wide), 1 Cover (wide) | 3.5625in, 7.28125in |
+| inside | 2 Our story (wide), 4 Research (wide), 5 Practice (**tuck**) | 3.75in, 7.5in |
+| outside | 3 Teaching (**tuck**), 6 Community (wide), 1 Cover (wide) | 3.5in, 7.25in |
 
-Each fold mirrors the other: 11 minus 3.5625 is 7.4375, and 11 minus 7.28125 is 3.71875. Measured
-from the rendered pages, not calculated by hand.
+Each fold mirrors the other: 11 minus 3.5 is 7.5, and 11 minus 7.25 is 3.75. Measured from the
+rendered pages, not calculated by hand.
 
 Backing, which decides where the cover lands: inside panel 5 (Practice, the tuck flap) folds in
 first, then panel 2 (Our story) folds over it, so the face that ends up on top is the **back of panel
