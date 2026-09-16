@@ -462,6 +462,18 @@ h3 {
 .panel--first .figure--band .caption { margin-left:  calc(var(--pad) + var(--bleed)); }
 .panel--last  .figure--band .caption { margin-right: calc(var(--pad) + var(--bleed)); }
 
+/* Three photographs across, no captions. The practice panel is about the range
+   of places this is done in, and three pictures say that faster than a sentence
+   can. No captions on purpose: naming each one invites a reader to check three
+   facts instead of taking in one idea. */
+.figure--trio { display: flex; gap: 0.08in; margin-top: var(--s3); }
+/* min-width:0 is not optional. A flex item defaults to min-width:auto, which
+   for an image is its intrinsic pixel width, so without this the three keep
+   their full size, refuse to shrink, and run straight off the panel into the
+   next one. The vertical overflow check cannot see that, which is why
+   render.js now measures horizontally too. */
+.figure--trio img { flex: 1 1 0; width: auto; min-width: 0; height: 0.98in; object-fit: cover; }
+
 /* The lower edge of each photograph is not its own shape. One curve is drawn
    across the whole sheet and each picture is clipped by the segment of it that
    falls in that panel, so the three edges join into a single line across both

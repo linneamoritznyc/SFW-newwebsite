@@ -75,8 +75,18 @@ function serve() {
         const inner = p.clientHeight - parseFloat(getComputedStyle(p).paddingTop) - pad;
         let used = 0;
         p.querySelectorAll(':scope > *').forEach((c) => { used += c.getBoundingClientRect().height; });
+        // Horizontal too: a flex row that refuses to shrink runs off the side
+        // of the panel, and panel overflow:hidden means it is invisible in the
+        // numbers and only shows up as a neighbour's photograph looking wrong.
+        const box = p.getBoundingClientRect();
+        let wide = 0;
+        p.querySelectorAll('*').forEach((el) => {
+          const r = el.getBoundingClientRect();
+          wide = Math.max(wide, r.right - box.right, box.left - r.left);
+        });
         out.push({ panel: p.dataset.panel, inner: +inner.toFixed(1), used: +used.toFixed(1),
-                   overflow: +(p.scrollHeight - p.clientHeight).toFixed(1) });
+                   overflow: +(p.scrollHeight - p.clientHeight).toFixed(1),
+                   sideways: +wide.toFixed(1) });
       });
       return out;
     });
