@@ -605,8 +605,12 @@ h3 {
 }
 .checks b { font-family: var(--display); font-weight: 600; font-size: 8pt; color: var(--soil); }
 
-/* One QR per panel. Never two on a page: a phone reading two codes at once
-   gets confused. The frame colour is the panel's own accent token. */
+/* One QR per panel, with one deliberate exception: the community panel carries
+   the free community at the top and the donate ask at its foot. Two codes are a
+   problem when a phone can see both in one frame; those two sit about six
+   inches apart at opposite ends of an 8.5in panel, which is far enough that it
+   cannot. Do not add a third, and do not move these together.
+   The frame colour is the panel's own accent token. */
 .qr { display: flex; align-items: center; gap: 0.12in; }
 .qr img { width: 1.15in; height: 1.15in; display: block; }
 .qr .t {

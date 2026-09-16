@@ -16,8 +16,15 @@ OUT.mkdir(exist_ok=True)
 # costs physical size, and a print code that will not scan is worth nothing at
 # all. utm_content still names the panel, which is the only breakdown anyone
 # will actually read.
-BASE = ("utm_source=In%20Person&utm_medium=QRCode"
-        "&utm_campaign=2026_Event_Brochure&utm_term=in_person")
+BASE = "utm_source=In%20Person&utm_medium=QRCode&utm_campaign=2026_Event_Brochure"
+
+# utm_term is deliberately absent. The Foundation's convention has
+# utm_term=in_person, which repeats utm_source=In Person and reports nothing the
+# other four parameters do not. Nineteen characters of it took the community
+# code to 61 modules, and 61 modules across the 29.2mm the panel can spare is
+# 0.479mm a module, under the practical minimum for press. Without it every code
+# is at 0.512mm or better. If analytics turns out to need it, the room has to
+# come from somewhere else: a shorter destination, or a bigger code.
 
 # The UTM convention is the Foundation's own, given for the 2026 event
 # brochure. The space in utm_source is written %20 rather than literally: a
