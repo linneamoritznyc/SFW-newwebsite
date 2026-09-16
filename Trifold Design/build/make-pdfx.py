@@ -58,7 +58,19 @@ GS_COMMON = [
     "gs", "-dBATCH", "-dNOPAUSE", "-dQUIET", "-dSAFER", "-sDEVICE=pdfwrite",
     "-dProcessColorModel=/DeviceCMYK", "-sColorConversionStrategy=CMYK",
     "-dOverrideICC=true", f"-sOutputICCProfile={ICC}",
-    "-dDownsampleColorImages=false", "-dDownsampleGrayImages=false",
+    # Photographs are capped at 400 ppi. They used to go in at whatever
+    # resolution the file happened to be, which put the test tubes photograph
+    # on panel 4 into the PDF at 3083 x 2235, about 811 ppi over its 3.8in
+    # frame and nearly seven megapixels, more than twice any other image in the
+    # piece. It printed as a near black rectangle on a home printer while every
+    # other photograph came out right, which is what a decoder that has run out
+    # of room for one image looks like. 400 ppi is well above what a 175 line
+    # screen can resolve, so nothing visible is given up, and the outlier is
+    # gone. Grey and mono images are left alone: the only ones are the gradient
+    # ramps, at well under 100 ppi already.
+    "-dDownsampleColorImages=true", "-dColorImageDownsampleType=/Bicubic",
+    "-dColorImageResolution=400", "-dColorImageDownsampleThreshold=1.2",
+    "-dDownsampleGrayImages=false",
     "-dDownsampleMonoImages=false", "-dAutoFilterColorImages=false",
     "-dColorImageFilter=/DCTEncode",
 ]

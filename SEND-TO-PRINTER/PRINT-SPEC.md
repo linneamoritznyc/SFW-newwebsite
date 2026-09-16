@@ -6,7 +6,7 @@
 | :-- | :-- |
 | **File** | `sfw-trifold-2page-CMYK-PDFX.pdf` — 2 pages, page 1 outside, page 2 inside |
 | **Flat size** | 11 × 8.5 in, landscape |
-| **Folded size** | 3.6875 × 8.5 in |
+| **Folded size** | 3.71875 × 8.5 in |
 | **Fold** | Roll fold (tri-fold), right panel folds in first |
 | **Bleed** | 0.125 in all four sides. TrimBox is set in the PDF |
 | **Ink** | 4/4 process CMYK. No spots |
@@ -20,18 +20,19 @@
 
 ## Panel widths are not equal
 
-The tucked panel is 1/16 in narrower so it does not bind.
+The tucked panel is 5/32 in narrower so it does not bind. The other two are
+equal, so the cover meets the folded edge.
 
 | Page | Panel widths, left to right | Folds from left trim |
 | :-- | :-- | :-- |
-| 1, outside | **3.625**, 3.6875, 3.6875 | 3.625 in, 7.3125 in |
-| 2, inside | 3.6875, 3.6875, **3.625** | 3.6875 in, 7.375 in |
+| 1, outside | **3.5625**, 3.71875, 3.71875 | 3.5625 in, 7.28125 in |
+| 2, inside | 3.71875, 3.71875, **3.5625** | 3.71875 in, 7.4375 in |
 
 ## Three notes
 
 1. **The two pages are mirrored on purpose. Please impose as supplied.** The
    tuck panel falls on the left of one side of the sheet and the right of the
-   other. Normalizing both pages to the same panel order puts every panel 1/16
+   other. Normalizing both pages to the same panel order puts every panel 5/32
    in out of register with its own back.
 
 2. **Total ink coverage is 311% max.** Fine for coated sheetfed. If you are

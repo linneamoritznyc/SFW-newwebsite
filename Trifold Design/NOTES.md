@@ -21,17 +21,71 @@ corrected for overflow and crop, re-rendered. Nothing outside `Trifold Design/` 
 Rebuild: `python3 "Trifold Design/build/make-qr.py"` then `node "Trifold Design/build/render.js"`,
 both from the repository root.
 
+## Pass after the first home-printer test, 16 September 2026
+
+Four things came back from folding a printed copy by hand, and all four are fixed
+in the artwork rather than worked around.
+
+**The tuck panel bound on the fold.** It was 3.625in against 3.6875in, a 1/16in
+allowance, which is the tight end of what a roll fold wants and not enough once
+the paper's own thickness is taken up. The green community flap would not sit
+inside without bowing. The three panels are now 3.71875 / 3.71875 / 3.5625,
+still 11in: the tuck clears the far crease by 5/32in, and the two others stay
+equal so the cover meets the folded edge instead of stopping short of it and
+showing a strip of the panel behind. Narrowing the tuck cost panel 6 three
+pixels of height, recovered by breaking the address onto its own lines and
+shortening the donate line to the copy deck's own words.
+
+**The crease between panels 4 and 5 was invisible.** Both were white, so there
+was nothing to fold by eye. Panel 5 now carries Organic Cream, `--panel`,
+`#F4F1EA`, the brand's only light neutral. `css/site.css` keeps that token for
+shapes and never for the page; a printed panel has to declare its own edge, so
+this piece uses it as a ground. About 4% off the paper: enough to find the fold,
+not enough to read as a coloured panel beside the two that are.
+
+**One photograph printed as a near black rectangle** on a home printer while
+every other photograph on the same sheet came out right. The file itself is
+sound. Both Ghostscript and poppler render that image correctly, every embedded
+JPEG is baseline, 4 component, Adobe APP14 with transform 0, and none of them is
+truncated, so there is nothing in the PDF that says black. What that image was,
+and nothing else was, is oversized: the test tubes photograph went in at
+3083 x 2235, about 811 ppi over its 3.8in frame and nearly seven megapixels,
+more than twice any other image in the piece. A decoder that has run out of room
+for one image is what a single black photograph looks like. `make-pdfx.py` now
+caps colour images at 400 ppi, bicubic, threshold 1.2. That is well above what a
+175 line screen resolves, so nothing visible is given up; the outlier is gone,
+the largest image on either sheet is now under two megapixels, and the X-4 file
+dropped from 4.9 MB to 2.9 MB. Worth re-testing on the same printer before the
+run, because this is a diagnosis by elimination and not a reproduction.
+
+**Two facts corrected, on Sammie's review.** 40 years became 45, and 100
+countries became 132. Each appears four times across the piece and all eight
+were changed together: the two figures on the cover, "for forty-five years" in
+the cover body, "across forty-five years" on panel 2, "more than 132 countries"
+on panel 2, and the panel 4 lede. Source: Sammie, 16 September 2026. **The
+website still says 40 years and more than 100 countries**, in `index.html`,
+`content/home.json`, `content/community.json`, `content/news.json`,
+`community.html`, `news.html`, `contact.html`, `about-elaine.html` and
+`_dev/`. That is a separate pass and has not been made.
+
+**The host-a-workshop icon did not read as a hand.** The old drawing put a
+ribbed grip above a blade, which at 0.3in looked like a spring on a screwdriver.
+It is now a trowel angled into a soil mound with a closed hand on the handle,
+checked at printed size rather than enlarged.
+
+---
+
 ## Geometry, as delivered
 
 Both PNGs are **3375 x 2625 px**: the 3300 x 2550 trim asked for, plus **0.125in (37.5px) of bleed
 on all four sides**. Bleed is included, not skipped.
 
-- Panels 1, 2, 4, 5: 3.6875in wide (1106.25px at 300 DPI)
-- Panels 3 and 6, the tuck-in panels: 3.625in wide (1087.5px)
+- Panels 1, 2, 4, 5: 3.71875in wide (1115.625px at 300 DPI)
+- Panels 3 and 6, the tuck-in panels: 3.5625in wide (1068.75px)
 - All panels 8.5in tall; the spread trims to 11in x 8.5in
 
-3.6875in at 300 DPI is 1106.25px, not a whole pixel, so the individual panel widths carry a quarter
-pixel. The three add to exactly 3300px, which is what matters. Safe margin is 0.28in in from trim on
+3.71875in at 300 DPI is 1115.625px, not a whole pixel, so the individual panel widths carry a
+fraction of one. The three add to exactly 3300px, which is what matters. Safe margin is 0.28in in from trim on
 every side; nothing but photography crosses it.
 
 Layout is written in inches and points and rendered at `deviceScaleFactor` 3.125 (CSS defines 1in as
@@ -43,7 +97,7 @@ screen pixels. Body text is 8.4pt, headlines 15.5 to 20pt.
 **Fixed.** This section used to say the imposition was as briefed and might be wrong; it was wrong,
 and it is corrected.
 
-A letter roll fold has one narrow tuck panel, 3.625in against 3.6875in for the other two. That panel
+A letter roll fold has one narrow tuck panel, 3.5625in against 3.71875in for the other two. That panel
 is a single physical flap, so it sits on the right of one side of the sheet and on the **left** of
 the other. The brief asked for panels 1, 2, 3 across the outside and 4, 5, 6 across the inside, which
 put the narrow panel third on both sides. Printed that way every panel would have been 1/16in out of
@@ -53,11 +107,11 @@ register with its own back.
 
 | sheet | left to right | folds from its own left trim |
 | :-- | :-- | :-- |
-| inside | 4 Research (wide), 5 Practice (wide), 6 Community (**tuck**) | 3.6875in, 7.375in |
-| outside | 3 Teaching (**tuck**), 2 Our story (wide), 1 Cover (wide) | 3.625in, 7.3125in |
+| inside | 4 Research (wide), 5 Practice (wide), 6 Community (**tuck**) | 3.71875in, 7.4375in |
+| outside | 3 Teaching (**tuck**), 2 Our story (wide), 1 Cover (wide) | 3.5625in, 7.28125in |
 
-Each fold mirrors the other: 11 minus 3.625 is 7.375, and 11 minus 7.3125 is 3.6875. Measured from
-the rendered pages, not calculated by hand.
+Each fold mirrors the other: 11 minus 3.5625 is 7.4375, and 11 minus 7.28125 is 3.71875. Measured
+from the rendered pages, not calculated by hand.
 
 Backing, which decides where the cover lands: inside panel 6 (Community, the tuck flap) folds in
 first, then panel 4 (Research) folds over it, so the face that ends up on top is the **back of panel

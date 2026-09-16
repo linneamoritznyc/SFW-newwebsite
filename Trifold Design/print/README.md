@@ -43,12 +43,12 @@ are live vector.
 **The two sheets are mirrored, on purpose.** A roll fold has one narrow tuck
 panel, so that panel sits on the right of one side of the sheet and the left of
 the other. Printed with the narrow panel on the same side of both, every panel
-would be 1/16in out of register with its own back.
+would be 5/32in out of register with its own back.
 
 | sheet | left to right | folds from its own left trim |
 | :-- | :-- | :-- |
-| page 1, outside | Teaching (**tuck**, 3.625in), Our story, Cover | 3.625in, 7.3125in |
-| page 2, inside | Research, Practice, Community (**tuck**, 3.625in) | 3.6875in, 7.375in |
+| page 1, outside | Teaching (**tuck**, 3.5625in), Our story, Cover | 3.5625in, 7.28125in |
+| page 2, inside | Research, Practice, Community (**tuck**, 3.5625in) | 3.71875in, 7.4375in |
 
 Each fold mirrors the other. Community folds in first, Research folds over it,
 and the Cover lands face up.

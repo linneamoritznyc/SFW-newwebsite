@@ -38,9 +38,16 @@
   --display: "Montserrat", "Helvetica Neue", Arial, sans-serif;
   --sans:    "Source Sans 3", "Helvetica Neue", Arial, sans-serif;
 
-  /* Trim. Letter tri-fold: the tucked panel is 1/16in narrower. */
-  --w-wide: 3.6875in;
-  --w-tuck: 3.625in;
+  /* Trim. Letter roll fold. The tucked panel folds in first and the other two
+     close over it, so it has to be short enough to clear the far crease with
+     the paper's own thickness taken up as well. It was 1/16in narrower, which
+     is the tight end of the allowance and bound on the fold: the green panel
+     would not sit inside without bowing. It is now 5/32in narrower, and the
+     other two are equal so the cover meets the folded edge exactly rather than
+     leaving a strip of the panel behind it showing.
+       3.71875 + 3.71875 + 3.5625 = 11in. */
+  --w-wide: 3.71875in;
+  --w-tuck: 3.5625in;
   --h:      8.5in;
   --bleed:  0.125in;
   --pad:    0.28in;   /* panel margin. Safe area is --pad in from trim. */
@@ -411,6 +418,15 @@ h3 {
   z-index: 0;
 }
 .panel { z-index: 1; }
+
+/* A tinted ground for the practice panel.
+   Panels 4 and 5 were both white, so the crease between them was invisible and
+   the sheet could not be folded by eye. Organic Cream is the brand's only light
+   neutral; site.css keeps it for shapes and never for the page, but a printed
+   panel has to declare its own edge, so here it is the ground. The tint is
+   about 4% darker than the paper: enough to find the fold, not enough to read
+   as a coloured panel beside the two that are. */
+.panel--cream { background: var(--panel); }
 .panel--field { background: none; }
 .panel--field::before {
   content: "";
@@ -488,7 +504,11 @@ h3 {
    taller frame keeps the same shape and still meets the fold. */
 .figure--hero img { height: 1.72in; }
 
-.spacer { flex: 1 1 auto; min-height: 0.04in; }
+/* The spacer grows to push what follows to the foot of the panel. Its floor is
+   only there so two blocks never touch when a panel is full; the gaps a reader
+   sees are the s1 to s4 margins, which apply regardless. The floor was 0.04in,
+   which on a full panel is 0.08in of unshrinkable air across two spacers. */
+.spacer { flex: 1 1 auto; min-height: 0.02in; }
 
 /* --------------------------------------------------------------------------
    Components
