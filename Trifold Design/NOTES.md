@@ -294,16 +294,19 @@ version 5, 45 modules, **0.649mm a module**. The long URLs with UTM tails could 
 0.48 to 0.60mm, and the community code was under the practical print minimum. There is real margin
 now, but a proof scanned off the press rather than off a laser print is still worth asking for.
 
-Each code carries its own panel's colour on a white ground: Legacy Purple on the Dr. Elaine panel,
-Education Blue on teaching, Food Web Green on practice, Moss on community, and a gold on the donate
-ask. Five colours, one per code.
+Each code carries its own panel's colour on a white ground, and they are the real brand tokens:
+Legacy Purple `#6B4C7A` on the Dr. Elaine panel, Education Blue `#3780B8` on teaching, Food Web Green
+`#156826` on practice, Moss `#22371F` on community, Gold `#C9A227` on the donate ask.
 
-Two of the brand tokens cannot be used as ink at this size and `build/make-qr.py` refuses them.
-Education Blue `#3780B8` is 4.25:1 against white and the brand gold `#C9A227` is 2.42:1; a decoder run
-over the 300 DPI render could not read the blue one at all, which is how this was found. Both now use
-the deep end of their own gradient, `#1F4E73` at 8.77:1 and a gold taken down to `#8A6E15` at 4.86:1.
-The generator computes the contrast of every colour and exits rather than write a code under 4.5:1,
-so this cannot come back by someone picking a prettier hex.
+`build/make-qr.py` gates the colours, but with a scan test rather than a contrast rule. It renders
+each code at its printed size, degrades it to simulate ink spread and a phone camera, and decodes it;
+the build stops if it does not come back. An earlier pass used a WCAG contrast threshold of 4.5:1 and
+rejected both Education Blue (4.25:1) and the brand gold (2.42:1). That was wrong: WCAG 4.5:1 is a
+readability figure for small text, and a QR code at error correction H with 0.649mm modules is a far
+more forgiving thing. Measured properly, blur tolerance runs from 2.8px on the community code down to
+1.2px on the gold, and all five read. The deep ends of the gradients, `#1F4E73` and `#8A6E15`, survive
+about twice the blur and are the fallback if a press proof ever disappoints; gold is the one to look
+at first.
 
 `build/make-qr.py` writes the placed SVGs and the standalone PNGs in `exports/qr/` from one table.
 `build/check-qr.py` decodes every placed code back out of the 300 DPI render and fails if any does

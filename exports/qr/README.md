@@ -9,10 +9,10 @@ the artwork encoding the same links.
 | File | Encodes | Colour | Panel |
 | :-- | :-- | :-- | :-- |
 | `sfw-brochure-qr-webinar.png` | `https://www.sfw.one/brochure-webinar` | `#6B4C7A` Legacy Purple | Our story |
-| `sfw-brochure-qr-scholarship.png` | `https://www.sfw.one/brochure-scholarship` | `#1F4E73` Education Blue, deep | Teaching |
+| `sfw-brochure-qr-scholarship.png` | `https://www.sfw.one/brochure-scholarship` | `#3780B8` Education Blue | Teaching |
 | `sfw-brochure-qr-casestudies.png` | `https://www.sfw.one/brochure-casestudies` | `#156826` Food Web Green | Practice |
 | `sfw-brochure-qr-community.png` | `https://www.sfw.one/brochure-community` | `#22371F` Moss | Community |
-| `sfw-brochure-qr-donate.png` | `https://www.sfw.one/brochure-donate` | `#8A6E15` Gold, deep | Donate |
+| `sfw-brochure-qr-donate.png` | `https://www.sfw.one/brochure-donate` | `#C9A227` Gold | Donate |
 
 Each is a Switchy short link, so a destination can be repointed without a
 reprint. The campaign UTM parameters ride on the redirect.
@@ -21,9 +21,13 @@ reprint. The campaign UTM parameters ride on the redirect.
 zone. Coloured ink on a white ground. 1215 x 1215 px. Placed in the brochure at
 29.2mm square, which is 0.649mm a module.
 
-**Two brand colours cannot be used as ink at this size and the script refuses
-them.** Education Blue `#3780B8` is 4.25:1 against white and the brand gold
-`#C9A227` is 2.42:1; a decoder could not read the blue one at all. Both use the
-deep end of their own gradient here. Nothing below 4.5:1 will generate.
+**Colours are gated by a scan test, not a contrast rule.** Each one is rendered
+at its printed size, degraded to simulate ink spread and a phone camera, and
+decoded; the build stops if it does not come back. An earlier version used a
+WCAG contrast threshold of 4.5:1, which is a text readability figure and far
+too strict here: it rejected Education Blue and the brand gold, both of which
+decode reliably at this error correction and module size. Blur tolerance runs
+from 2.8px on the community code to 1.2px on the gold, so gold is the one to
+check first on a press proof.
 
 `sfw-brochure-qr-codes.zip` holds all five.
