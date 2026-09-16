@@ -21,8 +21,11 @@
   --edu:        #3780B8;   /* Education Blue */
   --legacy:     #6B4C7A;   /* Legacy Purple. Dr. Elaine content ONLY. */
   --tan:        #C89B7B;
-  /* --gold (#C9A227) is deliberately absent. site.css scopes it to the
-     Donate button and there is no donate button in this brochure. */
+  /* site.css scopes --gold to the Donate button. This brochure now carries a
+     donate ask, so the token is here, and it is used exactly as the site uses
+     it: on the donate ask and nowhere else. Never on the QR code itself, where
+     it gives a scanner too little to work with against white. */
+  --gold:       #C9A227;
 
   --rule:        rgba(79, 52, 51, .22);
   --rule-strong: rgba(79, 52, 51, .55);
@@ -353,12 +356,18 @@ h3 {
 .panel--field .qr--green,
 .panel--field .qr--edu,
 .panel--field .qr--legacy  { border-top-color: rgba(255, 255, 255, 0.55); }
+/* The gold holds against the green field and is the one accent worth keeping
+   there, since it is the site's own colour for this single action. */
+.panel--field .qr--gold    { border-top-color: var(--gold); }
 /* A code has to be dark on light to scan, whatever it is standing on. */
 .panel--field .qr img {
   background: #FFFFFF;
-  padding: 0.055in;
+  padding: 0.05in;
   border-radius: 0.035in;
-  width: 1.04in; height: 1.04in;
+  /* Matched to the white panels. At 1.04in the scholarship code came out at
+     0.45mm a module, under the practical print minimum, and a decoder run over
+     the 300 DPI render could not read it. */
+  width: 1.15in; height: 1.15in;
 }
 
 /* The figures block reversed out, for the cover's closing field. */
@@ -594,6 +603,7 @@ h3 {
 .qr--legacy { border-top: 2pt solid var(--legacy); padding-top: var(--s2); }
 .qr--edu    { border-top: 2pt solid var(--edu);    padding-top: var(--s2); }
 .qr--green  { border-top: 2pt solid var(--green);  padding-top: var(--s2); }
+.qr--gold   { border-top: 2pt solid var(--gold);   padding-top: var(--s2); }
 
 /* The legal block, ratified wording, verbatim. */
 .legal { font-size: 6.8pt; line-height: 1.35; color: var(--ink-soft); }

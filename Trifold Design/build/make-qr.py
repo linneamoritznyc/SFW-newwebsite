@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate the three QR codes for the trifold, one per panel.
+"""Generate the QR codes for the trifold, one per panel.
 
 Colours are taken from css/site.css section 1. See NOTES.md for the
 token decision behind each one. Run from the repo root:
@@ -12,7 +12,11 @@ import segno
 OUT = pathlib.Path(__file__).parent / "qr"
 OUT.mkdir(exist_ok=True)
 
-BASE = "utm_source=trifold&utm_medium=print&utm_campaign=foundation_brochure"
+# Short on purpose. Every character in the tail costs modules, every module
+# costs physical size, and a print code that will not scan is worth nothing at
+# all. utm_content still names the panel, which is the only breakdown anyone
+# will actually read.
+BASE = "utm_source=trifold&utm_medium=print"
 
 CODES = {
     # panel 6, Community. --green, Food Web Green.
@@ -30,7 +34,22 @@ CODES = {
     "scholarship": (
         "https://soilfoodweb.com/scholarship-opportunities"
         f"?{BASE}&utm_content=scholarship",
-        "#3780B8",
+        "#1F4E73",
+    ),
+    # panel 5, Practice. --green. The eleven case study films, which is where
+    # a reader who believes the practice panel wants to go next.
+    "case-studies": (
+        # The fragment goes last. Written the other way round the whole UTM
+        # tail lands inside the fragment and no analytics ever sees it.
+        f"https://soilfoodweb.com/practice?{BASE}&utm_content=case_studies#case-studies",
+        "#156826",
+    ),
+    # panel 6, Community. --soil, not --gold: the brand's gold is #C9A227,
+    # which against white gives a code a scanner has to work for. The gold
+    # appears on the rule above the code instead, where nothing has to read it.
+    "donate": (
+        f"https://soilfoodweb.com/donate?{BASE}&utm_content=donate",
+        "#4F3433",
     ),
 }
 
