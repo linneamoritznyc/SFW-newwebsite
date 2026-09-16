@@ -24,6 +24,11 @@ TRI = ROOT / "Trifold Design"
 SEND_FILES = {
     "SFW-brochure-2026-print-ready.pdf": TRI / "print/sfw-trifold-2page-CMYK-PDFX.pdf",
     "PRINT-SPEC.md":                     TRI / "print/PRINT-SPEC.md",
+    # The same two pages as pictures, for looking at and sharing. Named
+    # "preview" so nobody mistakes them for artwork: a printer given a PNG has
+    # no bleed box, no trim box, no CMYK and no vector type.
+    "preview-page-1-outside.png":        TRI / "outside-spread.png",
+    "preview-page-2-inside.png":         TRI / "inside-spread.png",
 }
 
 FILES = {
