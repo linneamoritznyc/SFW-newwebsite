@@ -16,8 +16,15 @@ OUT.mkdir(exist_ok=True)
 # costs physical size, and a print code that will not scan is worth nothing at
 # all. utm_content still names the panel, which is the only breakdown anyone
 # will actually read.
-BASE = "utm_source=trifold&utm_medium=print"
+BASE = ("utm_source=In%20Person&utm_medium=QRCode"
+        "&utm_campaign=2026_Event_Brochure&utm_term=in_person")
 
+# The UTM convention is the Foundation's own, given for the 2026 event
+# brochure. The space in utm_source is written %20 rather than literally: a
+# raw space is not legal in a URL, and it decodes back to "In Person" in
+# analytics, so the reporting reads the same and the code cannot break on a
+# fussy scanner.
+#
 # Every address printed here is a CURRENT soilfoodweb.com path, not a path on
 # the rebuilt site. The rebuild is not live yet, so /research, /practice and
 # /donate are 404s today and a printed code cannot be edited later. vercel.json
@@ -38,7 +45,7 @@ CODES = {
     ),
     # panel 3, Teaching. --edu, Education Blue.
     "scholarship": (
-        "https://soilfoodweb.com/scholarship-opportunities"
+        "https://soilfoodweb.com/scholarship-opportunities/"
         f"?{BASE}&utm_content=scholarship",
         "#1F4E73",
     ),
@@ -46,7 +53,7 @@ CODES = {
     # a reader who believes the practice panel wants to go next.
     # 301s to /practice#case-studies.
     "case-studies": (
-        f"https://soilfoodweb.com/case-studies?{BASE}&utm_content=case_studies",
+        f"https://soilfoodweb.com/case-studies/?{BASE}&utm_content=case_studies",
         "#156826",
     ),
     # panel 6, Community. --soil, not --gold: the brand's gold is #C9A227,
@@ -54,7 +61,7 @@ CODES = {
     # appears on the rule above the code instead, where nothing has to read it.
     # 301s to /donate.
     "donate": (
-        f"https://soilfoodweb.com/donations?{BASE}&utm_content=donate",
+        f"https://soilfoodweb.com/donations/?{BASE}&utm_content=donate",
         "#4F3433",
     ),
 }
