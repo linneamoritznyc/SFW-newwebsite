@@ -38,16 +38,39 @@ Layout is written in inches and points and rendered at `deviceScaleFactor` 3.125
 96px, and 300/96 = 3.125), so the type is specified at real print sizes rather than scaled up from
 screen pixels. Body text is 8.4pt, headlines 15.5 to 20pt.
 
-## The one thing to check before this goes to a printer
+## Imposition: the outside sheet is mirrored
 
-**The imposition is as specified in the brief, and a roll-fold sheet may not want it that way.** The
-brief asked for panels 1, 2, 3 side by side on the outside and 4, 5, 6 side by side on the inside,
-with the narrow tuck panel third on both sheets. On a letter roll fold the tuck panel is one physical
-flap, so it lands on the right of one side of the sheet and on the **left** of the other. As built,
-the narrow panel is on the right of both. Hand both PNGs to the printer and ask them to confirm the
-imposition before plates are made; if they want the inside mirrored, swap the three `<section>`
-blocks in `build/inside.html` and move the `panel--first` / `panel--last` classes with them, then
-re-render. Nothing else changes.
+**Fixed.** This section used to say the imposition was as briefed and might be wrong; it was wrong,
+and it is corrected.
+
+A letter roll fold has one narrow tuck panel, 3.625in against 3.6875in for the other two. That panel
+is a single physical flap, so it sits on the right of one side of the sheet and on the **left** of
+the other. The brief asked for panels 1, 2, 3 across the outside and 4, 5, 6 across the inside, which
+put the narrow panel third on both sides. Printed that way every panel would have been 1/16in out of
+register with its own back.
+
+`build/outside.html` now runs in the opposite order to `build/inside.html`:
+
+| sheet | left to right | folds from its own left trim |
+| :-- | :-- | :-- |
+| inside | 4 Research (wide), 5 Practice (wide), 6 Community (**tuck**) | 3.6875in, 7.375in |
+| outside | 3 Teaching (**tuck**), 2 Our story (wide), 1 Cover (wide) | 3.625in, 7.3125in |
+
+Each fold mirrors the other: 11 minus 3.625 is 7.375, and 11 minus 7.3125 is 3.6875. Measured from
+the rendered pages, not calculated by hand.
+
+Backing, which decides where the cover lands: inside panel 6 (Community, the tuck flap) folds in
+first, then panel 4 (Research) folds over it, so the face that ends up on top is the **back of panel
+4**, which is the cover. In the mirrored sheet the cover is the rightmost panel, and 11 minus its
+span puts it exactly behind panel 4. Note for anyone reading an older brief: the cover backs panel 4,
+not panel 6.
+
+The reading order is unchanged. Cover, Our story, Teaching is still the sequence a reader meets; only
+the order the panels are laid down on the sheet is reversed.
+
+`.panel--first` and `.panel--last` used to hardcode `--w-wide` and `--w-tuck` respectively, which
+silently assumed the tuck panel is always last on a sheet. Each panel now carries its own trim width
+in `--pw` and the bleed modifiers add to whatever that is, so either panel can take either edge.
 
 ---
 

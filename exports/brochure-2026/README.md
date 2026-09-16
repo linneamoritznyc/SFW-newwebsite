@@ -9,10 +9,18 @@ stale file that quietly disagrees with the artwork.
 
 ## For the printer
 
+**Send `sfw-trifold-2page-CMYK-PDFX.pdf`.** One file, outside as page 1 and
+inside as page 2.
+
 | File | |
 | :-- | :-- |
-| `sfw-trifold-outside-CMYK-PDFX.pdf` | Cover, Our story, Teaching |
-| `sfw-trifold-inside-CMYK-PDFX.pdf` | Research, Practice, Community |
+| `sfw-trifold-2page-CMYK-PDFX.pdf` | **The file to send.** X-4, both sheets |
+| `sfw-trifold-outside-CMYK-PDFX.pdf` | X-4 separate, outside |
+| `sfw-trifold-inside-CMYK-PDFX.pdf` | X-4 separate, inside |
+| `sfw-trifold-2page-CMYK-PDFX1a.pdf` | X-1a, both sheets. Only if the shop asks for X-1a; it is rasterised at 600 DPI, because X-1a forbids the live transparency this design uses |
+
+The two sheets are mirrored on purpose: a roll fold has one narrow tuck panel,
+so it sits on the left of one side of the sheet and the right of the other.
 
 PDF 1.6, PDF/X-4, CMYK with an embedded output intent. Page 810 x 630pt
 (11.25 x 8.75in). TrimBox 9 9 801 621pt, so the 0.125in bleed is marked on all

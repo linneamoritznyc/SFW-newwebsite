@@ -14,9 +14,12 @@ OUT = ROOT / "exports" / "brochure-2026"
 TRI = ROOT / "Trifold Design"
 
 FILES = {
-    # printer
+    # the one to send
+    "sfw-trifold-2page-CMYK-PDFX.pdf":   TRI / "print/sfw-trifold-2page-CMYK-PDFX.pdf",
+    # separates, and the X-1a fallback for shops that ask for it
     "sfw-trifold-outside-CMYK-PDFX.pdf": TRI / "print/sfw-trifold-outside-CMYK-PDFX.pdf",
     "sfw-trifold-inside-CMYK-PDFX.pdf":  TRI / "print/sfw-trifold-inside-CMYK-PDFX.pdf",
+    "sfw-trifold-2page-CMYK-PDFX1a.pdf": TRI / "print/sfw-trifold-2page-CMYK-PDFX1a.pdf",
     # proofs, for looking at and for anyone who wants a picture
     "sfw-trifold-outside-300dpi.png":    TRI / "outside-spread.png",
     "sfw-trifold-inside-300dpi.png":     TRI / "inside-spread.png",

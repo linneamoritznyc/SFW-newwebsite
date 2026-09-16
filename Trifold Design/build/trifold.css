@@ -105,13 +105,19 @@ html, body { margin: 0; padding: 0; background: var(--paper); }
   line-height: 1.38;
   overflow: hidden;
 }
-.panel--wide { width: var(--w-wide); flex: 0 0 var(--w-wide); }
-.panel--tuck { width: var(--w-tuck); flex: 0 0 var(--w-tuck); }
+/* Each panel carries its own trim width in --pw, and the bleed modifiers add to
+   whatever that is. They used to hardcode --w-wide into --first and --w-tuck
+   into --last, which quietly assumed the tuck panel is always the last one on
+   the sheet. It is not: the outside sheet is mirrored, so the tuck panel is
+   first there and the cover is last. */
+.panel--wide { --pw: var(--w-wide); }
+.panel--tuck { --pw: var(--w-tuck); }
+.panel { width: var(--pw); flex: 0 0 var(--pw); }
 
 /* The two panels against the outer trim edge are one bleed wider, so their
    border box ends at the sheet edge and .figure--full reaches it. */
-.panel--first { flex-basis: calc(var(--w-wide) + var(--bleed)); width: calc(var(--w-wide) + var(--bleed)); padding-left:  calc(var(--pad) + var(--bleed)); }
-.panel--last  { flex-basis: calc(var(--w-tuck) + var(--bleed)); width: calc(var(--w-tuck) + var(--bleed)); padding-right: calc(var(--pad) + var(--bleed)); }
+.panel--first { flex-basis: calc(var(--pw) + var(--bleed)); width: calc(var(--pw) + var(--bleed)); padding-left:  calc(var(--pad) + var(--bleed)); }
+.panel--last  { flex-basis: calc(var(--pw) + var(--bleed)); width: calc(var(--pw) + var(--bleed)); padding-right: calc(var(--pad) + var(--bleed)); }
 
 /* --------------------------------------------------------------------------
    Type
