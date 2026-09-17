@@ -21,6 +21,49 @@ corrected for overflow and crop, re-rendered. Nothing outside `Trifold Design/` 
 Rebuild: `python3 "Trifold Design/build/make-qr.py"` then `node "Trifold Design/build/render.js"`,
 both from the repository root.
 
+## The publications link, and two things found under it
+
+Allison and Stephanie, in Communications: send people to our own site rather than
+to Google Scholar. Done, and both references now point at the same place. Two
+things came out from under it that are bigger than the thread.
+
+**1. `soilfoodweb.com/publications` does not exist.** It was on the Research
+panel and it was wrong before Google Scholar came into it. This repository, the
+Foundation's own site, serves that content at **`/research`**, whose page title
+is "Research and publications" and whose lede is "A growing database of soil food
+web science: Dr. Elaine Ingham's publications, research from the wider field...".
+There is no `/publications` route anywhere in the site or the sitemap.
+
+**2. The domain may be wrong, and it has NOT been changed.** `sitemap.xml` gives
+every page of this site as **`soilfoodweb.org/...`**. The brochure's legal block
+prints `soilfoodweb.com`, which is what the organisation's own ratified
+boilerplate says and what the 216 links in the site's markup use, but almost all
+of those are the School's shop: `/courses`, `/bundles`, `/wp-content`. The
+Foundation's site and the School's shop appear to be two different domains, and
+the brochure prints one of them in the legal block. **Settle this before the
+press date.** Printing the wrong domain on the back of a few thousand brochures
+is not recoverable.
+
+**What is printed now.** Both references carry `sfw.one/publications`, a Switchy
+short link in the same family as the five codes:
+
+    Our story   Her published record, in full, on our site:
+                sfw.one/publications
+    Research    Her publications and the wider research, item by item:
+                sfw.one/publications
+
+**That link does not exist yet and has to be created.** It is the only choice
+that is correct now and stays correct after the site moves, because the
+destination can be re-pointed without a reprint, and it means the .com against
+.org question does not have to be answered before the brochure goes to press.
+
+Nothing is lost by dropping the Google Scholar address from the panel: the site's
+own `about-elaine` page carries her publications list and the Google Scholar
+profile beside it, so the trail still ends in the same place, through the
+Foundation's site first. Which is what was asked for.
+
+---
+
 ## Copy pass on the review comments, 17 September 2026
 
 Everything from Allison Duck and from Linnea's own comments on the review
