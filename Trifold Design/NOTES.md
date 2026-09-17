@@ -21,6 +21,42 @@ corrected for overflow and crop, re-rendered. Nothing outside `Trifold Design/` 
 Rebuild: `python3 "Trifold Design/build/make-qr.py"` then `node "Trifold Design/build/render.js"`,
 both from the repository root.
 
+## Evan's mission language on the cover, 17 September 2026
+
+New wording from Evan's mission presentation, approved:
+
+> We show the world **what** is possible through our public webinars... We show
+> individuals with the desire to learn **how** to partner with life in the
+> soil... We continue to advance our collective understanding through rigorous
+> scientific research into **why** things work or do not... We roll up our
+> sleeves and get dirty through **direct action**, creating partnerships and
+> projects to practice what we preach.
+
+It replaces the cover's body rather than being added to it, because the sentence
+that was there was already doing the same job in weaker words: "We carry her
+work forward: teaching the science, opening the research, proving the practice,
+growing the community." The what / how / why / direct action structure is the
+same four things said better, and it is now approved, so the swap costs no space
+and the cover keeps its 0.165in of slack.
+
+Two things from the presentation are deliberately not printed:
+
+- **"perhaps the world's foremost teacher".** An unattributed superlative, which
+  the brief for this piece rules out by name, and which the presentation itself
+  hedges with "perhaps". The brochure says what she did instead: forty-five
+  years, Oregon State, first President of the Soil Ecology Society, the USDA's
+  Soil Biology Primer, and her publications in full.
+- **"SFW teachings".** An acronym, which public copy does not use here.
+
+One thing to decide rather than guess at: the four icons under that paragraph
+are still labelled EDUCATION / RESEARCH / PRACTICE / COMMUNITY, and the sentence
+above them now runs showing / teaching / researching / direct action. They used
+to be the same four in the same order. They still complement each other, but
+they are no longer a list and its labels, and Community is the one the sentence
+no longer names.
+
+---
+
 ## The white hairline along the top trim
 
 A white line about 1/300in wide ran the full width of every panel whose banner
