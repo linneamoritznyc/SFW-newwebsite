@@ -27,12 +27,18 @@ Allison and Stephanie, in Communications: send people to our own site rather tha
 to Google Scholar. Done, and both references now point at the same place. Two
 things came out from under it that are bigger than the thread.
 
-**1. `soilfoodweb.com/publications` does not exist.** It was on the Research
-panel and it was wrong before Google Scholar came into it. This repository, the
-Foundation's own site, serves that content at **`/research`**, whose page title
-is "Research and publications" and whose lede is "A growing database of soil food
-web science: Dr. Elaine Ingham's publications, research from the wider field...".
-There is no `/publications` route anywhere in the site or the sitemap.
+**1. I checked the wrong site.** I reported that
+`soilfoodweb.com/publications` does not exist, on the strength of this
+repository having no such route. This repository is the **new** site, and the
+sitemap puts it on **soilfoodweb.org**. The live **.com** does have the page:
+`https://soilfoodweb.com/publications/`, confirmed by Linnea. A grep of the repo
+is evidence about the repo and nothing else, and outbound requests to that domain
+are blocked from this environment, so the finding should have been reported as
+"cannot check" rather than "does not exist".
+
+What is true either way is the part that matters: this site serves the same
+content at `/research`, titled "Research and publications". So the address
+changes when the new site goes live, which is the argument for a short link.
 
 **2. The domain may be wrong, and it has NOT been changed.** `sitemap.xml` gives
 every page of this site as **`soilfoodweb.org/...`**. The brochure's legal block
@@ -44,31 +50,29 @@ the brochure prints one of them in the legal block. **Settle this before the
 press date.** Printing the wrong domain on the back of a few thousand brochures
 is not recoverable.
 
-**What was printed first, and was wrong.** Both references carried
-`sfw.one/publications`, reasoned out as a Switchy short link in the same family
-as the five codes, correct after the site moves, re-pointable without a reprint.
-All true, and all beside the point: **the link does not exist.** Putting an
-address on a print-ready file on the argument that somebody will create it later
-is inventing a document, which is the one thing the house rules name outright.
-A plan is not a URL. Caught by Linnea, within the hour, on the file I had just
-called shippable.
+**Printed, taken off, put back.** It went out as `sfw.one/publications` on the
+reasoning that a short link is re-pointable and survives the site move. True, and
+beside the point at the time: the link did not exist, and an address nobody has
+created is an invented document, which the house rules name outright. A plan is
+not a URL. It came off within the hour, for the bare domain, which at least
+resolves.
 
-**What is printed now**, and the test it had to pass is that it resolves today:
+It is back, because the condition it failed has now been met: Linnea is creating
+the Switchy link and pointing it at `https://soilfoodweb.com/publications/`. The
+difference between the two states is not the reasoning, which was the same both
+times. It is whether somebody had actually made the thing.
 
     Our story   Her published record, in full, on our site:
-                soilfoodweb.com
-    Research    Her publications and the wider research are collected
-                on our site:  soilfoodweb.com
+                sfw.one/publications
+    Research    Her publications and the wider research, item by item:
+                sfw.one/publications
 
-A bare domain sends a reader to a homepage to hunt, which is a real cost and the
-honest one to pay: the only Foundation address that can be verified from here is
-the domain itself. `/publications` does not exist, `/research` has been reported
-as a 404 on the .com, and the `.org` paths in the sitemap cannot be checked from
-this environment.
-
-**To make it a deep link**, one of two things has to come from the team: a
-publications URL somebody has opened in a browser, or a short link they have
-actually created. Either is a one-line change. Neither can be assumed.
+**One thing to settle with it.** The other five short links carry the campaign
+tags `utm_source=In Person`, `utm_medium=QRCode`,
+`utm_campaign=2026_Event_Brochure`, `utm_term=in_person` and a `utm_content`
+naming the panel. This one is typed off paper rather than scanned, so QRCode is
+the wrong medium for it. Worth giving it its own so the two kinds of traffic can
+be told apart.
 
 Nothing is lost by dropping the Google Scholar address from the panel: the site's
 own `about-elaine` page carries her publications list and the Google Scholar
