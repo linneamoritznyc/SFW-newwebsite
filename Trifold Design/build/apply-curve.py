@@ -49,7 +49,13 @@ for line in raw.strip().splitlines():
 KEEP = 0.75   # the least of a frame the trough may leave
 
 def frac(x):
-    """How much of the frame the curve keeps at x, x being 0 to 1 across the sheet."""
+    """How much of the frame the curve keeps at x, x being 0 to 1 across the sheet.
+
+    Clamped, because the bleeding photographs now overshoot the sheet by
+    --overshoot and so start a little below 0 and end a little above 1. A
+    negative base to a fractional power is a complex number in Python, which is
+    how that first showed up."""
+    x = max(0.0, min(1.0, x))
     return KEEP + (1.0 - KEEP) * math.sin(math.pi * (x ** 0.92))
 
 def clip(p, n=64):

@@ -59,6 +59,15 @@
   --w-tuck: 3.5in;
   --h:      8.5in;
   --bleed:  0.125in;
+  /* Everything that runs off the sheet is pulled out with a negative margin,
+     and a negative margin lands a fraction short of the media edge once
+     Chromium rounds it into PDF user space: a white hairline about 1/300in
+     wide along the top trim, and down the outer edge beside the photographs.
+     It sits inside the bleed so a press would trim it away, but it is visible
+     in the file and a preflight will flag it. So every bleeding element is
+     pushed this much further out and the panel, which is overflow:hidden and
+     whose own box is exact, does the cutting. */
+  --overshoot: 0.02in;
   --pad:    0.28in;   /* panel margin. Safe area is --pad in from trim. */
 
   /* One rhythm across all six panels. The band and the photograph are fixed
@@ -283,10 +292,18 @@ h3 {
    accent modifiers (--edu, --legacy) do not apply inside the band, since
    neither blue nor purple holds against green; the accents still carry the
    QR rules, where they have room to read. */
+/* Every gradient in this file is painted over a solid of its own first colour.
+   Chromium's own PDF is clean, but Ghostscript's CMYK conversion turns a CSS
+   gradient into a shading placed a fraction short of where the element is, and
+   the sliver it leaves along the top trim shows the panel's white paper
+   through: a hairline about 1/300in wide, the full width of every panel whose
+   banner is a gradient. The solid underneath means the sliver, where it still
+   happens, is the band's own green rather than white. Do not remove the second
+   value from any of these backgrounds. */
 .banner {
-  margin: calc((var(--pad) + var(--bleed)) * -1) calc(var(--pad) * -1) 0;
-  padding: calc(var(--bleed) + 0.13in) var(--pad) 0.11in;
-  height: calc(var(--band-h) + var(--bleed));
+  margin: calc((var(--pad) + var(--bleed) + var(--overshoot)) * -1) calc(var(--pad) * -1) 0;
+  padding: calc(var(--bleed) + var(--overshoot) + 0.13in) var(--pad) 0.11in;
+  height: calc(var(--band-h) + var(--bleed) + var(--overshoot));
   box-sizing: border-box;
   /* The panel is a flex column, so without this the band and the photograph
      are shrunk on whichever panel carries the most copy, and the rhythm the
@@ -295,15 +312,15 @@ h3 {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  background: linear-gradient(158deg, var(--field-a) 0%, var(--field-b) 100%);
+  background: linear-gradient(158deg, var(--field-a) 0%, var(--field-b) 100%) var(--field-a);
 }
 .panel--first .banner {
-  margin-left: calc((var(--pad) + var(--bleed)) * -1);
-  padding-left: calc(var(--pad) + var(--bleed));
+  margin-left: calc((var(--pad) + var(--bleed) + var(--overshoot)) * -1);
+  padding-left: calc(var(--pad) + var(--bleed) + var(--overshoot));
 }
 .panel--last .banner {
-  margin-right: calc((var(--pad) + var(--bleed)) * -1);
-  padding-right: calc(var(--pad) + var(--bleed));
+  margin-right: calc((var(--pad) + var(--bleed) + var(--overshoot)) * -1);
+  padding-right: calc(var(--pad) + var(--bleed) + var(--overshoot));
 }
 .banner .eyebrow,
 .banner .eyebrow--edu,
@@ -327,12 +344,12 @@ h3 {
   margin-left: calc(var(--pad) * -1);
   margin-right: calc(var(--pad) * -1);
   padding: 0.16in var(--pad);
-  background: linear-gradient(158deg, var(--field-a) 0%, var(--field-b) 100%);
+  background: linear-gradient(158deg, var(--field-a) 0%, var(--field-b) 100%) var(--field-a);
   color: #FFFFFF;
 }
-.panel--first .field { margin-left: calc((var(--pad) + var(--bleed)) * -1); padding-left: calc(var(--pad) + var(--bleed)); }
-.panel--last  .field { margin-right: calc((var(--pad) + var(--bleed)) * -1); padding-right: calc(var(--pad) + var(--bleed)); }
-.field--flush { margin-bottom: calc((var(--pad) + var(--bleed)) * -1); padding-bottom: calc(var(--pad) + var(--bleed)); }
+.panel--first .field { margin-left: calc((var(--pad) + var(--bleed) + var(--overshoot)) * -1); padding-left: calc(var(--pad) + var(--bleed) + var(--overshoot)); }
+.panel--last  .field { margin-right: calc((var(--pad) + var(--bleed) + var(--overshoot)) * -1); padding-right: calc(var(--pad) + var(--bleed) + var(--overshoot)); }
+.field--flush { margin-bottom: calc((var(--pad) + var(--bleed) + var(--overshoot)) * -1); padding-bottom: calc(var(--pad) + var(--bleed) + var(--overshoot)); }
 
 /* The closing field on the cover and on Community. Fixed to the same height on
    both rather than left to its own content, because the two panels are the
@@ -470,7 +487,7 @@ h3 {
 .panel--field::before {
   content: "";
   position: absolute; inset: 0;
-  background: linear-gradient(168deg, var(--field-a) 0%, var(--field-b) 108%);
+  background: linear-gradient(168deg, var(--field-a) 0%, var(--field-b) 108%) var(--field-a);
   z-index: -1;
 }
 
@@ -492,8 +509,8 @@ h3 {
    --bleed-r on a panel that sits against the outer trim. */
 .figure { margin: 0; }
 .figure--full { margin-left: calc(var(--pad) * -1); margin-right: calc(var(--pad) * -1); }
-.panel--first .figure--full { margin-left:  calc((var(--pad) + var(--bleed)) * -1); }
-.panel--last  .figure--full { margin-right: calc((var(--pad) + var(--bleed)) * -1); }
+.panel--first .figure--full { margin-left:  calc((var(--pad) + var(--bleed) + var(--overshoot)) * -1); }
+.panel--last  .figure--full { margin-right: calc((var(--pad) + var(--bleed) + var(--overshoot)) * -1); }
 .figure--full .caption { margin-left: var(--pad); margin-right: var(--pad); }
 .panel--first .figure--full .caption { margin-left: calc(var(--pad) + var(--bleed)); }
 .panel--last  .figure--full .caption { margin-right: calc(var(--pad) + var(--bleed)); }
@@ -510,8 +527,8 @@ h3 {
    is the evidence rather than the atmosphere, which wants a straight edge and
    its caption underneath rather than beside it. */
 .figure--band { margin: var(--s3) calc(var(--pad) * -1) 0; }
-.panel--first .figure--band { margin-left:  calc((var(--pad) + var(--bleed)) * -1); }
-.panel--last  .figure--band { margin-right: calc((var(--pad) + var(--bleed)) * -1); }
+.panel--first .figure--band { margin-left:  calc((var(--pad) + var(--bleed) + var(--overshoot)) * -1); }
+.panel--last  .figure--band { margin-right: calc((var(--pad) + var(--bleed) + var(--overshoot)) * -1); }
 .figure--band img { width: 100%; height: 0.92in; object-fit: cover; }
 .figure--band .caption { margin-left: var(--pad); margin-right: var(--pad); }
 .panel--first .figure--band .caption { margin-left:  calc(var(--pad) + var(--bleed)); }
@@ -652,7 +669,7 @@ h3 {
   /* Sat lower in its band than the eyebrows do in theirs, because a banner
      pushes its text to the bottom and this centres a lockup instead. Less above
      and more below lifts the whole group to about where the eyebrow sits. */
-  padding-top: calc(var(--bleed) + 0.10in);
+  padding-top: calc(var(--bleed) + var(--overshoot) + 0.10in);
   padding-bottom: 0.16in;
 }
 /* The mark is 240 x 208, so width sets the height. At 0.62in it stood 0.537in

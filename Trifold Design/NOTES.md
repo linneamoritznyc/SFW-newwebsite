@@ -21,6 +21,46 @@ corrected for overflow and crop, re-rendered. Nothing outside `Trifold Design/` 
 Rebuild: `python3 "Trifold Design/build/make-qr.py"` then `node "Trifold Design/build/render.js"`,
 both from the repository root.
 
+## The white hairline along the top trim
+
+A white line about 1/300in wide ran the full width of every panel whose banner
+is a gradient, along the top edge of the media box, and down the outer edge
+beside the photographs.
+
+It is not in the layout. Chromium's own PDF is clean; **Ghostscript's CMYK
+conversion introduces it**, and it does so whatever the downsampling and filter
+settings are, which is how that was established:
+
+    chromium RGB inside                top edge:     0 px differ
+    after gs CMYK inside               top edge:  2212 px differ
+
+pdfwrite turns a CSS gradient into a shading placed a fraction short of the
+element it belongs to, and the sliver shows the panel's white paper through. The
+fix is to paint every gradient over a solid of its own first colour, so what
+shows through is the band's own green. **Do not remove the second value from
+those backgrounds.** Measured over both pages, all four edges, before and after:
+
+    before   top 2212 and 1125, right 379, left 34, all white
+    after    zero white pixels on any edge of either page
+
+What is left is a tonal difference of a pixel here and there where a photograph
+meets the media edge, which a solid backing cannot fix because the colour it
+would need is whatever the photograph happens to be at that point. It sits
+0.125in outside the trim and is cut off.
+
+Two things were tried first and did not work, recorded so they are not tried
+again: pushing every bleeding element `--overshoot` further out with negative
+margins (the token stayed, it is more bleed and harms nothing, and `render.js`
+now allows for it so the outer panels do not report a permanent two pixels), and
+widening the bleeding photographs past the sheet so the panel would clip them,
+which made the outer edge marginally worse and was reverted.
+
+`apply-curve.py` grew a clamp at the same time: with the overshoot the
+photographs start a little below 0 and end a little above 1 on the sheet, and a
+negative base to a fractional power is a complex number in Python.
+
+---
+
 ## The curve, the cover band, and a proof you can fold
 
 **The curve was stale.** The photographs are clipped to one curve drawn across
