@@ -21,6 +21,76 @@ corrected for overflow and crop, re-rendered. Nothing outside `Trifold Design/` 
 Rebuild: `python3 "Trifold Design/build/make-qr.py"` then `node "Trifold Design/build/render.js"`,
 both from the repository root.
 
+## Copy pass on the review comments, 17 September 2026
+
+Everything from Allison Duck and from Linnea's own comments on the review
+document is in. Listed so it can be checked off against the thread.
+
+**Allison, house style and accuracy.**
+
+| was | is |
+| :-- | :-- |
+| The **ground** beneath our farms and forests | The **soil** beneath |
+| micro-arthropods | microarthropods, APA style, not hyphenated |
+| water when it is intact. | water *when it is intact.* |
+| mapped **that web** | mapped **the Soil Food Web** |
+
+"microarthropods" appears twice, in the cover lede and in the testate amoeba
+caption on Research; both are changed. "Ground" is gone from the piece
+altogether: the case study code said "growers filming their own ground" and now
+says their own soil.
+
+Her fifth note, replacing "proving" with "implementing", has no target any more.
+The sentence she marked, "proving the practice on real land", was the cover body
+before Evan's what / how / why / direct action language replaced it a few hours
+earlier. **The review document is a snapshot and the artwork has moved past it
+in that one paragraph.** "Real land" is gone from there too, for the reason
+below, and it now reads "on working land".
+
+**Linnea, things that read wrong.**
+
+- *"what work?"* Our story opened "She founded this work;" with no antecedent.
+  The clause is gone: "The Foundation was created in 2025 to carry that teaching
+  forward."
+- *"weird grammar"* in the climate box. "less fertilizer manufactured and moved,
+  fewer passes over the field" is now a sentence: "because less fertilizer has
+  to be made and moved, and the field needs fewer passes."
+- *"listed with the programs? shouldn't it be inside the programs?"* Now "Dates
+  and places go up on the school site", which says where to look.
+- *"I really don't like this"* on the Research heading. "The science is real, and
+  we are opening it to the world" was defensive, a claim answering an accusation
+  nobody made. Now "The science is open, and anyone can test it."
+- *"Real land? Of course the land is real"* on the Practice heading. Right, and
+  "real growers" had the same problem. Now "Growers are already doing this, at
+  every scale", which the panel then proves from a quarter acre to ten thousand.
+- *"I don't like this"* on the Practice lede. The telegraphic "a name, a place, a
+  year" is now a sentence: "Every result we publish names the grower who got it
+  and the year they did."
+- *"Is this true?"* on "the method does not change with the acreage". Not
+  provably, as written. Now "The steps are the same at every size", which is what
+  the panel can actually support.
+- *"count again? that doesn't sound very scientific"* Now "measure again", and
+  "make the amendment that is missing, apply it" is "add what is missing".
+- *"I want more text about the community"* and *"I don't like this sentence, it's
+  short and weird"* on "Every role in it is open." That sentence is gone and the
+  paragraph gained what members actually do: trade results, work through problems
+  together, answer each other's questions.
+- *"What can you do in the community?"* The code beside it now lists it:
+  "Recordings, live discussion and your questions answered. Free, and open to
+  anyone."
+
+One comment is a question rather than an edit and is left as it was: *"Should I
+talk about the Directory on the brochure?"* The directory box is still on
+Practice. It is the only thing on the piece that names a service without a way to
+reach it, which is the open item to settle, not whether to mention it.
+
+The Community panel ran out of room once its paragraph grew, so `--foot-h` came
+down from 3.00in to 2.80in. Both closing fields shrink together, so the green
+still opens on one line across the crease, now at 5.97in, and Community went from
+0.037in of slack to 0.237in.
+
+---
+
 ## Evan's mission language on the cover, 17 September 2026
 
 New wording from Evan's mission presentation, approved:

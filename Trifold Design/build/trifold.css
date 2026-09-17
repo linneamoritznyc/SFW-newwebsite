@@ -96,7 +96,7 @@
   --hero-h:  var(--photo-h);
   /* Both closing fields on that sheet are exactly this tall, so the green foot
      is one band across the crease and the white above it is one band too. */
-  --foot-h:  3.00in;
+  --foot-h:  2.80in;
 }
 
 /* Fonts, self-hosted and subsetted, from the repository's own fonts/ folder.
