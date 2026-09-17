@@ -60,22 +60,44 @@ function serve() {
 
   for (const [src, out] of [['outside', 'outside-spread.png'], ['inside', 'inside-spread.png']]) {
     await page.goto(`http://127.0.0.1:${port}/Trifold%20Design/build/${src}.html`, { waitUntil: 'networkidle' });
+
+    // The review copy shows the production notes; the piece itself never does.
+    if (process.env.TRIFOLD_NOTES) {
+      await page.evaluate(() => document.querySelector('.sheet').setAttribute('data-notes', 'true'));
+    }
     await page.evaluate(() => document.fonts.ready);
 
     // Overflow check: does any panel's content run past its own box?
     const report = await page.evaluate(() => {
       const out = [];
+      // Bleeding elements are pushed --overshoot past the panel on purpose, so
+      // that much spill is expected and is not a panel running out of room.
+      // Without this allowance every outer panel reports a permanent couple of
+      // pixels and a real overflow stops standing out.
+      const ob = parseFloat(getComputedStyle(document.documentElement)
+                   .getPropertyValue('--overshoot')) * 96;
       document.querySelectorAll('.panel').forEach((p) => {
         const pad = parseFloat(getComputedStyle(p).paddingBottom);
         const inner = p.clientHeight - parseFloat(getComputedStyle(p).paddingTop) - pad;
         let used = 0;
         p.querySelectorAll(':scope > *').forEach((c) => { used += c.getBoundingClientRect().height; });
+        // Horizontal too: a flex row that refuses to shrink runs off the side
+        // of the panel, and panel overflow:hidden means it is invisible in the
+        // numbers and only shows up as a neighbour's photograph looking wrong.
+        const box = p.getBoundingClientRect();
+        let wide = 0;
+        p.querySelectorAll('*').forEach((el) => {
+          const r = el.getBoundingClientRect();
+          wide = Math.max(wide, r.right - box.right, box.left - r.left);
+        });
         out.push({ panel: p.dataset.panel, inner: +inner.toFixed(1), used: +used.toFixed(1),
-                   overflow: +(p.scrollHeight - p.clientHeight).toFixed(1) });
+                   overflow: +Math.max(0, p.scrollHeight - p.clientHeight - ob).toFixed(1),
+                   sideways: +Math.max(0, wide - ob).toFixed(1) });
       });
       return out;
     });
     console.log(src, JSON.stringify(report));
+
 
     await page.screenshot({ path: path.join(OUT, out), scale: 'device' });
   }

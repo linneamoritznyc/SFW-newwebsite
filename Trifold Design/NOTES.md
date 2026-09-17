@@ -21,33 +21,454 @@ corrected for overflow and crop, re-rendered. Nothing outside `Trifold Design/` 
 Rebuild: `python3 "Trifold Design/build/make-qr.py"` then `node "Trifold Design/build/render.js"`,
 both from the repository root.
 
+## The publications link, and two things found under it
+
+Allison and Stephanie, in Communications: send people to our own site rather than
+to Google Scholar. Done, and both references now point at the same place. Two
+things came out from under it that are bigger than the thread.
+
+**1. `soilfoodweb.com/publications` does not exist.** It was on the Research
+panel and it was wrong before Google Scholar came into it. This repository, the
+Foundation's own site, serves that content at **`/research`**, whose page title
+is "Research and publications" and whose lede is "A growing database of soil food
+web science: Dr. Elaine Ingham's publications, research from the wider field...".
+There is no `/publications` route anywhere in the site or the sitemap.
+
+**2. The domain may be wrong, and it has NOT been changed.** `sitemap.xml` gives
+every page of this site as **`soilfoodweb.org/...`**. The brochure's legal block
+prints `soilfoodweb.com`, which is what the organisation's own ratified
+boilerplate says and what the 216 links in the site's markup use, but almost all
+of those are the School's shop: `/courses`, `/bundles`, `/wp-content`. The
+Foundation's site and the School's shop appear to be two different domains, and
+the brochure prints one of them in the legal block. **Settle this before the
+press date.** Printing the wrong domain on the back of a few thousand brochures
+is not recoverable.
+
+**What is printed now.** Both references carry `sfw.one/publications`, a Switchy
+short link in the same family as the five codes:
+
+    Our story   Her published record, in full, on our site:
+                sfw.one/publications
+    Research    Her publications and the wider research, item by item:
+                sfw.one/publications
+
+**That link does not exist yet and has to be created.** It is the only choice
+that is correct now and stays correct after the site moves, because the
+destination can be re-pointed without a reprint, and it means the .com against
+.org question does not have to be answered before the brochure goes to press.
+
+Nothing is lost by dropping the Google Scholar address from the panel: the site's
+own `about-elaine` page carries her publications list and the Google Scholar
+profile beside it, so the trail still ends in the same place, through the
+Foundation's site first. Which is what was asked for.
+
+---
+
+## Copy pass on the review comments, 17 September 2026
+
+Everything from Allison Duck and from Linnea's own comments on the review
+document is in. Listed so it can be checked off against the thread.
+
+**Allison, house style and accuracy.**
+
+| was | is |
+| :-- | :-- |
+| The **ground** beneath our farms and forests | The **soil** beneath |
+| micro-arthropods | microarthropods, APA style, not hyphenated |
+| water when it is intact. | water *when it is intact.* |
+| mapped **that web** | mapped **the Soil Food Web** |
+
+"microarthropods" appears twice, in the cover lede and in the testate amoeba
+caption on Research; both are changed. "Ground" is gone from the piece
+altogether: the case study code said "growers filming their own ground" and now
+says their own soil.
+
+Her fifth note, replacing "proving" with "implementing", has no target any more.
+The sentence she marked, "proving the practice on real land", was the cover body
+before Evan's what / how / why / direct action language replaced it a few hours
+earlier. **The review document is a snapshot and the artwork has moved past it
+in that one paragraph.** "Real land" is gone from there too, for the reason
+below, and it now reads "on working land".
+
+**Linnea, things that read wrong.**
+
+- *"what work?"* Our story opened "She founded this work;" with no antecedent.
+  The clause is gone: "The Foundation was created in 2025 to carry that teaching
+  forward."
+- *"weird grammar"* in the climate box. "less fertilizer manufactured and moved,
+  fewer passes over the field" is now a sentence: "because less fertilizer has
+  to be made and moved, and the field needs fewer passes."
+- *"listed with the programs? shouldn't it be inside the programs?"* Now "Dates
+  and places go up on the school site", which says where to look.
+- *"I really don't like this"* on the Research heading. "The science is real, and
+  we are opening it to the world" was defensive, a claim answering an accusation
+  nobody made. Now "The science is open, and anyone can test it."
+- *"Real land? Of course the land is real"* on the Practice heading. Right, and
+  "real growers" had the same problem. Now "Growers are already doing this, at
+  every scale", which the panel then proves from a quarter acre to ten thousand.
+- *"I don't like this"* on the Practice lede. The telegraphic "a name, a place, a
+  year" is now a sentence: "Every result we publish names the grower who got it
+  and the year they did."
+- *"Is this true?"* on "the method does not change with the acreage". Not
+  provably, as written. Now "The steps are the same at every size", which is what
+  the panel can actually support.
+- *"count again? that doesn't sound very scientific"* Now "measure again", and
+  "make the amendment that is missing, apply it" is "add what is missing".
+- *"I want more text about the community"* and *"I don't like this sentence, it's
+  short and weird"* on "Every role in it is open." That sentence is gone and the
+  paragraph gained what members actually do: trade results, work through problems
+  together, answer each other's questions.
+- *"What can you do in the community?"* The code beside it now lists it:
+  "Recordings, live discussion and your questions answered. Free, and open to
+  anyone."
+
+One comment is a question rather than an edit and is left as it was: *"Should I
+talk about the Directory on the brochure?"* The directory box is still on
+Practice. It is the only thing on the piece that names a service without a way to
+reach it, which is the open item to settle, not whether to mention it.
+
+The Community panel ran out of room once its paragraph grew, so `--foot-h` came
+down from 3.00in to 2.80in. Both closing fields shrink together, so the green
+still opens on one line across the crease, now at 5.97in, and Community went from
+0.037in of slack to 0.237in.
+
+---
+
+## Evan's mission language on the cover, 17 September 2026
+
+New wording from Evan's mission presentation, approved:
+
+> We show the world **what** is possible through our public webinars... We show
+> individuals with the desire to learn **how** to partner with life in the
+> soil... We continue to advance our collective understanding through rigorous
+> scientific research into **why** things work or do not... We roll up our
+> sleeves and get dirty through **direct action**, creating partnerships and
+> projects to practice what we preach.
+
+It replaces the cover's body rather than being added to it, because the sentence
+that was there was already doing the same job in weaker words: "We carry her
+work forward: teaching the science, opening the research, proving the practice,
+growing the community." The what / how / why / direct action structure is the
+same four things said better, and it is now approved, so the swap costs no space
+and the cover keeps its 0.165in of slack.
+
+Two things from the presentation are deliberately not printed:
+
+- **"perhaps the world's foremost teacher".** An unattributed superlative, which
+  the brief for this piece rules out by name, and which the presentation itself
+  hedges with "perhaps". The brochure says what she did instead: forty-five
+  years, Oregon State, first President of the Soil Ecology Society, the USDA's
+  Soil Biology Primer, and her publications in full.
+- **"SFW teachings".** An acronym, which public copy does not use here.
+
+One thing to decide rather than guess at: the four icons under that paragraph
+are still labelled EDUCATION / RESEARCH / PRACTICE / COMMUNITY, and the sentence
+above them now runs showing / teaching / researching / direct action. They used
+to be the same four in the same order. They still complement each other, but
+they are no longer a list and its labels, and Community is the one the sentence
+no longer names.
+
+---
+
+## The white hairline along the top trim
+
+A white line about 1/300in wide ran the full width of every panel whose banner
+is a gradient, along the top edge of the media box, and down the outer edge
+beside the photographs.
+
+It is not in the layout. Chromium's own PDF is clean; **Ghostscript's CMYK
+conversion introduces it**, and it does so whatever the downsampling and filter
+settings are, which is how that was established:
+
+    chromium RGB inside                top edge:     0 px differ
+    after gs CMYK inside               top edge:  2212 px differ
+
+pdfwrite turns a CSS gradient into a shading placed a fraction short of the
+element it belongs to, and the sliver shows the panel's white paper through. The
+fix is to paint every gradient over a solid of its own first colour, so what
+shows through is the band's own green. **Do not remove the second value from
+those backgrounds.** Measured over both pages, all four edges, before and after:
+
+    before   top 2212 and 1125, right 379, left 34, all white
+    after    zero white pixels on any edge of either page
+
+What is left is a tonal difference of a pixel here and there where a photograph
+meets the media edge, which a solid backing cannot fix because the colour it
+would need is whatever the photograph happens to be at that point. It sits
+0.125in outside the trim and is cut off.
+
+Two things were tried first and did not work, recorded so they are not tried
+again: pushing every bleeding element `--overshoot` further out with negative
+margins (the token stayed, it is more bleed and harms nothing, and `render.js`
+now allows for it so the outer panels do not report a permanent two pixels), and
+widening the bleeding photographs past the sheet so the panel would clip them,
+which made the outer edge marginally worse and was reverted.
+
+`apply-curve.py` grew a clamp at the same time: with the overshoot the
+photographs start a little below 0 and end a little above 1 on the sheet, and a
+negative base to a fractional power is a complex number in Python.
+
+---
+
+## The curve, the cover band, and a proof you can fold
+
+**The curve was stale.** The photographs are clipped to one curve drawn across
+the sheet, and the clip paths are generated into the markup rather than computed
+at render time. When the panels were reordered the clip paths travelled with
+their sections, so each photograph was still wearing the segment of the curve
+that belonged to its old position. At the Community and cover crease the two
+edges met in a V. Nothing was wrong with the geometry; `apply-curve.py` simply
+had not been run since the panels moved. It has been now, and the lower edge is
+one line across both folds again. **Re-run it after any change to panel order,
+panel width, band height or photo height.**
+
+**The cover has a band now.** Teaching and Community open with a colour band
+ending at 1.105in and the cover opened with white, so the one horizontal edge
+every panel on that sheet could share was the only one not drawn. The masthead
+takes the banner's box exactly, in Organic Cream rather than green: the same
+band, lighter, because it is the cover. That is also where the pale green shape
+that had been asked for belongs, and why it is not a decoration sitting in a
+corner. The lockup sits a little higher in its band than centring gave it, so it
+lands at about the height of the eyebrows either side.
+
+**HOME-PROOF-cut-and-fold.pdf.** Three fold tests have now failed at the kitchen
+table, and the last two failures were as likely to be the fold landing in the
+wrong place as the allowance being wrong: the press file carries no crop or fold
+marks, because a shop reads the TrimBox, so folding one by hand means guessing
+where 3.75in falls on a sheet you cut with scissors. `make-home-proof.py` builds
+a separate Letter proof: the trimmed artwork at 94.2%, inside a margin a desktop
+printer can reach, with corner crop marks, a cut outline and labelled fold ticks.
+Print it at 100%, not fit-to-page, or the marks stop meaning anything. It never
+goes to a printer; the press file is unchanged.
+
+---
+
+## Front and back made to line up, 16 September 2026
+
+The cover and Community are the front and the back of the folded piece and sit
+side by side on the same sheet, so every horizontal edge on one is read against
+the other. Three of them did not match. All three now do, and none of it is done
+by eye: the numbers below are measured out of the render on every build.
+
+**The photograph.** The cover's was 1.58in against 1.20in everywhere else, so
+its bottom edge sat 0.38in lower than its neighbour's. `--hero-h` is now
+`var(--photo-h)`. All three photographs on the sheet end at 2.305in.
+
+**The white.** It follows from the photograph above and the field below, so it
+is one band once those two agree.
+
+**The green foot.** Community had none: it ended in white where the cover ended
+in the figures field. Its legal block and donation code now sit in a
+`.field field--flush field--foot`, and both panels' fields are fixed to
+`--foot-h` rather than sized by their own content, so the top edge of the green
+is one line across the crease. Both open at 5.75in. Content is bottom-aligned
+inside, which is what keeps the two blocks looking set rather than dropped in.
+White type inside a bounded field had never been needed before, so the
+`.panel--field` reverse-out rules now have `.field` counterparts.
+
+Making the two fields equal cost 0.64in, because Community's foot wanted 3.37in
+and the cover could only reach 3.28in. Three things paid for it:
+
+- The cover's body lost the four-item list, which named teaching, research,
+  practice and community in a sentence sitting directly on top of four icons
+  labelled EDUCATION, RESEARCH, PRACTICE and COMMUNITY. It said the same thing
+  twice and the icons say it better.
+- The legal block's address lost its first line, "Soil Food Web Foundation",
+  which the sentence directly beneath it opens with.
+- **The tagline came off Community.** It is still on the cover, 3.75in away on
+  the same printed side, and on the folded piece the front carries it. Printing
+  it twice on one side of one sheet was the redundancy worth spending. It can go
+  back the moment something else gives up 0.42in.
+
+**The lockup is larger.** The mark is 240 x 208, so width sets its height: at
+0.62in it stood 0.537in inside a 0.70in box. It is 0.80in now, filling the box
+at 0.693in, and the wordmark went 10.2pt to 11.6pt with it.
+
+Ink coverage unchanged at 308%: the green Community's foot gained is the same
+green that came off its body.
+
+---
+
+## Third fold test: the tuck allowance, settled at 1/4in
+
+Folded carefully from a cut sheet, the tuck flap still would not sit inside and
+had to be trimmed with scissors. That is the second time an allowance from the
+published letter-trifold specs has failed on real paper, so the allowance is now
+set from the test rather than from the spec sheets.
+
+    was   3.6875  / 3.6875  / 3.625     tuck 1/16in short   bound
+    then  3.71875 / 3.71875 / 3.5625    tuck 5/32in short   still bound
+    now   3.75    / 3.75    / 3.5       tuck 1/4in short
+
+The asymmetry is deliberate and it only goes one way. A flap that stops a little
+shy of the crease is invisible once the piece is closed; a flap that is a little
+long is the thing that has now failed twice and had to be cut. 1/4in is at the
+generous end of the range and that is the point.
+
+The round numbers are a bonus rather than the reason, but they are worth having:
+two panels at 3 3/4in and a flap at 3 1/2in is something a print shop can set
+without a calculator and something a person can find on a ruler, which the
+thirty-seconds were not. All three are whole pixels at 300 DPI as well, 1125 /
+1125 / 1050, so the panel edges no longer land on a fraction.
+
+The flap lost another 1/16in of measure. Practice absorbed it without
+overflowing; Teaching's opening line had to lose four words to keep "it." off a
+line of its own, and now reads "From first curiosity to professional practice."
+
+---
+
+## Re-imposed after the second fold test, 16 September 2026
+
+The panels moved. Asked for: the donate ask on the back of the folded piece,
+Our story first of its three, and the Cover beside Community so white could
+carry across that crease.
+
+    outside   Teaching (tuck)  Community  Cover
+    inside    Our story        Research   Practice (tuck)
+
+Folded, the Cover is the front, Community the back, Practice the hidden tuck.
+Reading order is unchanged: Cover, then Our story beside Teaching, then Research
+beside Practice, then Community. The fold positions did not move, because the
+tuck is still first on the outside sheet and last on the inside; only which
+panel is which changed, so the print spec's width table still holds.
+
+Three things came with it:
+
+**The white carry, and then no carry at all.** The first attempt ran the
+cover's paper left into Community's right padding column as a rounded tongue,
+which read as a sticker rather than a continuation, so the panel went the whole
+way instead: Community is no longer a colour field. Below its banner and its
+photograph it is the same paper as the cover, and the crease between them has no
+seam. Its type and icons, which were white out of green, are now the ordinary
+dark ink every white panel uses; nothing needed overriding, the `.panel--field`
+rules simply stopped applying. The tongue and its two positioning tokens are
+gone from the stylesheet along with the check render.js carried for them.
+
+Removing the tongue took `.panel { z-index: 1 }` with it, which was a mistake
+worth recording: that one line is what makes a panel a stacking context, and a
+field panel paints its colour in a `::before` at z-index -1. Without the context
+the purple and blue panels lost their colour entirely and their white type was
+left on white paper. The line is back with a comment on it.
+
+Total ink coverage came down from 311% to 305% with the green gone.
+
+**The masthead got a height.** Nothing had set one, so the cover's photograph
+started 0.16in above the photographs on the two panels beside it. On a sheet
+where all three are visible at once that reads as a mistake. It is now
+`--band-h` less the panel's top padding, which puts the three photograph tops on
+one line. The 0.16in it cost the cover came back out of the hero photograph,
+1.72in to 1.58in.
+
+**Practice became the tuck** and lost 5/32in of measure, which cost it 15px. The
+trio photographs came down from 0.98in to 0.82in, in proportion with the
+narrower panel, and the lede lost one "and".
+
+---
+
+## Pass after the first home-printer test, 16 September 2026
+
+Four things came back from folding a printed copy by hand, and all four are fixed
+in the artwork rather than worked around.
+
+**The tuck panel bound on the fold.** It was 3.625in against 3.6875in, a 1/16in
+allowance, which is the tight end of what a roll fold wants and not enough once
+the paper's own thickness is taken up. The green community flap would not sit
+inside without bowing. The three panels are now 3.71875 / 3.71875 / 3.5625,
+still 11in: the tuck clears the far crease by 5/32in, and the two others stay
+equal so the cover meets the folded edge instead of stopping short of it and
+showing a strip of the panel behind. Narrowing the tuck cost panel 6 three
+pixels of height, recovered by breaking the address onto its own lines and
+shortening the donate line to the copy deck's own words.
+
+**The crease between panels 4 and 5 was invisible.** Both were white, so there
+was nothing to fold by eye. Panel 5 now carries Organic Cream, `--panel`,
+`#F4F1EA`, the brand's only light neutral. `css/site.css` keeps that token for
+shapes and never for the page; a printed panel has to declare its own edge, so
+this piece uses it as a ground. About 4% off the paper: enough to find the fold,
+not enough to read as a coloured panel beside the two that are.
+
+**One photograph printed as a near black rectangle** on a home printer while
+every other photograph on the same sheet came out right. The file itself is
+sound. Both Ghostscript and poppler render that image correctly, every embedded
+JPEG is baseline, 4 component, Adobe APP14 with transform 0, and none of them is
+truncated, so there is nothing in the PDF that says black. What that image was,
+and nothing else was, is oversized: the test tubes photograph went in at
+3083 x 2235, about 811 ppi over its 3.8in frame and nearly seven megapixels,
+more than twice any other image in the piece. A decoder that has run out of room
+for one image is what a single black photograph looks like. `make-pdfx.py` now
+caps colour images at 400 ppi, bicubic, threshold 1.2. That is well above what a
+175 line screen resolves, so nothing visible is given up; the outlier is gone,
+the largest image on either sheet is now under two megapixels, and the X-4 file
+dropped from 4.9 MB to 2.9 MB. Worth re-testing on the same printer before the
+run, because this is a diagnosis by elimination and not a reproduction.
+
+**Two facts corrected, on Sammie's review.** 40 years became 45, and 100
+countries became 132. Each appears four times across the piece and all eight
+were changed together: the two figures on the cover, "for forty-five years" in
+the cover body, "across forty-five years" on panel 2, "more than 132 countries"
+on panel 2, and the panel 4 lede. Source: Sammie, 16 September 2026. **The
+website still says 40 years and more than 100 countries**, in `index.html`,
+`content/home.json`, `content/community.json`, `content/news.json`,
+`community.html`, `news.html`, `contact.html`, `about-elaine.html` and
+`_dev/`. That is a separate pass and has not been made.
+
+**The host-a-workshop icon did not read as a hand.** The old drawing put a
+ribbed grip above a blade, which at 0.3in looked like a spring on a screwdriver.
+It is now a trowel angled into a soil mound with a closed hand on the handle,
+checked at printed size rather than enlarged.
+
+---
+
 ## Geometry, as delivered
 
 Both PNGs are **3375 x 2625 px**: the 3300 x 2550 trim asked for, plus **0.125in (37.5px) of bleed
 on all four sides**. Bleed is included, not skipped.
 
-- Panels 1, 2, 4, 5: 3.6875in wide (1106.25px at 300 DPI)
-- Panels 3 and 6, the tuck-in panels: 3.625in wide (1087.5px)
+- Panels 1, 2, 4, 6: 3.75in wide (1125px at 300 DPI)
+- Panels 3 and 5, the tuck-in flap: 3.5in wide (1050px)
 - All panels 8.5in tall; the spread trims to 11in x 8.5in
 
-3.6875in at 300 DPI is 1106.25px, not a whole pixel, so the individual panel widths carry a quarter
-pixel. The three add to exactly 3300px, which is what matters. Safe margin is 0.28in in from trim on
+All three are whole pixels at 300 DPI, which the sixteenths and thirty-seconds they replaced were
+not, and they add to exactly 3300px. Safe margin is 0.28in in from trim on
 every side; nothing but photography crosses it.
 
 Layout is written in inches and points and rendered at `deviceScaleFactor` 3.125 (CSS defines 1in as
 96px, and 300/96 = 3.125), so the type is specified at real print sizes rather than scaled up from
 screen pixels. Body text is 8.4pt, headlines 15.5 to 20pt.
 
-## The one thing to check before this goes to a printer
+## Imposition: the outside sheet is mirrored
 
-**The imposition is as specified in the brief, and a roll-fold sheet may not want it that way.** The
-brief asked for panels 1, 2, 3 side by side on the outside and 4, 5, 6 side by side on the inside,
-with the narrow tuck panel third on both sheets. On a letter roll fold the tuck panel is one physical
-flap, so it lands on the right of one side of the sheet and on the **left** of the other. As built,
-the narrow panel is on the right of both. Hand both PNGs to the printer and ask them to confirm the
-imposition before plates are made; if they want the inside mirrored, swap the three `<section>`
-blocks in `build/inside.html` and move the `panel--first` / `panel--last` classes with them, then
-re-render. Nothing else changes.
+**Fixed.** This section used to say the imposition was as briefed and might be wrong; it was wrong,
+and it is corrected.
+
+A letter roll fold has one narrow tuck panel, 3.5in against 3.75in for the other two. That panel
+is a single physical flap, so it sits on the right of one side of the sheet and on the **left** of
+the other. The brief asked for panels 1, 2, 3 across the outside and 4, 5, 6 across the inside, which
+put the narrow panel third on both sides. Printed that way every panel would have been 1/16in out of
+register with its own back.
+
+`build/outside.html` now runs in the opposite order to `build/inside.html`:
+
+| sheet | left to right | folds from its own left trim |
+| :-- | :-- | :-- |
+| inside | 2 Our story (wide), 4 Research (wide), 5 Practice (**tuck**) | 3.75in, 7.5in |
+| outside | 3 Teaching (**tuck**), 6 Community (wide), 1 Cover (wide) | 3.5in, 7.25in |
+
+Each fold mirrors the other: 11 minus 3.5 is 7.5, and 11 minus 7.25 is 3.75. Measured from the
+rendered pages, not calculated by hand.
+
+Backing, which decides where the cover lands: inside panel 5 (Practice, the tuck flap) folds in
+first, then panel 2 (Our story) folds over it, so the face that ends up on top is the **back of panel
+2**, which is the cover. The back of the folded piece is then the back of panel 4 (Research), which
+is Community, and that is where the donation code sits. Note for anyone reading an older version of
+this file: the cover used to back Research and the tuck used to be Community. Both moved.
+
+The reading order is unchanged. Opening the piece gives Cover, then Our story beside Teaching, then
+Research beside Practice, then Community on the back: the same six in the same sequence as before.
+
+`.panel--first` and `.panel--last` used to hardcode `--w-wide` and `--w-tuck` respectively, which
+silently assumed the tuck panel is always last on a sheet. Each panel now carries its own trim width
+in `--pw` and the bleed modifiers add to whatever that is, so either panel can take either edge.
 
 ---
 
@@ -277,18 +698,40 @@ panel 6, verbatim from `docs/copy-deck-v2.md` section 1.3. Every course link poi
 
 ## QR codes
 
-One per panel, never two on a page, on panels 2, 3 and 6. Panels 1, 4 and 5 carry none.
+Five, on panels 2, 3, 5 and 6. Panel 6 carries two, the free community under the photograph and the
+donate ask at its foot; they sit about six inches apart at opposite ends of the panel, which is far
+enough that a phone cannot frame both at once. Panels 1 and 4 carry none.
 
-Generated at **error correction M (15%)**, printed at **1.15in square**. Q correction would be
-sturdier, but these URLs carry long UTM tails: at Q the community code is 65 modules, which at 1.15in
-is 0.45mm a module, under the practical minimum for print. At M the codes are 49, 53 and 57 modules,
-which is 0.51 to 0.60mm a module. That is workable but not generous. **Ask the printer to scan a proof
-off the press, not off a laser print.** If any of them is marginal, the fix is short redirect addresses
-rather than a bigger code: the UTM tail is most of the payload.
+Every code holds a **Switchy short link** (`sfw.one/brochure-*`), not the destination. That is the
+important decision on this page. A printed code cannot be edited, and the destinations under this
+brochure have already moved once: three addresses pointed at rebuilt-site paths that 404 on the live
+WordPress site. With a short link in the code, a moved destination or a renamed path is a redirect
+edit rather than a reprint. The campaign UTM parameters ride on the redirect, so the reporting is
+unchanged and none of it costs modules here.
 
-The scholarship code points at `soilfoodweb.com/scholarship-opportunities`, which is the current
-WordPress page, as given in the brief. The new site has `learn-scholarships.html`. **Re-point this
-before print if the new site is live by then**, or the code will need a redirect on day one.
+The short payload also buys the error correction back. Generated at **H (30% recoverable)**, four
+modules of quiet zone, pure black on white, printed at **1.15in (29.2mm) square**. All five are
+version 5, 45 modules, **0.649mm a module**. The long URLs with UTM tails could only manage M at
+0.48 to 0.60mm, and the community code was under the practical print minimum. There is real margin
+now, but a proof scanned off the press rather than off a laser print is still worth asking for.
+
+Each code carries its own panel's colour on a white ground, and they are the real brand tokens:
+Legacy Purple `#6B4C7A` on the Dr. Elaine panel, Education Blue `#3780B8` on teaching, Food Web Green
+`#156826` on practice, Moss `#22371F` on community, Gold `#C9A227` on the donate ask.
+
+`build/make-qr.py` gates the colours, but with a scan test rather than a contrast rule. It renders
+each code at its printed size, degrades it to simulate ink spread and a phone camera, and decodes it;
+the build stops if it does not come back. An earlier pass used a WCAG contrast threshold of 4.5:1 and
+rejected both Education Blue (4.25:1) and the brand gold (2.42:1). That was wrong: WCAG 4.5:1 is a
+readability figure for small text, and a QR code at error correction H with 0.649mm modules is a far
+more forgiving thing. Measured properly, blur tolerance runs from 2.8px on the community code down to
+1.2px on the gold, and all five read. The deep ends of the gradients, `#1F4E73` and `#8A6E15`, survive
+about twice the blur and are the fallback if a press proof ever disappoints; gold is the one to look
+at first.
+
+`build/make-qr.py` writes the placed SVGs and the standalone PNGs in `exports/qr/` from one table.
+`build/check-qr.py` decodes every placed code back out of the 300 DPI render and fails if any does
+not read. Run both after any change to a link, a colour, or the size of `.qr img`.
 
 ## Also worth a person's eye
 
