@@ -21,6 +21,44 @@ corrected for overflow and crop, re-rendered. Nothing outside `Trifold Design/` 
 Rebuild: `python3 "Trifold Design/build/make-qr.py"` then `node "Trifold Design/build/render.js"`,
 both from the repository root.
 
+## Allison's rewrite of Our story, and what it cost, 17 September 2026
+
+Her final version replaces both remaining body paragraphs on the panel. It is in
+verbatim, with one exception noted below. It is also **1.80in longer than what it
+replaced**, on a panel that had 0.346in spare, so two things had to come off.
+
+Measured before the cuts, 9.75in of content in a 7.94in panel:
+
+    0.70  banner
+    1.47  photograph and caption
+    0.70  Body 1, "pioneered research in soil biology"
+    0.86  Body 2a, the Foundation established in October 2025   NEW
+    0.70  Body 2b, she passed away in February 2026             NEW
+    1.99  Body 3, the career paragraph                          NEW
+    0.81  side photograph and the publications link
+    1.35  the climate box
+    1.15  the webinar code
+
+**Body 1 went, and is no loss.** "Dr. Elaine Ingham pioneered research in soil
+biology across forty-five years and made her science radically accessible" is
+what Allison's new opening says better: "the pioneering scientist whose research
+transformed our understanding of soil biology and its central role in food
+production, ecosystem health, and planetary regeneration." Forty-five years still
+appears twice elsewhere, on the cover figure and in the Research lede.
+
+**The climate box went, and is a real loss.** It was the only block on the panel
+that is not Allison's new copy, a photograph placed on request, a call to action,
+or the publications link Communications had just asked for. Nothing else could
+take it: every other panel has under 0.37in spare and the box is 1.35in. It is
+the thing to put back first if Body 3 is ever shortened, and it needs 1.35in.
+
+**The one exception to verbatim:** her text has an em dash in "the life's work of
+Dr. Elaine Ingham — the pioneering scientist". The house rules for this piece
+rule out em dashes, so it is a comma. One character, and trivially reversible if
+she would rather have the dash than the rule.
+
+---
+
 ## The publications link, and two things found under it
 
 Allison and Stephanie, in Communications: send people to our own site rather than
