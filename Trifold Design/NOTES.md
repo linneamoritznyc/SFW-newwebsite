@@ -44,18 +44,31 @@ the brochure prints one of them in the legal block. **Settle this before the
 press date.** Printing the wrong domain on the back of a few thousand brochures
 is not recoverable.
 
-**What is printed now.** Both references carry `sfw.one/publications`, a Switchy
-short link in the same family as the five codes:
+**What was printed first, and was wrong.** Both references carried
+`sfw.one/publications`, reasoned out as a Switchy short link in the same family
+as the five codes, correct after the site moves, re-pointable without a reprint.
+All true, and all beside the point: **the link does not exist.** Putting an
+address on a print-ready file on the argument that somebody will create it later
+is inventing a document, which is the one thing the house rules name outright.
+A plan is not a URL. Caught by Linnea, within the hour, on the file I had just
+called shippable.
+
+**What is printed now**, and the test it had to pass is that it resolves today:
 
     Our story   Her published record, in full, on our site:
-                sfw.one/publications
-    Research    Her publications and the wider research, item by item:
-                sfw.one/publications
+                soilfoodweb.com
+    Research    Her publications and the wider research are collected
+                on our site:  soilfoodweb.com
 
-**That link does not exist yet and has to be created.** It is the only choice
-that is correct now and stays correct after the site moves, because the
-destination can be re-pointed without a reprint, and it means the .com against
-.org question does not have to be answered before the brochure goes to press.
+A bare domain sends a reader to a homepage to hunt, which is a real cost and the
+honest one to pay: the only Foundation address that can be verified from here is
+the domain itself. `/publications` does not exist, `/research` has been reported
+as a 404 on the .com, and the `.org` paths in the sitemap cannot be checked from
+this environment.
+
+**To make it a deep link**, one of two things has to come from the team: a
+publications URL somebody has opened in a browser, or a short link they have
+actually created. Either is a one-line change. Neither can be assumed.
 
 Nothing is lost by dropping the Google Scholar address from the panel: the site's
 own `about-elaine` page carries her publications list and the Google Scholar
