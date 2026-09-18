@@ -44,9 +44,9 @@ UTM = "?utm_source=website&utm_medium=evidence&utm_campaign=%s"
 
 FACETS = [("crop", "Crop"), ("climate", "Climate"), ("country", "Country")]
 
-# Printed on the index and on every entry. A trial is one site.
-SCOPE = ("Each report covers one site. It says what was measured there and what changed. "
-         "It is not a statement about what happens on other land.")
+# Printed at the foot of every trial page, word for word, on every entry.
+STANDING = ("This is one trial, on one site, in one set of conditions. It shows what happened "
+            "there. Soil is local, and yours will differ.")
 
 
 def load():
@@ -131,13 +131,20 @@ def row(t):
     # column and reads as a broken list, so every row fills all three.
     if published(t):
         attrs = "".join(' data-%s="%s"' % (k, A(token(t.get(k, "")))) for k, _ in FACETS if str(t.get(k, "")).strip())
-        line = '<p class="entry__line">%s</p>' % e(meta) if meta else ""
+        where = ", ".join(x for x in (t.get("location", "").strip(), t.get("country", "").strip()) if x)
+        line = ". ".join(x for x in (where, t.get("crop", "").strip()) if x)
+        result = t.get("result", "").strip()
+        mid = '<h3 class="entry__t"><a href="%s">%s</a></h3>' % (A(href), e(title_of(t)))
+        if line:
+            mid += '<p class="entry__line">%s</p>' % e(line)
+        if result:
+            mid += '<p class="entry__line">%s</p>' % e(result)
         return ('        <li class="entry"%s>\n'
                 '          <span class="entry__kind" style="text-align:left">%s</span>\n'
-                '          <div><h3 class="entry__t"><a href="%s">%s</a></h3>%s</div>\n'
+                '          <div>%s</div>\n'
                 '          <span class="entry__kind">%s</span>\n'
-                '        </li>\n' % (attrs, e(t.get("country", "").strip()), A(href),
-                                     e(title_of(t)), line, e(t.get("duration", "").strip())))
+                '        </li>\n' % (attrs, e(t.get("country", "").strip()), mid,
+                                     e(t.get("duration", "").strip())))
     # A placeholder is structure, not content. Visitors see nothing; ?notes=1
     # shows the shell so the layout can be reviewed before real data arrives.
     return ('        <li class="entry notes-only">\n'
@@ -154,73 +161,67 @@ def index(trials):
     o.append('  <section class="stratum" style="border-top:0;padding-top:var(--s5)">\n    <div class="wrap">\n'
              '      <div class="head" style="margin-bottom:0">\n'
              '        <p class="eyebrow">EVIDENCE</p>\n'
-             '        <h1 id="ft-h">Field trial results</h1>\n'
-             '        <p class="lede">Students on our advanced programs run trials on real land and write up what '
-             'they measured. The reports below are theirs. Each one names the site, the practice, the instrument '
-             'and the numbers, so you can judge the work rather than take our word for it.</p>\n'
+             '        <h1 id="ft-h">Field results</h1>\n'
+             '        <p class="lede" data-source="Age of the published case study material, as at September 2026">'
+             'Dr. Elaine Ingham\u2019s case studies convinced a generation that biology could do what chemistry was '
+             'doing, and more cheaply. Some of that data is now fifteen years old.</p>\n'
+             '        <p>So our Advanced Programme students run their own trials, on their own land, and write down '
+             'what happened. Site, method, how long it ran, what was measured, what changed. Some worked. Some did '
+             'not, and those are here too, because a method that only ever reports its successes is not being '
+             'tested.</p>\n'
              '      </div>\n    </div>\n  </section>\n')
-
-    o.append('  <section class="stratum" aria-labelledby="ft-what">\n    <div class="wrap">\n'
-             '      <div class="grid">\n        <div class="span-6">\n'
-             '          <h2 id="ft-what">What a report contains</h2>\n'
-             '          <p>A practitioner picks a site, records its starting condition, applies a practice, and '
-             'measures the same things again after a stated period. The report gives the site, the climate, the '
-             'crop, the method, the duration, what was measured and how, and what changed.</p>\n'
-             '          <p>%s</p>\n        </div>\n'
-             '        <div class="span-5 start-8">\n'
-             '          <h2>Why these and not the old case studies</h2>\n'
-             '          <p>The case study material the Foundation has published for years was gathered around '
-             'fifteen years ago. These reports are current, they are written by the people who did the work, and '
-             'the measurements behind them can be checked.</p>\n'
-             '        </div>\n      </div>\n    </div>\n  </section>\n' % e(SCOPE))
 
     body = "".join(row(t) for t in trials)
     empty_note = ""
     if not live:
-        empty_note = ('      <p class="awaiting">No field trial report is published here yet. The reports exist and '
-                      'circulate inside the advanced programs. Each one needs its author\'s written permission and a '
-                      'check of the raw measurements before it goes on a public page, and that is in hand.</p>\n')
-    o.append('  <section class="stratum stratum--deep" aria-labelledby="ft-list">\n    <div class="wrap">\n'
-             '      <div class="head"><h2 id="ft-list">The reports</h2></div>\n'
+        empty_note = ('      <p class="awaiting">No trial is published here yet. The reports exist and circulate '
+                      'inside the Advanced Programme. Each one needs its author\u2019s permission and a check of the '
+                      'raw measurements before it goes on a public page.</p>\n')
+    o.append('  <section class="stratum" aria-labelledby="ft-list">\n    <div class="wrap">\n'
+             '      <h2 id="ft-list" class="visually-hidden">The trials</h2>\n'
              '%s'
              '      <ul class="rule-list" id="trials">\n%s'
              '        <li class="feed__empty" data-filter-empty hidden>Nothing matches that combination. '
              'Clear a filter to see the rest.</li>\n'
-             '      </ul>\n%s    </div>\n  </section>\n' % (chips(trials), body, empty_note))
+             '      </ul>\n%s'
+             '      <p class="todo">Three placeholder entries in data/field-trials.json. Real reports pending from '
+             'the Advanced Programme team.</p>\n'
+             '    </div>\n  </section>\n' % (chips(trials), body, empty_note))
 
-    o.append('  <section class="stratum" aria-labelledby="ft-next">\n    <div class="wrap">\n'
-             '      <h2 id="ft-next">Next step</h2>\n'
-             '      <p class="lede">These trials are coursework on our advanced programs. See what those programs '
-             'ask of you before you enrol.</p>\n'
-             '      <p><a class="btn" href="learn">See the advanced programs</a></p>\n'
+    o.append('  <section class="stratum stratum--deep" aria-labelledby="ft-next">\n    <div class="wrap">\n'
+             '      <h2 id="ft-next" class="visually-hidden">Next step</h2>\n'
+             '      <p class="lede">Our Advanced Programme graduates run these trials as part of their training.</p>\n'
+             '      <p><a class="btn" href="learn?utm_source=website&amp;utm_medium=evidence&amp;utm_campaign=evidence-field-trials">Learn about the Advanced Programme</a></p>\n'
              '    </div>\n  </section>\n')
     return build.MAIN("".join(o))
 
 
 def detail(t):
+    """One trial page, in the order the copy deck sets: who and where, crop,
+    method, duration, what was measured, result, the practitioner's own words,
+    and the standing note that every one of these pages carries."""
     rows = [(k, t.get(v, "").strip()) for k, v in (
-        ("Practitioner", "practitioner"), ("Place", "location"), ("Country", "country"),
-        ("Climate", "climate"), ("Site", "site_type"), ("Crop", "crop"),
-        ("Practice applied", "method"), ("Over", "duration"))]
+        ("Practitioner", "practitioner"), ("Location", "location"), ("Country", "country"),
+        ("Climate", "climate"), ("Site type", "site_type"), ("Crop", "crop"),
+        ("Method used", "method"), ("Duration", "duration"))]
     rows = [(k, v) for k, v in rows if v]
 
     o = []
     o.append('  <section class="stratum" style="border-top:0;padding-top:var(--s5)">\n    <div class="wrap">\n'
              '      <div class="head" style="margin-bottom:0">\n'
-             '        <p class="eyebrow">FIELD TRIAL</p>\n'
+             '        <p class="eyebrow">FIELD RESULTS</p>\n'
              '        <h1 id="t-h">%s</h1>\n'
-             '        <p class="lede">%s</p>\n'
-             '      </div>\n    </div>\n  </section>\n' % (e(title_of(t)), e(SCOPE)))
+             '      </div>\n    </div>\n  </section>\n' % e(title_of(t)))
 
     if rows:
         o.append('  <section class="stratum" aria-labelledby="t-site">\n    <div class="wrap">\n'
-                 '      <div class="head"><h2 id="t-site">The site</h2></div>\n'
+                 '      <h2 id="t-site" class="visually-hidden">The trial</h2>\n'
                  '%s    </div>\n  </section>\n'
                  % build.facts([{"k": k, "v": v} for k, v in rows]))
 
     ms = t.get("measurements") or []
     if ms:
-        body = "".join(
+        rowsm = "".join(
             '          <tr><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>\n'
             % (e(m.get("what", "")), e(m.get("before", "")), e(m.get("after", "")), e(m.get("method", "")))
             for m in ms)
@@ -230,37 +231,46 @@ def detail(t):
                  '        <thead><tr><th>Measure</th><th>At the start</th><th>At the end</th><th>How</th></tr></thead>\n'
                  '        <tbody>\n%s        </tbody>\n      </table>\n'
                  '      <p class="source small">%s</p>\n'
-                 '    </div>\n  </section>\n' % (body, e(t.get("_source", "Practitioner's own field trial report."))))
+                 '    </div>\n  </section>\n' % (rowsm, e(t.get("_source", "The practitioner\u2019s own trial report."))))
 
-    for hid, head, key in (("t-res", "What changed", "result"), ("t-con", "What the practitioner concluded", "conclusion")):
-        v = t.get(key, "").strip()
-        if v:
-            o.append('  <section class="stratum" aria-labelledby="%s">\n    <div class="wrap">\n'
-                     '      <div class="head"><h2 id="%s">%s</h2></div>\n      <div class="prose"><p>%s</p></div>\n'
-                     '    </div>\n  </section>\n' % (hid, hid, e(head), e(v)))
+    res = t.get("result", "").strip()
+    if res:
+        o.append('  <section class="stratum" aria-labelledby="t-res">\n    <div class="wrap">\n'
+                 '      <div class="head"><h2 id="t-res">Result</h2></div>\n'
+                 '      <div class="prose"><p>%s</p></div>\n    </div>\n  </section>\n' % e(res))
+
+    con = t.get("conclusion", "").strip()
+    if con:
+        o.append('  <section class="stratum stratum--deep" aria-labelledby="t-words">\n    <div class="wrap">\n'
+                 '      <div class="head"><h2 id="t-words">In their words</h2></div>\n'
+                 '      <figure class="testimonial"><blockquote><p>%s</p></blockquote>\n'
+                 '        <figcaption>%s</figcaption>\n      </figure>\n'
+                 '    </div>\n  </section>\n'
+                 % (e(con), e(t.get("practitioner", "").strip() or "The practitioner")))
 
     imgs = t.get("images") or []
     if imgs:
         li = "".join('        <li><figure class="shot">%s</figure></li>\n'
                      % build.img(i.get("src", ""), i.get("alt", ""), depth=1) for i in imgs)
-        o.append('  <section class="stratum stratum--deep" aria-labelledby="t-img">\n    <div class="wrap">\n'
+        o.append('  <section class="stratum" aria-labelledby="t-img">\n    <div class="wrap">\n'
                  '      <div class="head"><h2 id="t-img">The site, photographed</h2></div>\n'
                  '      <ul class="faces">\n%s      </ul>\n    </div>\n  </section>\n' % li)
 
     if not published(t):
         o.append('  <section class="stratum" aria-labelledby="t-hold">\n    <div class="wrap">\n'
-                 '      <div class="head"><h2 id="t-hold">This report is not published yet</h2></div>\n'
-                 '      <p class="awaiting">This page is the shape a field trial report takes on this site. It '
-                 'holds no findings. It is here so the structure can be reviewed before the first real report '
-                 'arrives.</p>\n      %s\n'
-                 '      <p class="todo">Owner: %s.</p>\n    </div>\n  </section>\n'
+                 '      <div class="head"><h2 id="t-hold">This trial is not published yet</h2></div>\n'
+                 '      <p class="awaiting">This page is the shape a trial takes on this site. It holds no '
+                 'findings. It is here so the structure can be reviewed before the first real report arrives.</p>\n'
+                 '      %s\n      <p class="todo">Owner: %s.</p>\n    </div>\n  </section>\n'
                  % (note(t), e(t.get("owner", "unassigned"))))
 
+    # The standing note, on every trial page, whatever else is on it.
     o.append('  <section class="stratum stratum--deep" aria-labelledby="t-next">\n    <div class="wrap">\n'
-             '      <h2 id="t-next">Next step</h2>\n'
-             '      <p class="lede">Read the rest of the reports.</p>\n'
-             '      <p><a class="btn" href="../evidence-field-trials">All field trial results</a></p>\n'
-             '    </div>\n  </section>\n')
+             '      <p class="aside-note">%s</p>\n'
+             '      <h2 id="t-next" class="visually-hidden">Next step</h2>\n'
+             '      <p style="margin-top:var(--s4)"><a class="btn" href="../evidence-field-trials">'
+             'All field results</a></p>\n'
+             '    </div>\n  </section>\n' % e(STANDING))
     return build.MAIN("".join(o))
 
 
@@ -269,14 +279,14 @@ def main():
     os.makedirs(os.path.join(ROOT, OUT_DIR), exist_ok=True)
     build.render(
         INDEX,
-        "Field trial results, Soil Food Web Foundation",
-        "Trials run on real land by students on our advanced programs, with what was measured and what changed.",
+        "Field results | Soil Food Web Foundation",
+        "Trials run by our graduates on their own land, with site, method, duration, measurements and outcome recorded.",
         index(trials), depth=0, share="img/soil-sample-shovel-and-bag.jpg", tone="t-practice")
     for t in trials:
         build.render(
             "%s/%s.html" % (OUT_DIR, t["slug"]),
-            "%s, field trial, Soil Food Web Foundation" % title_of(t),
-            "One field trial: the site, what was measured, and what changed.",
+            "%s | Soil Food Web Foundation" % title_of(t),
+            "One trial, on one site: method, duration, what was measured and what changed.",
             detail(t), depth=1, share="img/soil-sample-shovel-and-bag.jpg", tone="t-practice")
     print("done:", len(trials) + 1, "pages")
     return 0

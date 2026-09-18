@@ -55,6 +55,11 @@ def main():
                     bad.append((rel, href, label, "no such anchor on this page"))
                 continue
             path, _, frag = href.partition("#")
+            # A link may carry a query string: the evidence pages tag their
+            # course and event links with utm_source. The file on disk is
+            # named by the path, so the query is dropped before resolving,
+            # exactly as a server would.
+            path = path.partition("?")[0]
             if not path:
                 continue
             if path == "/":

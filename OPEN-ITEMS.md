@@ -44,43 +44,50 @@ A placeholder leaves this list only when the real thing is in the repository. "C
 | Social account addresses | footer, every page | The staging footer carries X, Facebook, Google and Instagram icons. No addresses were supplied, so no icons print rather than four links to nowhere. |
 | Full Consultant Case Studies and Farmer Case Studies playlists | practice.html | Five more films are listed on the page notes. The complete playlists need Vimeo account access. |
 
-## Waiting on Evan, the evidence pages
+## The evidence pages
 
-Five pages built 18 September 2026: `evidence.html`, `evidence-scholarships.html`,
-`evidence-field-trials.html` (plus one page per entry under `evidence-field-trials/`),
-`evidence-teachers.html` and a rebuilt `about-governance.html`. Their job is to prove the
-Foundation's claims to a stranger, so every one of the gaps below is load-bearing: until it
+Five pages, built to the final copy deck of 18 September 2026: `evidence.html`,
+`evidence-scholarships.html`, `evidence-field-trials.html` (plus one page per entry under
+`evidence-field-trials/`), `evidence-teachers.html` and `about-governance.html`. Their job is
+to prove the Foundation's claims to a stranger, so every gap below is load-bearing: until it
 is filled the page is asking a reader to take something on trust, which is the thing these
 pages exist to stop.
 
-Every figure on these pages also carries a `data-source` attribute naming where it came
-from, so a future editor can trace it without reading the copy. Keep that up when numbers
-change.
+Every figure on these pages carries a `data-source` attribute as well as its visible source
+line. Keep that up when numbers change.
+
+**The three that stop a page doing its job.** Everything else on this list is a gap. These
+three are contradictions, where the page makes a promise in one sentence and breaks it in the
+next.
 
 | What | Where | Note |
 | :-- | :-- | :-- |
-| **The record behind the scholarship figures** | evidence-scholarships.html | $72,000+ full, $250,000+ partial, June 2026, and $419,844 of course fees March to mid-September 2026. All four are printed on the Foundation's word. Name the export or report they come from so the source line can cite it, and ideally the same export each month. |
-| **Scholarship recipient portraits** | evidence-scholarships.html | About twenty exist across South Asia, East Africa, West Africa, the Middle East, Europe and Latin America. None is in the repository. Put the originals in `img/`, run `python3 tools/images.py`, then point the twenty slots at `img/w/<name>.jpg`. |
-| **Recipient names and countries** | evidence-scholarships.html | Held back until each person gives permission for their name and country to be shown. Who asks them, and by when? Alt text needs the role and country too. |
-| **What a scholarship covers** | evidence-scholarships.html | Whether it is only the course fee, and what happens about a microscope for a recipient who has none. First question an applicant asks. |
-| **Scholarship review cadence and criteria** | evidence-scholarships.html, learn-scholarships.html | How often a round is read and what is weighed. Now open on two pages, both saying the same unverified thing. |
-| **The field trial reports themselves** | data/field-trials.json | The three entries shipped are placeholders and hold no findings. Each real entry needs the report, the practitioner's written permission to publish under their name, and the raw measurements behind every figure. Owner: Evan with the advanced programs teaching team. |
-| **Crop, climate and country values** | evidence-field-trials.html | The filter chips are generated from the data. They do not appear until published entries carry those three fields, which is deliberate, but it means the filter cannot be reviewed until the first real reports land. |
-| **Webinar recording links and dates** | evidence-teachers.html | Four sessions are named: Seeding the Future (Vandana Shiva), Designing Abundance (David Holmgren), Bridging the Gap (Dr. Mary Cole), From Dirt to Design (Dr. Adam Cobb with Dr. Carla Portugal). None has a link or a date, so a reader cannot go and watch any of them, which is the whole point of the section. |
-| **Dr. Mary Cole's affiliation** | evidence-teachers.html | One line. Not supplied, and not invented on the page. |
-| **Dr. Adam Cobb's affiliation** | evidence-teachers.html | One line. Same gap as his missing biography on about-team.html. |
-| **RYSS: registered name and the farmer figure** | evidence-teachers.html | The page prints initials on a partner's behalf because the full registered name was not supplied. "Close to two million farmers" is the largest number anywhere on this site and rests on nothing but our own brief; confirm it with RYSS, with the year it refers to, before this is quoted elsewhere. |
-| **Six Inches of Soil: which episodes** | evidence-teachers.html | "Featured us several times" is not checkable. Titles, dates, links. |
-| **Heart and Soil: the soil summit** | evidence-teachers.html | Dates and a link once set. Until then the line gives a reader nothing to do. |
-| **Wild Ones: the article about Les** | evidence-teachers.html | Les's full name with permission to print it, the article title, its date and a link. |
-| **Dr. Carla Portugal: which appearances** | evidence-teachers.html | Which lectures, which appearances, dates, and links where recordings exist. |
-| **The Guardian piece** | evidence-teachers.html | A piece is said to exist. It is deliberately not on the page: naming a newspaper we have not verified is exactly what these pages exist to stop. Confirm and it goes up. |
-| **Date on the IRS determination letter** | about-governance.html | The page says "in 2026" because no month was supplied. Extends Decision 9. |
-| **Board name spellings** | about-governance.html, about-team.html | The 2026 brief spells them "Eric Feyler" and "Loide Vasquez". Both pages carry "Eric Feiler" and "Loida Vasquez", which is what the team page has always said. Confirm which is right and correct both at once. |
-| **Curriculum committee membership** | about-governance.html | Formed 2026 under Eric Feiler. Who else sits on it, how often it meets, and whether its recommendations are published. |
-| **Annual impact report** | about-governance.html | Planned for December 2026 and promised on that page. Needs the PDF at that date and a plain summary on the page for anyone who will not open one. |
-| **Donation income, March to mid-September 2026** | about-governance.html | Course fees for that period are printed. The donation total is not, because none was supplied. The page says so rather than implying course fees are the whole picture. |
-| **Givebutter's zero transaction fee** | about-governance.html | The page states it flatly. Confirm it is still zero, and whether card processing costs anything separately, before this goes live. |
+| **Application link and eligibility criteria** | evidence-scholarships.html, Apply | Student Services. The page explains scholarships in detail and then offers no way to ask for one. The Apply section is built and hidden until the link exists, because a heading called Apply with nothing under it is worse than no heading. This is the single biggest hole in the five pages. |
+| **Recording links for the five sessions** | evidence-teachers.html, Teachers and guests | Webinar team. The intro says "their sessions are free to watch" and then gives no way to watch any of them. Needed for Seeding the Future, Designing Abundance, Bridging the Gap, From Dirt to Design, and anything from the RYSS partnership. |
+| **Where the soil assessment formulas are published** | about-governance.html, Transparency | Evan. The page says we publish the formulas rather than hiding them, and links to nothing. Either the URL, or the sentence comes out. |
+
+**The rest, by page.**
+
+| What | Where | Note |
+| :-- | :-- | :-- |
+| Recipient names and countries | evidence-scholarships.html | Pending individual permission. Alt text currently generic. Who asks each person, and by when? |
+| Recipient portraits, about twenty | evidence-scholarships.html | None is in the repository. Put the originals in `img/`, run `python3 tools/images.py`, then point the twenty slots at `img/w/<name>.jpg`. Alt text goes in at the same time. |
+| The record behind the scholarship figures | evidence-scholarships.html | $72,000+ full, $250,000+ partial, June 2026, and $419,844 of course income March to mid-September 2026. All printed on the Foundation's word. Name the export they come from so the source line can cite it. |
+| Real field trial reports | data/field-trials.json | Three placeholder entries ship and hold no findings. Real reports pending from the Advanced Programme team. Each needs the report, the practitioner's permission, and the raw measurements. |
+| Crop, climate and country values | evidence-field-trials.html | The filter chips are generated from the data, so they do not appear until published entries carry those three fields. Deliberate, but it means the filter cannot be reviewed until the first real reports land. |
+| Trials that did not work | data/field-trials.json | The intro promises them: "Some did not, and those are here too." If the first batch of real entries is all successes, the page is contradicting itself. Ask the Advanced Programme team for at least one that failed. |
+| Photographs of the teachers and guests | evidence-teachers.html | Pending permission. |
+| Graduate presenter list | evidence-teachers.html | Webinar team. The section names no one, so the claim that graduates teach here is currently unevidenced on a page about evidence. |
+| The RYSS farmer figure | evidence-teachers.html | "Nearly two million farmers" is the largest number anywhere on this site and rests on our own brief. Confirm it with RYSS, with the year it refers to, before it is quoted elsewhere. |
+| Guardian piece | evidence-teachers.html | Confirm publication status before listing. Deliberately not on the page until then. |
+| Full board list | about-governance.html | Pending confirmation. Two people are named; the page says "board and committees" and shows two of them. |
+| Board name spellings | about-governance.html, about-team.html | This page uses the final copy's "Loide Vasquez" and "Eric Feyler". about-team.html has said "Loida Vasquez" and "Eric Feiler" since it was built. Two pages, two spellings of the same two people. Fix whichever is wrong, on both at once. |
+| Impact report PDF | about-governance.html | December 2026 slot. Needs the PDF at that date and a plain summary on the page for anyone who will not open one. |
+| Givebutter's zero transaction fee | about-governance.html | The page states it flatly. Confirm it is still zero, and whether card processing is billed separately. |
+| Date on the IRS determination letter | about-governance.html | The page says "in 2026" because no month was supplied. Extends Decision 9. |
+| The public documents list | about-governance.html | Kept from the previous version of the page rather than dropped, because the footer on every page says the Form 990 and financial statements are available here. If they belong elsewhere, say so and the footer changes with them. Linnea. |
+| Oregon registration number | about-governance.html | Oregon DOJ Charitable Activities. Compliance brief, Linnea. |
+| British and American spelling | evidence-teachers.html, evidence-field-trials.html, about-governance.html | The final copy uses "programme", "organisation" and "biofertilisers". The rest of the site uses American spelling throughout. Both are used as written, so the site is now inconsistent. Pick one and say which. |
 
 ## Waiting on Evan and Stephanie
 
