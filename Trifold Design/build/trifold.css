@@ -544,6 +544,10 @@ h3 {
    their full size, refuse to shrink, and run straight off the panel into the
    next one. The vertical overflow check cannot see that, which is why
    render.js now measures horizontally too. */
+/* 0.82in is the smallest these read as photographs rather than as a decorative
+   stripe; 0.38in and 0.29in were both tried and both looked like a mistake.
+   Practice has 0.49in spare, so the pictures need 0.60in of copy back before
+   they can return. */
 .figure--trio img { flex: 1 1 0; width: auto; min-width: 0; height: 0.82in; object-fit: cover; }
 
 /* The lower edge of each photograph is not its own shape. One curve is drawn
