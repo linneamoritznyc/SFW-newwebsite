@@ -2,7 +2,7 @@
 
 Everything the site still shows as a visible placeholder, with the person who supplies it.
 
-Last updated 14 September 2026 (the Soil Food Web School app page added under Community; the day before: hero photograph, volunteer quotes cut, community photo slots, Salient brief). Placeholders render as dashed `.todo` blocks; add `?notes=1` to any page URL to reveal every one of them at once.
+Last updated 18 September 2026 (the evidence pages: hub, scholarships, field trials, who teaches with us, and a rebuilt governance page). Placeholders render as dashed `.todo` blocks; add `?notes=1` to any page URL to reveal every one of them at once.
 
 A placeholder leaves this list only when the real thing is in the repository. "Confirmed in a document" is not the same as "on the page".
 
@@ -43,6 +43,44 @@ A placeholder leaves this list only when the real thing is in the repository. "C
 | Scholarship review cadence | learn-scholarships.html | Step two says applications are read in batches. How often is a round read, and what is weighed? |
 | Social account addresses | footer, every page | The staging footer carries X, Facebook, Google and Instagram icons. No addresses were supplied, so no icons print rather than four links to nowhere. |
 | Full Consultant Case Studies and Farmer Case Studies playlists | practice.html | Five more films are listed on the page notes. The complete playlists need Vimeo account access. |
+
+## Waiting on Evan, the evidence pages
+
+Five pages built 18 September 2026: `evidence.html`, `evidence-scholarships.html`,
+`evidence-field-trials.html` (plus one page per entry under `evidence-field-trials/`),
+`evidence-teachers.html` and a rebuilt `about-governance.html`. Their job is to prove the
+Foundation's claims to a stranger, so every one of the gaps below is load-bearing: until it
+is filled the page is asking a reader to take something on trust, which is the thing these
+pages exist to stop.
+
+Every figure on these pages also carries a `data-source` attribute naming where it came
+from, so a future editor can trace it without reading the copy. Keep that up when numbers
+change.
+
+| What | Where | Note |
+| :-- | :-- | :-- |
+| **The record behind the scholarship figures** | evidence-scholarships.html | $72,000+ full, $250,000+ partial, June 2026, and $419,844 of course fees March to mid-September 2026. All four are printed on the Foundation's word. Name the export or report they come from so the source line can cite it, and ideally the same export each month. |
+| **Scholarship recipient portraits** | evidence-scholarships.html | About twenty exist across South Asia, East Africa, West Africa, the Middle East, Europe and Latin America. None is in the repository. Put the originals in `img/`, run `python3 tools/images.py`, then point the twenty slots at `img/w/<name>.jpg`. |
+| **Recipient names and countries** | evidence-scholarships.html | Held back until each person gives permission for their name and country to be shown. Who asks them, and by when? Alt text needs the role and country too. |
+| **What a scholarship covers** | evidence-scholarships.html | Whether it is only the course fee, and what happens about a microscope for a recipient who has none. First question an applicant asks. |
+| **Scholarship review cadence and criteria** | evidence-scholarships.html, learn-scholarships.html | How often a round is read and what is weighed. Now open on two pages, both saying the same unverified thing. |
+| **The field trial reports themselves** | data/field-trials.json | The three entries shipped are placeholders and hold no findings. Each real entry needs the report, the practitioner's written permission to publish under their name, and the raw measurements behind every figure. Owner: Evan with the advanced programs teaching team. |
+| **Crop, climate and country values** | evidence-field-trials.html | The filter chips are generated from the data. They do not appear until published entries carry those three fields, which is deliberate, but it means the filter cannot be reviewed until the first real reports land. |
+| **Webinar recording links and dates** | evidence-teachers.html | Four sessions are named: Seeding the Future (Vandana Shiva), Designing Abundance (David Holmgren), Bridging the Gap (Dr. Mary Cole), From Dirt to Design (Dr. Adam Cobb with Dr. Carla Portugal). None has a link or a date, so a reader cannot go and watch any of them, which is the whole point of the section. |
+| **Dr. Mary Cole's affiliation** | evidence-teachers.html | One line. Not supplied, and not invented on the page. |
+| **Dr. Adam Cobb's affiliation** | evidence-teachers.html | One line. Same gap as his missing biography on about-team.html. |
+| **RYSS: registered name and the farmer figure** | evidence-teachers.html | The page prints initials on a partner's behalf because the full registered name was not supplied. "Close to two million farmers" is the largest number anywhere on this site and rests on nothing but our own brief; confirm it with RYSS, with the year it refers to, before this is quoted elsewhere. |
+| **Six Inches of Soil: which episodes** | evidence-teachers.html | "Featured us several times" is not checkable. Titles, dates, links. |
+| **Heart and Soil: the soil summit** | evidence-teachers.html | Dates and a link once set. Until then the line gives a reader nothing to do. |
+| **Wild Ones: the article about Les** | evidence-teachers.html | Les's full name with permission to print it, the article title, its date and a link. |
+| **Dr. Carla Portugal: which appearances** | evidence-teachers.html | Which lectures, which appearances, dates, and links where recordings exist. |
+| **The Guardian piece** | evidence-teachers.html | A piece is said to exist. It is deliberately not on the page: naming a newspaper we have not verified is exactly what these pages exist to stop. Confirm and it goes up. |
+| **Date on the IRS determination letter** | about-governance.html | The page says "in 2026" because no month was supplied. Extends Decision 9. |
+| **Board name spellings** | about-governance.html, about-team.html | The 2026 brief spells them "Eric Feyler" and "Loide Vasquez". Both pages carry "Eric Feiler" and "Loida Vasquez", which is what the team page has always said. Confirm which is right and correct both at once. |
+| **Curriculum committee membership** | about-governance.html | Formed 2026 under Eric Feiler. Who else sits on it, how often it meets, and whether its recommendations are published. |
+| **Annual impact report** | about-governance.html | Planned for December 2026 and promised on that page. Needs the PDF at that date and a plain summary on the page for anyone who will not open one. |
+| **Donation income, March to mid-September 2026** | about-governance.html | Course fees for that period are printed. The donation total is not, because none was supplied. The page says so rather than implying course fees are the whole picture. |
+| **Givebutter's zero transaction fee** | about-governance.html | The page states it flatly. Confirm it is still zero, and whether card processing costs anything separately, before this goes live. |
 
 ## Waiting on Evan and Stephanie
 

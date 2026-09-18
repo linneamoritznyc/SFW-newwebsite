@@ -1,0 +1,60 @@
+{
+  "_source": "Field trial reports written by students on the Advanced Programs. The reports exist and circulate internally; none has been cleared for publication yet. The three entries below are placeholders that carry the shape of a real one, so the structure can be reviewed before any data arrives. Nothing in them is a finding.",
+  "_schema": "slug, practitioner, location, country, climate, site_type, crop, method, duration, measurements[], result, conclusion, images[], status. 'note' and 'owner' are added by this repository for placeholder tracking and never print as body text; tools/fieldtrials.py turns them into .todo blocks that ?notes=1 reveals. A measurement is {\"what\": \"\", \"before\": \"\", \"after\": \"\", \"method\": \"\"}.",
+  "trials": [
+    {
+      "slug": "example-orchard-transition",
+      "practitioner": "",
+      "location": "",
+      "country": "",
+      "climate": "",
+      "site_type": "",
+      "crop": "",
+      "method": "",
+      "duration": "",
+      "measurements": [],
+      "result": "",
+      "conclusion": "",
+      "images": [],
+      "status": "placeholder",
+      "note": "An orchard transition report. Needed: the report itself, the practitioner's written permission to publish it under their name, and the raw measurements behind every figure quoted.",
+      "owner": "Evan, with the Advanced Programs teaching team"
+    },
+    {
+      "slug": "example-pasture-trial",
+      "practitioner": "",
+      "location": "",
+      "country": "",
+      "climate": "",
+      "site_type": "",
+      "crop": "",
+      "method": "",
+      "duration": "",
+      "measurements": [],
+      "result": "",
+      "conclusion": "",
+      "images": [],
+      "status": "placeholder",
+      "note": "A pasture or grazing report. Same three things needed: the report, permission, and the raw measurements.",
+      "owner": "Evan, with the Advanced Programs teaching team"
+    },
+    {
+      "slug": "example-market-garden-trial",
+      "practitioner": "",
+      "location": "",
+      "country": "",
+      "climate": "",
+      "site_type": "",
+      "crop": "",
+      "method": "",
+      "duration": "",
+      "measurements": [],
+      "result": "",
+      "conclusion": "",
+      "images": [],
+      "status": "placeholder",
+      "note": "A market garden or small holding report. Same three things needed: the report, permission, and the raw measurements.",
+      "owner": "Evan, with the Advanced Programs teaching team"
+    }
+  ]
+}

@@ -41,6 +41,10 @@
             "href": "about-governance"
           },
           {
+            "label": "Evidence",
+            "href": "evidence"
+          },
+          {
             "label": "Dr. Elaine Ingham",
             "href": "about-elaine"
           },
@@ -205,6 +209,10 @@
           {
             "label": "Governance and financials",
             "href": "about-governance"
+          },
+          {
+            "label": "Evidence",
+            "href": "evidence"
           },
           {
             "label": "Contact us",

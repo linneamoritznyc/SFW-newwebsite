@@ -1845,6 +1845,15 @@ HAND_WRITTEN = [
     "accessibility.html", "contact.html", "directory.html", "privacy.html",
     "terms.html", "volunteer.html", "projects/market-garden-sweden.html",
     "news/wild-ken-hill-2026.html",
+    "evidence.html", "evidence-scholarships.html", "evidence-teachers.html",
+    # The field trial pages are rendered from data/field-trials.json by
+    # tools/fieldtrials.py, which borrows the chrome from this file. They are
+    # listed here as well so a nav change reaches them whichever script is
+    # run; both write the same header and footer, so the two cannot disagree.
+    "evidence-field-trials.html",
+    "evidence-field-trials/example-orchard-transition.html",
+    "evidence-field-trials/example-pasture-trial.html",
+    "evidence-field-trials/example-market-garden-trial.html",
 ]
 
 HDR_RE = re.compile(

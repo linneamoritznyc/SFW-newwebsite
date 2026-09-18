@@ -36,6 +36,10 @@ no dependencies. Open any `.html` file in a browser.
 ├── volunteer.html              # Volunteer program
 ├── directory.html              # Consultant and lab tech directory
 ├── learn-scholarships.html     # Scholarship program
+├── evidence.html               # Evidence hub: four things a stranger can check
+├── evidence-scholarships.html  # What the Foundation gave away, and how to apply
+├── evidence-field-trials.html  # Field trial index, filterable (generated)
+├── evidence-teachers.html      # Who has taught or presented with us, and press
 ├── learn-webinars.html         # Webinar series
 ├── login.html                  # Platform login routing
 ├── news.html                   # News index
@@ -72,6 +76,12 @@ no dependencies. Open any `.html` file in a browser.
 ├── projects/                   # Individual case study pages
 │   └── market-garden-sweden.html
 │
+├── evidence-field-trials/      # One page per field trial (generated, do not hand-edit)
+│   └── example-*.html
+│
+├── data/
+│   └── field-trials.json       # Field trial reports; source for the pages above
+│
 ├── public/
 │   └── assets/community/       # Community page assets (photos and clips to be added)
 │       ├── img/
@@ -85,6 +95,7 @@ no dependencies. Open any `.html` file in a browser.
 │
 ├── tools/                      # Build and QA utilities (Python)
 │   ├── build.py                # Injects partials (icons, header, footer)
+│   ├── fieldtrials.py          # Renders the field trial pages from data/field-trials.json
 │   ├── crawl.py                # Old WordPress site scraper (reference)
 │   ├── csscheck.py             # Unused CSS class detector
 │   ├── imagecheck.py           # Missing image audit
@@ -130,6 +141,22 @@ no dependencies. Open any `.html` file in a browser.
 - **Permissions-Policy** disables camera, microphone, geolocation, and payment APIs.
 - **No cookies, no analytics, no tracking.** The `dnt=1` flag is set on every Vimeo embed.
 - **No user input processed server-side.** Forms use `mailto:` links; no backend.
+
+---
+
+## Field trials
+
+`evidence-field-trials.html` and everything under `evidence-field-trials/` are rendered from
+`data/field-trials.json` by `python3 tools/fieldtrials.py`. Edit the JSON, not the HTML. The
+script borrows its header, footer and share tags from `tools/build.py`, so the two cannot
+drift apart, and the generated pages are also listed in `build.py`'s `HAND_WRITTEN` so a nav
+change reaches them whichever script is run.
+
+An entry with `"status": "placeholder"` prints nothing to a visitor and shows its shell under
+`?notes=1`. The filter chips on the index are generated from the crop, climate and country
+values present in the data: a facet with nothing to filter by prints no chips rather than a
+row of buttons that do nothing. Filtering is progressive enhancement; with JavaScript off the
+index is a plain full list.
 
 ---
 

@@ -23,6 +23,7 @@ def pages():
     out = sorted(glob.glob(os.path.join(ROOT, "*.html")))
     out += sorted(glob.glob(os.path.join(ROOT, "news", "*.html")))
     out += sorted(glob.glob(os.path.join(ROOT, "projects", "*.html")))
+    out += sorted(glob.glob(os.path.join(ROOT, "evidence-field-trials", "*.html")))
     return [p for p in out if not any(s in p for s in SKIP_DIRS)]
 
 
