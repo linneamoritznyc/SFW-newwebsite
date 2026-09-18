@@ -538,17 +538,21 @@ h3 {
    of places this is done in, and three pictures say that faster than a sentence
    can. No captions on purpose: naming each one invites a reader to check three
    facts instead of taking in one idea. */
-.figure--trio { display: flex; gap: 0.08in; margin-top: var(--s3); }
+.figure--trio { display: flex; gap: 0.08in; margin-top: 0.03in; }
 /* min-width:0 is not optional. A flex item defaults to min-width:auto, which
    for an image is its intrinsic pixel width, so without this the three keep
    their full size, refuse to shrink, and run straight off the panel into the
    next one. The vertical overflow check cannot see that, which is why
    render.js now measures horizontally too. */
-/* 0.82in is the smallest these read as photographs rather than as a decorative
-   stripe; 0.38in and 0.29in were both tried and both looked like a mistake.
-   Practice has 0.49in spare, so the pictures need 0.60in of copy back before
-   they can return. */
-.figure--trio img { flex: 1 1 0; width: auto; min-width: 0; height: 0.82in; object-fit: cover; }
+/* Sized to what Practice actually has once Allison's copy is in: 0.547in
+   between the last paragraph and the code, of which the top margin takes 0.095
+   and the gap below wants the 0.092 its neighbour on this sheet uses. */
+/* Height and top margin are both set to what Practice has left once Allison's
+   copy is in: 0.547in between the last paragraph and the code. The paragraph
+   above contributes its own 0.06in, so the figure adds only 0.03in to reach the
+   0.09in gap the code below gets, and the pictures take the rest. Measured
+   either side on every build: 0.090in above, 0.092in below. */
+.figure--trio img { flex: 1 1 0; width: auto; min-width: 0; height: 0.365in; object-fit: cover; }
 
 /* The lower edge of each photograph is not its own shape. One curve is drawn
    across the whole sheet and each picture is clipped by the segment of it that
