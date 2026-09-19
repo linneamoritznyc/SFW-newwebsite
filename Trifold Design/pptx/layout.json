@@ -1,0 +1,2238 @@
+{
+ "outside": {
+  "sheetW": 11.25,
+  "sheetH": 8.75,
+  "blocks": [
+   {
+    "tag": "p",
+    "cls": "eyebrow eyebrow--edu",
+    "panel": "3",
+    "x": 0.4049,
+    "y": 0.4095,
+    "w": 2.9401,
+    "h": 0.1226,
+    "align": "start",
+    "lineHeightPx": 11.78,
+    "fontSizePx": 8.53,
+    "runs": [
+     {
+      "text": "Teaching",
+      "weight": 700,
+      "italic": false,
+      "color": "rgba(255, 255, 255, 0.86)",
+      "family": "Montserrat",
+      "size": 8.53,
+      "spacing": 1.28,
+      "transform": "uppercase"
+     }
+    ]
+   },
+   {
+    "tag": "h2",
+    "cls": "",
+    "panel": "3",
+    "x": 0.4049,
+    "y": 0.5869,
+    "w": 2.9401,
+    "h": 0.4082,
+    "align": "start",
+    "lineHeightPx": 19.6,
+    "fontSizePx": 18.67,
+    "runs": [
+     {
+      "text": "Anyone, anywhere, can learn to restore living soil.",
+      "weight": 700,
+      "italic": false,
+      "color": "rgb(255, 255, 255)",
+      "family": "Montserrat",
+      "size": 18.67,
+      "spacing": -0.112,
+      "transform": "none"
+     }
+    ]
+   },
+   {
+    "tag": "figcaption",
+    "cls": "caption",
+    "panel": "3",
+    "x": 0.3849,
+    "y": 2.3398,
+    "w": 2.9601,
+    "h": 0.1172,
+    "align": "start",
+    "lineHeightPx": 11.26,
+    "fontSizePx": 8.93,
+    "runs": [
+     {
+      "text": "A mentor teaching on working land.",
+      "weight": 400,
+      "italic": true,
+      "color": "rgba(255, 255, 255, 0.7)",
+      "family": "Source Sans 3",
+      "size": 8.93,
+      "spacing": 0,
+      "transform": "none"
+     }
+    ]
+   },
+   {
+    "tag": "p",
+    "cls": "lede",
+    "panel": "3",
+    "x": 0.4049,
+    "y": 2.6717,
+    "w": 2.9401,
+    "h": 0.8838,
+    "align": "start",
+    "lineHeightPx": 16.99,
+    "fontSizePx": 13.07,
+    "runs": [
+     {
+      "text": "From curiosity through to professional practice.\n        Everyone starts with the Foundation Courses, and where you go next\n        depends on whether you want to apply your skills to your own land or\n        help others improve their soils.",
+      "weight": 400,
+      "italic": false,
+      "color": "rgb(255, 255, 255)",
+      "family": "Source Sans 3",
+      "size": 13.07,
+      "spacing": 0,
+      "transform": "none"
+     }
+    ]
+   },
+   {
+    "tag": "h3",
+    "cls": "",
+    "panel": "3",
+    "x": 0.6698,
+    "y": 3.6403,
+    "w": 1.2083,
+    "h": 0.14,
+    "align": "start",
+    "lineHeightPx": 13.44,
+    "fontSizePx": 11.2,
+    "runs": [
+     {
+      "text": "Foundation Courses",
+      "weight": 600,
+      "italic": false,
+      "color": "rgb(255, 255, 255)",
+      "family": "Montserrat",
+      "size": 11.2,
+      "spacing": 0,
+      "transform": "none"
+     }
+    ]
+   },
+   {
+    "tag": "p",
+    "cls": "",
+    "panel": "3",
+    "x": 0.4049,
+    "y": 3.8403,
+    "w": 2.9401,
+    "h": 0.7308,
+    "align": "start",
+    "lineHeightPx": 14.04,
+    "fontSizePx": 10.8,
+    "runs": [
+     {
+      "text": "You'll learn the science of the soil food web, the organisms and\n            their roles, use of a microscope for biological analyses and how\n            biological amendments are made and applied. They are online,\n            self-paced, take about 150 hours to complete, and are a prerequisite\n            to any Advanced Program.",
+      "weight": 400,
+      "italic": false,
+      "color": "rgb(255, 255, 255)",
+      "family": "Source Sans 3",
+      "size": 10.8,
+      "spacing": 0,
+      "transform": "none"
+     }
+    ]
+   },
+   {
+    "tag": "h3",
+    "cls": "",
+    "panel": "3",
+    "x": 0.6698,
+    "y": 4.7262,
+    "w": 1.2396,
+    "h": 0.14,
+    "align": "start",
+    "lineHeightPx": 13.44,
+    "fontSizePx": 11.2,
+    "runs": [
+     {
+      "text": "Advanced Programs",
+      "weight": 600,
+      "italic": false,
+      "color": "rgb(255, 255, 255)",
+      "family": "Montserrat",
+      "size": 11.2,
+      "spacing": 0,
+      "transform": "none"
+     }
+    ]
+   },
+   {
+    "tag": "p",
+    "cls": "",
+    "panel": "3",
+    "x": 0.4049,
+    "y": 4.9263,
+    "w": 2.9401,
+    "h": 0.5846,
+    "align": "start",
+    "lineHeightPx": 14.04,
+    "fontSizePx": 10.8,
+    "runs": [
+     {
+      "text": "Learn the practical application of the theory you learned in the\n            Foundation Courses through mentor-led Advanced Programs on Soil\n            Microscopy, BioComplete™ Compost Production, Biological Liquid\n            Amendments and Field Trial.",
+      "weight": 400,
+      "italic": false,
+      "color": "rgb(255, 255, 255)",
+      "family": "Source Sans 3",
+      "size": 10.8,
+      "spacing": 0,
+      "transform": "none"
+     }
+    ]
+   },
+   {
+    "tag": "h3",
+    "cls": "",
+    "panel": "3",
+    "x": 0.6698,
+    "y": 5.666,
+    "w": 1.4063,
+    "h": 0.14,
+    "align": "start",
+    "lineHeightPx": 13.44,
+    "fontSizePx": 11.2,
+    "runs": [
+     {
+      "text": "Accelerator Workshops",
+      "weight": 600,
+      "italic": false,
+      "color": "rgb(255, 255, 255)",
+      "family": "Montserrat",
+      "size": 11.2,
+      "spacing": 0,
+      "transform": "none"
+     }
+    ]
+   },
+   {
+    "tag": "p",
+    "cls": "",
+    "panel": "3",
+    "x": 0.4049,
+    "y": 5.866,
+    "w": 2.9401,
+    "h": 0.4385,
+    "align": "start",
+    "lineHeightPx": 14.04,
+    "fontSizePx": 10.8,
+    "runs": [
+     {
+      "text": "The Advanced Programs as a group on working land, the whole method\n            at once. Held periodically with a host partner. Dates on the school\n            site.",
+      "weight": 400,
+      "italic": false,
+      "color": "rgb(255, 255, 255)",
+      "family": "Source Sans 3",
+      "size": 10.8,
+      "spacing": 0,
+      "transform": "none"
+     }
+    ]
+   },
+   {
+    "tag": "h3",
+    "cls": "",
+    "panel": "3",
+    "x": 0.6698,
+    "y": 6.4596,
+    "w": 0.8854,
+    "h": 0.14,
+    "align": "start",
+    "lineHeightPx": 13.44,
+    "fontSizePx": 11.2,
+    "runs": [
+     {
+      "text": "Where it leads",
+      "weight": 600,
+      "italic": false,
+      "color": "rgb(255, 255, 255)",
+      "family": "Montserrat",
+      "size": 11.2,
+      "spacing": 0,
+      "transform": "none"
+     }
+    ]
+   },
+   {
+    "tag": "p",
+    "cls": "",
+    "panel": "3",
+    "x": 0.4049,
+    "y": 6.6597,
+    "w": 2.9401,
+    "h": 0.4385,
+    "align": "start",
+    "lineHeightPx": 14.04,
+    "fontSizePx": 10.8,
+    "runs": [
+     {
+      "text": "All four Advanced Programs carry the Soil Food Web Consultant\n            title; Soil Microscopy alone, the Lab Technician title. Prices at\n            ",
+      "weight": 400,
+      "italic": false,
+      "color": "rgb(255, 255, 255)",
+      "family": "Source Sans 3",
+      "size": 10.8,
+      "spacing": 0,
+      "transform": "none"
+     },
+     {
+      "text": "school.soilfoodweb.com",
+      "weight": 400,
+      "italic": false,
+      "color": "rgb(255, 255, 255)",
+      "family": "Source Sans 3",
+      "size": 9.47,
+      "spacing": 0,
+      "transform": "none"
+     }
+    ]
+   },
+   {
+    "tag": "div",
+    "cls": "t",
+    "panel": "3",
+    "x": 1.6748,
+    "y": 7.4644,
+    "w": 1.6702,
+    "h": 0.1449,
+    "align": "start",
+    "lineHeightPx": 13.92,
+    "fontSizePx": 12,
+    "runs": [
+     {
+      "text": "Apply for a scholarship",
+      "weight": 700,
+      "italic": false,
+      "color": "rgb(255, 255, 255)",
+      "family": "Montserrat",
+      "size": 12,
+      "spacing": 0,
+      "transform": "none"
+     }
+    ]
+   },
+   {
+    "tag": "div",
+    "cls": "d",
+    "panel": "3",
+    "x": 1.6748,
+    "y": 7.6442,
+    "w": 1.6702,
+    "h": 0.2627,
+    "align": "start",
+    "lineHeightPx": 12.63,
+    "fontSizePx": 9.87,
+    "runs": [
+     {
+      "text": "Scholarships prioritize applicants in under-resourced\n            regions.",
+      "weight": 400,
+      "italic": false,
+      "color": "rgba(255, 255, 255, 0.86)",
+      "family": "Source Sans 3",
+      "size": 9.87,
+      "spacing": 0,
+      "transform": "none"
+     }
+    ]
+   },
+   {
+    "tag": "div",
+    "cls": "h",
+    "panel": "3",
+    "x": 1.6748,
+    "y": 7.9419,
+    "w": 1.6702,
+    "h": 0.134,
+    "align": "start",
+    "lineHeightPx": 12.88,
+    "fontSizePx": 9.33,
+    "runs": [
+     {
+      "text": "sfw.one/brochure-scholarship",
+      "weight": 400,
+      "italic": true,
+      "color": "rgba(255, 255, 255, 0.7)",
+      "family": "Source Sans 3",
+      "size": 9.33,
+      "spacing": 0,
+      "transform": "none"
+     }
+    ]
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "panel": "6",
+    "x": 3.9049,
+    "y": 0.4095,
+    "w": 3.1901,
+    "h": 0.1226,
+    "align": "start",
+    "lineHeightPx": 11.78,
+    "fontSizePx": 8.53,
+    "runs": [
+     {
+      "text": "Community",
+      "weight": 700,
+      "italic": false,
+      "color": "rgba(255, 255, 255, 0.86)",
+      "family": "Montserrat",
+      "size": 8.53,
+      "spacing": 1.28,
+      "transform": "uppercase"
+     }
+    ]
+   },
+   {
+    "tag": "h2",
+    "cls": "",
+    "panel": "6",
+    "x": 3.9049,
+    "y": 0.5869,
+    "w": 3.1901,
+    "h": 0.4082,
+    "align": "start",
+    "lineHeightPx": 19.6,
+    "fontSizePx": 18.67,
+    "runs": [
+     {
+      "text": "A global community amplifies the impact of this vital work.",
+      "weight": 700,
+      "italic": false,
+      "color": "rgb(255, 255, 255)",
+      "family": "Montserrat",
+      "size": 18.67,
+      "spacing": -0.112,
+      "transform": "none"
+     }
+    ]
+   },
+   {
+    "tag": "figcaption",
+    "cls": "caption",
+    "panel": "6",
+    "x": 3.9049,
+    "y": 2.3398,
+    "w": 3.1901,
+    "h": 0.1172,
+    "align": "start",
+    "lineHeightPx": 11.26,
+    "fontSizePx": 8.93,
+    "runs": [
+     {
+      "text": "A workshop group around a finished compost pile.",
+      "weight": 400,
+      "italic": true,
+      "color": "rgb(106, 102, 92)",
+      "family": "Source Sans 3",
+      "size": 8.93,
+      "spacing": 0,
+      "transform": "none"
+     }
+    ]
+   },
+   {
+    "tag": "div",
+    "cls": "t",
+    "panel": "6",
+    "x": 5.1748,
+    "y": 2.7168,
+    "w": 1.9202,
+    "h": 0.2897,
+    "align": "start",
+    "lineHeightPx": 13.92,
+    "fontSizePx": 12,
+    "runs": [
+     {
+      "text": "Join the free online community",
+      "weight": 700,
+      "italic": false,
+      "color": "rgb(79, 52, 51)",
+      "family": "Montserrat",
+      "size": 12,
+      "spacing": 0,
+      "transform": "none"
+     }
+    ]
+   },
+   {
+    "tag": "div",
+    "cls": "d",
+    "panel": "6",
+    "x": 5.1748,
+    "y": 3.0415,
+    "w": 1.9202,
+    "h": 0.6567,
+    "align": "start",
+    "lineHeightPx": 12.63,
+    "fontSizePx": 9.87,
+    "runs": [
+     {
+      "text": "Meet other people in the regenerative agricultural\n            space. Get your questions answered by other practitioners of the\n            soil food web approach who share the desire to restore the world's\n            soils.",
+      "weight": 400,
+      "italic": false,
+      "color": "rgb(74, 70, 63)",
+      "family": "Source Sans 3",
+      "size": 9.87,
+      "spacing": 0,
+      "transform": "none"
+     }
+    ]
+   },
+   {
+    "tag": "div",
+    "cls": "h",
+    "panel": "6",
+    "x": 5.1748,
+    "y": 3.7332,
+    "w": 1.9202,
+    "h": 0.134,
+    "align": "start",
+    "lineHeightPx": 12.88,
+    "fontSizePx": 9.33,
+    "runs": [
+     {
+      "text": "sfw.one/brochure-community",
+      "weight": 400,
+      "italic": true,
+      "color": "rgb(106, 102, 92)",
+      "family": "Source Sans 3",
+      "size": 9.33,
+      "spacing": 0,
+      "transform": "none"
+     }
+    ]
+   },
+   {
+    "tag": "p",
+    "cls": "",
+    "panel": "6",
+    "x": 3.9049,
+    "y": 4.0072,
+    "w": 3.1901,
+    "h": 1.2878,
+    "align": "start",
+    "lineHeightPx": 15.46,
+    "fontSizePx": 11.2,
+    "runs": [
+     {
+      "text": "Dr. Elaine's soil food web approach is the key to rapid and effective\n        soil regeneration. Only with the complete soil food web in place can the\n        ecological functions of the soil be restored, protecting and purifying\n        the world's waterways, reversing climate change and providing more\n        nutritious foods. It's easy to find your place in this movement. Reach\n        out to discover opportunities to join us as a student, volunteer,\n        ambassador, donor and partner. ",
+      "weight": 400,
+      "italic": false,
+      "color": "rgb(51, 49, 48)",
+      "family": "Source Sans 3",
+      "size": 11.2,
+      "spacing": 0,
+      "transform": "none"
+     },
+     {
+      "text": "info@soilfoodweb.com",
+      "weight": 400,
+      "italic": false,
+      "color": "rgb(21, 104, 38)",
+      "family": "Source Sans 3",
+      "size": 9.47,
+      "spacing": 0,
+      "transform": "none"
+     }
+    ]
+   },
+   {
+    "tag": "div",
+    "cls": "l",
+    "panel": "6",
+    "x": 3.9049,
+    "y": 5.7946,
+    "w": 0.7227,
+    "h": 0.0998,
+    "align": "center",
+    "lineHeightPx": 9.59,
+    "fontSizePx": 8.27,
+    "runs": [
+     {
+      "text": "Study",
+      "weight": 700,
+      "italic": false,
+      "color": "rgb(79, 52, 51)",
+      "family": "Montserrat",
+      "size": 8.27,
+      "spacing": 0.661,
+      "transform": "uppercase"
+     }
+    ]
+   },
+   {
+    "tag": "div",
+    "cls": "l",
+    "panel": "6",
+    "x": 4.7275,
+    "y": 5.7946,
+    "w": 0.7227,
+    "h": 0.0998,
+    "align": "center",
+    "lineHeightPx": 9.59,
+    "fontSizePx": 8.27,
+    "runs": [
+     {
+      "text": "Volunteer",
+      "weight": 700,
+      "italic": false,
+      "color": "rgb(79, 52, 51)",
+      "family": "Montserrat",
+      "size": 8.27,
+      "spacing": 0.661,
+      "transform": "uppercase"
+     }
+    ]
+   },
+   {
+    "tag": "div",
+    "cls": "l",
+    "panel": "6",
+    "x": 5.5501,
+    "y": 5.7946,
+    "w": 0.7227,
+    "h": 0.0998,
+    "align": "center",
+    "lineHeightPx": 9.59,
+    "fontSizePx": 8.27,
+    "runs": [
+     {
+      "text": "Donate",
+      "weight": 700,
+      "italic": false,
+      "color": "rgb(79, 52, 51)",
+      "family": "Montserrat",
+      "size": 8.27,
+      "spacing": 0.661,
+      "transform": "uppercase"
+     }
+    ]
+   },
+   {
+    "tag": "div",
+    "cls": "l",
+    "panel": "6",
+    "x": 6.3727,
+    "y": 5.7946,
+    "w": 0.7227,
+    "h": 0.0998,
+    "align": "center",
+    "lineHeightPx": 9.59,
+    "fontSizePx": 8.27,
+    "runs": [
+     {
+      "text": "Host",
+      "weight": 700,
+      "italic": false,
+      "color": "rgb(79, 52, 51)",
+      "family": "Montserrat",
+      "size": 8.27,
+      "spacing": 0.661,
+      "transform": "uppercase"
+     }
+    ]
+   },
+   {
+    "tag": "p",
+    "cls": "addr",
+    "panel": "6",
+    "x": 4.0557,
+    "y": 6.2238,
+    "w": 2.9095,
+    "h": 0.4116,
+    "align": "start",
+    "lineHeightPx": 13.17,
+    "fontSizePx": 10.13,
+    "runs": [
+     {
+      "text": "5441 S Macadam Ave Ste N",
+      "weight": 600,
+      "italic": false,
+      "color": "rgb(255, 255, 255)",
+      "family": "Montserrat",
+      "size": 10.13,
+      "spacing": 0,
+      "transform": "none"
+     },
+     {
+      "br": true
+     },
+     {
+      "text": "Portland, Oregon\n          97239",
+      "weight": 600,
+      "italic": false,
+      "color": "rgb(255, 255, 255)",
+      "family": "Montserrat",
+      "size": 10.13,
+      "spacing": 0,
+      "transform": "none"
+     },
+     {
+      "br": true
+     },
+     {
+      "text": "soilfoodweb.com",
+      "weight": 600,
+      "italic": false,
+      "color": "rgb(255, 255, 255)",
+      "family": "Montserrat",
+      "size": 10.13,
+      "spacing": 0,
+      "transform": "none"
+     }
+    ]
+   },
+   {
+    "tag": "p",
+    "cls": "",
+    "panel": "6",
+    "x": 4.0557,
+    "y": 6.6803,
+    "w": 2.9095,
+    "h": 0.2549,
+    "align": "start",
+    "lineHeightPx": 12.24,
+    "fontSizePx": 9.07,
+    "runs": [
+     {
+      "text": "Soil Food Web Foundation is a 501(c)(3) nonprofit organization, EIN\n          39-4439236. The Soil Food Web School is a program of the\n          Foundation.",
+      "weight": 400,
+      "italic": false,
+      "color": "rgba(255, 255, 255, 0.82)",
+      "family": "Source Sans 3",
+      "size": 9.07,
+      "spacing": 0,
+      "transform": "none"
+     }
+    ]
+   },
+   {
+    "tag": "div",
+    "cls": "t",
+    "panel": "6",
+    "x": 5.1748,
+    "y": 7.3986,
+    "w": 1.9202,
+    "h": 0.1449,
+    "align": "start",
+    "lineHeightPx": 13.92,
+    "fontSizePx": 12,
+    "runs": [
+     {
+      "text": "Donate",
+      "weight": 700,
+      "italic": false,
+      "color": "rgb(255, 255, 255)",
+      "family": "Montserrat",
+      "size": 12,
+      "spacing": 0,
+      "transform": "none"
+     }
+    ]
+   },
+   {
+    "tag": "div",
+    "cls": "d",
+    "panel": "6",
+    "x": 5.1748,
+    "y": 7.5785,
+    "w": 1.9202,
+    "h": 0.394,
+    "align": "start",
+    "lineHeightPx": 12.63,
+    "fontSizePx": 9.87,
+    "runs": [
+     {
+      "text": "Gifts fund open research, scholarships and field\n            projects. Tax-deductible to the extent allowed by law.",
+      "weight": 400,
+      "italic": false,
+      "color": "rgba(255, 255, 255, 0.86)",
+      "family": "Source Sans 3",
+      "size": 9.87,
+      "spacing": 0,
+      "transform": "none"
+     }
+    ]
+   },
+   {
+    "tag": "div",
+    "cls": "h",
+    "panel": "6",
+    "x": 5.1748,
+    "y": 8.0075,
+    "w": 1.9202,
+    "h": 0.134,
+    "align": "start",
+    "lineHeightPx": 12.88,
+    "fontSizePx": 9.33,
+    "runs": [
+     {
+      "text": "sfw.one/brochure-donate",
+      "weight": 400,
+      "italic": true,
+      "color": "rgba(255, 255, 255, 0.7)",
+      "family": "Source Sans 3",
+      "size": 9.33,
+      "spacing": 0,
+      "transform": "none"
+     }
+    ]
+   },
+   {
+    "tag": "div",
+    "cls": "wordmark",
+    "panel": "1",
+    "x": 8.5549,
+    "y": 0.3205,
+    "w": 1.1605,
+    "h": 0.3607,
+    "align": "start",
+    "lineHeightPx": 17.32,
+    "fontSizePx": 15.47,
+    "runs": [
+     {
+      "text": "Soil Food Web",
+      "weight": 700,
+      "italic": false,
+      "color": "rgb(79, 52, 51)",
+      "family": "Montserrat",
+      "size": 15.47,
+      "spacing": -0.124,
+      "transform": "none"
+     },
+     {
+      "br": true
+     },
+     {
+      "text": "Foundation",
+      "weight": 700,
+      "italic": false,
+      "color": "rgb(79, 52, 51)",
+      "family": "Montserrat",
+      "size": 15.47,
+      "spacing": -0.124,
+      "transform": "none"
+     }
+    ]
+   },
+   {
+    "tag": "div",
+    "cls": "sub",
+    "panel": "1",
+    "x": 8.5549,
+    "y": 0.6961,
+    "w": 1.1605,
+    "h": 0.1533,
+    "align": "start",
+    "lineHeightPx": 14.72,
+    "fontSizePx": 10.67,
+    "runs": [
+     {
+      "text": "A 501(c)(3) nonprofit",
+      "weight": 400,
+      "italic": true,
+      "color": "rgb(106, 102, 92)",
+      "family": "Source Sans 3",
+      "size": 10.67,
+      "spacing": 0,
+      "transform": "none"
+     }
+    ]
+   },
+   {
+    "tag": "h1",
+    "cls": "",
+    "panel": "1",
+    "x": 7.6549,
+    "y": 2.3647,
+    "w": 3.1901,
+    "h": 0.8999,
+    "align": "start",
+    "lineHeightPx": 28.8,
+    "fontSizePx": 26.67,
+    "runs": [
+     {
+      "text": "The soil beneath our farms and forests is alive.",
+      "weight": 700,
+      "italic": false,
+      "color": "rgb(79, 52, 51)",
+      "family": "Montserrat",
+      "size": 26.67,
+      "spacing": -0.16,
+      "transform": "none"
+     }
+    ]
+   },
+   {
+    "tag": "p",
+    "cls": "lede",
+    "panel": "1",
+    "x": 7.6549,
+    "y": 3.4494,
+    "w": 3.1901,
+    "h": 0.5303,
+    "align": "start",
+    "lineHeightPx": 16.99,
+    "fontSizePx": 13.07,
+    "runs": [
+     {
+      "text": "A web of bacteria, fungi, protozoa, nematodes and\n        microarthropods feeds plants, builds soil, stores carbon and cleans\n        water ",
+      "weight": 400,
+      "italic": false,
+      "color": "rgb(51, 49, 48)",
+      "family": "Source Sans 3",
+      "size": 13.07,
+      "spacing": 0,
+      "transform": "none"
+     },
+     {
+      "text": "when it is intact",
+      "weight": 400,
+      "italic": true,
+      "color": "rgb(51, 49, 48)",
+      "family": "Source Sans 3",
+      "size": 13.07,
+      "spacing": 0,
+      "transform": "none"
+     },
+     {
+      "text": ".",
+      "weight": 400,
+      "italic": false,
+      "color": "rgb(51, 49, 48)",
+      "family": "Source Sans 3",
+      "size": 13.07,
+      "spacing": 0,
+      "transform": "none"
+     }
+    ]
+   },
+   {
+    "tag": "p",
+    "cls": "",
+    "panel": "1",
+    "x": 7.6549,
+    "y": 4.0396,
+    "w": 3.1901,
+    "h": 0.9658,
+    "align": "start",
+    "lineHeightPx": 15.46,
+    "fontSizePx": 11.2,
+    "runs": [
+     {
+      "text": "For forty-five years, Dr. Elaine Ingham mapped the Soil Food Web and\n        taught the world to restore it. We carry her legacy forward: showing\n        ",
+      "weight": 400,
+      "italic": false,
+      "color": "rgb(51, 49, 48)",
+      "family": "Source Sans 3",
+      "size": 11.2,
+      "spacing": 0,
+      "transform": "none"
+     },
+     {
+      "text": "what",
+      "weight": 600,
+      "italic": false,
+      "color": "rgb(51, 49, 48)",
+      "family": "Source Sans 3",
+      "size": 11.2,
+      "spacing": 0,
+      "transform": "none"
+     },
+     {
+      "text": " is possible, teaching ",
+      "weight": 400,
+      "italic": false,
+      "color": "rgb(51, 49, 48)",
+      "family": "Source Sans 3",
+      "size": 11.2,
+      "spacing": 0,
+      "transform": "none"
+     },
+     {
+      "text": "how",
+      "weight": 600,
+      "italic": false,
+      "color": "rgb(51, 49, 48)",
+      "family": "Source Sans 3",
+      "size": 11.2,
+      "spacing": 0,
+      "transform": "none"
+     },
+     {
+      "text": " to\n        partner with life in the soil, researching ",
+      "weight": 400,
+      "italic": false,
+      "color": "rgb(51, 49, 48)",
+      "family": "Source Sans 3",
+      "size": 11.2,
+      "spacing": 0,
+      "transform": "none"
+     },
+     {
+      "text": "why",
+      "weight": 600,
+      "italic": false,
+      "color": "rgb(51, 49, 48)",
+      "family": "Source Sans 3",
+      "size": 11.2,
+      "spacing": 0,
+      "transform": "none"
+     },
+     {
+      "text": " things\n        work or do not, and getting dirty through ",
+      "weight": 400,
+      "italic": false,
+      "color": "rgb(51, 49, 48)",
+      "family": "Source Sans 3",
+      "size": 11.2,
+      "spacing": 0,
+      "transform": "none"
+     },
+     {
+      "text": "direct action",
+      "weight": 600,
+      "italic": false,
+      "color": "rgb(51, 49, 48)",
+      "family": "Source Sans 3",
+      "size": 11.2,
+      "spacing": 0,
+      "transform": "none"
+     },
+     {
+      "text": "\n        on working land. Living soil is the solution, and it is beneath your\n        feet.",
+      "weight": 400,
+      "italic": false,
+      "color": "rgb(51, 49, 48)",
+      "family": "Source Sans 3",
+      "size": 11.2,
+      "spacing": 0,
+      "transform": "none"
+     }
+    ]
+   },
+   {
+    "tag": "div",
+    "cls": "l",
+    "panel": "1",
+    "x": 7.6549,
+    "y": 5.505,
+    "w": 0.7227,
+    "h": 0.0998,
+    "align": "center",
+    "lineHeightPx": 9.59,
+    "fontSizePx": 8.27,
+    "runs": [
+     {
+      "text": "Education",
+      "weight": 700,
+      "italic": false,
+      "color": "rgb(79, 52, 51)",
+      "family": "Montserrat",
+      "size": 8.27,
+      "spacing": 0.661,
+      "transform": "uppercase"
+     }
+    ]
+   },
+   {
+    "tag": "div",
+    "cls": "l",
+    "panel": "1",
+    "x": 8.4775,
+    "y": 5.505,
+    "w": 0.7227,
+    "h": 0.0998,
+    "align": "center",
+    "lineHeightPx": 9.59,
+    "fontSizePx": 8.27,
+    "runs": [
+     {
+      "text": "Research",
+      "weight": 700,
+      "italic": false,
+      "color": "rgb(79, 52, 51)",
+      "family": "Montserrat",
+      "size": 8.27,
+      "spacing": 0.661,
+      "transform": "uppercase"
+     }
+    ]
+   },
+   {
+    "tag": "div",
+    "cls": "l",
+    "panel": "1",
+    "x": 9.3001,
+    "y": 5.505,
+    "w": 0.7227,
+    "h": 0.0998,
+    "align": "center",
+    "lineHeightPx": 9.59,
+    "fontSizePx": 8.27,
+    "runs": [
+     {
+      "text": "Practice",
+      "weight": 700,
+      "italic": false,
+      "color": "rgb(79, 52, 51)",
+      "family": "Montserrat",
+      "size": 8.27,
+      "spacing": 0.661,
+      "transform": "uppercase"
+     }
+    ]
+   },
+   {
+    "tag": "div",
+    "cls": "l",
+    "panel": "1",
+    "x": 10.1227,
+    "y": 5.505,
+    "w": 0.7227,
+    "h": 0.0998,
+    "align": "center",
+    "lineHeightPx": 9.59,
+    "fontSizePx": 8.27,
+    "runs": [
+     {
+      "text": "Community",
+      "weight": 700,
+      "italic": false,
+      "color": "rgb(79, 52, 51)",
+      "family": "Montserrat",
+      "size": 8.27,
+      "spacing": 0.661,
+      "transform": "uppercase"
+     }
+    ]
+   },
+   {
+    "tag": "div",
+    "cls": "n",
+    "panel": "1",
+    "x": 7.6549,
+    "y": 6.1825,
+    "w": 3.1901,
+    "h": 0.2362,
+    "align": "start",
+    "lineHeightPx": 22.67,
+    "fontSizePx": 22.67,
+    "runs": [
+     {
+      "text": "132+",
+      "weight": 700,
+      "italic": false,
+      "color": "rgb(255, 255, 255)",
+      "family": "Montserrat",
+      "size": 22.67,
+      "spacing": -0.453,
+      "transform": "none"
+     }
+    ]
+   },
+   {
+    "tag": "div",
+    "cls": "l",
+    "panel": "1",
+    "x": 7.6549,
+    "y": 6.4536,
+    "w": 3.1901,
+    "h": 0.1359,
+    "align": "start",
+    "lineHeightPx": 13.06,
+    "fontSizePx": 10.53,
+    "runs": [
+     {
+      "text": "Countries in our student and practitioner community",
+      "weight": 400,
+      "italic": false,
+      "color": "rgba(255, 255, 255, 0.86)",
+      "family": "Source Sans 3",
+      "size": 10.53,
+      "spacing": 0,
+      "transform": "none"
+     }
+    ]
+   },
+   {
+    "tag": "div",
+    "cls": "n",
+    "panel": "1",
+    "x": 7.6549,
+    "y": 6.7197,
+    "w": 3.1901,
+    "h": 0.2362,
+    "align": "start",
+    "lineHeightPx": 22.67,
+    "fontSizePx": 22.67,
+    "runs": [
+     {
+      "text": "10,000+",
+      "weight": 700,
+      "italic": false,
+      "color": "rgb(255, 255, 255)",
+      "family": "Montserrat",
+      "size": 22.67,
+      "spacing": -0.453,
+      "transform": "none"
+     }
+    ]
+   },
+   {
+    "tag": "div",
+    "cls": "l",
+    "panel": "1",
+    "x": 7.6549,
+    "y": 6.9909,
+    "w": 3.1901,
+    "h": 0.1359,
+    "align": "start",
+    "lineHeightPx": 13.06,
+    "fontSizePx": 10.53,
+    "runs": [
+     {
+      "text": "Individuals enrolled in our programs",
+      "weight": 400,
+      "italic": false,
+      "color": "rgba(255, 255, 255, 0.86)",
+      "family": "Source Sans 3",
+      "size": 10.53,
+      "spacing": 0,
+      "transform": "none"
+     }
+    ]
+   },
+   {
+    "tag": "div",
+    "cls": "n",
+    "panel": "1",
+    "x": 7.6549,
+    "y": 7.257,
+    "w": 3.1901,
+    "h": 0.2362,
+    "align": "start",
+    "lineHeightPx": 22.67,
+    "fontSizePx": 22.67,
+    "runs": [
+     {
+      "text": "45",
+      "weight": 700,
+      "italic": false,
+      "color": "rgb(255, 255, 255)",
+      "family": "Montserrat",
+      "size": 22.67,
+      "spacing": -0.453,
+      "transform": "none"
+     }
+    ]
+   },
+   {
+    "tag": "div",
+    "cls": "l",
+    "panel": "1",
+    "x": 7.6549,
+    "y": 7.5282,
+    "w": 3.1901,
+    "h": 0.1359,
+    "align": "start",
+    "lineHeightPx": 13.06,
+    "fontSizePx": 10.53,
+    "runs": [
+     {
+      "text": "Years of pioneering soil biology research behind the method",
+      "weight": 400,
+      "italic": false,
+      "color": "rgba(255, 255, 255, 0.86)",
+      "family": "Source Sans 3",
+      "size": 10.53,
+      "spacing": 0,
+      "transform": "none"
+     }
+    ]
+   },
+   {
+    "tag": "p",
+    "cls": "tagline",
+    "panel": "1",
+    "x": 7.6549,
+    "y": 7.804,
+    "w": 3.1901,
+    "h": 0.541,
+    "align": "start",
+    "lineHeightPx": 17.33,
+    "fontSizePx": 13.33,
+    "runs": [
+     {
+      "text": "Healing soil.",
+      "weight": 600,
+      "italic": false,
+      "color": "rgb(255, 255, 255)",
+      "family": "Montserrat",
+      "size": 13.33,
+      "spacing": -0.053,
+      "transform": "none"
+     },
+     {
+      "br": true
+     },
+     {
+      "text": "Feeding humanity.",
+      "weight": 600,
+      "italic": false,
+      "color": "rgb(255, 255, 255)",
+      "family": "Montserrat",
+      "size": 13.33,
+      "spacing": -0.053,
+      "transform": "none"
+     },
+     {
+      "br": true
+     },
+     {
+      "text": "Restoring the living world.",
+      "weight": 600,
+      "italic": false,
+      "color": "rgb(255, 255, 255)",
+      "family": "Montserrat",
+      "size": 13.33,
+      "spacing": -0.053,
+      "transform": "none"
+     }
+    ]
+   }
+  ]
+ },
+ "inside": {
+  "sheetW": 11.25,
+  "sheetH": 8.75,
+  "blocks": [
+   {
+    "tag": "p",
+    "cls": "eyebrow eyebrow--legacy",
+    "panel": "2",
+    "x": 0.4049,
+    "y": 0.4095,
+    "w": 3.1901,
+    "h": 0.1226,
+    "align": "start",
+    "lineHeightPx": 11.78,
+    "fontSizePx": 8.53,
+    "runs": [
+     {
+      "text": "Our story",
+      "weight": 700,
+      "italic": false,
+      "color": "rgba(255, 255, 255, 0.86)",
+      "family": "Montserrat",
+      "size": 8.53,
+      "spacing": 1.28,
+      "transform": "uppercase"
+     }
+    ]
+   },
+   {
+    "tag": "h2",
+    "cls": "",
+    "panel": "2",
+    "x": 0.4049,
+    "y": 0.5869,
+    "w": 3.1901,
+    "h": 0.4082,
+    "align": "start",
+    "lineHeightPx": 19.6,
+    "fontSizePx": 18.67,
+    "runs": [
+     {
+      "text": "It began with one scientist looking closer.",
+      "weight": 700,
+      "italic": false,
+      "color": "rgb(255, 255, 255)",
+      "family": "Montserrat",
+      "size": 18.67,
+      "spacing": -0.112,
+      "transform": "none"
+     }
+    ]
+   },
+   {
+    "tag": "figcaption",
+    "cls": "caption",
+    "panel": "2",
+    "x": 0.3849,
+    "y": 2.3398,
+    "w": 3.2101,
+    "h": 0.1172,
+    "align": "start",
+    "lineHeightPx": 11.26,
+    "fontSizePx": 8.93,
+    "runs": [
+     {
+      "text": "Dr. Elaine Ingham at the microscope.",
+      "weight": 400,
+      "italic": true,
+      "color": "rgba(255, 255, 255, 0.7)",
+      "family": "Source Sans 3",
+      "size": 8.93,
+      "spacing": 0,
+      "transform": "none"
+     }
+    ]
+   },
+   {
+    "tag": "p",
+    "cls": "",
+    "panel": "2",
+    "x": 0.4049,
+    "y": 2.5768,
+    "w": 3.1901,
+    "h": 0.8049,
+    "align": "start",
+    "lineHeightPx": 15.46,
+    "fontSizePx": 11.2,
+    "runs": [
+     {
+      "text": "The Soil Food Web Foundation was established in October 2025 to carry\n        forward the life's work of Dr. Elaine Ingham, the pioneering scientist\n        whose research transformed our understanding of soil biology and its\n        central role in food production, ecosystem health, and planetary\n        regeneration.",
+      "weight": 400,
+      "italic": false,
+      "color": "rgb(255, 255, 255)",
+      "family": "Source Sans 3",
+      "size": 11.2,
+      "spacing": 0,
+      "transform": "none"
+     }
+    ]
+   },
+   {
+    "tag": "p",
+    "cls": "",
+    "panel": "2",
+    "x": 0.4049,
+    "y": 3.4416,
+    "w": 3.1901,
+    "h": 0.6439,
+    "align": "start",
+    "lineHeightPx": 15.46,
+    "fontSizePx": 11.2,
+    "runs": [
+     {
+      "text": "She passed away in February 2026, and the work she started continues\n        through the Foundation, the school that is a part of it, and Soil Food\n        Web practitioners in more than 132 countries, who are helping to restore\n        the world's soils.",
+      "weight": 400,
+      "italic": false,
+      "color": "rgb(255, 255, 255)",
+      "family": "Source Sans 3",
+      "size": 11.2,
+      "spacing": 0,
+      "transform": "none"
+     }
+    ]
+   },
+   {
+    "tag": "figcaption",
+    "cls": "caption",
+    "panel": "2",
+    "x": 1.7147,
+    "y": 4.4495,
+    "w": 1.5521,
+    "h": 0.2414,
+    "align": "start",
+    "lineHeightPx": 11.26,
+    "fontSizePx": 8.93,
+    "runs": [
+     {
+      "text": "Examine Dr. Ingham's publications\n          here:",
+      "weight": 400,
+      "italic": true,
+      "color": "rgba(255, 255, 255, 0.7)",
+      "family": "Source Sans 3",
+      "size": 8.93,
+      "spacing": 0,
+      "transform": "none"
+     },
+     {
+      "br": true
+     },
+     {
+      "text": "sfw.one/publications",
+      "weight": 400,
+      "italic": true,
+      "color": "rgb(255, 255, 255)",
+      "family": "Source Sans 3",
+      "size": 9.47,
+      "spacing": 0,
+      "transform": "none"
+     }
+    ]
+   },
+   {
+    "tag": "b",
+    "cls": "",
+    "panel": "2",
+    "x": 0.5557,
+    "y": 5.175,
+    "w": 2.9095,
+    "h": 0.1799,
+    "align": "start",
+    "lineHeightPx": 13.07,
+    "fontSizePx": 10.13,
+    "runs": [
+     {
+      "text": "Why this matters for climate",
+      "weight": 700,
+      "italic": false,
+      "color": "rgb(255, 255, 255)",
+      "family": "Source Sans 3",
+      "size": 10.13,
+      "spacing": 0.608,
+      "transform": "uppercase"
+     }
+    ]
+   },
+   {
+    "tag": "div",
+    "cls": "t",
+    "panel": "2",
+    "x": 1.6748,
+    "y": 7.2606,
+    "w": 1.9202,
+    "h": 0.2897,
+    "align": "start",
+    "lineHeightPx": 13.92,
+    "fontSizePx": 12,
+    "runs": [
+     {
+      "text": "Join our free online community",
+      "weight": 700,
+      "italic": false,
+      "color": "rgb(255, 255, 255)",
+      "family": "Montserrat",
+      "size": 12,
+      "spacing": 0,
+      "transform": "none"
+     }
+    ]
+   },
+   {
+    "tag": "div",
+    "cls": "d",
+    "panel": "2",
+    "x": 1.6748,
+    "y": 7.5853,
+    "w": 1.9202,
+    "h": 0.5254,
+    "align": "start",
+    "lineHeightPx": 12.63,
+    "fontSizePx": 9.87,
+    "runs": [
+     {
+      "text": "Learn from and connect with other passionate people in\n            the regenerative agriculture space. You can also register for our\n            newsletter and webinar series via the link in this QR code.",
+      "weight": 400,
+      "italic": false,
+      "color": "rgba(255, 255, 255, 0.86)",
+      "family": "Source Sans 3",
+      "size": 9.87,
+      "spacing": 0,
+      "transform": "none"
+     }
+    ]
+   },
+   {
+    "tag": "div",
+    "cls": "h",
+    "panel": "2",
+    "x": 1.6748,
+    "y": 8.1457,
+    "w": 1.9202,
+    "h": 0.134,
+    "align": "start",
+    "lineHeightPx": 12.88,
+    "fontSizePx": 9.33,
+    "runs": [
+     {
+      "text": "sfw.one/brochure-webinar",
+      "weight": 400,
+      "italic": true,
+      "color": "rgba(255, 255, 255, 0.7)",
+      "family": "Source Sans 3",
+      "size": 9.33,
+      "spacing": 0,
+      "transform": "none"
+     }
+    ]
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "panel": "4",
+    "x": 4.1549,
+    "y": 0.4095,
+    "w": 3.1901,
+    "h": 0.1226,
+    "align": "start",
+    "lineHeightPx": 11.78,
+    "fontSizePx": 8.53,
+    "runs": [
+     {
+      "text": "Research",
+      "weight": 700,
+      "italic": false,
+      "color": "rgba(255, 255, 255, 0.86)",
+      "family": "Montserrat",
+      "size": 8.53,
+      "spacing": 1.28,
+      "transform": "uppercase"
+     }
+    ]
+   },
+   {
+    "tag": "h2",
+    "cls": "",
+    "panel": "4",
+    "x": 4.1549,
+    "y": 0.5869,
+    "w": 3.1901,
+    "h": 0.4082,
+    "align": "start",
+    "lineHeightPx": 19.6,
+    "fontSizePx": 18.67,
+    "runs": [
+     {
+      "text": "The science is open, and anyone can test it.",
+      "weight": 700,
+      "italic": false,
+      "color": "rgb(255, 255, 255)",
+      "family": "Montserrat",
+      "size": 18.67,
+      "spacing": -0.112,
+      "transform": "none"
+     }
+    ]
+   },
+   {
+    "tag": "figcaption",
+    "cls": "caption",
+    "panel": "4",
+    "x": 4.1549,
+    "y": 2.3398,
+    "w": 3.1901,
+    "h": 0.1172,
+    "align": "start",
+    "lineHeightPx": 11.26,
+    "fontSizePx": 8.93,
+    "runs": [
+     {
+      "text": "Soil samples beside the microscope.",
+      "weight": 400,
+      "italic": true,
+      "color": "rgb(106, 102, 92)",
+      "family": "Source Sans 3",
+      "size": 8.93,
+      "spacing": 0,
+      "transform": "none"
+     }
+    ]
+   },
+   {
+    "tag": "h3",
+    "cls": "",
+    "panel": "4",
+    "x": 4.1549,
+    "y": 2.6717,
+    "w": 3.1901,
+    "h": 0.2799,
+    "align": "start",
+    "lineHeightPx": 13.44,
+    "fontSizePx": 11.2,
+    "runs": [
+     {
+      "text": "What biologically complete, properly-structured soil does",
+      "weight": 600,
+      "italic": false,
+      "color": "rgb(79, 52, 51)",
+      "family": "Montserrat",
+      "size": 11.2,
+      "spacing": 0,
+      "transform": "none"
+     }
+    ]
+   },
+   {
+    "tag": "div",
+    "cls": "l",
+    "panel": "4",
+    "x": 4.1549,
+    "y": 3.4264,
+    "w": 0.7227,
+    "h": 0.1995,
+    "align": "center",
+    "lineHeightPx": 9.59,
+    "fontSizePx": 8.27,
+    "runs": [
+     {
+      "text": "Nutrient",
+      "weight": 700,
+      "italic": false,
+      "color": "rgb(79, 52, 51)",
+      "family": "Montserrat",
+      "size": 8.27,
+      "spacing": 0.661,
+      "transform": "uppercase"
+     },
+     {
+      "br": true
+     },
+     {
+      "text": "cycling",
+      "weight": 700,
+      "italic": false,
+      "color": "rgb(79, 52, 51)",
+      "family": "Montserrat",
+      "size": 8.27,
+      "spacing": 0.661,
+      "transform": "uppercase"
+     }
+    ]
+   },
+   {
+    "tag": "div",
+    "cls": "l",
+    "panel": "4",
+    "x": 4.9775,
+    "y": 3.4264,
+    "w": 0.7227,
+    "h": 0.2993,
+    "align": "center",
+    "lineHeightPx": 9.59,
+    "fontSizePx": 8.27,
+    "runs": [
+     {
+      "text": "Creates soil",
+      "weight": 700,
+      "italic": false,
+      "color": "rgb(79, 52, 51)",
+      "family": "Montserrat",
+      "size": 8.27,
+      "spacing": 0.661,
+      "transform": "uppercase"
+     },
+     {
+      "br": true
+     },
+     {
+      "text": "structure",
+      "weight": 700,
+      "italic": false,
+      "color": "rgb(79, 52, 51)",
+      "family": "Montserrat",
+      "size": 8.27,
+      "spacing": 0.661,
+      "transform": "uppercase"
+     }
+    ]
+   },
+   {
+    "tag": "div",
+    "cls": "l",
+    "panel": "4",
+    "x": 5.8001,
+    "y": 3.4264,
+    "w": 0.7227,
+    "h": 0.2993,
+    "align": "center",
+    "lineHeightPx": 9.59,
+    "fontSizePx": 8.27,
+    "runs": [
+     {
+      "text": "Inhibits weed",
+      "weight": 700,
+      "italic": false,
+      "color": "rgb(79, 52, 51)",
+      "family": "Montserrat",
+      "size": 8.27,
+      "spacing": 0.661,
+      "transform": "uppercase"
+     },
+     {
+      "br": true
+     },
+     {
+      "text": "pressure",
+      "weight": 700,
+      "italic": false,
+      "color": "rgb(79, 52, 51)",
+      "family": "Montserrat",
+      "size": 8.27,
+      "spacing": 0.661,
+      "transform": "uppercase"
+     }
+    ]
+   },
+   {
+    "tag": "div",
+    "cls": "l",
+    "panel": "4",
+    "x": 6.6227,
+    "y": 3.4264,
+    "w": 0.7227,
+    "h": 0.2993,
+    "align": "center",
+    "lineHeightPx": 9.59,
+    "fontSizePx": 8.27,
+    "runs": [
+     {
+      "text": "Reduces pests",
+      "weight": 700,
+      "italic": false,
+      "color": "rgb(79, 52, 51)",
+      "family": "Montserrat",
+      "size": 8.27,
+      "spacing": 0.661,
+      "transform": "uppercase"
+     },
+     {
+      "br": true
+     },
+     {
+      "text": "and disease",
+      "weight": 700,
+      "italic": false,
+      "color": "rgb(79, 52, 51)",
+      "family": "Montserrat",
+      "size": 8.27,
+      "spacing": 0.661,
+      "transform": "uppercase"
+     }
+    ]
+   },
+   {
+    "tag": "figcaption",
+    "cls": "caption",
+    "panel": "4",
+    "x": 4.1549,
+    "y": 4.7756,
+    "w": 3.1901,
+    "h": 0.3516,
+    "align": "start",
+    "lineHeightPx": 11.26,
+    "fontSizePx": 8.93,
+    "runs": [
+     {
+      "text": "Testate amoeba, 40x objective. Photograph:\n          Joy Kaluf. A microbial count names what is present in the sample and\n          their relative numbers: bacteria, fungi, protozoa, nematodes and\n          microarthropods.",
+      "weight": 400,
+      "italic": true,
+      "color": "rgb(106, 102, 92)",
+      "family": "Source Sans 3",
+      "size": 8.93,
+      "spacing": 0,
+      "transform": "none"
+     }
+    ]
+   },
+   {
+    "tag": "h3",
+    "cls": "",
+    "panel": "4",
+    "x": 4.1549,
+    "y": 5.2819,
+    "w": 3.1901,
+    "h": 0.2799,
+    "align": "start",
+    "lineHeightPx": 13.44,
+    "fontSizePx": 11.2,
+    "runs": [
+     {
+      "text": "What we test before we recommend remediation plans",
+      "weight": 600,
+      "italic": false,
+      "color": "rgb(79, 52, 51)",
+      "family": "Montserrat",
+      "size": 11.2,
+      "spacing": 0,
+      "transform": "none"
+     }
+    ]
+   },
+   {
+    "tag": "div",
+    "cls": "",
+    "panel": "4",
+    "x": 4.4098,
+    "y": 5.5968,
+    "w": 2.9352,
+    "h": 0.3047,
+    "align": "start",
+    "lineHeightPx": 14.36,
+    "fontSizePx": 10.8,
+    "runs": [
+     {
+      "text": "Diagnostic first.",
+      "weight": 600,
+      "italic": false,
+      "color": "rgb(79, 52, 51)",
+      "family": "Source Sans 3",
+      "size": 11.2,
+      "spacing": 0,
+      "transform": "none"
+     },
+     {
+      "text": " Every recommendation starts with a\n          biological analysis under a microscope.",
+      "weight": 400,
+      "italic": false,
+      "color": "rgb(51, 49, 48)",
+      "family": "Source Sans 3",
+      "size": 10.8,
+      "spacing": 0,
+      "transform": "none"
+     }
+    ]
+   },
+   {
+    "tag": "div",
+    "cls": "",
+    "panel": "4",
+    "x": 4.4098,
+    "y": 5.9315,
+    "w": 2.9352,
+    "h": 0.3047,
+    "align": "start",
+    "lineHeightPx": 14.36,
+    "fontSizePx": 10.8,
+    "runs": [
+     {
+      "text": "Measurable.",
+      "weight": 600,
+      "italic": false,
+      "color": "rgb(79, 52, 51)",
+      "family": "Source Sans 3",
+      "size": 11.2,
+      "spacing": 0,
+      "transform": "none"
+     },
+     {
+      "text": " We provide a relative count of various\n          microbes present in your soil or compost sample.",
+      "weight": 400,
+      "italic": false,
+      "color": "rgb(51, 49, 48)",
+      "family": "Source Sans 3",
+      "size": 10.8,
+      "spacing": 0,
+      "transform": "none"
+     }
+    ]
+   },
+   {
+    "tag": "div",
+    "cls": "",
+    "panel": "4",
+    "x": 4.4098,
+    "y": 6.2661,
+    "w": 2.9352,
+    "h": 0.4543,
+    "align": "start",
+    "lineHeightPx": 14.36,
+    "fontSizePx": 10.8,
+    "runs": [
+     {
+      "text": "Adaptation and retrofitting.",
+      "weight": 600,
+      "italic": false,
+      "color": "rgb(79, 52, 51)",
+      "family": "Source Sans 3",
+      "size": 11.2,
+      "spacing": 0,
+      "transform": "none"
+     },
+     {
+      "text": " We help you convert your\n          current operations to the soil food web approach, at any\n          scale.",
+      "weight": 400,
+      "italic": false,
+      "color": "rgb(51, 49, 48)",
+      "family": "Source Sans 3",
+      "size": 10.8,
+      "spacing": 0,
+      "transform": "none"
+     }
+    ]
+   },
+   {
+    "tag": "p",
+    "cls": "pull",
+    "panel": "4",
+    "x": 4.3057,
+    "y": 6.9951,
+    "w": 2.9095,
+    "h": 0.9561,
+    "align": "start",
+    "lineHeightPx": 15.31,
+    "fontSizePx": 11.87,
+    "runs": [
+     {
+      "text": "We train people who help farmers to transition away from\n          using chemicals, to using biology. This results in significant\n          benefits to the farmer and to the environment, as well as to the\n          consumer. The method has been proven effective on 6 continents and\n          across all soil types, as evidenced by our ever-increasing case study\n          library.",
+      "weight": 400,
+      "italic": false,
+      "color": "rgb(51, 49, 48)",
+      "family": "Source Sans 3",
+      "size": 11.87,
+      "spacing": 0,
+      "transform": "none"
+     }
+    ]
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "panel": "5",
+    "x": 7.9049,
+    "y": 0.0013,
+    "w": 2.9401,
+    "h": 0.1226,
+    "align": "start",
+    "lineHeightPx": 11.78,
+    "fontSizePx": 8.53,
+    "runs": [
+     {
+      "text": "Practice",
+      "weight": 700,
+      "italic": false,
+      "color": "rgba(255, 255, 255, 0.86)",
+      "family": "Montserrat",
+      "size": 8.53,
+      "spacing": 1.28,
+      "transform": "uppercase"
+     }
+    ]
+   },
+   {
+    "tag": "h2",
+    "cls": "",
+    "panel": "5",
+    "x": 7.9049,
+    "y": 0.1787,
+    "w": 2.9401,
+    "h": 0.8164,
+    "align": "start",
+    "lineHeightPx": 19.6,
+    "fontSizePx": 18.67,
+    "runs": [
+     {
+      "text": "Growers are already implementing the soil food web approach, at every scale.",
+      "weight": 700,
+      "italic": false,
+      "color": "rgb(255, 255, 255)",
+      "family": "Montserrat",
+      "size": 18.67,
+      "spacing": -0.112,
+      "transform": "none"
+     }
+    ]
+   },
+   {
+    "tag": "figcaption",
+    "cls": "caption",
+    "panel": "5",
+    "x": 7.9049,
+    "y": 2.3398,
+    "w": 2.9601,
+    "h": 0.1172,
+    "align": "start",
+    "lineHeightPx": 11.26,
+    "fontSizePx": 8.93,
+    "runs": [
+     {
+      "text": "Agroecology plots at Rancho Cacachilas.",
+      "weight": 400,
+      "italic": true,
+      "color": "rgb(106, 102, 92)",
+      "family": "Source Sans 3",
+      "size": 8.93,
+      "spacing": 0,
+      "transform": "none"
+     }
+    ]
+   },
+   {
+    "tag": "p",
+    "cls": "lede",
+    "panel": "5",
+    "x": 7.9049,
+    "y": 2.6717,
+    "w": 2.9401,
+    "h": 1.0605,
+    "align": "start",
+    "lineHeightPx": 16.99,
+    "fontSizePx": 13.07,
+    "runs": [
+     {
+      "text": "The basic methodology is universal; the application is\n        based upon locally-sourced materials. Our case studies and field trials\n        demonstrate the efficacy across a range of soil types at every scale\n        from market gardens to massive industrial farming operations.",
+      "weight": 400,
+      "italic": false,
+      "color": "rgb(51, 49, 48)",
+      "family": "Source Sans 3",
+      "size": 13.07,
+      "spacing": 0,
+      "transform": "none"
+     }
+    ]
+   },
+   {
+    "tag": "p",
+    "cls": "",
+    "panel": "5",
+    "x": 7.9049,
+    "y": 3.7922,
+    "w": 2.9401,
+    "h": 1.1268,
+    "align": "start",
+    "lineHeightPx": 15.46,
+    "fontSizePx": 11.2,
+    "runs": [
+     {
+      "text": "Nick Padwick farms four thousand acres in Norfolk, England. Roberto\n        Silva works a hundred and forty in Piura, Peru. Jenn Sirp grows on a\n        quarter acre in California. Check out their individual accounts of how\n        the soil food web approach changed their operations through reducing\n        inputs, creating better outputs and improving their bottom lines.",
+      "weight": 400,
+      "italic": false,
+      "color": "rgb(51, 49, 48)",
+      "family": "Source Sans 3",
+      "size": 11.2,
+      "spacing": 0,
+      "transform": "none"
+     }
+    ]
+   },
+   {
+    "tag": "p",
+    "cls": "",
+    "panel": "5",
+    "x": 7.9049,
+    "y": 4.9788,
+    "w": 2.9401,
+    "h": 0.9658,
+    "align": "start",
+    "lineHeightPx": 15.46,
+    "fontSizePx": 11.2,
+    "runs": [
+     {
+      "text": "Though the projects run from backyard gardens to expansive public\n        parks, the same process is applicable. The steps are the same at every\n        scale: look at the biology under a microscope, add what is missing to\n        rebalance the microbial content, then measure again to confirm microbial\n        counts are going in the expected directions.",
+      "weight": 400,
+      "italic": false,
+      "color": "rgb(51, 49, 48)",
+      "family": "Source Sans 3",
+      "size": 11.2,
+      "spacing": 0,
+      "transform": "none"
+     }
+    ]
+   },
+   {
+    "tag": "p",
+    "cls": "",
+    "panel": "5",
+    "x": 7.9049,
+    "y": 6.0046,
+    "w": 2.9401,
+    "h": 0.6439,
+    "align": "start",
+    "lineHeightPx": 15.46,
+    "fontSizePx": 11.2,
+    "runs": [
+     {
+      "text": "We partner with growers to teach them microscopy and biological\n        compost creation and application so they can implement the approach\n        where they farm, and document the impacts.",
+      "weight": 400,
+      "italic": false,
+      "color": "rgb(51, 49, 48)",
+      "family": "Source Sans 3",
+      "size": 11.2,
+      "spacing": 0,
+      "transform": "none"
+     }
+    ]
+   },
+   {
+    "tag": "div",
+    "cls": "t",
+    "panel": "5",
+    "x": 9.1748,
+    "y": 7.3986,
+    "w": 1.6702,
+    "h": 0.1449,
+    "align": "start",
+    "lineHeightPx": 13.92,
+    "fontSizePx": 12,
+    "runs": [
+     {
+      "text": "Watch the case studies",
+      "weight": 700,
+      "italic": false,
+      "color": "rgb(79, 52, 51)",
+      "family": "Montserrat",
+      "size": 12,
+      "spacing": 0,
+      "transform": "none"
+     }
+    ]
+   },
+   {
+    "tag": "div",
+    "cls": "d",
+    "panel": "5",
+    "x": 9.1748,
+    "y": 7.5785,
+    "w": 1.6702,
+    "h": 0.394,
+    "align": "start",
+    "lineHeightPx": 12.63,
+    "fontSizePx": 9.87,
+    "runs": [
+     {
+      "text": "Growers filming their own soil, crop by crop and\n            climate by climate. Start with one that looks like yours.",
+      "weight": 400,
+      "italic": false,
+      "color": "rgb(74, 70, 63)",
+      "family": "Source Sans 3",
+      "size": 9.87,
+      "spacing": 0,
+      "transform": "none"
+     }
+    ]
+   },
+   {
+    "tag": "div",
+    "cls": "h",
+    "panel": "5",
+    "x": 9.1748,
+    "y": 8.0075,
+    "w": 1.6702,
+    "h": 0.134,
+    "align": "start",
+    "lineHeightPx": 12.88,
+    "fontSizePx": 9.33,
+    "runs": [
+     {
+      "text": "sfw.one/brochure-casestudies",
+      "weight": 400,
+      "italic": true,
+      "color": "rgb(106, 102, 92)",
+      "family": "Source Sans 3",
+      "size": 9.33,
+      "spacing": 0,
+      "transform": "none"
+     }
+    ]
+   }
+  ]
+ }
+}
