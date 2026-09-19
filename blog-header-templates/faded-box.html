@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Blog header: faded box</title>
+
+<!-- ========================================================================
+     EDIT HERE. Three things change per post: title, category, image.
+     Everything below this block is the fixed template.
+
+     title     the post title, exactly as it appears on the post
+     category  Blog, Case study, Foundation news, Community activity,
+               Worldwide news. Set it to "" to hide the label.
+     image     path to the photo, relative to this file
+     focus     which part of the photo to keep when it is cropped to
+               1200x630. "50% 50%" is the middle. Use "50% 30%" to hold
+               the top, "50% 70%" to hold the bottom.
+     ======================================================================== -->
+<script>
+const HEADER = {
+  title:    "Ciliates and Soil Health: What We Saw Under the Microscope",
+  category: "Blog",
+  image:    "../img/uploads/testate-amoeba-40x.jpg",
+  focus:    "50% 50%"
+};
+</script>
+<!-- ===================== END OF THE EDITABLE PART ====================== -->
+
+<style>
+/* Tokens copied from css/site.css. If a colour changes there, change it
+   here too. Nothing else in this file invents a colour. */
+:root {
+  --paper:  #FFFFFF;
+  --panel:  #F4F1EA;   /* Organic Cream */
+  --ink-faint: #6A665C;
+  --soil:   #4F3433;   /* headings */
+  --green:  #156826;   /* Food Web Green */
+  --ground: #231F1D;   /* the dark ground */
+  --rule:   rgba(79, 52, 51, .22);
+  --display: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+  --sans:    "Source Sans 3", "Helvetica Neue", Arial, sans-serif;
+}
+@font-face { font-family: "Montserrat"; font-style: normal; font-weight: 600 700; src: url("../fonts/montserrat-latin-variable.woff2") format("woff2-variations"); }
+@font-face { font-family: "Source Sans 3"; font-style: normal; font-weight: 400; src: url("../fonts/source-sans-3-latin-400-normal.woff2") format("woff2"); }
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: #555; }
+
+/* The card is exactly 1200x630. Screenshot this element. */
+.header {
+  position: relative;
+  width: 1200px;
+  height: 630px;
+  overflow: hidden;
+  background: var(--ground);
+  font-family: var(--display);
+}
+.header__photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;
+}
+/* Two jobs. It sinks a light photo far enough for the cream box to read as
+   a separate object, and it keeps a dark photo from swallowing the edge. */
+.header__scrim {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(103deg, rgba(35,31,29,.66) 0%, rgba(35,31,29,.40) 52%, rgba(35,31,29,.16) 100%),
+    linear-gradient(0deg, rgba(35,31,29,.18), rgba(35,31,29,.18));
+}
+/* The faded box. At 95.5% opacity it is effectively a solid cream card, so
+   the title sits on a known colour whatever the photo underneath is doing.
+   Stephanie's version is more transparent, which is where the readability
+   goes on a pale photo like a microscopy field. */
+.box {
+  position: absolute;
+  left: 76px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 672px;
+  padding: 38px 48px 32px;
+  background: rgba(244, 241, 234, .955);
+  border-top: 7px solid var(--green);
+  box-shadow: 0 6px 34px rgba(0, 0, 0, .26);
+}
+.box__cat {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin: 0 0 18px;
+}
+.box__cat:empty { display: none; }
+.box__title {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 46px;
+  line-height: 1.12;
+  letter-spacing: -.005em;
+  color: var(--soil);
+  margin: 0;
+  overflow: hidden;
+}
+.box__foot {
+  display: flex;
+  align-items: center;
+  margin-top: 30px;
+  padding-top: 22px;
+  border-top: 1px solid var(--rule);
+}
+.box__logo { display: block; width: auto; height: 62px; }
+</style>
+</head>
+<body>
+
+<div class="header" id="header">
+  <img class="header__photo" id="photo" src="" alt="">
+  <div class="header__scrim"></div>
+  <div class="box">
+    <p class="box__cat" id="cat"></p>
+    <h1 class="box__title" id="title"></h1>
+    <div class="box__foot">
+      <img class="box__logo" src="../img/sfwlogo-240.png" alt="Soil Food Web Foundation">
+    </div>
+  </div>
+</div>
+
+<script>
+/* Query parameters override the block at the top of the file, so one
+   template can render many headers without being edited:
+   faded-box.html?title=Something&category=Blog&image=../img/w/photo.jpg */
+(function () {
+  var p = new URLSearchParams(location.search);
+  var c = Object.assign({}, HEADER);
+  ['title', 'category', 'image', 'focus'].forEach(function (k) {
+    if (p.has(k)) c[k] = p.get(k);
+  });
+
+  document.getElementById('photo').src = c.image;
+  document.getElementById('photo').style.objectPosition = c.focus;
+  document.getElementById('cat').textContent = c.category || '';
+  document.getElementById('title').textContent = c.title;
+
+  /* Long titles shrink to fit rather than spilling out of the box.
+     Four lines at 46px is the ceiling, 30px is the floor. */
+  var t = document.getElementById('title');
+  var lines = 4, size = 46, min = 30;
+  t.style.maxHeight = Math.ceil(size * 1.12 * lines) + 'px';
+  while (size > min && t.scrollHeight > t.clientHeight + 1) {
+    size -= 1;
+    t.style.fontSize = size + 'px';
+  }
+  document.documentElement.setAttribute('data-ready', '1');
+}());
+</script>
+</body>
+</html>

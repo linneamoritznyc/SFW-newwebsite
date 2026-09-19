@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Blog header: bottom band</title>
+
+<!-- ========================================================================
+     EDIT HERE. Three things change per post: title, category, image.
+     Everything below this block is the fixed template.
+
+     title     the post title, exactly as it appears on the post
+     category  Blog, Case study, Foundation news, Community activity,
+               Worldwide news. Set it to "" to hide the label.
+     image     path to the photo, relative to this file
+     focus     which part of the photo to keep. The band covers the bottom
+               of the frame, so "50% 40%" often holds the subject better
+               than "50% 50%".
+     ======================================================================== -->
+<script>
+const HEADER = {
+  title:    "Ciliates and Soil Health: What We Saw Under the Microscope",
+  category: "Blog",
+  image:    "../img/uploads/testate-amoeba-40x.jpg",
+  focus:    "50% 45%"
+};
+</script>
+<!-- ===================== END OF THE EDITABLE PART ====================== -->
+
+<style>
+/* Tokens copied from css/site.css. If a colour changes there, change it
+   here too. Nothing else in this file invents a colour. */
+:root {
+  --green:  #156826;   /* Food Web Green */
+  --glow:   #DBE6A7;   /* the brightest thing in the frame */
+  --white:  #FFFFFF;
+  --ground: #231F1D;
+  --display: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+  --sans:    "Source Sans 3", "Helvetica Neue", Arial, sans-serif;
+}
+@font-face { font-family: "Montserrat"; font-style: normal; font-weight: 600 700; src: url("../fonts/montserrat-latin-variable.woff2") format("woff2-variations"); }
+@font-face { font-family: "Source Sans 3"; font-style: normal; font-weight: 400; src: url("../fonts/source-sans-3-latin-400-normal.woff2") format("woff2"); }
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: #555; }
+
+/* The card is exactly 1200x630. Screenshot this element. */
+.header {
+  position: relative;
+  width: 1200px;
+  height: 630px;
+  overflow: hidden;
+  background: var(--ground);
+  font-family: var(--display);
+}
+/* The photo runs the full frame. The band covers its lower third, so the
+   crop is 1200x630 and not 1200x394: nothing is squashed. */
+.header__photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 45%;
+}
+/* The photo is darkened as it runs into the band, so a pale photo does not
+   end in a hard bright line against the green. */
+.header__fade {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 216px;
+  height: 120px;
+  background: linear-gradient(180deg, rgba(21,104,38,0), rgba(21,104,38,.34));
+}
+.band {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 216px;
+  background: var(--green);
+  border-top: 4px solid var(--glow);
+  padding: 30px 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 48px;
+}
+.band__text { flex: 1 1 auto; min-width: 0; }
+.band__cat {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--glow);
+  margin: 0 0 16px;
+}
+.band__cat:empty { display: none; }
+.band__title {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 1.14;
+  letter-spacing: -.005em;
+  color: var(--white);
+  margin: 0;
+  overflow: hidden;
+}
+.band__foot {
+  flex: 0 0 auto;
+  text-align: right;
+  padding-left: 34px;
+  border-left: 1px solid rgba(255,255,255,.3);
+}
+/* The roundel is a dark mark on a transparent ground and goes muddy on
+   Food Web Green, so dark surfaces take the wordmark in white. This is
+   what site.css already does in the footer and the overlay menu. */
+.wordmark__name {
+  display: block;
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.2;
+  color: var(--white);
+  white-space: nowrap;
+}
+.wordmark__status {
+  display: block;
+  font-family: var(--sans);
+  font-size: 13px;
+  margin-top: 4px;
+  color: rgba(255,255,255,.76);
+  white-space: nowrap;
+}
+</style>
+</head>
+<body>
+
+<div class="header" id="header">
+  <img class="header__photo" id="photo" src="" alt="">
+  <div class="header__fade"></div>
+  <div class="band">
+    <div class="band__text">
+      <p class="band__cat" id="cat"></p>
+      <h1 class="band__title" id="title"></h1>
+    </div>
+    <div class="band__foot">
+      <span class="wordmark__name">Soil Food Web Foundation</span>
+      <span class="wordmark__status">A 501(c)(3) nonprofit</span>
+    </div>
+  </div>
+</div>
+
+<script>
+/* Query parameters override the block at the top of the file, so one
+   template can render many headers without being edited:
+   bottom-band.html?title=Something&category=Blog&image=../img/w/photo.jpg */
+(function () {
+  var p = new URLSearchParams(location.search);
+  var c = Object.assign({}, HEADER);
+  ['title', 'category', 'image', 'focus'].forEach(function (k) {
+    if (p.has(k)) c[k] = p.get(k);
+  });
+
+  document.getElementById('photo').src = c.image;
+  document.getElementById('photo').style.objectPosition = c.focus;
+  document.getElementById('cat').textContent = c.category || '';
+  document.getElementById('title').textContent = c.title;
+
+  /* The band is a fixed height, so long titles shrink to fit rather than
+     growing the band. Two lines at 40px is the ceiling, 26px the floor. */
+  var t = document.getElementById('title');
+  var lines = 2, size = 40, min = 26;
+  t.style.maxHeight = Math.ceil(size * 1.14 * lines) + 'px';
+  while (size > min && t.scrollHeight > t.clientHeight + 1) {
+    size -= 1;
+    t.style.fontSize = size + 'px';
+  }
+  document.documentElement.setAttribute('data-ready', '1');
+}());
+</script>
+</body>
+</html>

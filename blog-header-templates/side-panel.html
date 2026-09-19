@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Blog header: side panel</title>
+
+<!-- ========================================================================
+     EDIT HERE. Three things change per post: title, category, image.
+     Everything below this block is the fixed template.
+
+     title     the post title, exactly as it appears on the post
+     category  Blog, Case study, Foundation news, Community activity,
+               Worldwide news. Set it to "" to hide the label.
+     image     path to the photo, relative to this file
+     focus     which part of the photo to keep when it is cropped into the
+               right hand two thirds. "50% 50%" is the middle.
+     ======================================================================== -->
+<script>
+const HEADER = {
+  title:    "Ciliates and Soil Health: What We Saw Under the Microscope",
+  category: "Blog",
+  image:    "../img/uploads/testate-amoeba-40x.jpg",
+  focus:    "50% 50%"
+};
+</script>
+<!-- ===================== END OF THE EDITABLE PART ====================== -->
+
+<style>
+/* Tokens copied from css/site.css. If a colour changes there, change it
+   here too. Nothing else in this file invents a colour. */
+:root {
+  --moss:   #22371F;   /* deep green: overlay menu, dark bands */
+  --glow:   #DBE6A7;   /* the brightest thing in the frame */
+  --white:  #FFFFFF;
+  --ground: #231F1D;
+  --display: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+  --sans:    "Source Sans 3", "Helvetica Neue", Arial, sans-serif;
+}
+@font-face { font-family: "Montserrat"; font-style: normal; font-weight: 600 700; src: url("../fonts/montserrat-latin-variable.woff2") format("woff2-variations"); }
+@font-face { font-family: "Source Sans 3"; font-style: normal; font-weight: 400; src: url("../fonts/source-sans-3-latin-400-normal.woff2") format("woff2"); }
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: #555; }
+
+/* The card is exactly 1200x630. Screenshot this element. */
+.header {
+  position: relative;
+  width: 1200px;
+  height: 630px;
+  overflow: hidden;
+  background: var(--ground);
+  font-family: var(--display);
+}
+/* The photo sits in the right two thirds. The title never touches it, so
+   nothing here depends on how light or dark the photograph is. */
+.header__photo {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 800px;
+  height: 630px;
+  object-fit: cover;
+  object-position: 50% 50%;
+}
+.panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 400px;
+  height: 630px;
+  background: var(--moss);
+  padding: 54px 42px 44px;
+  display: flex;
+  flex-direction: column;
+}
+/* Food Web Green is 1.86:1 on moss, so the label takes glow, the way
+   site.css gives eyebrows sage inside .stratum--moss. */
+.panel__cat {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--glow);
+  margin: 0 0 20px;
+}
+.panel__cat:empty { display: none; }
+.panel__title {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 38px;
+  line-height: 1.16;
+  letter-spacing: -.005em;
+  color: var(--white);
+  margin: 0;
+  overflow: hidden;
+}
+.panel__foot {
+  margin-top: auto;
+  padding-top: 26px;
+  border-top: 1px solid rgba(255,255,255,.28);
+}
+/* The roundel is a dark mark on a transparent ground and goes muddy on
+   moss, so dark surfaces take the wordmark in white. This is what
+   site.css already does in the footer and the overlay menu. */
+.wordmark__name {
+  display: block;
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 1.2;
+  color: var(--white);
+}
+.wordmark__status {
+  display: block;
+  font-family: var(--sans);
+  font-size: 13px;
+  margin-top: 4px;
+  color: rgba(255,255,255,.76);
+}
+</style>
+</head>
+<body>
+
+<div class="header" id="header">
+  <img class="header__photo" id="photo" src="" alt="">
+  <div class="panel">
+    <p class="panel__cat" id="cat"></p>
+    <h1 class="panel__title" id="title"></h1>
+    <div class="panel__foot">
+      <span class="wordmark__name">Soil Food Web Foundation</span>
+      <span class="wordmark__status">A 501(c)(3) nonprofit</span>
+    </div>
+  </div>
+</div>
+
+<script>
+/* Query parameters override the block at the top of the file, so one
+   template can render many headers without being edited:
+   side-panel.html?title=Something&category=Blog&image=../img/w/photo.jpg */
+(function () {
+  var p = new URLSearchParams(location.search);
+  var c = Object.assign({}, HEADER);
+  ['title', 'category', 'image', 'focus'].forEach(function (k) {
+    if (p.has(k)) c[k] = p.get(k);
+  });
+
+  document.getElementById('photo').src = c.image;
+  document.getElementById('photo').style.objectPosition = c.focus;
+  document.getElementById('cat').textContent = c.category || '';
+  document.getElementById('title').textContent = c.title;
+
+  /* The panel is narrow, so long titles shrink to fit rather than
+     pushing the wordmark off the bottom. Six lines at 38px is the
+     ceiling, 26px is the floor. */
+  var t = document.getElementById('title');
+  var lines = 6, size = 38, min = 26;
+  t.style.maxHeight = Math.ceil(size * 1.16 * lines) + 'px';
+  while (size > min && t.scrollHeight > t.clientHeight + 1) {
+    size -= 1;
+    t.style.fontSize = size + 'px';
+  }
+  document.documentElement.setAttribute('data-ready', '1');
+}());
+</script>
+</body>
+</html>
