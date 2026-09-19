@@ -79,6 +79,55 @@ faded-box.html?title=Your%20title&category=Microscopy&author=Wes%20Sander&image=
 
 That is how `render.js` produces sixteen images from four files.
 
+## The whole blog as one set
+
+`posts.js` holds all twelve posts from page 1 of the news index, read off it
+on 19 Sep 2026: title, date, category, author and a photo. To render the
+whole blog in one variation:
+
+```
+node blog-header-templates/render-blog.js              # side-panel
+node blog-header-templates/render-blog.js faded-box    # or any other one
+```
+
+That writes twelve headers into `previews/blog-set-<variation>/` and a
+contact sheet into `previews/contact-sheet-<variation>.png`. The contact
+sheet is the thing to post in chat: the family only shows up when you see
+twelve at once.
+
+### The recommendation: side-panel
+
+Both sets are rendered so they can be compared. Side-panel is the one to
+pick, for three reasons that only appear at twelve posts:
+
+1. **The panel is the same rectangle every time.** The blog's titles run
+   from 25 characters ("October 2025 – Newsletter") to 146. In faded-box the
+   box grows and shrinks to fit, so it is a different shape and sits at a
+   different height on every post, which is the opposite of what a family
+   does. The panel is 440px wide on all twelve.
+2. **The photograph is never covered and never darkened.** Faded-box has to
+   put a scrim over the whole photo so the box has something to sit against,
+   and then the box lands on top of whatever is in the middle of the frame.
+   On the three posts with a portrait in them, that means a dimmed photo
+   with a box across the face. Side-panel leaves the photo completely alone.
+3. **Legacy Purple is legible.** In faded-box it survives only as a 7px rule
+   and a small label, so the distinction is nearly invisible.
+
+The cost is that the photo gets two thirds of the frame instead of all of
+it. That is the trade.
+
+### Legacy Purple
+
+`css/site.css` reserves `--legacy` `#6B4C7A` for Dr. Elaine content and
+nothing else. Three of the twelve posts are about her: the obituary, the
+retirement announcement, and the Living Legacy webinar series. Those take
+the purple panel by setting `theme: "legacy"`. Everything else about the
+layout is identical, so the set still reads as one family while saying that
+those three are a different kind of post. White on Legacy Purple is 7.0:1,
+which passes AA.
+
+Set `theme` to `""` for every other post.
+
 ## Picking a photo
 
 There is no shortage of usable photography already in the repository. A
@@ -188,8 +237,16 @@ the real font arrives.
 
 ## Open items
 
-- The example photographs are stand-ins pulled from the repository. They are
-  not the photographs these posts carry.
+- **Every photograph in the blog set is a stand-in from this repository.**
+  The real post images have not been downloaded. They need to come across as
+  the original, unedited photographs, not as the current header graphics,
+  because the template does its own cropping and its own treatment and an
+  already edited image would be edited twice.
+- Eleven of the twelve posts have no byline here. Only the ciliates post
+  shows its author in the header we have seen. They are left blank rather
+  than guessed. Someone with access to the posts can fill them in.
+- There is no photograph of Eric Feiler in the repository, so the board
+  member post is running on a group shot. Foundation to supply a portrait.
 - There is no white knockout version of the roundel in the repository, which
   is why the dark variations use the wordmark in white rather than the mark.
   If a white PNG or SVG of the roundel exists, we can use the mark

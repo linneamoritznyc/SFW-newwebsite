@@ -25,6 +25,7 @@ const HEADER = {
   category: "Blog",
   author:   "Wes Sander",
   image:    "../img/uploads/testate-amoeba-40x.jpg",
+  theme:    "",   /* "legacy" for Dr. Elaine posts, otherwise "" */
   focus:    "50% 50%"
 };
 </script>
@@ -41,11 +42,15 @@ const HEADER = {
   --green:  #156826;   /* Food Web Green */
   --ground: #231F1D;   /* the dark ground */
   --rule:   rgba(79, 52, 51, .22);
+  --legacy: #6B4C7A;   /* Legacy Purple. Dr. Elaine content ONLY. */
+  --surface: var(--green);
   --display: "Montserrat", "Helvetica Neue", Arial, sans-serif;
   --sans:    "Source Sans 3", "Helvetica Neue", Arial, sans-serif;
 }
 @font-face { font-family: "Montserrat"; font-style: normal; font-weight: 600 700; src: url("../fonts/montserrat-latin-variable.woff2") format("woff2-variations"); }
 @font-face { font-family: "Source Sans 3"; font-style: normal; font-weight: 400; src: url("../fonts/source-sans-3-latin-400-normal.woff2") format("woff2"); }
+
+[data-theme="legacy"] { --surface: var(--legacy); }
 
 *, *::before, *::after { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; background: #555; }
@@ -88,7 +93,7 @@ html, body { margin: 0; padding: 0; background: #555; }
   width: 672px;
   padding: 38px 48px 32px;
   background: rgba(244, 241, 234, .955);
-  border-top: 7px solid var(--green);
+  border-top: 7px solid var(--surface);
   box-shadow: 0 6px 34px rgba(0, 0, 0, .26);
 }
 .box__cat {
@@ -97,7 +102,7 @@ html, body { margin: 0; padding: 0; background: #555; }
   font-size: 15px;
   letter-spacing: .18em;
   text-transform: uppercase;
-  color: var(--green);
+  color: var(--surface);
   margin: 0 0 18px;
 }
 .box__cat:empty { display: none; }
@@ -152,10 +157,11 @@ html, body { margin: 0; padding: 0; background: #555; }
 (function () {
   var p = new URLSearchParams(location.search);
   var c = Object.assign({}, HEADER);
-  ['title', 'category', 'author', 'image', 'focus'].forEach(function (k) {
+  ['title', 'category', 'author', 'image', 'focus', 'theme'].forEach(function (k) {
     if (p.has(k)) c[k] = p.get(k);
   });
 
+  if (c.theme) { document.documentElement.setAttribute('data-theme', c.theme); }
   document.getElementById('photo').src = c.image;
   document.getElementById('photo').style.objectPosition = c.focus;
   document.getElementById('cat').textContent = c.category || '';
