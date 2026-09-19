@@ -59,20 +59,61 @@ const EXTRACT = () => {
     if (el.tagName === 'SVG' || el.tagName === 'svg') return;
     const kids = [...el.children];
     const blockKids = kids.filter((k) => isBlocky(k) && hasText(k));
-    if (blockKids.length > 0) { kids.forEach(walk); return; }
+    if (blockKids.length > 0) {
+      kids.forEach(walk);
+      /* An element can hold a block-level child AND text of its own. The
+         climate box is <p class="pull"><b>heading</b>body text</p> with
+         .pull b { display: flex }, so descending into the children alone
+         loses the whole paragraph. Emit each run of non-block siblings too. */
+      let group = [];
+      const flush = () => {
+        if (group.length && group.some((n) => (n.textContent || '').trim())) {
+          emit(el, group);
+        }
+        group = [];
+      };
+      for (const n of el.childNodes) {
+        const blocky = n.nodeType === 1 && isBlocky(n) && hasText(n);
+        if (blocky) flush(); else group.push(n);
+      }
+      flush();
+      return;
+    }
     if (!hasText(el)) return;
+    emit(el, [...el.childNodes]);
+  };
 
+  /* Build one record from `nodes`, which are children of `el` that lay out as
+     one continuous piece of text. */
+  const emit = (el, nodes) => {
     const cs = getComputedStyle(el);
     if (cs.visibility === 'hidden' || cs.display === 'none') return;
-    const r = el.getBoundingClientRect();
-    if (r.width < 1 || r.height < 1) return;
 
-    // Content box: where the glyphs actually start.
-    const pl = parseFloat(cs.paddingLeft), pr = parseFloat(cs.paddingRight);
-    const pt = parseFloat(cs.paddingTop), pb = parseFloat(cs.paddingBottom);
+    const whole = nodes.length === el.childNodes.length;
+    let r, pl, pr, pt, pb;
+    if (whole) {
+      r = el.getBoundingClientRect();
+      // Content box: where the glyphs actually start.
+      pl = parseFloat(cs.paddingLeft); pr = parseFloat(cs.paddingRight);
+      pt = parseFloat(cs.paddingTop);  pb = parseFloat(cs.paddingBottom);
+    } else {
+      // A slice of the element: measure the nodes themselves, and let the
+      // usable width run to the element's content edge so it wraps as it did.
+      const range = document.createRange();
+      range.setStartBefore(nodes[0]);
+      range.setEndAfter(nodes[nodes.length - 1]);
+      const rr = range.getBoundingClientRect();
+      const er = el.getBoundingClientRect();
+      const epl = parseFloat(cs.paddingLeft), epr = parseFloat(cs.paddingRight);
+      r = { left: er.left + epl, top: rr.top,
+            width: er.width - epl - epr, height: rr.height };
+      pl = pr = pt = pb = 0;
+    }
+    if (r.width < 1 || r.height < 1) return;
 
     // Inline runs, so bold and coloured spans survive.
     const runs = [];
+    const runIndexOf = new Map();
     const pushRun = (node, style) => {
       const t = node.textContent;
       if (!t) return;
@@ -87,19 +128,77 @@ const EXTRACT = () => {
         spacing: s.letterSpacing === 'normal' ? 0 : +parseFloat(s.letterSpacing).toFixed(3),
         transform: s.textTransform,
       });
+      if (style !== node) runIndexOf.set(style, runs.length - 1);
     };
-    const collect = (node, styleEl) => {
-      for (const n of node.childNodes) {
+    const collect = (list, styleEl) => {
+      for (const n of list) {
         if (n.nodeType === 3) pushRun(n, styleEl);
         else if (n.nodeType === 1) {
           if (n.tagName.toLowerCase() === 'br') runs.push({ br: true });
           else if (n.tagName.toLowerCase() === 'svg') continue;
-          else collect(n, n);
+          else collect([...n.childNodes], n);
         }
       }
     };
-    collect(el, el);
+    collect(nodes, el);
     if (runs.every((r) => r.br || !r.text.trim())) return;
+
+    /* The visual lines the browser produced, with each line's runs kept
+       separate so bold and coloured spans survive. Nothing else reproduces
+       text-wrap: balance, and a block that gains a line in PowerPoint lands on
+       top of whatever sits under it, so the breaks are baked in rather than
+       left to another engine's metrics. Line rects also give the true start of
+       the text, which is what positions a heading that sits beside an icon. */
+    const lineRuns = [];
+    {
+      const range = document.createRange();
+      let cur = null;
+      const walkText = (list, runIdx) => {
+        for (const n of list) {
+          if (n.nodeType === 3) {
+            const t = n.textContent;
+            for (let i = 0; i < t.length; i++) {
+              range.setStart(n, i); range.setEnd(n, i + 1);
+              const rect = range.getBoundingClientRect();
+              if (rect.width === 0 && rect.height === 0) {
+                if (cur && cur.parts.length) cur.parts[cur.parts.length - 1].text += t[i];
+                continue;
+              }
+              const top = Math.round(rect.top * 10) / 10;
+              if (!cur || Math.abs(top - cur.top) > 1) {
+                cur = { top, left: rect.left, parts: [] };
+                lineRuns.push(cur);
+              }
+              cur.left = Math.min(cur.left, rect.left);
+              const last = cur.parts[cur.parts.length - 1];
+              if (last && last.runIdx === runIdx) last.text += t[i];
+              else cur.parts.push({ runIdx, text: t[i] });
+            }
+          } else if (n.nodeType === 1) {
+            const tag = n.tagName.toLowerCase();
+            if (tag === 'svg') continue;
+            if (tag === 'br') { cur = null; continue; }
+            walkText([...n.childNodes], runIndexOf.get(n) ?? runIdx);
+          }
+        }
+      };
+      // Text sitting directly in the element takes the element's own run, not
+      // run 0, which would be the <b> lead-in when a block opens with one.
+      walkText(nodes, runIndexOf.has(el) ? runIndexOf.get(el) : 0);
+      for (const ln of lineRuns) {
+        for (const part of ln.parts) part.text = part.text.replace(/\s+/g, ' ');
+        while (ln.parts.length && !ln.parts[ln.parts.length - 1].text.trim()) ln.parts.pop();
+        if (ln.parts.length) {
+          ln.parts[0].text = ln.parts[0].text.replace(/^\s+/, '');
+          const t = ln.parts[ln.parts.length - 1];
+          t.text = t.text.replace(/\s+$/, '');
+        }
+      }
+    }
+    const lines = lineRuns
+      .filter((l) => l.parts.length)
+      .map((l) => ({ left: inX(l.left), parts: l.parts }));
+    if (!lines.length) return;
 
     const lh = cs.lineHeight === 'normal'
       ? parseFloat(cs.fontSize) * 1.2 : parseFloat(cs.lineHeight);
@@ -114,6 +213,8 @@ const EXTRACT = () => {
       align: cs.textAlign,
       lineHeightPx: +lh.toFixed(2),
       fontSizePx: +parseFloat(cs.fontSize).toFixed(2),
+      lines,
+      linesLeft: lines.length ? lines[0].left : null,
       runs,
     });
   };

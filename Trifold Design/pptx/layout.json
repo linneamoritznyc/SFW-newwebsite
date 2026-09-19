@@ -14,6 +14,18 @@
     "align": "start",
     "lineHeightPx": 11.78,
     "fontSizePx": 8.53,
+    "lines": [
+     {
+      "left": 0.4049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "Teaching"
+       }
+      ]
+     }
+    ],
+    "linesLeft": 0.4049,
     "runs": [
      {
       "text": "Teaching",
@@ -38,6 +50,27 @@
     "align": "start",
     "lineHeightPx": 19.6,
     "fontSizePx": 18.67,
+    "lines": [
+     {
+      "left": 0.4049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "Anyone, anywhere, can"
+       }
+      ]
+     },
+     {
+      "left": 0.4049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "learn to restore living soil."
+       }
+      ]
+     }
+    ],
+    "linesLeft": 0.4049,
     "runs": [
      {
       "text": "Anyone, anywhere, can learn to restore living soil.",
@@ -62,6 +95,18 @@
     "align": "start",
     "lineHeightPx": 11.26,
     "fontSizePx": 8.93,
+    "lines": [
+     {
+      "left": 0.3849,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "A mentor teaching on working land."
+       }
+      ]
+     }
+    ],
+    "linesLeft": 0.3849,
     "runs": [
      {
       "text": "A mentor teaching on working land.",
@@ -86,6 +131,54 @@
     "align": "start",
     "lineHeightPx": 16.99,
     "fontSizePx": 13.07,
+    "lines": [
+     {
+      "left": 0.4049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "From curiosity through to professional practice."
+       }
+      ]
+     },
+     {
+      "left": 0.4049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "Everyone starts with the Foundation Courses, and"
+       }
+      ]
+     },
+     {
+      "left": 0.4049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "where you go next depends on whether you want to"
+       }
+      ]
+     },
+     {
+      "left": 0.4049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "apply your skills to your own land or help others"
+       }
+      ]
+     },
+     {
+      "left": 0.4049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "improve their soils."
+       }
+      ]
+     }
+    ],
+    "linesLeft": 0.4049,
     "runs": [
      {
       "text": "From curiosity through to professional practice.\n        Everyone starts with the Foundation Courses, and where you go next\n        depends on whether you want to apply your skills to your own land or\n        help others improve their soils.",
@@ -110,6 +203,18 @@
     "align": "start",
     "lineHeightPx": 13.44,
     "fontSizePx": 11.2,
+    "lines": [
+     {
+      "left": 0.6698,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "Foundation Courses"
+       }
+      ]
+     }
+    ],
+    "linesLeft": 0.6698,
     "runs": [
      {
       "text": "Foundation Courses",
@@ -134,6 +239,54 @@
     "align": "start",
     "lineHeightPx": 14.04,
     "fontSizePx": 10.8,
+    "lines": [
+     {
+      "left": 0.4049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "You'll learn the science of the soil food web, the organisms"
+       }
+      ]
+     },
+     {
+      "left": 0.4049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "and their roles, use of a microscope for biological analyses"
+       }
+      ]
+     },
+     {
+      "left": 0.4049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "and how biological amendments are made and applied. They"
+       }
+      ]
+     },
+     {
+      "left": 0.4049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "are online, self-paced, take about 150 hours to complete, and"
+       }
+      ]
+     },
+     {
+      "left": 0.4049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "are a prerequisite to any Advanced Program."
+       }
+      ]
+     }
+    ],
+    "linesLeft": 0.4049,
     "runs": [
      {
       "text": "You'll learn the science of the soil food web, the organisms and\n            their roles, use of a microscope for biological analyses and how\n            biological amendments are made and applied. They are online,\n            self-paced, take about 150 hours to complete, and are a prerequisite\n            to any Advanced Program.",
@@ -158,6 +311,18 @@
     "align": "start",
     "lineHeightPx": 13.44,
     "fontSizePx": 11.2,
+    "lines": [
+     {
+      "left": 0.6698,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "Advanced Programs"
+       }
+      ]
+     }
+    ],
+    "linesLeft": 0.6698,
     "runs": [
      {
       "text": "Advanced Programs",
@@ -182,6 +347,45 @@
     "align": "start",
     "lineHeightPx": 14.04,
     "fontSizePx": 10.8,
+    "lines": [
+     {
+      "left": 0.4049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "Learn the practical application of the theory you learned in the"
+       }
+      ]
+     },
+     {
+      "left": 0.4049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "Foundation Courses through mentor-led Advanced Programs"
+       }
+      ]
+     },
+     {
+      "left": 0.4049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "on Soil Microscopy, BioComplete™ Compost Production,"
+       }
+      ]
+     },
+     {
+      "left": 0.4049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "Biological Liquid Amendments and Field Trial."
+       }
+      ]
+     }
+    ],
+    "linesLeft": 0.4049,
     "runs": [
      {
       "text": "Learn the practical application of the theory you learned in the\n            Foundation Courses through mentor-led Advanced Programs on Soil\n            Microscopy, BioComplete™ Compost Production, Biological Liquid\n            Amendments and Field Trial.",
@@ -206,6 +410,18 @@
     "align": "start",
     "lineHeightPx": 13.44,
     "fontSizePx": 11.2,
+    "lines": [
+     {
+      "left": 0.6698,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "Accelerator Workshops"
+       }
+      ]
+     }
+    ],
+    "linesLeft": 0.6698,
     "runs": [
      {
       "text": "Accelerator Workshops",
@@ -230,6 +446,36 @@
     "align": "start",
     "lineHeightPx": 14.04,
     "fontSizePx": 10.8,
+    "lines": [
+     {
+      "left": 0.4049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "The Advanced Programs as a group on working land, the whole"
+       }
+      ]
+     },
+     {
+      "left": 0.4049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "method at once. Held periodically with a host partner. Dates"
+       }
+      ]
+     },
+     {
+      "left": 0.4049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "on the school site."
+       }
+      ]
+     }
+    ],
+    "linesLeft": 0.4049,
     "runs": [
      {
       "text": "The Advanced Programs as a group on working land, the whole method\n            at once. Held periodically with a host partner. Dates on the school\n            site.",
@@ -254,6 +500,18 @@
     "align": "start",
     "lineHeightPx": 13.44,
     "fontSizePx": 11.2,
+    "lines": [
+     {
+      "left": 0.6698,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "Where it leads"
+       }
+      ]
+     }
+    ],
+    "linesLeft": 0.6698,
     "runs": [
      {
       "text": "Where it leads",
@@ -278,6 +536,40 @@
     "align": "start",
     "lineHeightPx": 14.04,
     "fontSizePx": 10.8,
+    "lines": [
+     {
+      "left": 0.4049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "All four Advanced Programs carry the Soil Food Web"
+       }
+      ]
+     },
+     {
+      "left": 0.4049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "Consultant title; Soil Microscopy alone, the Lab Technician"
+       }
+      ]
+     },
+     {
+      "left": 0.4049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "title. Prices at "
+       },
+       {
+        "runIdx": 1,
+        "text": "school.soilfoodweb.com"
+       }
+      ]
+     }
+    ],
+    "linesLeft": 0.4049,
     "runs": [
      {
       "text": "All four Advanced Programs carry the Soil Food Web Consultant\n            title; Soil Microscopy alone, the Lab Technician title. Prices at\n            ",
@@ -312,6 +604,18 @@
     "align": "start",
     "lineHeightPx": 13.92,
     "fontSizePx": 12,
+    "lines": [
+     {
+      "left": 1.6748,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "Apply for a scholarship"
+       }
+      ]
+     }
+    ],
+    "linesLeft": 1.6748,
     "runs": [
      {
       "text": "Apply for a scholarship",
@@ -336,6 +640,27 @@
     "align": "start",
     "lineHeightPx": 12.63,
     "fontSizePx": 9.87,
+    "lines": [
+     {
+      "left": 1.6748,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "Scholarships prioritize applicants in"
+       }
+      ]
+     },
+     {
+      "left": 1.6748,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "under-resourced regions."
+       }
+      ]
+     }
+    ],
+    "linesLeft": 1.6748,
     "runs": [
      {
       "text": "Scholarships prioritize applicants in under-resourced\n            regions.",
@@ -360,6 +685,18 @@
     "align": "start",
     "lineHeightPx": 12.88,
     "fontSizePx": 9.33,
+    "lines": [
+     {
+      "left": 1.6748,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "sfw.one/brochure-scholarship"
+       }
+      ]
+     }
+    ],
+    "linesLeft": 1.6748,
     "runs": [
      {
       "text": "sfw.one/brochure-scholarship",
@@ -384,6 +721,18 @@
     "align": "start",
     "lineHeightPx": 11.78,
     "fontSizePx": 8.53,
+    "lines": [
+     {
+      "left": 3.9049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "Community"
+       }
+      ]
+     }
+    ],
+    "linesLeft": 3.9049,
     "runs": [
      {
       "text": "Community",
@@ -408,6 +757,27 @@
     "align": "start",
     "lineHeightPx": 19.6,
     "fontSizePx": 18.67,
+    "lines": [
+     {
+      "left": 3.9049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "A global community amplifies"
+       }
+      ]
+     },
+     {
+      "left": 3.9049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "the impact of this vital work."
+       }
+      ]
+     }
+    ],
+    "linesLeft": 3.9049,
     "runs": [
      {
       "text": "A global community amplifies the impact of this vital work.",
@@ -432,6 +802,18 @@
     "align": "start",
     "lineHeightPx": 11.26,
     "fontSizePx": 8.93,
+    "lines": [
+     {
+      "left": 3.9049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "A workshop group around a finished compost pile."
+       }
+      ]
+     }
+    ],
+    "linesLeft": 3.9049,
     "runs": [
      {
       "text": "A workshop group around a finished compost pile.",
@@ -456,6 +838,27 @@
     "align": "start",
     "lineHeightPx": 13.92,
     "fontSizePx": 12,
+    "lines": [
+     {
+      "left": 5.1748,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "Join the free online"
+       }
+      ]
+     },
+     {
+      "left": 5.1748,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "community"
+       }
+      ]
+     }
+    ],
+    "linesLeft": 5.1748,
     "runs": [
      {
       "text": "Join the free online community",
@@ -480,6 +883,54 @@
     "align": "start",
     "lineHeightPx": 12.63,
     "fontSizePx": 9.87,
+    "lines": [
+     {
+      "left": 5.1748,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "Meet other people in the regenerative"
+       }
+      ]
+     },
+     {
+      "left": 5.1748,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "agricultural space. Get your questions"
+       }
+      ]
+     },
+     {
+      "left": 5.1748,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "answered by other practitioners of the soil"
+       }
+      ]
+     },
+     {
+      "left": 5.1748,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "food web approach who share the desire to"
+       }
+      ]
+     },
+     {
+      "left": 5.1748,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "restore the world's soils."
+       }
+      ]
+     }
+    ],
+    "linesLeft": 5.1748,
     "runs": [
      {
       "text": "Meet other people in the regenerative agricultural\n            space. Get your questions answered by other practitioners of the\n            soil food web approach who share the desire to restore the world's\n            soils.",
@@ -504,6 +955,18 @@
     "align": "start",
     "lineHeightPx": 12.88,
     "fontSizePx": 9.33,
+    "lines": [
+     {
+      "left": 5.1748,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "sfw.one/brochure-community"
+       }
+      ]
+     }
+    ],
+    "linesLeft": 5.1748,
     "runs": [
      {
       "text": "sfw.one/brochure-community",
@@ -528,6 +991,85 @@
     "align": "start",
     "lineHeightPx": 15.46,
     "fontSizePx": 11.2,
+    "lines": [
+     {
+      "left": 3.9049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "Dr. Elaine's soil food web approach is the key to rapid and"
+       }
+      ]
+     },
+     {
+      "left": 3.9049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "effective soil regeneration. Only with the complete soil food web"
+       }
+      ]
+     },
+     {
+      "left": 3.9049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "in place can the ecological functions of the soil be restored,"
+       }
+      ]
+     },
+     {
+      "left": 3.9049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "protecting and purifying the world's waterways, reversing"
+       }
+      ]
+     },
+     {
+      "left": 3.9049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "climate change and providing more nutritious foods. It's easy to"
+       }
+      ]
+     },
+     {
+      "left": 3.9049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "find your place in this movement. Reach out to discover"
+       }
+      ]
+     },
+     {
+      "left": 3.9049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "opportunities to join us as a student, volunteer, ambassador,"
+       }
+      ]
+     },
+     {
+      "left": 3.9049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "donor and partner. "
+       },
+       {
+        "runIdx": 1,
+        "text": "info@soilfoodweb.com"
+       }
+      ]
+     }
+    ],
+    "linesLeft": 3.9049,
     "runs": [
      {
       "text": "Dr. Elaine's soil food web approach is the key to rapid and effective\n        soil regeneration. Only with the complete soil food web in place can the\n        ecological functions of the soil be restored, protecting and purifying\n        the world's waterways, reversing climate change and providing more\n        nutritious foods. It's easy to find your place in this movement. Reach\n        out to discover opportunities to join us as a student, volunteer,\n        ambassador, donor and partner. ",
@@ -562,6 +1104,18 @@
     "align": "center",
     "lineHeightPx": 9.59,
     "fontSizePx": 8.27,
+    "lines": [
+     {
+      "left": 4.0928,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "Study"
+       }
+      ]
+     }
+    ],
+    "linesLeft": 4.0928,
     "runs": [
      {
       "text": "Study",
@@ -586,6 +1140,18 @@
     "align": "center",
     "lineHeightPx": 9.59,
     "fontSizePx": 8.27,
+    "lines": [
+     {
+      "left": 4.7713,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "Volunteer"
+       }
+      ]
+     }
+    ],
+    "linesLeft": 4.7713,
     "runs": [
      {
       "text": "Volunteer",
@@ -610,6 +1176,18 @@
     "align": "center",
     "lineHeightPx": 9.59,
     "fontSizePx": 8.27,
+    "lines": [
+     {
+      "left": 5.6929,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "Donate"
+       }
+      ]
+     }
+    ],
+    "linesLeft": 5.6929,
     "runs": [
      {
       "text": "Donate",
@@ -634,6 +1212,18 @@
     "align": "center",
     "lineHeightPx": 9.59,
     "fontSizePx": 8.27,
+    "lines": [
+     {
+      "left": 6.5952,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "Host"
+       }
+      ]
+     }
+    ],
+    "linesLeft": 6.5952,
     "runs": [
      {
       "text": "Host",
@@ -658,6 +1248,36 @@
     "align": "start",
     "lineHeightPx": 13.17,
     "fontSizePx": 10.13,
+    "lines": [
+     {
+      "left": 4.0557,
+      "parts": [
+       {
+        "runIdx": 4,
+        "text": "5441 S Macadam Ave Ste N"
+       }
+      ]
+     },
+     {
+      "left": 4.0557,
+      "parts": [
+       {
+        "runIdx": 4,
+        "text": "Portland, Oregon 97239"
+       }
+      ]
+     },
+     {
+      "left": 4.0557,
+      "parts": [
+       {
+        "runIdx": 4,
+        "text": "soilfoodweb.com"
+       }
+      ]
+     }
+    ],
+    "linesLeft": 4.0557,
     "runs": [
      {
       "text": "5441 S Macadam Ave Ste N",
@@ -708,6 +1328,27 @@
     "align": "start",
     "lineHeightPx": 12.24,
     "fontSizePx": 9.07,
+    "lines": [
+     {
+      "left": 4.0557,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "Soil Food Web Foundation is a 501(c)(3) nonprofit organization, EIN 39-"
+       }
+      ]
+     },
+     {
+      "left": 4.0557,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "4439236. The Soil Food Web School is a program of the Foundation."
+       }
+      ]
+     }
+    ],
+    "linesLeft": 4.0557,
     "runs": [
      {
       "text": "Soil Food Web Foundation is a 501(c)(3) nonprofit organization, EIN\n          39-4439236. The Soil Food Web School is a program of the\n          Foundation.",
@@ -732,6 +1373,18 @@
     "align": "start",
     "lineHeightPx": 13.92,
     "fontSizePx": 12,
+    "lines": [
+     {
+      "left": 5.1748,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "Donate"
+       }
+      ]
+     }
+    ],
+    "linesLeft": 5.1748,
     "runs": [
      {
       "text": "Donate",
@@ -756,6 +1409,36 @@
     "align": "start",
     "lineHeightPx": 12.63,
     "fontSizePx": 9.87,
+    "lines": [
+     {
+      "left": 5.1748,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "Gifts fund open research, scholarships and"
+       }
+      ]
+     },
+     {
+      "left": 5.1748,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "field projects. Tax-deductible to the extent"
+       }
+      ]
+     },
+     {
+      "left": 5.1748,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "allowed by law."
+       }
+      ]
+     }
+    ],
+    "linesLeft": 5.1748,
     "runs": [
      {
       "text": "Gifts fund open research, scholarships and field\n            projects. Tax-deductible to the extent allowed by law.",
@@ -780,6 +1463,18 @@
     "align": "start",
     "lineHeightPx": 12.88,
     "fontSizePx": 9.33,
+    "lines": [
+     {
+      "left": 5.1748,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "sfw.one/brochure-donate"
+       }
+      ]
+     }
+    ],
+    "linesLeft": 5.1748,
     "runs": [
      {
       "text": "sfw.one/brochure-donate",
@@ -804,6 +1499,27 @@
     "align": "start",
     "lineHeightPx": 17.32,
     "fontSizePx": 15.47,
+    "lines": [
+     {
+      "left": 8.5549,
+      "parts": [
+       {
+        "runIdx": 2,
+        "text": "Soil Food Web"
+       }
+      ]
+     },
+     {
+      "left": 8.5549,
+      "parts": [
+       {
+        "runIdx": 2,
+        "text": "Foundation"
+       }
+      ]
+     }
+    ],
+    "linesLeft": 8.5549,
     "runs": [
      {
       "text": "Soil Food Web",
@@ -841,6 +1557,18 @@
     "align": "start",
     "lineHeightPx": 14.72,
     "fontSizePx": 10.67,
+    "lines": [
+     {
+      "left": 8.5549,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "A 501(c)(3) nonprofit"
+       }
+      ]
+     }
+    ],
+    "linesLeft": 8.5549,
     "runs": [
      {
       "text": "A 501(c)(3) nonprofit",
@@ -865,6 +1593,36 @@
     "align": "start",
     "lineHeightPx": 28.8,
     "fontSizePx": 26.67,
+    "lines": [
+     {
+      "left": 7.6549,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "The soil beneath"
+       }
+      ]
+     },
+     {
+      "left": 7.6549,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "our farms and"
+       }
+      ]
+     },
+     {
+      "left": 7.6549,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "forests is alive."
+       }
+      ]
+     }
+    ],
+    "linesLeft": 7.6549,
     "runs": [
      {
       "text": "The soil beneath our farms and forests is alive.",
@@ -889,6 +1647,44 @@
     "align": "start",
     "lineHeightPx": 16.99,
     "fontSizePx": 13.07,
+    "lines": [
+     {
+      "left": 7.6549,
+      "parts": [
+       {
+        "runIdx": 2,
+        "text": "A web of bacteria, fungi, protozoa, nematodes and"
+       }
+      ]
+     },
+     {
+      "left": 7.6549,
+      "parts": [
+       {
+        "runIdx": 2,
+        "text": "microarthropods feeds plants, builds soil, stores carbon"
+       }
+      ]
+     },
+     {
+      "left": 7.6549,
+      "parts": [
+       {
+        "runIdx": 2,
+        "text": "and cleans water "
+       },
+       {
+        "runIdx": 1,
+        "text": "when it is intact"
+       },
+       {
+        "runIdx": 2,
+        "text": "."
+       }
+      ]
+     }
+    ],
+    "linesLeft": 7.6549,
     "runs": [
      {
       "text": "A web of bacteria, fungi, protozoa, nematodes and\n        microarthropods feeds plants, builds soil, stores carbon and cleans\n        water ",
@@ -933,6 +1729,95 @@
     "align": "start",
     "lineHeightPx": 15.46,
     "fontSizePx": 11.2,
+    "lines": [
+     {
+      "left": 7.6549,
+      "parts": [
+       {
+        "runIdx": 8,
+        "text": "For forty-five years, Dr. Elaine Ingham mapped the Soil Food Web"
+       }
+      ]
+     },
+     {
+      "left": 7.6549,
+      "parts": [
+       {
+        "runIdx": 8,
+        "text": "and taught the world to restore it. We carry her legacy forward:"
+       }
+      ]
+     },
+     {
+      "left": 7.6549,
+      "parts": [
+       {
+        "runIdx": 8,
+        "text": "showing "
+       },
+       {
+        "runIdx": 1,
+        "text": "what"
+       },
+       {
+        "runIdx": 8,
+        "text": " is possible, teaching "
+       },
+       {
+        "runIdx": 3,
+        "text": "how"
+       },
+       {
+        "runIdx": 8,
+        "text": " to partner with life in the"
+       }
+      ]
+     },
+     {
+      "left": 7.6549,
+      "parts": [
+       {
+        "runIdx": 8,
+        "text": "soil, researching "
+       },
+       {
+        "runIdx": 5,
+        "text": "why"
+       },
+       {
+        "runIdx": 8,
+        "text": " things work or do not, and getting dirty"
+       }
+      ]
+     },
+     {
+      "left": 7.6549,
+      "parts": [
+       {
+        "runIdx": 8,
+        "text": "through "
+       },
+       {
+        "runIdx": 7,
+        "text": "direct action"
+       },
+       {
+        "runIdx": 8,
+        "text": " on working land. Living soil is the solution,"
+       }
+      ]
+     },
+     {
+      "left": 7.6549,
+      "parts": [
+       {
+        "runIdx": 8,
+        "text": "and it is beneath your feet."
+       }
+      ]
+     }
+    ],
+    "linesLeft": 7.6549,
     "runs": [
      {
       "text": "For forty-five years, Dr. Elaine Ingham mapped the Soil Food Web and\n        taught the world to restore it. We carry her legacy forward: showing\n        ",
@@ -1037,6 +1922,18 @@
     "align": "center",
     "lineHeightPx": 9.59,
     "fontSizePx": 8.27,
+    "lines": [
+     {
+      "left": 7.7039,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "Education"
+       }
+      ]
+     }
+    ],
+    "linesLeft": 7.7039,
     "runs": [
      {
       "text": "Education",
@@ -1061,6 +1958,18 @@
     "align": "center",
     "lineHeightPx": 9.59,
     "fontSizePx": 8.27,
+    "lines": [
+     {
+      "left": 8.5612,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "Research"
+       }
+      ]
+     }
+    ],
+    "linesLeft": 8.5612,
     "runs": [
      {
       "text": "Research",
@@ -1085,6 +1994,18 @@
     "align": "center",
     "lineHeightPx": 9.59,
     "fontSizePx": 8.27,
+    "lines": [
+     {
+      "left": 9.4046,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "Practice"
+       }
+      ]
+     }
+    ],
+    "linesLeft": 9.4046,
     "runs": [
      {
       "text": "Practice",
@@ -1109,6 +2030,18 @@
     "align": "center",
     "lineHeightPx": 9.59,
     "fontSizePx": 8.27,
+    "lines": [
+     {
+      "left": 10.1561,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "Community"
+       }
+      ]
+     }
+    ],
+    "linesLeft": 10.1561,
     "runs": [
      {
       "text": "Community",
@@ -1133,6 +2066,18 @@
     "align": "start",
     "lineHeightPx": 22.67,
     "fontSizePx": 22.67,
+    "lines": [
+     {
+      "left": 7.6549,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "132+"
+       }
+      ]
+     }
+    ],
+    "linesLeft": 7.6549,
     "runs": [
      {
       "text": "132+",
@@ -1157,6 +2102,18 @@
     "align": "start",
     "lineHeightPx": 13.06,
     "fontSizePx": 10.53,
+    "lines": [
+     {
+      "left": 7.6549,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "Countries in our student and practitioner community"
+       }
+      ]
+     }
+    ],
+    "linesLeft": 7.6549,
     "runs": [
      {
       "text": "Countries in our student and practitioner community",
@@ -1181,6 +2138,18 @@
     "align": "start",
     "lineHeightPx": 22.67,
     "fontSizePx": 22.67,
+    "lines": [
+     {
+      "left": 7.6549,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "10,000+"
+       }
+      ]
+     }
+    ],
+    "linesLeft": 7.6549,
     "runs": [
      {
       "text": "10,000+",
@@ -1205,6 +2174,18 @@
     "align": "start",
     "lineHeightPx": 13.06,
     "fontSizePx": 10.53,
+    "lines": [
+     {
+      "left": 7.6549,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "Individuals enrolled in our programs"
+       }
+      ]
+     }
+    ],
+    "linesLeft": 7.6549,
     "runs": [
      {
       "text": "Individuals enrolled in our programs",
@@ -1229,6 +2210,18 @@
     "align": "start",
     "lineHeightPx": 22.67,
     "fontSizePx": 22.67,
+    "lines": [
+     {
+      "left": 7.6549,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "45"
+       }
+      ]
+     }
+    ],
+    "linesLeft": 7.6549,
     "runs": [
      {
       "text": "45",
@@ -1253,6 +2246,18 @@
     "align": "start",
     "lineHeightPx": 13.06,
     "fontSizePx": 10.53,
+    "lines": [
+     {
+      "left": 7.6549,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "Years of pioneering soil biology research behind the method"
+       }
+      ]
+     }
+    ],
+    "linesLeft": 7.6549,
     "runs": [
      {
       "text": "Years of pioneering soil biology research behind the method",
@@ -1277,6 +2282,36 @@
     "align": "start",
     "lineHeightPx": 17.33,
     "fontSizePx": 13.33,
+    "lines": [
+     {
+      "left": 7.6549,
+      "parts": [
+       {
+        "runIdx": 4,
+        "text": "Healing soil."
+       }
+      ]
+     },
+     {
+      "left": 7.6549,
+      "parts": [
+       {
+        "runIdx": 4,
+        "text": "Feeding humanity."
+       }
+      ]
+     },
+     {
+      "left": 7.6549,
+      "parts": [
+       {
+        "runIdx": 4,
+        "text": "Restoring the living world."
+       }
+      ]
+     }
+    ],
+    "linesLeft": 7.6549,
     "runs": [
      {
       "text": "Healing soil.",
@@ -1333,6 +2368,18 @@
     "align": "start",
     "lineHeightPx": 11.78,
     "fontSizePx": 8.53,
+    "lines": [
+     {
+      "left": 0.4049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "Our story"
+       }
+      ]
+     }
+    ],
+    "linesLeft": 0.4049,
     "runs": [
      {
       "text": "Our story",
@@ -1357,6 +2404,27 @@
     "align": "start",
     "lineHeightPx": 19.6,
     "fontSizePx": 18.67,
+    "lines": [
+     {
+      "left": 0.4049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "It began with one"
+       }
+      ]
+     },
+     {
+      "left": 0.4049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "scientist looking closer."
+       }
+      ]
+     }
+    ],
+    "linesLeft": 0.4049,
     "runs": [
      {
       "text": "It began with one scientist looking closer.",
@@ -1381,6 +2449,18 @@
     "align": "start",
     "lineHeightPx": 11.26,
     "fontSizePx": 8.93,
+    "lines": [
+     {
+      "left": 0.3849,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "Dr. Elaine Ingham at the microscope."
+       }
+      ]
+     }
+    ],
+    "linesLeft": 0.3849,
     "runs": [
      {
       "text": "Dr. Elaine Ingham at the microscope.",
@@ -1405,6 +2485,54 @@
     "align": "start",
     "lineHeightPx": 15.46,
     "fontSizePx": 11.2,
+    "lines": [
+     {
+      "left": 0.4049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "The Soil Food Web Foundation was established in October 2025"
+       }
+      ]
+     },
+     {
+      "left": 0.4049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "to carry forward the life's work of Dr. Elaine Ingham, the"
+       }
+      ]
+     },
+     {
+      "left": 0.4049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "pioneering scientist whose research transformed our"
+       }
+      ]
+     },
+     {
+      "left": 0.4049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "understanding of soil biology and its central role in food"
+       }
+      ]
+     },
+     {
+      "left": 0.4049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "production, ecosystem health, and planetary regeneration."
+       }
+      ]
+     }
+    ],
+    "linesLeft": 0.4049,
     "runs": [
      {
       "text": "The Soil Food Web Foundation was established in October 2025 to carry\n        forward the life's work of Dr. Elaine Ingham, the pioneering scientist\n        whose research transformed our understanding of soil biology and its\n        central role in food production, ecosystem health, and planetary\n        regeneration.",
@@ -1429,6 +2557,45 @@
     "align": "start",
     "lineHeightPx": 15.46,
     "fontSizePx": 11.2,
+    "lines": [
+     {
+      "left": 0.4049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "She passed away in February 2026, and the work she started"
+       }
+      ]
+     },
+     {
+      "left": 0.4049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "continues through the Foundation, the school that is a part of it,"
+       }
+      ]
+     },
+     {
+      "left": 0.4049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "and Soil Food Web practitioners in more than 132 countries, who"
+       }
+      ]
+     },
+     {
+      "left": 0.4049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "are helping to restore the world's soils."
+       }
+      ]
+     }
+    ],
+    "linesLeft": 0.4049,
     "runs": [
      {
       "text": "She passed away in February 2026, and the work she started continues\n        through the Foundation, the school that is a part of it, and Soil Food\n        Web practitioners in more than 132 countries, who are helping to restore\n        the world's soils.",
@@ -1453,6 +2620,27 @@
     "align": "start",
     "lineHeightPx": 11.26,
     "fontSizePx": 8.93,
+    "lines": [
+     {
+      "left": 1.7147,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "Examine Dr. Ingham's publications here:"
+       }
+      ]
+     },
+     {
+      "left": 1.7147,
+      "parts": [
+       {
+        "runIdx": 2,
+        "text": "sfw.one/publications"
+       }
+      ]
+     }
+    ],
+    "linesLeft": 1.7147,
     "runs": [
      {
       "text": "Examine Dr. Ingham's publications\n          here:",
@@ -1490,6 +2678,18 @@
     "align": "start",
     "lineHeightPx": 13.07,
     "fontSizePx": 10.13,
+    "lines": [
+     {
+      "left": 0.7954,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "Why this matters for climate"
+       }
+      ]
+     }
+    ],
+    "linesLeft": 0.7954,
     "runs": [
      {
       "text": "Why this matters for climate",
@@ -1504,6 +2704,123 @@
     ]
    },
    {
+    "tag": "p",
+    "cls": "pull",
+    "panel": "2",
+    "x": 0.5557,
+    "y": 5.3794,
+    "w": 2.9095,
+    "h": 1.6112,
+    "align": "start",
+    "lineHeightPx": 15.31,
+    "fontSizePx": 11.87,
+    "lines": [
+     {
+      "left": 0.5557,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "Soil carbon sequestration is widely recognized as a part"
+       }
+      ]
+     },
+     {
+      "left": 0.5557,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "of the solution to climate change impacts. Plants pull"
+       }
+      ]
+     },
+     {
+      "left": 0.5557,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "carbon from the air and invest much of it in the soil, where"
+       }
+      ]
+     },
+     {
+      "left": 0.5557,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "it is built into microbial bodies, aggregates and complex"
+       }
+      ]
+     },
+     {
+      "left": 0.5557,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "fungal networks. A biological approach to soil"
+       }
+      ]
+     },
+     {
+      "left": 0.5557,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "management reduces equipment emissions, reduces"
+       }
+      ]
+     },
+     {
+      "left": 0.5557,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "fertilizer and irrigation needs and creates more nutritious"
+       }
+      ]
+     },
+     {
+      "left": 0.5557,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "crops. Regenerating the world's soils using the Soil Food"
+       }
+      ]
+     },
+     {
+      "left": 0.5557,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "Web Approach can improve atmospheric carbon levels."
+       }
+      ]
+     },
+     {
+      "left": 0.5557,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "Be part of the soil-ution!"
+       }
+      ]
+     }
+    ],
+    "linesLeft": 0.5557,
+    "runs": [
+     {
+      "text": "Soil carbon\n          sequestration is widely recognized as a part of the solution to\n          climate change impacts. Plants pull carbon from the air and invest\n          much of it in the soil, where it is built into microbial bodies,\n          aggregates and complex fungal networks. A biological approach to soil\n          management reduces equipment emissions, reduces fertilizer and\n          irrigation needs and creates more nutritious crops. Regenerating the\n          world's soils using the Soil Food Web Approach can improve atmospheric\n          carbon levels. Be part of the soil-ution!",
+      "weight": 400,
+      "italic": false,
+      "color": "rgb(255, 255, 255)",
+      "family": "Source Sans 3",
+      "size": 11.87,
+      "spacing": 0,
+      "transform": "none"
+     }
+    ]
+   },
+   {
     "tag": "div",
     "cls": "t",
     "panel": "2",
@@ -1514,6 +2831,27 @@
     "align": "start",
     "lineHeightPx": 13.92,
     "fontSizePx": 12,
+    "lines": [
+     {
+      "left": 1.6748,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "Join our free online"
+       }
+      ]
+     },
+     {
+      "left": 1.6748,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "community"
+       }
+      ]
+     }
+    ],
+    "linesLeft": 1.6748,
     "runs": [
      {
       "text": "Join our free online community",
@@ -1538,6 +2876,45 @@
     "align": "start",
     "lineHeightPx": 12.63,
     "fontSizePx": 9.87,
+    "lines": [
+     {
+      "left": 1.6748,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "Learn from and connect with other passionate"
+       }
+      ]
+     },
+     {
+      "left": 1.6748,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "people in the regenerative agriculture space."
+       }
+      ]
+     },
+     {
+      "left": 1.6748,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "You can also register for our newsletter and"
+       }
+      ]
+     },
+     {
+      "left": 1.6748,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "webinar series via the link in this QR code."
+       }
+      ]
+     }
+    ],
+    "linesLeft": 1.6748,
     "runs": [
      {
       "text": "Learn from and connect with other passionate people in\n            the regenerative agriculture space. You can also register for our\n            newsletter and webinar series via the link in this QR code.",
@@ -1562,6 +2939,18 @@
     "align": "start",
     "lineHeightPx": 12.88,
     "fontSizePx": 9.33,
+    "lines": [
+     {
+      "left": 1.6748,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "sfw.one/brochure-webinar"
+       }
+      ]
+     }
+    ],
+    "linesLeft": 1.6748,
     "runs": [
      {
       "text": "sfw.one/brochure-webinar",
@@ -1586,6 +2975,18 @@
     "align": "start",
     "lineHeightPx": 11.78,
     "fontSizePx": 8.53,
+    "lines": [
+     {
+      "left": 4.1549,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "Research"
+       }
+      ]
+     }
+    ],
+    "linesLeft": 4.1549,
     "runs": [
      {
       "text": "Research",
@@ -1610,6 +3011,27 @@
     "align": "start",
     "lineHeightPx": 19.6,
     "fontSizePx": 18.67,
+    "lines": [
+     {
+      "left": 4.1549,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "The science is open,"
+       }
+      ]
+     },
+     {
+      "left": 4.1549,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "and anyone can test it."
+       }
+      ]
+     }
+    ],
+    "linesLeft": 4.1549,
     "runs": [
      {
       "text": "The science is open, and anyone can test it.",
@@ -1634,6 +3056,18 @@
     "align": "start",
     "lineHeightPx": 11.26,
     "fontSizePx": 8.93,
+    "lines": [
+     {
+      "left": 4.1549,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "Soil samples beside the microscope."
+       }
+      ]
+     }
+    ],
+    "linesLeft": 4.1549,
     "runs": [
      {
       "text": "Soil samples beside the microscope.",
@@ -1658,6 +3092,27 @@
     "align": "start",
     "lineHeightPx": 13.44,
     "fontSizePx": 11.2,
+    "lines": [
+     {
+      "left": 4.1549,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "What biologically complete, properly-structured soil"
+       }
+      ]
+     },
+     {
+      "left": 4.1549,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "does"
+       }
+      ]
+     }
+    ],
+    "linesLeft": 4.1549,
     "runs": [
      {
       "text": "What biologically complete, properly-structured soil does",
@@ -1682,6 +3137,27 @@
     "align": "center",
     "lineHeightPx": 9.59,
     "fontSizePx": 8.27,
+    "lines": [
+     {
+      "left": 4.249,
+      "parts": [
+       {
+        "runIdx": 2,
+        "text": "Nutrient"
+       }
+      ]
+     },
+     {
+      "left": 4.2889,
+      "parts": [
+       {
+        "runIdx": 2,
+        "text": "cycling"
+       }
+      ]
+     }
+    ],
+    "linesLeft": 4.249,
     "runs": [
      {
       "text": "Nutrient",
@@ -1719,6 +3195,36 @@
     "align": "center",
     "lineHeightPx": 9.59,
     "fontSizePx": 8.27,
+    "lines": [
+     {
+      "left": 5.1063,
+      "parts": [
+       {
+        "runIdx": 2,
+        "text": "Creates"
+       }
+      ]
+     },
+     {
+      "left": 5.2209,
+      "parts": [
+       {
+        "runIdx": 2,
+        "text": "soil"
+       }
+      ]
+     },
+     {
+      "left": 5.0317,
+      "parts": [
+       {
+        "runIdx": 2,
+        "text": "structure"
+       }
+      ]
+     }
+    ],
+    "linesLeft": 5.1063,
     "runs": [
      {
       "text": "Creates soil",
@@ -1756,6 +3262,36 @@
     "align": "center",
     "lineHeightPx": 9.59,
     "fontSizePx": 8.27,
+    "lines": [
+     {
+      "left": 5.9307,
+      "parts": [
+       {
+        "runIdx": 2,
+        "text": "Inhibits"
+       }
+      ]
+     },
+     {
+      "left": 5.9966,
+      "parts": [
+       {
+        "runIdx": 2,
+        "text": "weed"
+       }
+      ]
+     },
+     {
+      "left": 5.889,
+      "parts": [
+       {
+        "runIdx": 2,
+        "text": "pressure"
+       }
+      ]
+     }
+    ],
+    "linesLeft": 5.9307,
     "runs": [
      {
       "text": "Inhibits weed",
@@ -1793,6 +3329,36 @@
     "align": "center",
     "lineHeightPx": 9.59,
     "fontSizePx": 8.27,
+    "lines": [
+     {
+      "left": 6.7358,
+      "parts": [
+       {
+        "runIdx": 2,
+        "text": "Reduces"
+       }
+      ]
+     },
+     {
+      "left": 6.8262,
+      "parts": [
+       {
+        "runIdx": 2,
+        "text": "pests"
+       }
+      ]
+     },
+     {
+      "left": 6.6336,
+      "parts": [
+       {
+        "runIdx": 2,
+        "text": "and disease"
+       }
+      ]
+     }
+    ],
+    "linesLeft": 6.7358,
     "runs": [
      {
       "text": "Reduces pests",
@@ -1830,6 +3396,36 @@
     "align": "start",
     "lineHeightPx": 11.26,
     "fontSizePx": 8.93,
+    "lines": [
+     {
+      "left": 4.1549,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "Testate amoeba, 40x objective. Photograph: Joy Kaluf. A microbial count names"
+       }
+      ]
+     },
+     {
+      "left": 4.1549,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "what is present in the sample and their relative numbers: bacteria, fungi,"
+       }
+      ]
+     },
+     {
+      "left": 4.1549,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "protozoa, nematodes and microarthropods."
+       }
+      ]
+     }
+    ],
+    "linesLeft": 4.1549,
     "runs": [
      {
       "text": "Testate amoeba, 40x objective. Photograph:\n          Joy Kaluf. A microbial count names what is present in the sample and\n          their relative numbers: bacteria, fungi, protozoa, nematodes and\n          microarthropods.",
@@ -1854,6 +3450,27 @@
     "align": "start",
     "lineHeightPx": 13.44,
     "fontSizePx": 11.2,
+    "lines": [
+     {
+      "left": 4.1549,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "What we test before we recommend remediation"
+       }
+      ]
+     },
+     {
+      "left": 4.1549,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "plans"
+       }
+      ]
+     }
+    ],
+    "linesLeft": 4.1549,
     "runs": [
      {
       "text": "What we test before we recommend remediation plans",
@@ -1878,6 +3495,31 @@
     "align": "start",
     "lineHeightPx": 14.36,
     "fontSizePx": 10.8,
+    "lines": [
+     {
+      "left": 4.4098,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "Diagnostic first."
+       },
+       {
+        "runIdx": 1,
+        "text": " Every recommendation starts with a"
+       }
+      ]
+     },
+     {
+      "left": 4.4098,
+      "parts": [
+       {
+        "runIdx": 1,
+        "text": "biological analysis under a microscope."
+       }
+      ]
+     }
+    ],
+    "linesLeft": 4.4098,
     "runs": [
      {
       "text": "Diagnostic first.",
@@ -1912,6 +3554,31 @@
     "align": "start",
     "lineHeightPx": 14.36,
     "fontSizePx": 10.8,
+    "lines": [
+     {
+      "left": 4.4098,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "Measurable."
+       },
+       {
+        "runIdx": 1,
+        "text": " We provide a relative count of various microbes"
+       }
+      ]
+     },
+     {
+      "left": 4.4098,
+      "parts": [
+       {
+        "runIdx": 1,
+        "text": "present in your soil or compost sample."
+       }
+      ]
+     }
+    ],
+    "linesLeft": 4.4098,
     "runs": [
      {
       "text": "Measurable.",
@@ -1946,6 +3613,40 @@
     "align": "start",
     "lineHeightPx": 14.36,
     "fontSizePx": 10.8,
+    "lines": [
+     {
+      "left": 4.4098,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "Adaptation and retrofitting."
+       },
+       {
+        "runIdx": 1,
+        "text": " We help you convert your"
+       }
+      ]
+     },
+     {
+      "left": 4.4098,
+      "parts": [
+       {
+        "runIdx": 1,
+        "text": "current operations to the soil food web approach, at any"
+       }
+      ]
+     },
+     {
+      "left": 4.4098,
+      "parts": [
+       {
+        "runIdx": 1,
+        "text": "scale."
+       }
+      ]
+     }
+    ],
+    "linesLeft": 4.4098,
     "runs": [
      {
       "text": "Adaptation and retrofitting.",
@@ -1980,6 +3681,63 @@
     "align": "start",
     "lineHeightPx": 15.31,
     "fontSizePx": 11.87,
+    "lines": [
+     {
+      "left": 4.3057,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "We train people who help farmers to transition away from"
+       }
+      ]
+     },
+     {
+      "left": 4.3057,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "using chemicals, to using biology. This results in"
+       }
+      ]
+     },
+     {
+      "left": 4.3057,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "significant benefits to the farmer and to the environment,"
+       }
+      ]
+     },
+     {
+      "left": 4.3057,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "as well as to the consumer. The method has been proven"
+       }
+      ]
+     },
+     {
+      "left": 4.3057,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "effective on 6 continents and across all soil types, as"
+       }
+      ]
+     },
+     {
+      "left": 4.3057,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "evidenced by our ever-increasing case study library."
+       }
+      ]
+     }
+    ],
+    "linesLeft": 4.3057,
     "runs": [
      {
       "text": "We train people who help farmers to transition away from\n          using chemicals, to using biology. This results in significant\n          benefits to the farmer and to the environment, as well as to the\n          consumer. The method has been proven effective on 6 continents and\n          across all soil types, as evidenced by our ever-increasing case study\n          library.",
@@ -2004,6 +3762,18 @@
     "align": "start",
     "lineHeightPx": 11.78,
     "fontSizePx": 8.53,
+    "lines": [
+     {
+      "left": 7.9049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "Practice"
+       }
+      ]
+     }
+    ],
+    "linesLeft": 7.9049,
     "runs": [
      {
       "text": "Practice",
@@ -2028,6 +3798,45 @@
     "align": "start",
     "lineHeightPx": 19.6,
     "fontSizePx": 18.67,
+    "lines": [
+     {
+      "left": 7.9049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "Growers are already"
+       }
+      ]
+     },
+     {
+      "left": 7.9049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "implementing the soil"
+       }
+      ]
+     },
+     {
+      "left": 7.9049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "food web approach,"
+       }
+      ]
+     },
+     {
+      "left": 7.9049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "at every scale."
+       }
+      ]
+     }
+    ],
+    "linesLeft": 7.9049,
     "runs": [
      {
       "text": "Growers are already implementing the soil food web approach, at every scale.",
@@ -2052,6 +3861,18 @@
     "align": "start",
     "lineHeightPx": 11.26,
     "fontSizePx": 8.93,
+    "lines": [
+     {
+      "left": 7.9049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "Agroecology plots at Rancho Cacachilas."
+       }
+      ]
+     }
+    ],
+    "linesLeft": 7.9049,
     "runs": [
      {
       "text": "Agroecology plots at Rancho Cacachilas.",
@@ -2076,6 +3897,63 @@
     "align": "start",
     "lineHeightPx": 16.99,
     "fontSizePx": 13.07,
+    "lines": [
+     {
+      "left": 7.9049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "The basic methodology is universal; the application"
+       }
+      ]
+     },
+     {
+      "left": 7.9049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "is based upon locally-sourced materials. Our case"
+       }
+      ]
+     },
+     {
+      "left": 7.9049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "studies and field trials demonstrate the efficacy"
+       }
+      ]
+     },
+     {
+      "left": 7.9049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "across a range of soil types at every scale from"
+       }
+      ]
+     },
+     {
+      "left": 7.9049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "market gardens to massive industrial farming"
+       }
+      ]
+     },
+     {
+      "left": 7.9049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "operations."
+       }
+      ]
+     }
+    ],
+    "linesLeft": 7.9049,
     "runs": [
      {
       "text": "The basic methodology is universal; the application is\n        based upon locally-sourced materials. Our case studies and field trials\n        demonstrate the efficacy across a range of soil types at every scale\n        from market gardens to massive industrial farming operations.",
@@ -2100,6 +3978,72 @@
     "align": "start",
     "lineHeightPx": 15.46,
     "fontSizePx": 11.2,
+    "lines": [
+     {
+      "left": 7.9049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "Nick Padwick farms four thousand acres in Norfolk,"
+       }
+      ]
+     },
+     {
+      "left": 7.9049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "England. Roberto Silva works a hundred and forty in Piura,"
+       }
+      ]
+     },
+     {
+      "left": 7.9049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "Peru. Jenn Sirp grows on a quarter acre in California. Check"
+       }
+      ]
+     },
+     {
+      "left": 7.9049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "out their individual accounts of how the soil food web"
+       }
+      ]
+     },
+     {
+      "left": 7.9049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "approach changed their operations through reducing"
+       }
+      ]
+     },
+     {
+      "left": 7.9049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "inputs, creating better outputs and improving their bottom"
+       }
+      ]
+     },
+     {
+      "left": 7.9049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "lines."
+       }
+      ]
+     }
+    ],
+    "linesLeft": 7.9049,
     "runs": [
      {
       "text": "Nick Padwick farms four thousand acres in Norfolk, England. Roberto\n        Silva works a hundred and forty in Piura, Peru. Jenn Sirp grows on a\n        quarter acre in California. Check out their individual accounts of how\n        the soil food web approach changed their operations through reducing\n        inputs, creating better outputs and improving their bottom lines.",
@@ -2124,6 +4068,63 @@
     "align": "start",
     "lineHeightPx": 15.46,
     "fontSizePx": 11.2,
+    "lines": [
+     {
+      "left": 7.9049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "Though the projects run from backyard gardens to"
+       }
+      ]
+     },
+     {
+      "left": 7.9049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "expansive public parks, the same process is applicable. The"
+       }
+      ]
+     },
+     {
+      "left": 7.9049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "steps are the same at every scale: look at the biology under"
+       }
+      ]
+     },
+     {
+      "left": 7.9049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "a microscope, add what is missing to rebalance the"
+       }
+      ]
+     },
+     {
+      "left": 7.9049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "microbial content, then measure again to confirm microbial"
+       }
+      ]
+     },
+     {
+      "left": 7.9049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "counts are going in the expected directions."
+       }
+      ]
+     }
+    ],
+    "linesLeft": 7.9049,
     "runs": [
      {
       "text": "Though the projects run from backyard gardens to expansive public\n        parks, the same process is applicable. The steps are the same at every\n        scale: look at the biology under a microscope, add what is missing to\n        rebalance the microbial content, then measure again to confirm microbial\n        counts are going in the expected directions.",
@@ -2148,6 +4149,45 @@
     "align": "start",
     "lineHeightPx": 15.46,
     "fontSizePx": 11.2,
+    "lines": [
+     {
+      "left": 7.9049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "We partner with growers to teach them microscopy and"
+       }
+      ]
+     },
+     {
+      "left": 7.9049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "biological compost creation and application so they can"
+       }
+      ]
+     },
+     {
+      "left": 7.9049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "implement the approach where they farm, and document"
+       }
+      ]
+     },
+     {
+      "left": 7.9049,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "the impacts."
+       }
+      ]
+     }
+    ],
+    "linesLeft": 7.9049,
     "runs": [
      {
       "text": "We partner with growers to teach them microscopy and biological\n        compost creation and application so they can implement the approach\n        where they farm, and document the impacts.",
@@ -2172,6 +4212,18 @@
     "align": "start",
     "lineHeightPx": 13.92,
     "fontSizePx": 12,
+    "lines": [
+     {
+      "left": 9.1748,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "Watch the case studies"
+       }
+      ]
+     }
+    ],
+    "linesLeft": 9.1748,
     "runs": [
      {
       "text": "Watch the case studies",
@@ -2196,6 +4248,36 @@
     "align": "start",
     "lineHeightPx": 12.63,
     "fontSizePx": 9.87,
+    "lines": [
+     {
+      "left": 9.1748,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "Growers filming their own soil, crop by"
+       }
+      ]
+     },
+     {
+      "left": 9.1748,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "crop and climate by climate. Start with"
+       }
+      ]
+     },
+     {
+      "left": 9.1748,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "one that looks like yours."
+       }
+      ]
+     }
+    ],
+    "linesLeft": 9.1748,
     "runs": [
      {
       "text": "Growers filming their own soil, crop by crop and\n            climate by climate. Start with one that looks like yours.",
@@ -2220,6 +4302,18 @@
     "align": "start",
     "lineHeightPx": 12.88,
     "fontSizePx": 9.33,
+    "lines": [
+     {
+      "left": 9.1748,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "sfw.one/brochure-casestudies"
+       }
+      ]
+     }
+    ],
+    "linesLeft": 9.1748,
     "runs": [
      {
       "text": "sfw.one/brochure-casestudies",

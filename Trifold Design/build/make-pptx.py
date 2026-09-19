@@ -24,8 +24,11 @@ SRC = ROOT / "pptx"
 OUT = ROOT / "pptx" / "SFW-brochure-2026-EDITABLE.pptx"
 
 PX_TO_PT = 0.75          # CSS px at 96 dpi -> points
+# Baked line breaks mean each line is its own paragraph, so a justified
+# paragraph would stretch every line to the full box width. Left is what the
+# browser's last line of a justified block already looks like.
 ALIGN = {"start": PP_ALIGN.LEFT, "left": PP_ALIGN.LEFT, "center": PP_ALIGN.CENTER,
-         "right": PP_ALIGN.RIGHT, "end": PP_ALIGN.RIGHT, "justify": PP_ALIGN.JUSTIFY}
+         "right": PP_ALIGN.RIGHT, "end": PP_ALIGN.RIGHT, "justify": PP_ALIGN.LEFT}
 
 # PowerPoint hangs the first line from the top of the box by its line height,
 # where CSS centres the glyphs in the line box. Shifting each box up by the
@@ -68,11 +71,20 @@ def collapse(text):
 
 
 def add_block(slide, b):
+    lines = b.get("lines") or []
+    left_aligned = b["align"] in ("start", "left", "justify")
+    # Left-aligned text starts where the browser actually drew it, which is not
+    # the element's edge when a heading sits beside an icon. Centred and
+    # right-aligned text keeps the element box so it stays centred in it.
+    x = lines[0]["left"] if (lines and left_aligned) else b["x"]
+    w = max(b["x"] + b["w"] - x, 0.2)
+
     box = slide.shapes.add_textbox(
-        Inches(b["x"]), Inches(b["y"]), Inches(b["w"]), Inches(b["h"] + 0.35)
+        Inches(x), Inches(b["y"]), Inches(w), Inches(b["h"] + 0.35)
     )
     tf = box.text_frame
-    tf.word_wrap = True
+    # Every line break is the browser's own, so nothing may re-wrap here.
+    tf.word_wrap = False
     tf.margin_left = tf.margin_right = tf.margin_top = tf.margin_bottom = 0
     tf.vertical_anchor = MSO_ANCHOR.TOP
     # Leave autofit off so Canva keeps the size we set rather than reflowing.
@@ -82,20 +94,7 @@ def add_block(slide, b):
         if el is not None:
             bodyPr.remove(el)
 
-    line_pt = b["lineHeightPx"] * PX_TO_PT
-    paras = [tf.paragraphs[0]]
-
-    for r in b["runs"]:
-        if r.get("br"):
-            paras.append(tf.add_paragraph())
-            continue
-        text = collapse(r["text"])
-        if not text:
-            continue
-        if r.get("transform") == "uppercase":
-            text = text.upper()
-        run = paras[-1].add_run()
-        run.text = text
+    def style(run, r):
         f = run.font
         f.name = r["family"]
         f.size = Pt(r["size"] * PX_TO_PT)
@@ -106,19 +105,31 @@ def add_block(slide, b):
         set_alpha(run, alpha)
         set_spacing(run, r.get("spacing", 0))
 
-    for p in paras:
-        p.alignment = ALIGN.get(b["align"], PP_ALIGN.LEFT)
-        p.line_spacing = Pt(line_pt)
-        p.space_before = Pt(0)
-        p.space_after = Pt(0)
+    text_runs = [r for r in b["runs"] if not r.get("br")]
+    paras = []
+    for i, ln in enumerate(lines):
+        para = tf.paragraphs[0] if i == 0 else tf.add_paragraph()
+        paras.append(para)
+        for part in ln["parts"]:
+            r = text_runs[part["runIdx"]] if part["runIdx"] < len(text_runs) else text_runs[0]
+            text = part["text"]
+            if r.get("transform") == "uppercase":
+                text = text.upper()
+            if not text:
+                continue
+            run = para.add_run()
+            run.text = text
+            style(run, r)
+
+    for para in paras:
+        para.alignment = ALIGN.get(b["align"], PP_ALIGN.LEFT)
+        para.line_spacing = Pt(b["lineHeightPx"] * PX_TO_PT)
+        para.space_before = Pt(0)
+        para.space_after = Pt(0)
 
     if HALF_LEADING:
         lead_in = (b["lineHeightPx"] - b["fontSizePx"]) / 2 / 96
         box.top = Emu(int(round((b["y"] - lead_in) * 914400)))
-
-    # Strip the empty leading paragraph a <br>-first block would leave behind.
-    if not paras[0].runs and len(paras) > 1:
-        paras[0]._p.getparent().remove(paras[0]._p)
     return box
 
 
