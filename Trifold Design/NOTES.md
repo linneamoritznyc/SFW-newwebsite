@@ -800,3 +800,33 @@ not read. Run both after any change to a link, a colour, or the size of `.qr img
   for its preset amounts waiting on program costs. Worth deciding whether a print piece should carry one.
 - Panel 1 is the only panel carrying the wordmark. On a folded piece the cover is the outward face, so
   that is correct, but confirm it against how the piece will actually be stacked and displayed.
+
+## 19 Sep - fonts embedded as real TrueType, not Type 3
+
+Linnea: text in the Canva import "very hard to read", and the letter-spaced
+labels had shattered (STU D Y, RE SE ARCH).
+
+Cause: trifold.css loaded Montserrat as a *variable* font. Chromium writes a
+variable font into PDF as Type 3 glyph procedures, which are drawing
+instructions rather than text. Canva cannot map Type 3 to a face, so on import
+it approximated the headings and broke the tracked labels apart. Source Sans
+was fine (real CID TrueType) but its Fontsource name table says
+"SourceSans3ExtraLight" even though usWeightClass is 400/600, so Canva showed a
+misleading weight in its font picker.
+
+Fix:
+  - fonts/montserrat-latin-{600,700}-normal.woff2 generated from the variable
+    font with fontTools varLib.instancer, name table rewritten to plain
+    Montserrat SemiBold / Bold.
+  - Source Sans name tables corrected to Source Sans 3 Regular/Italic/SemiBold.
+    Name table only; outlines and metrics untouched.
+  - trifold.css @font-face now points at the two static Montserrat files.
+
+Verified: every font in both alternates and in the press file is now CID
+TrueType with a correct name, no Type 3 anywhere. The 300 DPI PNG renders are
+BYTE-IDENTICAL before and after, so the printed piece is provably unchanged.
+All 5 QR codes still decode.
+
+Also confirmed for the record: the QR codes are coloured on purpose in
+build/qr/*.svg (scholarship #3780b8, community #22371f, donate #c9a227,
+webinar #6b4c7a, case-studies #156826). Canva did not recolour them.

@@ -103,7 +103,13 @@
    Rules copied from css/site.css section 2, paths rewritten for this depth.
    The site's third family is deliberately not loaded here: see --display and
    --sans above. */
-@font-face { font-family: "Montserrat";    font-style: normal; font-weight: 600 700; src: url("/fonts/montserrat-latin-variable.woff2") format("woff2-variations"); }
+/* Static instances, not the variable font. Chromium writes a variable font
+   into PDF as Type 3 glyph procedures, which is not real text: Canva cannot
+   map it to a face, so imported headings lose their weight and letter-spaced
+   labels shatter. Static TrueType embeds as CID TrueType and survives.
+   Regenerate with fontTools varLib.instancer if Montserrat is ever updated. */
+@font-face { font-family: "Montserrat";    font-style: normal; font-weight: 600; src: url("/fonts/montserrat-latin-600-normal.woff2") format("woff2"); }
+@font-face { font-family: "Montserrat";    font-style: normal; font-weight: 700; src: url("/fonts/montserrat-latin-700-normal.woff2") format("woff2"); }
 @font-face { font-family: "Source Sans 3"; font-style: normal; font-weight: 400; src: url("/fonts/source-sans-3-latin-400-normal.woff2") format("woff2"); }
 @font-face { font-family: "Source Sans 3"; font-style: italic; font-weight: 400; src: url("/fonts/source-sans-3-latin-400-italic.woff2") format("woff2"); }
 @font-face { font-family: "Source Sans 3"; font-style: normal; font-weight: 600; src: url("/fonts/source-sans-3-latin-600-normal.woff2") format("woff2"); }
