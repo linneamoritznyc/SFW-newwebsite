@@ -32,6 +32,7 @@ PX_TO_PT = 0.75          # CSS px at 96 dpi -> points
 # moved in by the same 0.125in. Bleed is no use in Canva anyway; it matters
 # only to the press file.
 BLEED = 0.125
+SLACK = 0.09
 TRIM_W, TRIM_H = 11.0, 8.5
 # Baked line breaks mean each line is its own paragraph, so a justified
 # paragraph would stretch every line to the full box width. Left is what the
@@ -86,7 +87,11 @@ def add_block(slide, b):
     # the element's edge when a heading sits beside an icon. Centred and
     # right-aligned text keeps the element box so it stays centred in it.
     x = lines[0]["left"] if (lines and left_aligned) else b["x"]
-    w = max(b["x"] + b["w"] - x, 0.2)
+    # Canva ignores wrap="none" and re-wraps to the box width, so each box has
+    # to be at least as wide as its widest measured line. SLACK covers the
+    # difference between the browser's text metrics and another engine's.
+    line_w = max((ln["right"] for ln in lines), default=b["x"] + b["w"]) - x
+    w = max(line_w + SLACK, b["x"] + b["w"] - x if not lines else 0.2, 0.2)
     x -= BLEED
     y = b["y"] - BLEED
 

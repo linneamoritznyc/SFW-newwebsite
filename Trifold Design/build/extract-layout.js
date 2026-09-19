@@ -166,10 +166,11 @@ const EXTRACT = () => {
               }
               const top = Math.round(rect.top * 10) / 10;
               if (!cur || Math.abs(top - cur.top) > 1) {
-                cur = { top, left: rect.left, parts: [] };
+                cur = { top, left: rect.left, right: rect.right, parts: [] };
                 lineRuns.push(cur);
               }
               cur.left = Math.min(cur.left, rect.left);
+              cur.right = Math.max(cur.right, rect.right);
               const last = cur.parts[cur.parts.length - 1];
               if (last && last.runIdx === runIdx) last.text += t[i];
               else cur.parts.push({ runIdx, text: t[i] });
@@ -197,7 +198,7 @@ const EXTRACT = () => {
     }
     const lines = lineRuns
       .filter((l) => l.parts.length)
-      .map((l) => ({ left: inX(l.left), parts: l.parts }));
+      .map((l) => ({ left: inX(l.left), right: inX(l.right), parts: l.parts }));
     if (!lines.length) return;
 
     const lh = cs.lineHeight === 'normal'
