@@ -9,8 +9,11 @@
      Everything below this block is the fixed template.
 
      title     the post title, exactly as it appears on the post
-     category  Blog, Case study, Foundation news, Community activity,
-               Worldwide news. Set it to "" to hide the label.
+     category  one of the labels the blog already uses: Blog, Events,
+               Features, Foundation Update, Microscopy, School Updates,
+               Science & Education. Set it to "" to hide the label.
+     author    the byline, for example "Wes Sander". The template adds the
+               word By. Set it to "" to leave the byline off.
      image     path to the photo, relative to this file
      focus     which part of the photo to keep. The band covers the bottom
                of the frame, so "50% 40%" often holds the subject better
@@ -20,6 +23,7 @@
 const HEADER = {
   title:    "Ciliates and Soil Health: What We Saw Under the Microscope",
   category: "Blog",
+  author:   "Wes Sander",
   image:    "../img/uploads/testate-amoeba-40x.jpg",
   focus:    "50% 45%"
 };
@@ -68,7 +72,7 @@ html, body { margin: 0; padding: 0; background: #555; }
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 216px;
+  bottom: 250px;
   height: 120px;
   background: linear-gradient(180deg, rgba(21,104,38,0), rgba(21,104,38,.34));
 }
@@ -77,7 +81,7 @@ html, body { margin: 0; padding: 0; background: #555; }
   left: 0;
   right: 0;
   bottom: 0;
-  height: 216px;
+  height: 250px;
   background: var(--green);
   border-top: 4px solid var(--glow);
   padding: 30px 64px;
@@ -105,8 +109,17 @@ html, body { margin: 0; padding: 0; background: #555; }
   letter-spacing: -.005em;
   color: var(--white);
   margin: 0;
+  max-height: 122px;
   overflow: hidden;
 }
+.band__by {
+  font-family: var(--sans);
+  font-size: 15px;
+  letter-spacing: .01em;
+  color: rgba(255,255,255,.80);
+  margin: 14px 0 0;
+}
+.band__by:empty { display: none; }
 .band__foot {
   flex: 0 0 auto;
   text-align: right;
@@ -144,6 +157,7 @@ html, body { margin: 0; padding: 0; background: #555; }
     <div class="band__text">
       <p class="band__cat" id="cat"></p>
       <h1 class="band__title" id="title"></h1>
+      <p class="band__by" id="by"></p>
     </div>
     <div class="band__foot">
       <span class="wordmark__name">Soil Food Web Foundation</span>
@@ -159,7 +173,7 @@ html, body { margin: 0; padding: 0; background: #555; }
 (function () {
   var p = new URLSearchParams(location.search);
   var c = Object.assign({}, HEADER);
-  ['title', 'category', 'image', 'focus'].forEach(function (k) {
+  ['title', 'category', 'author', 'image', 'focus'].forEach(function (k) {
     if (p.has(k)) c[k] = p.get(k);
   });
 
@@ -167,17 +181,26 @@ html, body { margin: 0; padding: 0; background: #555; }
   document.getElementById('photo').style.objectPosition = c.focus;
   document.getElementById('cat').textContent = c.category || '';
   document.getElementById('title').textContent = c.title;
+  document.getElementById('by').textContent = c.author ? 'By ' + c.author : '';
 
-  /* The band is a fixed height, so long titles shrink to fit rather than
-     growing the band. Two lines at 40px is the ceiling, 26px the floor. */
+  /* A long title steps down a point at a time until it fits the space
+     it has. The blog runs titles of well over a hundred characters, so
+     this is not a rare path.
+
+     It has to wait for the font. Montserrat is wider than the Arial
+     fallback, so a title measured before the font arrives is fitted to
+     the wrong metrics and overflows the moment Montserrat swaps in. */
   var t = document.getElementById('title');
-  var lines = 2, size = 40, min = 26;
-  t.style.maxHeight = Math.ceil(size * 1.14 * lines) + 'px';
-  while (size > min && t.scrollHeight > t.clientHeight + 1) {
-    size -= 1;
-    t.style.fontSize = size + 'px';
+  var size = 40, min = 20;
+  function fit() {
+    while (size > min && t.scrollHeight > t.clientHeight + 1) {
+      size -= 1;
+      t.style.fontSize = size + 'px';
+    }
+    document.documentElement.setAttribute('data-ready', '1');
   }
-  document.documentElement.setAttribute('data-ready', '1');
+  if (document.fonts && document.fonts.ready) { document.fonts.ready.then(fit); }
+  else { fit(); }
 }());
 </script>
 </body>

@@ -9,8 +9,11 @@
      Everything below this block is the fixed template.
 
      title     the post title, exactly as it appears on the post
-     category  Blog, Case study, Foundation news, Community activity,
-               Worldwide news. Set it to "" to hide the label.
+     category  one of the labels the blog already uses: Blog, Events,
+               Features, Foundation Update, Microscopy, School Updates,
+               Science & Education. Set it to "" to hide the label.
+     author    the byline, for example "Wes Sander". The template adds the
+               word By. Set it to "" to leave the byline off.
      image     path to the photo, relative to this file
      focus     which part of the photo lands inside the circle.
                "50% 50%" is the middle. A face usually wants "50% 35%".
@@ -19,6 +22,7 @@
 const HEADER = {
   title:    "Ciliates and Soil Health: What We Saw Under the Microscope",
   category: "Blog",
+  author:   "Wes Sander",
   image:    "../img/uploads/testate-amoeba-40x.jpg",
   focus:    "50% 50%"
 };
@@ -118,8 +122,17 @@ html, body { margin: 0; padding: 0; background: #555; }
   letter-spacing: -.005em;
   color: var(--white);
   margin: 0;
+  max-height: 370px;
   overflow: hidden;
 }
+.copy__by {
+  font-family: var(--sans);
+  font-size: 15px;
+  letter-spacing: .01em;
+  color: rgba(255,255,255,.78);
+  margin: 16px 0 0;
+}
+.copy__by:empty { display: none; }
 .copy__foot {
   margin-top: auto;
   padding-top: 24px;
@@ -156,6 +169,7 @@ html, body { margin: 0; padding: 0; background: #555; }
   <div class="copy">
     <p class="copy__cat" id="cat"></p>
     <h1 class="copy__title" id="title"></h1>
+    <p class="copy__by" id="by"></p>
     <div class="copy__foot">
       <span class="wordmark__name">Soil Food Web Foundation</span>
       <span class="wordmark__status">A 501(c)(3) nonprofit</span>
@@ -170,7 +184,7 @@ html, body { margin: 0; padding: 0; background: #555; }
 (function () {
   var p = new URLSearchParams(location.search);
   var c = Object.assign({}, HEADER);
-  ['title', 'category', 'image', 'focus'].forEach(function (k) {
+  ['title', 'category', 'author', 'image', 'focus'].forEach(function (k) {
     if (p.has(k)) c[k] = p.get(k);
   });
 
@@ -178,17 +192,26 @@ html, body { margin: 0; padding: 0; background: #555; }
   document.getElementById('photo').style.objectPosition = c.focus;
   document.getElementById('cat').textContent = c.category || '';
   document.getElementById('title').textContent = c.title;
+  document.getElementById('by').textContent = c.author ? 'By ' + c.author : '';
 
-  /* Long titles shrink to fit rather than running under the wordmark.
-     Five lines at 42px is the ceiling, 28px the floor. */
+  /* A long title steps down a point at a time until it fits the space
+     it has. The blog runs titles of well over a hundred characters, so
+     this is not a rare path.
+
+     It has to wait for the font. Montserrat is wider than the Arial
+     fallback, so a title measured before the font arrives is fitted to
+     the wrong metrics and overflows the moment Montserrat swaps in. */
   var t = document.getElementById('title');
-  var lines = 5, size = 42, min = 28;
-  t.style.maxHeight = Math.ceil(size * 1.14 * lines) + 'px';
-  while (size > min && t.scrollHeight > t.clientHeight + 1) {
-    size -= 1;
-    t.style.fontSize = size + 'px';
+  var size = 42, min = 25;
+  function fit() {
+    while (size > min && t.scrollHeight > t.clientHeight + 1) {
+      size -= 1;
+      t.style.fontSize = size + 'px';
+    }
+    document.documentElement.setAttribute('data-ready', '1');
   }
-  document.documentElement.setAttribute('data-ready', '1');
+  if (document.fonts && document.fonts.ready) { document.fonts.ready.then(fit); }
+  else { fit(); }
 }());
 </script>
 </body>

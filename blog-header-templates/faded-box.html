@@ -9,8 +9,11 @@
      Everything below this block is the fixed template.
 
      title     the post title, exactly as it appears on the post
-     category  Blog, Case study, Foundation news, Community activity,
-               Worldwide news. Set it to "" to hide the label.
+     category  one of the labels the blog already uses: Blog, Events,
+               Features, Foundation Update, Microscopy, School Updates,
+               Science & Education. Set it to "" to hide the label.
+     author    the byline, for example "Wes Sander". The template adds the
+               word By. Set it to "" to leave the byline off.
      image     path to the photo, relative to this file
      focus     which part of the photo to keep when it is cropped to
                1200x630. "50% 50%" is the middle. Use "50% 30%" to hold
@@ -20,6 +23,7 @@
 const HEADER = {
   title:    "Ciliates and Soil Health: What We Saw Under the Microscope",
   category: "Blog",
+  author:   "Wes Sander",
   image:    "../img/uploads/testate-amoeba-40x.jpg",
   focus:    "50% 50%"
 };
@@ -105,8 +109,17 @@ html, body { margin: 0; padding: 0; background: #555; }
   letter-spacing: -.005em;
   color: var(--soil);
   margin: 0;
+  max-height: 250px;
   overflow: hidden;
 }
+.box__by {
+  font-family: var(--sans);
+  font-size: 16px;
+  letter-spacing: .01em;
+  color: var(--ink-faint);
+  margin: 18px 0 0;
+}
+.box__by:empty { display: none; }
 .box__foot {
   display: flex;
   align-items: center;
@@ -125,6 +138,7 @@ html, body { margin: 0; padding: 0; background: #555; }
   <div class="box">
     <p class="box__cat" id="cat"></p>
     <h1 class="box__title" id="title"></h1>
+    <p class="box__by" id="by"></p>
     <div class="box__foot">
       <img class="box__logo" src="../img/sfwlogo-240.png" alt="Soil Food Web Foundation">
     </div>
@@ -138,7 +152,7 @@ html, body { margin: 0; padding: 0; background: #555; }
 (function () {
   var p = new URLSearchParams(location.search);
   var c = Object.assign({}, HEADER);
-  ['title', 'category', 'image', 'focus'].forEach(function (k) {
+  ['title', 'category', 'author', 'image', 'focus'].forEach(function (k) {
     if (p.has(k)) c[k] = p.get(k);
   });
 
@@ -146,17 +160,26 @@ html, body { margin: 0; padding: 0; background: #555; }
   document.getElementById('photo').style.objectPosition = c.focus;
   document.getElementById('cat').textContent = c.category || '';
   document.getElementById('title').textContent = c.title;
+  document.getElementById('by').textContent = c.author ? 'By ' + c.author : '';
 
-  /* Long titles shrink to fit rather than spilling out of the box.
-     Four lines at 46px is the ceiling, 30px is the floor. */
+  /* A long title steps down a point at a time until it fits the space
+     it has. The blog runs titles of well over a hundred characters, so
+     this is not a rare path.
+
+     It has to wait for the font. Montserrat is wider than the Arial
+     fallback, so a title measured before the font arrives is fitted to
+     the wrong metrics and overflows the moment Montserrat swaps in. */
   var t = document.getElementById('title');
-  var lines = 4, size = 46, min = 30;
-  t.style.maxHeight = Math.ceil(size * 1.12 * lines) + 'px';
-  while (size > min && t.scrollHeight > t.clientHeight + 1) {
-    size -= 1;
-    t.style.fontSize = size + 'px';
+  var size = 46, min = 26;
+  function fit() {
+    while (size > min && t.scrollHeight > t.clientHeight + 1) {
+      size -= 1;
+      t.style.fontSize = size + 'px';
+    }
+    document.documentElement.setAttribute('data-ready', '1');
   }
-  document.documentElement.setAttribute('data-ready', '1');
+  if (document.fonts && document.fonts.ready) { document.fonts.ready.then(fit); }
+  else { fit(); }
 }());
 </script>
 </body>

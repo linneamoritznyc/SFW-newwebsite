@@ -22,29 +22,45 @@ const OUT = path.join(__dirname, 'previews');
 
 const TEMPLATES = ['faded-box', 'side-panel', 'bottom-band', 'microscope-circle'];
 
-/* The three examples posted to the team. The photos are stand-ins from the
-   repository, not the photographs these posts will actually carry. */
+/* The examples posted to the team. Categories are the labels the blog
+   already uses. The photographs are stand-ins from the repository, not the
+   photographs these posts will carry.
+
+   The fourth one is a real headline lifted off the live blog, at 147
+   characters. It is here to prove the templates survive a title that long,
+   because the blog runs them. */
 const EXAMPLES = [
   {
     slug: 'ciliates',
     title: 'Ciliates and Soil Health: What We Saw Under the Microscope',
-    category: 'Blog',
-    image: '../img/uploads/testate-amoeba-40x.jpg',
+    category: 'Microscopy',
+    author: 'Wes Sander',
+    image: '../img/w/sfw-amoeba-still-wide.jpg',
     focus: '50% 50%'
   },
   {
     slug: 'watermelon',
     title: 'Case Study: Regenerating a Watermelon Farm',
-    category: 'Case study',
+    category: 'Science & Education',
+    author: 'Wes Sander',
     image: '../img/w/erc-rancho-cacachilas-agro.jpg',
     focus: '50% 55%'
   },
   {
     slug: 'scholarships',
     title: 'Scholarship Opportunities for 2026',
-    category: 'Foundation news',
-    image: '../img/w/ctpfw-student-squeezing-compost-1.jpg',
-    focus: '50% 45%'
+    category: 'Foundation Update',
+    author: '',
+    image: '../img/w/ctpfw-student-moving-compost-1.jpg',
+    focus: '50% 40%'
+  },
+  {
+    slug: 'long-title',
+    title: 'How A Rare Microscope Sighting Helps Deduce The Problem With Unhealthy Soil: Ciliates, Cysts, And The Clues Hiding In A Struggling Watermelon Crop',
+    category: 'Microscopy',
+    author: 'Wes Sander',
+    image: '../img/w/hand-of-compost.jpg',
+    focus: '50% 50%'
   }
 ];
 
@@ -84,7 +100,8 @@ function serve() {
   for (const template of TEMPLATES) {
     for (const ex of EXAMPLES) {
       const q = new URLSearchParams({
-        title: ex.title, category: ex.category, image: ex.image, focus: ex.focus
+        title: ex.title, category: ex.category, author: ex.author,
+        image: ex.image, focus: ex.focus
       });
       const url = `http://127.0.0.1:${port}/blog-header-templates/${template}.html?${q}`;
       await page.goto(url, { waitUntil: 'networkidle' });
