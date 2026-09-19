@@ -24,6 +24,15 @@ SRC = ROOT / "pptx"
 OUT = ROOT / "pptx" / "SFW-brochure-2026-EDITABLE.pptx"
 
 PX_TO_PT = 0.75          # CSS px at 96 dpi -> points
+
+# The artwork is 11.25 x 8.75in: the 11 x 8.5in trim plus 0.125in of bleed all
+# round. Canva resizes any slide that is not a size it recognises, and scaling
+# the shapes without scaling the type re-wraps every box. So the deck is built
+# at trim size, with the bleed cropped off the background and every coordinate
+# moved in by the same 0.125in. Bleed is no use in Canva anyway; it matters
+# only to the press file.
+BLEED = 0.125
+TRIM_W, TRIM_H = 11.0, 8.5
 # Baked line breaks mean each line is its own paragraph, so a justified
 # paragraph would stretch every line to the full box width. Left is what the
 # browser's last line of a justified block already looks like.
@@ -78,9 +87,11 @@ def add_block(slide, b):
     # right-aligned text keeps the element box so it stays centred in it.
     x = lines[0]["left"] if (lines and left_aligned) else b["x"]
     w = max(b["x"] + b["w"] - x, 0.2)
+    x -= BLEED
+    y = b["y"] - BLEED
 
     box = slide.shapes.add_textbox(
-        Inches(x), Inches(b["y"]), Inches(w), Inches(b["h"] + 0.35)
+        Inches(x), Inches(y), Inches(w), Inches(b["h"] + 0.35)
     )
     tf = box.text_frame
     # Every line break is the browser's own, so nothing may re-wrap here.
@@ -129,16 +140,28 @@ def add_block(slide, b):
 
     if HALF_LEADING:
         lead_in = (b["lineHeightPx"] - b["fontSizePx"]) / 2 / 96
-        box.top = Emu(int(round((b["y"] - lead_in) * 914400)))
+        box.top = Emu(int(round((y - lead_in) * 914400)))
     return box
+
+
+def crop_to_trim(png):
+    """Cut the 0.125in bleed off a background render, once, beside the source."""
+    from PIL import Image
+
+    out = png.with_name(png.stem + "-trim.png")
+    im = Image.open(png)
+    dpi = im.width / (TRIM_W + 2 * BLEED)
+    m = int(round(BLEED * dpi))
+    im.crop((m, m, im.width - m, im.height - m)).save(out)
+    return out
 
 
 def main():
     layout = json.loads((SRC / "layout.json").read_text())
 
     prs = Presentation()
-    prs.slide_width = Inches(11.25)
-    prs.slide_height = Inches(8.75)
+    prs.slide_width = Inches(TRIM_W)
+    prs.slide_height = Inches(TRIM_H)
     blank = prs.slide_layouts[6]
 
     total = 0
@@ -146,7 +169,7 @@ def main():
         data = layout[name]
         slide = prs.slides.add_slide(blank)
         slide.shapes.add_picture(
-            str(SRC / f"bg-{name}.png"), 0, 0,
+            str(crop_to_trim(SRC / f"bg-{name}.png")), 0, 0,
             width=prs.slide_width, height=prs.slide_height,
         )
         for b in data["blocks"]:
