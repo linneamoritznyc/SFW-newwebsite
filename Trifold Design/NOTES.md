@@ -830,3 +830,54 @@ All 5 QR codes still decode.
 Also confirmed for the record: the QR codes are coloured on purpose in
 build/qr/*.svg (scholarship #3780b8, community #22371f, donate #c9a227,
 webinar #6b4c7a, case-studies #156826). Canva did not recolour them.
+
+## 19 Sep - editable PowerPoint for Canva
+
+Linnea, on the PDF import: "the new canva is still a bit of a mess", and asked
+for the best way to move from the repo to Canva without things moving around.
+
+There is no setting. A PDF holds glyphs at coordinates, not text boxes, so
+Canva's importer clusters nearby glyphs and guesses. On this layout it guessed
+wrong: letter-spaced words lost their spaces (Countriesinourstudentand) and
+blocks reordered. Canva's own help says imported layouts may shift or flatten.
+A PPTX holds real text boxes, so nothing is guessed. Canva's import docs say
+text boxes, images and layouts stay editable.
+
+Build: extract-layout.js -> layout.json + text-free background renders, then
+make-pptx.py -> pptx/SFW-brochure-2026-EDITABLE.pptx. See pptx/README.md.
+
+Five things had to be got right, each found by rendering the deck back out and
+comparing it against the print artwork panel by panel. None were guessable:
+
+1. h1/h2 carry text-wrap: balance. Nothing else reproduces it, so the cover
+   headline came in as two lines instead of three. Every block now carries the
+   browser's own line breaks, measured per character with Range rects, with
+   each line's runs kept separate so bold and coloured spans survive.
+
+2. The climate box lost its whole paragraph. It is
+   <p class="pull"><b>heading</b>body</p> and .pull b is display: flex, so the
+   walker descended into the block-level child and dropped the element's own
+   text. It now emits each run of non-block siblings as well.
+
+3. Text after a <b> lead-in inherited the bold run, so whole list items came
+   out bold. Text directly in an element now takes that element's run.
+
+4. Canva resizes a slide it does not recognise. At 11.25 x 8.75in it scaled the
+   shapes to 11 x 8.5in without scaling the type, and everything re-wrapped.
+   The deck is built at trim size, bleed cropped off the background.
+
+5. Canva ignores wrap="none" and re-wraps to the box width. Baked line breaks
+   alone were not enough: each box is now sized to its widest measured line
+   plus 0.09in of slack.
+
+Verified in Canva, not just locally: text reads back complete and correctly
+spaced, no collisions, headings on one line, masthead on two.
+
+Known trade-off: because each line is its own paragraph, edited text does not
+re-flow. Whoever edits a line in Canva fixes that line's break by hand. Kept
+deliberately - a box that re-wraps on another engine's metrics lands on top of
+whatever sits under it, which is the failure mode we started from.
+
+The deck is a comp, not a press file. No bleed, no trim boxes, no CMYK, no
+PDF/X, artwork flattened to RGB raster. Printing goes from
+SEND-TO-PRINTER/SFW-brochure-2026-print-ready.pdf, always.
