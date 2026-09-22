@@ -40,6 +40,7 @@ FILES = {
     "sfw-brochure-qr-scholarship.png":   ROOT / "exports/qr/sfw-brochure-qr-scholarship.png",
     "sfw-brochure-qr-casestudies.png":   ROOT / "exports/qr/sfw-brochure-qr-casestudies.png",
     "sfw-brochure-qr-community.png":     ROOT / "exports/qr/sfw-brochure-qr-community.png",
+    "sfw-brochure-qr-donate.png":        ROOT / "exports/qr/sfw-brochure-qr-donate.png",
 }
 
 for d in (OUT, SEND):

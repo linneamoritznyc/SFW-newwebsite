@@ -52,6 +52,7 @@ without reprinting.
 | `sfw-brochure-qr-scholarship.png` | `https://www.sfw.one/brochure-scholarship` | `#3780B8` Education Blue |
 | `sfw-brochure-qr-casestudies.png` | `https://www.sfw.one/brochure-casestudies` | `#156826` Food Web Green |
 | `sfw-brochure-qr-community.png` | `https://www.sfw.one/brochure-community` | `#22371F` Moss |
+| `sfw-brochure-qr-donate.png` | `https://www.sfw.one/brochure-donate` | `#C9A227` Gold |
 
 Every one was decoded out of the delivered PNG, again out of the zip, and again
 out of the CMYK PDF, and matched its link exactly.

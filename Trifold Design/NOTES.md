@@ -924,3 +924,16 @@ now sit at 41.2px. Six candidates were measured in the real panel first; this
 one keeps all three of Allison's ideas (growers, already, every scale) and
 "this" is unambiguous under a PRACTICE label with the method described below
 it. Allison has not seen the change: it needs her sign-off.
+
+## 22 Sep - donate block restored
+
+Put back. Linnea: "Why did you take away the donate block? its supposed to be
+there." It came out on 19 Sep on Stephanie's review comment, relayed by Linnea;
+Linnea now wants it in.
+
+Unresolved between the two of them, not by me: Stephanie's reason was
+state-by-state charitable solicitation registration, and that question has not
+been answered, only overruled. Flagged to Linnea.
+
+The empty green that the removal left is gone with it, so that open design
+question closes itself.
