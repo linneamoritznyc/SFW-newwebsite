@@ -208,12 +208,17 @@ h3 {
   margin: var(--s3) 0 var(--s2);
 }
 /* Captions and source lines: the sans in italic, one size, on all six panels. */
+/* Linnea, 22 Sep: the captions were "very hard to read, too small and weird
+   colour". They were 6.7pt italic at the faint ink, which measured 5.08 against
+   the cream and 4.71 white-at-70% against the green. Up to 7.6pt and a step
+   darker: 6.49 on cream, 6.17 on green, 8.09 on purple. Italic stays, it is
+   what keeps a caption from reading as body copy. */
 .caption, .source {
   font-family: var(--sans);
   font-style: italic;
-  font-size: 6.7pt;
+  font-size: 7.6pt;
   line-height: 1.26;
-  color: var(--ink-faint);
+  color: #5A564C;
   margin: var(--s1) 0 var(--s2);
 }
 .source::before { content: "Source: "; font-style: normal; }
@@ -431,10 +436,10 @@ h3 {
 .panel--field .legal,
 .panel--field .qr .d,
 .panel--field .figures .l  { color: rgba(255, 255, 255, 0.86); }
-.panel--field .caption,
-.panel--field .source,
 .panel--field .eyebrow span,
 .panel--field .qr .h       { color: rgba(255, 255, 255, 0.70); }
+.panel--field .caption,
+.panel--field .source      { color: rgba(255, 255, 255, 0.86); }
 .panel--field .hr          { border-top-color: rgba(255, 255, 255, 0.28); }
 .panel--field .pull        { border-left-color: rgba(255, 255, 255, 0.55); }
 .panel--field .awaiting    { border-left-color: rgba(255, 255, 255, 0.45); }

@@ -94,14 +94,14 @@
     "x": 0.3849,
     "y": 2.3398,
     "w": 2.9601,
-    "h": 0.1172,
+    "h": 0.133,
     "align": "start",
-    "lineHeightPx": 11.26,
-    "fontSizePx": 8.93,
+    "lineHeightPx": 12.77,
+    "fontSizePx": 10.13,
     "lines": [
      {
       "left": 0.3849,
-      "right": 1.7808,
+      "right": 1.8433,
       "parts": [
        {
         "runIdx": 0,
@@ -116,9 +116,9 @@
       "text": "A mentor teaching on working land.",
       "weight": 400,
       "italic": true,
-      "color": "rgba(255, 255, 255, 0.7)",
+      "color": "rgba(255, 255, 255, 0.86)",
       "family": "Source Sans 3",
-      "size": 8.93,
+      "size": 10.13,
       "spacing": 0,
       "transform": "none"
      }
@@ -129,7 +129,7 @@
     "cls": "lede",
     "panel": "3",
     "x": 0.4049,
-    "y": 2.6717,
+    "y": 2.6875,
     "w": 2.9401,
     "h": 0.8838,
     "align": "start",
@@ -206,7 +206,7 @@
     "cls": "",
     "panel": "3",
     "x": 0.6698,
-    "y": 3.6403,
+    "y": 3.6561,
     "w": 1.2083,
     "h": 0.14,
     "align": "start",
@@ -243,7 +243,7 @@
     "cls": "",
     "panel": "3",
     "x": 0.4049,
-    "y": 3.8403,
+    "y": 3.8561,
     "w": 2.9401,
     "h": 0.7308,
     "align": "start",
@@ -320,7 +320,7 @@
     "cls": "",
     "panel": "3",
     "x": 0.6698,
-    "y": 4.7262,
+    "y": 4.742,
     "w": 1.2396,
     "h": 0.14,
     "align": "start",
@@ -357,7 +357,7 @@
     "cls": "",
     "panel": "3",
     "x": 0.4049,
-    "y": 4.9263,
+    "y": 4.9421,
     "w": 2.9401,
     "h": 0.5846,
     "align": "start",
@@ -424,7 +424,7 @@
     "cls": "",
     "panel": "3",
     "x": 0.6698,
-    "y": 5.666,
+    "y": 5.6818,
     "w": 1.4063,
     "h": 0.14,
     "align": "start",
@@ -461,7 +461,7 @@
     "cls": "",
     "panel": "3",
     "x": 0.4049,
-    "y": 5.866,
+    "y": 5.8818,
     "w": 2.9401,
     "h": 0.4385,
     "align": "start",
@@ -518,7 +518,7 @@
     "cls": "",
     "panel": "3",
     "x": 0.6698,
-    "y": 6.4596,
+    "y": 6.4754,
     "w": 0.8854,
     "h": 0.14,
     "align": "start",
@@ -555,7 +555,7 @@
     "cls": "",
     "panel": "3",
     "x": 0.4049,
-    "y": 6.6597,
+    "y": 6.6755,
     "w": 2.9401,
     "h": 0.4385,
     "align": "start",
@@ -833,14 +833,14 @@
     "x": 3.9049,
     "y": 2.3398,
     "w": 3.1901,
-    "h": 0.1172,
+    "h": 0.133,
     "align": "start",
-    "lineHeightPx": 11.26,
-    "fontSizePx": 8.93,
+    "lineHeightPx": 12.77,
+    "fontSizePx": 10.13,
     "lines": [
      {
       "left": 3.9049,
-      "right": 5.8841,
+      "right": 5.9466,
       "parts": [
        {
         "runIdx": 0,
@@ -855,9 +855,9 @@
       "text": "A workshop group around a finished compost pile.",
       "weight": 400,
       "italic": true,
-      "color": "rgb(106, 102, 92)",
+      "color": "rgb(90, 86, 76)",
       "family": "Source Sans 3",
-      "size": 8.93,
+      "size": 10.13,
       "spacing": 0,
       "transform": "none"
      }
@@ -868,7 +868,7 @@
     "cls": "t",
     "panel": "6",
     "x": 5.1748,
-    "y": 2.7168,
+    "y": 2.7326,
     "w": 1.9202,
     "h": 0.2897,
     "align": "start",
@@ -915,7 +915,7 @@
     "cls": "d",
     "panel": "6",
     "x": 5.1748,
-    "y": 3.0415,
+    "y": 3.0573,
     "w": 1.9202,
     "h": 0.6567,
     "align": "start",
@@ -992,7 +992,7 @@
     "cls": "h",
     "panel": "6",
     "x": 5.1748,
-    "y": 3.7332,
+    "y": 3.749,
     "w": 1.9202,
     "h": 0.134,
     "align": "start",
@@ -1029,7 +1029,7 @@
     "cls": "",
     "panel": "6",
     "x": 3.9049,
-    "y": 4.0072,
+    "y": 4.0229,
     "w": 3.1901,
     "h": 1.2878,
     "align": "start",
@@ -1150,7 +1150,7 @@
     "cls": "l",
     "panel": "6",
     "x": 3.9049,
-    "y": 5.7946,
+    "y": 5.8104,
     "w": 0.7227,
     "h": 0.0998,
     "align": "center",
@@ -1187,7 +1187,7 @@
     "cls": "l",
     "panel": "6",
     "x": 4.7275,
-    "y": 5.7946,
+    "y": 5.8104,
     "w": 0.7227,
     "h": 0.0998,
     "align": "center",
@@ -1224,7 +1224,7 @@
     "cls": "l",
     "panel": "6",
     "x": 5.5501,
-    "y": 5.7946,
+    "y": 5.8104,
     "w": 0.7227,
     "h": 0.0998,
     "align": "center",
@@ -1261,7 +1261,7 @@
     "cls": "l",
     "panel": "6",
     "x": 6.3727,
-    "y": 5.7946,
+    "y": 5.8104,
     "w": 0.7227,
     "h": 0.0998,
     "align": "center",
@@ -2411,14 +2411,14 @@
     "x": 0.3849,
     "y": 2.3398,
     "w": 3.2101,
-    "h": 0.1172,
+    "h": 0.133,
     "align": "start",
-    "lineHeightPx": 11.26,
-    "fontSizePx": 8.93,
+    "lineHeightPx": 12.77,
+    "fontSizePx": 10.13,
     "lines": [
      {
       "left": 0.3849,
-      "right": 1.8016,
+      "right": 1.8849,
       "parts": [
        {
         "runIdx": 0,
@@ -2433,9 +2433,9 @@
       "text": "Dr. Elaine Ingham at the microscope.",
       "weight": 400,
       "italic": true,
-      "color": "rgba(255, 255, 255, 0.7)",
+      "color": "rgba(255, 255, 255, 0.86)",
       "family": "Source Sans 3",
-      "size": 8.93,
+      "size": 10.13,
       "spacing": 0,
       "transform": "none"
      }
@@ -2446,7 +2446,7 @@
     "cls": "",
     "panel": "2",
     "x": 0.4049,
-    "y": 2.5768,
+    "y": 2.5926,
     "w": 3.1901,
     "h": 0.8049,
     "align": "start",
@@ -2523,7 +2523,7 @@
     "cls": "",
     "panel": "2",
     "x": 0.4049,
-    "y": 3.4416,
+    "y": 3.4574,
     "w": 3.1901,
     "h": 0.6439,
     "align": "start",
@@ -2590,16 +2590,16 @@
     "cls": "caption",
     "panel": "2",
     "x": 1.7147,
-    "y": 4.4495,
-    "w": 1.5521,
-    "h": 0.2414,
+    "y": 4.4521,
+    "w": 1.6354,
+    "h": 0.2676,
     "align": "start",
-    "lineHeightPx": 11.26,
-    "fontSizePx": 8.93,
+    "lineHeightPx": 12.77,
+    "fontSizePx": 10.13,
     "lines": [
      {
       "left": 1.7147,
-      "right": 3.2668,
+      "right": 3.3501,
       "parts": [
        {
         "runIdx": 0,
@@ -2624,9 +2624,9 @@
       "text": "Examine Dr. Ingham's publications\n          here:",
       "weight": 400,
       "italic": true,
-      "color": "rgba(255, 255, 255, 0.7)",
+      "color": "rgba(255, 255, 255, 0.86)",
       "family": "Source Sans 3",
-      "size": 8.93,
+      "size": 10.13,
       "spacing": 0,
       "transform": "none"
      },
@@ -2650,7 +2650,7 @@
     "cls": "",
     "panel": "2",
     "x": 0.5557,
-    "y": 5.175,
+    "y": 5.1908,
     "w": 2.9095,
     "h": 0.1799,
     "align": "start",
@@ -2687,7 +2687,7 @@
     "cls": "pull",
     "panel": "2",
     "x": 0.5557,
-    "y": 5.3794,
+    "y": 5.3952,
     "w": 2.9095,
     "h": 1.6112,
     "align": "start",
@@ -3051,14 +3051,14 @@
     "x": 4.1549,
     "y": 2.3398,
     "w": 3.1901,
-    "h": 0.1172,
+    "h": 0.133,
     "align": "start",
-    "lineHeightPx": 11.26,
-    "fontSizePx": 8.93,
+    "lineHeightPx": 12.77,
+    "fontSizePx": 10.13,
     "lines": [
      {
       "left": 4.1549,
-      "right": 5.5508,
+      "right": 5.6445,
       "parts": [
        {
         "runIdx": 0,
@@ -3073,9 +3073,9 @@
       "text": "Soil samples beside the microscope.",
       "weight": 400,
       "italic": true,
-      "color": "rgb(106, 102, 92)",
+      "color": "rgb(90, 86, 76)",
       "family": "Source Sans 3",
-      "size": 8.93,
+      "size": 10.13,
       "spacing": 0,
       "transform": "none"
      }
@@ -3086,7 +3086,7 @@
     "cls": "",
     "panel": "4",
     "x": 4.1549,
-    "y": 2.6717,
+    "y": 2.6875,
     "w": 3.1901,
     "h": 0.2799,
     "align": "start",
@@ -3133,7 +3133,7 @@
     "cls": "l",
     "panel": "4",
     "x": 4.1549,
-    "y": 3.4264,
+    "y": 3.4422,
     "w": 0.7227,
     "h": 0.1995,
     "align": "center",
@@ -3193,7 +3193,7 @@
     "cls": "l",
     "panel": "4",
     "x": 4.9775,
-    "y": 3.4264,
+    "y": 3.4422,
     "w": 0.7227,
     "h": 0.2993,
     "align": "center",
@@ -3263,7 +3263,7 @@
     "cls": "l",
     "panel": "4",
     "x": 5.8001,
-    "y": 3.4264,
+    "y": 3.4422,
     "w": 0.7227,
     "h": 0.2993,
     "align": "center",
@@ -3333,7 +3333,7 @@
     "cls": "l",
     "panel": "4",
     "x": 6.6227,
-    "y": 3.4264,
+    "y": 3.4422,
     "w": 0.7227,
     "h": 0.2993,
     "align": "center",
@@ -3403,40 +3403,40 @@
     "cls": "caption",
     "panel": "4",
     "x": 4.1549,
-    "y": 4.7756,
+    "y": 4.7913,
     "w": 3.1901,
-    "h": 0.3516,
+    "h": 0.3989,
     "align": "start",
-    "lineHeightPx": 11.26,
-    "fontSizePx": 8.93,
+    "lineHeightPx": 12.77,
+    "fontSizePx": 10.13,
     "lines": [
      {
       "left": 4.1549,
-      "right": 7.2383,
+      "right": 7.1237,
       "parts": [
        {
         "runIdx": 0,
-        "text": "Testate amoeba, 40x objective. Photograph: Joy Kaluf. A microbial count names"
+        "text": "Testate amoeba, 40x objective. Photograph: Joy Kaluf. A microbial count"
        }
       ]
      },
      {
       "left": 4.1549,
-      "right": 6.9674,
+      "right": 7.1758,
       "parts": [
        {
         "runIdx": 0,
-        "text": "what is present in the sample and their relative numbers: bacteria, fungi,"
+        "text": "names what is present in the sample and their relative numbers: bacteria,"
        }
       ]
      },
      {
       "left": 4.1549,
-      "right": 5.8841,
+      "right": 6.1758,
       "parts": [
        {
         "runIdx": 0,
-        "text": "protozoa, nematodes and microarthropods."
+        "text": "fungi, protozoa, nematodes and microarthropods."
        }
       ]
      }
@@ -3447,9 +3447,9 @@
       "text": "Testate amoeba, 40x objective. Photograph:\n          Joy Kaluf. A microbial count names what is present in the sample and\n          their relative numbers: bacteria, fungi, protozoa, nematodes and\n          microarthropods.",
       "weight": 400,
       "italic": true,
-      "color": "rgb(106, 102, 92)",
+      "color": "rgb(90, 86, 76)",
       "family": "Source Sans 3",
-      "size": 8.93,
+      "size": 10.13,
       "spacing": 0,
       "transform": "none"
      }
@@ -3460,7 +3460,7 @@
     "cls": "",
     "panel": "4",
     "x": 4.1549,
-    "y": 5.2819,
+    "y": 5.3451,
     "w": 3.1901,
     "h": 0.2799,
     "align": "start",
@@ -3507,7 +3507,7 @@
     "cls": "",
     "panel": "4",
     "x": 4.4098,
-    "y": 5.5968,
+    "y": 5.66,
     "w": 2.9352,
     "h": 0.3047,
     "align": "start",
@@ -3568,7 +3568,7 @@
     "cls": "",
     "panel": "4",
     "x": 4.4098,
-    "y": 5.9315,
+    "y": 5.9946,
     "w": 2.9352,
     "h": 0.3047,
     "align": "start",
@@ -3629,7 +3629,7 @@
     "cls": "",
     "panel": "4",
     "x": 4.4098,
-    "y": 6.2661,
+    "y": 6.3293,
     "w": 2.9352,
     "h": 0.4543,
     "align": "start",
@@ -3700,7 +3700,7 @@
     "cls": "pull",
     "panel": "4",
     "x": 4.3057,
-    "y": 6.9951,
+    "y": 7.0583,
     "w": 2.9095,
     "h": 0.9561,
     "align": "start",
@@ -3787,7 +3787,7 @@
     "cls": "eyebrow",
     "panel": "5",
     "x": 7.9049,
-    "y": 0.0013,
+    "y": 0.4095,
     "w": 2.9401,
     "h": 0.1226,
     "align": "start",
@@ -3824,9 +3824,9 @@
     "cls": "",
     "panel": "5",
     "x": 7.9049,
-    "y": 0.1787,
+    "y": 0.5869,
     "w": 2.9401,
-    "h": 0.8164,
+    "h": 0.4082,
     "align": "start",
     "lineHeightPx": 19.6,
     "fontSizePx": 18.67,
@@ -3843,31 +3843,11 @@
      },
      {
       "left": 7.9049,
-      "right": 10.1618,
+      "right": 10.4673,
       "parts": [
        {
         "runIdx": 0,
-        "text": "implementing the soil"
-       }
-      ]
-     },
-     {
-      "left": 7.9049,
-      "right": 9.9256,
-      "parts": [
-       {
-        "runIdx": 0,
-        "text": "food web approach,"
-       }
-      ]
-     },
-     {
-      "left": 7.9049,
-      "right": 9.3459,
-      "parts": [
-       {
-        "runIdx": 0,
-        "text": "at every scale."
+        "text": "doing this, at every scale."
        }
       ]
      }
@@ -3875,7 +3855,7 @@
     "linesLeft": 7.9049,
     "runs": [
      {
-      "text": "Growers are already implementing the soil food web approach, at every scale.",
+      "text": "Growers are already doing this, at every scale.",
       "weight": 700,
       "italic": false,
       "color": "rgb(255, 255, 255)",
@@ -3893,14 +3873,14 @@
     "x": 7.9049,
     "y": 2.3398,
     "w": 2.9601,
-    "h": 0.1172,
+    "h": 0.133,
     "align": "start",
-    "lineHeightPx": 11.26,
-    "fontSizePx": 8.93,
+    "lineHeightPx": 12.77,
+    "fontSizePx": 10.13,
     "lines": [
      {
       "left": 7.9049,
-      "right": 9.5091,
+      "right": 9.582,
       "parts": [
        {
         "runIdx": 0,
@@ -3915,9 +3895,9 @@
       "text": "Agroecology plots at Rancho Cacachilas.",
       "weight": 400,
       "italic": true,
-      "color": "rgb(106, 102, 92)",
+      "color": "rgb(90, 86, 76)",
       "family": "Source Sans 3",
-      "size": 8.93,
+      "size": 10.13,
       "spacing": 0,
       "transform": "none"
      }
@@ -3928,7 +3908,7 @@
     "cls": "lede",
     "panel": "5",
     "x": 7.9049,
-    "y": 2.6717,
+    "y": 2.6875,
     "w": 2.9401,
     "h": 1.0605,
     "align": "start",
@@ -4015,7 +3995,7 @@
     "cls": "",
     "panel": "5",
     "x": 7.9049,
-    "y": 3.7922,
+    "y": 3.8079,
     "w": 2.9401,
     "h": 1.1268,
     "align": "start",
@@ -4112,7 +4092,7 @@
     "cls": "",
     "panel": "5",
     "x": 7.9049,
-    "y": 4.9788,
+    "y": 4.9946,
     "w": 2.9401,
     "h": 0.9658,
     "align": "start",
@@ -4199,7 +4179,7 @@
     "cls": "",
     "panel": "5",
     "x": 7.9049,
-    "y": 6.0046,
+    "y": 6.0203,
     "w": 2.9401,
     "h": 0.6439,
     "align": "start",

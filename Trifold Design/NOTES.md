@@ -904,3 +904,23 @@ judgement: the DONATE pillar in the Study / Volunteer / Donate / Host row, and
 the word "donor" in "join us as a student, volunteer, ambassador, donor and
 partner". Both are Allison's final copy and both are arguably solicitation.
 Raised with Linnea for Stephanie to decide.
+
+## 22 Sep - caption legibility, and the Practice headline
+
+Linnea on the captions: "very hard to read its too small and weird color",
+pointing at all five of them. They were 6.7pt italic at --ink-faint, which
+measures 5.08 against the cream and 4.71 (white at 70%) against the green.
+Now 7.6pt at #5A564C on light panels and white at 86% on the colour fields:
+6.49 on cream, 6.17 on green, 8.09 on purple. Italic kept, it is what stops a
+caption reading as body copy. No panel overflows after the change.
+
+Practice headline shortened, from Allison's
+  "Growers are already implementing the soil food web approach, at every scale."
+to
+  "Growers are already doing this, at every scale."
+The long one ran to four lines and pushed the eyebrow to 2px from the top of
+the colour band, against 41.2px on Our story and Research. All three banners
+now sit at 41.2px. Six candidates were measured in the real panel first; this
+one keeps all three of Allison's ideas (growers, already, every scale) and
+"this" is unambiguous under a PRACTICE label with the method described below
+it. Allison has not seen the change: it needs her sign-off.
