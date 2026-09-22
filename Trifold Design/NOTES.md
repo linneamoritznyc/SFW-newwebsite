@@ -987,3 +987,28 @@ being the pillars' own margin-top. Four codes decode, the green still opens at
 5.97in, no panel overflows.
 
 This is new content on the brochure. Allison and Stephanie have not seen it.
+
+## 22 Sep - Community panel closed up
+
+Linnea: "just make it not have empty space".
+
+The panel had carried two blocks, the community code in the body and the
+donate code in the foot. Taking donate out left a hole, and every spacing
+attempt only moved it: into the green, then into the white above the pillars,
+then above the icons. Two blocks were needed, and only one was left.
+
+So the app block became the second block. The community code went back to its
+original place under the photograph, and the app moved into the green foot as
+a card above the legal card:
+
+    The Soil Food Web School app
+    Your courses and the community, on your phone. Free, on the Apple App
+    Store and on Google Play.
+
+Both areas carry content and no spacer is doing any work. Pillars sit 0.06in
+off the field, 0.095in between the two cards, and the green still opens at
+5.97in.
+
+One CSS change, widening a rule rather than adding a component: .field .legal
+became .field .card, because the closing field now holds two cards and
+reversed-out body type is the same problem for both.
