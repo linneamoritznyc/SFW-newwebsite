@@ -84,9 +84,9 @@ def survives_a_press(url, colour, mm=1.15 * 25.4):
 CODES = {
     # name            short link                                    PNG name       colour
     "webinar":      ("https://www.sfw.one/brochure-webinar",     "webinar",     "#6B4C7A"),  # --legacy, the Dr. Elaine panel
-    "scholarship":  ("https://www.sfw.one/brochure-scholarship", "scholarship", "#3780B8"),  # --edu, the teaching panel
+    "courses":      ("https://www.sfw.one/brochure-courses",     "courses",     "#3780B8"),  # --edu, the teaching panel
     "case-studies": ("https://www.sfw.one/brochure-casestudies", "casestudies", "#156826"),  # --green, the practice panel
-    "community":    ("https://www.sfw.one/brochure-community",   "community",   "#22371F"),  # --moss, the deep end of the community field
+    "scholarship":  ("https://www.sfw.one/brochure-scholarship", "scholarship", "#22371F"),  # --moss, the deep end of the community field
     "donate":       ("https://www.sfw.one/brochure-donate",      "donate",      "#C9A227"),  # --gold, the donate accent
 }
 

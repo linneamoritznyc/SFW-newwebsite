@@ -745,3 +745,33 @@ not read. Run both after any change to a link, a colour, or the size of `.qr img
   for its preset amounts waiting on program costs. Worth deciding whether a print piece should carry one.
 - Panel 1 is the only panel carrying the wordmark. On a folded piece the cover is the outward face, so
   that is correct, but confirm it against how the piece will actually be stacked and displayed.
+
+---
+
+## A code to buy the Foundation Courses, 22 September 2026
+
+Linnea: add a QR code to buy the Foundation Courses; "join the community" is
+there twice. It was, in effect: the webinar code on Our story already lands
+people in the free community, and the Community panel had a second code to the
+same place. So the community code is gone and the Foundation Courses code
+takes its place in the set of five.
+
+| panel | was | is |
+| :-- | :-- | :-- |
+| Teaching | Apply for a scholarship, `sfw.one/brochure-scholarship`, Education Blue | **Enroll in the Foundation Courses**, `sfw.one/brochure-courses`, Education Blue |
+| Community | Join the free community, `sfw.one/brochure-community`, Moss | Apply for a scholarship, `sfw.one/brochure-scholarship`, now Moss |
+
+The purchase code sits on Teaching because that is where the Foundation Courses
+are described; the scholarship moved to Community, under "there is a way in
+for anyone", and took that panel's colour like every other code. Copy on the
+new code is lifted from the panel above it. No price is printed; the panel
+already says every price is listed at school.soilfoodweb.com.
+
+**`sfw.one/brochure-courses` does not exist yet and has to be created in
+Switchy**, pointing at
+`https://school.soilfoodweb.com/bundles/soilfoodweb-foundation-courses`
+(the purchase page `learn.html` links to), with the campaign UTM parameters
+on the redirect like the others. `sfw.one/brochure-community` is no longer
+printed and can be left alone or retired.
+
+All five codes decode out of the PNG proofs, the X-4 file and the X-1a file.
