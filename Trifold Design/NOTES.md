@@ -937,3 +937,30 @@ been answered, only overruled. Flagged to Linnea.
 
 The empty green that the removal left is gone with it, so that open design
 question closes itself.
+
+## 22 Sep - Community panel, after the donate block came out again
+
+Linnea: "now why is there something missing here", pointing at the white
+between the four icons and the green field.
+
+The panel had one .spacer, after the pillars, so every bit of slack piled into
+a single 1.5in gap directly above the field and read as a hole. A second
+.spacer before the pillars splits it: 0.90in above the icons, 0.75in below.
+The icons now sit centred in the white as a composition rather than stranded
+at the top of a void.
+
+Two fills were tried before reaching for spacing, and both are recorded because
+neither should be tried again without knowing why:
+
+- The tagline, parked in September pending 0.42in of space. On the flat sheet
+  it lands immediately left of the cover panel's identical tagline and reads as
+  a duplication error. That is the reason it came off in the first place and
+  the imposition has not changed since.
+
+- The community QR block moved down into the green foot. Kept. The foot now
+  carries a code and its copy above the legal card, the same shape the stats
+  panel's foot has, and it is the panel's own content rather than anything new.
+
+Still unused, and the one real candidate if that white ever needs content: the
+Soil Food Web School app, section 17a of the copy deck, free on both stores.
+It would need a short link.
