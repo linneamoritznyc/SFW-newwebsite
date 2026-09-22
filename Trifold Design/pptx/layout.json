@@ -864,172 +864,11 @@
     ]
    },
    {
-    "tag": "div",
-    "cls": "t",
-    "panel": "6",
-    "x": 5.1748,
-    "y": 2.7326,
-    "w": 1.9202,
-    "h": 0.2897,
-    "align": "start",
-    "lineHeightPx": 13.92,
-    "fontSizePx": 12,
-    "lines": [
-     {
-      "left": 5.1748,
-      "right": 6.4456,
-      "parts": [
-       {
-        "runIdx": 0,
-        "text": "Join the free online"
-       }
-      ]
-     },
-     {
-      "left": 5.1748,
-      "right": 5.9352,
-      "parts": [
-       {
-        "runIdx": 0,
-        "text": "community"
-       }
-      ]
-     }
-    ],
-    "linesLeft": 5.1748,
-    "runs": [
-     {
-      "text": "Join the free online community",
-      "weight": 700,
-      "italic": false,
-      "color": "rgb(79, 52, 51)",
-      "family": "Montserrat",
-      "size": 12,
-      "spacing": 0,
-      "transform": "none"
-     }
-    ]
-   },
-   {
-    "tag": "div",
-    "cls": "d",
-    "panel": "6",
-    "x": 5.1748,
-    "y": 3.0573,
-    "w": 1.9202,
-    "h": 0.6567,
-    "align": "start",
-    "lineHeightPx": 12.63,
-    "fontSizePx": 9.87,
-    "lines": [
-     {
-      "left": 5.1748,
-      "right": 6.7373,
-      "parts": [
-       {
-        "runIdx": 0,
-        "text": "Meet other people in the regenerative"
-       }
-      ]
-     },
-     {
-      "left": 5.1748,
-      "right": 6.7477,
-      "parts": [
-       {
-        "runIdx": 0,
-        "text": "agricultural space. Get your questions"
-       }
-      ]
-     },
-     {
-      "left": 5.1748,
-      "right": 6.9144,
-      "parts": [
-       {
-        "runIdx": 0,
-        "text": "answered by other practitioners of the soil"
-       }
-      ]
-     },
-     {
-      "left": 5.1748,
-      "right": 6.9561,
-      "parts": [
-       {
-        "runIdx": 0,
-        "text": "food web approach who share the desire to"
-       }
-      ]
-     },
-     {
-      "left": 5.1748,
-      "right": 6.1748,
-      "parts": [
-       {
-        "runIdx": 0,
-        "text": "restore the world's soils."
-       }
-      ]
-     }
-    ],
-    "linesLeft": 5.1748,
-    "runs": [
-     {
-      "text": "Meet other people in the regenerative agricultural\n            space. Get your questions answered by other practitioners of the\n            soil food web approach who share the desire to restore the world's\n            soils.",
-      "weight": 400,
-      "italic": false,
-      "color": "rgb(74, 70, 63)",
-      "family": "Source Sans 3",
-      "size": 9.87,
-      "spacing": 0,
-      "transform": "none"
-     }
-    ]
-   },
-   {
-    "tag": "div",
-    "cls": "h",
-    "panel": "6",
-    "x": 5.1748,
-    "y": 3.749,
-    "w": 1.9202,
-    "h": 0.134,
-    "align": "start",
-    "lineHeightPx": 12.88,
-    "fontSizePx": 9.33,
-    "lines": [
-     {
-      "left": 5.1748,
-      "right": 6.3415,
-      "parts": [
-       {
-        "runIdx": 0,
-        "text": "sfw.one/brochure-community"
-       }
-      ]
-     }
-    ],
-    "linesLeft": 5.1748,
-    "runs": [
-     {
-      "text": "sfw.one/brochure-community",
-      "weight": 400,
-      "italic": true,
-      "color": "rgb(106, 102, 92)",
-      "family": "Source Sans 3",
-      "size": 9.33,
-      "spacing": 0,
-      "transform": "none"
-     }
-    ]
-   },
-   {
     "tag": "p",
     "cls": "",
     "panel": "6",
     "x": 3.9049,
-    "y": 4.0229,
+    "y": 2.5926,
     "w": 3.1901,
     "h": 1.2878,
     "align": "start",
@@ -1150,7 +989,7 @@
     "cls": "l",
     "panel": "6",
     "x": 3.9049,
-    "y": 5.8104,
+    "y": 4.38,
     "w": 0.7227,
     "h": 0.0998,
     "align": "center",
@@ -1187,7 +1026,7 @@
     "cls": "l",
     "panel": "6",
     "x": 4.7275,
-    "y": 5.8104,
+    "y": 4.38,
     "w": 0.7227,
     "h": 0.0998,
     "align": "center",
@@ -1224,7 +1063,7 @@
     "cls": "l",
     "panel": "6",
     "x": 5.5501,
-    "y": 5.8104,
+    "y": 4.38,
     "w": 0.7227,
     "h": 0.0998,
     "align": "center",
@@ -1261,7 +1100,7 @@
     "cls": "l",
     "panel": "6",
     "x": 6.3727,
-    "y": 5.8104,
+    "y": 4.38,
     "w": 0.7227,
     "h": 0.0998,
     "align": "center",
@@ -1294,11 +1133,172 @@
     ]
    },
    {
+    "tag": "div",
+    "cls": "t",
+    "panel": "6",
+    "x": 5.1748,
+    "y": 6.1034,
+    "w": 1.9202,
+    "h": 0.2897,
+    "align": "start",
+    "lineHeightPx": 13.92,
+    "fontSizePx": 12,
+    "lines": [
+     {
+      "left": 5.1748,
+      "right": 6.4456,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "Join the free online"
+       }
+      ]
+     },
+     {
+      "left": 5.1748,
+      "right": 5.9352,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "community"
+       }
+      ]
+     }
+    ],
+    "linesLeft": 5.1748,
+    "runs": [
+     {
+      "text": "Join the free online community",
+      "weight": 700,
+      "italic": false,
+      "color": "rgb(255, 255, 255)",
+      "family": "Montserrat",
+      "size": 12,
+      "spacing": 0,
+      "transform": "none"
+     }
+    ]
+   },
+   {
+    "tag": "div",
+    "cls": "d",
+    "panel": "6",
+    "x": 5.1748,
+    "y": 6.4281,
+    "w": 1.9202,
+    "h": 0.6567,
+    "align": "start",
+    "lineHeightPx": 12.63,
+    "fontSizePx": 9.87,
+    "lines": [
+     {
+      "left": 5.1748,
+      "right": 6.7373,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "Meet other people in the regenerative"
+       }
+      ]
+     },
+     {
+      "left": 5.1748,
+      "right": 6.7477,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "agricultural space. Get your questions"
+       }
+      ]
+     },
+     {
+      "left": 5.1748,
+      "right": 6.9144,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "answered by other practitioners of the soil"
+       }
+      ]
+     },
+     {
+      "left": 5.1748,
+      "right": 6.9561,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "food web approach who share the desire to"
+       }
+      ]
+     },
+     {
+      "left": 5.1748,
+      "right": 6.1748,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "restore the world's soils."
+       }
+      ]
+     }
+    ],
+    "linesLeft": 5.1748,
+    "runs": [
+     {
+      "text": "Meet other people in the regenerative agricultural\n            space. Get your questions answered by other practitioners of the\n            soil food web approach who share the desire to restore the world's\n            soils.",
+      "weight": 400,
+      "italic": false,
+      "color": "rgba(255, 255, 255, 0.86)",
+      "family": "Source Sans 3",
+      "size": 9.87,
+      "spacing": 0,
+      "transform": "none"
+     }
+    ]
+   },
+   {
+    "tag": "div",
+    "cls": "h",
+    "panel": "6",
+    "x": 5.1748,
+    "y": 7.1198,
+    "w": 1.9202,
+    "h": 0.134,
+    "align": "start",
+    "lineHeightPx": 12.88,
+    "fontSizePx": 9.33,
+    "lines": [
+     {
+      "left": 5.1748,
+      "right": 6.3415,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "sfw.one/brochure-community"
+       }
+      ]
+     }
+    ],
+    "linesLeft": 5.1748,
+    "runs": [
+     {
+      "text": "sfw.one/brochure-community",
+      "weight": 400,
+      "italic": true,
+      "color": "rgba(255, 255, 255, 0.7)",
+      "family": "Source Sans 3",
+      "size": 9.33,
+      "spacing": 0,
+      "transform": "none"
+     }
+    ]
+   },
+   {
     "tag": "p",
     "cls": "addr",
     "panel": "6",
     "x": 4.0557,
-    "y": 6.2238,
+    "y": 7.5137,
     "w": 2.9095,
     "h": 0.4116,
     "align": "start",
@@ -1381,7 +1381,7 @@
     "cls": "",
     "panel": "6",
     "x": 4.0557,
-    "y": 6.6803,
+    "y": 7.9702,
     "w": 2.9095,
     "h": 0.2549,
     "align": "start",
@@ -1418,137 +1418,6 @@
       "color": "rgba(255, 255, 255, 0.82)",
       "family": "Source Sans 3",
       "size": 9.07,
-      "spacing": 0,
-      "transform": "none"
-     }
-    ]
-   },
-   {
-    "tag": "div",
-    "cls": "t",
-    "panel": "6",
-    "x": 5.1748,
-    "y": 7.3986,
-    "w": 1.9202,
-    "h": 0.1449,
-    "align": "start",
-    "lineHeightPx": 13.92,
-    "fontSizePx": 12,
-    "lines": [
-     {
-      "left": 5.1748,
-      "right": 5.654,
-      "parts": [
-       {
-        "runIdx": 0,
-        "text": "Donate"
-       }
-      ]
-     }
-    ],
-    "linesLeft": 5.1748,
-    "runs": [
-     {
-      "text": "Donate",
-      "weight": 700,
-      "italic": false,
-      "color": "rgb(255, 255, 255)",
-      "family": "Montserrat",
-      "size": 12,
-      "spacing": 0,
-      "transform": "none"
-     }
-    ]
-   },
-   {
-    "tag": "div",
-    "cls": "d",
-    "panel": "6",
-    "x": 5.1748,
-    "y": 7.5785,
-    "w": 1.9202,
-    "h": 0.394,
-    "align": "start",
-    "lineHeightPx": 12.63,
-    "fontSizePx": 9.87,
-    "lines": [
-     {
-      "left": 5.1748,
-      "right": 6.9248,
-      "parts": [
-       {
-        "runIdx": 0,
-        "text": "Gifts fund open research, scholarships and"
-       }
-      ]
-     },
-     {
-      "left": 5.1748,
-      "right": 6.9144,
-      "parts": [
-       {
-        "runIdx": 0,
-        "text": "field projects. Tax-deductible to the extent"
-       }
-      ]
-     },
-     {
-      "left": 5.1748,
-      "right": 5.8415,
-      "parts": [
-       {
-        "runIdx": 0,
-        "text": "allowed by law."
-       }
-      ]
-     }
-    ],
-    "linesLeft": 5.1748,
-    "runs": [
-     {
-      "text": "Gifts fund open research, scholarships and field\n            projects. Tax-deductible to the extent allowed by law.",
-      "weight": 400,
-      "italic": false,
-      "color": "rgba(255, 255, 255, 0.86)",
-      "family": "Source Sans 3",
-      "size": 9.87,
-      "spacing": 0,
-      "transform": "none"
-     }
-    ]
-   },
-   {
-    "tag": "div",
-    "cls": "h",
-    "panel": "6",
-    "x": 5.1748,
-    "y": 8.0075,
-    "w": 1.9202,
-    "h": 0.134,
-    "align": "start",
-    "lineHeightPx": 12.88,
-    "fontSizePx": 9.33,
-    "lines": [
-     {
-      "left": 5.1748,
-      "right": 6.1852,
-      "parts": [
-       {
-        "runIdx": 0,
-        "text": "sfw.one/brochure-donate"
-       }
-      ]
-     }
-    ],
-    "linesLeft": 5.1748,
-    "runs": [
-     {
-      "text": "sfw.one/brochure-donate",
-      "weight": 400,
-      "italic": true,
-      "color": "rgba(255, 255, 255, 0.7)",
-      "family": "Source Sans 3",
-      "size": 9.33,
       "spacing": 0,
       "transform": "none"
      }
