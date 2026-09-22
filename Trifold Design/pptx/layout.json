@@ -985,11 +985,95 @@
     ]
    },
    {
+    "tag": "h3",
+    "cls": "",
+    "panel": "6",
+    "x": 4.1698,
+    "y": 4.0601,
+    "w": 1.8125,
+    "h": 0.14,
+    "align": "start",
+    "lineHeightPx": 13.44,
+    "fontSizePx": 11.2,
+    "lines": [
+     {
+      "left": 4.1698,
+      "right": 5.9823,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "The Soil Food Web School app"
+       }
+      ]
+     }
+    ],
+    "linesLeft": 4.1698,
+    "runs": [
+     {
+      "text": "The Soil Food Web School app",
+      "weight": 600,
+      "italic": false,
+      "color": "rgb(79, 52, 51)",
+      "family": "Montserrat",
+      "size": 11.2,
+      "spacing": 0,
+      "transform": "none"
+     }
+    ]
+   },
+   {
+    "tag": "p",
+    "cls": "",
+    "panel": "6",
+    "x": 3.9049,
+    "y": 4.2601,
+    "w": 3.1901,
+    "h": 0.3219,
+    "align": "start",
+    "lineHeightPx": 15.46,
+    "fontSizePx": 11.2,
+    "lines": [
+     {
+      "left": 3.9049,
+      "right": 6.8945,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "Your courses and the community, on your phone. Free, on the"
+       }
+      ]
+     },
+     {
+      "left": 3.9049,
+      "right": 5.6758,
+      "parts": [
+       {
+        "runIdx": 0,
+        "text": "Apple App Store and on Google Play."
+       }
+      ]
+     }
+    ],
+    "linesLeft": 3.9049,
+    "runs": [
+     {
+      "text": "Your courses and the community, on your phone. Free, on the Apple App\n        Store and on Google Play.",
+      "weight": 400,
+      "italic": false,
+      "color": "rgb(51, 49, 48)",
+      "family": "Source Sans 3",
+      "size": 11.2,
+      "spacing": 0,
+      "transform": "none"
+     }
+    ]
+   },
+   {
     "tag": "div",
     "cls": "l",
     "panel": "6",
     "x": 3.9049,
-    "y": 5.1252,
+    "y": 5.4761,
     "w": 0.7227,
     "h": 0.0998,
     "align": "center",
@@ -1026,7 +1110,7 @@
     "cls": "l",
     "panel": "6",
     "x": 4.7275,
-    "y": 5.1252,
+    "y": 5.4761,
     "w": 0.7227,
     "h": 0.0998,
     "align": "center",
@@ -1063,7 +1147,7 @@
     "cls": "l",
     "panel": "6",
     "x": 5.5501,
-    "y": 5.1252,
+    "y": 5.4761,
     "w": 0.7227,
     "h": 0.0998,
     "align": "center",
@@ -1100,7 +1184,7 @@
     "cls": "l",
     "panel": "6",
     "x": 6.3727,
-    "y": 5.1252,
+    "y": 5.4761,
     "w": 0.7227,
     "h": 0.0998,
     "align": "center",
@@ -1137,7 +1221,7 @@
     "cls": "t",
     "panel": "6",
     "x": 5.1748,
-    "y": 6.1034,
+    "y": 6.1035,
     "w": 1.9202,
     "h": 0.2897,
     "align": "start",
@@ -1184,7 +1268,7 @@
     "cls": "d",
     "panel": "6",
     "x": 5.1748,
-    "y": 6.4281,
+    "y": 6.4282,
     "w": 1.9202,
     "h": 0.6567,
     "align": "start",
@@ -1261,7 +1345,7 @@
     "cls": "h",
     "panel": "6",
     "x": 5.1748,
-    "y": 7.1198,
+    "y": 7.12,
     "w": 1.9202,
     "h": 0.134,
     "align": "start",
@@ -1298,7 +1382,7 @@
     "cls": "addr",
     "panel": "6",
     "x": 4.0557,
-    "y": 7.5137,
+    "y": 7.5138,
     "w": 2.9095,
     "h": 0.4116,
     "align": "start",
@@ -1381,7 +1465,7 @@
     "cls": "",
     "panel": "6",
     "x": 4.0557,
-    "y": 7.9702,
+    "y": 7.9704,
     "w": 2.9095,
     "h": 0.2549,
     "align": "start",

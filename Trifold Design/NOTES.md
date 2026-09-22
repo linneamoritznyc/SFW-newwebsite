@@ -964,3 +964,26 @@ neither should be tried again without knowing why:
 Still unused, and the one real candidate if that white ever needs content: the
 Soil Food Web School app, section 17a of the copy deck, free on both stores.
 It would need a short link.
+
+## 22 Sep - the app block fills the Community panel
+
+Linnea: "bro it just cant be empty space". Spacing had already been evened out
+and the panel was still short of content, because it genuinely was: the donate
+block took 1.42in with it.
+
+Added the Soil Food Web School app, copy deck section 17a, added to the deck on
+14 September and sourced to the two store listings:
+
+    The Soil Food Web School app
+    Your courses and the community, on your phone. Free, on the Apple App
+    Store and on Google Play.
+
+Nothing invented and no new short link needed: the app is named, so a reader
+can find it in either store. Set as an .hd heading with the web icon and a
+paragraph, the same shape the Teaching panel uses four times over.
+
+Gaps either side of the pillars are now 0.549in and 0.394in, the difference
+being the pillars' own margin-top. Four codes decode, the green still opens at
+5.97in, no panel overflows.
+
+This is new content on the brochure. Allison and Stephanie have not seen it.
