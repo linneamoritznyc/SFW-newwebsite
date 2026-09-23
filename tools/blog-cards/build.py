@@ -1,0 +1,274 @@
+"""Blog cards: one editable .pptx per size, one slide per post.
+
+Layers on every slide, bottom to top, each movable on its own in Canva:
+  colour field (native shapes) > photo planes (one PNG each) > cream card
+  > category word > headline > deck > READ POST button > cursor > web address
+"""
+import os, sys, math
+from PIL import Image, ImageDraw, ImageFont, ImageOps, ImageFilter
+from pptx import Presentation
+from pptx.util import Emu, Pt
+from pptx.dml.color import RGBColor
+from pptx.enum.text import PP_ALIGN, MSO_ANCHOR
+from pptx.oxml.ns import qn
+
+REPO = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+OUT = sys.argv[1]
+TMP = os.path.join(OUT, '_layers')
+os.makedirs(TMP, exist_ok=True)
+FONTS = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'fonts')
+PX = 9525  # EMU per px at 96 dpi
+
+def hexrgb(h): h = h.lstrip('#'); return tuple(int(h[i:i+2], 16) for i in (0, 2, 4))
+
+# Colour fields. The yellow pair is Linnea's, off the PDC card. The rest are
+# site tokens from css/site.css, paired light over mid the same way.
+FIELDS = {
+    'yellow': ('#FBE77C', '#E6D156'),
+    'glow':   ('#E4ECBC', '#A2AE77'),   # --glow lifted / --living
+    'tan':    ('#F1DECF', '#C89B7B'),   # --tan
+    'green':  ('#E6EADC', '#A7B097'),   # --panel-green / --sage
+    'legacy': ('#E3D9EA', '#9E8FC2'),   # Dr. Elaine: lavender / --membrane
+}
+CREAM = '#F4F1EA'
+INK = '#141312'
+LEGACY = '#6B4C7A'
+
+# Titles are the live titles, split at their own colon or dash into a
+# headline and a deck line. Nothing added. The PDC card is Linnea's wording.
+POSTS = [
+ dict(slug='ciliates-microscope-watermelon', date='2026-05-01', cat='Microscopy', field='glow',
+      head='Ciliates, Cysts, and the Clues Hiding in a Struggling Watermelon Crop',
+      deck='How a rare microscope sighting helps deduce the problem with unhealthy soil',
+      img='img/w/sfw-amoeba-still-wide.jpg', focus=(.5, .5)),
+ dict(slug='permaculture-design-certificate', date='2026-04-13', cat='Education', field='yellow',
+      head='SFW Launches first ever Permaculture Design Certificate',
+      deck='Knowledge of not only the science, but also its history, is important for any grower considering the transition',
+      img='img/w/erc-panchamana-garden.jpg', focus=(.5, .5)),
+ dict(slug='advanced-programs-reopening', date='2026-02-23', cat='School Updates', field='yellow',
+      head='Soil Food Web School Advanced Programs Are Reopening!', deck='',
+      img='img/uploads/loida-teaching-3.jpg', focus=(.5, .4)),
+ dict(slug='obituary-dr-elaine-ingham', portrait=True, date='2026-02-18', cat='In Memoriam', field='legacy',
+      head='Obituary for Dr. Elaine Ingham', deck='',
+      img='img/w/copy-of-9.jpg', focus=(.5, .35)),
+ dict(slug='new-board-member-eric-feiler', date='2026-02-17', cat='Foundation Update', field='green',
+      head='The Soil Food Web Welcomes a New Board Member', deck='Eric Feiler',
+      img='img/w/workshop-group-around-compost-pile.jpg', focus=(.5, .45)),
+ dict(slug='2025-in-review', date='2025-12-30', cat='Blog', field='green',
+      head='2025 in Review: A time of transition',
+      deck='Honoring our founder and guiding spirit, building stronger community, and preparing for a bright future',
+      img='img/uploads/mar25-group-photo.jpg', focus=(.5, .45)),
+ dict(slug='living-legacy-webinar-series', portrait=True, date='2025-11-03', cat='Events', field='legacy',
+      head='A Living Legacy', deck='Join the free webinar series: The Science of the Soil Food Web',
+      img='img/uploads/elaine-behind-microscope.jpg', focus=(.5, .4)),
+ dict(slug='soil-health-week-pakistan', date='2025-10-22', cat='Events', field='tan',
+      head='Soil Health Week 2025',
+      deck='Wild Soils UK and TrashIt bring the Soil Food Web approach to Pakistan',
+      img='img/w/erc-panchamana-treeplanting-3-fb-img-1666271008784.jpg', focus=(.5, .5)),
+ dict(slug='foundation-launches-as-nonprofit', date='2025-10-17', cat='Foundation Update', field='green',
+      head='Soil Food Web Foundation Launches as Nonprofit',
+      deck='To carry forward Dr. Elaine Ingham’s legacy',
+      img='img/w/2-hands-clasped-holding-plant-roots.jpg', focus=(.5, .5)),
+ dict(slug='retirement-dr-elaine-ingham', portrait=True, date='2025-10-16', cat='School Updates', field='legacy',
+      head='Retirement Announcement: Dr. Elaine Ingham', deck='',
+      img='img/w/elaine-with-sample-bag.jpg', focus=(.5, .35)),
+ dict(slug='october-2025-newsletter', date='2025-10-09', cat='Blog', field='yellow',
+      head='October 2025 Newsletter', deck='',
+      img='img/w/hand-of-compost.jpg', focus=(.5, .5)),
+ dict(slug='sacramento-food-knowledge-culture', date='2025-09-23', cat='Events', field='tan',
+      head='Help us celebrate food, knowledge and culture in Sacramento this September', deck='',
+      img='img/w/carla-nicks-son-nick-eri-wild-soils-event-11-2024.jpg', focus=(.5, .4)),
+]
+
+# Per size: the photo zone, the card, and the type scale. px.
+SIZES = {
+ 'feature-social-1400x1400': dict(W=1400, H=1400, zone=(430, 0, 970, 1040),  card=(84, 450, 960, 870),  pad=80, cat=150, head=116, deck=42, btn=44),
+ 'mobile-header-750x1000':   dict(W=750,  H=1000, zone=(0, 0, 750, 590),     card=(30, 390, 690, 580),   pad=46, cat=82,  head=66, deck=26, btn=28),
+ 'desktop-header-1920x720':  dict(W=1920, H=720,  zone=(760, 0, 1160, 720),  card=(96, 56, 980, 608),   pad=64, cat=104, head=86, deck=32, btn=34),
+ 'tablet-header-1024x768':   dict(W=1024, H=768,  zone=(380, 0, 644, 768),   card=(44, 110, 660, 610),   pad=46, cat=74,  head=60, deck=24, btn=26),
+}
+
+# The cubist planes, in zone coordinates 0..1. Each shows the same photograph
+# from a slightly different distance and angle of view: scale, shift, and a
+# tone. That is the move: one subject, several viewpoints, one surface.
+PLANES = [
+ dict(pts=[(0, 0), (.64, 0), (.50, .56), (0, .44)],         s=1.00, d=(0, 0),       tone=None),
+ dict(pts=[(.64, 0), (1, 0), (1, .50), (.50, .56)],         s=1.22, d=(.06, -.03),  tone=('mid', .30)),
+ dict(pts=[(0, .44), (.50, .56), (.38, 1), (0, 1)],         s=1.08, d=(-.04, .03),  tone=('grey', 0)),
+ dict(pts=[(.50, .56), (1, .50), (1, 1), (.38, 1)],         s=1.10, d=(.03, .05),   tone=('light', .18)),
+ dict(pts=[(.42, .26), (.74, .33), (.64, .74), (.33, .66)], s=1.45, d=(-.02, .01),  tone=None),
+]
+
+PLANES_PORTRAIT = [
+ dict(pts=[(0, 0), (1, 0), (1, .70), (.72, .80), (0, .74)],   s=1.00, d=(0, 0),      tone=None),
+ dict(pts=[(0, .74), (.72, .80), (.60, 1), (0, 1)],          s=1.08, d=(-.04, .04), tone=('grey', 0)),
+ dict(pts=[(.72, .80), (1, .70), (1, 1), (.60, 1)],          s=1.25, d=(.05, .06),  tone=('mid', .30)),
+ dict(pts=[(.80, .06), (1, .02), (1, .40), (.86, .44)],      s=1.35, d=(.10, -.02), tone=('light', .20)),
+]
+
+def font(name, size): return ImageFont.truetype(os.path.join(FONTS, name), max(1, int(size)))
+F_CAT, F_HEAD, F_BTN = 'Montserrat-Bold.ttf', 'SourceSans3-Regular.ttf', 'EBGaramond-Regular.ttf'
+
+def wrap(text, fnt, width):
+    words, lines, cur = text.split(), [], ''
+    for w in words:
+        t = (cur + ' ' + w).strip()
+        if fnt.getlength(t) <= width or not cur: cur = t
+        else: lines.append(cur); cur = w
+    if cur: lines.append(cur)
+    return lines
+
+def fit(text, fname, size, width, max_lines, floor):
+    # Step down until it fits. The 0.93 leaves room for Canva's own metrics.
+    while size > floor:
+        f = font(fname, size)
+        lines = wrap(text, f, width * .93)
+        if len(lines) <= max_lines and max(f.getlength(l) for l in lines) <= width * .93: return size, lines
+        size -= 1
+    return size, wrap(text, font(fname, size), width * .93)
+
+def cover(img, w, h, focus):
+    return ImageOps.fit(img, (w, h), Image.LANCZOS, centering=focus)
+
+def plane_png(post, key, zone, p, i, field):
+    zx, zy, zw, zh = zone
+    src = ImageOps.exif_transpose(Image.open(os.path.join(REPO, post['img']))).convert('RGB')
+    s = p['s']
+    # as sharp as the photograph allows, up to 2x the slide: never upscaled
+    # past its own pixels, which only makes the file bigger
+    k = max(1, min(2, min(src.width / (zw * s), src.height / (zh * s))))
+    ZW, ZH = int(zw * k), int(zh * k)
+    big = cover(src, int(ZW * s), int(ZH * s), post['focus'])
+    ox = int((big.width - ZW) / 2 + p['d'][0] * ZW)
+    oy = int((big.height - ZH) / 2 + p['d'][1] * ZH)
+    ox = max(0, min(ox, big.width - ZW)); oy = max(0, min(oy, big.height - ZH))
+    view = big.crop((ox, oy, ox + ZW, oy + ZH))
+    tone = p['tone']
+    if tone:
+        kind, a = tone
+        if kind == 'grey':
+            view = ImageOps.grayscale(view).convert('RGB')
+            view = Image.blend(view, Image.new('RGB', view.size, hexrgb(FIELDS[field][1])), .12)
+        else:
+            c = FIELDS[field][1 if kind == 'mid' else 0]
+            view = Image.blend(view, Image.new('RGB', view.size, hexrgb(c)), a)
+    pts = [(x * ZW, y * ZH) for x, y in p['pts']]
+    mask = Image.new('L', view.size, 0)
+    ImageDraw.Draw(mask).polygon(pts, fill=255)
+    rgba = view.copy(); rgba.putalpha(mask)
+    # a cream seam where the planes meet, like the cut edge of paper
+    d = ImageDraw.Draw(rgba)
+    d.line(pts + [pts[0]], fill=hexrgb(CREAM) + (255,), width=max(2, int(3 * k)))
+    x0, y0 = int(min(x for x, _ in pts)), int(min(y for _, y in pts))
+    x1, y1 = int(math.ceil(max(x for x, _ in pts))), int(math.ceil(max(y for _, y in pts)))
+    rgba = rgba.crop((x0, y0, x1, y1))
+    path = os.path.join(TMP, f'{key}--{post["slug"]}--plane{i+1}.png')
+    rgba.save(path, compress_level=6)
+    return path, zx + x0 / k, zy + y0 / k, (x1 - x0) / k, (y1 - y0) / k
+
+def rgb(sh, h): sh.fill.solid(); sh.fill.fore_color.rgb = RGBColor(*hexrgb(h)); sh.line.fill.background()
+
+def poly(slide, pts, colour, name):
+    fb = slide.shapes.build_freeform(Emu(int(pts[0][0] * PX)), Emu(int(pts[0][1] * PX)), scale=1.0)
+    fb.add_line_segments([(Emu(int(x * PX)), Emu(int(y * PX))) for x, y in pts[1:]], close=True)
+    sh = fb.convert_to_shape(); rgb(sh, colour); sh.name = name; sh.shadow.inherit = False
+    return sh
+
+def rect(slide, x, y, w, h, colour, name):
+    sh = slide.shapes.add_shape(1, Emu(int(x * PX)), Emu(int(y * PX)), Emu(int(w * PX)), Emu(int(h * PX)))
+    rgb(sh, colour); sh.name = name; sh.shadow.inherit = False
+    return sh
+
+def text(slide, x, y, w, h, s, face, px, colour, name, bold=False, spacing=None, line=None, align=None, anchor=MSO_ANCHOR.TOP):
+    tb = slide.shapes.add_textbox(Emu(int(x * PX)), Emu(int(y * PX)), Emu(int(w * PX)), Emu(int(h * PX)))
+    tb.name = name
+    tf = tb.text_frame; tf.word_wrap = True; tf.vertical_anchor = anchor
+    tf.margin_left = tf.margin_right = tf.margin_top = tf.margin_bottom = 0
+    p = tf.paragraphs[0]; p.text = s
+    if align: p.alignment = align
+    if line: p.line_spacing = Pt(line * .75)  # exact, in px
+    for r in p.runs:
+        r.font.name = face; r.font.size = Pt(px * .75); r.font.bold = bold
+        r.font.color.rgb = RGBColor(*hexrgb(colour))
+        if spacing is not None: r._r.get_or_add_rPr().set('spc', str(int(spacing)))
+    return tb
+
+def field_shapes(slide, W, H, field, key):
+    light, mid = FIELDS[field]
+    rect(slide, 0, 0, W, H, light, 'Field light')
+    # the mid plane: a sweep in from the top right that bends round, like the
+    # yellow on the PDC card, but cut with a straight edge where it meets the photo
+    arc = [(W * .70 - W * .70 * t, H * .30 + H * .30 * math.sin(t * math.pi / 2)) for t in [i / 24 for i in range(25)]]
+    poly(slide, [(W * .78, 0), (W, 0), (W, H), (0, H)] + list(reversed(arc)), mid, 'Field mid')
+    # a white corner, echoing the PDC card
+    poly(slide, [(W, H * .86), (W, H), (W - H * .14, H)], '#FFFFFF', 'Corner')
+
+def cursor(slide, x, y, size):
+    s = size / 24
+    pts = [(0, 0), (0, 17), (4, 13), (7, 20), (10, 19), (7, 12), (12.5, 12)]
+    sh = poly(slide, [(x + a * s, y + b * s) for a, b in pts], '#FFFFFF', 'Cursor')
+    sh.line.color.rgb = RGBColor(*hexrgb(INK)); sh.line.width = Emu(int(1.6 * s * PX))
+
+def build(key, cfg, previews):
+    prs = Presentation()
+    prs.slide_width, prs.slide_height = Emu(cfg['W'] * PX), Emu(cfg['H'] * PX)
+    blank = prs.slide_layouts[6]
+    for post in POSTS:
+        W, H = cfg['W'], cfg['H']
+        slide = prs.slides.add_slide(blank)
+        field_shapes(slide, W, H, post['field'], key)
+        zone = cfg['zone']
+        cx, cy, cw, ch = cfg['card']
+        if post.get('portrait') and ch > H * .7:
+            left = max(zone[0], cx + cw - 30)
+            zone = (left, zone[1], zone[0] + zone[2] - left, zone[3])
+        for i, p in enumerate(PLANES_PORTRAIT if post.get('portrait') else PLANES):
+            path, x, y, w, h = plane_png(post, key, zone, p, i, post['field'])
+            pic = slide.shapes.add_picture(path, Emu(int(x * PX)), Emu(int(y * PX)), Emu(int(w * PX)), Emu(int(h * PX)))
+            pic.name = f'Photo plane {i+1}'
+        cx, cy, cw, ch = cfg['card']
+        card = rect(slide, cx, cy, cw, ch, CREAM, 'Card')
+        pad = cfg['pad']; tw = cw - 2 * pad
+        # the biggest headline that fits: step down until the whole stack sits in the card
+        head_max = cfg['head']
+        cs, _ = fit(post['cat'], F_CAT, cfg['cat'], tw, 1, 20)
+        cat_lh = cs * 1.0
+        btn_h = cfg['btn'] * 1.8
+        url_px = max(13, cfg['btn'] * .6)
+        while True:
+            hs, hl = fit(post['head'], F_HEAD, head_max, tw, 5, 18)
+            ds, dl = (fit(post['deck'], F_HEAD, min(cfg['deck'], hs * .5), tw * .95, 4, 13) if post['deck'] else (0, []))
+            head_lh, deck_lh = hs * 1.02, ds * 1.28
+            gap = pad * .32
+            total = (cat_lh + gap * .5 + head_lh * len(hl) + (gap * .7 + deck_lh * len(dl) if dl else 0)
+                     + gap * 1.6 + btn_h + url_px * 1.9)
+            if total <= ch - 2 * pad or head_max <= 18: break
+            head_max -= 1
+        y = cy + pad + (ch - 2 * pad - total) * .45
+        colour = LEGACY if post['field'] == 'legacy' else INK
+        text(slide, cx + pad, y, tw, cat_lh * 1.1, post['cat'], 'Montserrat', cs, colour, 'Category', bold=True, spacing=-cs * .75 * 3, line=cat_lh)
+        y += cat_lh + gap * .5
+        text(slide, cx + pad, y, tw, head_lh * len(hl) + 4, '\v'.join(hl), 'Source Sans 3', hs, INK, 'Headline', spacing=-hs * .75 * 4, line=head_lh)
+        y += head_lh * len(hl)
+        if dl:
+            y += gap * .7
+            text(slide, cx + pad + 2, y, tw * .95, deck_lh * len(dl) + 4, '\v'.join(dl), 'Source Sans 3', ds, INK, 'Deck', line=deck_lh)
+            y += deck_lh * len(dl)
+        y += gap * 1.6
+        bw = font(F_BTN, cfg['btn']).getlength('READ POST') + cfg['btn'] * 1.9
+        rect(slide, cx + pad, y, bw, btn_h, INK, 'Button')
+        text(slide, cx + pad, y, bw, btn_h, 'READ POST', 'EB Garamond', cfg['btn'], '#FFFFFF', 'Button label', align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE, spacing=cfg['btn'] * .75 * 2)
+        cursor(slide, cx + pad + bw - cfg['btn'] * .45, y + btn_h * .55, cfg['btn'] * 1.25)
+        y += btn_h + url_px * .5
+        text(slide, cx + pad, y, tw, url_px * 1.4, 'www.soilfoodweb.com', 'Source Sans 3', url_px, INK, 'Web address', line=url_px * 1.3)
+        notes = slide.notes_slide.notes_text_frame
+        notes.text = (f"{post['slug']} ({post['date']})\nPhotograph: {post['img']} is a stand-in from the website "
+                      f"repository, not the post's own photograph.")
+    path = os.path.join(OUT, f'SFW-blog-cards--{key}.pptx')
+    prs.save(path)
+    return path
+
+if __name__ == '__main__':
+    only = sys.argv[2:] or list(SIZES)
+    for k in only:
+        print(build(k, SIZES[k], None))
