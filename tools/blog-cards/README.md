@@ -7,6 +7,7 @@ the Canva "Blogs Updated" folder:
 | --- | --- |
 | feature-social | 1400 x 1400 |
 | desktop-header | 1920 x 720 |
+| desktop-header-clean | 1920 x 720, the photograph whole, no planes |
 | tablet-header | 1024 x 768 |
 | mobile-header | 750 x 1000 |
 

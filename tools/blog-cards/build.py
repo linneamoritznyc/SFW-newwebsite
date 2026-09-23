@@ -85,6 +85,7 @@ SIZES = {
  'feature-social-1400x1400': dict(W=1400, H=1400, zone=(430, 0, 970, 1040),  card=(84, 450, 960, 870),  pad=80, cat=150, head=116, deck=42, btn=44),
  'mobile-header-750x1000':   dict(W=750,  H=1000, zone=(0, 0, 750, 590),     card=(30, 390, 690, 580),   pad=46, cat=82,  head=66, deck=26, btn=28),
  'desktop-header-1920x720':  dict(W=1920, H=720,  zone=(760, 0, 1160, 720),  card=(96, 56, 980, 608),   pad=64, cat=104, head=86, deck=32, btn=34),
+ 'desktop-header-1920x720-clean': dict(W=1920, H=720, zone=(700, 0, 1220, 720), card=(96, 56, 800, 608), pad=64, cat=104, head=86, deck=32, btn=34, clean=True),
  'tablet-header-1024x768':   dict(W=1024, H=768,  zone=(380, 0, 644, 768),   card=(44, 110, 660, 610),   pad=46, cat=74,  head=60, deck=24, btn=26),
 }
 
@@ -158,7 +159,7 @@ def plane_png(post, key, zone, p, i, field):
     rgba = view.copy(); rgba.putalpha(mask)
     # a cream seam where the planes meet, like the cut edge of paper
     d = ImageDraw.Draw(rgba)
-    d.line(pts + [pts[0]], fill=hexrgb(CREAM) + (255,), width=max(2, int(3 * k)))
+    if p.get('seam', True): d.line(pts + [pts[0]], fill=hexrgb(CREAM) + (255,), width=max(2, int(3 * k)))
     x0, y0 = int(min(x for x, _ in pts)), int(min(y for _, y in pts))
     x1, y1 = int(math.ceil(max(x for x, _ in pts))), int(math.ceil(max(y for _, y in pts)))
     rgba = rgba.crop((x0, y0, x1, y1))
@@ -222,7 +223,10 @@ def build(key, cfg, previews):
         if post.get('portrait') and ch > H * .7:
             left = max(zone[0], cx + cw - 30)
             zone = (left, zone[1], zone[0] + zone[2] - left, zone[3])
-        for i, p in enumerate(PLANES_PORTRAIT if post.get('portrait') else PLANES):
+        # the clean version: the photograph whole, one layer, no cuts
+        planes = ([dict(pts=[(0, 0), (1, 0), (1, 1), (0, 1)], s=1.0, d=(0, 0), tone=None, seam=False)] if cfg.get('clean')
+                  else PLANES_PORTRAIT if post.get('portrait') else PLANES)
+        for i, p in enumerate(planes):
             path, x, y, w, h = plane_png(post, key, zone, p, i, post['field'])
             pic = slide.shapes.add_picture(path, Emu(int(x * PX)), Emu(int(y * PX)), Emu(int(w * PX)), Emu(int(h * PX)))
             pic.name = f'Photo plane {i+1}'
