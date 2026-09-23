@@ -18,6 +18,8 @@ TMP = os.path.join(OUT, '_layers')
 os.makedirs(TMP, exist_ok=True)
 FONTS = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'fonts')
 PX = 9525  # EMU per px at 96 dpi
+STYLE = os.environ.get('STYLE', 'rect')   # rect | window | lens | print
+ONLY = [x for x in os.environ.get('ONLY', '').split(',') if x]
 
 def hexrgb(h): h = h.lstrip('#'); return tuple(int(h[i:i+2], 16) for i in (0, 2, 4))
 
@@ -37,38 +39,44 @@ LEGACY = '#6B4C7A'
 # Titles are the live titles, split at their own colon or dash into a
 # headline and a deck line. Nothing added. The PDC card is Linnea's wording.
 POSTS = [
+ dict(slug='fungi-to-bacteria-ratio-history', date='undated', cat='Education', field='glow',
+      head='A brief history of the fungi-to-bacteria ratio',
+      deck='Knowledge of not only the science, but also its history, is important for any grower considering the transition',
+      img='img/fungal-spores-in-suspension.jpg', focus=(.5, .5)),
+ dict(slug='what-is-your-soil-test-telling-you', date='undated', cat='Blog', field='tan',
+      head='What is your soil test really telling you?', deck='',
+      img='tools/blog-cards/photos/what is your soil test really telling you? .jpeg', focus=(.4, .4)),
  dict(slug='ciliates-microscope-watermelon', date='2026-05-01', cat='Microscopy', field='glow',
       head='Ciliates, Cysts, and the Clues Hiding in a Struggling Watermelon Crop',
       deck='How a rare microscope sighting helps deduce the problem with unhealthy soil',
       img='img/uploads/Testate amoeba (encysting), 40x obj, Joy Kaluf.jpg', focus=(.5, .5)),
  dict(slug='permaculture-design-certificate', date='2026-04-13', cat='Education', field='yellow',
-      head='SFW Launches first ever Permaculture Design Certificate',
-      deck='Knowledge of not only the science, but also its history, is important for any grower considering the transition',
-      img='img/garden-vegetable-beds.jpg', focus=(.5, .5)),
+      head='SFW Launches first ever Permaculture Design Certificate', deck='',
+      img='tools/blog-cards/photos/PDC-Cohort-1-Launches-1-2048x1152.png', focus=(0.74, 0.5)),
  dict(slug='advanced-programs-reopening', date='2026-02-23', cat='School Updates', field='yellow',
       head='Soil Food Web School Advanced Programs Are Reopening!', deck='',
-      img='img/uploads/loida-teaching-3.jpg', focus=(.5, .4)),
- dict(slug='obituary-dr-elaine-ingham', portrait=True, date='2026-02-18', cat='In Memoriam', field='legacy',
+      img='tools/blog-cards/photos/Students and mentors practice microscopy together at our workshop in Costa Rica, March 2025. .jpg', focus=(0.5, 0.5)),
+ dict(slug='obituary-dr-elaine-ingham', date='2026-02-18', cat='In Memoriam', field='legacy',
       head='Obituary for Dr. Elaine Ingham', deck='',
-      img='img/copy-of-9.jpg', focus=(.5, .35)),
+      img='tools/blog-cards/photos/Elaine Obituary, team with a sign that says Elaine .jpg', focus=(0.5, 0.55)),
  dict(slug='new-board-member-eric-feiler', date='2026-02-17', cat='Foundation Update', field='green',
       head='The Soil Food Web Welcomes a New Board Member', deck='Eric Feiler',
-      img='img/workshop-group-around-compost-pile.jpg', focus=(.5, .45)),
+      img='img/erc-rancho-cacachilas-aerial-2.jpg', focus=(0.5, 0.5)),
  dict(slug='2025-in-review', date='2025-12-30', cat='Blog', field='green',
       head='2025 in Review: A time of transition',
       deck='Honoring our founder and guiding spirit, building stronger community, and preparing for a bright future',
-      img='img/uploads/mar25-group-photo.jpg', focus=(.5, .45)),
+      img='tools/blog-cards/photos/SFW School Mentor Gerald Ramirez (center) demonstrates production of liquid amendments at our workshop in Costa Rica, March 2025. .jpg', focus=(0.5, 0.45)),
  dict(slug='living-legacy-webinar-series', portrait=True, date='2025-11-03', cat='Events', field='legacy',
       head='A Living Legacy', deck='Join the free webinar series: The Science of the Soil Food Web',
       img='img/Dr Elaine Ingham with Microscope.jpg', focus=(.5, .4)),
  dict(slug='soil-health-week-pakistan', date='2025-10-22', cat='Events', field='tan',
       head='Soil Health Week 2025',
       deck='Wild Soils UK and TrashIt bring the Soil Food Web approach to Pakistan',
-      img='img/ctpfw-student-moving-compost-1.jpg', focus=(.5, .5)),
- dict(slug='foundation-launches-as-nonprofit', date='2025-10-17', cat='Foundation Update', field='green',
+      img='tools/blog-cards/photos/Bridging Global Expertise and Local Action Soil Health Week Pakistan 2025 showcased the growing global impact of the Soil Food Web approach—demonstrating how soil biology can transform agriculture from the ground up. blog.png', focus=(0.5, 0.45)),
+ dict(slug='foundation-launches-as-nonprofit', portrait=True, date='2025-10-17', cat='Foundation Update', field='green',
       head='Soil Food Web Foundation Launches as Nonprofit',
       deck='To carry forward Dr. Elaine Ingham’s legacy',
-      img='img/hvdb-inplanten-002.jpg', focus=(.5, .5)),
+      img='tools/blog-cards/photos/Elaine Ruth Ingham, groundbreaking microbiologist and a leader in the regenerative agriculture movement, holding soil.jpg', focus=(0.5, 0.4)),
  dict(slug='retirement-dr-elaine-ingham', portrait=True, date='2025-10-16', cat='School Updates', field='legacy',
       head='Retirement Announcement: Dr. Elaine Ingham', deck='',
       img='img/copy-of-17.jpg', focus=(.6, .3)),
@@ -82,7 +90,7 @@ POSTS = [
 
 # Per size: the photo zone, the card, and the type scale. px.
 SIZES = {
- 'feature-social-1400x1400': dict(W=1400, H=1400, zone=(430, 0, 970, 1040),  card=(84, 450, 960, 870),  pad=80, cat=150, head=116, deck=42, btn=44, clean=True),
+ 'feature-social-1400x1400': dict(W=1400, H=1400, zone=(430, 0, 970, 1040),  card=(84, 450, 960, 870),  pad=80, cat=150, head=116, deck=42, btn=44, clean=True, shape_zone=(420, 0, 980, 1000), shape_card=(70, 690, 800, 640)),
  'mobile-header-750x1000':   dict(W=750,  H=1000, zone=(0, 0, 750, 590),     card=(30, 390, 690, 580),   pad=46, cat=82,  head=66, deck=26, btn=28, clean=True),
  'desktop-header-1920x720': dict(W=1920, H=720, zone=(700, 0, 1220, 720), card=(96, 56, 800, 608), pad=64, cat=104, head=86, deck=32, btn=34, clean=True),
  'tablet-header-1024x768':   dict(W=1024, H=768,  zone=(380, 0, 644, 768),   card=(44, 110, 660, 610),   pad=46, cat=74,  head=60, deck=24, btn=26, clean=True),
@@ -136,6 +144,16 @@ def photo_for(post):
         if os.path.exists(f): return f
     return os.path.join(REPO, post['img'])
 
+def grade(im):
+    # One grade for every photograph, so pictures from many cameras read as a
+    # set: levels set per photo, colour eased back a touch, and the highlights
+    # warmed toward the cream of the card.
+    from PIL import ImageEnhance
+    im = ImageOps.autocontrast(im, cutoff=(.4, .8))
+    im = ImageEnhance.Color(im).enhance(.9)
+    warm = Image.new('RGB', im.size, hexrgb(CREAM))
+    return Image.blend(im, Image.composite(warm, im, ImageOps.grayscale(im).point(lambda v: int(max(0, v - 150) * 1.2))), .5)
+
 def cover(img, w, h, focus):
     return ImageOps.fit(img, (w, h), Image.LANCZOS, centering=focus)
 
@@ -151,7 +169,7 @@ def plane_png(post, key, zone, p, i, field):
     ox = int((big.width - ZW) / 2 + p['d'][0] * ZW)
     oy = int((big.height - ZH) / 2 + p['d'][1] * ZH)
     ox = max(0, min(ox, big.width - ZW)); oy = max(0, min(oy, big.height - ZH))
-    view = big.crop((ox, oy, ox + ZW, oy + ZH))
+    view = grade(big.crop((ox, oy, ox + ZW, oy + ZH)))
     tone = p['tone']
     if tone:
         kind, a = tone
@@ -171,8 +189,14 @@ def plane_png(post, key, zone, p, i, field):
     x0, y0 = int(min(x for x, _ in pts)), int(min(y for _, y in pts))
     x1, y1 = int(math.ceil(max(x for x, _ in pts))), int(math.ceil(max(y for _, y in pts)))
     rgba = rgba.crop((x0, y0, x1, y1))
-    path = os.path.join(TMP, f'{key}--{post["slug"]}--plane{i+1}.png')
-    rgba.save(path, compress_level=6)
+    if not p.get('seam', True):
+        # a whole rectangle needs no transparency: a full-resolution JPEG at
+        # high quality keeps the detail at a fraction of the PNG's weight
+        path = os.path.join(TMP, f'{key}--{post["slug"]}--photo.jpg')
+        rgba.convert('RGB').save(path, quality=93, subsampling=0)
+    else:
+        path = os.path.join(TMP, f'{key}--{post["slug"]}--plane{i+1}.png')
+        rgba.save(path, compress_level=6)
     return path, zx + x0 / k, zy + y0 / k, (x1 - x0) / k, (y1 - y0) / k
 
 def rgb(sh, h): sh.fill.solid(); sh.fill.fore_color.rgb = RGBColor(*hexrgb(h)); sh.line.fill.background()
@@ -212,6 +236,69 @@ def field_shapes(slide, W, H, field, key):
     # a white corner, echoing the PDC card
     poly(slide, [(W, H * .86), (W, H), (W - H * .14, H)], '#FFFFFF', 'Corner')
 
+def shade(h, f):
+    r, g, b = hexrgb(h); return '#%02X%02X%02X' % tuple(int(c * f) for c in (r, g, b))
+
+def field_planes(slide, W, H, field, slug):
+    # Flat overlapping planes of colour, the cubist move made on the ground
+    # instead of the photograph. Same grammar on every card; the angles shift
+    # a little per post (seeded on its name) so the set is a family, not clones.
+    import random
+    rnd = random.Random(slug)
+    j = lambda v, a=.04: v + rnd.uniform(-a, a)
+    light, mid = FIELDS[field]
+    rect(slide, 0, 0, W, H, light, 'Field light')
+    poly(slide, [(0, H * j(.58)), (W * j(.46), H * j(.40)), (W * j(.62), H), (0, H)], mid, 'Plane mid')
+    poly(slide, [(W * j(.70), 0), (W, 0), (W, H * j(.46)), (W * j(.84), H * j(.30))], shade(mid, .86), 'Plane deep')
+    poly(slide, [(W * j(.52), H), (W * j(.80), H * j(.70)), (W, H * j(.78)), (W, H)], shade(light, .97), 'Plane pale')
+    poly(slide, [(W, H * .86), (W, H), (W - H * .14, H)], '#FFFFFF', 'Corner')
+
+def oval(slide, x, y, w, h, fill, name, line=None, lw=0):
+    sh = slide.shapes.add_shape(9, Emu(int(x * PX)), Emu(int(y * PX)), Emu(int(w * PX)), Emu(int(h * PX)))
+    sh.name = name; sh.shadow.inherit = False
+    if fill: sh.fill.solid(); sh.fill.fore_color.rgb = RGBColor(*hexrgb(fill))
+    else: sh.fill.background()
+    if line: sh.line.color.rgb = RGBColor(*hexrgb(line)); sh.line.width = Emu(int(lw * PX))
+    else: sh.line.fill.background()
+    return sh
+
+def arch_pts(x, y, w, h, n=40):
+    r = w / 2
+    pts = [(x, y + h), (x, y + r)]
+    pts += [(x + r - r * math.cos(math.pi * t / n), y + r - r * math.sin(math.pi * t / n)) for t in range(n + 1)]
+    pts += [(x + w, y + h)]
+    return pts
+
+def shaped_photo(slide, post, key, box, shape, field):
+    # the whole photograph, shaped: an arch, a lens or a mounted print. Never cut.
+    bx, by, bw, bh = box
+    src = ImageOps.exif_transpose(Image.open(photo_for(post))).convert('RGB')
+    k = max(1, min(2, min(src.width / bw, src.height / bh)))
+    img = grade(cover(src, int(bw * k), int(bh * k), post['focus']))
+    mid = FIELDS[field][1]
+    if shape == 'print':
+        off = bw * .045
+        rect(slide, bx + off, by + off, bw, bh, shade(mid, .78), 'Print shadow block')
+        rect(slide, bx - bw * .025, by - bw * .025, bw * 1.05, bh + bw * .05, '#FFFFFF', 'Print border')
+        path = os.path.join(TMP, f'{key}--{post["slug"]}--print.jpg')
+        img.save(path, quality=93, subsampling=0)
+    else:
+        mask = Image.new('L', img.size, 0); d = ImageDraw.Draw(mask)
+        if shape == 'lens':
+            d.ellipse((0, 0, img.width - 1, img.height - 1), fill=255)
+            oval(slide, bx + bw * .06, by + bh * .06, bw, bh, shade(mid, .82), 'Lens shadow')
+        else:
+            d.polygon(arch_pts(0, 0, img.width, img.height), fill=255)
+            poly(slide, arch_pts(bx + bw * .07, by - bh * .04, bw, bh), shade(mid, .82), 'Window shadow')
+        img = img.copy(); img.putalpha(mask)
+        path = os.path.join(TMP, f'{key}--{post["slug"]}--{shape}.png')
+        img.save(path, compress_level=6)
+    pic = slide.shapes.add_picture(path, Emu(int(bx * PX)), Emu(int(by * PX)), Emu(int(bw * PX)), Emu(int(bh * PX)))
+    pic.name = 'Photo'
+    if shape == 'lens':
+        # the field of view: a fine ring, like looking down the eyepiece
+        oval(slide, bx - bw * .03, by - bh * .03, bw * 1.06, bh * 1.06, None, 'Lens ring', line=INK, lw=max(2, bw * .004))
+
 def cursor(slide, x, y, size):
     s = size / 24
     pts = [(0, 0), (0, 17), (4, 13), (7, 20), (10, 19), (7, 12), (12.5, 12)]
@@ -222,10 +309,11 @@ def build(key, cfg, previews):
     prs = Presentation()
     prs.slide_width, prs.slide_height = Emu(cfg['W'] * PX), Emu(cfg['H'] * PX)
     blank = prs.slide_layouts[6]
-    for post in POSTS:
+    for post in [p for p in POSTS if not ONLY or p['slug'] in ONLY]:
         W, H = cfg['W'], cfg['H']
         slide = prs.slides.add_slide(blank)
-        field_shapes(slide, W, H, post['field'], key)
+        if STYLE == 'rect': field_shapes(slide, W, H, post['field'], key)
+        else: field_planes(slide, W, H, post['field'], post['slug'])
         zone = cfg['zone']
         cx, cy, cw, ch = cfg['card']
         if post.get('portrait') and ch > H * .7:
@@ -234,11 +322,21 @@ def build(key, cfg, previews):
         # the clean version: the photograph whole, one layer, no cuts
         planes = ([dict(pts=[(0, 0), (1, 0), (1, 1), (0, 1)], s=1.0, d=(0, 0), tone=None, seam=False)] if cfg.get('clean')
                   else PLANES_PORTRAIT if post.get('portrait') else PLANES)
+        if STYLE != 'rect':
+            zx, zy, zw, zh = cfg.get('shape_zone', zone)
+            m = min(W, H) * .06
+            bx, by, bw, bh = zx + m, zy + m, zw - 2 * m, zh - 1.6 * m
+            if STYLE == 'lens':
+                dmt = min(bw, bh); bx, by, bw, bh = bx + (bw - dmt) / 2, by, dmt, dmt
+            if STYLE == 'window':
+                bw = min(bw, bh * .82); bx = zx + zw - m - bw
+            shaped_photo(slide, post, key, (bx, by, bw, bh), STYLE, post['field'])
+            planes = []
         for i, p in enumerate(planes):
             path, x, y, w, h = plane_png(post, key, zone, p, i, post['field'])
             pic = slide.shapes.add_picture(path, Emu(int(x * PX)), Emu(int(y * PX)), Emu(int(w * PX)), Emu(int(h * PX)))
             pic.name = f'Photo plane {i+1}'
-        cx, cy, cw, ch = cfg['card']
+        cx, cy, cw, ch = cfg['shape_card'] if STYLE != 'rect' and 'shape_card' in cfg else cfg['card']
         card = rect(slide, cx, cy, cw, ch, CREAM, 'Card')
         pad = cfg['pad']; tw = cw - 2 * pad
         # the biggest headline that fits: step down until the whole stack sits in the card
@@ -276,7 +374,7 @@ def build(key, cfg, previews):
         notes = slide.notes_slide.notes_text_frame
         notes.text = (f"{post['slug']} ({post['date']})\nPhotograph: {post['img']} is a stand-in from the website "
                       f"repository, not the post's own photograph.")
-    path = os.path.join(OUT, f'SFW-blog-cards--{key}.pptx')
+    path = os.path.join(OUT, f'SFW-blog-cards--{key}' + ('' if STYLE == 'rect' else '--' + STYLE) + '.pptx')
     prs.save(path)
     return path
 
