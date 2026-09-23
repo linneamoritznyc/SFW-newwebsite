@@ -16,11 +16,11 @@ import pathlib
 import segno
 
 HERE = pathlib.Path(__file__).parent
-URL = "https://soilfoodweb.com/"
+URL = "https://www.sfw.one/brochure-website"   # the tracked Switchy link Linnea uploaded (qr-uploads/)
 DARK, LIGHT = "#22371F", "#FFFFFF"   # --moss, as the website code on the first trifold's Community panel
 
 qr = segno.make(URL, error="h")
-qr.save(HERE / "qr" / "soilfoodweb-qr.svg", scale=10, border=4, dark=DARK, light=LIGHT)
+qr.save(HERE / "qr" / "brochure-website.svg", scale=10, border=4, dark=DARK, light=LIGHT)
 modules = qr.symbol_size(scale=1, border=4)[0]
-qr.save(HERE / "qr" / "soilfoodweb-qr.png", scale=-(-1200 // modules), border=4, dark=DARK, light=LIGHT)
-print(f"soilfoodweb-qr  version {qr.version}, {modules} modules, {URL}")
+qr.save(HERE / "qr" / "brochure-website.png", scale=-(-1200 // modules), border=4, dark=DARK, light=LIGHT)
+print(f"brochure-website  version {qr.version}, {modules} modules, {URL}")

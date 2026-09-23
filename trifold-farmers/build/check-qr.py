@@ -15,7 +15,7 @@ Image.MAX_IMAGE_PIXELS = None
 ROOT = pathlib.Path(__file__).parent.parent
 WANT = {"outside": {"https://www.sfw.one/brochure-scholarship",
                     "https://www.sfw.one/brochure-community",
-                    "https://soilfoodweb.com/"},
+                    "https://www.sfw.one/brochure-website"},
         "inside":  {"https://www.sfw.one/brochure-webinar",
                     "https://www.sfw.one/brochure-casestudies"}}
 
