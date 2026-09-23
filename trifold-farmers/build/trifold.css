@@ -803,3 +803,8 @@ h2.subhead { font-size: 10.5pt; color: var(--green); line-height: 1.2; }
    back did. Both fields grow together, so the green still meets across the
    fold at one height. */
 :root { --foot-h: 2.98in; }
+
+/* Farmers trifold: the Why Biology flap's body text, raised from 8.4pt so the
+   three paragraphs fill the panel down to the webinar code. At 9pt the gap
+   above the code is 0.14in, the scale's own --s4. */
+.panel[data-panel="3"] > p { font-size: 9pt; }
