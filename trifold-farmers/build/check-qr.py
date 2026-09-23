@@ -13,8 +13,11 @@ from PIL import Image
 Image.MAX_IMAGE_PIXELS = None
 
 ROOT = pathlib.Path(__file__).parent.parent
-WANT = {"outside": {"https://soilfoodweb.com/"},
-        "inside":  {"https://www.sfw.one/brochure-casestudies"}}
+WANT = {"outside": {"https://www.sfw.one/brochure-scholarship",
+                    "https://www.sfw.one/brochure-community",
+                    "https://soilfoodweb.com/"},
+        "inside":  {"https://www.sfw.one/brochure-webinar",
+                    "https://www.sfw.one/brochure-casestudies"}}
 
 def decode(img):
     a = np.array(img.convert("RGB"))

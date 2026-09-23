@@ -792,19 +792,3 @@ h3 {
   letter-spacing: -0.004em;
   color: var(--soil);
 }
-
-/* --------------------------------------------------------------------------
-   Farmers trifold: the two additions to the first trifold's stylesheet.
-   Everything above this line is the first trifold's file, unchanged.
-   -------------------------------------------------------------------------- */
-/* The first flap sets its paragraph under the pillar row. In the first
-   trifold nothing followed a pillar row but a photograph or a spacer, so no
-   rule spaced it. One step of the existing scale, not a new value. */
-.pillars + p { margin-top: var(--s4); }
-
-/* The inside right headline is final copy and runs to four lines in the tuck
-   panel, which at 0.98in pushed its eyebrow up into the trim. The band is
-   raised on the inside sheet only, and on all three of its panels, so the
-   photographs still share one edge across both folds. The eyebrow now sits
-   inside the 0.28in safe margin. */
-.sheet--inside { --band-h: 1.40in; }

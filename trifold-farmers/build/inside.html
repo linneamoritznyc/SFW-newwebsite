@@ -1,7 +1,7 @@
 <!doctype html>
-<!-- Soil Food Web Foundation trifold for farmers, inside sheet: the three methods.
-     Second design. Same sheet, panels, fold, bleed, grid and styles as
-     "Trifold Design/"; only the copy, the photographs and the QR codes differ.
+<!-- Soil Food Web Foundation trifold for farmers, inside sheet: Our story, Research, Practice.
+     The first trifold ("Trifold Design/") with the farmers copy: same sheet,
+     panels, fold, bleed, grid, type, colours, photographs and QR positions.
      Render with: node "trifold-farmers/build/render.js" -->
 <html lang="en">
 <head>
@@ -46,71 +46,128 @@
   <symbol id="i-hourglass" viewBox="0 0 24 24"><path d="M6.8 3.4h10.4M6.8 20.6h10.4"/><path d="M8 3.4v3.3c0 2 1.6 3.7 4 5.3 2.4-1.6 4-3.3 4-5.3V3.4"/><path d="M8 20.6v-3.3c0-2 1.6-3.7 4-5.3 2.4 1.6 4 3.3 4 5.3v3.3"/></symbol>
   <symbol id="i-dig" viewBox="0 0 24 24"><path d="M2.6 19.6h18.8"/><path d="M7.6 19.6c.6-2.6 2.4-4 5.2-4"/><path d="M3.9 7.9a2.9 2.9 0 0 1 0-4.1 2.9 2.9 0 0 1 4.1 0l2.1 2.1"/><path d="M5.6 8.9 4.2 7.5"/><path d="M9.3 9.1l2.4-2.4"/><path d="M8.1 10.3 6 8.2"/><path d="M11.2 8l5.6 5.6c.9.9.9 2.3 0 3.2l-1.3 1.3-7.5-7.5 1.3-1.3c.9-.9 2.3-.9 3.2 0z"/></symbol>
 </svg>
-<div class="sheet sheet--inside" id="sheet">
+<div class="sheet" id="sheet">
   <div class="spread">
 
-    <!-- ================= INSIDE LEFT, MICROSCOPY ================= -->
+    <!-- ================= PANEL 2, OUR STORY ================= -->
     <section class="panel panel--wide panel--first panel--field panel--field--legacy" data-panel="2">
 
       <div class="banner">
-        <p class="eyebrow eyebrow--legacy">Microscopy</p>
-        <h2>See what lives in your soil.</h2>
+        <p class="eyebrow eyebrow--legacy">Our story</p>
+        <h2>It began with one scientist looking closer.</h2>
       </div>
 
       <figure class="figure figure--full figure--fade">
-        <img src="/img/uploads/testate-amoeba-40x.jpg" alt="" style="object-position:50% 50%; clip-path: polygon(0% 0%, 100% 0%, 100.00% 98.10%, 98.44% 97.93%, 96.88% 97.76%, 95.31% 97.58%, 93.75% 97.39%, 92.19% 97.20%, 90.62% 97.00%, 89.06% 96.79%, 87.50% 96.58%, 85.94% 96.36%, 84.38% 96.13%, 82.81% 95.90%, 81.25% 95.65%, 79.69% 95.41%, 78.12% 95.15%, 76.56% 94.89%, 75.00% 94.63%, 73.44% 94.35%, 71.88% 94.07%, 70.31% 93.79%, 68.75% 93.50%, 67.19% 93.20%, 65.62% 92.89%, 64.06% 92.58%, 62.50% 92.27%, 60.94% 91.94%, 59.38% 91.62%, 57.81% 91.28%, 56.25% 90.94%, 54.69% 90.59%, 53.12% 90.24%, 51.56% 89.88%, 50.00% 89.52%, 48.44% 89.15%, 46.88% 88.78%, 45.31% 88.40%, 43.75% 88.01%, 42.19% 87.62%, 40.62% 87.22%, 39.06% 86.82%, 37.50% 86.41%, 35.94% 86.00%, 34.38% 85.58%, 32.81% 85.16%, 31.25% 84.73%, 29.69% 84.30%, 28.12% 83.86%, 26.56% 83.42%, 25.00% 82.97%, 23.44% 82.51%, 21.88% 82.05%, 20.31% 81.59%, 18.75% 81.12%, 17.19% 80.64%, 15.62% 80.16%, 14.06% 79.68%, 12.50% 79.18%, 10.94% 78.68%, 9.38% 78.17%, 7.81% 77.66%, 6.25% 77.13%, 4.69% 76.59%, 3.12% 76.03%, 1.56% 75.44%, 0.00% 75.00%)">
-        <figcaption class="caption">Testate amoeba, 40x objective. Photograph: Joy Kaluf.</figcaption>
+        <img src="/img/Elaine Flower Shirt Microscope.png" alt="" style="object-position:50% 20%; clip-path: polygon(0% 0%, 100% 0%, 100.00% 98.10%, 98.44% 97.93%, 96.88% 97.76%, 95.31% 97.58%, 93.75% 97.39%, 92.19% 97.20%, 90.62% 97.00%, 89.06% 96.79%, 87.50% 96.58%, 85.94% 96.36%, 84.38% 96.13%, 82.81% 95.90%, 81.25% 95.65%, 79.69% 95.41%, 78.12% 95.15%, 76.56% 94.89%, 75.00% 94.63%, 73.44% 94.35%, 71.88% 94.07%, 70.31% 93.79%, 68.75% 93.50%, 67.19% 93.20%, 65.62% 92.89%, 64.06% 92.58%, 62.50% 92.27%, 60.94% 91.94%, 59.38% 91.62%, 57.81% 91.28%, 56.25% 90.94%, 54.69% 90.59%, 53.12% 90.24%, 51.56% 89.88%, 50.00% 89.52%, 48.44% 89.15%, 46.88% 88.78%, 45.31% 88.40%, 43.75% 88.01%, 42.19% 87.62%, 40.62% 87.22%, 39.06% 86.82%, 37.50% 86.41%, 35.94% 86.00%, 34.38% 85.58%, 32.81% 85.16%, 31.25% 84.73%, 29.69% 84.30%, 28.12% 83.86%, 26.56% 83.42%, 25.00% 82.97%, 23.44% 82.51%, 21.88% 82.05%, 20.31% 81.59%, 18.75% 81.12%, 17.19% 80.64%, 15.62% 80.16%, 14.06% 79.68%, 12.50% 79.18%, 10.94% 78.68%, 9.38% 78.17%, 7.81% 77.66%, 6.25% 77.13%, 4.69% 76.59%, 3.12% 76.03%, 1.56% 75.44%, 0.00% 75.00%)">
+        <figcaption class="caption">Dr. Elaine Ingham at the microscope.</figcaption>
       </figure>
 
-      <p>Every recommendation starts with a biological analysis under a
-        microscope. You'll learn to take a microbial count, which names what is
-        present in your soil or compost sample and their relative numbers:
-        bacteria, fungi, protozoa, nematodes, and microarthropods.</p>
+      <p>The Soil Food Web Foundation was established in October 2025 to carry
+        forward the life's work of Dr. Elaine Ingham, the scientist whose
+        research transformed our understanding of soil biology and its central
+        role in food production, ecosystem health, and planetary
+        regeneration.</p>
 
-      <p>The count shows you what your soil is missing. After you add it, you
-        measure again to confirm microbial counts are going in the expected
-        directions.</p>
+      <p>She passed away in February 2026, and the work she started continues
+        through the Foundation, the school that is a part of it, and Soil Food
+        Web practitioners in more than 132 countries, who are helping farmers
+        restore the world's soils.</p>
 
-      <p>You can learn this in our Soil Microscopy program, which also prepares
-        you for a career in soil biology analysis as an SFW Lab-Technician.</p>
+      <p>From 1996 onward, Dr. Ingham developed new methods of rapidly assessing
+        soil and foliage-related organisms and researched how soil and foliar
+        biology changes with different management practices on farms. From 2011
+        to 2014, Dr. Ingham served as the Chief Scientist for the Rodale
+        Institute in Pennsylvania, one of the leading organic farming research
+        centers, before founding the Soil Food Web School in 2019. That school
+        has grown into the nonprofit Soil Food Web Foundation.</p>
+
+      <figure class="figure figure--side">
+        <img src="/img/w/elaine-and-nematode-extraction.jpg" alt="" style="object-position:50% 40%">
+        <figcaption class="caption">Her published record, in full,
+          on our site:<br><span class="url">sfw.one/publications</span></figcaption>
+      </figure>
 
       <div class="spacer"></div>
 
+      <div class="qr">
+        <img src="qr/webinar.svg" alt="">
+        <div>
+          <div class="t">Watch a free webinar</div>
+          <div class="d">A live hour with an instructor or a practitioner, every
+            month. The easiest first step.</div>
+          <div class="h">sfw.one/brochure-webinar</div>
+        </div>
+      </div>
+
     </section>
 
-    <!-- ================= INSIDE MIDDLE, COMPOSTING AND LIQUID AMENDMENTS ================= -->
+    <!-- ================= PANEL 4, RESEARCH ================= -->
     <section class="panel panel--wide" data-panel="4">
 
       <div class="banner">
-        <p class="eyebrow">Composting and liquid amendments</p>
-        <h2>Make your own biology on your farm.</h2>
+        <p class="eyebrow">Research</p>
+        <h2>We look at your soil before we recommend anything.</h2>
       </div>
 
       <figure class="figure figure--full figure--fade">
-        <img src="/img/uploads/MAR Group Photo 2.jpg" alt="" style="object-position:50% 52%; clip-path: polygon(0% 0%, 100% 0%, 100.00% 95.26%, 98.44% 95.49%, 96.88% 95.71%, 95.31% 95.92%, 93.75% 96.13%, 92.19% 96.34%, 90.62% 96.54%, 89.06% 96.73%, 87.50% 96.92%, 85.94% 97.11%, 84.38% 97.29%, 82.81% 97.46%, 81.25% 97.63%, 79.69% 97.80%, 78.12% 97.95%, 76.56% 98.11%, 75.00% 98.25%, 73.44% 98.39%, 71.88% 98.53%, 70.31% 98.66%, 68.75% 98.78%, 67.19% 98.90%, 65.62% 99.01%, 64.06% 99.12%, 62.50% 99.22%, 60.94% 99.32%, 59.38% 99.41%, 57.81% 99.49%, 56.25% 99.56%, 54.69% 99.64%, 53.12% 99.70%, 51.56% 99.76%, 50.00% 99.81%, 48.44% 99.86%, 46.88% 99.90%, 45.31% 99.93%, 43.75% 99.96%, 42.19% 99.98%, 40.62% 99.99%, 39.06% 100.00%, 37.50% 100.00%, 35.94% 99.99%, 34.38% 99.98%, 32.81% 99.97%, 31.25% 99.94%, 29.69% 99.91%, 28.12% 99.87%, 26.56% 99.83%, 25.00% 99.78%, 23.44% 99.72%, 21.88% 99.66%, 20.31% 99.59%, 18.75% 99.52%, 17.19% 99.43%, 15.62% 99.34%, 14.06% 99.25%, 12.50% 99.15%, 10.94% 99.04%, 9.38% 98.92%, 7.81% 98.80%, 6.25% 98.67%, 4.69% 98.54%, 3.12% 98.40%, 1.56% 98.25%, 0.00% 98.10%)">
-        <figcaption class="caption">A workshop group around a finished compost pile.</figcaption>
+        <img src="/img/Test tubes with sample_.jpg" alt="" style="object-position:50% 50%; clip-path: polygon(0% 0%, 100% 0%, 100.00% 95.26%, 98.44% 95.49%, 96.88% 95.71%, 95.31% 95.92%, 93.75% 96.13%, 92.19% 96.34%, 90.62% 96.54%, 89.06% 96.73%, 87.50% 96.92%, 85.94% 97.11%, 84.38% 97.29%, 82.81% 97.46%, 81.25% 97.63%, 79.69% 97.80%, 78.12% 97.95%, 76.56% 98.11%, 75.00% 98.25%, 73.44% 98.39%, 71.88% 98.53%, 70.31% 98.66%, 68.75% 98.78%, 67.19% 98.90%, 65.62% 99.01%, 64.06% 99.12%, 62.50% 99.22%, 60.94% 99.32%, 59.38% 99.41%, 57.81% 99.49%, 56.25% 99.56%, 54.69% 99.64%, 53.12% 99.70%, 51.56% 99.76%, 50.00% 99.81%, 48.44% 99.86%, 46.88% 99.90%, 45.31% 99.93%, 43.75% 99.96%, 42.19% 99.98%, 40.62% 99.99%, 39.06% 100.00%, 37.50% 100.00%, 35.94% 99.99%, 34.38% 99.98%, 32.81% 99.97%, 31.25% 99.94%, 29.69% 99.91%, 28.12% 99.87%, 26.56% 99.83%, 25.00% 99.78%, 23.44% 99.72%, 21.88% 99.66%, 20.31% 99.59%, 18.75% 99.52%, 17.19% 99.43%, 15.62% 99.34%, 14.06% 99.25%, 12.50% 99.15%, 10.94% 99.04%, 9.38% 98.92%, 7.81% 98.80%, 6.25% 98.67%, 4.69% 98.54%, 3.12% 98.40%, 1.56% 98.25%, 0.00% 98.10%)">
+        <figcaption class="caption">Soil samples beside the microscope.</figcaption>
       </figure>
 
-      <p>The basic methodology is universal; the application is based upon
-        locally-sourced materials. You'll learn to produce high-quality
-        BioComplete&trade; compost and biological liquid amendments, and to
-        apply them to rebalance the microbial content of your soil.</p>
+      <p class="lede">Forty-five years of soil biology research, practiced by
+        graduates in more than 132 countries on six continents.</p>
 
-      <p>You can learn this in our BioComplete&trade; Compost Production and
-        Biological Liquid Amendments and Field Trial programs. You can also join
-        an Accelerator Workshop, an immersive, two-week, hands-on intensive
-        where you produce compost and liquid amendments live, on a partner's
-        land.</p>
+      <h3>What biologically complete, properly-structured soil does:</h3>
+      <div class="pillars">
+        <div><svg class="icon icon--lg" aria-hidden="true"><use href="#i-cycle"/></svg><div class="l">Nutrient<br>cycling</div></div>
+        <div><svg class="icon icon--lg" aria-hidden="true"><use href="#i-aggregate"/></svg><div class="l">Creates<br>soil<br>structure</div></div>
+        <div><svg class="icon icon--lg" aria-hidden="true"><use href="#i-weed"/></svg><div class="l">Inhibits<br>weed<br>pressure</div></div>
+        <div><svg class="icon icon--lg" aria-hidden="true"><use href="#i-shield"/></svg><div class="l">Reduces<br>pests and<br>disease</div></div>
+      </div>
 
+      <figure class="figure figure--band">
+        <img src="/img/uploads/testate-amoeba-40x.jpg" alt="">
+        <figcaption class="caption">Testate amoeba, 40x objective. Photograph:
+          Joy Kaluf. A microbial count names what is present in the sample and
+          their relative numbers: bacteria, fungi, protozoa, nematodes and
+          microarthropods.</figcaption>
+      </figure>
+
+      <h3>What we test before we recommend remediation plans</h3>
+      <ul class="checks">
+        <li class="ico"><svg class="icon" aria-hidden="true"><use href="#i-flask"/></svg>
+          <div><b>Diagnostic first.</b> Every recommendation starts with a
+          biological analysis under a microscope.</div></li>
+        <li class="ico"><svg class="icon" aria-hidden="true"><use href="#i-microscope"/></svg>
+          <div><b>Measurable.</b> We provide a relative count of various
+          microbes present in your soil or compost sample.</div></li>
+        <li class="ico"><svg class="icon" aria-hidden="true"><use href="#i-field"/></svg>
+          <div><b>Adaptation and retrofitting.</b> We help you convert your
+          current operations to the Soil Food Web Approach, at any
+          scale.</div></li>
+      </ul>
+
+      <div class="card">
+        <p class="pull">We train farmers, and the people who help them, to
+          transition away from using chemicals, to using biology. This results
+          in significant benefits to the farmer and to the environment, as well
+          as to the consumer. The method has been applied on 6 continents and
+          across all soil types, as documented in our ever-increasing case
+          study library.</p>
+      </div>
       <div class="spacer"></div>
+
+      <hr class="hr hr--strong">
+      <p style="font-size:8pt">Visit our YouTube Channel for case study videos,
+        webinars and other regenerative agriculture topics:<br><span class="url">[LINK: YouTube channel short link, to be confirmed]</span></p>
 
     </section>
 
-    <!-- ================= INSIDE RIGHT, HOLISTIC MANAGEMENT (tuck-in) ================= -->
+    <!-- ================= PANEL 5, PRACTICE ================= -->
     <section class="panel panel--tuck panel--last panel--cream" data-panel="5">
 
       <div class="banner">
-        <p class="eyebrow">Holistic management</p>
+        <p class="eyebrow">Practice</p>
         <h2>Growers are already implementing the Soil Food Web Approach at every scale.</h2>
       </div>
 
@@ -119,20 +176,38 @@
         <figcaption class="caption">Agroecology plots at Rancho Cacachilas.</figcaption>
       </figure>
 
-      <p>Holistic management means planning your whole operation around the
-        biology in your soil. We help you convert your current operations to the
-        Soil Food Web Approach, at any scale.</p>
+      <p class="lede">The basic methodology is universal; the application is
+        based upon locally-sourced materials. Our case studies and field trials
+        demonstrate the efficacy across a range of soil types at every scale
+        from market gardens to massive industrial farming operations.</p>
 
       <p>Nick Padwick farms four thousand acres in Norfolk, England. Roberto
         Silva works a hundred and forty in Piura, Peru. Jenn Sirp grows on a
-        quarter acre in California. Each of them describes how the Soil Food Web
-        Approach changed their operation by reducing inputs, creating better
-        outputs, and improving their bottom line.</p>
+        quarter acre in California. Check out their individual accounts of how
+        the Soil Food Web Approach changed their operations through reducing
+        inputs, creating better outputs and improving their bottom lines.</p>
+
+      <p>Though the projects run from backyard gardens to expansive public
+        parks, the same process is applicable. The steps are the same at every
+        scale: look at the biology under a microscope, add what is missing to
+        rebalance the microbial content, then measure again to confirm
+        microbial counts are going in the expected directions.</p>
+
+      <p>We partner with growers to teach them microscopy and biological
+        compost creation and application so they can implement the approach
+        where they farm, and document the impacts.</p>
+
+      <figure class="figure figure--trio">
+        <img src="/img/ctpfw-student-moving-compost-1.jpg" alt="" style="object-position:50% 45%">
+        <img src="/img/erc-panchmana-treeplanting-fb-img-1666270907385.jpg" alt="" style="object-position:50% 55%">
+        <img src="/img/garden-vegetable-beds.jpg" alt="" style="object-position:50% 55%">
+      </figure>
 
       <div class="card">
         <div class="hd"><svg class="icon" aria-hidden="true"><use href="#i-person"/></svg><h3>Find a trained professional near you</h3></div>
-        <p>Our graduates who complete their certifications as consultants and
-          lab-technicians are listed in our online directory.</p>
+        <p>Our graduates who complete their certifications to become
+          consultants and lab-technicians are listed in our online
+          directory.</p>
       </div>
 
       <div class="spacer"></div>
@@ -140,7 +215,8 @@
       <div class="qr">
         <img src="qr/case-studies.svg" alt="">
         <div>
-          <div class="t">Listen to our growers' stories, in their own words.</div>
+          <div class="t">Listen to our students' stories and hear in their own
+            words what a difference this training has made.</div>
           <div class="h">sfw.one/brochure-casestudies</div>
         </div>
       </div>
