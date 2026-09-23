@@ -7,15 +7,14 @@ the Canva "Blogs Updated" folder:
 | --- | --- |
 | feature-social | 1400 x 1400 |
 | desktop-header | 1920 x 720 |
-| desktop-header-clean | 1920 x 720, the photograph whole, no planes |
 | tablet-header | 1024 x 768 |
 | mobile-header | 750 x 1000 |
 
 The layout is Linnea's PDC card (colour field, cream card, category word,
 headline, READ POST with the cursor, web address) with the post's photograph
-cut into planes, each a slightly different view of the same picture. Every
-piece is its own layer: the text is live text, each photo plane is its own
-PNG, the colour field and card are shapes.
+whole beside or above the card. Every piece is its own layer: the text is live
+text, the photo is one image, the colour field and card are shapes. (The cut
+"planes" version is still in build.py; Linnea turned it down.)
 
 ```
 pip install python-pptx pillow
@@ -30,8 +29,8 @@ for measuring.
 
 ## Open items
 
-- Every photograph is a stand-in from `img/`. The posts' own original,
-  unedited photographs replace them in `POSTS`, then rerun.
+- Photos: upload each post's original to `photos/` under its slug (see
+  `photos/README.md`) and rerun. Until then each card uses a stand-in from `img/`.
 - Headlines are the live titles split at their own colon or dash; the deck
   line is the other half. The PDC card keeps Linnea's wording. Category words
   follow the blog's categories, except PDC (Education, Linnea's) and the

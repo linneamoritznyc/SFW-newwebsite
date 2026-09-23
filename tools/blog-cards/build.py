@@ -40,53 +40,52 @@ POSTS = [
  dict(slug='ciliates-microscope-watermelon', date='2026-05-01', cat='Microscopy', field='glow',
       head='Ciliates, Cysts, and the Clues Hiding in a Struggling Watermelon Crop',
       deck='How a rare microscope sighting helps deduce the problem with unhealthy soil',
-      img='img/w/sfw-amoeba-still-wide.jpg', focus=(.5, .5)),
+      img='img/uploads/Testate amoeba (encysting), 40x obj, Joy Kaluf.jpg', focus=(.5, .5)),
  dict(slug='permaculture-design-certificate', date='2026-04-13', cat='Education', field='yellow',
       head='SFW Launches first ever Permaculture Design Certificate',
       deck='Knowledge of not only the science, but also its history, is important for any grower considering the transition',
-      img='img/w/erc-panchamana-garden.jpg', focus=(.5, .5)),
+      img='img/garden-vegetable-beds.jpg', focus=(.5, .5)),
  dict(slug='advanced-programs-reopening', date='2026-02-23', cat='School Updates', field='yellow',
       head='Soil Food Web School Advanced Programs Are Reopening!', deck='',
       img='img/uploads/loida-teaching-3.jpg', focus=(.5, .4)),
  dict(slug='obituary-dr-elaine-ingham', portrait=True, date='2026-02-18', cat='In Memoriam', field='legacy',
       head='Obituary for Dr. Elaine Ingham', deck='',
-      img='img/w/copy-of-9.jpg', focus=(.5, .35)),
+      img='img/copy-of-9.jpg', focus=(.5, .35)),
  dict(slug='new-board-member-eric-feiler', date='2026-02-17', cat='Foundation Update', field='green',
       head='The Soil Food Web Welcomes a New Board Member', deck='Eric Feiler',
-      img='img/w/workshop-group-around-compost-pile.jpg', focus=(.5, .45)),
+      img='img/workshop-group-around-compost-pile.jpg', focus=(.5, .45)),
  dict(slug='2025-in-review', date='2025-12-30', cat='Blog', field='green',
       head='2025 in Review: A time of transition',
       deck='Honoring our founder and guiding spirit, building stronger community, and preparing for a bright future',
       img='img/uploads/mar25-group-photo.jpg', focus=(.5, .45)),
  dict(slug='living-legacy-webinar-series', portrait=True, date='2025-11-03', cat='Events', field='legacy',
       head='A Living Legacy', deck='Join the free webinar series: The Science of the Soil Food Web',
-      img='img/uploads/elaine-behind-microscope.jpg', focus=(.5, .4)),
+      img='img/Dr Elaine Ingham with Microscope.jpg', focus=(.5, .4)),
  dict(slug='soil-health-week-pakistan', date='2025-10-22', cat='Events', field='tan',
       head='Soil Health Week 2025',
       deck='Wild Soils UK and TrashIt bring the Soil Food Web approach to Pakistan',
-      img='img/w/erc-panchamana-treeplanting-3-fb-img-1666271008784.jpg', focus=(.5, .5)),
+      img='img/ctpfw-student-moving-compost-1.jpg', focus=(.5, .5)),
  dict(slug='foundation-launches-as-nonprofit', date='2025-10-17', cat='Foundation Update', field='green',
       head='Soil Food Web Foundation Launches as Nonprofit',
       deck='To carry forward Dr. Elaine Ingham’s legacy',
-      img='img/w/2-hands-clasped-holding-plant-roots.jpg', focus=(.5, .5)),
+      img='img/hvdb-inplanten-002.jpg', focus=(.5, .5)),
  dict(slug='retirement-dr-elaine-ingham', portrait=True, date='2025-10-16', cat='School Updates', field='legacy',
       head='Retirement Announcement: Dr. Elaine Ingham', deck='',
-      img='img/w/elaine-with-sample-bag.jpg', focus=(.5, .35)),
+      img='img/copy-of-17.jpg', focus=(.6, .3)),
  dict(slug='october-2025-newsletter', date='2025-10-09', cat='Blog', field='yellow',
       head='October 2025 Newsletter', deck='',
-      img='img/w/hand-of-compost.jpg', focus=(.5, .5)),
+      img='img/hand-of-compost.jpg', focus=(.5, .5)),
  dict(slug='sacramento-food-knowledge-culture', date='2025-09-23', cat='Events', field='tan',
       head='Help us celebrate food, knowledge and culture in Sacramento this September', deck='',
-      img='img/w/carla-nicks-son-nick-eri-wild-soils-event-11-2024.jpg', focus=(.5, .4)),
+      img='img/uploads/carrot-growing-in-vegitable-bed-community-garden-2025-01-08-04-14-23-utc.jpg', focus=(.5, .4)),
 ]
 
 # Per size: the photo zone, the card, and the type scale. px.
 SIZES = {
- 'feature-social-1400x1400': dict(W=1400, H=1400, zone=(430, 0, 970, 1040),  card=(84, 450, 960, 870),  pad=80, cat=150, head=116, deck=42, btn=44),
- 'mobile-header-750x1000':   dict(W=750,  H=1000, zone=(0, 0, 750, 590),     card=(30, 390, 690, 580),   pad=46, cat=82,  head=66, deck=26, btn=28),
- 'desktop-header-1920x720':  dict(W=1920, H=720,  zone=(760, 0, 1160, 720),  card=(96, 56, 980, 608),   pad=64, cat=104, head=86, deck=32, btn=34),
- 'desktop-header-1920x720-clean': dict(W=1920, H=720, zone=(700, 0, 1220, 720), card=(96, 56, 800, 608), pad=64, cat=104, head=86, deck=32, btn=34, clean=True),
- 'tablet-header-1024x768':   dict(W=1024, H=768,  zone=(380, 0, 644, 768),   card=(44, 110, 660, 610),   pad=46, cat=74,  head=60, deck=24, btn=26),
+ 'feature-social-1400x1400': dict(W=1400, H=1400, zone=(430, 0, 970, 1040),  card=(84, 450, 960, 870),  pad=80, cat=150, head=116, deck=42, btn=44, clean=True),
+ 'mobile-header-750x1000':   dict(W=750,  H=1000, zone=(0, 0, 750, 590),     card=(30, 390, 690, 580),   pad=46, cat=82,  head=66, deck=26, btn=28, clean=True),
+ 'desktop-header-1920x720': dict(W=1920, H=720, zone=(700, 0, 1220, 720), card=(96, 56, 800, 608), pad=64, cat=104, head=86, deck=32, btn=34, clean=True),
+ 'tablet-header-1024x768':   dict(W=1024, H=768,  zone=(380, 0, 644, 768),   card=(44, 110, 660, 610),   pad=46, cat=74,  head=60, deck=24, btn=26, clean=True),
 }
 
 # The cubist planes, in zone coordinates 0..1. Each shows the same photograph
@@ -128,12 +127,21 @@ def fit(text, fname, size, width, max_lines, floor):
         size -= 1
     return size, wrap(text, font(fname, size), width * .93)
 
+PHOTOS = os.path.join(REPO, 'tools', 'blog-cards', 'photos')
+
+def photo_for(post):
+    # a post's own photograph, uploaded to photos/ under its slug, wins over the stand-in
+    for ext in ('jpg', 'jpeg', 'png', 'webp', 'JPG', 'JPEG', 'PNG'):
+        f = os.path.join(PHOTOS, f"{post['slug']}.{ext}")
+        if os.path.exists(f): return f
+    return os.path.join(REPO, post['img'])
+
 def cover(img, w, h, focus):
     return ImageOps.fit(img, (w, h), Image.LANCZOS, centering=focus)
 
 def plane_png(post, key, zone, p, i, field):
     zx, zy, zw, zh = zone
-    src = ImageOps.exif_transpose(Image.open(os.path.join(REPO, post['img']))).convert('RGB')
+    src = ImageOps.exif_transpose(Image.open(photo_for(post))).convert('RGB')
     s = p['s']
     # as sharp as the photograph allows, up to 2x the slide: never upscaled
     # past its own pixels, which only makes the file bigger
