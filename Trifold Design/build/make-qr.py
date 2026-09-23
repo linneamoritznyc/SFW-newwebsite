@@ -86,7 +86,7 @@ CODES = {
     "webinar":      ("https://www.sfw.one/brochure-webinar",     "webinar",     "#6B4C7A"),  # --legacy, the Dr. Elaine panel
     "courses":      ("https://www.sfw.one/brochure-courses",     "courses",     "#3780B8"),  # --edu, the teaching panel
     "case-studies": ("https://www.sfw.one/brochure-casestudies", "casestudies", "#156826"),  # --green, the practice panel
-    "scholarship":  ("https://www.sfw.one/brochure-scholarship", "scholarship", "#22371F"),  # --moss, the deep end of the community field
+    "website":      ("https://www.soilfoodweb.com",              "website",     "#22371F"),  # --moss, the deep end of the community field
     "donate":       ("https://www.sfw.one/brochure-donate",      "donate",      "#C9A227"),  # --gold, the donate accent
 }
 

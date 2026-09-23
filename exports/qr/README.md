@@ -11,7 +11,7 @@ the artwork encoding the same links.
 | `sfw-brochure-qr-webinar.png` | `https://www.sfw.one/brochure-webinar` | `#6B4C7A` Legacy Purple | Our story |
 | `sfw-brochure-qr-courses.png` | `https://www.sfw.one/brochure-courses` | `#3780B8` Education Blue | Teaching |
 | `sfw-brochure-qr-casestudies.png` | `https://www.sfw.one/brochure-casestudies` | `#156826` Food Web Green | Practice |
-| `sfw-brochure-qr-scholarship.png` | `https://www.sfw.one/brochure-scholarship` | `#22371F` Moss | Community |
+| `sfw-brochure-qr-website.png` | `https://www.soilfoodweb.com` | `#22371F` Moss | Community |
 | `sfw-brochure-qr-donate.png` | `https://www.sfw.one/brochure-donate` | `#C9A227` Gold | Donate |
 
 Each is a Switchy short link, so a destination can be repointed without a
@@ -27,7 +27,7 @@ decoded; the build stops if it does not come back. An earlier version used a
 WCAG contrast threshold of 4.5:1, which is a text readability figure and far
 too strict here: it rejected Education Blue and the brand gold, both of which
 decode reliably at this error correction and module size. Blur tolerance runs
-from 2.8px on the scholarship code to 1.2px on the gold, so gold is the one to
+from 2.4px on the website code to 1.2px on the gold, so gold is the one to
 check first on a press proof.
 
 `sfw-brochure-qr-codes.zip` holds all five.

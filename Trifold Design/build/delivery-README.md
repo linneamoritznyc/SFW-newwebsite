@@ -51,13 +51,13 @@ without reprinting.
 | `sfw-brochure-qr-webinar.png` | `https://www.sfw.one/brochure-webinar` | `#6B4C7A` Legacy Purple |
 | `sfw-brochure-qr-courses.png` | `https://www.sfw.one/brochure-courses` | `#3780B8` Education Blue |
 | `sfw-brochure-qr-casestudies.png` | `https://www.sfw.one/brochure-casestudies` | `#156826` Food Web Green |
-| `sfw-brochure-qr-scholarship.png` | `https://www.sfw.one/brochure-scholarship` | `#22371F` Moss |
+| `sfw-brochure-qr-website.png` | `https://www.soilfoodweb.com` | `#22371F` Moss |
 | `sfw-brochure-qr-donate.png` | `https://www.sfw.one/brochure-donate` | `#C9A227` Gold |
 
 Every one was decoded out of the delivered PNG, again out of the zip, and again
 out of the CMYK PDF, and matched its link exactly.
 
-**Check the gold first on a press proof.** Blur tolerance runs from 2.8px on the
-scholarship code down to 1.2px on the gold, which is the lightest ink and has the
+**Check the gold first on a press proof.** Blur tolerance runs from 2.4px on the
+website code down to 1.2px on the gold, which is the lightest ink and has the
 least margin. If it disappoints, `#8A6E15` still reads as gold and survives
 about twice the blur.
