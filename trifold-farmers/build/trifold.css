@@ -792,3 +792,8 @@ h3 {
   letter-spacing: -0.004em;
   color: var(--soil);
 }
+
+/* Farmers trifold: the cover's subheadline, under "Grow your own biology."
+   About half the headline's 20pt and in Food Web Green, so the two do not
+   compete. Everything above this line is the first trifold's stylesheet. */
+h2.subhead { font-size: 10.5pt; color: var(--green); line-height: 1.2; }
