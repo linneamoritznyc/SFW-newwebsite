@@ -804,10 +804,6 @@ h2.subhead { font-size: 10.5pt; color: var(--green); line-height: 1.2; }
    fold at one height. */
 :root { --foot-h: 2.98in; }
 
-/* Farmers trifold: the Why Biology flap's body text, raised from 8.4pt so the
-   three paragraphs fill the panel down to the webinar code. At 9pt the gap
-   above the code is 0.14in, the scale's own --s4. */
-.panel[data-panel="3"] > p { font-size: 9pt; }
 
 /* Farmers trifold: the back carries a two-line subheading, the body, the
    community code and the icon row above its green foot. The gaps around the
@@ -823,3 +819,14 @@ h2.subhead { font-size: 10.5pt; color: var(--green); line-height: 1.2; }
 .panel[data-panel="4"] .checks li { font-size: 9pt; }
 .panel[data-panel="4"] .checks b  { font-size: 9.2pt; }
 .panel[data-panel="4"] .pull      { font-size: 9.8pt; }
+
+/* Farmers trifold: the Why Biology flap's body text, sized so its three
+   paragraphs and the Our story box fill the panel down to the webinar code
+   (0.18in above it at 8.8pt). The box reads in the same type as the paragraphs
+   above it, and sits the same distance below them. */
+:root { --flap-body: 8.8pt; }
+/* (the box)
+   type as the paragraphs above it, and sits the same distance below them. */
+.panel[data-panel="3"] .card { margin-top: var(--s2); }
+.panel[data-panel="3"] .card .pull { font-size: var(--flap-body); line-height: 1.38; letter-spacing: 0; }
+.panel[data-panel="3"] > p { font-size: var(--flap-body); }
