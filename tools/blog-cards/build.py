@@ -154,8 +154,47 @@ def grade(im):
     warm = Image.new('RGB', im.size, hexrgb(CREAM))
     return Image.blend(im, Image.composite(warm, im, ImageOps.grayscale(im).point(lambda v: int(max(0, v - 150) * 1.2))), .5)
 
-def cover(img, w, h, focus):
-    return ImageOps.fit(img, (w, h), Image.LANCZOS, centering=focus)
+# Every head in every photograph, marked by hand (hair to chin), as fractions
+# of the photo. Detection software got these wrong, so they are written down.
+HEADS = {
+ 'what-is-your-soil-test-telling-you': [(.38, .34, .74, .82)],
+ 'advanced-programs-reopening':        [(.24, .42, .36, .62), (.45, .16, .55, .34), (.56, .14, .66, .33), (.66, .12, .76, .30), (.78, .20, .90, .40)],
+ 'obituary-dr-elaine-ingham':          [(.08, .30, .95, .72)],
+ '2025-in-review':                     [(.30, .02, .80, .50)],
+ 'living-legacy-webinar-series':       [(.27, .10, .68, .48)],
+ 'soil-health-week-pakistan':          [(.12, .22, .25, .40), (.42, .26, .57, .45), (.68, .09, .84, .30)],
+ 'foundation-launches-as-nonprofit':   [(.31, .07, .63, .36)],
+ 'retirement-dr-elaine-ingham':        [(.47, .14, .68, .52)],
+}
+_CURRENT = {}
+
+def cover(img, w, h, focus, slug=None):
+    # Crop to w x h. A face is either wholly in the frame or wholly out of it,
+    # never cut, and it keeps room above the head. With no heads marked, the
+    # post's focus point decides.
+    heads = HEADS.get(slug or _CURRENT.get('slug'), [])
+    if not heads:
+        return ImageOps.fit(img, (w, h), Image.LANCZOS, centering=focus)
+    iw, ih = img.size; a = w / h
+    cw, ch = (iw, iw / a) if iw / ih < a else (ih * a, ih)
+    hs = sorted([(x0 * iw, y0 * ih, x1 * iw, y1 * ih) for x0, y0, x1, y1 in heads])
+    m = min(iw, ih) * .02
+    # the widest run of neighbouring heads that fits across the frame
+    best = (0, 0)
+    for i in range(len(hs)):
+        for j in range(i, len(hs)):
+            if hs[j][2] - hs[i][0] + 2 * m <= cw and j - i > best[1] - best[0]: best = (i, j)
+    i, j = best; run = hs[i:j + 1]
+    lo = max(run[-1][2] + m - cw, 0); hi = min(run[0][0] - m, iw - cw)
+    if i > 0: lo = max(lo, hs[i - 1][2])                 # start after the head left out on the left
+    if j < len(hs) - 1: hi = min(hi, hs[j + 1][0] - cw)  # end before the head left out on the right
+    cx = (lo + hi) / 2 if lo <= hi else min(max((run[0][0] + run[-1][2]) / 2 - cw / 2, 0), iw - cw)
+    top = min(r[1] for r in run); bot = max(r[3] for r in run); hh = max(r[3] - r[1] for r in run)
+    want_top = top - hh * .25                          # headroom
+    cy = want_top if bot - want_top > ch else min(want_top, (top + bot) / 2 - ch / 2 + hh * .15)
+    cy = min(max(cy, 0), ih - ch)
+    box = (int(cx), int(cy), int(cx + cw), int(cy + ch))
+    return img.crop(box).resize((w, h), Image.LANCZOS)
 
 def plane_png(post, key, zone, p, i, field):
     zx, zy, zw, zh = zone
@@ -333,6 +372,7 @@ def rrect(slide, x, y, w, h, colour, name, radius):
     return sh
 
 def brand_slide(slide, post, key, W, H):
+    _CURRENT['slug'] = post['slug']
     b = BRAND_SIZES[key]
     rect(slide, 0, 0, W, H, BR['paper'], 'Page')
     px_, py_, pw, ph = b['photo']
