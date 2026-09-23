@@ -58,7 +58,7 @@ POSTS = [
       img='tools/blog-cards/photos/Students and mentors practice microscopy together at our workshop in Costa Rica, March 2025. .jpg', focus=(0.5, 0.5)),
  dict(slug='obituary-dr-elaine-ingham', date='2026-02-18', cat='In Memoriam', field='legacy',
       head='Obituary for Dr. Elaine Ingham', deck='',
-      img='tools/blog-cards/photos/Elaine Obituary, team with a sign that says Elaine .jpg', focus=(0.5, 0.55)),
+      img='tools/blog-cards/photos/Elaine Obituary, team with a sign that says Elaine .jpg', focus=(0.5, 0.7)),
  dict(slug='new-board-member-eric-feiler', date='2026-02-17', cat='Foundation Update', field='green',
       head='The Soil Food Web Welcomes a New Board Member', deck='Eric Feiler',
       img='img/erc-rancho-cacachilas-aerial-2.jpg', focus=(0.5, 0.5)),
@@ -310,10 +310,10 @@ def shaped_photo(slide, post, key, box, shape, field):
 BR = dict(paper='#FFFFFF', cream='#F4F1EA', green='#156826', soil='#4F3433',
           ink_soft='#4A463F', ink_faint='#6A665C', legacy='#6B4C7A', case='#E6EADC')
 BRAND_SIZES = {
- 'feature-social-1400x1400': dict(photo=(0, 0, 1400, 830),   card=(84, 640, 1232, 676), pad=72, eye=26, head=84, deck=38, btn=30, logo=112, cat=128, rhead=96, rdeck=38, rbtn=48),
- 'desktop-header-1920x720':  dict(photo=(760, 0, 1160, 720), card=(80, 72, 820, 576),  pad=60, eye=22, head=64, deck=30, btn=26, logo=92, cat=96, rhead=72, rdeck=28, rbtn=34),
- 'tablet-header-1024x768':   dict(photo=(440, 0, 584, 768),  card=(44, 84, 520, 600),  pad=40, eye=18, head=48, deck=22, btn=20, logo=70, cat=66, rhead=54, rdeck=21, rbtn=26),
- 'mobile-header-750x1000':   dict(photo=(0, 0, 750, 620),    card=(34, 500, 682, 460),  pad=36, eye=17, head=44, deck=21, btn=19, logo=64, cat=72, rhead=56, rdeck=22, rbtn=27),
+ 'feature-social-1400x1400': dict(photo=(0, 0, 1400, 820),   card=(64, 600, 1272, 744), pad=64, eye=26, head=84, deck=38, btn=30, logo=112, cat=128, rhead=96, rdeck=38, rbtn=48),
+ 'desktop-header-1920x720':  dict(photo=(800, 0, 1120, 720), card=(64, 56, 900, 608), pad=56, eye=22, head=64, deck=30, btn=26, logo=92, cat=84, rhead=72, rdeck=28, rbtn=34),
+ 'tablet-header-1024x768':   dict(photo=(470, 0, 554, 768),  card=(36, 64, 560, 640),  pad=40, eye=18, head=48, deck=22, btn=20, logo=70, cat=58, rhead=54, rdeck=21, rbtn=26),
+ 'mobile-header-750x1000':   dict(photo=(0, 0, 750, 560),    card=(26, 440, 698, 534),  pad=36, eye=17, head=44, deck=21, btn=19, logo=64, cat=56, rhead=56, rdeck=22, rbtn=27),
 }
 ELAINE = {'obituary-dr-elaine-ingham', 'living-legacy-webinar-series', 'retirement-dr-elaine-ingham', 'foundation-launches-as-nonprofit'}
 
@@ -343,42 +343,109 @@ def brand_slide(slide, post, key, W, H):
     path = os.path.join(TMP, f'{key}--{post["slug"]}--brand.jpg'); img.save(path, quality=93, subsampling=0)
     slide.shapes.add_picture(path, Emu(int(px_ * PX)), Emu(int(py_ * PX)), Emu(int(pw * PX)), Emu(int(ph * PX))).name = 'Photo'
     cx, cy, cw, ch = b['card']
-    card = rrect(slide, cx, cy, cw, ch, BR['cream'], 'Panel', 12); soft_shadow(card)
+    ch = scale_for(key)['height']
+    if b['photo'][0] > 0: cy = (H - ch) / 2          # side by side: centred
+    card_png = torn_paper(key, post['slug'], cw, ch)
+    m = PAPER_MARGIN
+    slide.shapes.add_picture(card_png, Emu(int((cx - m) * PX)), Emu(int((cy - m) * PX)), Emu(int((cw + 2 * m) * PX)), Emu(int((ch + 2 * m) * PX))).name = 'Paper'
     pad = b['pad']; tw = cw - 2 * pad
-    # Linnea's type, off her PDC card: the category as a big bold word, the
-    # headline in Source Sans set tight, the black READ POST box in EB Garamond
-    # with the cursor, and the web address under it.
+    # One type scale for the whole set, worked out once per size from the
+    # longest title, so every card uses exactly the same sizes:
+    #   BIG   the category and the headline, one size
+    #   SMALL the line under it and the READ POST label, one size
+    #   the web address, three quarters of SMALL
+    sc = scale_for(key)
+    BIG, SMALL = sc['big'], sc['small']
     colour = LEGACY if post['slug'] in ELAINE else INK
-    cs, _ = fit(post['cat'], F_CAT, b['cat'], tw, 1, 18)
-    cat_lh = cs * 1.0
-    btn_h = b['rbtn'] * 1.8
-    url_px = max(12, b['rbtn'] * .6)
-    head_max = b['rhead']
-    while True:
-        hs, hl = fit(post['head'], F_HEAD, head_max, tw, 4, 16)
-        ds, dl = (fit(post['deck'], F_HEAD, min(b['rdeck'], hs * .48), tw * .95, 3, 12) if post['deck'] else (0, []))
-        head_lh, deck_lh = hs * 1.02, ds * 1.28
-        gap = pad * .32
-        total = (cat_lh + gap * .5 + head_lh * len(hl) + (gap * .7 + deck_lh * len(dl) if dl else 0)
-                 + gap * 1.6 + btn_h + url_px * 1.9)
-        if total <= ch - 2 * pad or head_max <= 16: break
-        head_max -= 1
-    y = cy + pad + (ch - 2 * pad - total) * .5
-    text(slide, cx + pad, y, tw, cat_lh * 1.1, post['cat'], 'Montserrat', cs, colour, 'Category', bold=True, spacing=-cs * .75 * 3, line=cat_lh)
-    y += cat_lh + gap * .5
-    text(slide, cx + pad, y, tw, head_lh * len(hl) + 4, '\v'.join(hl), 'Source Sans 3', hs, INK, 'Headline', spacing=-hs * .75 * 4, line=head_lh)
-    y += head_lh * len(hl)
+    hl = wrap(post['head'], font(F_HEAD, BIG), tw * .95)
+    dl = wrap(post['deck'], font(F_HEAD, SMALL), tw * .9) if post['deck'] else []
+    y = cy + pad
+    text(slide, cx + pad, y, tw, BIG * 1.1, post['cat'], 'Montserrat', BIG, colour, 'Category', bold=True, spacing=-BIG * .75 * 3, line=BIG)
+    y += BIG * 1.08
+    text(slide, cx + pad, y, tw, BIG * 1.0 * len(hl) + 4, '\v'.join(hl), 'Source Sans 3', BIG, INK, 'Headline', spacing=-BIG * .75 * 4, line=BIG * 1.0)
+    y += BIG * 1.0 * len(hl)
     if dl:
-        y += gap * .7
-        text(slide, cx + pad + 2, y, tw * .95, deck_lh * len(dl) + 4, '\v'.join(dl), 'Source Sans 3', ds, INK, 'Deck', line=deck_lh)
-        y += deck_lh * len(dl)
-    y += gap * 1.6
-    bw = font(F_BTN, b['rbtn']).getlength('READ POST') + b['rbtn'] * 1.9
-    rect(slide, cx + pad, y, bw, btn_h, INK, 'Button')
-    text(slide, cx + pad, y, bw, btn_h, 'READ POST', 'EB Garamond', b['rbtn'], '#FFFFFF', 'Button label', align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE, spacing=b['rbtn'] * .75 * 2)
-    cursor(slide, cx + pad + bw - b['rbtn'] * .45, y + btn_h * .55, b['rbtn'] * 1.25)
-    y += btn_h + url_px * .5
-    text(slide, cx + pad, y, tw, url_px * 1.4, 'www.soilfoodweb.com', 'Source Sans 3', url_px, INK, 'Web address', line=url_px * 1.3)
+        y += SMALL * .6
+        text(slide, cx + pad + 2, y, tw * .9, SMALL * 1.25 * len(dl) + 4, '\v'.join(dl), 'Source Sans 3', SMALL, INK, 'Deck', line=SMALL * 1.25)
+    # the button always sits on the same line at the foot of the paper
+    btn_h = SMALL * 2.0
+    by = cy + ch - pad - btn_h - SMALL * 1.3
+    bw = font(F_BTN, SMALL * 1.1).getlength('READ POST') + SMALL * 2.2
+    rect(slide, cx + pad, by, bw, btn_h, INK, 'Button')
+    text(slide, cx + pad, by, bw, btn_h, 'READ POST', 'EB Garamond', SMALL * 1.1, '#FFFFFF', 'Button label', align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE, spacing=SMALL * .75 * 2)
+    cursor(slide, cx + pad + bw - SMALL * .5, by + btn_h * .55, SMALL * 1.5)
+    text(slide, cx + pad, by + btn_h + SMALL * .3, tw, SMALL, 'www.soilfoodweb.com', 'Source Sans 3', SMALL * .7, INK, 'Web address', line=SMALL)
+
+_SCALES = {}
+def scale_for(key):
+    # the largest BIG at which every post in the set fits its paper
+    if key in _SCALES: return _SCALES[key]
+    b = BRAND_SIZES[key]; cw, ch = b['card'][2], b['card'][3]; pad = b['pad']; tw = cw - 2 * pad
+    big = b['cat']
+    while big > 16:
+        small = round(big * .40)
+        ok = True
+        for p_ in POSTS:
+            if font(F_CAT, big).getlength(p_['cat']) > tw: ok = False; break
+            hl = wrap(p_['head'], font(F_HEAD, big), tw * .95)
+            dl = wrap(p_['deck'], font(F_HEAD, small), tw * .9) if p_['deck'] else []
+            if len(hl) > 4 or len(dl) > 3: ok = False; break
+            need = big * 1.08 + big * len(hl) + (small * .6 + small * 1.25 * len(dl) if dl else 0) + small * .9 + small * 2.0 + small * 1.3
+            if need > ch - 2 * pad: ok = False; break
+        if ok: break
+        big -= 1
+    small = round(big * .40); tallest = 0
+    for p_ in POSTS:
+        hl = wrap(p_['head'], font(F_HEAD, big), tw * .95)
+        dl = wrap(p_['deck'], font(F_HEAD, small), tw * .9) if p_['deck'] else []
+        tallest = max(tallest, big * 1.08 + big * len(hl) + (small * .6 + small * 1.25 * len(dl) if dl else 0) + small * .9 + small * 2.0 + small * 1.3)
+    _SCALES[key] = dict(big=big, small=small, height=int(tallest + 2 * pad))
+    return _SCALES[key]
+
+PAPER_MARGIN = 24
+def torn_paper(key, slug, cw, ch):
+    # Papier colle: the card is a piece of cream paper, its edges torn by hand,
+    # a little grain in it, pasted on with a strip of tape. The photograph
+    # underneath stays whole.
+    import random
+    rnd = random.Random(slug + key)
+    k = 1; m = PAPER_MARGIN
+    Wd, Hd = int((cw + 2 * m) * k), int((ch + 2 * m) * k)
+    def edge(x0, y0, x1, y1, amp, n):
+        pts = []
+        for i in range(n + 1):
+            t = i / n
+            x = x0 + (x1 - x0) * t; y = y0 + (y1 - y0) * t
+            j = rnd.uniform(-amp, amp) if 0 < i < n else 0
+            if x0 == x1: x += j
+            else: y += j
+            pts.append((x, y))
+        return pts
+    L, T, R, B = m * k, m * k, (m + cw) * k, (m + ch) * k
+    amp = 3.0
+    pts = (edge(L, T, R, T, amp, int(cw / 7)) + edge(R, T, R, B, amp, int(ch / 7))[1:] +
+           edge(R, B, L, B, amp, int(cw / 7))[1:] + edge(L, B, L, T, amp, int(ch / 7))[1:])
+    mask = Image.new('L', (Wd, Hd), 0); ImageDraw.Draw(mask).polygon(pts, fill=255)
+    shadow = mask.filter(ImageFilter.GaussianBlur(10)).point(lambda v: int(v * .16))
+    sh = Image.new('RGBA', (Wd, Hd), hexrgb('#4F3433') + (0,)); sh.putalpha(ImageChops_offset(shadow, 0, 3 * k))
+    grain = Image.effect_noise((Wd, Hd), 9).point(lambda v: 128 + (v - 128) // 3)
+    paper = Image.merge('RGB', [Image.new('L', (Wd, Hd), c) for c in hexrgb(CREAM)])
+    paper = Image.blend(paper, Image.merge('RGB', [grain] * 3), .05)
+    paper = paper.convert('RGBA'); paper.putalpha(mask)
+    out = Image.alpha_composite(sh, paper)
+    # the tape: a translucent strip across the top left corner, slightly askew
+    tw_, th_ = int(cw * .2 * k), int(min(cw, ch) * .07 * k)
+    tape = Image.new('RGBA', (tw_, th_), (214, 196, 160, 185))
+    td = ImageDraw.Draw(tape)
+    for x in range(0, tw_, 3 * k): td.line([(x, 0), (x + rnd.randint(-2, 2), th_)], fill=(255, 255, 255, 18))
+    tape = tape.rotate(rnd.uniform(-9, -5), expand=True, resample=Image.BICUBIC)
+    out.alpha_composite(tape, (int(L - tape.width * .25), int(T - tape.height * .55)))
+    path = os.path.join(TMP, f'{key}--{slug}--paper.png'); out.save(path, compress_level=6)
+    return path
+
+def ImageChops_offset(im, dx, dy):
+    from PIL import ImageChops
+    return ImageChops.offset(im, dx, dy)
 
 def cursor(slide, x, y, size):
     s = size / 24
