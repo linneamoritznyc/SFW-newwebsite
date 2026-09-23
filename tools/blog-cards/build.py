@@ -299,6 +299,79 @@ def shaped_photo(slide, post, key, box, shape, field):
         # the field of view: a fine ring, like looking down the eyepiece
         oval(slide, bx - bw * .03, by - bh * .03, bw * 1.06, bh * 1.06, None, 'Lens ring', line=INK, lw=max(2, bw * .004))
 
+
+# ---------------------------------------------------------------------------
+# BRAND: the website's own design system (docs/brand-guide.html), nothing new.
+# White page. The photograph whole. A cream panel as a bounded shape with the
+# 12px card radius and the site's one shadow. Eyebrow in Food Web Green,
+# headline Montserrat in Soil Brown, the quiet line in EB Garamond italic, the
+# primary button in Food Web Green with the 8px radius. Legacy Purple only on
+# Dr. Elaine posts. The roundel on white, where it reads.
+BR = dict(paper='#FFFFFF', cream='#F4F1EA', green='#156826', soil='#4F3433',
+          ink_soft='#4A463F', ink_faint='#6A665C', legacy='#6B4C7A', case='#E6EADC')
+BRAND_SIZES = {
+ 'feature-social-1400x1400': dict(photo=(0, 0, 1400, 830),   card=(84, 640, 1232, 676), pad=72, eye=26, head=84, deck=38, btn=30, logo=112),
+ 'desktop-header-1920x720':  dict(photo=(760, 0, 1160, 720), card=(80, 72, 820, 576),  pad=64, eye=22, head=64, deck=30, btn=26, logo=92),
+ 'tablet-header-1024x768':   dict(photo=(0, 0, 1024, 430),   card=(52, 320, 920, 404),  pad=44, eye=18, head=48, deck=22, btn=20, logo=70),
+ 'mobile-header-750x1000':   dict(photo=(0, 0, 750, 560),    card=(34, 430, 682, 530),  pad=40, eye=17, head=44, deck=21, btn=19, logo=64),
+}
+ELAINE = {'obituary-dr-elaine-ingham', 'living-legacy-webinar-series', 'retirement-dr-elaine-ingham', 'foundation-launches-as-nonprofit'}
+
+def soft_shadow(shape):
+    # the site's only shadow: 0 2px 12px rgba(79,52,51,.10)
+    spPr = shape._element.spPr
+    for e in spPr.findall(qn('a:effectLst')): spPr.remove(e)
+    from lxml import etree
+    eff = etree.SubElement(spPr, qn('a:effectLst'))
+    sh = etree.SubElement(eff, qn('a:outerShdw'), blurRad=str(12 * PX), dist=str(2 * PX), dir='5400000', algn='t', rotWithShape='0')
+    c = etree.SubElement(sh, qn('a:srgbClr'), val='4F3433'); etree.SubElement(c, qn('a:alpha'), val='10000')
+
+def rrect(slide, x, y, w, h, colour, name, radius):
+    sh = slide.shapes.add_shape(5, Emu(int(x * PX)), Emu(int(y * PX)), Emu(int(w * PX)), Emu(int(h * PX)))
+    rgb(sh, colour); sh.name = name
+    sh.adjustments[0] = radius / min(w, h)
+    return sh
+
+def brand_slide(slide, post, key, W, H):
+    b = BRAND_SIZES[key]
+    rect(slide, 0, 0, W, H, BR['paper'], 'Page')
+    px_, py_, pw, ph = b['photo']
+    src = ImageOps.exif_transpose(Image.open(photo_for(post))).convert('RGB')
+    k = max(1, min(2, min(src.width / pw, src.height / ph)))
+    img = cover(src, int(pw * k), int(ph * k), post['focus'])
+    path = os.path.join(TMP, f'{key}--{post["slug"]}--brand.jpg'); img.save(path, quality=93, subsampling=0)
+    slide.shapes.add_picture(path, Emu(int(px_ * PX)), Emu(int(py_ * PX)), Emu(int(pw * PX)), Emu(int(ph * PX))).name = 'Photo'
+    cx, cy, cw, ch = b['card']
+    card = rrect(slide, cx, cy, cw, ch, BR['cream'], 'Panel', 12); soft_shadow(card)
+    pad = b['pad']; tw = cw - 2 * pad
+    accent = BR['legacy'] if post['slug'] in ELAINE else BR['green']
+    eye_px = b['eye']; btn_h = b['btn'] * 2.3; logo = b['logo']
+    head_max = b['head']
+    while True:
+        hs, hl = fit(post['head'], F_CAT, head_max, tw, 3, 16)
+        ds, dl = (fit(post['deck'], 'EBGaramond-Italic.ttf', min(b['deck'], hs * .62), tw * .92, 2, 12) if post['deck'] else (0, []))
+        head_lh, deck_lh = hs * 1.12, ds * 1.3
+        total = eye_px * 1.3 + eye_px * .9 + head_lh * len(hl) + (pad * .25 + deck_lh * len(dl) if dl else 0) + pad * .5 + max(btn_h, logo * .0)
+        if total <= ch - 2 * pad or head_max <= 16: break
+        head_max -= 1
+    y = cy + pad + (ch - 2 * pad - total) * .35
+    text(slide, cx + pad, y, tw, eye_px * 1.4, post['cat'].upper(), 'Montserrat', eye_px, accent, 'Eyebrow', bold=True, spacing=eye_px * .75 * 18, line=eye_px * 1.3)
+    y += eye_px * 1.3 + eye_px * .9
+    text(slide, cx + pad, y, tw, head_lh * len(hl) + 4, '\v'.join(hl), 'Montserrat', hs, BR['soil'], 'Headline', bold=True, spacing=-hs * .75 * 1, line=head_lh)
+    y += head_lh * len(hl)
+    if dl:
+        y += pad * .25
+        tb = text(slide, cx + pad, y, tw * .92, deck_lh * len(dl) + 4, '\v'.join(dl), 'EB Garamond', ds, BR['ink_soft'], 'Lede', line=deck_lh)
+        for r in tb.text_frame.paragraphs[0].runs: r.font.italic = True
+        y += deck_lh * len(dl)
+    # the button and the roundel share the bottom line of the panel
+    by = cy + ch - pad - btn_h
+    bw = font(F_CAT, b['btn']).getlength('Read the post  →') + b['btn'] * 2.4
+    btn = rrect(slide, cx + pad, by, bw, btn_h, accent, 'Button', 8)
+    text(slide, cx + pad, by, bw, btn_h, 'Read the post  →', 'Montserrat', b['btn'], '#FFFFFF', 'Button label', bold=True, align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
+    text(slide, cx + pad + bw + b['btn'] * 1.1, by, tw - bw - logo - b['btn'] * 1.5, btn_h, 'soilfoodweb.com', 'Source Sans 3', b['btn'] * .9, BR['ink_faint'], 'Web address', anchor=MSO_ANCHOR.MIDDLE)
+    slide.shapes.add_picture(os.path.join(REPO, 'img', 'sfwlogo-240.png'), Emu(int((cx + cw - pad - logo) * PX)), Emu(int((by + btn_h - logo) * PX)), Emu(int(logo * PX)), Emu(int(logo * PX))).name = 'Logo'
+
 def cursor(slide, x, y, size):
     s = size / 24
     pts = [(0, 0), (0, 17), (4, 13), (7, 20), (10, 19), (7, 12), (12.5, 12)]
@@ -312,6 +385,10 @@ def build(key, cfg, previews):
     for post in [p for p in POSTS if not ONLY or p['slug'] in ONLY]:
         W, H = cfg['W'], cfg['H']
         slide = prs.slides.add_slide(blank)
+        if STYLE == 'brand':
+            brand_slide(slide, post, key, W, H)
+            slide.notes_slide.notes_text_frame.text = f"{post['slug']} ({post['date']})"
+            continue
         if STYLE == 'rect': field_shapes(slide, W, H, post['field'], key)
         else: field_planes(slide, W, H, post['field'], post['slug'])
         zone = cfg['zone']
