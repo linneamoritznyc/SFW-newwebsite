@@ -11,7 +11,7 @@ the artwork encoding the same links.
 | `sfw-brochure-qr-webinar.png` | `https://www.sfw.one/brochure-webinar` | `#6B4C7A` Legacy Purple | Our story |
 | `sfw-brochure-qr-courses.png` | `https://www.sfw.one/brochure-courses` | `#3780B8` Education Blue | Teaching |
 | `sfw-brochure-qr-casestudies.png` | `https://www.sfw.one/brochure-casestudies` | `#156826` Food Web Green | Practice |
-| `sfw-brochure-qr-website.png` | `https://www.soilfoodweb.com` | `#22371F` Moss | Community |
+| `sfw-brochure-qr-website.png` | `https://www.sfw.one/brochure-website` | `#22371F` Moss | Community |
 | `sfw-brochure-qr-donate.png` | `https://www.sfw.one/brochure-donate` | `#C9A227` Gold | Donate |
 
 Each is a Switchy short link, so a destination can be repointed without a
