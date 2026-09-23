@@ -38,7 +38,7 @@ FILES = {
     # the codes on their own
     "sfw-brochure-qr-webinar.png":       ROOT / "exports/qr/sfw-brochure-qr-webinar.png",
     "sfw-brochure-qr-courses.png":       ROOT / "exports/qr/sfw-brochure-qr-courses.png",
-    "sfw-brochure-qr-scholarship.png":   ROOT / "exports/qr/sfw-brochure-qr-scholarship.png",
+    "sfw-brochure-qr-website.png":       ROOT / "exports/qr/sfw-brochure-qr-website.png",
     "sfw-brochure-qr-casestudies.png":   ROOT / "exports/qr/sfw-brochure-qr-casestudies.png",
     "sfw-brochure-qr-donate.png":        ROOT / "exports/qr/sfw-brochure-qr-donate.png",
 }

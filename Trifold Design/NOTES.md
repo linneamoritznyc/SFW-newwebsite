@@ -775,3 +775,26 @@ on the redirect like the others. `sfw.one/brochure-community` is no longer
 printed and can be left alone or retired.
 
 All five codes decode out of the PNG proofs, the X-4 file and the X-1a file.
+
+---
+
+## The Community panel sends people to the website, 23 September 2026
+
+Linnea: the code and paragraph on the Community panel (the middle of the
+outside spread) are replaced with a website call to action.
+
+    Curious about the Soil Food Web approach?
+    Visit our website to explore our courses, workshops, and free resources.
+    Learn how soil biology supports healthy plants and discover ways to get
+    involved.
+    [code]  Learn more / www.soilfoodweb.com
+
+- The code carries `https://www.soilfoodweb.com` directly, as asked, not a
+  sfw.one short link. It is moss `#22371F`, version 4, 41 modules, and survives
+  2.4px of blur. All five codes decode from every output.
+- **The scholarship code is gone from the brochure.** It was the code in that
+  spot. If it should come back, it needs a new home.
+- The domain question above (.com against .org) still stands. This code prints
+  the .com, which is the one Linnea named.
+- `qr/scholarship.svg` and the scholarship PNGs are removed; `website` replaces
+  them everywhere. Print PDFs, proof and delivery folders rebuilt.
