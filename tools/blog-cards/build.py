@@ -45,7 +45,7 @@ POSTS = [
       img='img/fungal-spores-in-suspension.jpg', focus=(.5, .5)),
  dict(slug='what-is-your-soil-test-telling-you', date='undated', cat='Blog', field='tan',
       head='What is your soil test really telling you?', deck='',
-      img='tools/blog-cards/photos/what is your soil test really telling you? .jpeg', focus=(.4, .4)),
+      img='tools/blog-cards/photos/what is your soil test really telling you? .jpeg', focus=(.3, .4)),
  dict(slug='ciliates-microscope-watermelon', date='2026-05-01', cat='Microscopy', field='glow',
       head='Ciliates, Cysts, and the Clues Hiding in a Struggling Watermelon Crop',
       deck='How a rare microscope sighting helps deduce the problem with unhealthy soil',
@@ -310,10 +310,10 @@ def shaped_photo(slide, post, key, box, shape, field):
 BR = dict(paper='#FFFFFF', cream='#F4F1EA', green='#156826', soil='#4F3433',
           ink_soft='#4A463F', ink_faint='#6A665C', legacy='#6B4C7A', case='#E6EADC')
 BRAND_SIZES = {
- 'feature-social-1400x1400': dict(photo=(0, 0, 1400, 830),   card=(84, 640, 1232, 676), pad=72, eye=26, head=84, deck=38, btn=30, logo=112),
- 'desktop-header-1920x720':  dict(photo=(760, 0, 1160, 720), card=(80, 72, 820, 576),  pad=64, eye=22, head=64, deck=30, btn=26, logo=92),
- 'tablet-header-1024x768':   dict(photo=(0, 0, 1024, 430),   card=(52, 320, 920, 404),  pad=44, eye=18, head=48, deck=22, btn=20, logo=70),
- 'mobile-header-750x1000':   dict(photo=(0, 0, 750, 560),    card=(34, 430, 682, 530),  pad=40, eye=17, head=44, deck=21, btn=19, logo=64),
+ 'feature-social-1400x1400': dict(photo=(0, 0, 1400, 830),   card=(84, 640, 1232, 676), pad=72, eye=26, head=84, deck=38, btn=30, logo=112, cat=128, rhead=96, rdeck=38, rbtn=48),
+ 'desktop-header-1920x720':  dict(photo=(760, 0, 1160, 720), card=(80, 72, 820, 576),  pad=60, eye=22, head=64, deck=30, btn=26, logo=92, cat=96, rhead=72, rdeck=28, rbtn=34),
+ 'tablet-header-1024x768':   dict(photo=(440, 0, 584, 768),  card=(44, 84, 520, 600),  pad=40, eye=18, head=48, deck=22, btn=20, logo=70, cat=66, rhead=54, rdeck=21, rbtn=26),
+ 'mobile-header-750x1000':   dict(photo=(0, 0, 750, 620),    card=(34, 500, 682, 460),  pad=36, eye=17, head=44, deck=21, btn=19, logo=64, cat=72, rhead=56, rdeck=22, rbtn=27),
 }
 ELAINE = {'obituary-dr-elaine-ingham', 'living-legacy-webinar-series', 'retirement-dr-elaine-ingham', 'foundation-launches-as-nonprofit'}
 
@@ -338,39 +338,47 @@ def brand_slide(slide, post, key, W, H):
     px_, py_, pw, ph = b['photo']
     src = ImageOps.exif_transpose(Image.open(photo_for(post))).convert('RGB')
     k = max(1, min(2, min(src.width / pw, src.height / ph)))
-    img = cover(src, int(pw * k), int(ph * k), post['focus'])
+    focus = (post['focus'][0], min(post['focus'][1], .22)) if post.get('portrait') and py_ == 0 and pw == W else post['focus']
+    img = cover(src, int(pw * k), int(ph * k), focus)
     path = os.path.join(TMP, f'{key}--{post["slug"]}--brand.jpg'); img.save(path, quality=93, subsampling=0)
     slide.shapes.add_picture(path, Emu(int(px_ * PX)), Emu(int(py_ * PX)), Emu(int(pw * PX)), Emu(int(ph * PX))).name = 'Photo'
     cx, cy, cw, ch = b['card']
     card = rrect(slide, cx, cy, cw, ch, BR['cream'], 'Panel', 12); soft_shadow(card)
     pad = b['pad']; tw = cw - 2 * pad
-    accent = BR['legacy'] if post['slug'] in ELAINE else BR['green']
-    eye_px = b['eye']; btn_h = b['btn'] * 2.3; logo = b['logo']
-    head_max = b['head']
+    # Linnea's type, off her PDC card: the category as a big bold word, the
+    # headline in Source Sans set tight, the black READ POST box in EB Garamond
+    # with the cursor, and the web address under it.
+    colour = LEGACY if post['slug'] in ELAINE else INK
+    cs, _ = fit(post['cat'], F_CAT, b['cat'], tw, 1, 18)
+    cat_lh = cs * 1.0
+    btn_h = b['rbtn'] * 1.8
+    url_px = max(12, b['rbtn'] * .6)
+    head_max = b['rhead']
     while True:
-        hs, hl = fit(post['head'], F_CAT, head_max, tw, 3, 16)
-        ds, dl = (fit(post['deck'], 'EBGaramond-Italic.ttf', min(b['deck'], hs * .62), tw * .92, 2, 12) if post['deck'] else (0, []))
-        head_lh, deck_lh = hs * 1.12, ds * 1.3
-        total = eye_px * 1.3 + eye_px * .9 + head_lh * len(hl) + (pad * .25 + deck_lh * len(dl) if dl else 0) + pad * .5 + max(btn_h, logo * .0)
+        hs, hl = fit(post['head'], F_HEAD, head_max, tw, 4, 16)
+        ds, dl = (fit(post['deck'], F_HEAD, min(b['rdeck'], hs * .48), tw * .95, 3, 12) if post['deck'] else (0, []))
+        head_lh, deck_lh = hs * 1.02, ds * 1.28
+        gap = pad * .32
+        total = (cat_lh + gap * .5 + head_lh * len(hl) + (gap * .7 + deck_lh * len(dl) if dl else 0)
+                 + gap * 1.6 + btn_h + url_px * 1.9)
         if total <= ch - 2 * pad or head_max <= 16: break
         head_max -= 1
-    y = cy + pad + (ch - 2 * pad - total) * .35
-    text(slide, cx + pad, y, tw, eye_px * 1.4, post['cat'].upper(), 'Montserrat', eye_px, accent, 'Eyebrow', bold=True, spacing=eye_px * .75 * 18, line=eye_px * 1.3)
-    y += eye_px * 1.3 + eye_px * .9
-    text(slide, cx + pad, y, tw, head_lh * len(hl) + 4, '\v'.join(hl), 'Montserrat', hs, BR['soil'], 'Headline', bold=True, spacing=-hs * .75 * 1, line=head_lh)
+    y = cy + pad + (ch - 2 * pad - total) * .5
+    text(slide, cx + pad, y, tw, cat_lh * 1.1, post['cat'], 'Montserrat', cs, colour, 'Category', bold=True, spacing=-cs * .75 * 3, line=cat_lh)
+    y += cat_lh + gap * .5
+    text(slide, cx + pad, y, tw, head_lh * len(hl) + 4, '\v'.join(hl), 'Source Sans 3', hs, INK, 'Headline', spacing=-hs * .75 * 4, line=head_lh)
     y += head_lh * len(hl)
     if dl:
-        y += pad * .25
-        tb = text(slide, cx + pad, y, tw * .92, deck_lh * len(dl) + 4, '\v'.join(dl), 'EB Garamond', ds, BR['ink_soft'], 'Lede', line=deck_lh)
-        for r in tb.text_frame.paragraphs[0].runs: r.font.italic = True
+        y += gap * .7
+        text(slide, cx + pad + 2, y, tw * .95, deck_lh * len(dl) + 4, '\v'.join(dl), 'Source Sans 3', ds, INK, 'Deck', line=deck_lh)
         y += deck_lh * len(dl)
-    # the button and the roundel share the bottom line of the panel
-    by = cy + ch - pad - btn_h
-    bw = font(F_CAT, b['btn']).getlength('Read the post  →') + b['btn'] * 2.4
-    btn = rrect(slide, cx + pad, by, bw, btn_h, accent, 'Button', 8)
-    text(slide, cx + pad, by, bw, btn_h, 'Read the post  →', 'Montserrat', b['btn'], '#FFFFFF', 'Button label', bold=True, align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
-    text(slide, cx + pad + bw + b['btn'] * 1.1, by, tw - bw - logo - b['btn'] * 1.5, btn_h, 'soilfoodweb.com', 'Source Sans 3', b['btn'] * .9, BR['ink_faint'], 'Web address', anchor=MSO_ANCHOR.MIDDLE)
-    slide.shapes.add_picture(os.path.join(REPO, 'img', 'sfwlogo-240.png'), Emu(int((cx + cw - pad - logo) * PX)), Emu(int((by + btn_h - logo) * PX)), Emu(int(logo * PX)), Emu(int(logo * PX))).name = 'Logo'
+    y += gap * 1.6
+    bw = font(F_BTN, b['rbtn']).getlength('READ POST') + b['rbtn'] * 1.9
+    rect(slide, cx + pad, y, bw, btn_h, INK, 'Button')
+    text(slide, cx + pad, y, bw, btn_h, 'READ POST', 'EB Garamond', b['rbtn'], '#FFFFFF', 'Button label', align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE, spacing=b['rbtn'] * .75 * 2)
+    cursor(slide, cx + pad + bw - b['rbtn'] * .45, y + btn_h * .55, b['rbtn'] * 1.25)
+    y += btn_h + url_px * .5
+    text(slide, cx + pad, y, tw, url_px * 1.4, 'www.soilfoodweb.com', 'Source Sans 3', url_px, INK, 'Web address', line=url_px * 1.3)
 
 def cursor(slide, x, y, size):
     s = size / 24
