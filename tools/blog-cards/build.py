@@ -52,7 +52,7 @@ POSTS = [
       img='img/uploads/Testate amoeba (encysting), 40x obj, Joy Kaluf.jpg', focus=(.5, .5)),
  dict(slug='permaculture-design-certificate', date='2026-04-13', cat='Education', field='yellow',
       head='SFW Launches first ever Permaculture Design Certificate', deck='',
-      img='tools/blog-cards/photos/PDC-Cohort-1-Launches-1-2048x1152.png', focus=(0.74, 0.5)),
+      img='img/garden-vegetable-beds.jpg', focus=(.5, .5)),
  dict(slug='advanced-programs-reopening', date='2026-02-23', cat='School Updates', field='yellow',
       head='Soil Food Web School Advanced Programs Are Reopening!', deck='',
       img='tools/blog-cards/photos/Students and mentors practice microscopy together at our workshop in Costa Rica, March 2025. .jpg', focus=(0.5, 0.5)),
@@ -90,7 +90,7 @@ POSTS = [
 
 # Per size: the photo zone, the card, and the type scale. px.
 SIZES = {
- 'feature-social-1400x1400': dict(W=1400, H=1400, zone=(430, 0, 970, 1040),  card=(84, 450, 960, 870),  pad=80, cat=150, head=116, deck=42, btn=44, clean=True, shape_zone=(420, 0, 980, 1000), shape_card=(70, 690, 800, 640)),
+ 'feature-social-1400x1400': dict(W=1400, H=1400, zone=(430, 0, 970, 1040),  card=(84, 450, 960, 870),  pad=80, cat=150, head=116, deck=42, btn=44, clean=True, shape_zone=(420, 0, 980, 980), shape_card=(64, 620, 830, 716)),
  'mobile-header-750x1000':   dict(W=750,  H=1000, zone=(0, 0, 750, 590),     card=(30, 390, 690, 580),   pad=46, cat=82,  head=66, deck=26, btn=28, clean=True),
  'desktop-header-1920x720': dict(W=1920, H=720, zone=(700, 0, 1220, 720), card=(96, 56, 800, 608), pad=64, cat=104, head=86, deck=32, btn=34, clean=True),
  'tablet-header-1024x768':   dict(W=1024, H=768,  zone=(380, 0, 644, 768),   card=(44, 110, 660, 610),   pad=46, cat=74,  head=60, deck=24, btn=26, clean=True),
@@ -341,13 +341,13 @@ def build(key, cfg, previews):
         pad = cfg['pad']; tw = cw - 2 * pad
         # the biggest headline that fits: step down until the whole stack sits in the card
         head_max = cfg['head']
-        cs, _ = fit(post['cat'], F_CAT, cfg['cat'], tw, 1, 20)
+        cs, _ = fit(post['cat'], F_CAT, cfg['cat'] * (.8 if STYLE != 'rect' else 1), tw, 1, 20)
         cat_lh = cs * 1.0
         btn_h = cfg['btn'] * 1.8
         url_px = max(13, cfg['btn'] * .6)
         while True:
             hs, hl = fit(post['head'], F_HEAD, head_max, tw, 5, 18)
-            ds, dl = (fit(post['deck'], F_HEAD, min(cfg['deck'], hs * .5), tw * .95, 4, 13) if post['deck'] else (0, []))
+            ds, dl = (fit(post['deck'], F_HEAD, min(cfg['deck'], hs * .45), tw * .95, 3, 13) if post['deck'] else (0, []))
             head_lh, deck_lh = hs * 1.02, ds * 1.28
             gap = pad * .32
             total = (cat_lh + gap * .5 + head_lh * len(hl) + (gap * .7 + deck_lh * len(dl) if dl else 0)
