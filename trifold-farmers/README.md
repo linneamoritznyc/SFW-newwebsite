@@ -4,8 +4,8 @@ The first trifold (`Trifold Design/`) with the farmers copy. First use: Farm Aid
 "Homegrown 101," Virginia Beach, September 26, 2026.
 
 **Status: stopped at overflow. Not print-ready. No print PDF has been built.**
-Five panels overflow at the first trifold's type sizes, and two headlines push
-their eyebrows into or past the trim. Per the brief, all the copy is kept and
+Three inside panels overflow at the first trifold's type sizes. The outside
+sheet fits, and every eyebrow and headline lines up. Per the brief, all the copy is kept and
 nothing was changed to make it fit. The overflow report is below.
 
 ## The files
@@ -29,13 +29,13 @@ is about 0.16 in.
 | :-- | :-- | :-- | :-- |
 | 1. Cover | outside, right | fits | |
 | 2. Our story | inside, left | **0.46 in**, about 3 lines | The webinar QR code runs off the foot. Body 3 (Rodale) is longer than the paragraph it replaces, and the first trifold's "Why this matters for climate" box is kept, as the brief keeps every box. |
-| 3. Teaching | outside, left, fold-in | **0.34 in**, about 3 lines | The scholarship QR code runs into the bottom margin. |
-| 4. Research | inside, middle | **0.90 in**, about 6 lines | The YouTube closing line is cut off. |
-| 5. Practice | inside, right, fold-in | **1.47 in**, about 9 lines | The case studies QR code is off the panel. The headline runs to 4 lines, which pushes the PRACTICE eyebrow 0.12 in **past the trim**, so it would be cut off. |
-| 6. Community | outside, middle, the back | **0.26 in**, about 2 lines | The headline runs to 3 lines. That puts the COMMUNITY eyebrow 0.08 in from the trim, inside the 0.28 in safe margin. The green foot sits 0.26 in lower than the cover's, so the two no longer line up across the fold. |
+| 3. Teaching | outside, left, fold-in | fits | |
+| 4. Research | inside, middle | **0.62 in**, about 4 lines | The YouTube closing line is cut off. |
+| 5. Practice | inside, right, fold-in | **1.47 in**, about 9 lines | The case studies QR code is off the panel. |
+| 6. Community | outside, middle, the back | fits | The green foot lines up with the cover's across the fold. |
 
-In the first trifold, every eyebrow sits exactly at the 0.28 in safe margin,
-and every headline is 2 lines.
+Every eyebrow sits exactly at the 0.28 in safe margin and every headline is
+2 lines, as in the first trifold.
 
 ## Anything I could not match
 
