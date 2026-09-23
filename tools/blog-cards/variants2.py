@@ -233,9 +233,10 @@ def d10(s):
     read_post(s, 780, 520, url_colour='#FFFFFF')
     caption(s, 780, 636, 220, '#FFFFFF')
 
-prs = Presentation(); prs.slide_width, prs.slide_height = Emu(W * PX), Emu(H * PX)
-for title, fn in DESIGNS:
-    sl = prs.slides.add_slide(prs.slide_layouts[6]); fn(sl)
-    sl.notes_slide.notes_text_frame.text = title
-out = os.path.join(OUT, 'Tablet-headers-soil-health-week-round-2.pptx')
-prs.save(out); print(out)
+if __name__ == "__main__":
+  prs = Presentation(); prs.slide_width, prs.slide_height = Emu(W * PX), Emu(H * PX)
+  for title, fn in DESIGNS:
+      sl = prs.slides.add_slide(prs.slide_layouts[6]); fn(sl)
+      sl.notes_slide.notes_text_frame.text = title
+  out = os.path.join(OUT, 'Tablet-headers-soil-health-week-round-2.pptx')
+  prs.save(out); print(out)
