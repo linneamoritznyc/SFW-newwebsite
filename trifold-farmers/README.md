@@ -1,54 +1,41 @@
 # Trifold for farmers
 
-The first trifold (`Trifold Design/`) with the farmers copy. First use: Farm Aid
-"Homegrown 101," Virginia Beach, September 26, 2026.
+The first trifold's sheet, panels, fold, bleed, type and colours by position,
+with the farmers copy. First use: Farm Aid "Homegrown 101," Virginia Beach,
+September 26, 2026.
 
-**Status: stopped at overflow. Not print-ready. No print PDF has been built.**
-Three inside panels overflow at the first trifold's type sizes. The outside
-sheet fits, and every eyebrow and headline lines up. Per the brief, all the copy is kept and
-nothing was changed to make it fit. The overflow report is below.
+**Status: print-ready.** Every panel fits, every eyebrow and headline lines up,
+the green feet on the back and cover meet across the fold, and all five QR
+codes decode from the print file.
 
 ## The files
 
 | File | What it is |
 | :-- | :-- |
-| `outside-spread.png` | Preview, outside sheet: Teaching, Community (back), Cover. 300 DPI with bleed. |
-| `inside-spread.png` | Preview, inside sheet: Our story, Research, Practice. |
-| `COPY-farmers-trifold.txt` | Every word, panel by panel, for the Google Doc review. |
-| `build/` | The two sheets as markup, the first trifold's stylesheet (byte-identical), and the build scripts. |
+| `print/sfw-farmers-trifold-2page-CMYK-PDFX.pdf` | **The file to send.** Page 1 outside, page 2 inside. PDF/X-4, CMYK, 0.125 in bleed, same boxes as the first trifold's file. |
+| `sfw-farmers-trifold-editable.pptx` | For Canva. Every band, box, hairline, photograph, icon, QR code and text block is its own object. |
+| `COPY-farmers-trifold.txt` | Every word, panel by panel, generated from the final sheets. |
+| `outside-spread.png`, `inside-spread.png` | 300 DPI previews with bleed. `final-page-*.jpg` are the print file itself. |
+| `qr-uploads/` | QR files Linnea uploaded. |
+| `build/` | The sheets, the stylesheet, and the build scripts. |
 
-The previews show the overflow as it is. Content past the foot of a panel is
-cut off, and the Practice QR code is not visible at all.
+The first trifold's editable PowerPoint is in `../editable-pptx/`.
 
-## Overflow
+## Where it differs from the first trifold's layout
 
-Measured at the first trifold's type sizes and spacing. One line of body text
-is about 0.16 in.
+All additions sit at the foot of `build/trifold.css`; everything above them is
+the first trifold's stylesheet.
 
-| Panel | Where | Too long by | Also |
-| :-- | :-- | :-- | :-- |
-| 1. Cover | outside, right | fits | |
-| 2. Our story | inside, left | **0.46 in**, about 3 lines | The webinar QR code runs off the foot. Body 3 (Rodale) is longer than the paragraph it replaces, and the first trifold's "Why this matters for climate" box is kept, as the brief keeps every box. |
-| 3. Teaching | outside, left, fold-in | fits | |
-| 4. Research | inside, middle | **0.62 in**, about 4 lines | The YouTube closing line is cut off. |
-| 5. Practice | inside, right, fold-in | **1.47 in**, about 9 lines | The case studies QR code is off the panel. |
-| 6. Community | outside, middle, the back | fits | The green foot lines up with the cover's across the fold. |
+- Cover subheadline in green at about half the headline size.
+- Why Biology flap body and Our story box at 8.8 pt, so the flap fills.
+- On your farm list and box text slightly larger, so the panel fills.
+- Back: the gaps around the community code one step tighter, so its green foot meets the cover's. Both feet are 2.98 in tall rather than 2.80 in.
+- The photograph curve rises across the sheet rather than arching, so the cover photograph reaches its right edge.
 
-Every eyebrow sits exactly at the 0.28 in safe margin and every headline is
-2 lines, as in the first trifold.
+## Before print
 
-## Anything I could not match
-
-- **Print specs:** nothing yet. The sheet, panels, fold, bleed, margins, type, colours, photographs, photo positions, and boxes are the first trifold's. The stylesheet is a byte-identical copy. The print scripts are the first trifold's, repointed to this folder. Once the overflow is settled, they produce the same PDF/X-4 CMYK file with the same boxes.
-- **QR codes:** your copy puts the scholarship code on Teaching. That is where the first trifold carried it before the Foundation Courses code replaced it on September 22, so its original file is restored from the history, in Education Blue. The community code on the back is restored the same way, in moss.
-- **Back "Learn more" code:** it uses Linnea's tracked Switchy link `https://www.sfw.one/brochure-website` (her upload is in `qr-uploads/`). It is redrawn in the brochure's moss, as vector art like the other codes, in `build/make-qr.py`. It takes the donate code's place in the green foot. The Switchy link redirects to soilfoodweb.com.
-- **Cover subheadline:** the first trifold's cover has no subheadline. "The soil beneath our farms and forests is alive." is set as the heading style directly under "Grow your own biology."
-- **Research closing line:** the YouTube link is printed as `[LINK: YouTube channel short link, to be confirmed]`, exactly as the copy has it. It must be replaced before print.
-
-## The first trifold is unchanged
-
-All 110 files under `Trifold Design/`, `SEND-TO-PRINTER/`, and `exports/` are
-byte-identical to before this work, checked by SHA-256.
+- The Switchy links (brochure-webinar, -casestudies, -scholarship, -community, -website) must be live.
+- Scan the codes on the press proof.
 
 ## Rebuild
 
@@ -56,7 +43,14 @@ From the repository root:
 
     python3 trifold-farmers/build/make-qr.py
     python3 trifold-farmers/build/apply-curve.py
-    node    trifold-farmers/build/render.js          # previews + overflow report
-    node    trifold-farmers/build/render-pdf.js      # only once nothing overflows
+    node    trifold-farmers/build/render.js
+    node    trifold-farmers/build/render-pdf.js
     python3 trifold-farmers/build/make-pdfx.py
     python3 trifold-farmers/build/check-qr.py
+    node    trifold-farmers/build/export-layers.js <tmp dir>
+    python3 trifold-farmers/build/make-pptx.py <tmp dir>
+
+The first trifold's PowerPoint:
+
+    node    trifold-farmers/build/export-layers.js <tmp dir> "Trifold Design/build"
+    python3 trifold-farmers/build/make-pptx.py <tmp dir> editable-pptx/sfw-trifold-2026-editable.pptx

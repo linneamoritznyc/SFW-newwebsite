@@ -4,7 +4,7 @@ layers export-layers.js writes. Every band, box, hairline, photograph, icon,
 QR code and text block is its own object, named, in paint order.
 
     node    trifold-farmers/build/export-layers.js <dir>
-    python3 trifold-farmers/build/make-pptx.py <dir>
+    python3 trifold-farmers/build/make-pptx.py <dir> [output .pptx]
 
 Slides are the trim size, 11 x 8.5 in. Anything that bleeds runs 0.125 in
 past the slide edge, as it does in the print file, so turn on "Show print
@@ -19,7 +19,7 @@ from pptx.enum.text import PP_ALIGN, MSO_AUTO_SIZE
 from pptx.oxml.ns import qn
 
 SRC = pathlib.Path(sys.argv[1])
-OUT = pathlib.Path(__file__).resolve().parent.parent / "sfw-farmers-trifold-editable.pptx"
+OUT = pathlib.Path(sys.argv[2]) if len(sys.argv) > 2 else pathlib.Path(__file__).resolve().parent.parent / "sfw-farmers-trifold-editable.pptx"
 PX = 914400 / 96            # EMU per CSS pixel
 BLEED = 0.125 * 96          # the sheet includes bleed; the slide is the trim
 
@@ -91,7 +91,7 @@ for sheet in ("outside", "inside"):
         else:
             # A little extra measure so Canva's own line breaking does not
             # wrap a line early; text stays anchored at its left edge.
-            shp = slide.shapes.add_textbox(emu(x), emu(y), emu(w * 1.03 + 2), emu(h))
+            shp = slide.shapes.add_textbox(emu(x), emu(y), emu(w * 1.06 + 3), emu(h))
             tf = shp.text_frame
             tf.word_wrap = True; tf.auto_size = MSO_AUTO_SIZE.NONE
             tf.margin_left = tf.margin_right = tf.margin_top = tf.margin_bottom = 0
@@ -100,6 +100,8 @@ for sheet in ("outside", "inside"):
                 p.alignment = {"center": PP_ALIGN.CENTER, "right": PP_ALIGN.RIGHT, "end": PP_ALIGN.RIGHT}.get(it["align"], PP_ALIGN.LEFT)
                 if it.get("lineHeight"): p.line_spacing = Pt(it["lineHeight"])
             style_para(para)
+            if it.get("indent"):
+                para._p.get_or_add_pPr().set("indent", str(int(it["indent"] * PX)))
             for run in it["runs"]:
                 if run["text"] == "\n":
                     para = tf.add_paragraph(); style_para(para); continue

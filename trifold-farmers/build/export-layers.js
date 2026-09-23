@@ -2,13 +2,14 @@
  * an editable PowerPoint: shapes as geometry and colour, photographs, icons
  * and QR codes as their own transparent PNGs, text as runs with their styles.
  *
- *   node trifold-farmers/build/export-layers.js <outdir>
+ *   node trifold-farmers/build/export-layers.js <outdir> [build dir, default trifold-farmers/build]
  *   python3 trifold-farmers/build/make-pptx.py <outdir>
  */
 const { chromium } = require('/opt/node22/lib/node_modules/playwright');
 const http = require('http'), path = require('path'), fs = require('fs');
 const REPO = path.resolve(__dirname, '..', '..');
 const OUT = path.resolve(process.argv[2]);
+const BUILD = (process.argv[3] || 'trifold-farmers/build').replace(/\/$/, '');
 fs.mkdirSync(OUT, { recursive: true });
 const T = {'.html':'text/html; charset=utf-8','.css':'text/css','.svg':'image/svg+xml','.png':'image/png','.jpg':'image/jpeg','.jpeg':'image/jpeg','.woff2':'font/woff2'};
 const server = http.createServer((q, r) => {
@@ -25,7 +26,7 @@ const server = http.createServer((q, r) => {
   const page = await browser.newPage({ viewport: { width: 1080, height: 840 }, deviceScaleFactor: 300 / 96 });
   const result = {};
   for (const sheet of ['outside', 'inside']) {
-    await page.goto(`http://127.0.0.1:${port}/trifold-farmers/build/${sheet}.html`, { waitUntil: 'networkidle' });
+    await page.goto(`http://127.0.0.1:${port}/${BUILD.split('/').map(encodeURIComponent).join('/')}/${sheet}.html`, { waitUntil: 'networkidle' });
     await page.evaluate(() => document.fonts.ready);
     const items = await page.evaluate(() => {
       const sheetBox = document.querySelector('.sheet').getBoundingClientRect();
@@ -112,7 +113,11 @@ const server = http.createServer((q, r) => {
             || (el.matches(TEXT) && el.matches('p.pull, p.addr, .tagline, .l, .n, h1, h2, h3, .t, .d, .h, figcaption'))) {
           const runs = runsOf(el);
           if (runs.some(r => r.text && r.text.trim())) {
-            out.push({ kind: 'text', name: (el.className || tag), ...box(el), runs,
+            // An icon set inline at the start of the text (the box standfirsts)
+            // becomes a first-line indent, so the text clears the icon.
+            const ic = el.querySelector('svg.icon');
+            const indent = ic ? ic.getBoundingClientRect().right + 4.5 - el.getBoundingClientRect().left : 0;
+            out.push({ kind: 'text', name: (el.className || tag), ...box(el), runs, indent,
               align: cs.textAlign, lineHeight: parseFloat(cs.lineHeight) * 0.75 || null });
             // icons inside a text block (the box standfirsts) still need out
             el.querySelectorAll('svg.icon').forEach((s) => visit(s, depth + 1));
