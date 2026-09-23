@@ -808,3 +808,18 @@ h2.subhead { font-size: 10.5pt; color: var(--green); line-height: 1.2; }
    three paragraphs fill the panel down to the webinar code. At 9pt the gap
    above the code is 0.14in, the scale's own --s4. */
 .panel[data-panel="3"] > p { font-size: 9pt; }
+
+/* Farmers trifold: the back carries a two-line subheading, the body, the
+   community code and the icon row above its green foot. The gaps around the
+   code step down one place on the existing scale (s4 to s3, s3 to s2) on this
+   panel only, so the foot meets the cover's at one height across the fold. */
+.panel[data-panel="6"] * + .qr,
+.panel[data-panel="6"] .qr + * { margin-top: var(--s3); }
+.panel[data-panel="6"] .qr + .pillars { margin-top: var(--s2); }
+
+/* Farmers trifold: On your farm lost the second sentence of its box and was
+   left with a third of an inch of white at its foot. Its list and box text
+   step up so the panel fills, as the Why Biology flap does. */
+.panel[data-panel="4"] .checks li { font-size: 9pt; }
+.panel[data-panel="4"] .checks b  { font-size: 9.2pt; }
+.panel[data-panel="4"] .pull      { font-size: 9.8pt; }
