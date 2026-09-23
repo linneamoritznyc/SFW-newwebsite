@@ -56,7 +56,11 @@ def frac(x):
     negative base to a fractional power is a complex number in Python, which is
     how that first showed up."""
     x = max(0.0, min(1.0, x))
-    return KEEP + (1.0 - KEEP) * math.sin(math.pi * (x ** 0.92))
+    # Farmers trifold: a quarter sine rather than a half, so the curve rises
+    # the whole way across and never comes back down. The first trifold's arc
+    # dropped again at the right trim and left a white wedge under the cover
+    # photograph; this one meets the right edge at the full frame.
+    return KEEP + (1.0 - KEEP) * math.sin(math.pi / 2 * x)
 
 def clip(p, n=64):
     pts = ["0% 0%", "100% 0%"]
