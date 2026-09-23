@@ -13,21 +13,30 @@ from PIL import Image
 Image.MAX_IMAGE_PIXELS = None
 
 ROOT = pathlib.Path(__file__).parent.parent
-WANT = {"outside": {"https://www.sfw.one/brochure-scholarship",
+WANT = {"outside": {"https://www.sfw.one/brochure-webinar",
                     "https://www.sfw.one/brochure-community",
                     "https://www.sfw.one/brochure-website"},
-        "inside":  {"https://www.sfw.one/brochure-webinar",
-                    "https://www.sfw.one/brochure-casestudies"}}
+        "inside":  {"https://www.sfw.one/brochure-casestudies",
+                    "https://www.sfw.one/brochure-scholarship"}}
 
 def decode(img):
-    a = np.array(img.convert("RGB"))
+    """Every code on the sheet. The whole page first, then each panel and each
+    half of it on its own, because a detector looking at a busy full sheet can
+    find one code and stop."""
     found = set()
-    ok, texts, _, _ = cv2.QRCodeDetector().detectAndDecodeMulti(a)
-    if ok: found |= {t for t in texts if t}
-    if not found:  # a whole sheet can be too busy; try a smaller copy
-        small = cv2.resize(a, None, fx=0.5, fy=0.5, interpolation=cv2.INTER_AREA)
-        ok, texts, _, _ = cv2.QRCodeDetector().detectAndDecodeMulti(small)
-        if ok: found |= {t for t in texts if t}
+    det = cv2.QRCodeDetector()
+    a = np.array(img.convert("RGB"))
+    h, w = a.shape[:2]
+    crops = [a] + [a[y0:y1, x0:x1]
+                   for x0, x1 in ((0, w // 3), (w // 3, 2 * w // 3), (2 * w // 3, w))
+                   for y0, y1 in ((0, h), (0, h // 2), (h // 2, h))]
+    for crop in crops:
+        for scale in (1.0, 0.5):
+            im = crop if scale == 1.0 else cv2.resize(crop, None, fx=scale, fy=scale, interpolation=cv2.INTER_AREA)
+            ok, texts, _, _ = det.detectAndDecodeMulti(im)
+            if ok: found |= {t for t in texts if t}
+            t = det.detectAndDecode(im)[0]
+            if t: found.add(t)
     return found
 
 bad = 0

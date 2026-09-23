@@ -797,3 +797,9 @@ h3 {
    About half the headline's 20pt and in Food Web Green, so the two do not
    compete. Everything above this line is the first trifold's stylesheet. */
 h2.subhead { font-size: 10.5pt; color: var(--green); line-height: 1.2; }
+
+/* Farmers trifold: the closing green field on the back carries the contact
+   line, the legal card and a QR code, 0.18in more than the first trifold's
+   back did. Both fields grow together, so the green still meets across the
+   fold at one height. */
+:root { --foot-h: 2.98in; }

@@ -24,3 +24,16 @@ qr.save(HERE / "qr" / "brochure-website.svg", scale=10, border=4, dark=DARK, lig
 modules = qr.symbol_size(scale=1, border=4)[0]
 qr.save(HERE / "qr" / "brochure-website.png", scale=-(-1200 // modules), border=4, dark=DARK, light=LIGHT)
 print(f"brochure-website  version {qr.version}, {modules} modules, {URL}")
+
+
+# The three codes whose panels changed colour. Each takes the colour of the
+# panel it now sits in, by position, as the first trifold does. Same links as
+# the first trifold's codes.
+for name, url, colour in (
+    ("webinar-blue",       "https://www.sfw.one/brochure-webinar",     "#3780B8"),  # --edu, first flap
+    ("case-studies-purple","https://www.sfw.one/brochure-casestudies", "#6B4C7A"),  # --legacy, inside left
+    ("scholarship-green",  "https://www.sfw.one/brochure-scholarship", "#156826"),  # --green, inside right
+):
+    q = segno.make(url, error="h")
+    q.save(HERE / "qr" / f"{name}.svg", scale=10, border=4, dark=colour, light=LIGHT)
+    print(f"{name:<20} {colour}  {url}")
