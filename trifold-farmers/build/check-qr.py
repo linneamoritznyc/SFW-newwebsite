@@ -20,9 +20,9 @@ WANT = {"outside": {"https://www.sfw.one/brochure-webinar",
                     "https://www.sfw.one/brochure-scholarship"}}
 
 def decode(img):
-    """Every code on the sheet. The whole page first, then each panel and each
-    half of it on its own, because a detector looking at a busy full sheet can
-    find one code and stop."""
+    """Every code on the sheet: the whole page, then each panel and each half
+    of it on its own, because a detector on a busy full sheet can find one
+    code and stop."""
     found = set()
     det = cv2.QRCodeDetector()
     a = np.array(img.convert("RGB"))
