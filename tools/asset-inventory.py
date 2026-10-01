@@ -388,7 +388,9 @@ def same_host(u, host):
 
 def clean(u):
     p = urllib.parse.urlsplit(u)
-    return urllib.parse.urlunsplit((p.scheme, p.netloc, p.path or "/", p.query, ""))
+    # Query strings (?playlist=, ?sfw_pub_collection=) are filtered views of
+    # the same page and would only repeat its rows. WordPress paging is /page/2/.
+    return urllib.parse.urlunsplit((p.scheme, p.netloc, p.path or "/", "", ""))
 
 
 def sitemap_urls(f, url, seen=None):
