@@ -31,3 +31,6 @@ package*
 
 # Generated asset bundles (the GIFs themselves live in exports/gifs/)
 exports/*.zip
+
+# Download cache for tools/asset-inventory.py
+_dev/asset-inventory-cache/
