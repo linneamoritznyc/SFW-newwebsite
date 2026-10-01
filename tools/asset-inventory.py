@@ -68,6 +68,7 @@ DRIVE_ALIASES = {
     "Gloved hands": ["gloved hands red bucket mulch"],
     "Hand, soil, roots, fungi": ["hand soil roots fungi"],
     "Hands, wet dirt, worms": ["hand wet dirt worm"],
+    "Soil sample, close up": ["soil sample close up test tube"],
     "Carla, Nick's son, Wild Soils event Nov 2024": ["Carla-Nicks Son-Nick-ERI-Wild Soils Event-11-2024"],
 }
 
