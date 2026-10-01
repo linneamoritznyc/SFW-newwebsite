@@ -26,7 +26,7 @@ REPO_DIRS = ("img", "video", "exports", "tools/blog-cards/photos")
 OLD_HOSTS = ("soilfoodweb.com", "www.soilfoodweb.com")
 OLD_PATHS = ("/foundation-courses-2", "/shop", "/product/", "/cart", "/checkout", "/my-account")
 LOCAL = re.compile(r"^(?:https?://)?(?:localhost|127\.0\.0\.1|0\.0\.0\.0|\[::1\])(?::\d+)?", re.I)
-SKIP_PATH = re.compile(r"/(?:wp-admin|wp-login\.php|wp-json|feed|xmlrpc\.php|comments/feed)\b|/feed/?$|[?&](?:replytocom|share)=", re.I)
+SKIP_PATH = re.compile(r"/(?:cdn-cgi|wp-admin|wp-login\.php|wp-json|feed|xmlrpc\.php|comments/feed)\b|/feed/?$|[?&](?:replytocom|share)=", re.I)
 MEDIA_EXT = re.compile(r"\.(?:jpe?g|png|gif|webp|avif|svg|bmp|tiff?|ico|mp4|webm|mov|m4v|ogv)(?:$|\?)", re.I)
 VIDEO_EXT = re.compile(r"\.(?:mp4|webm|mov|m4v|ogv)(?:$|\?)", re.I)
 GRAPHIC_HINT = re.compile(r"logo|icon|badge|graphic|diagram|illustration|infographic|chart|map|seal|qr", re.I)
@@ -168,6 +168,18 @@ def repo_videos():
 
 # ---------------------------------------------------------------- fetching
 
+class SameHostRedirects(urllib.request.HTTPRedirectHandler):
+    """Follow redirects on the same host only. Publication entries redirect to
+    doi.org or Google Scholar; those are papers, not pages on this site."""
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        if urllib.parse.urlsplit(newurl).netloc.lower() != urllib.parse.urlsplit(req.full_url).netloc.lower():
+            return None
+        return super().redirect_request(req, fp, code, msg, headers, newurl)
+
+
+OPENER = urllib.request.build_opener(SameHostRedirects)
+
+
 class Fetcher:
     def __init__(self, cache, timeout=30):
         self.cache, self.timeout = cache, timeout
@@ -186,11 +198,12 @@ class Fetcher:
                    path if os.path.exists(path) else None)
             self.memo[(url, body)] = res
             return res
-        req = urllib.request.Request(url, method="GET" if body else "HEAD",
+        safe_url = urllib.parse.quote(url, safe=":/?&=%#@+,;~!$'()*[]")  # file names with "×" etc.
+        req = urllib.request.Request(safe_url, method="GET" if body else "HEAD",
                                      headers={"User-Agent": "sfw-asset-inventory/1.0"})
         status, headers, data = 0, {}, None
         try:
-            with urllib.request.urlopen(req, timeout=self.timeout) as r:
+            with OPENER.open(req, timeout=self.timeout) as r:
                 status, headers = r.status, {k.lower(): v for k, v in r.headers.items()}
                 data = r.read() if body else None
         except urllib.error.HTTPError as e:
@@ -201,7 +214,8 @@ class Fetcher:
             return self.get(url, body=True)
         if data is not None:
             open(path, "wb").write(data)
-        json.dump({"status": status, "headers": headers}, open(meta, "w"))
+        if status:
+            json.dump({"status": status, "headers": headers}, open(meta, "w"))
         res = (status, headers, data, path if data is not None else None)
         self.memo[(url, body)] = res
         return res
@@ -507,6 +521,8 @@ def main():
         u = queue[i]; i += 1
         status, headers, data, _ = f.get(u)
         ctype = headers.get("content-type", "")
+        if 300 <= status < 400:
+            continue  # redirects off the site, e.g. a publication pointing at its paper
         if status != 200 or "html" not in ctype or not data:
             if u in seeds:  # a dead menu or sitemap entry; dead discovered links go to the links file
                 pages.append((u, status, None))
@@ -636,11 +652,22 @@ def main():
                         notes.append("WordPress size variant of %s" % original_stem(url))
                     if lib and lib.get("w"):
                         notes.append("original %sx%s%s" % (lib["w"], lib["h"], (", " + human(lib["size"])) if lib.get("size") else ""))
+                    if re.match(r"^https?://\d+/?$", url):
+                        notes.append("image field holds an attachment ID instead of a URL")
                     if not same_host(url, host):
                         notes.append("hosted off-site on " + urllib.parse.urlsplit(url).netloc)
                     if urllib.parse.urlsplit(url).netloc.lower() in OLD_HOSTS:
                         notes.append("OLD SITE: file served from soilfoodweb.com")
                     hits = repo.get(key(url)) or repo.get(key(url, repo=True))
+                    if hits and len(key(url)) < 4:
+                        hits = None  # 2.jpg, 6.jpg: too generic to match by name
+                        notes.append("name too generic to match by name")
+                    if not hits:
+                        dup = re.sub(r"-\d$", "", original_stem(url))
+                        if dup != original_stem(url):
+                            hits = repo.get(re.sub(r"[^a-z0-9]", "", dup.lower()))
+                            if hits:
+                                notes.append("matched after dropping WordPress re-upload suffix")
                     row["Repo path"] = hits[0] if hits else ""
                     if hits and os.path.splitext(hits[0])[1].lower() != os.path.splitext(url.split("?")[0])[1].lower():
                         notes.append("repo match is a different format, check by eye")
@@ -676,10 +703,12 @@ def main():
                         notes.append("OLD SITE: WordPress shop or foundation-courses-2")
                     if href.lower().startswith("javascript:"):
                         notes.append("BROKEN: javascript href")
-                    if net == host:
+                    if net == host and "/cdn-cgi/" not in absu:
                         st = f.get(clean(absu), body=False)[0]
                         if st >= 400:
                             notes.append("BROKEN: target returns %s" % st)
+                        elif 300 <= st < 400:
+                            notes.append("redirects off the site")
                         elif st == 0:
                             notes.append("NOT CHECKED: could not connect")
                 if not ln["text"]:
@@ -722,7 +751,7 @@ def main():
                     why.append("points to the old site")
                 if any(p in urllib.parse.urlsplit(absu).path for p in OLD_PATHS):
                     why.append("WordPress shop or foundation-courses-2")
-                if net == host and not href.startswith("#"):
+                if net == host and not href.startswith("#") and "/cdn-cgi/" not in absu:
                     st = f.get(clean(absu), body=False)[0]
                     if st >= 400:
                         why.append("target returns %s" % st)
