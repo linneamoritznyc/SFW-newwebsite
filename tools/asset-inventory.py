@@ -284,6 +284,13 @@ class Page(HTMLParser):
             yt, vm = YOUTUBE.search(src), VIMEO.search(src)
             if yt or vm:
                 self.add("embed", src, provider="YouTube" if yt else "Vimeo", vid=(yt or vm).group(1))
+        if tag == "a" and a.get("href"):
+            h = a["href"]
+            yt, vm = YOUTUBE.search(h), VIMEO.search(h)
+            if yt or vm:
+                self.add("embed", h, provider="YouTube" if yt else "Vimeo", vid=(yt or vm).group(1), via="video link")
+            elif VIDEO_EXT.search(h):
+                self.add("video", h, via="video link")
         if tag == "a" or tag == "button":
             cls = a.get("class", "") + " " + a.get("role", "")
             self._anchor = dict(href=None if tag == "button" and "href" not in a else a.get("href"),
@@ -329,6 +336,19 @@ class Page(HTMLParser):
 
 # ---------------------------------------------------------------- crawl
 
+def css_backgrounds(text, base_url, via, section_prefix=""):
+    out = []
+    text = re.sub(r"/\*.*?\*/", "", text, flags=re.S)
+    for rule in re.finditer(r"([^{}]+)\{([^{}]*)\}", text):
+        for m in CSS_URL.finditer(rule.group(2)):
+            u = urllib.parse.urljoin(base_url, html.unescape(m.group(2).strip()))
+            if MEDIA_EXT.search(u) and not u.startswith("data:"):
+                sel = " ".join(rule.group(1).split())
+                sel = sel.rsplit(";", 1)[-1].strip()[:120]
+                out.append(dict(kind="css", src=u, section=section_prefix + sel, region="", via=via))
+    return out
+
+
 def same_host(u, host):
     return urllib.parse.urlsplit(u).netloc.lower() == host
 
@@ -358,6 +378,39 @@ def sitemap_urls(f, url, seen=None):
             out += sitemap_urls(f, loc, seen)
         return out
     return locs
+
+
+def rest_links(f, base):
+    """Every public page, post, event and custom post, from the REST API.
+    WordPress turns wp-sitemap.xml off when the site is set to noindex."""
+    out = []
+    status, _, data, _ = f.get(base + "/wp-json/wp/v2/types")
+    if status != 200:
+        return out
+    types = json.loads(data)
+    first = ["page", "post", "sfw_calendar_event"]
+    names = first + sorted(t for t in types if t not in first)
+    for t in names:
+        info = types.get(t) or {}
+        rb = info.get("rest_base")
+        if not rb or t in ("attachment", "nav_menu_item", "wp_block", "wp_template", "wp_template_part",
+                           "wp_global_styles", "wp_navigation", "wp_font_family", "wp_font_face"):
+            continue
+        for n in range(1, 100):
+            st, hd, d, _ = f.get("%s/wp-json/wp/v2/%s?per_page=100&page=%d&_fields=link&orderby=menu_order&order=asc" % (base, rb, n)
+                                 if t == "page" else "%s/wp-json/wp/v2/%s?per_page=100&page=%d&_fields=link" % (base, rb, n))
+            if st != 200 or not d:
+                break
+            try:
+                batch = json.loads(d)
+            except ValueError:
+                break
+            if not isinstance(batch, list) or not batch:
+                break
+            out += [clean(b["link"]) for b in batch if b.get("link")]
+            if n >= int(hd.get("x-wp-totalpages", "1") or 1):
+                break
+    return out
 
 
 def slug(u, base):
@@ -405,6 +458,7 @@ def main():
                 if same_host(u, host) and not SKIP_PATH.search(u) and not MEDIA_EXT.search(u):
                     order.append(u)
     order += [clean(u) for u in sitemap_urls(f, base + "/wp-sitemap.xml")]
+    order += rest_links(f, base)
     order = [u for u in order if same_host(u, host)]
     queue = list(dict.fromkeys(order))
     seeds = set(queue)
@@ -424,6 +478,7 @@ def main():
             continue
         pg = Page(u)
         pg.feed(data.decode("utf-8", "replace"))
+        pg.items += css_backgrounds("".join(pg.styles), u, "page <style> block", "CSS ")
         pages.append((u, status, pg))
         print("  %3d %s (%d assets)" % (len(pages), u, len(pg.items)), file=sys.stderr)
         for s in pg.stylesheets:
@@ -445,13 +500,7 @@ def main():
         status, _, data, _ = f.get(s)
         if status != 200 or not data:
             continue
-        text = re.sub(r"/\*.*?\*/", "", data.decode("utf-8", "replace"), flags=re.S)
-        for rule in re.finditer(r"([^{}]+)\{([^{}]*)\}", text):
-            for m in CSS_URL.finditer(rule.group(2)):
-                u = urllib.parse.urljoin(s, m.group(2).strip())
-                if MEDIA_EXT.search(u) and not re.search(r"\.(?:woff2?|ttf|otf|eot)", u, re.I):
-                    css_items.append(dict(kind="css", src=u, section=" ".join(rule.group(1).split())[:120],
-                                          region="", via="stylesheet " + stem(s) + ".css"))
+        css_items += css_backgrounds(data.decode("utf-8", "replace"), s, "stylesheet " + stem(s) + ".css")
 
     # 4. WordPress media library, when the REST API is open: true upload dates
     #    and original sizes even for files only seen as size variants.

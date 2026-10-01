@@ -34,3 +34,4 @@ exports/*.zip
 
 # Download cache for tools/asset-inventory.py
 _dev/asset-inventory-cache/
+_dev/asset-inventory-cache.log
