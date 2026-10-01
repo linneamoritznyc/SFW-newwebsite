@@ -114,6 +114,39 @@ def repo_index():
             for k, v in idx.items()}
 
 
+def label_key(t):
+    return re.sub(r"[^a-z0-9]", "", (t or "").lower())
+
+
+def repo_buttons():
+    """Buttons on the static prototype pages that Alex rebuilt in WordPress:
+    label key -> [(page, href)]."""
+    import glob
+    idx = collections.defaultdict(list)
+    files = sorted(glob.glob(os.path.join(ROOT, "*.html")) + glob.glob(os.path.join(ROOT, "projects", "*.html"))
+                   + glob.glob(os.path.join(ROOT, "news", "*.html")))
+    for path in files:
+        pg = Page("https://repo.local/" + os.path.relpath(path, ROOT))
+        try:
+            pg.feed(open(path, encoding="utf-8", errors="replace").read())
+        except Exception:
+            continue
+        for ln in pg.links:
+            if ln["is_button"] and ln["text"]:
+                idx[label_key(ln["text"])].append((os.path.relpath(path, ROOT), ln.get("abs") or (ln.get("raw_href") or "").strip()))
+    return idx
+
+
+def href_key(h):
+    """Compare a live href with a prototype href: path only, .html and index dropped."""
+    p = urllib.parse.urlsplit(h or "")
+    host = p.netloc.lower().replace("www.", "")
+    path = re.sub(r"(?:index)?\.html$", "", p.path).strip("/")
+    if host in ("", "new.soilfoodweb.com", "repo.local"):
+        host = ""
+    return host + "/" + path + ("#" + p.fragment if p.fragment else "")
+
+
 def drive_index():
     idx = {}
     for title, link in DRIVE.items():
@@ -521,7 +554,7 @@ def main():
                                                          size=det.get("filesize"), w=det.get("width"), h=det.get("height"))
 
     # 5. Rows.
-    repo, drive, vids = repo_index(), drive_index(), repo_videos()
+    repo, drive, vids, rbuttons = repo_index(), drive_index(), repo_videos(), repo_buttons()
     rows, placements = [], collections.defaultdict(set)
     media_meta = {}
 
@@ -649,6 +682,20 @@ def main():
                             notes.append("NOT CHECKED: could not connect")
                 if not ln["text"]:
                     notes.append("no visible label")
+                hits = rbuttons.get(label_key(ln["text"])) if ln["text"] else None
+                if hits:
+                    pages_ = sorted({h[0] for h in hits})
+                    row["Repo path"] = ("shared header/footer on %d prototype pages" % len(pages_) if len(pages_) > 8
+                                        else "; ".join(pages_))
+                    live = href_key(ln.get("abs") or ln.get("raw_href") or "")
+                    proto = sorted({h[1] for h in hits})
+                    if any(href_key(h) == live for h in proto):
+                        notes.append("same label and link in the repo prototype")
+                    else:
+                        notes.append("same label in the repo prototype, link there: "
+                                     + "; ".join(sorted({href_key(h) for h in proto})[:3]))
+                else:
+                    row["Repo path"] = "No source found"
             if notes:
                 row["Notes"] = ("; ".join(notes) + ("; " + row["Notes"] if row["Notes"] else "")).strip("; ")
 
