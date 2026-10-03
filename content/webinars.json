@@ -3,7 +3,16 @@
   "hero": {
     "eyebrow": "FREE WEBINARS",
     "h1": "Celebrating our successes and sharing the science",
-    "intro": "Stories and results from leading experts in their fields and experienced practitioners."
+    "intro": "Stories and results from leading experts in their fields and experienced practitioners.",
+    "elaine": {
+      "line": "Watched Dr. Elaine’s soil masterclass and want the next step? Start with a free webinar. It turns her ideas into practice: compost, extracts and the microscope.",
+      "link": {
+        "label": "Dr. Elaine’s soil masterclass",
+        "href": "https://www.youtube.com/watch?v=ErMHR6Mc4Bk"
+      },
+      "status": "verify",
+      "note": "Elaine lecture copy, approve: Linnea or Evan"
+    }
   },
   "nextSession": {
     "status": "placeholder",
