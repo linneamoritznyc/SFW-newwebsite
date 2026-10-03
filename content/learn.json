@@ -3,7 +3,16 @@
   "hero": {
     "eyebrow": "LEARN WITH US",
     "h1": "Learn to work with the life in your soil",
-    "intro": "Whether you’re growing in your backyard raised beds or advising thousand-acre farms, there’s a path for you. Choose from self-paced or group classes, online or in person. Every program is grounded in decades of research and practice and designed to deliver practical skills and insights."
+    "intro": "Whether you’re growing in your backyard raised beds or advising thousand-acre farms, there’s a path for you. Choose from self-paced or group classes, online or in person. Every program is grounded in decades of research and practice and designed to deliver practical skills and insights.",
+    "elaine": {
+      "line": "Dr. Elaine said she could train anyone to use a microscope in one day. Our programs start there: you learn to see the bacteria, fungi, protozoa and nematodes in your own soil and compost, and what each one tells you.",
+      "source": {
+        "credit": "Dr. Elaine Ingham, “How to Build Great Soil, Part 1”, Diego Footer, 28:52",
+        "href": "https://www.youtube.com/watch?v=ErMHR6Mc4Bk&t=1732s"
+      },
+      "status": "verify",
+      "note": "Elaine lecture copy, approve: Linnea or Evan"
+    }
   },
   "pathSelector": {
     "h2": "What brings you to the soil food web?",
@@ -46,6 +55,12 @@
       "cta": {
         "label": "See the Complete Practicum on the school site",
         "href": "https://school.soilfoodweb.com/bundles/complete-practicum"
+      },
+      "soilMicroscopyElaine": {
+        "line": "Learn to read a drop of soil the way Dr. Elaine did. Count fungal hyphae, spot flagellates and ciliates, and tell when compost is tipping anaerobic before it harms roots.",
+        "_placement": "learn.html, All courses table, Soil Microscopy row, What it is cell",
+        "status": "verify",
+        "note": "Elaine lecture copy, approve: Linnea or Evan"
       }
     },
     {

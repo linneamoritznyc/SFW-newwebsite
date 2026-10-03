@@ -4087,3 +4087,16 @@ img[data-optional] { background: none; }
 @media (max-width: 30em) {
   .nudge { bottom: var(--s2); right: var(--s2); left: var(--s2); width: auto; max-width: none; }
 }
+
+/* --- Dr. Elaine's own words, quoted on other pages -----------------------
+   Added 3 October 2026 for the lecture pull quotes. The testimonial is the
+   quote component; this is the same thing set one step smaller so it sits
+   under a body paragraph, with Legacy Purple as a rule beside it. Purple
+   here and nowhere else outside her page: it marks her words. */
+.testimonial--legacy {
+  margin-top: var(--s3); padding-left: var(--s3);
+  border-left: 3px solid var(--legacy);
+}
+.testimonial--legacy blockquote p { font-size: var(--t2); }
+.testimonial--legacy figcaption { margin-top: var(--s1); font-size: var(--t-1); }
+.testimonial--legacy figcaption a { color: var(--legacy); }

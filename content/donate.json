@@ -22,7 +22,12 @@
   },
   "whyMonthly": {
     "h2": "Monthly giving helps us plan ahead",
-    "note": "body line deleted per team edit Sep 8"
+    "note": "body line deleted per team edit Sep 8",
+    "elaine": {
+      "body": "Dr. Elaine’s model multiplies. Every person trained goes on to teach farmers, gardeners and students in their own region. A monthly gift funds the next trainee, and everyone they go on to teach.",
+      "status": "verify",
+      "note": "Elaine lecture copy, approve: Linnea or Evan"
+    }
   },
   "impactLines": {
     "status": "placeholder",

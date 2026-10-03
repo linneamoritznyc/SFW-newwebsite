@@ -3,7 +3,16 @@
   "hero": {
     "eyebrow": "HOW IT WORKS",
     "h1": "How the soil food web works",
-    "intro": "Healthy soil is a living system. Billions of organisms, bacteria, fungi, protozoa, nematodes, and micro-arthropods, form a web of relationships with plants that feeds them, builds the soil around them, and protects them. Here’s how it works."
+    "intro": "Healthy soil is a living system. Billions of organisms, bacteria, fungi, protozoa, nematodes, and micro-arthropods, form a web of relationships with plants that feeds them, builds the soil around them, and protects them. Here’s how it works.",
+    "elaine": {
+      "line": "Dr. Elaine taught that a vegetable sends about 60% of the energy it captures from sunlight below ground, and about half of that leaks from the roots as sugars, proteins and carbohydrates. She called them cakes and cookies.",
+      "source": {
+        "credit": "Dr. Elaine Ingham, “How to Build Great Soil, Part 1”, Diego Footer, 11:58",
+        "href": "https://www.youtube.com/watch?v=ErMHR6Mc4Bk&t=718s"
+      },
+      "status": "verify",
+      "note": "Elaine lecture copy, approve: Linnea or Evan. The 60% is attributed to Dr. Ingham by name; the nutrient cycling mechanism stays without a percentage."
+    }
   },
   "mechanisms": [
     {
@@ -15,6 +24,15 @@
         "vimeo": "372925873",
         "status": "placeholder",
         "note": "Animation: “The Soil Food Web”, existing asset, Vimeo 372925873"
+      },
+      "elaine": {
+        "quote": {
+          "text": "Our job is to put back the full diversity.",
+          "credit": "Dr. Elaine Ingham, “How to Build Great Soil, Part 1”, Diego Footer, 25:44",
+          "href": "https://www.youtube.com/watch?v=ErMHR6Mc4Bk&t=1544s"
+        },
+        "status": "verify",
+        "note": "Elaine lecture copy, approve: Linnea or Evan"
       }
     },
     {
@@ -29,7 +47,21 @@
       },
       "status": "verify",
       "note": "This sentence read “30 to 40% of the sugars” with no citation. That figure is Dr. Ingham's teaching number; the peer-reviewed review cited here reports lower shares for cereals than for pasture grasses, so the copy states the direction rather than a percentage. Wording to approve: Linnea or Evan.",
-      "source": "Kuzyakov, Y. and Domanski, G. (2000). Carbon input by plants into the soil. Review. Journal of Plant Nutrition and Soil Science 163: 421 to 431."
+      "source": "Kuzyakov, Y. and Domanski, G. (2000). Carbon input by plants into the soil. Review. Journal of Plant Nutrition and Soil Science 163: 421 to 431.",
+      "elaine": {
+        "line": "Dr. Elaine described root exudates as a phone call to the pizza delivery guy: the plant orders exactly the nutrient it lacks that day, and microbes deliver.",
+        "source": {
+          "credit": "Dr. Elaine Ingham, “How to Build Great Soil, Part 1”, Diego Footer, 15:03",
+          "href": "https://www.youtube.com/watch?v=ErMHR6Mc4Bk&t=903s"
+        },
+        "quote": {
+          "text": "Put the plant back in control of its own life.",
+          "credit": "Dr. Elaine Ingham, “How to Build Great Soil, Part 1”, Diego Footer, 16:32",
+          "href": "https://www.youtube.com/watch?v=ErMHR6Mc4Bk&t=992s"
+        },
+        "status": "verify",
+        "note": "Elaine lecture copy, approve: Linnea or Evan"
+      }
     },
     {
       "n": 3,
@@ -40,6 +72,26 @@
         "vimeo": "372476056",
         "status": "placeholder",
         "note": "Animation: “The Formation of Structure”, existing asset, Vimeo 372476056"
+      },
+      "elaine": {
+        "line": "Bacteria glue particles together the way you would grab the dinner table in a flood. Fungi tie those crumbs together like string around small packages.",
+        "sources": [
+          {
+            "credit": "Dr. Elaine Ingham, “How to Build Great Soil, Part 1”, Diego Footer, 5:31",
+            "href": "https://www.youtube.com/watch?v=ErMHR6Mc4Bk&t=331s"
+          },
+          {
+            "credit": "Dr. Elaine Ingham, “How to Build Great Soil, Part 1”, Diego Footer, 9:55",
+            "href": "https://www.youtube.com/watch?v=ErMHR6Mc4Bk&t=595s"
+          }
+        ],
+        "quote": {
+          "text": "The only thing that truly builds structure in your soil is life.",
+          "credit": "Dr. Elaine Ingham, “How to Build Great Soil, Part 1”, Diego Footer, 4:25",
+          "href": "https://www.youtube.com/watch?v=ErMHR6Mc4Bk&t=265s"
+        },
+        "status": "verify",
+        "note": "Elaine lecture copy, approve: Linnea or Evan"
       }
     },
     {
@@ -51,6 +103,15 @@
         "vimeo": "372479571",
         "status": "placeholder",
         "note": "Animation: “Weed Suppression”, existing asset, Vimeo 372479571"
+      },
+      "elaine": {
+        "line": "Dr. Elaine taught that a weed sends about 20% of its fixed energy to its roots, far less than the crops we grow.",
+        "source": {
+          "credit": "Dr. Elaine Ingham, “How to Build Great Soil, Part 1”, Diego Footer, 2:24",
+          "href": "https://www.youtube.com/watch?v=ErMHR6Mc4Bk&t=144s"
+        },
+        "status": "verify",
+        "note": "Elaine lecture copy, approve: Linnea or Evan"
       }
     },
     {
@@ -62,6 +123,20 @@
         "vimeo": "372480255",
         "status": "placeholder",
         "note": "Animation: “Inhibiting Pests and Diseases”, existing asset, Vimeo 372480255"
+      },
+      "elaine": {
+        "line": "Kill broadly and the fast organisms return first. Dr. Elaine compared it to gangsters moving into a trashed city block.",
+        "source": {
+          "credit": "Dr. Elaine Ingham, “How to Build Great Soil, Part 1”, Diego Footer, 7:32",
+          "href": "https://www.youtube.com/watch?v=ErMHR6Mc4Bk&t=452s"
+        },
+        "quote": {
+          "text": "There is no way to kill just the bad guys.",
+          "credit": "Dr. Elaine Ingham, “How to Build Great Soil, Part 1”, Diego Footer, 7:06",
+          "href": "https://www.youtube.com/watch?v=ErMHR6Mc4Bk&t=426s"
+        },
+        "status": "verify",
+        "note": "Elaine lecture copy, approve: Linnea or Evan"
       }
     },
     {
@@ -73,6 +148,15 @@
         "vimeo": "372478833",
         "status": "placeholder",
         "note": "Animation: “Soil Carbon Sequestration”, existing asset, Vimeo 372478833"
+      },
+      "elaine": {
+        "line": "Every carbon-to-carbon bond is stored sunlight, and living organisms build those chains.",
+        "source": {
+          "credit": "Dr. Elaine Ingham, “How to Build Great Soil, Part 1”, Diego Footer, 1:53",
+          "href": "https://www.youtube.com/watch?v=ErMHR6Mc4Bk&t=113s"
+        },
+        "status": "verify",
+        "note": "Elaine lecture copy, approve: Linnea or Evan"
       }
     }
   ],

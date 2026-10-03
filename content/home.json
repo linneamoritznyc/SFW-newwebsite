@@ -16,6 +16,13 @@
     "image": {
       "status": "placeholder",
       "note": "Photo: hands holding living soil, roots & fungal strands visible"
+    },
+    "elaineAlternative": {
+      "_placement": "Alternative only, not live. The current h1 and body stay.",
+      "h1": "Put the plant back in control.",
+      "body": "Plants feed the life in the soil, and that life feeds the plant. Dr. Elaine Ingham spent four decades showing how bacteria, fungi, protozoa and nematodes build soil structure, cycle nutrients and protect roots. We teach growers everywhere to bring that life back.",
+      "status": "verify",
+      "note": "Elaine lecture copy, approve: Linnea or Evan"
     }
   },
   "stats": {
@@ -128,7 +135,21 @@
         }
       }
     ],
-    "layoutNote": "Five cards render as a horizontally scrolling wrap-around carousel (scroll-snap; loop in production build)."
+    "layoutNote": "Five cards render as a horizontally scrolling wrap-around carousel (scroll-snap; loop in production build).",
+    "elaine": {
+      "line": "Dr. Elaine trained people to read soil life under a microscope in a single day.",
+      "source": {
+        "credit": "Dr. Elaine Ingham, “How to Build Great Soil, Part 1”, Diego Footer, 28:52",
+        "href": "https://www.youtube.com/watch?v=ErMHR6Mc4Bk&t=1732s"
+      },
+      "pendingLine": {
+        "text": "We carry that teaching to students in [number] countries.",
+        "status": "placeholder",
+        "note": "Country count, Stephanie supplies."
+      },
+      "status": "verify",
+      "note": "Elaine lecture copy, approve: Linnea or Evan"
+    }
   },
   "whatsNew": {
     "eyebrow": "WHAT’S NEW",
