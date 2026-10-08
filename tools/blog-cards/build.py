@@ -173,6 +173,65 @@ HEADS = {
 }
 _CURRENT = {}
 
+def people_crop(img, w, h, slug, focus, card=None):
+    """Crop to w x h so every marked head is either wholly in the frame and
+    clear of the paper card, or wholly out of it: never cut, never covered.
+    card is the card's rectangle as fractions of the photo frame."""
+    heads = HEADS.get(slug, [])
+    iw, ih = img.size; a = w / h
+    bw, bh = (iw, iw / a) if iw / ih < a else (ih * a, ih)
+    if not heads:
+        return ImageOps.fit(img, (w, h), Image.LANCZOS, centering=focus)
+    hs = [(x0 * iw, y0 * ih, x1 * iw, y1 * ih) for x0, y0, x1, y1 in heads]
+    best = None
+    for z in (1.0, 1.1, 1.2, 1.35, 1.5):
+        cw_, ch_ = bw / z, bh / z
+        for i in range(25):
+            for j in range(25):
+                cx = (iw - cw_) * i / 24; cy = (ih - ch_) * j / 24
+                score = 0
+                for (x0, y0, x1, y1) in hs:
+                    fx0, fy0 = (x0 - cx) / cw_, (y0 - cy) / ch_
+                    fx1, fy1 = (x1 - cx) / cw_, (y1 - cy) / ch_
+                    inside = fx0 >= -.001 and fy0 >= -.001 and fx1 <= 1.001 and fy1 <= 1.001
+                    outside = fx1 <= 0 or fx0 >= 1 or fy1 <= 0 or fy0 >= 1
+                    if outside: score -= 1.2; continue
+                    if not inside:
+                        # how much of the head is lost off the edge
+                        vis = max(0, min(fx1, 1) - max(fx0, 0)) * max(0, min(fy1, 1) - max(fy0, 0)) / ((fx1 - fx0) * (fy1 - fy0))
+                        score -= 3 * (1 - vis) + .5; continue
+                    ov = 0
+                    if card:
+                        kx0, ky0, kx1, ky1 = card
+                        ov = max(0, min(fx1, kx1) - max(fx0, kx0)) * max(0, min(fy1, ky1) - max(fy0, ky0)) / ((fx1 - fx0) * (fy1 - fy0))
+                    score += 1 - 3.5 * ov
+                score -= .25 * (z - 1)
+                # gentle preference for the post's own focus point
+                score -= .05 * (abs((cx + cw_ / 2) / iw - focus[0]) + abs((cy + ch_ / 2) / ih - focus[1]))
+                if best is None or score > best[0]: best = (score, cx, cy, cw_, ch_)
+    sc_, cx, cy, cw_, ch_ = best
+    if sc_ >= len(hs) - .3 or not card:
+        return img.crop((int(cx), int(cy), int(cx + cw_), int(cy + ch_))).resize((w, h), Image.LANCZOS)
+    # No crop of the full frame shows every face clear of the card. Keep the
+    # people whole in a panel beside the card, and fill the rest of the frame
+    # with a soft, blurred copy of the same photograph.
+    from PIL import ImageFilter, ImageEnhance
+    bg = ImageEnhance.Brightness(ImageOps.fit(img, (w, h), Image.LANCZOS, centering=focus).filter(ImageFilter.GaussianBlur(w / 40))).enhance(.85)
+    if card[2] - card[0] > .8:
+        # the card spans the width: the people go whole in the band above it
+        ph_ = max(int(h * card[1]) - 4, int(h * .35))
+        # as wide as the band allows while the tallest head still fits with headroom
+        tall = max(y1 - y0 for (x0, y0, x1, y1) in hs) * 1.45
+        pw_ = min(w, int(ph_ * iw / min(ih, tall)))
+        panel = cover(img, pw_, ph_, focus, slug=slug)
+        bg.paste(panel, (w - pw_ - (0 if pw_ == w else int(w * .04)), 0))
+        return bg
+    x0 = int(w * min(max(card[2] + .01, .45), .72))
+    pw_ = w - x0
+    panel = cover(img, pw_, h, focus, slug=slug)
+    bg.paste(panel, (x0, 0))
+    return bg
+
 def cover(img, w, h, focus, slug=None):
     # Crop to w x h. A face is either wholly in the frame or wholly out of it,
     # never cut, and it keeps room above the head. With no heads marked, the
@@ -355,9 +414,9 @@ BR = dict(paper='#FFFFFF', cream='#F4F1EA', green='#156826', soil='#4F3433',
           ink_soft='#4A463F', ink_faint='#6A665C', legacy='#6B4C7A', case='#E6EADC')
 BRAND_SIZES = {
  'feature-social-1400x1400': dict(photo=(0, 0, 1400, 820),   card=(64, 600, 1272, 700), pad=64, eye=26, head=84, deck=38, btn=30, logo=112, cat=128, rhead=96, rdeck=38, rbtn=48),
- 'desktop-header-1920x720':  dict(photo=(900, 0, 1020, 720), card=(64, 56, 900, 608), pad=56, eye=22, head=64, deck=30, btn=26, logo=92, cat=84, rhead=72, rdeck=28, rbtn=34),
- 'tablet-header-1024x768':   dict(photo=(560, 0, 464, 768),  card=(36, 64, 560, 640),  pad=40, eye=18, head=48, deck=22, btn=20, logo=70, cat=58, rhead=54, rdeck=21, rbtn=26),
- 'thumbnail-1200x800':       dict(photo=(620, 0, 580, 800),  card=(40, 100, 620, 600),  pad=44, eye=18, head=48, deck=22, btn=20, logo=70, cat=66, rhead=60, rdeck=24, rbtn=30),
+ 'desktop-header-1920x720':  dict(photo=(0, 0, 1920, 720), card=(64, 300, 1000, 420), pad=48, eye=22, head=64, deck=30, btn=26, logo=92, cat=84, rhead=72, rdeck=28, rbtn=34),
+ 'tablet-header-1024x768':   dict(photo=(0, 0, 1024, 768),  card=(36, 330, 952, 430),  pad=36, eye=18, head=48, deck=22, btn=20, logo=70, cat=58, rhead=54, rdeck=21, rbtn=26),
+ 'thumbnail-1200x800':       dict(photo=(0, 0, 1200, 800),  card=(40, 360, 1120, 450),  pad=40, eye=18, head=48, deck=22, btn=20, logo=70, cat=66, rhead=60, rdeck=24, rbtn=30),
  'mobile-header-750x1000':   dict(photo=(0, 0, 750, 560),    card=(26, 440, 698, 534),  pad=36, eye=17, head=44, deck=21, btn=19, logo=64, cat=56, rhead=56, rdeck=22, rbtn=27),
 }
 ELAINE = {'obituary-dr-elaine-ingham', 'living-legacy-webinar-series', 'retirement-dr-elaine-ingham', 'foundation-launches-as-nonprofit'}
@@ -400,11 +459,14 @@ def brand_slide(slide, post, key, W, H):
     if stacked:
         cy = H - ch - cx
         ph = int(cy + min(ch * .3, BIG * 1.6))            # the photo runs just under the top of the paper
+        if cw < W * .8: ph = H                             # wide formats: paper bottom left, the photo whole behind it
     else:
         cy = (H - ch) / 2
     src = ImageOps.exif_transpose(Image.open(photo_for(post))).convert('RGB')
     k = max(1, min(2, min(src.width / pw, src.height / ph)))
-    img = cover(src, int(pw * k), int(ph * k), post['focus'])
+    m_ = 10
+    card_rel = ((cx - m_ - px_) / pw, (cy - m_ - py_) / ph, (cx + cw + m_ - px_) / pw, (cy + ch + m_ - py_) / ph)
+    img = people_crop(src, int(pw * k), int(ph * k), post['slug'], post['focus'], card_rel)
     path = os.path.join(TMP, f'{key}--{post["slug"]}--brand.jpg'); img.save(path, quality=93, subsampling=0)
     slide.shapes.add_picture(path, Emu(int(px_ * PX)), Emu(int(py_ * PX)), Emu(int(pw * PX)), Emu(int(ph * PX))).name = 'Photo'
     card_png = torn_paper(key, post['slug'], cw, ch)
