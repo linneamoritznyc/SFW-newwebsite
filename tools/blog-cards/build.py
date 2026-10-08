@@ -39,6 +39,10 @@ LEGACY = '#6B4C7A'
 # Titles are the live titles, split at their own colon or dash into a
 # headline and a deck line. Nothing added. The PDC card is Linnea's wording.
 POSTS = [
+ dict(slug='a-fresh-smapp', date='2026-10', cat='Microscopy', field='glow',
+      head='A Fresh sMApp',
+      deck='After lots of suggestions and lots of effort, our renovated SFW Microscopy App feels brand new again',
+      img='img/Sampling equipment.jpg', focus=(.5, .45)),
  dict(slug='fungi-to-bacteria-ratio-history', date='undated', cat='Education', field='glow',
       head='A brief history of the fungi-to-bacteria ratio',
       deck='Knowledge of not only the science, but also its history, is important for any grower considering the transition',
@@ -93,6 +97,7 @@ SIZES = {
  'feature-social-1400x1400': dict(W=1400, H=1400, zone=(430, 0, 970, 1040),  card=(84, 450, 960, 870),  pad=80, cat=150, head=116, deck=42, btn=44, clean=True, shape_zone=(420, 0, 980, 980), shape_card=(64, 620, 830, 716)),
  'mobile-header-750x1000':   dict(W=750,  H=1000, zone=(0, 0, 750, 590),     card=(30, 390, 690, 580),   pad=46, cat=82,  head=66, deck=26, btn=28, clean=True),
  'desktop-header-1920x720': dict(W=1920, H=720, zone=(700, 0, 1220, 720), card=(96, 56, 800, 608), pad=64, cat=104, head=86, deck=32, btn=34, clean=True),
+ 'thumbnail-1200x800': dict(W=1200, H=800, zone=(560, 0, 640, 800), card=(40, 100, 620, 600), pad=44, cat=66, head=60, deck=24, btn=26, clean=True),
  'tablet-header-1024x768':   dict(W=1024, H=768,  zone=(380, 0, 644, 768),   card=(44, 110, 660, 610),   pad=46, cat=74,  head=60, deck=24, btn=26, clean=True),
 }
 
@@ -349,9 +354,10 @@ def shaped_photo(slide, post, key, box, shape, field):
 BR = dict(paper='#FFFFFF', cream='#F4F1EA', green='#156826', soil='#4F3433',
           ink_soft='#4A463F', ink_faint='#6A665C', legacy='#6B4C7A', case='#E6EADC')
 BRAND_SIZES = {
- 'feature-social-1400x1400': dict(photo=(0, 0, 1400, 820),   card=(64, 600, 1272, 744), pad=64, eye=26, head=84, deck=38, btn=30, logo=112, cat=128, rhead=96, rdeck=38, rbtn=48),
- 'desktop-header-1920x720':  dict(photo=(800, 0, 1120, 720), card=(64, 56, 900, 608), pad=56, eye=22, head=64, deck=30, btn=26, logo=92, cat=84, rhead=72, rdeck=28, rbtn=34),
- 'tablet-header-1024x768':   dict(photo=(470, 0, 554, 768),  card=(36, 64, 560, 640),  pad=40, eye=18, head=48, deck=22, btn=20, logo=70, cat=58, rhead=54, rdeck=21, rbtn=26),
+ 'feature-social-1400x1400': dict(photo=(0, 0, 1400, 820),   card=(64, 600, 1272, 700), pad=64, eye=26, head=84, deck=38, btn=30, logo=112, cat=128, rhead=96, rdeck=38, rbtn=48),
+ 'desktop-header-1920x720':  dict(photo=(900, 0, 1020, 720), card=(64, 56, 900, 608), pad=56, eye=22, head=64, deck=30, btn=26, logo=92, cat=84, rhead=72, rdeck=28, rbtn=34),
+ 'tablet-header-1024x768':   dict(photo=(560, 0, 464, 768),  card=(36, 64, 560, 640),  pad=40, eye=18, head=48, deck=22, btn=20, logo=70, cat=58, rhead=54, rdeck=21, rbtn=26),
+ 'thumbnail-1200x800':       dict(photo=(620, 0, 580, 800),  card=(40, 100, 620, 600),  pad=44, eye=18, head=48, deck=22, btn=20, logo=70, cat=66, rhead=60, rdeck=24, rbtn=30),
  'mobile-header-750x1000':   dict(photo=(0, 0, 750, 560),    card=(26, 440, 698, 534),  pad=36, eye=17, head=44, deck=21, btn=19, logo=64, cat=56, rhead=56, rdeck=22, rbtn=27),
 }
 ELAINE = {'obituary-dr-elaine-ingham', 'living-legacy-webinar-series', 'retirement-dr-elaine-ingham', 'foundation-launches-as-nonprofit'}
@@ -375,30 +381,35 @@ def brand_slide(slide, post, key, W, H):
     _CURRENT['slug'] = post['slug']
     b = BRAND_SIZES[key]
     rect(slide, 0, 0, W, H, BR['paper'], 'Page')
-    px_, py_, pw, ph = b['photo']
-    src = ImageOps.exif_transpose(Image.open(photo_for(post))).convert('RGB')
-    k = max(1, min(2, min(src.width / pw, src.height / ph)))
-    focus = (post['focus'][0], min(post['focus'][1], .22)) if post.get('portrait') and py_ == 0 and pw == W else post['focus']
-    img = cover(src, int(pw * k), int(ph * k), focus)
-    path = os.path.join(TMP, f'{key}--{post["slug"]}--brand.jpg'); img.save(path, quality=93, subsampling=0)
-    slide.shapes.add_picture(path, Emu(int(px_ * PX)), Emu(int(py_ * PX)), Emu(int(pw * PX)), Emu(int(ph * PX))).name = 'Photo'
     cx, cy, cw, ch = b['card']
-    ch = scale_for(key)['height']
-    if b['photo'][0] > 0: cy = (H - ch) / 2          # side by side: centred
-    card_png = torn_paper(key, post['slug'], cw, ch)
-    m = PAPER_MARGIN
-    slide.shapes.add_picture(card_png, Emu(int((cx - m) * PX)), Emu(int((cy - m) * PX)), Emu(int((cw + 2 * m) * PX)), Emu(int((ch + 2 * m) * PX))).name = 'Paper'
     pad = b['pad']; tw = cw - 2 * pad
-    # One type scale for the whole set, worked out once per size from the
-    # longest title, so every card uses exactly the same sizes:
-    #   BIG   the category and the headline, one size
-    #   SMALL the line under it and the READ POST label, one size
-    #   the web address, three quarters of SMALL
+    # One type scale for the whole set (the same sizes on every card):
+    #   BIG   the category and the headline
+    #   SMALL the line under it and the READ POST label; the web address a little smaller
     sc = scale_for(key)
     BIG, SMALL = sc['big'], sc['small']
     colour = LEGACY if post['slug'] in ELAINE else INK
     hl = wrap(post['head'], font(F_HEAD, BIG), tw * .95)
     dl = wrap(post['deck'], font(F_HEAD, SMALL), tw * .9) if post['deck'] else []
+    btn_h = SMALL * 2.0
+    # the paper is only as tall as this post's words: it covers as little of the photograph as it can
+    body = BIG * 1.08 + BIG * len(hl) + (SMALL * .6 + SMALL * 1.25 * len(dl) if dl else 0)
+    ch = int(pad + body + SMALL * 1.3 + btn_h + SMALL * 1.3 + pad * .8)
+    px_, py_, pw, ph = b['photo']
+    stacked = px_ == 0
+    if stacked:
+        cy = H - ch - cx
+        ph = int(cy + min(ch * .3, BIG * 1.6))            # the photo runs just under the top of the paper
+    else:
+        cy = (H - ch) / 2
+    src = ImageOps.exif_transpose(Image.open(photo_for(post))).convert('RGB')
+    k = max(1, min(2, min(src.width / pw, src.height / ph)))
+    img = cover(src, int(pw * k), int(ph * k), post['focus'])
+    path = os.path.join(TMP, f'{key}--{post["slug"]}--brand.jpg'); img.save(path, quality=93, subsampling=0)
+    slide.shapes.add_picture(path, Emu(int(px_ * PX)), Emu(int(py_ * PX)), Emu(int(pw * PX)), Emu(int(ph * PX))).name = 'Photo'
+    card_png = torn_paper(key, post['slug'], cw, ch)
+    m = PAPER_MARGIN
+    slide.shapes.add_picture(card_png, Emu(int((cx - m) * PX)), Emu(int((cy - m) * PX)), Emu(int((cw + 2 * m) * PX)), Emu(int((ch + 2 * m) * PX))).name = 'Paper'
     y = cy + pad
     text(slide, cx + pad, y, tw, BIG * 1.1, post['cat'], 'Montserrat', BIG, colour, 'Category', bold=True, spacing=-BIG * .75 * 3, line=BIG)
     y += BIG * 1.08
@@ -407,14 +418,13 @@ def brand_slide(slide, post, key, W, H):
     if dl:
         y += SMALL * .6
         text(slide, cx + pad + 2, y, tw * .9, SMALL * 1.25 * len(dl) + 4, '\v'.join(dl), 'Source Sans 3', SMALL, INK, 'Deck', line=SMALL * 1.25)
-    # the button always sits on the same line at the foot of the paper
-    btn_h = SMALL * 2.0
-    by = cy + ch - pad - btn_h - SMALL * 1.3
+        y += SMALL * 1.25 * len(dl)
+    by = y + SMALL * 1.3
     bw = font(F_BTN, SMALL * 1.1).getlength('READ POST') + SMALL * 2.2
     rect(slide, cx + pad, by, bw, btn_h, INK, 'Button')
     text(slide, cx + pad, by, bw, btn_h, 'READ POST', 'EB Garamond', SMALL * 1.1, '#FFFFFF', 'Button label', align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE, spacing=SMALL * .75 * 2)
     cursor(slide, cx + pad + bw - SMALL * .5, by + btn_h * .55, SMALL * 1.5)
-    text(slide, cx + pad, by + btn_h + SMALL * .3, tw, SMALL, 'www.soilfoodweb.com', 'Source Sans 3', SMALL * .7, INK, 'Web address', line=SMALL)
+    text(slide, cx + pad, by + btn_h + SMALL * .3, tw, SMALL, 'www.soilfoodweb.com', 'Source Sans 3', SMALL * .78, INK, 'Web address', line=SMALL)
 
 _SCALES = {}
 def scale_for(key):
@@ -423,7 +433,7 @@ def scale_for(key):
     b = BRAND_SIZES[key]; cw, ch = b['card'][2], b['card'][3]; pad = b['pad']; tw = cw - 2 * pad
     big = b['cat']
     while big > 16:
-        small = round(big * .40)
+        small = round(big * .52)
         ok = True
         for p_ in POSTS:
             if font(F_CAT, big).getlength(p_['cat']) > tw: ok = False; break
@@ -434,7 +444,7 @@ def scale_for(key):
             if need > ch - 2 * pad: ok = False; break
         if ok: break
         big -= 1
-    small = round(big * .40); tallest = 0
+    small = round(big * .52); tallest = 0
     for p_ in POSTS:
         hl = wrap(p_['head'], font(F_HEAD, big), tw * .95)
         dl = wrap(p_['deck'], font(F_HEAD, small), tw * .9) if p_['deck'] else []
