@@ -182,15 +182,20 @@ WIDE = {
  'foundation-launches-as-nonprofit':   (D_ + 'IMG_5813-elaine-flower-compost.jpg', (.5, .55)),
  '2025-in-review':                     (D_ + 'learning-outside-synergia.jpg', (.5, .5)),
  'living-legacy-webinar-series':       (D_ + 'IMG_5813-elaine-flower-compost.jpg', (.5, .55)),
- 'soil-health-week-pakistan':          ('img/hand-soil-roots-fungi.jpg', (.5, .5)),
+ 'soil-health-week-pakistan':          (D_ + 'R5A_4027-fork-compost-pile.jpg', (.5, .5)),
 }
+# WIDE_OVERRIDE=slug=path,... swaps the second photograph for trying options.
+for _kv in filter(None, os.environ.get('WIDE_OVERRIDE', '').split(',')):
+    _k, _v = _kv.split('=', 1); WIDE[_k] = (_v, (.5, .5))
+# Photographs Linnea has ruled out. Never use them.
+BANNED = {'img/hand-soil-roots-fungi.jpg'}
+assert not BANNED & {v[0] for v in WIDE.values()}
 
 # A second photograph for each post, used beside the people where one frame
 # cannot hold them all: something the post is about.
 SECOND = {
  'what-is-your-soil-test-telling-you': 'img/soil-sample-shovel-and-bag.jpg',
  'advanced-programs-reopening':        'img/uploads/Testate amoeba (encysting), 40x obj, Joy Kaluf.jpg',
- 'obituary-dr-elaine-ingham':          'img/hand-soil-roots-fungi.jpg',
  '2025-in-review':                     'img/fungi-in-under-grape-soil.jpg',
  'living-legacy-webinar-series':       'img/fungal-spores-in-suspension.jpg',
  'soil-health-week-pakistan':          'img/handling-loose-soil.jpg',
