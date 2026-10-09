@@ -2,11 +2,15 @@ import os
 from PIL import Image, ImageOps
 from pptx import Presentation
 from pptx.util import Emu
+from pptx.dml.color import RGBColor
+from pptx.enum.shapes import MSO_SHAPE
 from mk import macbook, place, WES, R
 import mk
 NEM = {'nem1': (R + 'tools/blog-cards/photos/microbes/bacterial-feeding-nematode-40x-talbot-armstrong.jpg', (.42, .28)),
        'nem2': (R + 'tools/blog-cards/photos/microbes/bacterial-feeding-nematode-40x.jpg', (.70, .25))}
 SCOPE = Image.open('cut/microscope-white.png')
+LOGO = 'cut/sfw-school-logo-white.png'   # white Soil Food Web School logo, from soilmapp.com
+BLUE = RGBColor(0x29, 0x80, 0xB9)        # the sMApp header blue
 
 def add_png(sl, img, x, y, w, PX, name, anchor, before):
     h = w * img.height / img.width
@@ -28,9 +32,23 @@ def build(src, out, key, o):
     t = f'/tmp/mk2_{key}_{o["name"]}.jpg'; img.save(t, quality=93)
     pic = sl.shapes.add_picture(t, ph.left, ph.top, ph.width, ph.height); pic.name = 'Photo'
     ph._element.addprevious(pic._element); ph._element.getparent().remove(ph._element)
+    # the sMApp header: a blue bar across the microscope picture, menu icon and white logo at the left
+    leftw = (Wk - bw) / k; barh = round(H_ * o['bar'][key])
+    last = pic
+    def put(shape):
+        nonlocal last
+        last._element.addnext(shape._element); last = shape
+    bar = sl.shapes.add_shape(MSO_SHAPE.RECTANGLE, 0, 0, Emu(int(leftw * PX)), Emu(int(barh * PX)))
+    bar.fill.solid(); bar.fill.fore_color.rgb = BLUE; bar.line.fill.background(); bar.shadow.inherit = False; bar.name = 'sMApp bar'; put(bar)
+    u = barh / 10; mx0 = barh * .42
+    for i in range(3):
+        ln = sl.shapes.add_shape(MSO_SHAPE.RECTANGLE, Emu(int(mx0 * PX)), Emu(int((barh / 2 - 2.6 * u + i * 2.2 * u) * PX)), Emu(int(3.6 * u * PX)), Emu(int(.75 * u * PX)))
+        ln.fill.solid(); ln.fill.fore_color.rgb = RGBColor(255, 255, 255); ln.line.fill.background(); ln.shadow.inherit = False; ln.name = 'Menu icon'; put(ln)
+    lh_ = barh * .84; lgx = mx0 + 3.6 * u + barh * .45
+    lg = sl.shapes.add_picture(LOGO, Emu(int(lgx * PX)), Emu(int((barh - lh_) / 2 * PX)), Emu(int(lh_ * PX)), Emu(int(lh_ * PX))); lg.name = 'Logo'; put(lg)
     px, py, pw = paper.left / PX, paper.top / PX, paper.width / PX
     top = py + 24                                   # visible top edge of the paper
-    room = top - 18
+    room = top - barh - 18
     s = o['scale'][key]
     # MacBook resting on the paper
     lift = s.get('lift', 30)                         # the MacBook floats a little above the paper
@@ -42,18 +60,19 @@ def build(src, out, key, o):
     mw = int(SW * s['scope']); mh = mw * SCOPE.height / SCOPE.width
     tuck = 6                                         # the whole microscope stands on the paper
     if mh - tuck > room: f_ = room / (mh - tuck); mw = int(mw * f_); mh *= f_; tuck *= f_
-    mx = px + s['scopex'] * pw
+    mx = lx + lw + SW * .015 if s.get('after') else px + s['scopex'] * pw
     add_png(sl, SCOPE, mx, top + tuck - mh, mw, PX, 'Microscope', paper, True)
     p.save(out)
 
 OPTS = [
  dict(name='final-layout', bg='nem1', zoom=1.1,
+      bar={'desktop': .085, 'square': .075, 'tablet': .085, 'mobile': .085, 'thumb': .085},
       tgt={'desktop': (.88, .28), 'square': (.80, .28), 'tablet': (.80, .28), 'mobile': (.80, .25), 'thumb': (.82, .28)},
-      scale={'desktop': dict(lap=.19, lapx=.04, scope=.15, scopex=.56, lift=34),
-             'square': dict(lap=.25, lapx=.03, scope=.16, scopex=.36, lift=40),
-             'tablet': dict(lap=.25, lapx=.03, scope=.15, scopex=.35, lift=26),
-             'mobile': dict(lap=.30, lapx=.02, scope=.17, scopex=.40, lift=20),
-             'thumb':  dict(lap=.24, lapx=.03, scope=.14, scopex=.36, lift=28)}),
+      scale={'desktop': dict(lap=.24, lapx=.03, scope=.15, scopex=0, lift=10, after=1),
+             'square': dict(lap=.32, lapx=.03, scope=.16, scopex=0, lift=32, after=1),
+             'tablet': dict(lap=.32, lapx=.03, scope=.15, scopex=0, lift=20, after=1),
+             'mobile': dict(lap=.38, lapx=.02, scope=.17, scopex=0, lift=16, after=1),
+             'thumb':  dict(lap=.31, lapx=.03, scope=.14, scopex=0, lift=10, after=1)}),
 ]
 if __name__ == '__main__':
     os.makedirs('mk2', exist_ok=True)
