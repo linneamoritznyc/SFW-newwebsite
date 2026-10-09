@@ -41,7 +41,7 @@ LEGACY = '#6B4C7A'
 POSTS = [
  dict(slug='a-fresh-smapp', date='2026-10', cat='Microscopy', field='glow',
       head='A Fresh sMApp',
-      deck='After lots of suggestions and lots of effort, our renovated SFW Microscopy App feels brand new again',
+      deck='',   # subheading removed at Wes's request
       img='tools/blog-cards/photos/a-fresh-smapp.jpg', focus=(.45, .45)),
  dict(slug='fungi-to-bacteria-ratio-history', date='undated', cat='Education', field='glow',
       head='A brief history of the fungi-to-bacteria ratio',
