@@ -478,26 +478,31 @@ def brand_slide(slide, post, key, W, H):
     def ok(cx_, cy_, ph_):
         if not HEADS.get(slug): return True
         return people_crop(src, pw, ph_, slug, focus, rel(cx_, cy_, px_, py_, pw, ph_), score_only=True)
-    if not ok(cx, cy, ph) or (post.get('wide_only_photo') and W / H > 1.2):
-        if stacked and W / H > 1.2 and cw >= W * .8:
-            # full-width card: try the photo behind a narrower card, bottom left, then bottom right
-            cw = int(W * .52); tw = cw - 2 * pad
-            hl = wrap(post['head'], font(F_HEAD, BIG), tw * .95)
-            dl = wrap(post['deck'], font(F_HEAD, SMALL), tw * .9) if post['deck'] else []
-            body = BIG * 1.08 + BIG * len(hl) + (SMALL * .6 + SMALL * 1.25 * len(dl) if dl else 0)
-            ch = int(pad + body + SMALL * 1.3 + btn_h + SMALL * 1.3 + pad * .8)
-            cy = H - ch - cx; ph = H
-        if not ok(cx, cy, ph) and ok(W - cw - cx, cy, ph):
-            cx = W - cw - cx                               # the card moves to the right, clear of the faces
-        elif not ok(cx, cy, ph) or (post.get('wide_only_photo') and W / H > 1.2):
-            # the post's own photograph cannot hold its faces at this shape:
-            # use the post's second photograph from the Foundation's Drive instead
-            alt = WIDE.get(slug)
-            if alt:
-                src = ImageOps.exif_transpose(Image.open(os.path.join(REPO, alt[0]))).convert('RGB')
-                slug = '__alt__'; focus = alt[1]
     k = max(1, min(2, min(src.width / pw, src.height / ph)))
-    img = people_crop(src, int(pw * k), int(ph * k), slug, focus, rel(cx, cy, px_, py_, pw, ph))
+    if ok(cx, cy, ph) or not WIDE.get(slug):
+        img = people_crop(src, int(pw * k), int(ph * k), slug, focus, rel(cx, cy, px_, py_, pw, ph))
+    else:
+        # The post's own photograph always stays. Where it cannot fill the
+        # frame with its faces whole and clear of the card, it sits as a panel
+        # in the free part of the frame, and a second photograph that belongs
+        # to the post (from the Foundation's Drive) fills the rest.
+        alt, afocus = WIDE[slug]
+        A = ImageOps.exif_transpose(Image.open(os.path.join(REPO, alt))).convert('RGB')
+        Wk, Hk = int(pw * k), int(ph * k)
+        img = ImageOps.fit(A, (Wk, Hk), Image.LANCZOS, centering=afocus)
+        r = rel(cx, cy, px_, py_, pw, ph); gap = max(6, int(Wk * .006))
+        if r[2] - r[0] > .8:                      # full-width card: the panel goes in the band above it
+            bh = max(int(Hk * r[1]), int(Hk * .3))
+            bw = min(Wk, int(bh * src.width / src.height * 1.1))
+            bx = Wk - bw
+            panel = cover(src, bw, bh, focus, slug=slug)
+            ImageDraw.Draw(img).rectangle((bx - gap, 0, Wk, bh + gap), fill=(255, 255, 255))
+            img.paste(panel, (bx, 0))
+        else:                                     # card at the side: the panel takes the rest of the width
+            bx = int(Wk * r[2]) + gap
+            panel = cover(src, Wk - bx, Hk, focus, slug=slug)
+            ImageDraw.Draw(img).rectangle((bx - gap, 0, bx, Hk), fill=(255, 255, 255))
+            img.paste(panel, (bx, 0))
     path = os.path.join(TMP, f'{key}--{post["slug"]}--brand.jpg'); img.save(path, quality=93, subsampling=0)
     slide.shapes.add_picture(path, Emu(int(px_ * PX)), Emu(int(py_ * PX)), Emu(int(pw * PX)), Emu(int(ph * PX))).name = 'Photo'
     card_png = torn_paper(key, post['slug'], cw, ch)
