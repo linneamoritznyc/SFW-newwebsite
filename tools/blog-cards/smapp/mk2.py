@@ -17,7 +17,7 @@ def add_png(sl, img, x, y, w, PX, name, anchor, before):
 
 def build(src, out, key, o):
     p = Presentation(src); sl = p.slides[0]
-    SW = 1920 if key == 'desktop' else 1400; PX = p.slide_width / SW
+    SW = {'desktop': 1920, 'square': 1400, 'tablet': 1024, 'mobile': 750, 'thumb': 1200}[key]; PX = p.slide_width / SW
     sh = {s.name: s for s in sl.shapes}; ph = sh['Photo']; paper = sh['Paper']
     W_, H_ = round(ph.width / PX), round(ph.height / PX); k = 2; Wk, Hk = W_ * k, H_ * k
     f, subj = NEM[o['bg']]; micro = Image.open(f).convert('RGB')
@@ -33,25 +33,27 @@ def build(src, out, key, o):
     room = top - 18
     s = o['scale'][key]
     # MacBook resting on the paper
+    lift = s.get('lift', 30)                         # the MacBook floats a little above the paper
     lw = int(SW * s['lap']); lap = macbook(lw * 2)
-    if lap.height / 2 > room: lw = int(lw * room / (lap.height / 2)); lap = macbook(lw * 2)
+    if lap.height / 2 > room - lift: lw = int(lw * (room - lift) / (lap.height / 2)); lap = macbook(lw * 2)
     lx = px + s['lapx'] * pw
-    add_png(sl, lap, lx, top - lap.height / 2 + 4, lw, PX, 'MacBook', paper, False)
+    add_png(sl, lap, lx, top - lift - lap.height / 2, lw, PX, 'MacBook', paper, False)
     # microscope sticker: its cut-off base tucks behind the paper
     mw = int(SW * s['scope']); mh = mw * SCOPE.height / SCOPE.width
-    tuck = mh * .12                                  # the photo's cut edge at the base hides under the paper
+    tuck = 6                                         # the whole microscope stands on the paper
     if mh - tuck > room: f_ = room / (mh - tuck); mw = int(mw * f_); mh *= f_; tuck *= f_
     mx = px + s['scopex'] * pw
     add_png(sl, SCOPE, mx, top + tuck - mh, mw, PX, 'Microscope', paper, True)
     p.save(out)
 
 OPTS = [
- dict(name='A-laptop-then-microscope', bg='nem1', zoom=1.1, tgt={'desktop': (.86, .30), 'square': (.80, .30)},
-      scale={'desktop': dict(lap=.17, lapx=.06, scope=.15, scopex=.60), 'square': dict(lap=.21, lapx=.05, scope=.17, scopex=.30)}),
- dict(name='B-microscope-then-laptop', bg='nem1', zoom=1.1, tgt={'desktop': (.86, .30), 'square': (.80, .30)},
-      scale={'desktop': dict(lap=.17, lapx=.30, scope=.15, scopex=.06), 'square': dict(lap=.21, lapx=.19, scope=.17, scopex=.04)}),
- dict(name='C-big-laptop-small-microscope', bg='nem1', zoom=1.1, tgt={'desktop': (.88, .28), 'square': (.80, .28)},
-      scale={'desktop': dict(lap=.21, lapx=.05, scope=.11, scopex=.66), 'square': dict(lap=.26, lapx=.04, scope=.13, scopex=.34)}),
+ dict(name='final-layout', bg='nem1', zoom=1.1,
+      tgt={'desktop': (.88, .28), 'square': (.80, .28), 'tablet': (.80, .28), 'mobile': (.80, .25), 'thumb': (.82, .28)},
+      scale={'desktop': dict(lap=.19, lapx=.04, scope=.15, scopex=.56, lift=34),
+             'square': dict(lap=.25, lapx=.03, scope=.16, scopex=.36, lift=40),
+             'tablet': dict(lap=.25, lapx=.03, scope=.15, scopex=.35, lift=26),
+             'mobile': dict(lap=.30, lapx=.02, scope=.17, scopex=.40, lift=20),
+             'thumb':  dict(lap=.24, lapx=.03, scope=.14, scopex=.36, lift=28)}),
 ]
 if __name__ == '__main__':
     os.makedirs('mk2', exist_ok=True)

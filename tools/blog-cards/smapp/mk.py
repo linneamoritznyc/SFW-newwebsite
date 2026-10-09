@@ -3,7 +3,7 @@ from PIL import Image, ImageDraw, ImageOps, ImageFilter
 from pptx import Presentation
 from pptx.util import Emu
 R = '/home/user/SFW-newwebsite/'
-SCREEN = Image.open('smapp_shots/home.png').convert('RGB')     # real sMApp sign-in page, 2880x1800
+SCREEN = Image.open(os.environ.get('SMAPP_SCREEN', 'cut/portfolio-flat.png')).convert('RGB')   # the sMApp screen shown on the MacBook
 WES = ImageOps.exif_transpose(Image.open(R + 'tools/blog-cards/photos/a-fresh-smapp.jpg')).convert('RGB')
 MICRO = {'amoeba': R + 'img/sfw-amoeba-still-square.jpg',
          'scope': R + 'tools/blog-cards/photos/drive/R5A_4268.jpg'}
@@ -32,7 +32,7 @@ def macbook(w):
     r = int(bez * 1.6)
     d.rounded_rectangle((lx - 3*s, 0 - 0, lx + lid_w + 3*s, lid_h + 2*s), r + 3*s, fill=(176, 178, 182, 255))
     d.rounded_rectangle((lx, 2*s, lx + lid_w, lid_h), r, fill=(12, 12, 14, 255))
-    scr = SCREEN.resize((sw, sh), Image.LANCZOS)
+    scr = ImageOps.fit(SCREEN, (sw, sh), Image.LANCZOS, centering=(0, 0))
     im.paste(scr, (lx + bez, 2*s + bez))
     # notch
     nw = int(sw * .085); d.rounded_rectangle(((W - nw)//2, 2*s + bez - 2, (W + nw)//2, 2*s + bez + int(bez*.9)), int(bez*.4), fill=(12, 12, 14, 255))
