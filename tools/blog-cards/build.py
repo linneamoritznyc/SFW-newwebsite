@@ -177,12 +177,13 @@ _CURRENT = {}
 # format when the post's own photograph cannot fit its faces there.
 D_ = 'tools/blog-cards/photos/drive/'
 WIDE = {
- 'what-is-your-soil-test-telling-you': (D_ + 'R5A_4270.jpg', (.5, .5)),
- 'advanced-programs-reopening':        (D_ + 'R5A_4242.jpg', (.5, .5)),
- 'foundation-launches-as-nonprofit':   (D_ + 'IMG_5813-elaine-flower-compost.jpg', (.5, .55)),
- '2025-in-review':                     (D_ + 'learning-outside-synergia.jpg', (.5, .5)),
- 'living-legacy-webinar-series':       (D_ + 'IMG_5813-elaine-flower-compost.jpg', (.5, .55)),
- 'soil-health-week-pakistan':          (D_ + 'R5A_4027-fork-compost-pile.jpg', (.5, .5)),
+ # texture photographs that echo what is behind the people in the post's photograph
+ 'what-is-your-soil-test-telling-you': (D_ + 'synergia-dry-grassland.jpg', (.5, .5)),
+ 'advanced-programs-reopening':        (D_ + 'cc-mix-vetch-cover-crop.jpg', (.5, .5)),
+ 'foundation-launches-as-nonprofit':   (D_ + 'cc-mix-vetch-cover-crop.jpg', (.5, .3)),
+ '2025-in-review':                     (D_ + 'cc-mix-vetch-cover-crop.jpg', (.5, .6)),
+ 'living-legacy-webinar-series':       (D_ + 'cc-mix-vetch-cover-crop.jpg', (.5, .5)),
+ 'soil-health-week-pakistan':          (D_ + 'cc-mix-vetch-cover-crop.jpg', (.5, .45)),
 }
 # WIDE_OVERRIDE=slug=path,... swaps the second photograph for trying options.
 for _kv in filter(None, os.environ.get('WIDE_OVERRIDE', '').split(',')):
@@ -465,7 +466,7 @@ def brand_slide(slide, post, key, W, H):
     btn_h = SMALL * 2.0
     # the paper is only as tall as this post's words: it covers as little of the photograph as it can
     body = BIG * 1.08 + BIG * len(hl) + (SMALL * .6 + SMALL * 1.25 * len(dl) if dl else 0)
-    ch = int(pad + body + SMALL * 1.3 + btn_h + SMALL * 1.3 + pad * .8)
+    ch = int(pad + body + SMALL * 1.3 + btn_h + SMALL * 1.7 + pad * .8)
     px_, py_, pw, ph = b['photo']
     stacked = px_ == 0
     if stacked:
@@ -501,12 +502,12 @@ def brand_slide(slide, post, key, W, H):
             bw = min(Wk, int(bh * src.width / src.height * 1.1))
             bx = Wk - bw
             panel = cover(src, bw, bh, focus, slug=slug)
-            ImageDraw.Draw(img).rectangle((bx - gap, 0, Wk, bh + gap), fill=(255, 255, 255))
             img.paste(panel, (bx, 0))
         else:                                     # card at the side: the panel takes the rest of the width
-            bx = int(Wk * r[2]) + gap
+            bx = int(Wk * r[2])
+            # the second photograph is fitted to its own space, not the whole frame
+            img.paste(ImageOps.fit(A, (bx, Hk), Image.LANCZOS, centering=afocus), (0, 0))
             panel = cover(src, Wk - bx, Hk, focus, slug=slug)
-            ImageDraw.Draw(img).rectangle((bx - gap, 0, bx, Hk), fill=(255, 255, 255))
             img.paste(panel, (bx, 0))
     path = os.path.join(TMP, f'{key}--{post["slug"]}--brand.jpg'); img.save(path, quality=93, subsampling=0)
     slide.shapes.add_picture(path, Emu(int(px_ * PX)), Emu(int(py_ * PX)), Emu(int(pw * PX)), Emu(int(ph * PX))).name = 'Photo'
@@ -527,7 +528,7 @@ def brand_slide(slide, post, key, W, H):
     rect(slide, cx + pad, by, bw, btn_h, INK, 'Button')
     text(slide, cx + pad, by, bw, btn_h, 'READ POST', 'EB Garamond', SMALL * 1.1, '#FFFFFF', 'Button label', align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE, spacing=SMALL * .75 * 2)
     cursor(slide, cx + pad + bw - SMALL * .5, by + btn_h * .55, SMALL * 1.5)
-    text(slide, cx + pad, by + btn_h + SMALL * .3, tw, SMALL, 'www.soilfoodweb.com', 'Source Sans 3', SMALL * .85, INK, 'Web address', line=SMALL)
+    text(slide, cx + pad, by + btn_h + SMALL * .3, tw, SMALL * 1.3, 'www.soilfoodweb.com', 'Source Sans 3', SMALL * 1.1, INK, 'Web address', line=SMALL * 1.2)
 
 _SCALES = {}
 def scale_for(key):
