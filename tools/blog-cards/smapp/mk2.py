@@ -33,19 +33,20 @@ def build(src, out, key, o):
     pic = sl.shapes.add_picture(t, ph.left, ph.top, ph.width, ph.height); pic.name = 'Photo'
     ph._element.addprevious(pic._element); ph._element.getparent().remove(ph._element)
     # the sMApp header: a blue bar across the microscope picture, menu icon and white logo at the left
-    leftw = (Wk - bw) / k; barh = round(H_ * o['bar'][key])
+    leftw = (Wk - bw) / k; barh = round(H_ * o.get('bar', {}).get(key, 0))
     last = pic
     def put(shape):
         nonlocal last
         last._element.addnext(shape._element); last = shape
-    bar = sl.shapes.add_shape(MSO_SHAPE.RECTANGLE, 0, 0, Emu(int(leftw * PX)), Emu(int(barh * PX)))
-    bar.fill.solid(); bar.fill.fore_color.rgb = BLUE; bar.line.fill.background(); bar.shadow.inherit = False; bar.name = 'sMApp bar'; put(bar)
-    u = barh / 10; mx0 = barh * .42
-    for i in range(3):
-        ln = sl.shapes.add_shape(MSO_SHAPE.RECTANGLE, Emu(int(mx0 * PX)), Emu(int((barh / 2 - 2.6 * u + i * 2.2 * u) * PX)), Emu(int(3.6 * u * PX)), Emu(int(.75 * u * PX)))
-        ln.fill.solid(); ln.fill.fore_color.rgb = RGBColor(255, 255, 255); ln.line.fill.background(); ln.shadow.inherit = False; ln.name = 'Menu icon'; put(ln)
-    lh_ = barh * .84; lgx = mx0 + 3.6 * u + barh * .45
-    lg = sl.shapes.add_picture(LOGO, Emu(int(lgx * PX)), Emu(int((barh - lh_) / 2 * PX)), Emu(int(lh_ * PX)), Emu(int(lh_ * PX))); lg.name = 'Logo'; put(lg)
+    if barh:
+        bar = sl.shapes.add_shape(MSO_SHAPE.RECTANGLE, 0, 0, Emu(int(leftw * PX)), Emu(int(barh * PX)))
+        bar.fill.solid(); bar.fill.fore_color.rgb = BLUE; bar.line.fill.background(); bar.shadow.inherit = False; bar.name = 'sMApp bar'; put(bar)
+        u = barh / 10; mx0 = barh * .42
+        for i in range(3):
+            ln = sl.shapes.add_shape(MSO_SHAPE.RECTANGLE, Emu(int(mx0 * PX)), Emu(int((barh / 2 - 2.6 * u + i * 2.2 * u) * PX)), Emu(int(3.6 * u * PX)), Emu(int(.75 * u * PX)))
+            ln.fill.solid(); ln.fill.fore_color.rgb = RGBColor(255, 255, 255); ln.line.fill.background(); ln.shadow.inherit = False; ln.name = 'Menu icon'; put(ln)
+        lh_ = barh * .84; lgx = mx0 + 3.6 * u + barh * .45
+        lg = sl.shapes.add_picture(LOGO, Emu(int(lgx * PX)), Emu(int((barh - lh_) / 2 * PX)), Emu(int(lh_ * PX)), Emu(int(lh_ * PX))); lg.name = 'Logo'; put(lg)
     px, py, pw = paper.left / PX, paper.top / PX, paper.width / PX
     top = py + 24                                   # visible top edge of the paper
     room = top - barh - 18
@@ -66,7 +67,6 @@ def build(src, out, key, o):
 
 OPTS = [
  dict(name='final-layout', bg='nem1', zoom=1.1,
-      bar={'desktop': .085, 'square': .075, 'tablet': .085, 'mobile': .085, 'thumb': .085},
       tgt={'desktop': (.88, .28), 'square': (.80, .28), 'tablet': (.80, .28), 'mobile': (.80, .25), 'thumb': (.82, .28)},
       scale={'desktop': dict(lap=.24, lapx=.03, scope=.15, scopex=0, lift=10, after=1),
              'square': dict(lap=.32, lapx=.03, scope=.16, scopex=0, lift=32, after=1),
