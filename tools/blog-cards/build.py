@@ -498,14 +498,16 @@ def brand_slide(slide, post, key, W, H):
         img = ImageOps.fit(A, (Wk, Hk), Image.LANCZOS, centering=afocus)
         r = rel(cx, cy, px_, py_, pw, ph); gap = max(6, int(Wk * .006))
         if r[2] - r[0] > .8:                      # full-width card: the panel goes in the band above it
-            bh = max(int(Hk * r[1]), int(Hk * .3))
+            bh = max(int(Hk * r[1]), int(Hk * .3)) + int(Hk * .06)   # runs under the paper's edge: no strip of the second photo shows
             bw = min(Wk, int(bh * src.width / src.height * 1.1))
             bx = Wk - bw
             panel = cover(src, bw, bh, focus, slug=slug)
             img.paste(panel, (bx, 0))
         else:                                     # card at the side: the panel takes the rest of the width
+            # the post's photograph keeps its full height (no faces cut at the top or
+            # bottom); the second photograph fills the rest, fitted to its own space
             bx = int(Wk * r[2])
-            # the second photograph is fitted to its own space, not the whole frame
+            bx = max(bx, Wk - int(Hk * src.width / src.height))
             img.paste(ImageOps.fit(A, (bx, Hk), Image.LANCZOS, centering=afocus), (0, 0))
             panel = cover(src, Wk - bx, Hk, focus, slug=slug)
             img.paste(panel, (bx, 0))
