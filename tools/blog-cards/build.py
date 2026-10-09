@@ -62,7 +62,7 @@ POSTS = [
       img='tools/blog-cards/photos/Students and mentors practice microscopy together at our workshop in Costa Rica, March 2025. .jpg', focus=(0.5, 0.5)),
  dict(slug='obituary-dr-elaine-ingham', date='2026-02-18', cat='In Memoriam', field='legacy',
       head='Obituary for Dr. Elaine Ingham', deck='',
-      img='tools/blog-cards/photos/Elaine Obituary, team with a sign that says Elaine .jpg', focus=(0.5, 0.7)),
+      img='tools/blog-cards/photos/Elaine Obituary, team with a sign that says Elaine .jpg', focus=(0.5, 0.2)),
  dict(slug='new-board-member-eric-feiler', date='2026-02-17', cat='Foundation Update', field='green',
       head='The Soil Food Web Welcomes a New Board Member', deck='Eric Feiler',
       img='img/erc-rancho-cacachilas-aerial-2.jpg', focus=(0.5, 0.5)),
@@ -164,7 +164,7 @@ def grade(im):
 HEADS = {
  'what-is-your-soil-test-telling-you': [(.10, .15, .55, .78)],
  'advanced-programs-reopening':        [(.24, .42, .36, .62), (.45, .16, .55, .34), (.56, .14, .66, .33), (.66, .12, .76, .30), (.78, .20, .90, .40)],
- 'obituary-dr-elaine-ingham':          [(.08, .30, .95, .72)],
+ 'obituary-dr-elaine-ingham':          [(.11, .33, .93, .60), (.38, .66, .56, .77)],   # heads, and the ELAINE sign,
  '2025-in-review':                     [(.30, .02, .80, .50)],
  'living-legacy-webinar-series':       [(.36, .02, .70, .50)],
  'soil-health-week-pakistan':          [(.12, .22, .25, .40), (.42, .26, .57, .45), (.68, .09, .84, .30)],
