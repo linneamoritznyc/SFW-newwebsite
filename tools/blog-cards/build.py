@@ -90,6 +90,16 @@ POSTS = [
  dict(slug='sacramento-food-knowledge-culture', date='2025-09-23', cat='Events', field='tan',
       head='Help us celebrate food, knowledge and culture in Sacramento this September', deck='',
       img='img/uploads/carrot-growing-in-vegitable-bed-community-garden-2025-01-08-04-14-23-utc.jpg', focus=(.5, .4)),
+ # added October 2026 for posts that had no image on the site; the type scale stays set by the posts above
+ dict(slug='exploring-soil-food-web-innovations-in-west-africa', date='2023-07-14', cat='Blog', field='glow', extra=True,
+      head='Exploring Soil Food Web Innovations in West Africa', deck='',
+      img='tools/blog-cards/photos/posts2/fungal-hypha-40x-marco-trevisan.jpg', focus=(.45, .72)),
+ dict(slug='unconditional-freedom-at-home-and-in-the-world', date='2022-11-23', cat='Blog', field='glow', extra=True,
+      head='Unconditional Freedom: At Home and in the World', deck='Guest blog by Bob Wilms',
+      img='tools/blog-cards/photos/posts2/unconditional-freedom-seedlings.jpg', focus=(.5, .45)),
+ dict(slug='sadhguru-and-the-soil-food-web', date='2022-07-18', cat='Blog', field='glow', extra=True,
+      head='Sadhguru and the Soil Food Web', deck='Webinar #3 in our Rescuing Mother Earth series',
+      img='tools/blog-cards/photos/posts2/sadhguru-cop15.jpg', focus=(.4, .5)),
 ]
 
 # Per size: the photo zone, the card, and the type scale. px.
@@ -170,6 +180,7 @@ HEADS = {
  'soil-health-week-pakistan':          [(.12, .22, .25, .40), (.42, .26, .57, .45), (.68, .09, .84, .30)],
  'foundation-launches-as-nonprofit':   [(.17, .02, .58, .50)],
  'retirement-dr-elaine-ingham':        [(.47, .14, .68, .52)],
+ 'sadhguru-and-the-soil-food-web':     [(.28, .42, .40, .64)],
 }
 _CURRENT = {}
 
@@ -184,7 +195,10 @@ WIDE = {
  '2025-in-review':                     (D_ + 'cc-mix-vetch-cover-crop.jpg', (.5, .6)),
  'living-legacy-webinar-series':       (D_ + 'cc-mix-vetch-cover-crop.jpg', (.5, .5)),
  'soil-health-week-pakistan':          (D_ + 'cc-mix-vetch-cover-crop.jpg', (.5, .45)),
+ 'sadhguru-and-the-soil-food-web':     (D_ + 'synergia-dry-grassland.jpg', (.5, .5)),
 }
+# small source photos: on the wide desktop frame they sit as a sharp panel beside the second photo instead of being stretched
+PANEL_ON_WIDE = {'sadhguru-and-the-soil-food-web'}
 # WIDE_OVERRIDE=slug=path,... swaps the second photograph for trying options.
 for _kv in filter(None, os.environ.get('WIDE_OVERRIDE', '').split(',')):
     _k, _v = _kv.split('=', 1); WIDE[_k] = (_v, (.5, .5))
@@ -485,7 +499,7 @@ def brand_slide(slide, post, key, W, H):
         if not HEADS.get(slug): return True
         return people_crop(src, pw, ph_, slug, focus, rel(cx_, cy_, px_, py_, pw, ph_), score_only=True)
     k = max(1, min(2, min(src.width / pw, src.height / ph)))
-    if ok(cx, cy, ph) or not WIDE.get(slug):
+    if (ok(cx, cy, ph) and not (slug in PANEL_ON_WIDE and W / H > 2)) or not WIDE.get(slug):
         img = people_crop(src, int(pw * k), int(ph * k), slug, focus, rel(cx, cy, px_, py_, pw, ph))
     else:
         # The post's own photograph always stays. Where it cannot fill the
@@ -541,7 +555,7 @@ def scale_for(key):
     while big > 16:
         small = round(big * .6)
         ok = True
-        for p_ in POSTS:
+        for p_ in [q for q in POSTS if not q.get('extra')]:
             if font(F_CAT, big).getlength(p_['cat']) > tw: ok = False; break
             hl = wrap(p_['head'], font(F_HEAD, big), tw * .95)
             dl = wrap(p_['deck'], font(F_HEAD, small), tw * .9) if p_['deck'] else []
@@ -551,7 +565,7 @@ def scale_for(key):
         if ok: break
         big -= 1
     small = round(big * .6); tallest = 0
-    for p_ in POSTS:
+    for p_ in [q for q in POSTS if not q.get('extra')]:
         hl = wrap(p_['head'], font(F_HEAD, big), tw * .95)
         dl = wrap(p_['deck'], font(F_HEAD, small), tw * .9) if p_['deck'] else []
         tallest = max(tallest, big * 1.08 + big * len(hl) + (small * .6 + small * 1.25 * len(dl) if dl else 0) + small * .9 + small * 2.0 + small * 1.3)
