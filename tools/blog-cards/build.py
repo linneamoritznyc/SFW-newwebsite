@@ -42,7 +42,7 @@ POSTS = [
  dict(slug='a-fresh-smapp', date='2026-10', cat='Microscopy', field='glow',
       head='A Fresh sMApp',
       deck='After lots of suggestions and lots of effort, our renovated SFW Microscopy App feels brand new again',
-      img='img/Sampling equipment.jpg', focus=(.5, .45)),
+      img='tools/blog-cards/photos/a-fresh-smapp.jpg', focus=(.45, .45)),
  dict(slug='fungi-to-bacteria-ratio-history', date='undated', cat='Education', field='glow',
       head='A brief history of the fungi-to-bacteria ratio',
       deck='Knowledge of not only the science, but also its history, is important for any grower considering the transition',
@@ -173,6 +173,18 @@ HEADS = {
 }
 _CURRENT = {}
 
+# The post's second photograph, from the Foundation's Drive, used on a wide
+# format when the post's own photograph cannot fit its faces there.
+D_ = 'tools/blog-cards/photos/drive/'
+WIDE = {
+ 'what-is-your-soil-test-telling-you': (D_ + 'R5A_4270.jpg', (.5, .5)),
+ 'advanced-programs-reopening':        (D_ + 'R5A_4242.jpg', (.5, .5)),
+ 'foundation-launches-as-nonprofit':   (D_ + 'IMG_5813-elaine-flower-compost.jpg', (.5, .55)),
+ '2025-in-review':                     (D_ + 'learning-outside-synergia.jpg', (.5, .5)),
+ 'living-legacy-webinar-series':       (D_ + 'IMG_5813-elaine-flower-compost.jpg', (.5, .55)),
+ 'soil-health-week-pakistan':          ('img/hand-soil-roots-fungi.jpg', (.5, .5)),
+}
+
 # A second photograph for each post, used beside the people where one frame
 # cannot hold them all: something the post is about.
 SECOND = {
@@ -193,6 +205,7 @@ def people_crop(img, w, h, slug, focus, card=None, score_only=False):
     heads = HEADS.get(slug, [])
     iw, ih = img.size; a = w / h
     bw, bh = (iw, iw / a) if iw / ih < a else (ih * a, ih)
+    if not heads and score_only: return True
     if not heads:
         return ImageOps.fit(img, (w, h), Image.LANCZOS, centering=focus)
     hs = [(x0 * iw, y0 * ih, x1 * iw, y1 * ih) for x0, y0, x1, y1 in heads]
@@ -224,32 +237,7 @@ def people_crop(img, w, h, slug, focus, card=None, score_only=False):
                 if best is None or score > best[0]: best = (score, cx, cy, cw_, ch_)
     sc_, cx, cy, cw_, ch_ = best
     if score_only: return sc_ >= len(hs) - .3
-    if sc_ >= len(hs) - .3 or not card:
-        return img.crop((int(cx), int(cy), int(cx + cw_), int(cy + ch_))).resize((w, h), Image.LANCZOS)
-    # No crop of the full frame shows every face clear of the card. Keep the
-    # people whole in a panel beside the card, and fill the rest of the frame
-    # with a soft, blurred copy of the same photograph.
-    # No crop of the frame shows every face clear of the card. Show the whole
-    # photograph instead, on the white page, in the space the card leaves free.
-    # a Food Web Green ground, as on the sMApp header, where the photograph does not reach
-    import numpy as np
-    t = np.linspace(0, 1, w)[None, :, None] * .6 + np.linspace(0, 1, h)[:, None, None] * .4
-    g = (np.array([21, 104, 38]) * (1 - t) + np.array([34, 55, 31]) * t).astype('uint8')
-    bg = Image.fromarray(np.broadcast_to(g, (h, w, 3)).copy())
-    if card[2] - card[0] > .8:
-        bx0, by0, bx1, by1 = 0, 0, w, int(h * card[1]) - 6        # band above the card
-    else:
-        bx0, by0, bx1, by1 = int(w * card[2]) + 6, 0, w, h        # beside the card
-    fw, fh = bx1 - bx0, by1 - by0
-    if card[2] - card[0] <= .8:
-        # beside the card: the photo fills the whole right side, cropped safely
-        pic = cover(img, fw, fh, focus, slug=slug)
-        bg.paste(pic, (bx0, by0))
-        return bg
-    k_ = min(fw / iw, fh / ih)
-    pic = img.resize((int(iw * k_), int(ih * k_)), Image.LANCZOS)
-    bg.paste(pic, (bx0 + (fw - pic.width) // 2, by0 + (fh - pic.height) // 2))
-    return bg
+    return img.crop((int(cx), int(cy), int(cx + cw_), int(cy + ch_))).resize((w, h), Image.LANCZOS)
 
 def cover(img, w, h, focus, slug=None):
     # Crop to w x h. A face is either wholly in the frame or wholly out of it,
@@ -475,37 +463,41 @@ def brand_slide(slide, post, key, W, H):
     ch = int(pad + body + SMALL * 1.3 + btn_h + SMALL * 1.3 + pad * .8)
     px_, py_, pw, ph = b['photo']
     stacked = px_ == 0
-    side = False
     if stacked:
         cy = H - ch - cx
         ph = int(cy + 14)                                  # the photo stops at the top of the paper: nobody under it
         if cw < W * .8: ph = H                             # wide formats: paper bottom left, the photo whole behind it
-        elif HEADS.get(post['slug']) and W / H > 1.2:
-            # if no crop of the band above a full-width card keeps every face
-            # whole, use the desktop arrangement: card bottom left, photo right
-            im_ = ImageOps.exif_transpose(Image.open(photo_for(post))).convert('RGB')
-            if not people_crop(im_, W, ph, post['slug'], post['focus'], None, score_only=True):
-                cw = int(W * .52); tw = cw - 2 * pad
-                hl = wrap(post['head'], font(F_HEAD, BIG), tw * .95)
-                dl = wrap(post['deck'], font(F_HEAD, SMALL), tw * .9) if post['deck'] else []
-                body = BIG * 1.08 + BIG * len(hl) + (SMALL * .6 + SMALL * 1.25 * len(dl) if dl else 0)
-                ch = int(pad + body + SMALL * 1.3 + btn_h + SMALL * 1.3 + pad * .8)
-                cy = H - ch - cx
-                side = True
     else:
         cy = (H - ch) / 2
-    if side:
-        import numpy as np
-        t_ = np.linspace(0, 1, W)[None, :, None] * .6 + np.linspace(0, 1, H)[:, None, None] * .4
-        g_ = (np.array([21, 104, 38]) * (1 - t_) + np.array([34, 55, 31]) * t_).astype('uint8')
-        gp = os.path.join(TMP, f'{key}--{post["slug"]}--green.png'); Image.fromarray(np.broadcast_to(g_, (H, W, 3)).copy()).save(gp)
-        slide.shapes.add_picture(gp, 0, 0, Emu(W * PX), Emu(H * PX)).name = 'Green'
-        px_, py_, pw, ph = cx + cw + 8, 0, W - cx - cw - 8, H
-    src = ImageOps.exif_transpose(Image.open(photo_for(post))).convert('RGB')
-    k = max(1, min(2, min(src.width / pw, src.height / ph)))
+    photo = photo_for(post)
+    src = ImageOps.exif_transpose(Image.open(photo)).convert('RGB')
+    slug = post['slug']; focus = post['focus']
     m_ = 10
-    card_rel = ((cx - m_ - px_) / pw, (cy - m_ - py_) / ph, (cx + cw + m_ - px_) / pw, (cy + ch + m_ - py_) / ph)
-    img = cover(src, int(pw * k), int(ph * k), post['focus'], slug=post['slug']) if side else people_crop(src, int(pw * k), int(ph * k), post['slug'], post['focus'], card_rel)
+    def rel(cx_, cy_, px_, py_, pw, ph):
+        return ((cx_ - m_ - px_) / pw, (cy_ - m_ - py_) / ph, (cx_ + cw + m_ - px_) / pw, (cy_ + ch + m_ - py_) / ph)
+    def ok(cx_, cy_, ph_):
+        if not HEADS.get(slug): return True
+        return people_crop(src, pw, ph_, slug, focus, rel(cx_, cy_, px_, py_, pw, ph_), score_only=True)
+    if not ok(cx, cy, ph) or (post.get('wide_only_photo') and W / H > 1.2):
+        if stacked and W / H > 1.2 and cw >= W * .8:
+            # full-width card: try the photo behind a narrower card, bottom left, then bottom right
+            cw = int(W * .52); tw = cw - 2 * pad
+            hl = wrap(post['head'], font(F_HEAD, BIG), tw * .95)
+            dl = wrap(post['deck'], font(F_HEAD, SMALL), tw * .9) if post['deck'] else []
+            body = BIG * 1.08 + BIG * len(hl) + (SMALL * .6 + SMALL * 1.25 * len(dl) if dl else 0)
+            ch = int(pad + body + SMALL * 1.3 + btn_h + SMALL * 1.3 + pad * .8)
+            cy = H - ch - cx; ph = H
+        if not ok(cx, cy, ph) and ok(W - cw - cx, cy, ph):
+            cx = W - cw - cx                               # the card moves to the right, clear of the faces
+        elif not ok(cx, cy, ph) or (post.get('wide_only_photo') and W / H > 1.2):
+            # the post's own photograph cannot hold its faces at this shape:
+            # use the post's second photograph from the Foundation's Drive instead
+            alt = WIDE.get(slug)
+            if alt:
+                src = ImageOps.exif_transpose(Image.open(os.path.join(REPO, alt[0]))).convert('RGB')
+                slug = '__alt__'; focus = alt[1]
+    k = max(1, min(2, min(src.width / pw, src.height / ph)))
+    img = people_crop(src, int(pw * k), int(ph * k), slug, focus, rel(cx, cy, px_, py_, pw, ph))
     path = os.path.join(TMP, f'{key}--{post["slug"]}--brand.jpg'); img.save(path, quality=93, subsampling=0)
     slide.shapes.add_picture(path, Emu(int(px_ * PX)), Emu(int(py_ * PX)), Emu(int(pw * PX)), Emu(int(ph * PX))).name = 'Photo'
     card_png = torn_paper(key, post['slug'], cw, ch)
