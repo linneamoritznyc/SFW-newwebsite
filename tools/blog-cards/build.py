@@ -173,6 +173,19 @@ HEADS = {
 }
 _CURRENT = {}
 
+# A second photograph for each post, used beside the people where one frame
+# cannot hold them all: something the post is about.
+SECOND = {
+ 'what-is-your-soil-test-telling-you': 'img/soil-sample-shovel-and-bag.jpg',
+ 'advanced-programs-reopening':        'img/uploads/Testate amoeba (encysting), 40x obj, Joy Kaluf.jpg',
+ 'obituary-dr-elaine-ingham':          'img/hand-soil-roots-fungi.jpg',
+ '2025-in-review':                     'img/fungi-in-under-grape-soil.jpg',
+ 'living-legacy-webinar-series':       'img/fungal-spores-in-suspension.jpg',
+ 'soil-health-week-pakistan':          'img/handling-loose-soil.jpg',
+ 'foundation-launches-as-nonprofit':   'img/2-hands-planting-shrub.jpg',
+ 'retirement-dr-elaine-ingham':        'img/Test tubes with sample_.jpg',
+}
+
 def people_crop(img, w, h, slug, focus, card=None):
     """Crop to w x h so every marked head is either wholly in the frame and
     clear of the paper card, or wholly out of it: never cut, never covered.
@@ -215,8 +228,15 @@ def people_crop(img, w, h, slug, focus, card=None):
     # No crop of the full frame shows every face clear of the card. Keep the
     # people whole in a panel beside the card, and fill the rest of the frame
     # with a soft, blurred copy of the same photograph.
-    from PIL import ImageFilter, ImageEnhance
-    bg = ImageEnhance.Brightness(ImageOps.fit(img, (w, h), Image.LANCZOS, centering=focus).filter(ImageFilter.GaussianBlur(w / 40))).enhance(.85)
+    # the rest of the frame takes a second photograph that belongs to the post
+    second = SECOND.get(slug)
+    if second:
+        bgsrc = ImageOps.exif_transpose(Image.open(os.path.join(REPO, second))).convert('RGB')
+        bg = ImageOps.fit(bgsrc, (w, h), Image.LANCZOS, centering=(.5, .5))
+    else:
+        from PIL import ImageFilter, ImageEnhance
+        bg = ImageEnhance.Brightness(ImageOps.fit(img, (w, h), Image.LANCZOS, centering=focus).filter(ImageFilter.GaussianBlur(w / 40))).enhance(.85)
+    gap = max(4, w // 240)
     if card[2] - card[0] > .8:
         # the card spans the width: the people go whole in the band above it
         ph_ = max(int(h * card[1]) - 4, int(h * .35))
@@ -224,11 +244,14 @@ def people_crop(img, w, h, slug, focus, card=None):
         tall = max(y1 - y0 for (x0, y0, x1, y1) in hs) * 1.45
         pw_ = min(w, int(ph_ * iw / min(ih, tall)))
         panel = cover(img, pw_, ph_, focus, slug=slug)
-        bg.paste(panel, (w - pw_ - (0 if pw_ == w else int(w * .04)), 0))
+        px = w - pw_ - (0 if pw_ == w else int(w * .04))
+        ImageDraw.Draw(bg).rectangle((px - gap, 0, px + pw_ + gap, ph_ + gap), fill=(255, 255, 255))
+        bg.paste(panel, (px, 0))
         return bg
     x0 = int(w * min(max(card[2] + .01, .45), .72))
     pw_ = w - x0
     panel = cover(img, pw_, h, focus, slug=slug)
+    ImageDraw.Draw(bg).rectangle((x0 - gap, 0, x0, h), fill=(255, 255, 255))
     bg.paste(panel, (x0, 0))
     return bg
 
