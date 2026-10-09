@@ -72,7 +72,7 @@ POSTS = [
       img='tools/blog-cards/photos/SFW School Mentor Gerald Ramirez (center) demonstrates production of liquid amendments at our workshop in Costa Rica, March 2025. .jpg', focus=(0.5, 0.45)),
  dict(slug='living-legacy-webinar-series', portrait=True, date='2025-11-03', cat='Events', field='legacy',
       head='A Living Legacy', deck='Join the free webinar series: The Science of the Soil Food Web',
-      img='img/Dr Elaine Ingham with Microscope.jpg', focus=(.5, .4)),
+      img='img/copy-of-9.jpg', focus=(0.5, 0.3)),
  dict(slug='soil-health-week-pakistan', date='2025-10-22', cat='Events', field='tan',
       head='Soil Health Week 2025',
       deck='Wild Soils UK and TrashIt bring the Soil Food Web approach to Pakistan',
@@ -80,7 +80,7 @@ POSTS = [
  dict(slug='foundation-launches-as-nonprofit', portrait=True, date='2025-10-17', cat='Foundation Update', field='green',
       head='Soil Food Web Foundation Launches as Nonprofit',
       deck='To carry forward Dr. Elaine Ingham’s legacy',
-      img='tools/blog-cards/photos/Elaine Ruth Ingham, groundbreaking microbiologist and a leader in the regenerative agriculture movement, holding soil.jpg', focus=(0.5, 0.4)),
+      img='img/Elaine with Sample bag.png', focus=(0.4, 0.3)),
  dict(slug='retirement-dr-elaine-ingham', portrait=True, date='2025-10-16', cat='School Updates', field='legacy',
       head='Retirement Announcement: Dr. Elaine Ingham', deck='',
       img='img/copy-of-17.jpg', focus=(.6, .3)),
@@ -162,13 +162,13 @@ def grade(im):
 # Every head in every photograph, marked by hand (hair to chin), as fractions
 # of the photo. Detection software got these wrong, so they are written down.
 HEADS = {
- 'what-is-your-soil-test-telling-you': [(.38, .34, .74, .82)],
+ 'what-is-your-soil-test-telling-you': [(.10, .15, .55, .78)],
  'advanced-programs-reopening':        [(.24, .42, .36, .62), (.45, .16, .55, .34), (.56, .14, .66, .33), (.66, .12, .76, .30), (.78, .20, .90, .40)],
  'obituary-dr-elaine-ingham':          [(.08, .30, .95, .72)],
  '2025-in-review':                     [(.30, .02, .80, .50)],
- 'living-legacy-webinar-series':       [(.27, .10, .68, .48)],
+ 'living-legacy-webinar-series':       [(.36, .02, .70, .50)],
  'soil-health-week-pakistan':          [(.12, .22, .25, .40), (.42, .26, .57, .45), (.68, .09, .84, .30)],
- 'foundation-launches-as-nonprofit':   [(.31, .07, .63, .36)],
+ 'foundation-launches-as-nonprofit':   [(.17, .02, .58, .50)],
  'retirement-dr-elaine-ingham':        [(.47, .14, .68, .52)],
 }
 _CURRENT = {}
@@ -182,11 +182,11 @@ SECOND = {
  '2025-in-review':                     'img/fungi-in-under-grape-soil.jpg',
  'living-legacy-webinar-series':       'img/fungal-spores-in-suspension.jpg',
  'soil-health-week-pakistan':          'img/handling-loose-soil.jpg',
- 'foundation-launches-as-nonprofit':   'img/2-hands-planting-shrub.jpg',
+ 'foundation-launches-as-nonprofit':   'img/erc-rancho-cacachilas-agro.jpg',
  'retirement-dr-elaine-ingham':        'img/Test tubes with sample_.jpg',
 }
 
-def people_crop(img, w, h, slug, focus, card=None):
+def people_crop(img, w, h, slug, focus, card=None, score_only=False):
     """Crop to w x h so every marked head is either wholly in the frame and
     clear of the paper card, or wholly out of it: never cut, never covered.
     card is the card's rectangle as fractions of the photo frame."""
@@ -223,36 +223,32 @@ def people_crop(img, w, h, slug, focus, card=None):
                 score -= .05 * (abs((cx + cw_ / 2) / iw - focus[0]) + abs((cy + ch_ / 2) / ih - focus[1]))
                 if best is None or score > best[0]: best = (score, cx, cy, cw_, ch_)
     sc_, cx, cy, cw_, ch_ = best
+    if score_only: return sc_ >= len(hs) - .3
     if sc_ >= len(hs) - .3 or not card:
         return img.crop((int(cx), int(cy), int(cx + cw_), int(cy + ch_))).resize((w, h), Image.LANCZOS)
     # No crop of the full frame shows every face clear of the card. Keep the
     # people whole in a panel beside the card, and fill the rest of the frame
     # with a soft, blurred copy of the same photograph.
-    # the rest of the frame takes a second photograph that belongs to the post
-    second = SECOND.get(slug)
-    if second:
-        bgsrc = ImageOps.exif_transpose(Image.open(os.path.join(REPO, second))).convert('RGB')
-        bg = ImageOps.fit(bgsrc, (w, h), Image.LANCZOS, centering=(.5, .5))
-    else:
-        from PIL import ImageFilter, ImageEnhance
-        bg = ImageEnhance.Brightness(ImageOps.fit(img, (w, h), Image.LANCZOS, centering=focus).filter(ImageFilter.GaussianBlur(w / 40))).enhance(.85)
-    gap = max(4, w // 240)
+    # No crop of the frame shows every face clear of the card. Show the whole
+    # photograph instead, on the white page, in the space the card leaves free.
+    # a Food Web Green ground, as on the sMApp header, where the photograph does not reach
+    import numpy as np
+    t = np.linspace(0, 1, w)[None, :, None] * .6 + np.linspace(0, 1, h)[:, None, None] * .4
+    g = (np.array([21, 104, 38]) * (1 - t) + np.array([34, 55, 31]) * t).astype('uint8')
+    bg = Image.fromarray(np.broadcast_to(g, (h, w, 3)).copy())
     if card[2] - card[0] > .8:
-        # the card spans the width: the people go whole in the band above it
-        ph_ = max(int(h * card[1]) - 4, int(h * .35))
-        # as wide as the band allows while the tallest head still fits with headroom
-        tall = max(y1 - y0 for (x0, y0, x1, y1) in hs) * 1.45
-        pw_ = min(w, int(ph_ * iw / min(ih, tall)))
-        panel = cover(img, pw_, ph_, focus, slug=slug)
-        px = w - pw_ - (0 if pw_ == w else int(w * .04))
-        ImageDraw.Draw(bg).rectangle((px - gap, 0, px + pw_ + gap, ph_ + gap), fill=(255, 255, 255))
-        bg.paste(panel, (px, 0))
+        bx0, by0, bx1, by1 = 0, 0, w, int(h * card[1]) - 6        # band above the card
+    else:
+        bx0, by0, bx1, by1 = int(w * card[2]) + 6, 0, w, h        # beside the card
+    fw, fh = bx1 - bx0, by1 - by0
+    if card[2] - card[0] <= .8:
+        # beside the card: the photo fills the whole right side, cropped safely
+        pic = cover(img, fw, fh, focus, slug=slug)
+        bg.paste(pic, (bx0, by0))
         return bg
-    x0 = int(w * min(max(card[2] + .01, .45), .72))
-    pw_ = w - x0
-    panel = cover(img, pw_, h, focus, slug=slug)
-    ImageDraw.Draw(bg).rectangle((x0 - gap, 0, x0, h), fill=(255, 255, 255))
-    bg.paste(panel, (x0, 0))
+    k_ = min(fw / iw, fh / ih)
+    pic = img.resize((int(iw * k_), int(ih * k_)), Image.LANCZOS)
+    bg.paste(pic, (bx0 + (fw - pic.width) // 2, by0 + (fh - pic.height) // 2))
     return bg
 
 def cover(img, w, h, focus, slug=None):
@@ -437,7 +433,7 @@ BR = dict(paper='#FFFFFF', cream='#F4F1EA', green='#156826', soil='#4F3433',
           ink_soft='#4A463F', ink_faint='#6A665C', legacy='#6B4C7A', case='#E6EADC')
 BRAND_SIZES = {
  'feature-social-1400x1400': dict(photo=(0, 0, 1400, 820),   card=(64, 600, 1272, 700), pad=64, eye=26, head=84, deck=38, btn=30, logo=112, cat=128, rhead=96, rdeck=38, rbtn=48),
- 'desktop-header-1920x720':  dict(photo=(0, 0, 1920, 720), card=(64, 300, 1000, 420), pad=48, eye=22, head=64, deck=30, btn=26, logo=92, cat=84, rhead=72, rdeck=28, rbtn=34),
+ 'desktop-header-1920x720':  dict(photo=(0, 0, 1920, 720), card=(56, 300, 700, 420), pad=40, eye=22, head=64, deck=30, btn=26, logo=92, cat=84, rhead=72, rdeck=28, rbtn=34),
  'tablet-header-1024x768':   dict(photo=(0, 0, 1024, 768),  card=(36, 330, 952, 430),  pad=36, eye=18, head=48, deck=22, btn=20, logo=70, cat=58, rhead=54, rdeck=21, rbtn=26),
  'thumbnail-1200x800':       dict(photo=(0, 0, 1200, 800),  card=(40, 360, 1120, 450),  pad=40, eye=18, head=48, deck=22, btn=20, logo=70, cat=66, rhead=60, rdeck=24, rbtn=30),
  'mobile-header-750x1000':   dict(photo=(0, 0, 750, 560),    card=(26, 440, 698, 534),  pad=36, eye=17, head=44, deck=21, btn=19, logo=64, cat=56, rhead=56, rdeck=22, rbtn=27),
@@ -479,17 +475,37 @@ def brand_slide(slide, post, key, W, H):
     ch = int(pad + body + SMALL * 1.3 + btn_h + SMALL * 1.3 + pad * .8)
     px_, py_, pw, ph = b['photo']
     stacked = px_ == 0
+    side = False
     if stacked:
         cy = H - ch - cx
-        ph = int(cy + min(ch * .3, BIG * 1.6))            # the photo runs just under the top of the paper
+        ph = int(cy + 14)                                  # the photo stops at the top of the paper: nobody under it
         if cw < W * .8: ph = H                             # wide formats: paper bottom left, the photo whole behind it
+        elif HEADS.get(post['slug']) and W / H > 1.2:
+            # if no crop of the band above a full-width card keeps every face
+            # whole, use the desktop arrangement: card bottom left, photo right
+            im_ = ImageOps.exif_transpose(Image.open(photo_for(post))).convert('RGB')
+            if not people_crop(im_, W, ph, post['slug'], post['focus'], None, score_only=True):
+                cw = int(W * .52); tw = cw - 2 * pad
+                hl = wrap(post['head'], font(F_HEAD, BIG), tw * .95)
+                dl = wrap(post['deck'], font(F_HEAD, SMALL), tw * .9) if post['deck'] else []
+                body = BIG * 1.08 + BIG * len(hl) + (SMALL * .6 + SMALL * 1.25 * len(dl) if dl else 0)
+                ch = int(pad + body + SMALL * 1.3 + btn_h + SMALL * 1.3 + pad * .8)
+                cy = H - ch - cx
+                side = True
     else:
         cy = (H - ch) / 2
+    if side:
+        import numpy as np
+        t_ = np.linspace(0, 1, W)[None, :, None] * .6 + np.linspace(0, 1, H)[:, None, None] * .4
+        g_ = (np.array([21, 104, 38]) * (1 - t_) + np.array([34, 55, 31]) * t_).astype('uint8')
+        gp = os.path.join(TMP, f'{key}--{post["slug"]}--green.png'); Image.fromarray(np.broadcast_to(g_, (H, W, 3)).copy()).save(gp)
+        slide.shapes.add_picture(gp, 0, 0, Emu(W * PX), Emu(H * PX)).name = 'Green'
+        px_, py_, pw, ph = cx + cw + 8, 0, W - cx - cw - 8, H
     src = ImageOps.exif_transpose(Image.open(photo_for(post))).convert('RGB')
     k = max(1, min(2, min(src.width / pw, src.height / ph)))
     m_ = 10
     card_rel = ((cx - m_ - px_) / pw, (cy - m_ - py_) / ph, (cx + cw + m_ - px_) / pw, (cy + ch + m_ - py_) / ph)
-    img = people_crop(src, int(pw * k), int(ph * k), post['slug'], post['focus'], card_rel)
+    img = cover(src, int(pw * k), int(ph * k), post['focus'], slug=post['slug']) if side else people_crop(src, int(pw * k), int(ph * k), post['slug'], post['focus'], card_rel)
     path = os.path.join(TMP, f'{key}--{post["slug"]}--brand.jpg'); img.save(path, quality=93, subsampling=0)
     slide.shapes.add_picture(path, Emu(int(px_ * PX)), Emu(int(py_ * PX)), Emu(int(pw * PX)), Emu(int(ph * PX))).name = 'Photo'
     card_png = torn_paper(key, post['slug'], cw, ch)
@@ -509,7 +525,7 @@ def brand_slide(slide, post, key, W, H):
     rect(slide, cx + pad, by, bw, btn_h, INK, 'Button')
     text(slide, cx + pad, by, bw, btn_h, 'READ POST', 'EB Garamond', SMALL * 1.1, '#FFFFFF', 'Button label', align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE, spacing=SMALL * .75 * 2)
     cursor(slide, cx + pad + bw - SMALL * .5, by + btn_h * .55, SMALL * 1.5)
-    text(slide, cx + pad, by + btn_h + SMALL * .3, tw, SMALL, 'www.soilfoodweb.com', 'Source Sans 3', SMALL * .78, INK, 'Web address', line=SMALL)
+    text(slide, cx + pad, by + btn_h + SMALL * .3, tw, SMALL, 'www.soilfoodweb.com', 'Source Sans 3', SMALL * .85, INK, 'Web address', line=SMALL)
 
 _SCALES = {}
 def scale_for(key):
@@ -518,7 +534,7 @@ def scale_for(key):
     b = BRAND_SIZES[key]; cw, ch = b['card'][2], b['card'][3]; pad = b['pad']; tw = cw - 2 * pad
     big = b['cat']
     while big > 16:
-        small = round(big * .52)
+        small = round(big * .6)
         ok = True
         for p_ in POSTS:
             if font(F_CAT, big).getlength(p_['cat']) > tw: ok = False; break
@@ -529,7 +545,7 @@ def scale_for(key):
             if need > ch - 2 * pad: ok = False; break
         if ok: break
         big -= 1
-    small = round(big * .52); tallest = 0
+    small = round(big * .6); tallest = 0
     for p_ in POSTS:
         hl = wrap(p_['head'], font(F_HEAD, big), tw * .95)
         dl = wrap(p_['deck'], font(F_HEAD, small), tw * .9) if p_['deck'] else []
