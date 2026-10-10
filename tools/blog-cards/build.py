@@ -109,6 +109,9 @@ POSTS = [
  dict(slug='a-blueprint-to-return-to-the-garden-of-eden', date='2024-03-12', cat='Blog', field='glow', extra=True,
       head='Harnessing Ernst Gotch\u2019s Agroecological Wisdom: A Blueprint to Return to The Garden of Eden', deck='',
       img='tools/blog-cards/photos/posts2/ernst-gotsch-forest.jpg', focus=(.5, .4)),
+ dict(slug='what-exactly-is-brownian-motion', date='2026-10-02', cat='Microscopy', field='glow', extra=True,
+      head='What exactly is Brownian motion?', deck='',
+      img='tools/blog-cards/photos/posts2/bacilli-yeast-40x-marcelino-meincke.jpg', focus=(.5, .5)),
 ]
 
 # Per size: the photo zone, the card, and the type scale. px.
