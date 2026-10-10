@@ -105,7 +105,7 @@ POSTS = [
       img='tools/blog-cards/photos/posts2/su-kahumbu-stephanou.jpg', focus=(.35, .4)),
  dict(slug='celebrating-world-soil-day-2024', date='2024-12-04', cat='Blog', field='glow', extra=True,
       head='Celebrating World Soil Day 2024', deck='',
-      img='tools/blog-cards/photos/posts2/world-soil-day-2024.jpg', focus=(.5, .25)),
+      img='img/hand-scooping-planter-bed-soil.jpg', focus=(.5, .3)),
  dict(slug='a-blueprint-to-return-to-the-garden-of-eden', date='2024-03-12', cat='Blog', field='glow', extra=True,
       head='Harnessing Ernst Gotch\u2019s Agroecological Wisdom: A Blueprint to Return to The Garden of Eden', deck='',
       img='tools/blog-cards/photos/posts2/ernst-gotsch-forest.jpg', focus=(.5, .4)),
