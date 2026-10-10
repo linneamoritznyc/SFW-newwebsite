@@ -89,7 +89,7 @@ POSTS = [
       img='img/hand-of-compost.jpg', focus=(.5, .5)),
  dict(slug='sacramento-food-knowledge-culture', date='2025-09-23', cat='Events', field='tan',
       head='Help us celebrate food, knowledge and culture in Sacramento this September', deck='',
-      img='img/uploads/carrot-growing-in-vegitable-bed-community-garden-2025-01-08-04-14-23-utc.jpg', focus=(.5, .4)),
+      img='tools/blog-cards/photos/posts2/sacramento-wine-pour.jpg', focus=(.55, .45)),
  # added October 2026 for posts that had no image on the site; the type scale stays set by the posts above
  dict(slug='exploring-soil-food-web-innovations-in-west-africa', date='2023-07-14', cat='Blog', field='glow', extra=True,
       head='Exploring Soil Food Web Innovations in West Africa', deck='',
@@ -193,6 +193,7 @@ HEADS = {
  'foundation-launches-as-nonprofit':   [(.17, .02, .58, .50)],
  'retirement-dr-elaine-ingham':        [(.47, .14, .68, .52)],
  'sadhguru-and-the-soil-food-web':     [(.28, .42, .40, .64)],
+ 'sacramento-food-knowledge-culture': [(.10, .00, .31, .33)],   # the woman pouring
  'student-profile-su-kahumbu-stephanou': [(.20, .02, .38, .45), (.47, .38, .72, .75)],   # Su, and the calf
 }
 _CURRENT = {}
@@ -215,10 +216,15 @@ WIDE = {
  'living-legacy-webinar-series':       (D_ + 'cc-mix-vetch-cover-crop.jpg', (.5, .5)),
  'soil-health-week-pakistan':          (D_ + 'cc-mix-vetch-cover-crop.jpg', (.5, .45)),
  'sadhguru-and-the-soil-food-web':     (D_ + 'synergia-dry-grassland.jpg', (.5, .5)),
+ 'sacramento-food-knowledge-culture': ('img/uploads/carrot-growing-in-vegitable-bed-community-garden-2025-01-08-04-14-23-utc.jpg', (.5, .4)),
  'student-profile-su-kahumbu-stephanou': (D_ + 'R5A_3961-hay-bales-windrows.jpg', (.5, .5)),
 }
 # small source photos: on the wide desktop frame they sit as a sharp panel beside the second photo instead of being stretched
-PANEL_ON_WIDE = {'sadhguru-and-the-soil-food-web'}
+PANEL_ON_WIDE = {'sadhguru-and-the-soil-food-web', 'sacramento-food-knowledge-culture'}
+# hand-set crops (fractions of the source photo) where the automatic one misses the point of the picture
+CROP = {
+ ('student-profile-su-kahumbu-stephanou', 'mobile-header-750x1000'): (.17, 0, .643, 1),   # Su and the calf she is petting
+}
 # WIDE_OVERRIDE=slug=path,... swaps the second photograph for trying options.
 for _kv in filter(None, os.environ.get('WIDE_OVERRIDE', '').split(',')):
     _k, _v = _kv.split('=', 1); WIDE[_k] = (_v, (.5, .5))
@@ -519,7 +525,10 @@ def brand_slide(slide, post, key, W, H):
         if not HEADS.get(slug): return True
         return people_crop(src, pw, ph_, slug, focus, rel(cx_, cy_, px_, py_, pw, ph_), score_only=True)
     k = max(1, min(2, min(src.width / pw, src.height / ph)))
-    if (ok(cx, cy, ph) and not (slug in PANEL_ON_WIDE and W / H > 2)) or not WIDE.get(slug):
+    if (slug, key) in CROP:
+        x0, y0, x1, y1 = CROP[(slug, key)]
+        img = src.crop((int(x0 * src.width), int(y0 * src.height), int(x1 * src.width), int(y1 * src.height))).resize((int(pw * k), int(ph * k)), Image.LANCZOS)
+    elif (ok(cx, cy, ph) and not (slug in PANEL_ON_WIDE and W / H > 2)) or not WIDE.get(slug):
         img = people_crop(src, int(pw * k), int(ph * k), slug, focus, rel(cx, cy, px_, py_, pw, ph))
     else:
         # The post's own photograph always stays. Where it cannot fill the
