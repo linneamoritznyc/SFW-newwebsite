@@ -100,6 +100,15 @@ POSTS = [
  dict(slug='sadhguru-and-the-soil-food-web', date='2022-07-18', cat='Blog', field='glow', extra=True,
       head='Sadhguru and the Soil Food Web', deck='Webinar #3 in our Rescuing Mother Earth series',
       img='tools/blog-cards/photos/posts2/sadhguru-cop15.jpg', focus=(.4, .5)),
+ dict(slug='student-profile-su-kahumbu-stephanou', date='2025-02-05', cat='Blog', field='glow', extra=True,
+      head='Student Profile: Su Kahumbu Stephanou', deck='',
+      img='tools/blog-cards/photos/posts2/su-kahumbu-stephanou.jpg', focus=(.35, .4)),
+ dict(slug='celebrating-world-soil-day-2024', date='2024-12-04', cat='Blog', field='glow', extra=True,
+      head='Celebrating World Soil Day 2024', deck='',
+      img='tools/blog-cards/photos/posts2/world-soil-day-2024.jpg', focus=(.5, .25)),
+ dict(slug='a-blueprint-to-return-to-the-garden-of-eden', date='2024-03-12', cat='Blog', field='glow', extra=True,
+      head='Harnessing Ernst Gotch\u2019s Agroecological Wisdom: A Blueprint to Return to The Garden of Eden', deck='',
+      img='tools/blog-cards/photos/posts2/ernst-gotsch-forest.jpg', focus=(.5, .4)),
 ]
 
 # Per size: the photo zone, the card, and the type scale. px.
@@ -181,6 +190,7 @@ HEADS = {
  'foundation-launches-as-nonprofit':   [(.17, .02, .58, .50)],
  'retirement-dr-elaine-ingham':        [(.47, .14, .68, .52)],
  'sadhguru-and-the-soil-food-web':     [(.28, .42, .40, .64)],
+ 'student-profile-su-kahumbu-stephanou': [(.20, .02, .38, .45), (.47, .38, .72, .75)],   # Su, and the calf
 }
 _CURRENT = {}
 
@@ -196,6 +206,7 @@ WIDE = {
  'living-legacy-webinar-series':       (D_ + 'cc-mix-vetch-cover-crop.jpg', (.5, .5)),
  'soil-health-week-pakistan':          (D_ + 'cc-mix-vetch-cover-crop.jpg', (.5, .45)),
  'sadhguru-and-the-soil-food-web':     (D_ + 'synergia-dry-grassland.jpg', (.5, .5)),
+ 'student-profile-su-kahumbu-stephanou': (D_ + 'R5A_3961-hay-bales-windrows.jpg', (.5, .5)),
 }
 # small source photos: on the wide desktop frame they sit as a sharp panel beside the second photo instead of being stretched
 PANEL_ON_WIDE = {'sadhguru-and-the-soil-food-web'}
