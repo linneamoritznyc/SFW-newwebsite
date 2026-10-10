@@ -193,6 +193,12 @@ HEADS = {
  'student-profile-su-kahumbu-stephanou': [(.20, .02, .38, .45), (.47, .38, .72, .75)],   # Su, and the calf
 }
 _CURRENT = {}
+# IMG_OVERRIDE=slug=path[;x0,y0,x1,y1] tries another photo for one post (head box optional)
+for _kv in filter(None, os.environ.get('IMG_OVERRIDE', '').split('|')):
+    _k, _v = _kv.split('=', 1); _v, *_h = _v.split(';')
+    for _p in POSTS:
+        if _p['slug'] == _k: _p['img'] = _v
+    HEADS[_k] = [tuple(map(float, _h[0].split(',')))] if _h else []
 
 # The post's second photograph, from the Foundation's Drive, used on a wide
 # format when the post's own photograph cannot fit its faces there.
