@@ -2,3 +2,8 @@ Unsplash photos (Unsplash License, free, no credit required)
 - unsplash-navarro-river-redwoods-ronan-furuta.jpg: Ronan Furuta, Navarro River Redwoods State Park, Elk CA. https://unsplash.com/photos/YPsWzPrYDW8
 - unsplash-mendocino-house-in-woods-jeremy-huang.jpg: Jeremy Huang, Mendocino CA. https://unsplash.com/photos/bzHwJ9aqi5A
 - unsplash-foggy-golden-hills-zetong-li.jpg: Zetong Li, Milpitas CA (not Mendocino). https://unsplash.com/photos/Uu1MoLHczCo
+- unsplash-redwoods-sun-adrian-valverde.jpg: Adrián Valverde, Redwoods, California. https://unsplash.com/photos/B9ToBM9gHc4
+- unsplash-redwood-river-ben-turnbull.jpg: Ben Turnbull, Redwood National Park. https://unsplash.com/photos/GmzP-V083t8
+- unsplash-foggy-redwood-path-dylan-taylor.jpg: Dylan Taylor, Woodside CA. https://unsplash.com/photos/vLX1N30FOEY
+- unsplash-redwood-sun-rays-nicola-nuttall.jpg: Nicola Nuttall, location not given. https://unsplash.com/photos/gz1fmw3fZi4
+- unsplash-misty-redwoods-zetong-li.jpg: Zetong Li, Redwood National and State Parks. https://unsplash.com/photos/iFTqbA-TGhs
