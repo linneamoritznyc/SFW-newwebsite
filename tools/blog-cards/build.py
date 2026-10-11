@@ -117,7 +117,7 @@ POSTS = [
       img='tools/blog-cards/photos/posts2/beneath-the-surface-grass-soil.jpg', focus=(.5, .3)),
  dict(slug='2024-a-year-in-review', date='2024-12', cat='Blog', field='glow', extra=True,
       head='2024: A Year in Review', deck='',
-      img='tools/blog-cards/photos/posts2/costa-rica-july-2024-group.jpg', focus=(.48, .38)),
+      img='img/Elaine Flower Shirt Microscope.png', focus=(.5, .3)),
 ]
 
 # Per size: the photo zone, the card, and the type scale. px.
@@ -190,7 +190,7 @@ def grade(im):
 # Every head in every photograph, marked by hand (hair to chin), as fractions
 # of the photo. Detection software got these wrong, so they are written down.
 HEADS = {
- '2024-a-year-in-review': [(.16, .22, .81, .52)],   # five faces, Costa Rica July 2024
+ '2024-a-year-in-review':              [(.28, .05, .62, .38)],   # Elaine at the microscope
  'what-is-your-soil-test-telling-you': [(.10, .15, .55, .78)],
  'advanced-programs-reopening':        [(.24, .42, .36, .62), (.45, .16, .55, .34), (.56, .14, .66, .33), (.66, .12, .76, .30), (.78, .20, .90, .40)],
  'obituary-dr-elaine-ingham':          [(.11, .33, .93, .60), (.38, .66, .56, .77)],   # heads, and the ELAINE sign,
@@ -224,7 +224,6 @@ WIDE = {
  'living-legacy-webinar-series':       ('tools/blog-cards/photos/posts2/roots-soil-clump.jpg', (.5, .5)),
  'soil-health-week-pakistan':          (D_ + 'IMG_2498-wild-ken-hill-field.jpg', (.5, .5)),
  'sadhguru-and-the-soil-food-web':     (D_ + 'synergia-dry-grassland.jpg', (.5, .5)),
- '2024-a-year-in-review':              ('tools/blog-cards/photos/posts2/nick-padwick-compost-windrow.jpg', (.5, .6)),   # 2024 newsletter staff spotlight; only where the group cannot fill the frame
  'sacramento-food-knowledge-culture': ('tools/blog-cards/photos/posts2/sacramento-wine-pour-background.jpg', (.5, .5)),
  'exploring-soil-food-web-innovations-in-west-africa': ('tools/blog-cards/photos/posts2/elephant-adam-cobb-2024.jpg', (.3, .55)),
  'new-board-member-eric-feiler':       ('tools/blog-cards/photos/posts2/earthworm-chaeta-10x-eric-feiler.jpg', (.5, .5)),   # Eric's own micrograph   # dry land like the land behind him   # the wine photo's own tents, behind the paper
@@ -234,7 +233,7 @@ WIDE = {
 WHOLE_PANEL = {'exploring-soil-food-web-innovations-in-west-africa'}   # the panel shows the whole photo, no side crop
 PANEL_ALWAYS = {'new-board-member-eric-feiler', 'exploring-soil-food-web-innovations-in-west-africa'}   # the whole face as a panel in every size
 PANEL_ON_WIDE = {'sadhguru-and-the-soil-food-web', 'sacramento-food-knowledge-culture', 'new-board-member-eric-feiler'}
-NO_PANEL = {('2024-a-year-in-review', 'thumbnail-1200x800')}   # the group fills these sizes on its own; the second photo is for the desktop only
+NO_PANEL = set()
 # hand-set crops (fractions of the source photo) where the automatic one misses the point of the picture
 # a different source photo for one size of a post
 IMG_BY_KEY = {
@@ -247,8 +246,7 @@ HEADS_BY_PHOTO = {
  },
 }
 CROP = {
- ('2024-a-year-in-review', 'tablet-header-1024x768'): (0, .24, 1, .62),   # top of the heads down: the crouching woman's face clear of the paper
- ('2024-a-year-in-review', 'thumbnail-1200x800'):     (0, .24, 1, .62),
+ ('2024-a-year-in-review', 'desktop-header-1920x720'): (0, .15, .9, .55),   # Elaine a little higher in the frame
  ('exploring-soil-food-web-innovations-in-west-africa', 'mobile-header-750x1000'): (0, .10, 1, .66),   # Adam and the sample bags, filling the frame
  ('student-profile-su-kahumbu-stephanou', 'mobile-header-750x1000'): (.17, 0, .643, 1),   # Su and the calf she is petting
 }
