@@ -65,7 +65,7 @@ POSTS = [
       img='tools/blog-cards/photos/Elaine Obituary, team with a sign that says Elaine .jpg', focus=(0.5, 0.2)),
  dict(slug='new-board-member-eric-feiler', date='2026-02-17', cat='Foundation Update', field='green',
       head='The Soil Food Web Welcomes a New Board Member', deck='Eric Feiler',
-      img='img/erc-rancho-cacachilas-aerial-2.jpg', focus=(0.5, 0.5)),
+      img='tools/blog-cards/photos/posts2/eric-feiler-staff.jpg', focus=(.55, .4)),
  dict(slug='2025-in-review', date='2025-12-30', cat='Blog', field='green',
       head='2025 in Review: A time of transition',
       deck='Honoring our founder and guiding spirit, building stronger community, and preparing for a bright future',
@@ -93,10 +93,10 @@ POSTS = [
  # added October 2026 for posts that had no image on the site; the type scale stays set by the posts above
  dict(slug='exploring-soil-food-web-innovations-in-west-africa', date='2023-07-14', cat='Blog', field='glow', extra=True,
       head='Exploring Soil Food Web Innovations in West Africa', deck='',
-      img='tools/blog-cards/photos/posts2/fungal-hypha-40x-marco-trevisan.jpg', focus=(.45, .72)),
+      img='tools/blog-cards/photos/posts2/elephant-adam-cobb-2024.jpg', focus=(.6, .6)),
  dict(slug='unconditional-freedom-at-home-and-in-the-world', date='2022-11-23', cat='Blog', field='glow', extra=True,
       head='Unconditional Freedom: At Home and in the World', deck='Guest blog by Bob Wilms',
-      img='tools/blog-cards/photos/posts2/unconditional-freedom-seedlings.jpg', focus=(.5, .45)),
+      img='tools/blog-cards/photos/posts2/unsplash-navarro-river-redwoods-ronan-furuta.jpg', focus=(.5, .4)),
  dict(slug='sadhguru-and-the-soil-food-web', date='2022-07-18', cat='Blog', field='glow', extra=True,
       head='Sadhguru and the Soil Food Web', deck='Webinar #3 in our Rescuing Mother Earth series',
       img='tools/blog-cards/photos/posts2/sadhguru-save-soil-motorcycle.jpg', focus=(.5, .4)),
@@ -192,7 +192,8 @@ HEADS = {
  'soil-health-week-pakistan':          [(.12, .22, .25, .40), (.42, .26, .57, .45), (.68, .09, .84, .30)],
  'foundation-launches-as-nonprofit':   [(.17, .02, .58, .50)],
  'retirement-dr-elaine-ingham':        [(.47, .14, .68, .52)],
- 'sadhguru-and-the-soil-food-web':     [(.35, .05, .47, .21), (.54, .40, .64, .56)],   # Sadhguru's helmet, and the Save Soil sticker
+ 'sadhguru-and-the-soil-food-web':     [(.35, .05, .47, .21), (.54, .40, .64, .56)],
+ 'new-board-member-eric-feiler':       [(.33, .11, .74, .72)],   # Sadhguru's helmet, and the Save Soil sticker
  'sacramento-food-knowledge-culture': [(.10, .00, .31, .33)],   # the woman pouring
  'student-profile-su-kahumbu-stephanou': [(.20, .02, .38, .45), (.47, .38, .72, .75)],   # Su, and the calf
 }
@@ -216,12 +217,25 @@ WIDE = {
  'living-legacy-webinar-series':       (D_ + 'cc-mix-vetch-cover-crop.jpg', (.5, .5)),
  'soil-health-week-pakistan':          (D_ + 'cc-mix-vetch-cover-crop.jpg', (.5, .45)),
  'sadhguru-and-the-soil-food-web':     (D_ + 'synergia-dry-grassland.jpg', (.5, .5)),
- 'sacramento-food-knowledge-culture': ('tools/blog-cards/photos/posts2/sacramento-wine-pour-background.jpg', (.5, .5)),   # the wine photo's own tents, behind the paper
+ 'sacramento-food-knowledge-culture': ('tools/blog-cards/photos/posts2/sacramento-wine-pour-background.jpg', (.5, .5)),
+ 'new-board-member-eric-feiler':       ('tools/blog-cards/photos/drive/synergia-dry-grassland.jpg', (.5, .5)),   # dry land like the land behind him   # the wine photo's own tents, behind the paper
  'student-profile-su-kahumbu-stephanou': (D_ + 'R5A_3961-hay-bales-windrows.jpg', (.5, .5)),
 }
 # small source photos: on the wide desktop frame they sit as a sharp panel beside the second photo instead of being stretched
-PANEL_ON_WIDE = {'sadhguru-and-the-soil-food-web', 'sacramento-food-knowledge-culture'}
+PANEL_ALWAYS = {'new-board-member-eric-feiler'}   # the whole face as a panel in every size
+PANEL_ON_WIDE = {'sadhguru-and-the-soil-food-web', 'sacramento-food-knowledge-culture', 'new-board-member-eric-feiler'}
 # hand-set crops (fractions of the source photo) where the automatic one misses the point of the picture
+# a different source photo for one size of a post
+IMG_BY_KEY = {
+ ('exploring-soil-food-web-innovations-in-west-africa', 'mobile-header-750x1000'): 'tools/blog-cards/photos/posts2/adam-cobb-savanna-warm.jpg',
+}
+# head boxes for posts that use a different photo in some sizes
+HEADS_BY_PHOTO = {
+ 'exploring-soil-food-web-innovations-in-west-africa': {
+   'elephant-adam-cobb-2024.jpg': [(.55, .45, .70, .88)],                      # the elephant
+   'adam-cobb-savanna-warm.jpg': [(.64, .18, .89, .43), (.0, .30, .32, .66)],   # Adam, and the sample bags
+ },
+}
 CROP = {
  ('student-profile-su-kahumbu-stephanou', 'mobile-header-750x1000'): (.17, 0, .643, 1),   # Su and the calf she is petting
 }
@@ -516,6 +530,10 @@ def brand_slide(slide, post, key, W, H):
     else:
         cy = (H - ch) / 2
     photo = photo_for(post)
+    if (post['slug'], key) in IMG_BY_KEY:
+        photo = os.path.join(REPO, IMG_BY_KEY[(post['slug'], key)])
+    if post['slug'] in HEADS_BY_PHOTO:
+        HEADS[post['slug']] = HEADS_BY_PHOTO[post['slug']][os.path.basename(photo)]
     src = ImageOps.exif_transpose(Image.open(photo)).convert('RGB')
     slug = post['slug']; focus = post['focus']
     m_ = 10
@@ -528,7 +546,7 @@ def brand_slide(slide, post, key, W, H):
     if (slug, key) in CROP:
         x0, y0, x1, y1 = CROP[(slug, key)]
         img = ImageOps.fit(src.crop((int(x0 * src.width), int(y0 * src.height), int(x1 * src.width), int(y1 * src.height))), (int(pw * k), int(ph * k)), Image.LANCZOS, centering=(.5, 0))
-    elif (ok(cx, cy, ph) and not (slug in PANEL_ON_WIDE and W / H > 2)) or not WIDE.get(slug):
+    elif (ok(cx, cy, ph) and slug not in PANEL_ALWAYS and not (slug in PANEL_ON_WIDE and W / H > 2)) or not WIDE.get(slug):
         img = people_crop(src, int(pw * k), int(ph * k), slug, focus, rel(cx, cy, px_, py_, pw, ph))
     else:
         # The post's own photograph always stays. Where it cannot fill the
