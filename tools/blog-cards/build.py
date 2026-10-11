@@ -96,7 +96,7 @@ POSTS = [
       img='tools/blog-cards/photos/posts2/adam-cobb-savanna-warm.jpg', focus=(.5, .4)),
  dict(slug='unconditional-freedom-at-home-and-in-the-world', date='2022-11-23', cat='Blog', field='glow', extra=True,
       head='Unconditional Freedom: At Home and in the World', deck='Guest blog by Bob Wilms',
-      img='tools/blog-cards/photos/posts2/unsplash-navarro-river-redwoods-ronan-furuta.jpg', focus=(.5, .4)),
+      img='tools/blog-cards/photos/posts2/unsplash-redwood-river-ben-turnbull.jpg', focus=(.5, .45)),
  dict(slug='sadhguru-and-the-soil-food-web', date='2022-07-18', cat='Blog', field='glow', extra=True,
       head='Sadhguru and the Soil Food Web', deck='Webinar #3 in our Rescuing Mother Earth series',
       img='tools/blog-cards/photos/posts2/sadhguru-save-soil-motorcycle.jpg', focus=(.5, .4)),
@@ -223,6 +223,7 @@ WIDE = {
  'student-profile-su-kahumbu-stephanou': (D_ + 'R5A_3961-hay-bales-windrows.jpg', (.5, .5)),
 }
 # small source photos: on the wide desktop frame they sit as a sharp panel beside the second photo instead of being stretched
+WHOLE_PANEL = {'exploring-soil-food-web-innovations-in-west-africa'}   # the panel shows the whole photo, no side crop
 PANEL_ALWAYS = {'new-board-member-eric-feiler', 'exploring-soil-food-web-innovations-in-west-africa'}   # the whole face as a panel in every size
 PANEL_ON_WIDE = {'sadhguru-and-the-soil-food-web', 'sacramento-food-knowledge-culture', 'new-board-member-eric-feiler'}
 # hand-set crops (fractions of the source photo) where the automatic one misses the point of the picture
@@ -560,7 +561,7 @@ def brand_slide(slide, post, key, W, H):
         r = rel(cx, cy, px_, py_, pw, ph); gap = max(6, int(Wk * .006))
         if r[2] - r[0] > .8:                      # full-width card: the panel goes in the band above it
             bh = max(int(Hk * r[1]), int(Hk * .3)) + int(Hk * .06)   # runs under the paper's edge: no strip of the second photo shows
-            bw = min(Wk, int(bh * src.width / src.height * 1.1))
+            bw = min(Wk, int(bh * src.width / src.height * (1.0 if slug in WHOLE_PANEL else 1.1)))
             bx = Wk - bw
             panel = cover(src, bw, bh, focus, slug=slug)
             img.paste(panel, (bx, 0))
