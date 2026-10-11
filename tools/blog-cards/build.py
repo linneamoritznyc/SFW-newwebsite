@@ -245,9 +245,14 @@ HEADS_BY_PHOTO = {
    'adam-cobb-savanna-warm.jpg': [(.64, .18, .89, .43), (.0, .30, .32, .66)],   # Adam, and the sample bags
  },
 }
+PANEL_CROP = {
+ ('exploring-soil-food-web-innovations-in-west-africa', 'tablet-header-1024x768'): (0, .12, 1, .70),   # Adam from just above his cap to below the bags
+ ('exploring-soil-food-web-innovations-in-west-africa', 'thumbnail-1200x800'):     (0, .12, 1, .70),
+}
 CROP = {
  ('2024-a-year-in-review', 'desktop-header-1920x720'): (0, .15, .9, .55),   # Elaine a little higher in the frame
- ('exploring-soil-food-web-innovations-in-west-africa', 'mobile-header-750x1000'): (0, .10, 1, .66),   # Adam and the sample bags, filling the frame
+ ('exploring-soil-food-web-innovations-in-west-africa', 'mobile-header-750x1000'): (0, .05, 1, .70),
+ ('exploring-soil-food-web-innovations-in-west-africa', 'feature-social-1400x1400'): (0, .09, 1, .60),   # Adam and the sample bags, filling the frame
  ('student-profile-su-kahumbu-stephanou', 'mobile-header-750x1000'): (.17, 0, .643, 1),   # Su and the calf she is petting
 }
 # WIDE_OVERRIDE=slug=path,... swaps the second photograph for trying options.
@@ -565,6 +570,10 @@ def brand_slide(slide, post, key, W, H):
         # in the free part of the frame, and a second photograph that belongs
         # to the post (from the Foundation's Drive) fills the rest.
         alt, afocus = WIDE[slug]
+        if (slug, key) in PANEL_CROP:            # the panel shows this part of the post's photo
+            x0, y0, x1, y1 = PANEL_CROP[(slug, key)]
+            src = src.crop((int(x0 * src.width), int(y0 * src.height), int(x1 * src.width), int(y1 * src.height)))
+            _hb = HEADS.get(slug, []); HEADS[slug] = []   # the crop already keeps the face whole
         A = ImageOps.exif_transpose(Image.open(os.path.join(REPO, alt))).convert('RGB')
         Wk, Hk = int(pw * k), int(ph * k)
         img = ImageOps.fit(A, (Wk, Hk), Image.LANCZOS, centering=afocus)
