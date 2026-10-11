@@ -225,15 +225,15 @@ WIDE = {
  'soil-health-week-pakistan':          (D_ + 'IMG_2498-wild-ken-hill-field.jpg', (.5, .5)),
  'sadhguru-and-the-soil-food-web':     (D_ + 'synergia-dry-grassland.jpg', (.5, .5)),
  'sacramento-food-knowledge-culture': ('tools/blog-cards/photos/posts2/sacramento-wine-pour-background.jpg', (.5, .5)),
- 'exploring-soil-food-web-innovations-in-west-africa': ('tools/blog-cards/photos/posts2/elephant-adam-cobb-2024.jpg', (.3, .55)),
+ 'exploring-soil-food-web-innovations-in-west-africa': ('tools/blog-cards/photos/posts2/elephant-adam-cobb-2024.jpg', (.62, .55)),
  'new-board-member-eric-feiler':       ('tools/blog-cards/photos/posts2/earthworm-chaeta-10x-eric-feiler.jpg', (.5, .5)),   # Eric's own micrograph   # dry land like the land behind him   # the wine photo's own tents, behind the paper
  'student-profile-su-kahumbu-stephanou': (D_ + 'R5A_3961-hay-bales-windrows.jpg', (.5, .5)),
 }
 # small source photos: on the wide desktop frame they sit as a sharp panel beside the second photo instead of being stretched
 WHOLE_PANEL = {'exploring-soil-food-web-innovations-in-west-africa'}   # the panel shows the whole photo, no side crop
-PANEL_ALWAYS = {'new-board-member-eric-feiler', 'exploring-soil-food-web-innovations-in-west-africa'}   # the whole face as a panel in every size
-PANEL_ON_WIDE = {'sadhguru-and-the-soil-food-web', 'sacramento-food-knowledge-culture', 'new-board-member-eric-feiler'}
-NO_PANEL = set()
+PANEL_ALWAYS = {'new-board-member-eric-feiler'}   # the whole face as a panel in every size
+PANEL_ON_WIDE = {'exploring-soil-food-web-innovations-in-west-africa', 'sadhguru-and-the-soil-food-web', 'sacramento-food-knowledge-culture', 'new-board-member-eric-feiler'}
+NO_PANEL = {('exploring-soil-food-web-innovations-in-west-africa', k) for k in ('tablet-header-1024x768', 'mobile-header-750x1000', 'feature-social-1400x1400', 'thumbnail-1200x800')}   # Adam alone; the elephant only beside him on desktop
 # hand-set crops (fractions of the source photo) where the automatic one misses the point of the picture
 # a different source photo for one size of a post
 IMG_BY_KEY = {
@@ -246,6 +246,8 @@ HEADS_BY_PHOTO = {
  },
 }
 CROP = {
+ ('exploring-soil-food-web-innovations-in-west-africa', 'tablet-header-1024x768'): (0, .195, 1, .55),   # Adam's face and the bags in his hand
+ ('exploring-soil-food-web-innovations-in-west-africa', 'thumbnail-1200x800'):     (0, .195, 1, .55),
  ('2024-a-year-in-review', 'desktop-header-1920x720'): (0, .15, .9, .55),   # Elaine a little higher in the frame
  ('exploring-soil-food-web-innovations-in-west-africa', 'mobile-header-750x1000'): (0, .10, 1, .66),   # Adam and the sample bags, filling the frame
  ('student-profile-su-kahumbu-stephanou', 'mobile-header-750x1000'): (.17, 0, .643, 1),   # Su and the calf she is petting
