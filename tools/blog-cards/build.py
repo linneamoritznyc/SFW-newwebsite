@@ -99,7 +99,7 @@ POSTS = [
       img='tools/blog-cards/photos/posts2/unconditional-freedom-seedlings.jpg', focus=(.5, .45)),
  dict(slug='sadhguru-and-the-soil-food-web', date='2022-07-18', cat='Blog', field='glow', extra=True,
       head='Sadhguru and the Soil Food Web', deck='Webinar #3 in our Rescuing Mother Earth series',
-      img='tools/blog-cards/photos/posts2/sadhguru-cop15.jpg', focus=(.4, .5)),
+      img='tools/blog-cards/photos/posts2/sadhguru-save-soil-motorcycle.jpg', focus=(.5, .4)),
  dict(slug='student-profile-su-kahumbu-stephanou', date='2025-02-05', cat='Blog', field='glow', extra=True,
       head='Student Profile: Su Kahumbu Stephanou', deck='',
       img='tools/blog-cards/photos/posts2/su-kahumbu-stephanou.jpg', focus=(.35, .4)),
@@ -192,7 +192,7 @@ HEADS = {
  'soil-health-week-pakistan':          [(.12, .22, .25, .40), (.42, .26, .57, .45), (.68, .09, .84, .30)],
  'foundation-launches-as-nonprofit':   [(.17, .02, .58, .50)],
  'retirement-dr-elaine-ingham':        [(.47, .14, .68, .52)],
- 'sadhguru-and-the-soil-food-web':     [(.28, .42, .40, .64)],
+ 'sadhguru-and-the-soil-food-web':     [(.35, .05, .47, .21), (.54, .40, .64, .56)],   # Sadhguru's helmet, and the Save Soil sticker
  'sacramento-food-knowledge-culture': [(.10, .00, .31, .33)],   # the woman pouring
  'student-profile-su-kahumbu-stephanou': [(.20, .02, .38, .45), (.47, .38, .72, .75)],   # Su, and the calf
 }
@@ -527,7 +527,7 @@ def brand_slide(slide, post, key, W, H):
     k = max(1, min(2, min(src.width / pw, src.height / ph)))
     if (slug, key) in CROP:
         x0, y0, x1, y1 = CROP[(slug, key)]
-        img = src.crop((int(x0 * src.width), int(y0 * src.height), int(x1 * src.width), int(y1 * src.height))).resize((int(pw * k), int(ph * k)), Image.LANCZOS)
+        img = ImageOps.fit(src.crop((int(x0 * src.width), int(y0 * src.height), int(x1 * src.width), int(y1 * src.height))), (int(pw * k), int(ph * k)), Image.LANCZOS, centering=(.5, 0))
     elif (ok(cx, cy, ph) and not (slug in PANEL_ON_WIDE and W / H > 2)) or not WIDE.get(slug):
         img = people_crop(src, int(pw * k), int(ph * k), slug, focus, rel(cx, cy, px_, py_, pw, ph))
     else:
