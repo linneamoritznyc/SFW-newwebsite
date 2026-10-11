@@ -233,7 +233,7 @@ WIDE = {
 WHOLE_PANEL = {'exploring-soil-food-web-innovations-in-west-africa'}   # the panel shows the whole photo, no side crop
 PANEL_ALWAYS = {'new-board-member-eric-feiler'}   # the whole face as a panel in every size
 PANEL_ON_WIDE = {'exploring-soil-food-web-innovations-in-west-africa', 'sadhguru-and-the-soil-food-web', 'sacramento-food-knowledge-culture', 'new-board-member-eric-feiler'}
-NO_PANEL = {('exploring-soil-food-web-innovations-in-west-africa', k) for k in ('tablet-header-1024x768', 'mobile-header-750x1000', 'feature-social-1400x1400', 'thumbnail-1200x800')}   # Adam alone; the elephant only beside him on desktop
+NO_PANEL = {('exploring-soil-food-web-innovations-in-west-africa', k) for k in ('mobile-header-750x1000', 'feature-social-1400x1400')}   # Adam alone; the elephant beside him on desktop, tablet and thumbnail
 # hand-set crops (fractions of the source photo) where the automatic one misses the point of the picture
 # a different source photo for one size of a post
 IMG_BY_KEY = {
@@ -246,8 +246,6 @@ HEADS_BY_PHOTO = {
  },
 }
 CROP = {
- ('exploring-soil-food-web-innovations-in-west-africa', 'tablet-header-1024x768'): (0, .195, 1, .55),   # Adam's face and the bags in his hand
- ('exploring-soil-food-web-innovations-in-west-africa', 'thumbnail-1200x800'):     (0, .195, 1, .55),
  ('2024-a-year-in-review', 'desktop-header-1920x720'): (0, .15, .9, .55),   # Elaine a little higher in the frame
  ('exploring-soil-food-web-innovations-in-west-africa', 'mobile-header-750x1000'): (0, .10, 1, .66),   # Adam and the sample bags, filling the frame
  ('student-profile-su-kahumbu-stephanou', 'mobile-header-750x1000'): (.17, 0, .643, 1),   # Su and the calf she is petting
@@ -575,6 +573,8 @@ def brand_slide(slide, post, key, W, H):
             bh = max(int(Hk * r[1]), int(Hk * .3)) + int(Hk * .06)   # runs under the paper's edge: no strip of the second photo shows
             bw = min(Wk, int(bh * src.width / src.height * (1.0 if slug in WHOLE_PANEL else 1.1)))
             bx = Wk - bw
+            if slug in WHOLE_PANEL:                 # the second photograph centred in its own space, left of the panel
+                img.paste(ImageOps.fit(A, (bx, Hk), Image.LANCZOS, centering=afocus), (0, 0))
             panel = cover(src, bw, bh, focus, slug=slug)
             img.paste(panel, (bx, 0))
         else:                                     # card at the side: the panel takes the rest of the width
