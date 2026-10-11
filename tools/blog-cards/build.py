@@ -114,7 +114,7 @@ POSTS = [
       img='tools/blog-cards/photos/posts2/brownian-motion-video-still.jpg', focus=(.5, .5)),
  dict(slug='beneath-the-surface-newsletter', date='2024-12-23', cat='Blog', field='glow', extra=True,
       head='Beneath the Surface: A Soil Food Web School Newsletter', deck='',
-      img='tools/blog-cards/photos/posts2/beneath-the-surface-grass-soil.jpg', focus=(.5, .5)),
+      img='tools/blog-cards/photos/posts2/beneath-the-surface-grass-soil.jpg', focus=(.5, .3)),
  dict(slug='2024-a-year-in-review', date='2024-12', cat='Blog', field='glow', extra=True,
       head='2024: A Year in Review', deck='',
       img='tools/blog-cards/photos/posts2/costa-rica-july-2024-group.jpg', focus=(.48, .38)),
@@ -224,7 +224,6 @@ WIDE = {
  'living-legacy-webinar-series':       ('tools/blog-cards/photos/posts2/roots-soil-clump.jpg', (.5, .5)),
  'soil-health-week-pakistan':          (D_ + 'IMG_2498-wild-ken-hill-field.jpg', (.5, .5)),
  'sadhguru-and-the-soil-food-web':     (D_ + 'synergia-dry-grassland.jpg', (.5, .5)),
- 'beneath-the-surface-newsletter':     ('tools/blog-cards/photos/posts2/nick-padwick-windrow-turner.jpg', (.5, .6)),   # from the same newsletter
  '2024-a-year-in-review':              ('tools/blog-cards/photos/posts2/nick-padwick-compost-windrow.jpg', (.5, .6)),   # 2024 newsletter staff spotlight; only where the group cannot fill the frame
  'sacramento-food-knowledge-culture': ('tools/blog-cards/photos/posts2/sacramento-wine-pour-background.jpg', (.5, .5)),
  'exploring-soil-food-web-innovations-in-west-africa': ('tools/blog-cards/photos/posts2/elephant-adam-cobb-2024.jpg', (.3, .55)),
@@ -233,7 +232,7 @@ WIDE = {
 }
 # small source photos: on the wide desktop frame they sit as a sharp panel beside the second photo instead of being stretched
 WHOLE_PANEL = {'exploring-soil-food-web-innovations-in-west-africa'}   # the panel shows the whole photo, no side crop
-PANEL_ALWAYS = {'beneath-the-surface-newsletter', 'new-board-member-eric-feiler', 'exploring-soil-food-web-innovations-in-west-africa'}   # the whole face as a panel in every size
+PANEL_ALWAYS = {'new-board-member-eric-feiler', 'exploring-soil-food-web-innovations-in-west-africa'}   # the whole face as a panel in every size
 PANEL_ON_WIDE = {'sadhguru-and-the-soil-food-web', 'sacramento-food-knowledge-culture', 'new-board-member-eric-feiler'}
 NO_PANEL = {('2024-a-year-in-review', 'thumbnail-1200x800')}   # the group fills these sizes on its own; the second photo is for the desktop only
 # hand-set crops (fractions of the source photo) where the automatic one misses the point of the picture
