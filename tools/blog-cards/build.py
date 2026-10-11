@@ -211,12 +211,12 @@ D_ = 'tools/blog-cards/photos/drive/'
 WIDE = {
  # texture photographs that echo what is behind the people in the post's photograph
  'what-is-your-soil-test-telling-you': (D_ + 'synergia-dry-grassland.jpg', (.5, .5)),
- 'advanced-programs-reopening':        (D_ + 'cc-mix-vetch-cover-crop.jpg', (.5, .5)),
- 'foundation-launches-as-nonprofit':   (D_ + 'cc-mix-vetch-cover-crop.jpg', (.5, .3)),
- '2025-in-review':                     (D_ + 'cc-mix-vetch-cover-crop.jpg', (.5, .6)),
- 'living-legacy-webinar-series':       (D_ + 'cc-mix-vetch-cover-crop.jpg', (.5, .5)),
- 'soil-health-week-pakistan':          (D_ + 'cc-mix-vetch-cover-crop.jpg', (.5, .45)),
- 'sadhguru-and-the-soil-food-web':     ('tools/blog-cards/photos/posts2/sadhguru-cop15.jpg', (.4, .5)),   # his other photo from the same post
+ 'advanced-programs-reopening':        ('tools/blog-cards/photos/posts2/fungal-hypha-40x-jen-ralston.jpg', (.5, .5)),
+ 'foundation-launches-as-nonprofit':   ('tools/blog-cards/photos/posts2/R5A_4016-hands-compost.jpg', (.5, .5)),
+ '2025-in-review':                     (D_ + 'cc-inter-row-cover-crop.jpg', (.5, .5)),
+ 'living-legacy-webinar-series':       ('tools/blog-cards/photos/posts2/roots-soil-clump.jpg', (.5, .5)),
+ 'soil-health-week-pakistan':          (D_ + 'IMG_2498-wild-ken-hill-field.jpg', (.5, .5)),
+ 'sadhguru-and-the-soil-food-web':     (D_ + 'synergia-dry-grassland.jpg', (.5, .5)),
  'sacramento-food-knowledge-culture': ('tools/blog-cards/photos/posts2/sacramento-wine-pour-background.jpg', (.5, .5)),
  'exploring-soil-food-web-innovations-in-west-africa': ('tools/blog-cards/photos/posts2/elephant-adam-cobb-2024.jpg', (.3, .55)),
  'new-board-member-eric-feiler':       ('tools/blog-cards/photos/posts2/earthworm-chaeta-10x-eric-feiler.jpg', (.5, .5)),   # Eric's own micrograph   # dry land like the land behind him   # the wine photo's own tents, behind the paper
