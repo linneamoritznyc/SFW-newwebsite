@@ -216,10 +216,10 @@ WIDE = {
  '2025-in-review':                     (D_ + 'cc-mix-vetch-cover-crop.jpg', (.5, .6)),
  'living-legacy-webinar-series':       (D_ + 'cc-mix-vetch-cover-crop.jpg', (.5, .5)),
  'soil-health-week-pakistan':          (D_ + 'cc-mix-vetch-cover-crop.jpg', (.5, .45)),
- 'sadhguru-and-the-soil-food-web':     (D_ + 'synergia-dry-grassland.jpg', (.5, .5)),
+ 'sadhguru-and-the-soil-food-web':     ('tools/blog-cards/photos/posts2/sadhguru-cop15.jpg', (.4, .5)),   # his other photo from the same post
  'sacramento-food-knowledge-culture': ('tools/blog-cards/photos/posts2/sacramento-wine-pour-background.jpg', (.5, .5)),
  'exploring-soil-food-web-innovations-in-west-africa': ('tools/blog-cards/photos/posts2/elephant-adam-cobb-2024.jpg', (.3, .55)),
- 'new-board-member-eric-feiler':       ('tools/blog-cards/photos/drive/synergia-dry-grassland.jpg', (.5, .5)),   # dry land like the land behind him   # the wine photo's own tents, behind the paper
+ 'new-board-member-eric-feiler':       ('tools/blog-cards/photos/posts2/earthworm-chaeta-10x-eric-feiler.jpg', (.5, .5)),   # Eric's own micrograph   # dry land like the land behind him   # the wine photo's own tents, behind the paper
  'student-profile-su-kahumbu-stephanou': (D_ + 'R5A_3961-hay-bales-windrows.jpg', (.5, .5)),
 }
 # small source photos: on the wide desktop frame they sit as a sharp panel beside the second photo instead of being stretched
@@ -238,6 +238,7 @@ HEADS_BY_PHOTO = {
  },
 }
 CROP = {
+ ('exploring-soil-food-web-innovations-in-west-africa', 'mobile-header-750x1000'): (0, .10, 1, .66),   # Adam and the sample bags, filling the frame
  ('student-profile-su-kahumbu-stephanou', 'mobile-header-750x1000'): (.17, 0, .643, 1),   # Su and the calf she is petting
 }
 # WIDE_OVERRIDE=slug=path,... swaps the second photograph for trying options.
