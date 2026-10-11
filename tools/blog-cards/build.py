@@ -93,7 +93,7 @@ POSTS = [
  # added October 2026 for posts that had no image on the site; the type scale stays set by the posts above
  dict(slug='exploring-soil-food-web-innovations-in-west-africa', date='2023-07-14', cat='Blog', field='glow', extra=True,
       head='Exploring Soil Food Web Innovations in West Africa', deck='',
-      img='tools/blog-cards/photos/posts2/elephant-adam-cobb-2024.jpg', focus=(.6, .6)),
+      img='tools/blog-cards/photos/posts2/adam-cobb-savanna-warm.jpg', focus=(.5, .4)),
  dict(slug='unconditional-freedom-at-home-and-in-the-world', date='2022-11-23', cat='Blog', field='glow', extra=True,
       head='Unconditional Freedom: At Home and in the World', deck='Guest blog by Bob Wilms',
       img='tools/blog-cards/photos/posts2/unsplash-navarro-river-redwoods-ronan-furuta.jpg', focus=(.5, .4)),
@@ -218,16 +218,16 @@ WIDE = {
  'soil-health-week-pakistan':          (D_ + 'cc-mix-vetch-cover-crop.jpg', (.5, .45)),
  'sadhguru-and-the-soil-food-web':     (D_ + 'synergia-dry-grassland.jpg', (.5, .5)),
  'sacramento-food-knowledge-culture': ('tools/blog-cards/photos/posts2/sacramento-wine-pour-background.jpg', (.5, .5)),
+ 'exploring-soil-food-web-innovations-in-west-africa': ('tools/blog-cards/photos/posts2/elephant-adam-cobb-2024.jpg', (.3, .55)),
  'new-board-member-eric-feiler':       ('tools/blog-cards/photos/drive/synergia-dry-grassland.jpg', (.5, .5)),   # dry land like the land behind him   # the wine photo's own tents, behind the paper
  'student-profile-su-kahumbu-stephanou': (D_ + 'R5A_3961-hay-bales-windrows.jpg', (.5, .5)),
 }
 # small source photos: on the wide desktop frame they sit as a sharp panel beside the second photo instead of being stretched
-PANEL_ALWAYS = {'new-board-member-eric-feiler'}   # the whole face as a panel in every size
+PANEL_ALWAYS = {'new-board-member-eric-feiler', 'exploring-soil-food-web-innovations-in-west-africa'}   # the whole face as a panel in every size
 PANEL_ON_WIDE = {'sadhguru-and-the-soil-food-web', 'sacramento-food-knowledge-culture', 'new-board-member-eric-feiler'}
 # hand-set crops (fractions of the source photo) where the automatic one misses the point of the picture
 # a different source photo for one size of a post
 IMG_BY_KEY = {
- ('exploring-soil-food-web-innovations-in-west-africa', 'mobile-header-750x1000'): 'tools/blog-cards/photos/posts2/adam-cobb-savanna-warm.jpg',
 }
 # head boxes for posts that use a different photo in some sizes
 HEADS_BY_PHOTO = {
