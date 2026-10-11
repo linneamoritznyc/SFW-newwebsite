@@ -111,7 +111,7 @@ POSTS = [
       img='tools/blog-cards/photos/posts2/ernst-gotsch-forest.jpg', focus=(.5, .4)),
  dict(slug='what-exactly-is-brownian-motion', date='2026-10-02', cat='Microscopy', field='glow', extra=True,
       head='What exactly is Brownian motion?', deck='',
-      img='tools/blog-cards/photos/posts2/bacilli-yeast-40x-marcelino-meincke.jpg', focus=(.5, .5)),
+      img='tools/blog-cards/photos/posts2/brownian-motion-video-still.jpg', focus=(.5, .5)),
 ]
 
 # Per size: the photo zone, the card, and the type scale. px.
